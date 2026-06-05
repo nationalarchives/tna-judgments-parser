@@ -202,12 +202,12 @@ public class TestMakeMetadata
     }
 
     [Fact]
-    public void MakeMetadata_WithNCN_SetsCiteProperty()
+    public void MakeMetadata_WithNCN_SetsCitePropertyWithCleanedNcn()
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            Ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = "[2023] UKUT 00123 (IAC)"
         };
 
         // Act

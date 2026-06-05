@@ -596,6 +596,22 @@ public class TestRead : IDisposable
             },
             failedToParseLines);
     }
+    
+    [Fact]
+    public void Read_WithNcn_DoesNotTrimOriginalNcnInFullCsvLineContents()
+    {
+        const string csvContent = """
+                                  id,ncn,UUID,FilePath,Extension,decision_datetime,court,claimants,respondent,skip
+                                  123,[2025] UKUT 0027 (LC),00000000-0000-0000-0000-000000000123, /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 ,UKUT-IAC , Smith , Secretary of State for the Home Department,
+                                  124,[2024] EAT 001,00000000-0000-0000-0000-000000000124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,UKFTT-TC,Jones,HMRC,
+                                  """;
+        using var csvStream = new StringReader(csvContent);
+        
+        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+
+        var fullCsvLineContentNcns = result.Select(l => l.FullCsvLineContents["ncn"]);
+        Assert.Equal(["[2025] UKUT 0027 (LC)", "[2024] EAT 001"], fullCsvLineContentNcns);
+    }
 
     [Fact]
     public void Read_WithMixedCaseHeaders_ParsesCorrectly()

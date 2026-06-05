@@ -71,6 +71,12 @@ public static class XmlAssertions
         Assert.Matches(expectedValueRegex, node.InnerText);
         return node;
     }
+    
+    public static XmlNode HaveValue(this XmlNode node, string expectedValue)
+    {
+        Assert.Equal(expectedValue, node.InnerText);
+        return node;
+    }
 
     public static void ThatMatch(this XmlAttributeCollection? attributes,
         params (string key, string value)[] expectedAttributes)

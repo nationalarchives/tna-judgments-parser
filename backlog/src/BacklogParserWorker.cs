@@ -226,7 +226,7 @@ internal class BacklogParserWorker(
                 Meta = new Api.Meta
                 {
                     DocumentType = "decision",
-                    Cite = csvLine.Ncn,
+                    Cite = csvLine.CleanedNcn,
                     Court = csvLine.Court,
                     Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
                     Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
@@ -264,7 +264,7 @@ internal class BacklogParserWorker(
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
         var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
 
-        var contentHash = Hash(sourceContent);
+        var sourceHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
 
         var externalMetadataFields = metadataTransformer.CsvLineToMetadataFields(csvLine);
@@ -277,16 +277,17 @@ internal class BacklogParserWorker(
             bundleSourceFilename = csvLine.FileName + ".docx";
         }
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, contentHash,
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, sourceHash,
             images, response.Meta, externalMetadataFields, !isStub);
 
-        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, contentHash);
+        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash);
         
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
 
     public static string Hash(byte[] content)
     {
+        // This is the hash of the source document
         var hash = SHA256.HashData(content);
         return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
     }

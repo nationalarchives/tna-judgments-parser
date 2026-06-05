@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 using CsvHelper.Configuration.Attributes;
 
@@ -80,6 +81,23 @@ internal record CsvLine
     [Default(false)]
     [TypeConverter(typeof(BooleanSkipConverter))]
     public bool Skip { get; set; }
+
+    /// <summary>
+    /// NCN with zeros removed
+    /// </summary>
+    [Ignore]
+    internal string? CleanedNcn
+    {
+        get
+        {
+            if (Ncn is null)
+                return null;
+                
+            return cleanedNcn ??= Regex.Replace(Ncn, " 0+", " ");
+        }
+    }
+
+    private string? cleanedNcn;
 
     /// <summary>
     ///     Gets the name of the first party (either claimants or appellants)
