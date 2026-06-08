@@ -1,0 +1,742 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE OFFENDER MANAGEMENT ACT 2007 (COMMENCEMENT NO. 6) ORDER 2013</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2013 No. [DRAFT]</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section id="paragraph_1" class="paragraph num">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span></h2>
+               <p>This explanatory memorandum has been prepared by the Ministry of Justice and is laid
+                  before Parliament by Command of Her Majesty.</p>
+            </section>
+            <section id="paragraph_2" class="paragraph num">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span></h2>
+               <p>
+                  <b>Purpose of the instrument</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>The Offender Management Act 2007 (OMA) introduced a power for the Secretary of State
+                     to include a polygraph condition into the licences of certain sexual offenders.  This
+                     order commences the power across the whole of England and Wales from 6th January 2014.
+                     It replaces an earlier commencement order that was subject to time and geographical
+                     limits.</p>
+               </section>
+            </section>
+            <section id="paragraph_3" class="paragraph num">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span></h2>
+               <p>
+                  <b>Matters of special interest to the Joint Committee on Statutory Instruments</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">3.1</span></h2>
+                  <p>None.</p>
+               </section>
+            </section>
+            <section id="paragraph_4" class="paragraph num">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span></h2>
+               <p>
+                  <b>Legislative Context</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>Piloting the use of polygraph testing for sexual offenders on licence was one of the
+                     measures introduced in recent years to protect the public from sexual abuse by offenders
+                     already convicted of a sexual offence.  A new clause was introduced into the Offender
+                     Management Bill, in February 2007, at the third reading stage, to allow a pilot of
+                     mandatory polygraph testing. The late addition was brought because of the impending
+                     publication of a Home Office Review, “Review of the Protection of Children from Sex
+                     Offenders” (final publication date was June 2007) which recommended that use of mandatory
+                     polygraph testing be piloted to establish whether compulsory polygraph tests led to
+                     increased disclosure of information that would be helpful in the treatment and supervision
+                     of child sex offenders.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The government of the day advised a “cautious approach” to the introduction of polygraph
+                     testing.  The OMA allowed the introduction of the polygraph testing with the following
+                     limitations:</p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>that use of evidence from polygraph tests would not be permitted in criminal proceedings.
+                        Section 30 of the OMA prevents any information emerging from a test being relied upon
+                        in any prosecutions brought against the sex offender.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>that it would be introduced for a pilot period only in a pilot area.  Sections 28
+                        and 29 of the Offender Management Act 2007 (“the 2007 Act”) set out a power for the
+                        Secretary of State to impose conditions relating to polygraph testing in the licences
+                        of certain offenders released from prison.  The power was commenced in relation to
+                        nine police areas on 19 January 2009 by the Offender Management Act 2007 (Commencement
+                        No.3) Order 2009, and ceased under that Order on 31 March 2012.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>That a scientific research study would be commissioned to run in parallel with the
+                        pilot, to determine whether the information elicited from polygraph testing facilitated
+                        effective offender management without disproportionately affecting the rights of those
+                        tested.  Assurance was given in the House of Lords that further roll-out would be
+                        sanctioned only if it could be shown that polygraph testing was a useful and objective
+                        additional tool in assessing and managing the risk posed by sexual offenders, in which
+                        case an affirmative resolution before both Houses would be required before polygraph
+                        testing across England and Wales could be commenced.</p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>In addition, the Polygraph Rules 2009 were made on 10 March 2009 (as SI 2009 No.619).
+                        They governed the conduct of the polygraph sessions and requirements as to qualifications
+                        and experience of the polygraph testers.  During the committee and House of Lords
+                        stages, the safeguard was added that any changes to the Polygraph Rules would require
+                        a negative resolution of both Houses rather than, as was originally proposed, by the
+                        Secretary of State without any formal procedure. If this Commencement Order is passed,
+                        it is intended that any new rules governing polygraph testing will be made directly
+                        after commencement.</p>
+                  </section>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">4.3</span></h2>
+                  <p>The pilot was successful (see paragraph 7.8) and commencement of the power in relation
+                     to England and Wales as a whole is now sought.  Under section 41(4) of the 2007 Act
+                     the commencement order must be approved in draft using the affirmative resolution
+                     procedure before it can be made.</p>
+               </section>
+            </section>
+            <section id="paragraph_5" class="paragraph num">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span></h2>
+               <p>
+                  <b>Territorial Extent and Application</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>This instrument applies to England and Wales.</p>
+               </section>
+            </section>
+            <section id="paragraph_6" class="paragraph num">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span></h2>
+               <p>
+                  <b>European Convention on Human Rights</b>
+                  </p>
+               <section class="subparagraph">
+                  <p>The Secretary of State for Justice has made the following statement regarding Human
+                     Rights: </p>
+               </section>
+               <section class="subparagraph">
+                  <p>In my view the provisions of the Offender Management Act 2007 (Commencement No.6)
+                     Order 2013 are compatible with the Convention rights.</p>
+               </section>
+            </section>
+            <section id="paragraph_7" class="paragraph num">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span></h2>
+               <p>
+                  <b>Policy background</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.1</span></h2>
+                  <p>Sexual offending is a matter that generates great public concern and protecting the
+                     public from the problem of sexual abuse has been given priority by successive governments
+                     across recent years.  It also attracts considerable media attention.  It is, therefore,
+                     important that all reasonable and effective measures that may assist in the safer
+                     management of sexual offenders are employed.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.2</span></h2>
+                  <p>The previous Government acknowledged there had been important developments in the
+                     management of child sex offenders but established a review to carry out a careful
+                     examination of where further improvements could be made to give reassurance to the
+                     public. In June 2007 they published the “Review of the Protection of Children from
+                     Sex Offenders” which recommended harnessing new technologies to see if they could
+                     further improve the management of sexual offenders (see 4.1 above) and proposed piloting
+                     mandatory polygraph tests on sex offenders in the community.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.3</span></h2>
+                  <p>The main purpose of the pilot was to determine whether polygraph testing was a useful
+                     risk management tool for offender managers supervising sexual offenders who had committed
+                     sexual offences against children or adults following their release from prison into
+                     the community.  Following a positive evaluation (see paragraph 7.8) the Government
+                     has concluded that it should be possible for polygraph conditions to be included in
+                     the licences of sex offenders throughout England &amp; Wales.  This requires the necessary
+                     powers to be commenced afresh, but without a time limit or a geographical limit.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.4</span></h2>
+                  <p>The polygraph is a device that measures heart activity, breathing activity and sweating.
+                     Changes in these factors can indicate whether an individual is lying (i.e. deception
+                     was indicated) or telling the truth (no deception indicated) in response to set questions.
+                     In the pilot, polygraph testing was carried out by trained polygraph examiners (polygraphers),
+                     directed by probation offender managers.  Questions were formulated based on offenders’
+                     previous offending and risk of causing harm.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.5</span></h2>
+                  <p>In the main, the polygraph test was used to establish the offender’s compliance with
+                     specific licence conditions such as not to contact a specified person or not to go
+                     to specific places, by asking the offender directly whether they had complied with
+                     such a condition.  Information from the polygraph test and/or information that the
+                     offender volunteered (termed a disclosure) was used to inform risk management decisions,
+                     including the decision to recall an offender back to prison because of a breach of
+                     licence condition/s.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.6</span></h2>
+                  <p>Failing the test (deception was indicated) was not treated as a breach of the licence
+                     condition <i>per se</i> but would lead to intensive questioning from the offender manager and/or seeking
+                     other sources of information about the offender.  If further information indicated
+                     a failure to comply with the licence (or increased risk to others), recall to custody
+                     was a possible outcome.  Failing to comply with the instructions of the polygraph
+                     operator (including attempts to ‘beat’ the polygraph through use of counter-measures)
+                     and failing to attend for a polygraph test were breaches of the licence condition
+                     and  resulted in the offender being recalled to custody or other actions to manage
+                     risk being undertaken.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.7</span></h2>
+                  <p>In summary, polygraph testing was used, during the pilot, as an additional source
+                     of information for offender managers when assessing and managing a sexual offender’s
+                     risks in the community.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.8</span></h2>
+                  <p>A formal evaluation of the polygraph pilot, led by Dr Theresa Gannon of the University
+                     of Kent, concluded that mandatory polygraph testing provided information to offender
+                     managers that had the potential to improve the management of sexual offenders because
+                     offenders subject to testing made more than twice the number of “significant disclosures”
+                     (gave information relevant to managing their risk) as those who were not tested. 
+                     In particular, the evaluation showed that polygraph testing seemed to increase the
+                     likelihood of preventative actions being taken by offender managers that would contribute
+                     to greater protection of the public from harm. The evaluation can be viewed at: <a href="https://www.gov.uk/government/publications/the-evaluation-of-the-mandatory-polygraph-pilot"><span style="color:#0000FF"><u>https://www.gov.uk/government/publications/the-evaluation-of-the-mandatory-polygraph-pilot</u></span></a></p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.9</span></h2>
+                  <p>It is important that, where it is utilised, polygraph testing is conducted to a high
+                     standard and in a way that is fair and effective.  Part of the aim of the pilot was
+                     to discover more about and further refine issues such as questioning techniques, training,
+                     and reporting, and to determine the best way to regulate and monitor testing.  Testing
+                     during the pilot was regulated through a combination of the Polygraph Rules and the
+                     contractual arrangements between the Secretary of State and providers of polygraph
+                     services.  This framework will continue when full roll-out across England and Wales
+                     takes place.  A contractor operating under a national draw-down contract with the
+                     Ministry of Justice will provide polygraph testing services to appropriate sexual
+                     offenders who are referred to the contractor by individual Probation Trusts.  An outcome-based
+                     specification is being developed. Following the pilot and discussion with potential
+                     polygraph providers, it is not anticipated that the Polygraph Rules will be amended.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.10</span></h2>
+                  <p>Following the positive evaluation of the pilot, Ministers concluded that sections
+                     28 to 29 of the Offender Management Act 2007 should be commenced fully - i.e. beyond
+                     the time and geographical limits of the pilot.  Ministers also decided that polygraph
+                     conditions should be imposed on all serious sexual offenders and that Trusts should
+                     have discretion to include the condition for other sexual offenders on licence if
+                     appropriate.  In the case of indeterminate sentenced prisoners, the offender manager
+                     will need to apply to the Parole Board to include the polygraph condition in the post-release
+                     licence; in the case of determinate sentence prisoners the offender manager will make
+                     a recommendation to the prison governor.  Securing the Parole Board’s agreement to
+                     include the licence condition in the case of indeterminate sentenced offenders was
+                     not found to be an obstacle during the pilot.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.11</span></h2>
+                  <p>The pilot tested <i>all</i> sexual offenders released on licence for the period of the pilot.  Targeting the
+                     polygraph licence condition on those most likely to re-offend sexually, or who give
+                     greatest cause for concern to supervising agencies, ensures that extra offender management
+                     resources are focused on the most risky offenders.  Ministers have therefore concluded
+                     that polygraph conditions should be targeted on the most serious sexual offenders
+                     on licence: those who are assessed as both a high risk of serious harm and a high
+                     risk of sexual re-offending. This will be determined using NOMS-approved assessment
+                     tools that are in operation nationally - currently, Offender Assessment System (OASys)
+                     Risk of Serious Harm Score and Risk Matrix 2000 respectively.  Guidance will be issued
+                     to offender managers, Probation Trusts, Parole Board members and prison governors.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.12</span></h2>
+                  <p>Using the above definition, we estimated that about 750 sexual offenders per year
+                     will be subject to mandatory polygraph testing on a compulsory basis. The most recent
+                     figures put this number at 780.  This is approximately 25% of the total population
+                     of sexual offenders on licence.  Capacity to test a further 200 sexual offenders will
+                     be built into the provider’s contract, to allow the testing of offenders who fall
+                     outside this definition but for whom use of the polygraph can be demonstrated to be
+                     necessary and proportionate.  For example, a sexual offender may not have an extensive
+                     history of sexual offending, so will not “score” as representing a high risk of reoffending,
+                     but may be demonstrating attitudes and/or behaviour that lead to a clinical assessment
+                     that he poses a high risk of serious harm.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.13</span></h2>
+                  <p>During the course of the pilot a legal challenge was mounted, alleging that the imposition
+                     of a polygraph condition was a violation of Article 8 of the European Convention on
+                     Human Rights and was a disproportionate measure that could not be justified in the
+                     public interest.   This was successfully resisted. (<i>Corbett vs The Secretary of State for Justice and the National Offender Management
+                        Service -NOMS</i>).  Though the pilot allowed the testing of all sexual offenders on licence, as described
+                     in 7.10 &amp; 7.12 national roll-out will be targeted at serious sexual offenders and
+                     others for whom it is deemed necessary and proportionate.  This will further protect
+                     offenders’ rights and will limit challenges that these rights are being infringed.
+                     </p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">7.14</span></h2>
+                  <p>Based on the costs identified of running the pilot, we estimate the annual cost of
+                     testing 950 offenders, on average twice per year, will be £570,000.  This excludes
+                     management costs which include training and set up costs and is based on a figure
+                     of £300 per test.  Additional project costs to NOMS to train offender managers are
+                     budgeted at £60,000 and costs to ensure technical compliance of the equipment used
+                     by the contractors and to ensure information assurance standards will be met will
+                     be included in the final budgets.</p>
+               </section>
+            </section>
+            <section id="paragraph_8" class="paragraph num">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span></h2>
+               <p>
+                  <b>Consultation outcome</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>A public consultation about the polygraph rules was completed on 21st November 2008
+                     and there was support for them. An additional consultation is not required in respect
+                     of this Statutory Instrument. The pilot involved testing 332 offenders across eight
+                     Probation Trusts and the evaluation clearly indicated that polygraph testing is a
+                     useful offender management tool for managing the risk to the public from serious sexual
+                     offenders.  The pilot report’s “lessons learned” annex captured details about refinements
+                     that would benefit full roll-out, which will be fed into the contract and planning
+                     for roll-out.  A public consultation about commencement would not add to this. </p>
+               </section>
+            </section>
+            <section id="paragraph_9" class="paragraph num">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span></h2>
+               <p>
+                  <b>Guidance</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>The planning for roll-out of polygraph testing by NOMS includes the preparation of
+                     guidance, described below, and an accompanying communications plan.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.2</span></h2>
+                  <p>Offender managers, currently employed by Probation Trusts, will be responsible for
+                     identifying those sexual offenders who should be subject to mandatory polygraph testing
+                     as an additional licence condition.  Guidance for obtaining additional licence conditions
+                     is contained in the existing Probation Instruction, PI 20/2012.  Advice specific to
+                     identifying appropriate sexual offenders for polygraph testing will be provided through
+                     a new Probation Instruction that will be published in December 2013 to coincide with
+                     the setting of licence conditions for offenders due for release on the commencement
+                     date (6th January 2014 if the commencement order is granted in July 2013).Training
+                     will be provided to Probation Trusts in order to maximise the potential benefits of
+                     polygraph testing to improve the management of these offenders.  Current planning
+                     is for this to take place in the three months prior to the first offenders with polygraph
+                     conditions being released.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.3</span></h2>
+                  <p>The Parole Board determines the conditions under which offenders subject to indeterminate
+                     sentences are released, and prison governors do the same for determinate-sentenced
+                     prisoners, in both cases on the advice of offender managers.  Face-to-face briefings
+                     and paper and electronic guidance and instructions will be prepared for both groups.
+                     A Prison Service Instruction will be prepared to govern the wording of the polygraph
+                     testing condition for operational staff in releasing prisons.</p>
+               </section>
+               <section class="subparagraph num">
+                  <h2><span class="num">9.4</span></h2>
+                  <p>Information leaflets, updated from those used in the pilot in the light of learning
+                     from the pilot, will be provided to offenders subject to polygraph testing.  Information
+                     (under preparation) will be provided to solicitors via EPIC advising them of the new
+                     condition and the guidance that Trusts and offenders have been given about it. </p>
+               </section>
+            </section>
+            <section id="paragraph_10" class="paragraph num">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span></h2>
+               <p>
+                  <b>Impact</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>The impact on business, charities or voluntary bodies is limited to those which will
+                     be directly involved in providing polygraph testing to offenders.&nbsp; It will provide
+                     a new business opportunity, under contract to the Ministry of Justice, up to the value
+                     of £2.7m over an initial 4 year period.&nbsp;&nbsp;This will be funded by NOMS offsetting the
+                     costs against savings generated from other areas of work. This unfunded cost pressure
+                     on public services is under £5m per annum and its impact is considered in the business
+                     case process. </p>
+               </section>
+            </section>
+            <section id="paragraph_11" class="paragraph num">
+               <h2><span class="num">10.2</span></h2>
+               <p>There is no regulatory or administrative impact on the public sector beyond what already
+                  exists to implement and manage sexual offenders on licence.</p>
+            </section>
+            <section id="paragraph_12" class="paragraph num">
+               <h2><span class="num">10.3</span></h2>
+               <p>A formal Business Impact Assessment has not been prepared for this instrument as </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">             the economic and financial case are clearly set out in the Outline Business
+                     Case.</span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.4</span></h2>
+                  <p>An equalities impact assessment screen has been completed and this indicated that
+                     a full EIA is not required.</p>
+               </section>
+            </section>
+            <section id="paragraph_13" class="paragraph num">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span></h2>
+               <p>
+                  <b>Regulating small business</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>The legislation does not apply to small businesses.</p>
+               </section>
+            </section>
+            <section id="paragraph_14" class="paragraph num">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span></h2>
+               <p>
+                  <b>Monitoring &amp; review</b>
+                  </p>
+               <section class="subparagraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>The published evaluation of the pilot reviewed the effectiveness of polygraph conditions
+                     during the pilot.  Further reviews will take place in line with contract monitoring
+                     arrangements. Proposals to undertake further research into its effectiveness and the
+                     impact on recidivism will be taken to the NOMS research committee so that data can
+                     be collected to inform research from the beginning of full roll-out. It is anticipated
+                     that research will be commissioned in January 2014.</p>
+               </section>
+            </section>
+            <section id="paragraph_15" class="paragraph num">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span></h2>
+               <p>
+                  <b>Contact.</b>
+                  </p>
+            </section>
+            <section class="level">
+               <p>
+                  <b>            Heather Sutton </b>at the National Offender Management Service, Ministry of Justice. Tel:</p>
+            </section>
+            <section class="level">
+               <p>            0300 0474743 or email: <a href="mailto:Heather.Sutton@noms.gsi.gov.uk"><span style="color:#0000FF"><u>Heather.Sutton@noms.gsi.gov.uk</u></span></a> can answer any queries </p>
+            </section>
+            <section class="level">
+               <p>            regarding the instrument.</p>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

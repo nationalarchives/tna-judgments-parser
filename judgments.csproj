@@ -27,8 +27,23 @@
     <EmbeddedResource Include="src/parsers/common/omml2mml.xsl">
       <LogicalName>math.omml2mml.xsl</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="src/leg/subschema.xsd">
-      <LogicalName>leg.subschema.xsd</LogicalName>
+    <EmbeddedResource Include="src/leg/schemas/em-subschema.xsd">
+      <LogicalName>leg.em-subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/schemas/en-subschema.xsd">
+      <LogicalName>leg.en-subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/schemas/ia-subschema.xsd">
+      <LogicalName>leg.ia-subschema.xsd</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/source/associated_document_mapping.csv">
+      <LogicalName>leg.associated_document_mapping.csv</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/akn2html.xsl">
+      <LogicalName>leg.akn2html.xsl</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src/leg/associated-docs.css">
+      <LogicalName>leg.associated-docs.css</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -54,6 +69,7 @@
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
   </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="NationalArchives.FindCaseLaw.Utils\NationalArchives.FindCaseLaw.Utils.csproj" />

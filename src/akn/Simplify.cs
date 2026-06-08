@@ -138,12 +138,21 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             State = copy;
         }
 
+        /// <summary>
+        /// Extension point: subclasses opt out of stripping <c>class</c> /
+        /// <c>style</c> from specific elements. Default returns true for
+        /// every element (strip uniformly, matching main).
+        /// </summary>
+        protected virtual bool ShouldStripStyleAttributes(XmlElement e) => true;
+
         protected void UpdateStateAndRemoveStyleAttributes(XmlElement e)
         {
             foreach (KeyValuePair<string, string> item in GetClassProperties(e))
                 State[item.Key] = item.Value;
             foreach (KeyValuePair<string, string> item in GetStyleProperties(e))
                 State[item.Key] = item.Value;
+            if (!ShouldStripStyleAttributes(e))
+                return;
             e.RemoveAttribute("class", "");
             e.RemoveAttribute("style", "");
             // replace "class" and "style" attributes with those in another namespace
@@ -202,7 +211,7 @@ namespace UK.Gov.NationalArchives.AkomaNtoso
             span.ParentNode.RemoveChild(span);
         }
 
-        protected void VisitText(XmlText text)
+        protected virtual void VisitText(XmlText text)
         {
             if (State.GetValueOrDefault("font-weight") == "bold")
             {

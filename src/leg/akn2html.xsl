@@ -2,18 +2,22 @@
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
 	xpath-default-namespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
-	xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"
+	xmlns:uk="https://legislation.gov.uk/akn"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:math="http://www.w3.org/1998/Math/MathML"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	exclude-result-prefixes="uk html math xs">
+	exclude-result-prefixes="uk html xs">
 
 <xsl:output method="html" version="5" encoding="utf-8" indent="yes" include-content-type="no" />
 
 <xsl:strip-space elements="*" />
-<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docketNumber judge lawyer location neutralCitation party role time" />
+<xsl:preserve-space elements="p block num heading span a date docDate docNumber docTitle docType docStage docProponent time b i u" />
 
 <xsl:param name="image-base" as="xs:string" select="'/'" />
+
+<!-- When non-empty, the head links to an external stylesheet at this URL instead
+     of embedding the CSS inline. The CSS body lives in associated-docs.css
+     alongside this XSL and is the single source of truth for both modes. -->
+<xsl:param name="stylesheet-href" as="xs:string" select="''" />
 
 <!-- global variables -->
 
@@ -32,55 +36,36 @@
 	</xsl:choose>
 </xsl:variable>
 
+<xsl:variable name="parameters" as="document-node()?" select="if (doc-available('input:request')) then doc('input:request') else ()"/>
+
 <!-- templates -->
 
 <xsl:template match="akomaNtoso">
 	<html>
 		<head>
 			<meta charset="utf-8" />
-			<xsl:call-template name="style" />
+			<xsl:choose>
+				<xsl:when test="$stylesheet-href != ''">
+					<link rel="stylesheet" href="{$stylesheet-href}" />
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:call-template name="style" />
+				</xsl:otherwise>
+			</xsl:choose>
 		</head>
 		<body>
+			<xsl:call-template name="header"/>
 			<xsl:apply-templates />
 		</body>
 	</html>
 </xsl:template>
 
 <xsl:template name="style">
-	<style>
-article { margin: 0.5in 1in }
-p.center { text-align: center }
-section { position: relative }
-h2 { font-size: inherit; font-weight: normal }
-.section &gt; h2 &gt; .num { display: inline-block; width: 0.5in }
-.paragraph { margin-left: 0.5in }
-.paragraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
-.subparagraph { margin-left: 0.5in }
-.subparagraph &gt; h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
-section &gt; .level &gt; h2 { margin-left: 0.5in }
-table { border-collapse: collapse }
-th, td { border: thin dotted; padding: 3pt }
-td { vertical-align: top }
-span.fn { vertical-align: super; font-size: small }
-.footnote &gt; p:first-child &gt; .marker:first-child { vertical-align: super; font-size: small }
-.blockContainer { position: relative; margin-left: 0.5in }
-.blockContainer &gt; p:first-child &gt; .num:first-child { position: absolute; margin-left: -0.25in }
-.attachment { margin-top: 2em }
-</style>
-<!--	
-td { position: relative; min-width: 2em; padding-left: 1em; padding-right: 1em; vertical-align: top }
-td > .num { left: -2em }
-table { margin: 0 auto; width: 100%; border-collapse: collapse }
-.header table { table-layout: fixed }
-td > p:first-child { margin-top: 0 }
-td > p:last-child { margin-bottom: 0 }
-.fn { vertical-align: super; font-size: small }
-.footnote > p > .marker { vertical-align: super; font-size: small }
-.tab { display: inline-block; width: 0.25in } -->
+	<style><xsl:text>&#10;</xsl:text><xsl:value-of select="unparsed-text('associated-docs.css')" disable-output-escaping="yes" /><xsl:text>&#10;</xsl:text></style>
 </xsl:template>
 
 <xsl:template match="doc">
-	<article id="doc">
+	<article id="doc" data-doc-type="{@name}">
 		<xsl:apply-templates />
 		<xsl:call-template name="footnotes" />
 	</article>
@@ -106,10 +91,21 @@ td > p:last-child { margin-bottom: 0 }
 	</div>
 </xsl:template>
 
-<xsl:template match="level | section | paragraph | subparagraph">
+<xsl:template match="level | section | paragraph | subparagraph | hcontainer">
 	<section>
+		<xsl:if test="@eId">
+			<xsl:attribute name="id" select="@eId" />
+		</xsl:if>
 		<xsl:attribute name="class">
 			<xsl:value-of select="local-name(.)" />
+			<xsl:if test="@name">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="@name" />
+			</xsl:if>
+			<xsl:if test="@class">
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="@class" />
+			</xsl:if>
 			<xsl:if test="num">
 				<xsl:text> num</xsl:text>
 			</xsl:if>
@@ -117,7 +113,7 @@ td > p:last-child { margin-bottom: 0 }
 				<xsl:text> heading</xsl:text>
 			</xsl:if>
 		</xsl:attribute>
-		<xsl:if test="num | heading">
+		<xsl:if test="(num | heading)[normalize-space(.) != '']">
 			<h2>
 				<xsl:apply-templates select="num | heading" />
 			</h2>
@@ -139,23 +135,16 @@ td > p:last-child { margin-bottom: 0 }
 	</p>
 </xsl:template>
 
-<!-- embedded structures -->
-
-<xsl:template match="block[@name='embeddedStructure']">
-	<xsl:apply-templates />
-</xsl:template>
-
-<xsl:template match="embeddedStructure">
-	<blockquote>
-		<xsl:apply-templates />
-	</blockquote>
-</xsl:template>
+<!-- content blocks -->
 
 <!-- blocks -->
 
 <xsl:template match="p">
 	<xsl:element name="{ local-name() }">
 		<xsl:copy-of select="@class" />
+		<xsl:if test="@eId">
+			<xsl:attribute name="id" select="@eId" />
+		</xsl:if>
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
@@ -166,9 +155,18 @@ td > p:last-child { margin-bottom: 0 }
 	</p>
 </xsl:template>
 
+<!-- IA cover-sheet sections (class="summary") preserve their visible
+     headers as DOCX-styled paragraphs in the body content. The section
+     <heading> is needed for AKN structure and TOC but rendering it would
+     duplicate the visible header. Other IA sections (e.g. "Declaration",
+     numbered chapters) keep their <heading> and render normally. -->
+<xsl:template match="doc[@name='ImpactAssessment']//section[contains(concat(' ', @class, ' '), ' summary ')]/heading">
+	<!-- Hidden: visible heading lives in the body content. -->
+</xsl:template>
+
 <!-- inline -->
 
-<xsl:template match="num | heading | docType | docNumber | date">
+<xsl:template match="num | heading | docType | docNumber | docTitle | docStage | docDate | docProponent | date">
 	<span class="{ local-name() }">
 		<xsl:apply-templates />
 	</span>
@@ -176,21 +174,22 @@ td > p:last-child { margin-bottom: 0 }
 
 <xsl:template match="span">
 	<span>
+		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
 	</span>
 </xsl:template>
 
 <xsl:template match="img">
 	<img>
-		<xsl:attribute name="src">
-			<xsl:sequence select="concat($image-base, $doc-id, '/', @src)" />
-		</xsl:attribute>
+		<xsl:attribute name="src" select="@src" />
+		<xsl:attribute name="alt" select="(@alt, '')[1]" />
 		<xsl:apply-templates />
 	</img>
 </xsl:template>
 
 <xsl:template match="b | i | u">
 	<xsl:element name="{ local-name() }">
+		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
@@ -205,10 +204,24 @@ td > p:last-child { margin-bottom: 0 }
 <xsl:template match="table">
 	<table>
 		<xsl:copy-of select="@class | @style" />
+		<!-- Add Impact Assessment table class based on context -->
+		<xsl:if test="ancestor::doc[@name='ImpactAssessment']">
+			<xsl:attribute name="class">
+				<xsl:text>ia-table</xsl:text>
+				<xsl:if test="@class">
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="@class" />
+				</xsl:if>
+			</xsl:attribute>
+		</xsl:if>
 		<xsl:if test="exists(@uk:widths)">
+			<xsl:variable name="widths" as="xs:string*" select="tokenize(@uk:widths, ' ')" />
+			<xsl:variable name="total-in" as="xs:double"
+				select="sum(for $w in $widths return xs:double(replace($w, '[^0-9.]', '')))" />
 			<colgroup>
-				<xsl:for-each select="tokenize(@uk:widths, ' ')">
-					<col style="width:{.}" />
+				<xsl:for-each select="$widths">
+					<xsl:variable name="w-in" as="xs:double" select="xs:double(replace(., '[^0-9.]', ''))" />
+					<col style="width:{round($w-in div $total-in * 10000) div 100}%" />
 				</xsl:for-each>
 			</colgroup>
 		</xsl:if>
@@ -218,7 +231,7 @@ td > p:last-child { margin-bottom: 0 }
 	</table>
 </xsl:template>
 
-<xsl:template match="tr | td">
+<xsl:template match="tr | td | th">
 	<xsl:element name="{ local-name() }">
 		<xsl:copy-of select="@*" />
 		<xsl:apply-templates />
@@ -236,19 +249,7 @@ td > p:last-child { margin-bottom: 0 }
 </xsl:template>
 
 
-<!-- tables of contents -->
-
-<xsl:template match="toc">
-	<div class="toc">
-		<xsl:apply-templates />
-	</div>
-</xsl:template>
-
-<xsl:template match="tocItem">
-	<p class="tocItem">
-		<xsl:apply-templates />
-	</p>
-</xsl:template>
+<!-- content organization -->
 
 
 <!-- markers and attributes -->
@@ -265,9 +266,9 @@ td > p:last-child { margin-bottom: 0 }
 <!-- footnotes -->
 
 <xsl:template match="authorialNote">
-	<span class="fn">
+	<a class="fn" id="fnref-{@marker}" href="#fn-{@marker}">
 		<xsl:value-of select="@marker" />
-	</span>
+	</a>
 </xsl:template>
 
 <xsl:template name="footnotes">
@@ -288,23 +289,106 @@ td > p:last-child { margin-bottom: 0 }
 
 <xsl:template match="authorialNote/p[1]">
 	<xsl:element name="{ local-name() }">
-		<xsl:apply-templates select="@*" />
-		<span class="marker">
+		<xsl:if test="@class">
+			<xsl:attribute name="class" select="@class" />
+		</xsl:if>
+		<a class="marker" id="fn-{../@marker}" href="#fnref-{../@marker}">
 			<xsl:value-of select="../@marker" />
-		</span>
+		</a>
 		<xsl:text> </xsl:text>
 		<xsl:apply-templates />
 	</xsl:element>
 </xsl:template>
 
+<!-- Drop leading tab markers in the first paragraph of a footnote. Some
+     source DOCX files use a tab between the footnote number and text;
+     others don't. Suppressing makes spacing consistent. Priority "2"
+     wins over the generic marker[@name='tab'] template. -->
+<xsl:template match="authorialNote/p[1]/marker[@name='tab'][not(preceding-sibling::node()[normalize-space()])]" priority="2" />
 
-<!-- math -->
-
-<xsl:template match="math:*">
-	<xsl:copy>
-		<xsl:copy-of select="@*"/>
-		<xsl:apply-templates />
-	</xsl:copy>
+<!-- Auto-link bare URLs in footnote text. Skip text that's already inside
+     an <a> in the source AKN — wrapping it again produces nested <a>s,
+     which are invalid HTML. -->
+<xsl:template match="authorialNote//text()[not(ancestor::a)]">
+	<xsl:analyze-string select="." regex="https?://[^\s&lt;>]+">
+		<xsl:matching-substring>
+			<a href="{.}"><xsl:value-of select="." /></a>
+		</xsl:matching-substring>
+		<xsl:non-matching-substring>
+			<xsl:value-of select="." />
+		</xsl:non-matching-substring>
+	</xsl:analyze-string>
 </xsl:template>
+
+<xsl:template match="toc"></xsl:template>
+
+<!--[ TOC Link Header ]-->
+<xsl:template name="header">
+	<xsl:variable name="IA-toc-url">
+		<xsl:choose>
+			<xsl:when test="$parameters/*:parameters/*:leg-type !=''">
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:leg-type,
+					$parameters/*:parameters/*:leg-year,
+					$parameters/*:parameters/*:leg-number,
+					'impacts',
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="string-join((
+					$parameters/*:parameters/*:impact-type,
+					$parameters/*:parameters/*:impact-year,
+					$parameters/*:parameters/*:impact-number,
+					'contents'), '/')"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+
+	<xsl:variable name="EM-toc-url">
+		<xsl:value-of select="string-join((
+			$parameters/*:parameters/*:leg-type,
+			$parameters/*:parameters/*:leg-year,
+			$parameters/*:parameters/*:leg-number,
+			'memorandum',
+			$parameters/*:parameters/*:counter,
+			'contents'), '/')"/>
+	</xsl:variable>
+
+	<xsl:variable name="EN-toc-url">
+		<xsl:value-of select="string-join((
+			$parameters/*:parameters/*:leg-type,
+			$parameters/*:parameters/*:leg-year,
+			$parameters/*:parameters/*:leg-number,
+			'notes',
+			'contents'), '/')"/>
+	</xsl:variable>
+
+	<header class="toc-header">
+		<xsl:choose>
+			<xsl:when test="$parameters/*:parameters/*:notes-type = 'memorandum' ">
+				<a class="toc-link" href="/{$EM-toc-url}">Back to Table of Contents</a>
+			</xsl:when>
+			<xsl:when test="$parameters/*:parameters/*:notes-type = 'notes' ">
+				<a class="toc-link" href="/{$EN-toc-url}">Back to Table of Contents</a>
+			</xsl:when>
+			<xsl:otherwise>
+				<a class="toc-link" href="/{$IA-toc-url}">Back to Table of Contents</a>
+			</xsl:otherwise>
+		</xsl:choose>
+		<nav class="section-nav">
+			<!-- Disabled placeholders. Frontend hooks them up to point at
+			     the previous/next section's URL when those views exist. -->
+			<a class="section-link prev-section disabled" aria-disabled="true">Previous section</a>
+			<a class="section-link next-section disabled" aria-disabled="true">Next section</a>
+		</nav>
+		<!-- Back to full view: disabled on the whole-doc HTML (you are
+		     already on full view); frontend activates it on section views. -->
+		<a class="full-view-link disabled" aria-disabled="true">Back to full view</a>
+	</header>
+</xsl:template>
+
+<!-- end of templates -->
 
 </xsl:transform>

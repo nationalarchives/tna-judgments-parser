@@ -168,7 +168,27 @@ class Inline2 {
                 i += 1;
                 continue;
             }
-            throw new Exception();
+            // Unknown element - try to extract content from children
+            if (e.HasChildren) {
+                Logger.LogDebug("Unknown inline element type: {Type} (LocalName: {LocalName}), parsing children", 
+                    e.GetType().Name, e.LocalName);
+                var children = ParseRuns(Main, e.ChildElements);
+                parsed.AddRange(children);
+                i += 1;
+                continue;
+            }
+            // No children - try to get inner text as fallback
+            string innerText = e.InnerText;
+            if (!string.IsNullOrEmpty(innerText)) {
+                Logger.LogDebug("Unknown inline element type: {Type} (LocalName: {LocalName}), using inner text", 
+                    e.GetType().Name, e.LocalName);
+                parsed.Add(new WText(innerText, null));
+                i += 1;
+                continue;
+            }
+            Logger.LogWarning("Unknown inline element type: {Type} (LocalName: {LocalName}), no content to extract", 
+                e.GetType().Name, e.LocalName);
+            i += 1;
         }
         return parsed;
     }
@@ -219,7 +239,10 @@ class Inline2 {
         IEnumerable<IInline> contents = ParseRuns(main, link.ChildElements);
         if (link.Id is not null) {
             Uri uri = DOCX.Relationships.GetUriForHyperlink(link);
-            if (uri.IsAbsoluteUri) {
+            // OpenXML 3.x assigns a random rewritten://<guid> URI when the
+            // source hyperlink target was malformed/empty. Treat as un-emittable
+            // (caller pattern: keep text, drop the <a> wrapper).
+            if (uri.IsAbsoluteUri && uri.Scheme != "rewritten") {
                 contents = Merger.Merge(contents);
                 WHyperlink2 link2 = new  WHyperlink2() { Href = uri.AbsoluteUri, Contents = contents };
                 return new List<IInline>(1) { link2 };

@@ -1,0 +1,642 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryMemorandum">
+         <div class="preface">
+            <p class="center">
+               <span class="docType">
+                  <b>EXPLANATORY MEMORANDUM TO</b>
+                  </span>
+               </p>
+            <p class="center">
+               <b>THE NOVEL FOOD (AUTHORISATIONS) AND SMOKE FLAVOURINGS (MODIFICATION OF AUTHORISATIONS)
+                  (AMENDMENT) (ENGLAND) REGULATIONS 2022</b>
+               </p>
+            <p class="center">
+               <span class="docNumber">
+                  <b>2022 No. 619</b>
+                  </span>
+               </p>
+         </div>
+         <div class="body">
+            <section id="section_1" class="section num heading">
+               <h2><span class="num">
+                     <b>1.</b>
+                     </span><span class="heading">
+                     <b>Introduction</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1.1</span></h2>
+                  <p>This explanatory memorandum has been prepared by The Food Standards Agency (FSA) and
+                     is laid before Parliament by Command of Her Majesty.</p>
+               </section>
+            </section>
+            <section id="section_2" class="section num heading">
+               <h2><span class="num">
+                     <b>2.</b>
+                     </span><span class="heading">
+                     <b>Purpose of the instrument</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2.1</span></h2>
+                  <p>This instrument is being made to correct minor errors in the Novel Foods (Authorisations)
+                     and Smoke Flavourings (Modification of Authorisations) (England) Regulations 2022,
+                     before the relevant provisions come into force on 30th June 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.2</span></h2>
+                  <p>The procedure for free issue of this instrument has been applied and they are being
+                     issued free of charge to all known recipients of the Novel Foods (Authorisations)
+                     and Smoke Flavourings (Modification of Authorisations) (England) Regulations 2022.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.3</span></h2>
+                  <p>The FSA has complied with the requirement to consult the SI Registrar on the use of
+                     the free issue procedure in relation to this instrument. </p>
+               </section>
+            </section>
+            <section id="section_3" class="section num heading">
+               <h2><span class="num">
+                     <b>3.</b>
+                     </span><span class="heading">
+                     <b>Matters of special interest to Parliament</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Matters of special interest to the Joint Committee on Statutory Instruments</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">3.1</span></h2>
+                     <p>
+                        <span style="color:#000000">None</span>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section id="section_4" class="section num heading">
+               <h2><span class="num">
+                     <b>4.</b>
+                     </span><span class="heading">
+                     <b>Extent and Territorial Application</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">4.1</span></h2>
+                  <p>
+                     <span style="color:#000000">The </span>territorial extent of this instrument is England and Wales.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4.2</span></h2>
+                  <p>The territorial application of this instrument is England only.</p>
+               </section>
+            </section>
+            <section id="section_5" class="section num heading">
+               <h2><span class="num">
+                     <b>5.</b>
+                     </span><span class="heading">
+                     <b>European Convention on Human Rights</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">5.1</span></h2>
+                  <p>As this instrument is subject to negative resolution procedure and does not amend
+                     primary legislation no statement is required.</p>
+               </section>
+            </section>
+            <section id="section_6" class="section num heading">
+               <h2><span class="num">
+                     <b>6.</b>
+                     </span><span class="heading">
+                     <b>Legislative Context</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">6.1</span></h2>
+                  <p>Novel foods must be authorised before they can be placed on the market. Novel foods
+                     are a regulated product and require authorisation in legislation to be available on
+                     the market. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.2</span></h2>
+                  <p>The legislative framework around the authorisation of novel foods is largely contained
+                     in the Retained Regulations (EU) 2015/2283, (EU) 2017/2469 and (EU) 2017/2470.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6.3</span></h2>
+                  <p>This instrument will make some minor amendments to the Novel Foods (Authorisations)
+                     and Smoke Flavourings (Modification of Authorisations) (England) Regulations 2022.
+                     </p>
+               </section>
+            </section>
+            <section id="section_7" class="section num heading">
+               <h2><span class="num">
+                     <b>7.</b>
+                     </span><span class="heading">
+                     <b>Policy background</b>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>What is being done and why?</i>
+                           </b>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.1</span></h2>
+                     <p>The Novel Foods (Authorisations) and Smoke Flavourings (Modification of Authorisations)
+                        (England) Regulations 2022 were laid on 20th May 2022.  Those Regulations added four
+                        novel foods and amended one novel food on the list of authorised novel foods in Retained
+                        Regulation (EU) 2017/2470.  These updates to the list come into force on 30th June
+                        2022.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.2</span></h2>
+                     <p>Following the publication of the Novel Foods (Authorisations) and Smoke Flavourings
+                        (Modification of Authorisations) (England) Regulations 2022, an omission in the column
+                        headers of a table relating to 3’-Sialyllactose and 6’-Sialyllactose was identified.
+                        This omission reduced the maximum levels of the novel foods that could be added to
+                        foods, effectively reducing the maximum levels of those novel foods that can be present
+                        in food products by approximately 3%.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.3</span></h2>
+                     <p>This instrument also corrects a minor typographical error.</p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">7.4</span></h2>
+                     <p>The Novel Foods (Authorisations) and Smoke Flavourings (Modification of Authorisations)
+                        (England) Regulations 2022 also made amendments to the list of authorised smoke flavouring
+                        primary products in Retained Regulation (EU) 1321/2013.  No amendments are required
+                        to the Smoke Flavouring measures.</p>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <b>
+                           <i>Explanations</i>
+                           </b>
+                        </span></h2>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What did any law do before the changes to be made by this instrument?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.5</span></h2>
+                        <p>
+                           <span style="color:#000000">Following EU exit previously authorised novel food products by the EU continued to
+                              be authorised in GB under retained EU law. Directly applicable EU legislation for
+                              novel food products has been retained in the UK as retained EU law</span>
+                           <span style="color:#000000">.</span>
+                           </p>
+                     </section>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.6</span></h2>
+                        <p>The required amendments were identified after the legislation was published, but before
+                           it came into force.  The novel foods were not previously authorised for the Great
+                           British market.</p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>Why is it being changed?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.7</span></h2>
+                        <p>The amendments are being made to eliminate any potential divergence within the UK,
+                           without these amendments the allowed maximum levels of the novels foods in England
+                           would differ, causing potential complications to business. </p>
+                     </section>
+                  </section>
+                  <section class="level heading">
+                     <h2><span class="heading">
+                           <i>
+                              <u>What will it now do?</u>
+                              </i>
+                           </span></h2>
+                     <section class="paragraph num">
+                        <h2><span class="num">7.8</span></h2>
+                        <p>This will ensure that the novel foods are authorised at the correct maximum levels,
+                           bring continuity across the devolved administrations, and correct a typographical
+                           error.</p>
+                     </section>
+                  </section>
+               </section>
+            </section>
+            <section id="section_8" class="section num heading">
+               <h2><span class="num">
+                     <b>8.</b>
+                     </span><span class="heading">
+                     <b>European Union Withdrawal and Future Relationship</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">8.1</span></h2>
+                  <p>This instrument does not relate to withdrawal from the European Union / trigger the
+                     statement requirements under the European Union (Withdrawal) Act 2018. </p>
+               </section>
+            </section>
+            <section id="section_9" class="section num heading">
+               <h2><span class="num">
+                     <b>9.</b>
+                     </span><span class="heading">
+                     <b>Consolidation</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">9.1</span></h2>
+                  <p>This instrument makes minor amendments to the Novel Foods (Authorisations) and Smoke
+                     Flavourings (Modification of Authorisations) (England) Regulations 2022 and there
+                     are currently no plans to consolidate the legislation.</p>
+               </section>
+            </section>
+            <section id="section_10" class="section num heading">
+               <h2><span class="num">
+                     <b>10.</b>
+                     </span><span class="heading">
+                     <b>Consultation outcome</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">10.1</span></h2>
+                  <p>
+                     <span style="color:#000000">The original consultation on </span>the novel food products being authorised was launched by the FSA and Food Standards
+                     Scotland (FSS) on 17th December 2021 and ran for eight weeks.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10.2</span></h2>
+                  <p>The consultation included the correct headings and without the typographical error,
+                     it was not considered practical or necessary to consult on these amendments.</p>
+               </section>
+            </section>
+            <section id="section_11" class="section num heading">
+               <h2><span class="num">
+                     <b>11.</b>
+                     </span><span class="heading">
+                     <b>Guidance</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">11.1</span></h2>
+                  <p>It is considered that guidance is not required for this instrument as they do not
+                     introduce new requirements.</p>
+               </section>
+            </section>
+            <section id="section_12" class="section num heading">
+               <h2><span class="num">
+                     <b>12.</b>
+                     </span><span class="heading">
+                     <b>Impact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">12.1</span></h2>
+                  <p>There is no, or no significant, impact on charities or voluntary bodies.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.2</span></h2>
+                  <p>There is no, or no significant, impact on business.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.3</span></h2>
+                  <p>There is no, or no significant, impact on the public sector.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12.4</span></h2>
+                  <p>A full Impact Assessment has not been prepared for this instrument as impacts will
+                     be below the de minimis threshold and this instrument is to correct minor errors.</p>
+               </section>
+            </section>
+            <section id="section_13" class="section num heading">
+               <h2><span class="num">
+                     <b>13.</b>
+                     </span><span class="heading">
+                     <b>Regulating small business</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">13.1</span></h2>
+                  <p>This instrument will apply to all businesses, small and large.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13.2</span></h2>
+                  <p>This instrument applies equally to all business as principal compliance with agri-food
+                     chain legislation does not depend on the size of the business. </p>
+               </section>
+            </section>
+            <section id="section_14" class="section num heading">
+               <h2><span class="num">
+                     <b>14.</b>
+                     </span><span class="heading">
+                     <b>Monitoring &amp; review</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14.1</span></h2>
+                  <p>No monitoring or review requirements for this instrument. </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">14.2</span></h2>
+                  <p>This instrument does not include a statutory review clause. In line with the requirements
+                     of the Small Business, Enterprise and Employment Act 2015, a review clause is not
+                     deemed appropriate considering the legislation is expected to have an economic impact
+                     of less than +/- £5 million (net annualised).</p>
+               </section>
+            </section>
+            <section id="section_15" class="section num heading">
+               <h2><span class="num">
+                     <b>15.</b>
+                     </span><span class="heading">
+                     <b>Contact</b>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">15.1</span></h2>
+                  <p>Chris Stockdale at the Food Standards Agency email: <a href="mailto:Chris.Stockdale@food.gov.uk"><span style="color:#0563C1"><u>Chris.Stockdale@food.gov.uk</u></span></a> can be contacted with any queries regarding this instrument.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.2</span></h2>
+                  <p>Sam Faulkner, Deputy Director for Strategy, at the Food Standards Agency can confirm
+                     that this explanatory memorandum meets the required standard.</p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15.3</span></h2>
+                  <p>Maggie Throup MP, Parliamentary Under-Secretary of State for Vaccines and Public Health
+                     at the Department of Health and Social Care can confirm that this explanatory memorandum
+                     meets the required standard.</p>
+               </section>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

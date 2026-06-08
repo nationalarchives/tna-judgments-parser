@@ -1,0 +1,2014 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ImpactAssessment">
+         <div class="body">
+            <section id="section_2" class="section summary heading">
+               <h2></h2>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:19.17%">
+                     <col style="width:21.94%">
+                     <col style="width:19.31%">
+                     <col style="width:8.06%">
+                     <col style="width:31.39%">
+                     <col style="width:0.14%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Title:</b>
+                              <span class="docTitle"> The Town and Country Planning (Fees for Applications, Deemed Applications, Requests
+                                 and Site Visits) (England) (Amendment and Transitional Provision) Regulations 2025
+                                      </span>
+                              </p>
+                           <p>
+                              <b>IA No: </b>n/a <span style="color:#000000"><b>     </b></span></p>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>RPC Reference No: </b>
+                                 </span>
+                              <span style="color:#000000">n/a</span>
+                              <span style="color:#000000">
+                                 <b>       </b>
+                                 </span>
+                              </p>
+                           <p>
+                              <b>Lead department or agency: </b>
+                              Ministry of Housing, Communities and Local Government                
+                              </p>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Other departments or agencies: </b>
+                                 </span>
+                              <span style="color:#000000">
+                                 <b>
+                                    </b>
+                                 </span>
+                              <span style="color:#000000">n/a     </span>
+                              </p>
+                        </td>
+                        <td colspan="3">
+                           <table class="ia-table">
+                              <colgroup>
+                                 <col style="width:100%">
+                              </colgroup>
+                              <tbody>
+                                 <tr>
+                                    <td style="color:#ffffff;background-color:#333333;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#333333">
+                                             <span style="color:#FFFFFF">Impact Assessment (IA)</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <span style="color:#000000">
+                                             <b>Date: </b>
+                                             </span>
+                                          <span style="color:#000000">
+                                             <b>
+                                                </b>
+                                             </span>
+                                          <span class="docDate">
+                                             <span style="color:#000000">
+                                                <b>03/12/2024</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <span style="color:#000000">
+                                             <b>Stage: </b>
+                                             </span>
+                                          <span style="color:#000000">
+                                             <b>
+                                                </b>
+                                             </span>
+                                          <span class="docStage">
+                                             <span style="color:#000000">Final draft</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <span style="color:#000000">
+                                             <b>Source of intervention: </b>
+                                             </span>
+                                          <span style="color:#000000">
+                                             <b>Domestic</b>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <span style="color:#000000">
+                                             <b>Type of measure: </b>
+                                             </span>
+                                          <span style="color:#000000">Secondary legislation</span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p>
+                                          <span style="color:#000000">
+                                             <b>Contact for enquiries:</b>
+                                             </span>
+                                          <span style="color:#000000">     </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td>
+                                       <p></p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <b>Summary: Intervention and Options </b>
+                              </p>
+                           <p></p>
+                        </td>
+                        <td colspan="3" style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <b>RPC Opinion: </b>
+                                 </span>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">n/a</span>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="6">
+                           <p></p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5" style="background-color:#E0E0E0">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">
+                                    <b>Cost of Preferred (or more likely) Option </b>
+                                    </span>
+                                 </span>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">(in 2024 prices)</span>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">
+                                    <b>Total Net Present Social Value</b>
+                                    </span>
+                                 </span>
+                              </p>
+                        </td>
+                        <td style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">
+                                    <b>Business Net Present Value</b>
+                                    </span>
+                                 </span>
+                              </p>
+                        </td>
+                        <td colspan="2" style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">
+                                    <b>Net cost to business per year </b>
+                                    </span>
+                                 </span>
+                              </p>
+                        </td>
+                        <td style="background-color:#E0E0E0;vertical-align:middle" rowspan="2">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">
+                                    <b>Business Impact Target Status</b>
+                                    </span>
+                                 </span>
+                              </p>
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">Qualifying provision</span>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">£0m</span>
+                                 </span>
+                              </p>
+                        </td>
+                        <td style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">-£101.3m</span>
+                                 </span>
+                              </p>
+                        </td>
+                        <td colspan="2" style="background-color:#E0E0E0;vertical-align:middle">
+                           <p>
+                              <span style="background-color:#E0E0E0">
+                                 <span style="color:#000000">£11.8m</span>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <p>
+                              <span style="color:#000000">
+                                 <b>What is the problem under consideration? Why is government action or intervention
+                                    necessary?</b>
+                                 </span>
+                              </p>
+                           <p>One of the reasons that the local authority planning application service is not consistently
+                              performing at the level it should be is a lack of resources because planning fees
+                              do not cover the cost of the service. This results in a funding shortfall for local
+                              authorities, of £362million in 2023-24, which local authorities have to fund from
+                              their general budgets. It is fair that service users bear a greater proportion of
+                              the costs of the service. Only Government has the power to increase planning fees.
+                              Fees will be increased where there is the greatest shortfall between the fee and cost
+                              of the service. In doing so, all local planning authorities will benefit from increased
+                              income and greater financial sustainability to support the delivery of an effective
+                              planning service.</p>
+                           <p></p>
+                           <p></p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section id="section_3" class="section summary heading">
+               <h2></h2>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:100%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>What are the policy objectives of the action or intervention and the intended effects?</b>
+                                 </span>
+                              </p>
+                           <p>The policy objective is to improve the speed and quality of the planning application
+                              service provided by local planning authorities by generating a greater income for
+                              them through an increase in some of the fees with the greatest shortfall, which will
+                              enable them to secure more resources to deliver the service. It is fairer, as a greater
+                              proportion of the planning application service is funded, through fees, by those using
+                              the service. The intended effect can be measured by the local authority revenue and
+                              expenditure returns submitted by local authorities to Government<a class="fn" id="fnref-1" href="#fn-1">1</a>. Key indicators of success will be an improvement in the speed and quality of decision
+                              making<a class="fn" id="fnref-2" href="#fn-2">2</a>. </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section id="section_4" class="section summary heading">
+               <h2></h2>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:100%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>What policy options have been considered, including any alternatives to regulation?
+                                    Please justify preferred option (further details in Evidence Base)</b>
+                                 </span>
+                              </p>
+                           <p>If Government did not increase these planning application fees (do nothing option),
+                              the planning service would not improve, because the shortfall between the fee and
+                              the cost of providing the service would remain. Delays in making decisions on planning
+                              applications will mean delays in the delivery of housing and other development needed
+                              for economic growth. Planning fees can only be increased through regulations. Our
+                              preferred option is to increase householder fees for extending properties from £258
+                              to £528; to double fees for prior approval applications, from £120 / £125 / £258 to
+                              £240 / £250 / £516; to increase fees for discharge of conditions from £43 to £86 for
+                              householders and £145 to £298 for all other applications; and, to change the fees
+                              for applications to vary or remove conditions, reducing those for householders from
+                              £293 to £86, and increasing fees for other non-major applications from £293 to £586,
+                              and for majors from £293 to £2,000. The new fees will more closely represent the cost
+                              to local planning authorities of deciding these applications.  </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section id="section_5" class="section summary heading">
+               <h2></h2>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:100%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table class="ia-table">
+                              <colgroup>
+                                 <col style="width:60.28%">
+                                 <col style="width:10.56%">
+                                 <col style="width:8.33%">
+                                 <col style="width:3.33%">
+                                 <col style="width:6.11%">
+                                 <col style="width:11.39%">
+                              </colgroup>
+                              <tbody>
+                                 <tr>
+                                    <td colspan="2" style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">Is this measure likely to impact on international trade and investment? </span>
+                                          </p>
+                                    </td>
+                                    <td colspan="4" style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">No</span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">Are any of these organisations in scope?</span>
+                                          </p>
+                                    </td>
+                                    <td style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Micro</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">Yes</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                    <td style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Small</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">Yes</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                    <td colspan="2" style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Medium</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">Yes</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                    <td style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Large</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">Yes</span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="2" style="background-color:#E0E0E0;vertical-align:middle">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">What is the CO</span>
+                                          <span style="background-color:#E0E0E0">2</span>
+                                          <span style="background-color:#E0E0E0"> equivalent change in greenhouse gas emissions? </span>
+                                          <br>
+                                          <span style="background-color:#E0E0E0">(Million tonnes CO</span>
+                                          <span style="background-color:#E0E0E0">2</span>
+                                          <span style="background-color:#E0E0E0"> equivalent)</span>
+                                          <span style="background-color:#E0E0E0">
+                                             </span>
+                                          </p>
+                                    </td>
+                                    <td colspan="2" style="background-color:#E0E0E0">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Traded:  </b>
+                                                </span>
+                                             </span>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">N/A</span>
+                                             </span>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>
+                                                   </b>
+                                                </span>
+                                             </span>
+                                          <br>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>     </b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                    <td colspan="2" style="background-color:#E0E0E0">
+                                       <p>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>Non-traded:   </b>
+                                                </span>
+                                             </span>
+                                          <br>
+                                          <span style="background-color:#E0E0E0">
+                                             <span style="color:#000000">
+                                                <b>N/A</b>
+                                                </span>
+                                             </span>
+                                          </p>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Will the policy be reviewed?  </b>
+                                 </span>
+                              <span style="color:#000000">See ‘Monitoring and Evaluation’, page 8</span>
+                              <span style="color:#000000">.</span>
+                              <span style="color:#000000">
+                                 <b>
+                                    </b>
+                                 </span>
+                              <span style="color:#000000">
+                                 <b> If applicable, set review date:  </b>
+                                 </span>
+                              <span style="color:#000000">N/A</span>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section class="paragraph">
+               <p>
+                  <b>
+                     <i>I have read the Impact Assessment and I am satisfied that, given the available evidence,
+                        it represents a reasonable view of the likely costs, benefits and impact of the leading
+                        options.</i>
+                     </b>
+                  </p>
+               <table class="ia-table">
+                  <colgroup>
+                     <col style="width:65.25%">
+                     <col style="width:34.75%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <p>
+                              <b>Signed by the responsible Minister:</b> Matthew Pennycook MP</p>
+                           <p></p>
+                        </td>
+                        <td>
+                           <p>
+                              <b>
+                                 <i>&nbsp;Date: 6 January 2025</i>
+                                 </b>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">Summary Analysis &amp; Evidence</span></h2>
+               <p>
+                  <b>Summary: Analysis &amp; Evidence</b>
+                  <span class="tab">&nbsp;</span>Policy Option 1</p>
+            </section>
+            <section id="section_7" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description: </b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph">
+                  <p>
+                     <span style="color:#000000">
+                        <b>FULL ECONOMIC ASSESSMENT</b>
+                        </span>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:13.55%">
+                        <col style="width:12.15%">
+                        <col style="width:13.97%">
+                        <col style="width:17.32%">
+                        <col style="width:17.6%">
+                        <col style="width:25.42%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Price Base Year  </b>
+                                    </span>
+                                 <span style="color:#000000">2024</span>
+                                 </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>PV Base Year  </b>
+                                    </span>
+                                 <span style="color:#000000">2025</span>
+                                 </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Time Period Years  </b>
+                                    </span>
+                                 <span style="color:#000000">10</span>
+                                 </p>
+                           </td>
+                           <td colspan="3">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Net Benefit (Present Value (PV)) (£m)</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Low: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>Optional</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>High: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>Optional</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Best Estimate: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>0</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:20.39%">
+                        <col style="width:18.85%">
+                        <col style="width:7.68%">
+                        <col style="width:27.65%">
+                        <col style="width:17.18%">
+                        <col style="width:8.24%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>COSTS (£m)</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Total Transition </b>
+                                    </span>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>
+                                 <span style="color:#000000">(Constant Price)</span>
+                                 <span class="tab">&nbsp;</span>
+                                 <span style="color:#000000">Years</span>
+                                 </p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Average Annual </b>
+                                    </span>
+                                 <br>
+                                 <span style="color:#000000">(excl. Transition) </span>
+                                 <span style="color:#000000">(Constant Price)</span>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Total Cost</b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    </span>
+                                 <br>
+                                 <span style="color:#000000">(Present Value)</span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Low </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>Optional</p>
+                           </td>
+                           <td style="vertical-align:middle" rowspan="3">
+                              <p>   </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>Optional</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>Optional</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>High </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>-</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>62.3</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>533.2</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Best Estimate</b>
+                                    </span>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>-</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>56.3</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>481.5</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Description and scale of key monetised costs by ‘main affected groups’ </b>
+                                    </span>
+                                 </p>
+                              <p>Businesses (including developers) and householders will face costs from higher application
+                                 fees. These costs will also increase with inflation. Householders account for the
+                                 majority (c. 76%) of the additional costs incurred during the appraisal period.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Other key non-monetised costs by ‘main affected groups’ </b>
+                                    </span>
+                                 </p>
+                              <p>Public bodies would also be subject to higher fees, but as this represents an in government
+                                 transfer the impact has not been monetised.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>BENEFITS (£m)</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Total Transition </b>
+                                    </span>
+                                 <br>
+                                 <span class="tab">&nbsp;</span>
+                                 <span style="color:#000000">(Constant Price)</span>
+                                 <span class="tab">&nbsp;</span>
+                                 <span style="color:#000000">Years</span>
+                                 </p>
+                              <p>
+                                 <br>
+                                 </p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Average Annual </b>
+                                    </span>
+                                 <br>
+                                 <span style="color:#000000">(excl. Transition) </span>
+                                 <span style="color:#000000">(Constant Price)</span>
+                                 </p>
+                           </td>
+                           <td colspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Total Benefit</b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    </span>
+                                 <br>
+                                 <span style="color:#000000">(Present Value)</span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Low </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>Optional</p>
+                           </td>
+                           <td style="vertical-align:middle" rowspan="3">
+                              <p>   </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>Optional</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>Optional</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>High </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>-</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>62.3</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>533.2</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="vertical-align:middle">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Best Estimate</b>
+                                    </span>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>-</p>
+                           </td>
+                           <td style="vertical-align:middle">
+                              <p>56.3</p>
+                           </td>
+                           <td colspan="2" style="vertical-align:middle">
+                              <p>
+                                 <b>481.5</b>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Description and scale of key monetised benefits by ‘main affected groups’ </b>
+                                    </span>
+                                 </p>
+                              <p>Local planning authorities will benefit from increased fee revenue paid by householders
+                                 and businesses.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Other key non-monetised benefits by ‘main affected groups’ </b>
+                                    </span>
+                                 </p>
+                              <p>Proper funding of Local Authority planning services should enable faster processing
+                                 of applications, saving applicants time and reducing uncertainty.</p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="5">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Key assumptions/sensitivities/risks</b>
+                                    </span>
+                                 <span class="tab">&nbsp;</span>
+                                 <span style="color:#000000">
+                                    <b>Discount rate (%)</b>
+                                    </span>
+                                 </p>
+                              <p></p>
+                           </td>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">3.5%     </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="6">
+                              <p>There is no significant behaviour change from applicants because of the fee changes.
+                                 The proper funding of planning services would result in a behaviour change from local
+                                 planning authorities in terms of the speed and effectiveness of the processing of
+                                 applications. The available data sources for number of applications and fees are representative.</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+               <section class="paragraph">
+                  <p>
+                     <span style="color:#000000">
+                        <b>BUSINESS ASSESSMENT (Option 1)</b>
+                        </span>
+                     </p>
+                  <table class="ia-table">
+                     <colgroup>
+                        <col style="width:19.13%">
+                        <col style="width:17.74%">
+                        <col style="width:16.48%">
+                        <col style="width:46.65%">
+                     </colgroup>
+                     <tbody>
+                        <tr>
+                           <td colspan="3">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Direct impact on business (Equivalent Annual) £m: </b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Score for Business Impact Target (qualifying provisions only) £m: N/A</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Costs: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>11.8</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Benefits: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>0</b>
+                                    </span>
+                                 </p>
+                           </td>
+                           <td rowspan="2">
+                              <p>
+                                 <span style="color:#000000">
+                                    <b>Net: </b>
+                                    </span>
+                                 <span style="color:#000000">
+                                    <b>11.8</b>
+                                    </span>
+                                 </p>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <p>
+                                 <span style="color:#000000">     -</span>
+                                 </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </section>
+            </section>
+            <section id="section_8" class="section heading">
+               <h2><span class="heading">
+                     <b>Evidence Base</b>
+                     </span></h2>
+            </section>
+            <section id="section_9" class="section heading">
+               <h2><span class="heading">Problem under consideration and rationale for intervention</span></h2>
+            </section>
+            <section id="section_10" class="section heading">
+               <h2><span class="heading">Planning fees make an important contribution to meeting the costs of a local planning
+                     authority’s planning application service but do not fully cover service costs. Any
+                     shortfall must be financed through additional paid-for discretionary services or through
+                     the local authority’s general budget, which in turn falls on the taxpayer. This is
+                     a challenge for local authorities currently facing significant budget pressures, resulting
+                     in the funding of planning services being reduced in real terms by 36% between 2010-11
+                     and 2019-20 https://www.nao.org.uk/wp-content/uploads/2021/11/The-local-government-finance-system-in-England-overview-and-challenges.pdf.
+                     The Government increased all planning application fees from 6 December 2023, by 35%
+                     for major applications and 25% for all other applications. The Government also introduced
+                     an annual indexation mechanism, from 1 April 2025, through which all fees will be
+                     increased annually by the rate of inflation in the preceding September, up to a maximum
+                     of 10%. So all fees will be increasing by 1.7% from 1 April 2025. Despite the 2023
+                     fee increase, income from fees still falls short of the cost of dealing with the applications.</span></h2>
+            </section>
+            <section id="section_11" class="section heading">
+               <h2><span class="heading">There is a general imbalance within the current planning application fee structure.
+                     Nationally, 80% of planning applications provide only 20% of the fee income. The greatest
+                     imbalance is for householder applications, applications for prior approval, applications
+                     to discharge a condition and applications to vary or remove a condition. For example,
+                     it costs a local authority over twice as much to process a householder application
+                     than the fee received, £258 compared to £528.In 2023-24 there were 173,300] decisions
+                     on householder applications. Due to the high volume of householder applications, which
+                     account for over 50% of all planning applications, the low fee impacts the financial
+                     sustainability of local planning authorities, particularly in local authorities which
+                     do not receive many larger applications, the fees for which are more likely to cover
+                     the cost of deciding the applications.</span></h2>
+            </section>
+            <section id="section_12" class="section heading">
+               <h2><span class="heading">There are also some application types for which no fee is currently charged, such
+                     as listed buildings consent and works on protected trees, which add to the financial
+                     pressure on local planning authorities. In addition to applications for which fees
+                     are not currently charged, there are other planning services which local planning
+                     authorities carry out without a fee. These include enforcement activity and assessing
+                     potential local plan site allocations. Providing these statutory services is a cost
+                     burden on local authorities.</span></h2>
+            </section>
+            <section id="section_13" class="section heading">
+               <h2><span class="heading">According to the Local Government Revenue Outturn figures for 2023-24, the current
+                     planning system cost £1.27billion, of which the planning application service cost
+                     £819million. Income from planning application fees was £381million. When also including
+                     the fees income from other discretionary services, the overall funding shortfall for
+                     the planning application service was £362million (approximately 44%).</span></h2>
+            </section>
+            <section id="section_14" class="section heading">
+               <h2><span class="heading">Whilst the income from planning fees can vary for individual local planning authorities
+                     from year to year depending on the numbers and types of applications, overall underfunding
+                     leads to a consequential under-resourcing of the planning application service, which
+                     in turn leads to a reduction in overall performance levels. This holds up development,
+                     including housing supply. The income from fees has fallen in recent years, largely
+                     due to the decrease in the number of planning applications. The fee increase from
+                     6 December 2023 only took effect in the final few months of the last financial year,
+                     so its full impact has not been realised.</span></h2>
+            </section>
+            <section id="section_15" class="section heading">
+               <h2><span class="heading">The Government recognises that this resourcing deficit needs to be addressed so that
+                     local planning authorities have the resources they need to deliver a service that
+                     people expect as well as meeting our ambitions for planning reform. Local planning
+                     authorities need more resources, so that they can make good, timely decisions. Government
+                     also has the objective to reduce the burden on the taxpayer, and for the planning
+                     application service to be principally funded by those who use it. Well-resourced local
+                     planning authorities will be able to build their capability and capacity, and improve
+                     their performance.</span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">Increasing fees to a level closer to the cost to the local planning authority of processing
+                        the applications, means the fees are more cost reflective and closer to the true economic
+                        cost, which applicants will have to take into account when considering whether or
+                        not to take the development forward by submitting an application. The level of the
+                        proposed fee increases is considered to be modest, compared to the typical development
+                        costs, so we do not expect it to have any impact on the number of applications submitted.
+                        Greater resources will support the wider planning service and will benefit all users,
+                        including businesses.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_16" class="section heading">
+               <h2><span class="heading">The only way to increase fee income is by raising planning application fees. Planning
+                     application fees are set nationally, through secondary legislation, therefore Government
+                     intervention is required.</span></h2>
+            </section>
+            <section id="section_17" class="section heading">
+               <h2><span class="heading">We consulted on our proposals to increase certain planning fees, for 8 weeks, from
+                     30 July 2024, as part of the wider consultation on Proposed reforms to the National
+                     Planning Policy Framework and other changes to the planning system. We proposed that
+                     fees for householder planning applications should be increased to full cost recovery,
+                     estimated to be £528. We also sought views on other types of planning applications
+                     for which the fee was considered to be inadequate. We had 1,343 respondents to our
+                     question on increasing the householder fee to full cost recovery, from a wide range
+                     of respondents, with 72% supporting this proposal. The responses were generally supportive
+                     of our proposals. The government response to the consultation can be read here / will
+                     be published here - https://www.gov.uk/government/consultations/proposed-reforms-to-the-national-planning-policy-framework-and-other-changes-to-the-planning-system.</span></h2>
+            </section>
+            <section id="section_18" class="section heading">
+               <h2><span class="heading">In the longer term, we intend to introduce a power for local planning authorities
+                     to be able to vary or set their own fees, so that local authorities can recover all
+                     their costs for the planning application service.</span></h2>
+            </section>
+            <section id="section_19" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Rationale and evidence to justify the level of analysis used in the IA (proportionality
+                           approach)</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The proposals were anticipated to have a business impact and therefore a detailed
+                        cost-benefit analysis approach is justified. To ensure analysis is proportionate,
+                        only the impacts from measures reasonably expected to have a significant economic
+                        impact on householders and businesses were monetised.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_20" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Description of options considered</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_21" class="section heading">
+               <h2><span class="heading">We have considered two options for increasing planning fees:</span></h2>
+            </section>
+            <section id="section_22" class="section heading">
+               <h2><span class="heading">Option 1 – Do nothing</span></h2>
+            </section>
+            <section id="section_23" class="section heading">
+               <h2><span class="heading">Option 2 – Increase fees for householder applications, prior approval applications,
+                     discharge of conditions and applications to vary or remove a condition</span></h2>
+            </section>
+            <section id="section_24" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 1 – Do nothing</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_25" class="section heading">
+               <h2><span class="heading">Under this option there is no change to planning fees.</span></h2>
+            </section>
+            <section id="section_26" class="section heading">
+               <h2><span class="heading">Fees for submitting planning applications generally represent a fraction of overall
+                     application costs Costs from a 2009 benchmarking exercise by Arup: https://www.thenbs.com/PublicationIndex/documents/details?Pub=DCLG&amp;DocID=290411
+                     (including scheme development and application preparation), and an even smaller share
+                     of overall development costs. Although fees will increase, due to the annual inflation
+                     increase, as other development costs continue to increase, there will always be a
+                     deficit between the fee and the cost to the local planning authority of deciding the
+                     application because the fundamental, structural issue will not have been addressed.</span></h2>
+            </section>
+            <section id="section_27" class="section heading">
+               <h2><span class="heading">In 2023-24 there was a shortfall of £362million between the income for the planning
+                     application service and the cost to local authorities of processing these applications.
+                     If we do nothing, and despite the annual indexation of fees from 1 April 2025, this
+                     shortfall will remain, as both fees and costs increase. This will continue year on
+                     year. The continuing shortfall will continue to be met by the general taxpayer, which
+                     will put additional and increasing pressures on local authority budgets.</span></h2>
+            </section>
+            <section id="section_28" class="section heading">
+               <h2><span class="heading">To do nothing would result in a continued decline in local authority performance in
+                     relation to planning, as the income continues to drop in real terms, year on year,
+                     with a consequential increasing adverse impact on delivery of new development.</span></h2>
+            </section>
+            <section id="section_29" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Option 2 – Increase some fees (preferred)</b>
+                        </span>
+                     </span></h2>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <span style="color:#000000">This is the preferred option, and the option which we consulted on as part of the
+                           consultation: ‘</span>
+                        <span style="color:#000000">
+                           <i>Proposed reforms to the National Planning Policy Framework and other changes to the
+                              planning system’</i>
+                           </span>
+                        <span style="color:#000000">, from 30 July to 24 September 2024. The option increases fees for certain types of
+                           applications where there is an identified significant shortfall between the fee charged
+                           and the cost to the local planning authority of deciding the application. This option
+                           will increase fees, with one exception:</span>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <span style="color:#000000">Fees for householder applications for the enlargement, improvement or other alteration
+                           of a single dwelling house, will increase from £258 to £528 (other householder applications,
+                           for small-scale operations within the curtilage of the dwellinghouse will remain unchanged
+                           at £258)</span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <span style="color:#000000">Fees for householder fees for the enlargement, improvement or other alteration of
+                           two or more dwelling houses, will increase from £509 to £1,043</span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <span style="color:#000000">Fees for applications for prior approval will be doubled from £120 and £258, where
+                           there are associated building operations, to £240 and £516 respectively. Similarly
+                           where prior approval is sought for a change of use, the current fee of £125 per dwellinghouse
+                           will be doubled to £250 per dwellinghouse (prior approval fees for the construction
+                           of new dwellinghouses, which are £418 per dwellinghouse, will remain the same)</span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">•</span></h2>
+                     <p>
+                        <span style="color:#000000">Fees for applications to vary or remove a planning condition will change from the
+                           current flat fee of £293 to a three-tier band structure, reducing to £86 for householder
+                           applications, and increasing to £586 for other non-major development and £2,000 for
+                           major development</span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">
+                           <b>•</b>
+                           </span></h2>
+                     <p>
+                        <span style="color:#000000">Fees for applications for the approval of details reserved by condition, including
+                           approval of Biodiversity Gain Plans, increase from £43 for householders and £145 for
+                           all other development, to £86 and £298 respectively</span>
+                        </p>
+                  </section>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">By increasing these fees the shortfall between the fee and the cost to the local authority
+                        of deciding the application will be reduced, easing the pressure on local authority
+                        budgets and the general taxpayer. The increase in resources will benefit the wider
+                        planning application service allowing all users to benefit. </span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_30" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Policy objective</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The policy objective is to improve the speed and quality of the planning service provided
+                        by local planning authorities by generating a greater income for local authorities
+                        through an increase in fees which will enable them to secure more resources to deliver
+                        the service. This will alleviate delays and barriers to development. With the increased
+                        fees covering a larger proportion of the costs of processing planning applications
+                        local planning authorities will have a more sustainable income. </span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The impact of the policy will be seen in the increased revenue generated from planning
+                        fees by local authorities. This is submitted in annual returns to government and collated
+                        in a table (RO5)</span>
+                     <a class="fn" id="fnref-5" href="#fn-5">5</a>
+                     <span style="color:#000000">. </span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">We monitor the performance of local authorities in terms of speed and quality of decision-making.
+                        We would expect to see an improvement in these measures of performance</span>
+                     <a class="fn" id="fnref-6" href="#fn-6">6</a>
+                     <span style="color:#000000">.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_31" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Summary and preferred option with description of implementation plan</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The preferred option (Option 2) will be implemented through secondary legislation.
+                        We expect the secondary legislation to be introduced in the first quarter of 2025,
+                        and the fee increases to be implemented on 1 April 2025, subject to Parliamentary
+                        approval. As affirmative regulations, the regulations will be laid in draft and debated
+                        in both Houses of Parliament before they come into force. The regulations do not require
+                        applicants to change their processes: the only change for applicants is the cost of
+                        the fee.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_32" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monetised and non-monetised costs and benefits of each option (including administrative
+                           burden)</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The analysis assumes that the changes in fees will have not change developer behaviour
+                        in terms of the number of applications submitted. Under all options, future application
+                        numbers are estimated for the following scenarios: </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">i.</span></h2>
+                  <p>
+                     <span style="color:#000000">Central scenario: The increase in householder applications observed since the Covid-19
+                        pandemic is assumed to be temporary and householder applications return to the pre-pandemic
+                        average and are static. All other application types change by the same proportion
+                        year-on-year as forecast private enterprise starts. This approach uses the latest
+                        OBR forecasts of private enterprise starts (October 2024). The OBR forecasts only
+                        reach 2029/30; application numbers beyond 2029/30 are assumed to be static. We assume
+                        the trajectory in net additions lags behind the trajectory in planning applications
+                        by two years.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">ii.</span></h2>
+                  <p>
+                     <span style="color:#000000">High scenario: The Government’s Plan for Change Milestone set out its ambition to
+                        deliver 1.5m homes this parliament. It has taken a significant step towards this through
+                        the reforms announced on 12</span>
+                     <span style="color:#000000">th</span>
+                     <span style="color:#000000"> December 2024 to the NPPF. However, further reforms are needed and further detail
+                        will follow after the spending review and through the publication of its long-term
+                        housing strategy. The Government has set out that given the position it inherited
+                        it expects net additions to fall to under 200k per annum in England and then rise
+                        quickly from 2026/27. To reflect the greater flow of applications associated with
+                        the delivery of 1.5m, we consider a high side scenario using a stylised profile consistent
+                        with its delivery. This is not a future forecast or delivery plan. Delivery is assumed
+                        to be static after 2029. We assume the trajectory in net additions lags behind the
+                        trajectory in planning applications by two years.  This is applied as a growth rate
+                        to non-householder applications. The increase in householder applications remains
+                        the same as the central scenario.</span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">Average fees data and increases were sourced from the Planning Advisory Service’s
+                        (PAS) project data. The data is considered reliable because it provides a representative
+                        mix of local authority and application types. The average number of applications was
+                        taken for the last 3 years from the PAS data (2022-24).</span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The costs and benefits are modelled by multiplying the expected numbers of applications
+                        by type by an estimate of the average fee increase by application type derived from
+                        the PAS data.</span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">To estimate costs from the policy options, we assumed a start date for the policy
+                        of Q2 2025, and evaluated the policy up until Q1 2035. All costs were discounted with
+                        a discount rate of 3.5% and were adjusted to 2025 prices using the OBR’s estimate
+                        of the GDP deflator. This is in line with guidance from the Treasury Green Book. The
+                        monetised impacts of each option relative to the counterfactual are presented below.
+                        Figures are presented for 2025 PV, and a 2024 price base year.</span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">Option 2: increase fees for householders, approval of details reserved, s73 applications
+                        and prior approvals</span>
+                     </p>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <span style="color:#000000">
+                           <i>Central scenario</i>
+                           </span>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">-</span></h2>
+                     <p>
+                        <span style="color:#000000">A </span>
+                        <span style="color:#000000">
+                           <b>transfer</b>
+                           </span>
+                        <span style="color:#000000"> from business and householders to local planning authorities via increased fee revenue
+                           of c.£56m per year. </span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">-</span></h2>
+                     <p>
+                        <span style="color:#000000">
+                           <b>Unquantified benefits</b>
+                           </span>
+                        <span style="color:#000000"> to business and householders from an improved planning service.</span>
+                        </p>
+                     <table class="ia-table">
+                        <colgroup>
+                           <col style="width:46.06%">
+                           <col style="width:53.94%">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p></p>
+                              </td>
+                              <td>
+                                 <p>Average annual impact <br>(£m, 2025 PV)</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Benefit to LPAs</p>
+                              </td>
+                              <td>
+                                 <p>                                                56</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Cost to businesses</p>
+                              </td>
+                              <td>
+                                 <p>                                                12</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Cost to householders</p>
+                              </td>
+                              <td>
+                                 <p>                                                44 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>NPSV</p>
+                              </td>
+                              <td>
+                                 <p>                                                 0</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+               </section>
+               <section class="level heading">
+                  <h2><span class="heading">
+                        <span style="color:#000000">
+                           <i>High scenario</i>
+                           </span>
+                        </span></h2>
+                  <section class="paragraph num">
+                     <h2><span class="num">-</span></h2>
+                     <p>
+                        <span style="color:#000000">A </span>
+                        <span style="color:#000000">
+                           <b>transfer</b>
+                           </span>
+                        <span style="color:#000000"> from business and householders to local planning authorities via increased fee revenue
+                           of c.£62m per year. </span>
+                        </p>
+                  </section>
+                  <section class="paragraph num">
+                     <h2><span class="num">-</span></h2>
+                     <p>
+                        <span style="color:#000000">
+                           <b>Unquantified benefits</b>
+                           </span>
+                        <span style="color:#000000"> to business and householders from an improved planning service.</span>
+                        </p>
+                     <table class="ia-table">
+                        <colgroup>
+                           <col style="width:60.57%">
+                           <col style="width:39.02%">
+                           <col style="width:0.41%">
+                        </colgroup>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <p></p>
+                              </td>
+                              <td>
+                                 <p>Average annual impact <br>(£m, 2025 PV)</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Benefit to LPAs</p>
+                              </td>
+                              <td>
+                                 <p>                                                62</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Cost to businesses</p>
+                              </td>
+                              <td>
+                                 <p>                                                18</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p>Cost to householders</p>
+                              </td>
+                              <td>
+                                 <p>                                                44 </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <p></p>
+                                 <p>NPSV</p>
+                              </td>
+                              <td colspan="2">
+                                 <p>                                     0</p>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </section>
+               </section>
+            </section>
+            <section id="section_33" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Direct costs and benefits to business calculations</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>The direct costs to business from increased applications fees can be found in the
+                     tables above. The estimated costs to business by year (between Q2 2025 and Q1 2035)
+                     is £12.8m. There are no direct benefits to business from these changes. However, there
+                     will be indirect benefits from having a better resourced planning system and more
+                     timely decision-making. </p>
+               </section>
+            </section>
+            <section id="section_34" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Risks and assumptions</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The model assumptions, with justifications and risks are as follows: </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">1.</span></h2>
+                  <p>
+                     <span style="color:#000000">There is no behavioural change from raising fees. </span>
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <span style="color:#000000">We believe this is reasonable given the small cost of fees relative to construction
+                           in most cases. </span>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>
+                        <span style="color:#000000">Any resulting reduction in applications is likely to be small compared to the reductions
+                           modelled in the alternative applications scenarios.</span>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">2.</span></h2>
+                  <p>
+                     <span style="color:#000000">Application numbers will follow changes in building starts, with uncertainty about
+                        numbers beyond 2029/30.</span>
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <span style="color:#000000">We assume that future application numbers will increase at the same rate as building
+                           starts, in line with OBR projections until 2029/30. Beyond 2029/30, application numbers
+                           are assumed to be constant. Householder applications are assumed to return to the
+                           pre-Covid-19 average (i.e. the increase after the outbreak of the pandemic was temporary)
+                           and are static.</span>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3.</span></h2>
+                  <p>
+                     <span style="color:#000000">Fees are assumed to increase in line with CPI inflation as forecast by the OBR (Oct
+                        2024).</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_35" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Impact on small and micro businesses</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">Increasing fees will have an impact on those small and micro businesses who submit
+                        planning applications by increasing their costs when they make a planning application
+                        which requires a fee. However the increases are proportionally minor in the context
+                        of development costs, and as highlighted in the risks and assumptions section, we
+                        don’t expect any behavioural impacts from these fee increases. </span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_36" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Wider impacts (consider the impacts of your proposals)</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">The wider impacts of this policy will be seen in a better resourced and better performing
+                        planning application service, which will be able to deliver better quality decisions
+                        more quickly. This will help the delivery of housing and allow businesses to adapt
+                        and develop more quickly.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_37" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>A summary of the potential trade implications of measure</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#000000">There are no trade implications.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_38" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#000000">
+                        <b>Monitoring and Evaluation</b>
+                        </span>
+                     </span></h2>
+            </section>
+            <section id="section_39" class="section heading">
+               <h2><span class="heading">If the policy is successful, local authorities will receive more income from planning
+                     application fees and invest this into their planning application service. We could
+                     monitor this through the collated annual returns to government which are published
+                     in a table (RO5 https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing),
+                     which should show an increase in income and spend on development management (planning
+                     application service). However, if the number of applications reduces significantly
+                     as a result of general economic or housing market conditions, the impact of the policy
+                     in terms of increased income may be diminished.</span></h2>
+            </section>
+            <section id="section_40" class="section heading">
+               <h2><span class="heading">As a consequence of the increased income, we expect that, with the additional resources,
+                     the performance of local authorities in terms of speed and quality of decision-making
+                     will improve. Although it is recognised that performance can be influenced by other
+                     factors, for example staff recruitment and retention and demand for services which
+                     is expected to increase in order to meet government commitments for housing delivery
+                     and economic growth.  Planning performance is monitored through arrangements introduced
+                     by the Growth and Infrastructure Act 2013. Under-performing local planning authorities
+                     may be designated, if they fail to meet published speed and quality criteria.</span></h2>
+            </section>
+            <section id="section_41" class="section heading">
+               <h2><span class="heading">We intend to conduct a benchmarking exercise of planning fees in 2025 so that, if
+                     a separate measure to localise planning fees, i.e. to empower local planning authorities
+                     to set their own planning fees, one of the measures in the proposed Planning and Infrastructure
+                     Bill, secures Royal Assent, we will be ready to implement the localisation of fees
+                     through secondary legislation. One of the proposed fees localisation models was to
+                     continue to set a national fee, from which local authorities would be able to vary
+                     fees. The outcome of the benchmarking exercise will inform the setting of any future
+                     national fees, irrespective of whether or not some form of localisation of fees takes
+                     place.</span></h2>
+            </section>
+         </div>
+         <footer class="footnotes">
+            <hr style="margin-top:2em">
+            <div class="footnote">
+               <p><a class="marker" id="fn-1" href="#fnref-1">1</a> <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing"><u>Local authority revenue expenditure and financing - GOV.UK</u></a><u> - </u><u><a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</a></u></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-2" href="#fnref-2">2</a> <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation"><u>Improving planning performance: criteria for designation - GOV.UK</u></a><u> - </u><u><a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation">https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</a></u></p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-5" href="#fnref-5">5</a> 
+                  <span style="color:#000000">
+                     </span>
+                  <a href="https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing">
+                     <u>https://www.gov.uk/government/collections/local-authority-revenue-expenditure-and-financing</u>
+                     </a>
+                  </p>
+            </div>
+            <div class="footnote">
+               <p><a class="marker" id="fn-6" href="#fnref-6">6</a> 
+                  <span style="color:#000000">
+                     </span>
+                  <a href="https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation">
+                     <u>https://www.gov.uk/government/publications/improving-planning-performance-criteria-for-designation</u>
+                     </a>
+                  </p>
+            </div>
+         </footer>
+      </article>
+   </body>
+</html>

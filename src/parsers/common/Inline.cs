@@ -9,6 +9,8 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.NationalArchives.CaseLaw.Parse;
+
 namespace UK.Gov.Legislation.Judgments.Parse {
 
 class Inline {
@@ -63,8 +65,14 @@ class Inline {
             logger.LogDebug("endnote reference");
         if (e is EndnoteReference en)
             return new WFootnote(main, en);
-        if (e is Drawing draw)
-            return new WImageRef(main, draw);
+        if (e is Drawing draw) {
+            var resolver = DrawingResolver.Current;
+            int drawingIndex = resolver?.NextDrawingIndex() ?? -1;
+            IInline img = WImageRef.Make(main, draw);
+            if (img != null) return img;
+            return resolver?.TryResolveUnrenderedDrawing(draw, rProps, drawingIndex)
+                ?? new WImageRef(main, draw);
+        }
         if (e is Picture pict) {
             // look for text box?
             return WImageRef.Make(main, pict);
