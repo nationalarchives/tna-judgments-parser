@@ -91,8 +91,9 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
             switch (processCsvRecordResult)
             {
                 case { ErrorMessage: { } errorMessage, Record: null }:
-                    tracker.TrackCsvParseError(
-                        $"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
+                    var csvParseError = $"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]";
+                    tracker.TrackCsvParseError(csvParseError);
+                    logger.LogError(csvParseError, currentLineNumber);
                     break;
                 case { Record: { } record, ErrorMessage: null }:
                     records.Add(record);
