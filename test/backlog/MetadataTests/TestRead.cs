@@ -8,8 +8,11 @@ using System.Linq;
 using Backlog;
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Tracking;
 
 using Microsoft.Extensions.Options;
+
+using Moq;
 
 using test.Mocks;
 
@@ -17,21 +20,23 @@ using Xunit;
 
 namespace test.backlog.MetadataTests;
 
-public class TestRead : IDisposable
+public sealed class TestRead : IDisposable
 {
     private readonly CsvMetadataReader csvMetadataReader;
     private readonly IOptions<BacklogParserOptions> backlogParserOptions;
     private readonly string testDataDirectory;
+    private readonly Mock<ITracker> mockTracker = new();
 
     public TestRead()
     {
         // Create a unique temporary directory for test files (used by some tests accessing the real file system)
         testDataDirectory = Path.Combine(Path.GetTempPath(), nameof(TestRead), Guid.NewGuid().ToString());
         Directory.CreateDirectory(testDataDirectory);
-        
+
         var courtMetadataFilePath = Path.Combine(testDataDirectory, "metadata.csv");
         backlogParserOptions = BacklogParserOptionsHelper.Create(courtMetadataFilePath: courtMetadataFilePath);
-        csvMetadataReader = new(new MockLogger<CsvMetadataReader>().Object, backlogParserOptions);
+        csvMetadataReader = new CsvMetadataReader(new MockLogger<CsvMetadataReader>().Object, backlogParserOptions,
+            mockTracker.Object);
     }
 
     public void Dispose()
@@ -54,15 +59,14 @@ public class TestRead : IDisposable
             """
         );
 
-        var result =
-            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
-        Assert.Empty(csvParseErrors);
+        var result = csvMetadataReader.Read(csvStream);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Never);
 
         var parsedLine = Assert.Single(result);
         Assert.Equal("123", parsedLine.id);
         Assert.False(parsedLine.Skip);
 
-        Assert.Equal(["Line 3"], skippedCsvLineIdentifiers);
+        mockTracker.Verify(t => t.TrackSkipped("Line 3"), Times.Once);
     }
 
     [Theory]
@@ -88,11 +92,10 @@ public class TestRead : IDisposable
              """
         );
 
-        var result =
-            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
-        Assert.Empty(csvParseErrors);
-        Assert.Empty(skippedCsvLineIdentifiers);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Never);
+        mockTracker.Verify(t => t.TrackSkipped(It.IsAny<string>()), Times.Never);
 
         var line = Assert.Single(result);
         Assert.False(line.Skip);
@@ -116,16 +119,15 @@ public class TestRead : IDisposable
              """
         );
 
-        var result =
-            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
-        Assert.Empty(csvParseErrors);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Never);
         Assert.Empty(result);
-        Assert.Single(skippedCsvLineIdentifiers);
+        mockTracker.Verify(t => t.TrackSkipped(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
-    public void Read_WithVarietyOfRows_OutputsFullRowCount()
+    public void Read_WithVarietyOfRows_SetsFullRowCountInTracker()
     {
         using var csvStream = new StringReader(
             """
@@ -136,12 +138,12 @@ public class TestRead : IDisposable
             126, missing_extension_unskipped_line.docx  ,  ,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,
             """
         );
-        
-        _ = csvMetadataReader.Read(csvStream, out _, out _, out var fullRowCount);
 
-        Assert.Equal(4, fullRowCount);
+        _ = csvMetadataReader.Read(csvStream);
+
+        mockTracker.VerifySet(t => t.NumAllLinesInCsv = 4);
     }
-    
+
     [Fact]
     public void Read_WithDodgySkippedLines_DoesNotOutputValidationErrors()
     {
@@ -157,18 +159,17 @@ public class TestRead : IDisposable
             """
         );
 
-        var result =
-            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         // Assert that the good line is returned
         var parsedLine = Assert.Single(result);
         Assert.Equal("123", parsedLine.id);
 
-        // Assert all skipped lines are returned despite validation errors        
-        Assert.Equal(5, skippedCsvLineIdentifiers.Count);
+        // Assert all skipped lines are tracked despite validation errors        
+        mockTracker.Verify(t => t.TrackSkipped(It.IsAny<string>()), Times.Exactly(5));
 
-        // Assert that there are no validation errors returned
-        Assert.Empty(csvParseErrors);
+        // Assert that there are no validation errors tracked
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Never);
     }
 
     [Theory]
@@ -196,10 +197,10 @@ public class TestRead : IDisposable
             csvWithMissingColumn
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         Assert.Empty(result);
-        Assert.All(csvParseErrors, csvParseError => Assert.Contains(missingColumn, csvParseError));
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains(missingColumn))), Times.AtLeastOnce);
     }
 
     [Theory]
@@ -224,7 +225,7 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         var line = Assert.Single(result);
         Assert.Equal(expectedJurisdictions, line.Jurisdictions);
@@ -252,7 +253,7 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         var line = Assert.Single(result);
         Assert.Equal(expectedCaseNos, line.CaseNo);
@@ -270,7 +271,7 @@ public class TestRead : IDisposable
             """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         Assert.Collection(result,
             line => Assert.Equivalent(new Dictionary<string, string>
@@ -355,7 +356,7 @@ public class TestRead : IDisposable
         using var csvStream = new StringReader(csvContent);
 
         // Act
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         // Assert - results
         CsvMetadataLineHelper.AssertCsvLinesMatch(result,
@@ -559,8 +560,7 @@ public class TestRead : IDisposable
         );
 
         // Assert - marked as skip lines
-        var skippedLine = Assert.Single(skippedCsvLineIdentifiers);
-        Assert.Equal("Line 11", skippedLine);
+        mockTracker.Verify(t => t.TrackSkipped("Line 11"), Times.Once);
     }
 
     [Fact]
@@ -580,23 +580,18 @@ public class TestRead : IDisposable
             """
         );
 
-        var validLines = csvMetadataReader.Read(csvStream, out _, out var failedToParseLines, out _);
+        var validLines = csvMetadataReader.Read(csvStream);
 
         Assert.Equal(3, validLines.Count);
-        Assert.Equal(5, failedToParseLines.Count);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Exactly(5));
 
-        Assert.Equivalent(
-            new List<string>
-            {
-                "Line 4: Id 123 - Must have either claimants or appellants. At least one is required. [123,00000000-0000-0000-0000-000000000123,NoClaimants.pdf,.pdf,2025-01-15 09:00:00,IA/2025/001,UKUT-IAC,,Secretary of State for the Home Department,,,,,]",
-                "Line 5: Field at index '6' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [completely invalid line]",
-                "Line 6: Field at index '13' does not exist. You can ignore missing fields by setting MissingFieldFound to null. [124,00000000-0000-0000-0000-000000000124,MissingAComma.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad subcategory,,]",
-                "Line 7: Id 125 - main_subcategory 'Bad main subcategory' cannot exist without main_category being defined [125,00000000-0000-0000-0000-000000000125,MissingMainCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,Bad main subcategory,,,]",
-                "Line 8: Id 126 - sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category being defined [126,00000000-0000-0000-0000-000000000126,MissingSecondaryCategory.docx,.docx,2025-01-16 10:00:00,IA/2025/002,UKFTT-TC,Jones,HMRC,,,,Bad secondary subcategory,]"
-            },
-            failedToParseLines);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Must have either claimants or appellants"))), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Field at index '6' does not exist"))), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Field at index '13' does not exist"))), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("main_subcategory 'Bad main subcategory' cannot exist without main_category"))), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category"))), Times.Once);
     }
-    
+
     [Fact]
     public void Read_WithNcn_DoesNotTrimOriginalNcnInFullCsvLineContents()
     {
@@ -606,8 +601,8 @@ public class TestRead : IDisposable
                                   124,[2024] EAT 001,00000000-0000-0000-0000-000000000124,/test/data/test-case2.docx,.docx,2025-01-16 10:00:00,UKFTT-TC,Jones,HMRC,
                                   """;
         using var csvStream = new StringReader(csvContent);
-        
-        var result = csvMetadataReader.Read(csvStream, out _, out _, out _);
+
+        var result = csvMetadataReader.Read(csvStream);
 
         var fullCsvLineContentNcns = result.Select(l => l.FullCsvLineContents["ncn"]);
         Assert.Equal(["[2025] UKUT 0027 (LC)", "[2024] EAT 001"], fullCsvLineContentNcns);
@@ -627,7 +622,7 @@ public class TestRead : IDisposable
         using var csvStream = new StringReader(csvContent);
 
         //Act
-        var result = csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out _, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         CsvMetadataLineHelper.AssertCsvLinesMatch(result,
             new CsvLine
@@ -654,7 +649,7 @@ public class TestRead : IDisposable
             }
         );
 
-        Assert.Equal(["Line 3"], skippedCsvLineIdentifiers);
+        mockTracker.Verify(t => t.TrackSkipped("Line 3"), Times.Once);
     }
 
     [Theory]
@@ -678,10 +673,9 @@ public class TestRead : IDisposable
              """
         );
 
-        var result =
-            csvMetadataReader.Read(csvStream, out var skippedCsvLineIdentifiers, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
-        Assert.Empty(csvParseErrors);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Never);
         var line = Assert.Single(result);
         Assert.Equal(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), line.DecisionDateTime);
     }
@@ -711,11 +705,10 @@ public class TestRead : IDisposable
              """
         );
 
-        var result = csvMetadataReader.Read(csvStream, out _, out var csvParseErrors, out _);
+        var result = csvMetadataReader.Read(csvStream);
 
         Assert.Empty(result);
-        var error = Assert.Single(csvParseErrors);
-        Assert.Equal(expectedErrorMessage, error);
+        mockTracker.Verify(t => t.TrackCsvParseError(expectedErrorMessage), Times.Once);
     }
 
     [Fact]
@@ -727,7 +720,7 @@ public class TestRead : IDisposable
         // Act & Assert
         Assert.Throws<FileNotFoundException>(() =>
         {
-            _ = csvMetadataReader.Read(out _, out _, out _);
+            _ = csvMetadataReader.Read();
         });
     }
 
@@ -739,7 +732,7 @@ public class TestRead : IDisposable
             "id,FilePath,Extension,decision_datetime,CaseNo,court,claimants,respondent,main_category,main_subcategory,sec_category,sec_subcategory,headnote_summary");
 
         // Act
-        var lines = csvMetadataReader.Read(out _, out _, out _);
+        var lines = csvMetadataReader.Read();
 
         // Assert
         Assert.Empty(lines);
@@ -757,7 +750,7 @@ public class TestRead : IDisposable
         var expectedHash = BacklogParserWorker.Hash(File.ReadAllBytes(backlogParserOptions.Value.CourtMetadataFilePath));
 
         // Act
-        var result = csvMetadataReader.Read(out _, out _, out _);
+        var result = csvMetadataReader.Read();
 
         // Assert
         var line = Assert.Single(result);
@@ -774,7 +767,7 @@ public class TestRead : IDisposable
         using var reader = new StringReader(csvContent);
 
         // Act
-        var result = csvMetadataReader.Read(reader, out _, out _, out _);
+        var result = csvMetadataReader.Read(reader);
 
         // Assert
         var line = Assert.Single(result);
