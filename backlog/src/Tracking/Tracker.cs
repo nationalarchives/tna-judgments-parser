@@ -87,6 +87,7 @@ internal class Tracker : ITracker
 
         };
         currentRunTrackerLines.Add(trackerLine.SourceUuid, trackerLine);
+
         await UpdateTrackerFileAsync();
     }
 
@@ -100,21 +101,28 @@ internal class Tracker : ITracker
         trackerLine.DocumentContentHash = documentContentHash;
         trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
         trackerLine.CaseName = caseName;
+
         await UpdateTrackerFileAsync();
     }
 
     public async Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception)
     {
-        currentRunTrackerLines[sourceUuid].TrackerStatus = TrackerStatus.ParserFailed;
-        currentRunTrackerLines[sourceUuid].ErrorMessage = exception.Message;
-        currentRunTrackerLines[sourceUuid].TrackerLineLastUpdated = timeProvider.GetUtcNow();
+        var trackerLine = currentRunTrackerLines[sourceUuid];
+        
+        trackerLine.TrackerStatus = TrackerStatus.ParserFailed;
+        trackerLine.ErrorMessage = exception.Message;
+        trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
+
         await UpdateTrackerFileAsync();
     }
 
     public async Task UpdateToSentToIngesterAsync(Guid sourceUuid)
     {
-        currentRunTrackerLines[sourceUuid].TrackerStatus = TrackerStatus.SentToIngester;
-        currentRunTrackerLines[sourceUuid].TrackerLineLastUpdated = timeProvider.GetUtcNow();
+        var trackerLine = currentRunTrackerLines[sourceUuid];
+        
+        trackerLine.TrackerStatus = TrackerStatus.SentToIngester;
+        trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
+
         await UpdateTrackerFileAsync();
     }
 
