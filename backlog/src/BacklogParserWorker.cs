@@ -19,18 +19,23 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog;
 
+internal interface IBacklogParserWorker
+{
+    Task<int> RunAsync();
+}
+
 /// <summary>
 ///     This is the main entry point to the bulk backlog parsing process
 /// </summary>
 internal class BacklogParserWorker(
     ILogger<BacklogParserWorker> logger,
-    Api.Parser parser,
-    BacklogFiles backlogFiles,
-    CsvMetadataReader csvMetadataReader,
+    Api.IParser parser,
+    IBacklogFiles backlogFiles,
+    ICsvMetadataReader csvMetadataReader,
     ITracker tracker,
     IBucket bucket,
-    MetadataTransformer metadataTransformer,
-    IOptions<BacklogParserOptions> backlogParserOptions)
+    IMetadataTransformer metadataTransformer,
+    IOptions<BacklogParserOptions> backlogParserOptions) : IBacklogParserWorker
 {
     public async Task<int> RunAsync()
     {

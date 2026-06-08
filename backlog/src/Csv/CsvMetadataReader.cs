@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using Backlog.Options;
-using Backlog.Src;
 
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -20,12 +19,22 @@ using Microsoft.Extensions.Options;
 
 namespace Backlog.Csv;
 
+internal interface ICsvMetadataReader
+{
+    List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
+        out int numAllLinesInCsv);
+
+    List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
+        out List<string> csvParseErrors, out int numAllLinesInCsv);
+}
+
 internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<BacklogParserOptions> backlogParserOptions)
+    : ICsvMetadataReader
 {
     private string csvName = "unknown.csv";
     private string csvHash = "unknown";
 
-    internal List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
+    public List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
         out int numAllLinesInCsv)
     {
         var csvPath = backlogParserOptions.Value.CourtMetadataFilePath;
@@ -36,7 +45,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
         return Read(streamReader, out skippedCsvLineIdentifiers, out csvParseErrors, out numAllLinesInCsv);
     }
 
-    internal List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
+    public List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
         out List<string> csvParseErrors, out int numAllLinesInCsv)
     {
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)

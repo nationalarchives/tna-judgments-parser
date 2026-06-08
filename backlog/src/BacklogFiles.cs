@@ -10,10 +10,21 @@ using Microsoft.Extensions.Options;
 
 namespace Backlog;
 
+internal interface IBacklogFiles
+{
+    /// <summary>
+    ///     Returns the contents of a file using its metadata information by resolving the UUID
+    ///     and locating the corresponding document in the court documents directory.
+    /// </summary>
+    /// <param name="uuid">TDR UUID used to locate file</param>
+    /// <returns>File contents as a byte array</returns>
+    byte[] ReadFile(string uuid);
+}
+
 /// <summary>
 ///     Provides file operations for processing backlog documents.
 /// </summary>
-internal class BacklogFiles
+internal class BacklogFiles : IBacklogFiles
 {
     private readonly IFileSystem fileSystem;
     private readonly IDirectoryInfo courtDocumentsDirectory;
@@ -31,14 +42,7 @@ internal class BacklogFiles
         }
     }
 
-    /// <summary>
-    ///     Reads the contents of a file using its metadata information by resolving the UUID
-    ///     and locating the corresponding document in the court documents directory.
-    ///     Handles special case for .doc files which are stored as .docx files.
-    /// </summary>
-    /// <param name="uuid"></param>
-    /// <returns>File contents as a byte array</returns>
-    internal byte[] ReadFile(string uuid)
+    public byte[] ReadFile(string uuid)
     {
         var filesWithUuid = courtDocumentsDirectory.GetFiles($"{uuid}*", SearchOption.AllDirectories);
         if (filesWithUuid.Length == 0)

@@ -155,7 +155,7 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}",
                 backlogParserOptions.CourtMetadataFilePath);
 
-            var backlogParserWorker = scope.ServiceProvider.GetRequiredService<BacklogParserWorker>();
+            var backlogParserWorker = scope.ServiceProvider.GetRequiredService<IBacklogParserWorker>();
             Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
             return backlogParserWorker.RunAsync().Result;
@@ -212,11 +212,13 @@ public class Program
 
     internal static void ConfigureDependencyInjection(IServiceCollection services, bool isDryRun = false)
     {
-        services.AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
-        services.AddScoped<Parser>();
-        services.AddScoped<BacklogParserWorker>();
-        services.AddScoped<CsvMetadataReader>();
-        services.AddScoped<BacklogFiles>();
+        services
+            .AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
+                UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services.AddScoped<IParser, Parser>();
+        services.AddScoped<IBacklogParserWorker, BacklogParserWorker>();
+        services.AddScoped<ICsvMetadataReader, CsvMetadataReader>();
+        services.AddScoped<IBacklogFiles, BacklogFiles>();
         services.AddScoped<ITracker, Tracker>();
         if (isDryRun)
         {
@@ -228,7 +230,7 @@ public class Program
             services.AddScoped<IBucket, Bucket>();
         }
 
-        services.AddScoped<MetadataTransformer>();
+        services.AddScoped<IMetadataTransformer, MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
         services.AddSingleton<IFileSystem, FileSystem>();
 

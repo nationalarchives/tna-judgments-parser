@@ -20,9 +20,19 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
+internal interface IMetadataTransformer
 {
-    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
+    FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
+        string primarySourceFilename, string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText);
+
+    List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine);
+}
+
+internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
+    : IMetadataTransformer
+{
+    public FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
         string primarySourceFilename, string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
