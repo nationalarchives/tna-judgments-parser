@@ -15,12 +15,15 @@ using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using EM = UK.Gov.Legislation.ExplanatoryMemoranda;
 using UK.Gov.Legislation.Lawmaker;
+using System.Collections.Generic;
+using UK.Gov.Legislation.Lawmaker.Api;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
 
 public class Program {
     private const int Success = 0;
+    private const int Failure = 1;
 
     private static readonly RootCommand Command;
     private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
@@ -84,18 +87,24 @@ public class Program {
             return Success;
         }
         DocName? docName = DocNames.GetDocName(hint);
-        if (docName != null) {
-            LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
-            LanguageService languageService = new LanguageService(language);
-            var xml = Helper.LocalParse(input.FullName, classifier, languageService).Xml;
-            if (output is not null)
-                File.WriteAllText(output.FullName, xml);
-            else
-                Console.WriteLine(xml);
-            return Success;
-        } else {
+        if (docName == null) {
             logger?.LogCritical("unrecognized document type: {}", hint);
+            return Failure;
         }
+        LegislationClassifier classifier = new LegislationClassifier((DocName) docName, subType, procedure);
+        LanguageService languageService = new LanguageService(language);
+        Response response = Helper.LocalParse(input.FullName, classifier, languageService);
+        if (output is not null)
+            File.WriteAllText(output.FullName, response.Xml);
+        else
+            Console.WriteLine(response.Xml);
+
+        if (outputZip is not null)
+            SaveImagesToZip(response.Images, outputZip);
+            
+        return Success;
+
+        /*
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
         if (attachment is null) {
@@ -105,19 +114,16 @@ public class Program {
             Api.Attachment a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
             request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
         }
-
         var parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new AkN.Validator());
         Api.Response response = parser.Parse(request);
-        if (outputZip is not null)
-            SaveZip(response, outputZip);
+
         else if (output is not null)
             File.WriteAllText(output.FullName, response.Xml);
         else
             Console.WriteLine(response.Xml);
         if (test)
             Print(response.Meta);
-
-        return Success;
+        */
     }
 
     static void TransformEM(FileInfo input, FileInfo output, FileInfo outputZip, FileInfo log, bool test, FileInfo attachment) {
@@ -150,6 +156,18 @@ public class Program {
         }
         foreach (var image in response.Images) {
             entry = archive.CreateEntry(image.Name);
+            using var zip = entry.Open();
+            zip.Write(image.Content, 0, image.Content.Length);
+        }
+    }
+
+    private static void SaveImagesToZip(IEnumerable<Image> images, FileInfo file)
+    {
+        using var stream = new FileStream(file.FullName, FileMode.Create);
+        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
+        foreach (var image in images)
+        {
+            var entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
             zip.Write(image.Content, 0, image.Content.Length);
         }

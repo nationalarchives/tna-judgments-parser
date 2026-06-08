@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+
+using DocumentFormat.OpenXml.Wordprocessing;
+
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.DOCX;
@@ -13,6 +16,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.Legislation.Lawmaker.Headers;
 
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
+using CSS = UK.Gov.Legislation.Judgments.DOCX.CSS;
 
 namespace UK.Gov.Legislation.Lawmaker
 {
@@ -365,7 +369,28 @@ namespace UK.Gov.Legislation.Lawmaker
         protected override XmlElement Block(XmlElement parent, ILine line, string name)
         {
             ILine stripped = TrimLine(line);
-            return base.Block(parent, stripped, name);
+            XmlElement block = doc.CreateElement(name, ns);
+            parent.AppendChild(block);
+            if (stripped.Style is not null)
+                block.SetAttribute("class", stripped.Style);
+            Dictionary<string, string> styles = stripped.GetCSSStyles();
+            if (styles.Count > 0)
+                block.SetAttribute("style", CSS.SerializeInline(styles));
+            ContainingParagraphStyle = stripped.Style;
+            foreach (IInline inline in stripped.Contents)
+                // If line contains image, wrap with tblock first
+                if (inline is WImageRef wimageRef)
+                {
+                    XmlElement tblock = doc.CreateElement("tblock", ns);
+                    parent.AppendChild(tblock);
+                    tblock.SetAttribute("class", ns, "image centre");
+                    tblock.AppendChild(block);
+                    AddInline(block, inline);
+                } else {
+                    AddInline(block, inline);
+                }
+            ContainingParagraphStyle = null;
+            return block;
         }
 
         /// <summary>
@@ -388,7 +413,9 @@ namespace UK.Gov.Legislation.Lawmaker
                 .SkipWhile(IInline.IsEmpty).Reverse();
 
             // Trim start of first inline
-            IInline first = newContents.First();
+            IInline first = null;
+            if (newContents.Any())
+                first = newContents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it
@@ -462,6 +489,30 @@ namespace UK.Gov.Legislation.Lawmaker
             authorialNote.SetAttribute("marker", fn.Marker);
             IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
             blocks(authorialNote, content);
+        }
+        private double PtToMM(float pt)
+        {
+            return Math.Floor(pt * 25.4/300*1.44); //transforming between different measurements
+        }
+
+        private void ExtractDimensions(XmlElement img, IImageRef model)
+        {
+            foreach (string style in model.Style.Split(";"))
+            {
+                img.SetAttribute(
+                    style.Split(":")[0], 
+                    PtToMM(float.Parse(Regex.Replace(style, @"[^0-9.-]", ""))).ToString());
+            }
+        }
+
+        protected override void AddImageRef(XmlElement parent, IImageRef model) {
+            XmlElement img = doc.CreateElement("img", ns);
+            img.SetAttribute("src", "/document/image?filename="+model.Src+"&ds=LEGI_DRAFTING");
+            img.SetAttribute("alt", model.Src);
+            ExtractDimensions(img, model);
+            if (model.Style is not null)
+                img.SetAttribute("style", model.Style);
+            parent.AppendChild(img);
         }
 
         protected void AddBlockList(XmlElement parent, BlockList blockList)

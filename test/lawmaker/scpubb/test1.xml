@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="scpubb">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varBillTitle" href="#varOntologies" showAs="Visitor Accommodation (Register and Levy) Etc. (Wales) Bill" />
+        <TLCProcess eId="varStageVersion" href="#varOntologies" showAs="As Amended At Stage 3" />
+      </references>
+    </meta>
+    <preface eId="preface">
+      <block name="title"><docTitle><ref href="#varBillTitle" class="placeholder" /></docTitle></block>
+      <block name="stageVersion">[<docStage><ref href="#varStageVersion" class="placeholder" /></docStage>]</block>
+      <longTitle>
+        <p>An Act of Senedd Cymru to establish a register of persons that provide visitor accommodation at premises in Wales; to grant principal councils the power to introduce a levy on overnight stays in visitor accommodation in their areas; to make miscellaneous amendments to the Tax Collection and Management (Wales) Act 2016; and for connected purposes.</p>
+      </longTitle>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>Having been passed by Senedd Cymru and having received the assent of His Majesty, it is enacted as follows:</p>
+      </formula>
+    </preamble>
+    <body>
+      <hcontainer name="crossheading" class="group7">
+        <heading>Promoting BSL</heading>
+        <section eId="sec_1" class="prov1">
+          <num>1</num>
+          <heading>Welsh Ministers’ duty to promote BSL</heading>
+          <content>
+            <p>The Welsh Ministers must promote and facilitate the use of British Sign Language (<def ukl:startQuote="“" ukl:endQuote="”">BSL</def>).</p>
+          </content>
+        </section>
+      </hcontainer>
+      <hcontainer name="crossheading" class="group7">
+        <heading>National strategy and guidance</heading>
+        <section eId="sec_2" class="prov1">
+          <num>2</num>
+          <heading>Overview of this Act</heading>
+          <subsection class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>This Part of this Act contains (in addition to this overview) a definition of <def ukl:startQuote="“" ukl:endQuote="”">visitor accommodation</def> and of <def ukl:startQuote="“" ukl:endQuote="”">visitor accommodation provider</def>. In subsection (6)—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p><mod>after <quotedText startQuote="“" endQuote="”">body corporate,</quotedText> insert <quotedText startQuote="“" endQuote="">either—</quotedText><quotedStructure endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="asc"><level class="para2"><num>(i)</num><content><p /></content></level></quotedStructure><inline name="AppendText">;</inline></mod></p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p />
+              </content>
+            </level>
+          </subsection>
+        </section>
+      </hcontainer>
+      <hcontainer name="schedules" class="schs">
+        <hcontainer name="schedule" class="sch">
+          <num>Schedule 1<authorialNote class="referenceNote"><p>(introduced by sections 27 and 42)</p></authorialNote></num>
+          <heading>Amendments relating to Parts 2 and 3</heading>
+          <part class="schGroup2">
+            <num>PART 1</num>
+            <heading>amendments relating to part 2 of this act</heading>
+            <paragraph class="schProv1">
+              <num>1</num>
+              <content>
+                <p><mod>After section 11 insert—<quotedStructure startQuote="“" endQuote="”" ukl:indent="indent0" ukl:context="body" ukl:docName="asc"><section class="prov1"><num>11A</num><heading>Changes and inaccuracies relating to premises: licensed VAPs</heading><intro><p>Where a licensed VAP’s entry in the register is changed under section 9 or 11 because the VAP is not providing or offering to provide regulated visitor accommodation at premises in respect of which the VAP is licensed (but the VAP continues to provide or offer to provide visitor accommodation at other premises in respect of which the VAP is registered)—</p></intro><level class="para1"><num>(a)</num><content><p>the VAP remains registered in respect of those premises, and</p></content></level><level class="para1"><num>(b)</num><content><p>the VAP’s entry in the register must include an indication that the VAP is not providing or offering to provide regulated visitor accommodation at those premises.</p></content></level></section></quotedStructure><inline name="AppendText" /></mod></p>
+              </content>
+            </paragraph>
+            <paragraph class="schProv1">
+              <num>2</num>
+              <content>
+                <p><mod>In section 189(2) (regulations), after <quotedText startQuote="“" endQuote="”">18(2),</quotedText> insert <quotedText startQuote="“" endQuote="”">24A(5),</quotedText>.</mod></p>
+              </content>
+            </paragraph>
+          </part>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

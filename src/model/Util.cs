@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
+
+using UK.Gov.Legislation.Lawmaker;
 using UK.Gov.NationalArchives.CaseLaw;
 
 namespace UK.Gov.Legislation.Judgments {
@@ -27,6 +29,12 @@ class Util {
             return GetBlocksFromDivision(wrapper.Division).SelectMany(GetLines);
         if (block is ITableOfContents2 toc)
             return toc.Contents;
+        if (block is ExplanatoryNote exp)
+            return exp.Content.SelectMany(GetLines);
+        if (block is BlockList bl)
+            return bl.Children.SelectMany(GetLines);
+        if (block is BlockListItem bli)
+            return bli.Children.SelectMany(GetLines);
         throw new Exception();
     };
 
