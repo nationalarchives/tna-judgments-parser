@@ -39,8 +39,7 @@ internal class BacklogParserWorker(
 {
     public async Task<int> RunAsync()
     {
-        var parserRunId = Guid.NewGuid();
-        logger.LogInformation("Starting parser run {ParserRunId}", parserRunId);
+        logger.LogInformation("Starting parser run {ParserRunId}", tracker.CurrentParserRunId);
         var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
             out var numAllLinesInCsv);
         if (lines.Count == 0)
@@ -80,10 +79,10 @@ internal class BacklogParserWorker(
                     continue;
                 }
 
-                await tracker.StartTrackingAsync(sourceUuid.Value, line, parserRunId, line.CsvProperties.Hash);
+                await tracker.StartTrackingAsync(sourceUuid.Value, line, line.CsvProperties.Hash);
 
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
-                var bundle = await GenerateBundleAsync(line, parserRunId);
+                var bundle = await GenerateBundleAsync(line);
 
                 var bundleFileName = bundle.Uuid + ".tar.gz";
                 var output = Path.Combine(backlogParserOptions.Value.OutputFolderPath, bundleFileName);
@@ -261,7 +260,7 @@ internal class BacklogParserWorker(
         return response;
     }
 
-    private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine, Guid parserRunId)
+    private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine)
     {
         var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
@@ -282,8 +281,8 @@ internal class BacklogParserWorker(
             bundleSourceFilename = csvLine.FileName + ".docx";
         }
 
-        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(parserRunId, bundleSourceFilename, csvLine.FileName, mimeType, sourceHash,
-            images, response.Meta, externalMetadataFields, !isStub);
+        var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(bundleSourceFilename, csvLine.FileName,
+            mimeType, sourceHash, images, response.Meta, externalMetadataFields, !isStub);
 
         await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash, response.Meta.Name);
         

@@ -20,12 +20,13 @@ namespace Backlog.Tracking;
 internal interface ITracker
 {
     bool IsAlreadySentToIngester(Guid sourceUuid);
-    Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, Guid parserRunId, string csvMetadataHash);
+    Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, string csvMetadataHash);
 
     Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName);
 
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
+    Guid CurrentParserRunId { get; }
 }
 
 internal class Tracker : ITracker
@@ -50,6 +51,8 @@ internal class Tracker : ITracker
     private readonly TrackerLine[] previousRunTrackerLines = [];
     private readonly Dictionary<Guid, TrackerLine> currentRunTrackerLines = new();
     private readonly string trackerFilePath;
+    
+    public Guid CurrentParserRunId { get; } = Guid.NewGuid();
 
     public bool IsAlreadySentToIngester(Guid sourceUuid)
     {
@@ -61,13 +64,13 @@ internal class Tracker : ITracker
         return alreadySentToIngester;
     }
 
-    public async Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, Guid parserRunId, string csvMetadataHash)
+    public async Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, string csvMetadataHash)
     {
         var trackerLine = new TrackerLine
         {
             SourceUuid = sourceUuid,
             CsvLine = csvLine,
-            ParserRunId = parserRunId,
+            ParserRunId = CurrentParserRunId,
             TrackerStatus = TrackerStatus.Started,
             TrackerLineLastUpdated = timeProvider.GetUtcNow(),
             CsvMetadataHash = csvMetadataHash,

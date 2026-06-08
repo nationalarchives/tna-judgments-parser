@@ -6,6 +6,7 @@ using System.Linq;
 
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Tracking;
 using Backlog.TreMetadata;
 
 using Microsoft.Extensions.Options;
@@ -22,17 +23,20 @@ namespace Backlog.Src;
 
 internal interface IMetadataTransformer
 {
-    FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
-        string primarySourceFilename, string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
+    FullTreMetadata CreateFullTreMetadata(string bundleSourceFilename, string primarySourceFilename,
+        string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText);
 
     List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine);
 }
 
-internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
+internal class MetadataTransformer(
+    IOptions<BacklogParserOptions> backlogParserOptions,
+    TimeProvider timeProvider,
+    ITracker tracker)
     : IMetadataTransformer
 {
-    public FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string bundleSourceFilename,
+    public FullTreMetadata CreateFullTreMetadata(string bundleSourceFilename,
         string primarySourceFilename, string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
         List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
@@ -59,7 +63,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     Extensions = responseMeta.Extensions,
                     Attachments = responseMeta.Attachments ?? [],
                     DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
-                    ParserRunId = parserRunId,
+                    ParserRunId = tracker.CurrentParserRunId,
                     ErrorMessages = [],
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile

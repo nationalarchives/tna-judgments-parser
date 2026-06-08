@@ -6,9 +6,12 @@ using System.Linq;
 
 using Backlog.Options;
 using Backlog.Src;
+using Backlog.Tracking;
 
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
+
+using Moq;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
@@ -28,11 +31,12 @@ public class TestMetadataTransformer
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MetadataTransformer metadataTransformer;
     private readonly IOptions<BacklogParserOptions> options;
+    private readonly Mock<ITracker> mockTracker = new();
 
     public TestMetadataTransformer()
     {
         options = BacklogParserOptionsHelper.Create(autoPublish: true);
-        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider);
+        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider, mockTracker.Object);
     }
 
     [Theory]
@@ -46,9 +50,7 @@ public class TestMetadataTransformer
         var responseMeta = new Api.Meta { DocumentType = "decision" };
 
         // Act
-        var result = metadataTransformer.CreateFullTreMetadata(
-            Guid.NewGuid(),
-            "test.pdf",
+        var result = metadataTransformer.CreateFullTreMetadata("test.pdf",
             "test.pdf",
             sourceMimeType,
             contentHash,
@@ -77,6 +79,7 @@ public class TestMetadataTransformer
         fakeTimeProvider.AdjustTime(expectedDate);
 
         var parserRunId = Guid.NewGuid();
+        mockTracker.SetupGet(t => t.CurrentParserRunId).Returns(parserRunId);
 
         var extensions = new Api.Extensions
         {
@@ -103,7 +106,6 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
             "test.doc.docx",
             "test.doc",
             "application/pdf",
@@ -149,7 +151,6 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            Guid.NewGuid(),
             sourceFilename,
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -169,11 +170,7 @@ public class TestMetadataTransformer
     [Fact]
     public void CreateFullTreMetadata_Generates_UniqueTreReference()
     {
-        var parserRunId = Guid.NewGuid();
-
-        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
-            "test-file.doc.docx",
+        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata("test-file.doc.docx",
             "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -182,9 +179,7 @@ public class TestMetadataTransformer
             [],
             false
         );
-        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
-            "test-file.doc.docx",
+        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata("test-file.doc.docx",
             "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
