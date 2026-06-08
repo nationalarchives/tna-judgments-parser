@@ -123,21 +123,31 @@ public class Program {
             return Success;
         }
 
-        DocName? docName = DocNames.GetDocName(hint);
-        if (docName != null) {
-            LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
-            LanguageService languageService = new LanguageService(language);
-            var xml = Helper.LocalParse(input.FullName, classifier, languageService).Xml;
-            if (output is not null)
-                File.WriteAllText(output.FullName, xml);
-            else
-                Console.WriteLine(xml);
-            return Success;
-        } else {
+        // GetDocName returns null only for empty input and throws for an
+        // unrecognised value, so catch that to emit a friendly error rather
+        // than an unhandled stack trace.
+        if (!string.IsNullOrEmpty(hint)) {
+            DocName? docName;
+            try {
+                docName = DocNames.GetDocName(hint);
+            } catch (Exception) {
+                docName = null;
+            }
+            if (docName != null) {
+                LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
+                LanguageService languageService = new LanguageService(language);
+                var xml = Helper.LocalParse(input.FullName, classifier, languageService).Xml;
+                if (output is not null)
+                    File.WriteAllText(output.FullName, xml);
+                else
+                    Console.WriteLine(xml);
+                return Success;
+            }
             logger?.LogCritical("unrecognized document type: {}", hint);
             Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'en', 'ia', 'tn', 'cop', 'od', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
             Environment.Exit(1);
         }
+        // No hint: fall through to the judgment parser path.
         byte[] docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
         if (attachment is null) {

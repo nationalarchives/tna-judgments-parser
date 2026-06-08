@@ -25,8 +25,12 @@ abstract class BaseHelper {
         string manifestationName = Builder.DefaultManifestationName,
         bool allowUnrenderedCharts = true,
         IDrawingRenderer renderer = null) {
-        WordprocessingDocument word = UK.Gov.Legislation.Judgments.AkomaNtoso.Parser.Read(docx);
-        return Parse(word, simplify, filename, manifestationName, allowUnrenderedCharts, renderer, docxBytes: null);
+        // Buffer to bytes and delegate so the renderer is actually usable:
+        // RenderSession needs the original .docx bytes to render charts/SmartArt
+        // (see RenderSession.GetRenderedDrawing, which no-ops when DocxBytes is null).
+        using var buffer = new MemoryStream();
+        docx.CopyTo(buffer);
+        return Parse(buffer.ToArray(), simplify, filename, manifestationName, allowUnrenderedCharts, renderer);
     }
 
     public IXmlDocument Parse(

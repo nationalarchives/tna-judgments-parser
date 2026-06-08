@@ -20,7 +20,11 @@ class BaseMetadata : DocumentMetadata {
             name = config.DefaultDocumentType;
         }
         string number = BaseHeaderSplitter.GetDocumentNumber(header);
-        string uri = number is null ? null : RegulationNumber.MakeURI(number) + config.UriSuffix;
+        // MakeURI returns null for draft/unassigned numbers (which Is() still
+        // accepts), so guard on the generated base URI, not just `number`.
+        // Otherwise null + UriSuffix produces a bare suffix like "/other-document".
+        string baseUri = number is null ? null : RegulationNumber.MakeURI(number);
+        string uri = baseUri is null ? null : baseUri + config.UriSuffix;
         // Tuple<string, int> altNum = RegulationNumber.ExtractAltNumber(number);
         DateTime? modified = DocxLastModified.Get(doc);
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
