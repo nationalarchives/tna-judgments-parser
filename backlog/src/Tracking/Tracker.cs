@@ -22,7 +22,7 @@ internal interface ITracker
     bool IsAlreadySentToIngester(Guid sourceUuid);
     Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, Guid parserRunId, string csvMetadataHash);
 
-    Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash);
+    Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName);
 
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
@@ -70,13 +70,17 @@ internal class Tracker : ITracker
             ParserRunId = parserRunId,
             TrackerStatus = TrackerStatus.Started,
             TrackerLineLastUpdated = timeProvider.GetUtcNow(),
-            CsvMetadataHash = csvMetadataHash
+            CsvMetadataHash = csvMetadataHash,
+            FileExtension = csvLine.Extension,
+            OriginalFileName = csvLine.FilePath,
+            Court = csvLine.Court
+
         };
         currentRunTrackerLines.Add(trackerLine.SourceUuid, trackerLine);
         await UpdateTrackerFileAsync();
     }
 
-    public async Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash)
+    public async Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName)
     {
         var trackerLine = currentRunTrackerLines[sourceUuid];
 
@@ -85,6 +89,7 @@ internal class Tracker : ITracker
         trackerLine.Ncn = ncn;
         trackerLine.DocumentContentHash = documentContentHash;
         trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
+        trackerLine.CaseName = caseName;
         await UpdateTrackerFileAsync();
     }
 
