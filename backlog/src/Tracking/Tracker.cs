@@ -135,12 +135,19 @@ internal class Tracker : ITracker
     {
         var newFileContents = previousRunTrackerLines.Concat(currentRunTrackerLines.Values).ToArray();
 
-        // We update by overwriting the file
-        await using var fileSystemStream = fileSystem.File.OpenWrite(trackerFilePath);
-        await using var streamWriter = new StreamWriter(fileSystemStream);
-        await using var csv = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
+        // We update by overwriting the file.
+        // First write to a temp file (so we don't lose data if the operation fails)
+        var tempLogFile = fileSystem.Path.Combine(fileSystem.Path.GetTempPath(), fileSystem.Path.GetRandomFileName());
+        await using (var fileSystemStream = fileSystem.File.OpenWrite(tempLogFile))
+        {
+            await using var streamWriter = new StreamWriter(fileSystemStream);
+            await using var csv = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
 
-        await csv.WriteRecordsAsync(newFileContents);
+            await csv.WriteRecordsAsync(newFileContents);
+        }
+
+        //Then overwrite the old log with the new temp log
+        fileSystem.File.Copy(tempLogFile, trackerFilePath, true);
     }
 
     public void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
