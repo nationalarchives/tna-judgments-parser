@@ -31,29 +31,36 @@ public class TestTracker
     private readonly IOptions<BacklogParserOptions> options =
         BacklogParserOptionsHelper.Create(trackerFilePath: TrackerFilePath);
 
-    private Tracker CreateTracker(params string[] trackerDataLines)
+    private Tracker tracker;
+
+    public TestTracker()
+    {
+        tracker = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
+    }
+
+    private void SetupTrackerWithExistingData(params string[] trackerDataLines)
     {
         var fullTrackerContents = string.Join(Environment.NewLine, trackerDataLines.Prepend(TrackerCsvHeader));
-
         mockFileSystem.AddFile(TrackerFilePath, new MockFileData(fullTrackerContents));
-        return new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
+
+        // recreate tracker object because it reads the old tracker file on initialisation
+        tracker = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
     }
 
     [Fact]
     public void CurrentParserRunId_IsDifferentForEveryRun()
     {
         // Simulate new runs by creating a new tracker instance
-        var tracker = CreateTracker();
-        var tracker2 = CreateTracker();
+        var tracker1 = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
+        var tracker2 = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
         
-        Assert.NotEqual(tracker.CurrentParserRunId, tracker2.CurrentParserRunId);
+        Assert.NotEqual(tracker1.CurrentParserRunId, tracker2.CurrentParserRunId);
     }
 
     [Fact]
     public void IsAlreadySentToIngester_WhenNoTrackerFileExists_ReturnsFalse()
     {
         mockFileSystem.RemoveFile(TrackerFilePath);
-        var tracker = CreateTracker();
         Assert.False(tracker.IsAlreadySentToIngester(Guid.NewGuid()));
     }
 
@@ -61,7 +68,6 @@ public class TestTracker
     public void IsAlreadySentToIngester_WhenTrackerFileIsEmpty_ReturnsFalse()
     {
         mockFileSystem.AddEmptyFile(TrackerFilePath);
-        var tracker = CreateTracker();
         Assert.False(tracker.IsAlreadySentToIngester(Guid.NewGuid()));
     }
 
@@ -75,7 +81,7 @@ public class TestTracker
         bool expectedResult)
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
-        var tracker = CreateTracker(
+        SetupTrackerWithExistingData(
             $"UKSC,docx,{sourceUuid},00000000-0000-0000-0000-000000000099,{previousTrackerStatus},ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
 
         Assert.Equal(expectedResult, tracker.IsAlreadySentToIngester(sourceUuid));
@@ -85,7 +91,7 @@ public class TestTracker
     public void IsAlreadySentToIngester_MultiplePreviousRunsWithOneSuccess_ReturnsTrue()
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
-        var tracker = CreateTracker(
+        SetupTrackerWithExistingData(
             $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
             $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
         );
@@ -96,7 +102,7 @@ public class TestTracker
     [Fact]
     public void IsAlreadySentToIngester_WhenDifferentUuidWasSent_ReturnsFalse()
     {
-        var tracker = CreateTracker(
+        SetupTrackerWithExistingData(
             $"UKSC,docx,99999999-9999-9999-9999-999999999999,00000000-0000-0000-0000-000000000099,{TrackerStatus.SentToIngester},ref1,ncn1,,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
 
         Assert.False(tracker.IsAlreadySentToIngester(Guid.Parse("00000000-0000-0000-0000-000000000001")));
@@ -107,8 +113,7 @@ public class TestTracker
     {
         const string sourceUuid = "00000000-0000-0000-0000-000000000001";
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
-        var tracker = CreateTracker();
-
+        
         await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, "my-metadata-hash");
 
         var trackerLines =
@@ -131,7 +136,6 @@ public class TestTracker
         const string documentContentHash = "my-document-hash";
         const string caseName = "Case Name";
 
-        var tracker = CreateTracker();
         // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
         await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
@@ -158,7 +162,6 @@ public class TestTracker
         // Arrange
         const string sourceUuid = "00000000-0000-0000-0000-000000000001";
         const string csvMetadataHash = "my-metadata-hash";
-        var tracker = CreateTracker();
 
         // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
@@ -192,8 +195,6 @@ public class TestTracker
         const string ncn = "[2023] ABCD 123";
         const string caseName = "Case Name";
 
-        var tracker = CreateTracker();
-
         // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
         await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
@@ -218,6 +219,26 @@ public class TestTracker
             trackerLines);
     }
 
+    [Fact]
+    public void TrackSkipped_NewSkippedLine_DoesNotWriteToFile()
+    {
+        tracker.TrackSkipped("Line 5");
+
+        Assert.False(mockFileSystem.File.Exists(TrackerFilePath));
+    }
+
+    [Fact]
+    public void HasCsvParseErrors_WhenNoCsvParseErrors_ReturnsFalse()
+    {
+        Assert.False(tracker.HasCsvParseErrors);
+    }
+
+    [Fact]
+    public void HasCsvParseErrors_WhenCsvParseErrorExists_ReturnsTrue()
+    {
+        tracker.TrackCsvParseError("Line 3: missing field");
+        Assert.True(tracker.HasCsvParseErrors);
+    }
 
     [Fact]
     public async Task TrackerOperations_DoNotOverwritePreviousRunLines()
@@ -237,7 +258,8 @@ public class TestTracker
             $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
             $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,Parsed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
         ];
-        var tracker = CreateTracker(oldTrackerLines);
+
+        SetupTrackerWithExistingData(oldTrackerLines);
         fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero));
 
         // Act - trigger all tracker operations

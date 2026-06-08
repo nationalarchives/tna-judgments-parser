@@ -20,18 +20,19 @@ namespace Backlog.Tracking;
 
 internal interface ITracker
 {
+    Guid CurrentParserRunId { get; }
+    bool HasCsvParseErrors { get; }
+    int NumAllLinesInCsv { get; set; }
+    void TrackCsvParseError(string errorMessage);
+    void TrackSkipped(string identifier);
     bool IsAlreadySentToIngester(Guid sourceUuid);
     Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, string csvMetadataHash);
-
     Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName);
-
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
-    Guid CurrentParserRunId { get; }
 
     void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
-        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
-        List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv);
+        List<(CsvLine line, Exception exception)> failedToProcessLines);
 }
 
 internal class Tracker : ITracker
@@ -39,6 +40,8 @@ internal class Tracker : ITracker
     private readonly IFileSystem fileSystem;
     private readonly TimeProvider timeProvider;
     private readonly ILogger<Tracker> logger;
+    private readonly List<string> skippedCsvLineIdentifiers = [];
+    private readonly List<string> csvParseErrors = [];
 
     public Tracker(IOptions<BacklogParserOptions> backlogParserOptions, IFileSystem fileSystem,
         TimeProvider timeProvider, ILogger<Tracker> logger)
@@ -58,8 +61,20 @@ internal class Tracker : ITracker
     private readonly TrackerLine[] previousRunTrackerLines = [];
     private readonly Dictionary<Guid, TrackerLine> currentRunTrackerLines = new();
     private readonly string trackerFilePath;
-    
+
     public Guid CurrentParserRunId { get; } = Guid.NewGuid();
+    public bool HasCsvParseErrors => csvParseErrors.Any();
+    public int NumAllLinesInCsv { get; set; }
+
+    public void TrackCsvParseError(string errorMessage)
+    {
+        csvParseErrors.Add(errorMessage);
+    }
+
+    public void TrackSkipped(string identifier)
+    {
+        skippedCsvLineIdentifiers.Add(identifier);
+    }
 
     public bool IsAlreadySentToIngester(Guid sourceUuid)
     {
@@ -159,8 +174,7 @@ internal class Tracker : ITracker
     }
 
     public void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
-        List<(CsvLine line, Exception exception)> failedToProcessLines, List<string> csvParseErrors,
-        List<string> skippedCsvLineIdentifiers, int numAllLinesInCsv)
+        List<(CsvLine line, Exception exception)> failedToProcessLines)
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
@@ -177,7 +191,7 @@ internal class Tracker : ITracker
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
             numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
-            numAllLinesInCsv,
+            NumAllLinesInCsv,
             successfulNewLines.Count,
             successfulFileExtensionBreakdown,
             numSkippedCsvLines, markedAsSkipIds,

@@ -40,8 +40,7 @@ internal class BacklogParserWorker(
     public async Task<int> RunAsync()
     {
         logger.LogInformation("Starting parser run {ParserRunId}", tracker.CurrentParserRunId);
-        var lines = csvMetadataReader.Read(out var skippedCsvLineIdentifiers, out var csvParseErrors,
-            out var numAllLinesInCsv);
+        var lines = csvMetadataReader.Read();
         if (lines.Count == 0)
         {
             logger.LogCritical("No valid records found in the metadata file");
@@ -63,6 +62,7 @@ internal class BacklogParserWorker(
         var alreadyDoneLines = new List<CsvLine>();
         var successfulNewLines = new List<CsvLine>();
         var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
+        var hasErrors = tracker.HasCsvParseErrors;
 
         for (var i = 0; i < lines.Count; i++)
         {
@@ -99,6 +99,7 @@ internal class BacklogParserWorker(
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
+                hasErrors = true;
                 failedToProcessLines.Add((line, ex));
                 if(sourceUuid.HasValue)
                     await tracker.UpdateToParserFailedAsync(sourceUuid.Value, ex);
@@ -109,15 +110,9 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines, csvParseErrors,
-            skippedCsvLineIdentifiers, numAllLinesInCsv);
+        tracker.LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines);
 
-        if (failedToProcessLines.Count > 0 || csvParseErrors.Count > 0)
-        {
-            return 1;
-        }
-
-        return 0;
+        return hasErrors ? 1 : 0;
     }
 
     private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)

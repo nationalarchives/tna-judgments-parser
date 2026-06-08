@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using Backlog.Options;
+using Backlog.Tracking;
 
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -21,32 +22,29 @@ namespace Backlog.Csv;
 
 internal interface ICsvMetadataReader
 {
-    List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
-        out int numAllLinesInCsv);
+    List<CsvLine> Read();
 
-    List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors, out int numAllLinesInCsv);
+    List<CsvLine> Read(TextReader textReader);
 }
 
-internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<BacklogParserOptions> backlogParserOptions)
+internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<BacklogParserOptions> backlogParserOptions,
+    ITracker tracker)
     : ICsvMetadataReader
 {
     private string csvName = "unknown.csv";
     private string csvHash = "unknown";
 
-    public List<CsvLine> Read(out List<string> skippedCsvLineIdentifiers, out List<string> csvParseErrors,
-        out int numAllLinesInCsv)
+    public List<CsvLine> Read()
     {
         var csvPath = backlogParserOptions.Value.CourtMetadataFilePath;
         csvName = Path.GetFileName(csvPath);
         csvHash = BacklogParserWorker.Hash(File.ReadAllBytes(csvPath));
 
         using var streamReader = new StreamReader(csvPath);
-        return Read(streamReader, out skippedCsvLineIdentifiers, out csvParseErrors, out numAllLinesInCsv);
+        return Read(streamReader);
     }
 
-    public List<CsvLine> Read(TextReader textReader, out List<string> skippedCsvLineIdentifiers,
-        out List<string> csvParseErrors, out int numAllLinesInCsv)
+    public List<CsvLine> Read(TextReader textReader)
     {
         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
@@ -62,9 +60,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
         var booleanSkipConverter = csv.Context.TypeConverterCache.GetConverter(typeof(CsvLine).GetMember(nameof(CsvLine.Skip)).Single());
 
         var records = new List<CsvLine>();
-        skippedCsvLineIdentifiers = [];
-        csvParseErrors = [];
-        numAllLinesInCsv = 0;
+        var numAllLinesInCsv = 0;
 
         // Read the header first
         csv.Read();
@@ -84,7 +80,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
 
             if (successfullyRetrievedSkipField && skipFieldValue)
             {
-                skippedCsvLineIdentifiers.Add($"Line {currentLineNumber}");
+                tracker.TrackSkipped($"Line {currentLineNumber}");
                 logger.LogInformation("Skipping line {LineNumber} because it was marked to skip in the csv",
                     currentLineNumber);
                 continue;
@@ -95,7 +91,8 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
             switch (processCsvRecordResult)
             {
                 case { ErrorMessage: { } errorMessage, Record: null }:
-                    csvParseErrors.Add($"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
+                    tracker.TrackCsvParseError(
+                        $"Line {currentLineNumber}: {errorMessage} [{csv.Context.Parser!.RawRecord.ReplaceLineEndings(string.Empty)}]");
                     break;
                 case { Record: { } record, ErrorMessage: null }:
                     records.Add(record);
@@ -105,6 +102,7 @@ internal class CsvMetadataReader(ILogger<CsvMetadataReader> logger, IOptions<Bac
             }
         }
 
+        tracker.NumAllLinesInCsv = numAllLinesInCsv;
         return records;
     }
 
