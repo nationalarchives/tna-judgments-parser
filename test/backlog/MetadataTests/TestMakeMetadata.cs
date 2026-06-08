@@ -18,7 +18,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new CsvLine
+        var line = CsvMetadataLineHelper.DummyLine with
         {
             id = "123",
             Court = "UKFTT-GRC",
@@ -32,8 +32,7 @@ public class TestMakeMetadata
             SecCategory = "Human Rights",
             SecSubcategory = "Article 8",
             FilePath = "/path/to/test-document.pdf",
-            Extension = ".pdf",
-            Uuid = "00000000-0000-0000-0000-000000000123"
+            Extension = ".pdf"
         };
 
         // Act
@@ -65,7 +64,7 @@ public class TestMakeMetadata
     public void MakeMetadata_WithAppellants_CreatesCorrectMetadata()
     {
         // Arrange
-        var line = new CsvLine
+        var line = CsvMetadataLineHelper.DummyLine with
         {
             id = "124",
             FilePath = "/test/data/test.pdf",
@@ -76,8 +75,7 @@ public class TestMakeMetadata
             Respondent = "Home Office",
             MainCategory = "Immigration",
             MainSubcategory = "Asylum",
-            Extension = ".pdf",
-            Uuid = "00000000-0000-0000-0000-000000000124"
+            Extension = ".pdf"
         };
 
         // Act

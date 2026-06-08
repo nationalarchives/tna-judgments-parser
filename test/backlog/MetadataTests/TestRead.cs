@@ -144,6 +144,28 @@ public sealed class TestRead : IDisposable
         mockTracker.VerifySet(t => t.NumAllLinesInCsv = 4);
     }
 
+    [Theory]
+    [InlineData("not a guid")]
+    [InlineData("1234")]
+    [InlineData("")]
+    public void Read_WithBadUuid_OutputsValidationError(string badUuid)
+    {
+        var csvLine =
+            $"123,{badUuid}, /test/data/test-case.pdf , .pdf , 2025-01-15 09:00:00 ,UKUT-IAC , Smith , Secretary of State for the Home Department,";
+        using var csvStream = new StringReader(
+            $"""
+            id,UUID,FilePath,Extension,decision_datetime,court,claimants,respondent,skip
+            {csvLine}
+            """
+        );
+
+        var result = csvMetadataReader.Read(csvStream);
+
+        Assert.Empty(result);
+        var expectedErrorMessage = $"Line 2: Could not convert field `Uuid` with value \"{badUuid}\" to type `Guid` [{csvLine}]";
+       mockTracker.Verify(t => t.TrackCsvParseError(expectedErrorMessage), Times.Once);
+    }
+    
     [Fact]
     public void Read_WithDodgySkippedLines_DoesNotOutputValidationErrors()
     {
@@ -379,7 +401,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "This is a test headnote summary",
-                Uuid = "aaa00000-0000-0000-0000-000000000123",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000123"),
                 Skip = false
             },
             new CsvLine
@@ -401,7 +423,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Another test case",
-                Uuid = "aaa00000-0000-0000-0000-000000000124",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000124"),
                 Skip = false
             },
             new CsvLine
@@ -423,7 +445,7 @@ public sealed class TestRead : IDisposable
                 Ncn = "[2023] EWCA Civ 123 & 124",
                 WebArchiving = null,
                 HeadnoteSummary = "Benefits case",
-                Uuid = "aaa00000-0000-0000-0000-000000000125",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000125"),
                 Skip = false
             },
             new CsvLine
@@ -445,7 +467,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Duplicate ID case",
-                Uuid = "aaa00000-0000-0000-0000-000000000126",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000126"),
                 Skip = false
             },
             new CsvLine
@@ -467,7 +489,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Multiple Jurisdictions",
-                Uuid = "aaa00000-0000-0000-0000-000000000127",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000127"),
                 Skip = false
             },
             new CsvLine
@@ -489,7 +511,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "Multiple Jurisdictions with spaces",
-                Uuid = "aaa00000-0000-0000-0000-000000000128",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000128"),
                 Skip = false
             },
             new CsvLine
@@ -511,7 +533,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "One Jurisdiction",
-                Uuid = "aaa00000-0000-0000-0000-000000000129"
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000129")
             },
             new CsvLine
             {
@@ -532,7 +554,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = "http://webarchivinglink",
                 HeadnoteSummary = "With web archiving link",
-                Uuid = "aaa00000-0000-0000-0000-000000000130",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000130"),
                 Skip = false
             },
             new CsvLine
@@ -554,7 +576,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "With UUID",
-                Uuid = "ba2c15ca-6d3d-4550-8975-b516e3c0ed2d",
+                Uuid = Guid.Parse("ba2c15ca-6d3d-4550-8975-b516e3c0ed2d"),
                 Skip = false
             }
         );
@@ -644,7 +666,7 @@ public sealed class TestRead : IDisposable
                 Ncn = null,
                 WebArchiving = null,
                 HeadnoteSummary = "This is a test headnote summary",
-                Uuid = "aaa00000-0000-0000-0000-000000000123",
+                Uuid = Guid.Parse("aaa00000-0000-0000-0000-000000000123"),
                 Skip = false
             }
         );
