@@ -60,7 +60,6 @@ internal class BacklogParserWorker(
         }
 
         var alreadyDoneLines = new List<CsvLine>();
-        var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
         var hasErrors = tracker.HasCsvParseErrors;
 
         for (var i = 0; i < lines.Count; i++)
@@ -96,7 +95,6 @@ internal class BacklogParserWorker(
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 hasErrors = true;
-                failedToProcessLines.Add((line, ex));
                 await tracker.UpdateToParserFailedAsync(line.Uuid, ex);
             }
             finally
@@ -105,7 +103,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics(alreadyDoneLines, failedToProcessLines);
+        tracker.LogFinalStatistics(alreadyDoneLines);
 
         return hasErrors ? 1 : 0;
     }
