@@ -75,8 +75,8 @@ internal record CsvLine
     [Optional]
     public string? WebArchiving { get; set; }
 
-    [Required(AllowEmptyStrings = false)]
-    public required string Uuid { get; set; }
+    [Required]
+    public required Guid Uuid { get; set; }
 
     [Default(false)]
     [TypeConverter(typeof(BooleanSkipConverter))]

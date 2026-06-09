@@ -68,18 +68,16 @@ internal class BacklogParserWorker(
         {
             var line = lines[i];
 
-            Guid? sourceUuid = null;
             try
             {
-                sourceUuid = Guid.Parse(line.Uuid);
-                if (tracker.IsAlreadySentToIngester(sourceUuid.Value))
+                if (tracker.IsAlreadySentToIngester(line.Uuid))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     alreadyDoneLines.Add(line);
                     continue;
                 }
 
-                await tracker.StartTrackingAsync(sourceUuid.Value, line, line.CsvProperties.Hash);
+                await tracker.StartTrackingAsync(line.Uuid, line, line.CsvProperties.Hash);
 
                 logger.LogInformation("Processing file: {FilePath}", line.FilePath);
                 var bundle = await GenerateBundleAsync(line);
@@ -91,7 +89,7 @@ internal class BacklogParserWorker(
 
                 await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
-                await tracker.UpdateToSentToIngesterAsync(sourceUuid.Value);
+                await tracker.UpdateToSentToIngesterAsync(line.Uuid);
                 successfulNewLines.Add(line);
 
                 logger.LogInformation("  success");
@@ -101,8 +99,7 @@ internal class BacklogParserWorker(
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 hasErrors = true;
                 failedToProcessLines.Add((line, ex));
-                if(sourceUuid.HasValue)
-                    await tracker.UpdateToParserFailedAsync(sourceUuid.Value, ex);
+                await tracker.UpdateToParserFailedAsync(line.Uuid, ex);
             }
             finally
             {
@@ -174,7 +171,7 @@ internal class BacklogParserWorker(
 
     private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine)
     {
-        var sourceContent = backlogFiles.ReadFile(csvLine.Uuid);
+        var sourceContent = backlogFiles.ReadFile(csvLine.Uuid.ToString());
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
@@ -196,7 +193,7 @@ internal class BacklogParserWorker(
         var trePipelineMetadata = metadataTransformer.CreateFullTreMetadata(bundleSourceFilename, csvLine.FileName,
             mimeType, sourceHash, images, response.Meta, externalMetadataFields, !isStub);
 
-        await tracker.UpdateToParsedAsync(Guid.Parse(csvLine.Uuid), trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash, response.Meta.Name);
+        await tracker.UpdateToParsedAsync(csvLine.Uuid, trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash, response.Meta.Name);
         
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
