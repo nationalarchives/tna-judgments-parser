@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -59,9 +58,6 @@ internal class BacklogParserWorker(
             }
         }
 
-        var alreadyDoneLines = new List<CsvLine>();
-        var successfulNewLines = new List<CsvLine>();
-        var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
         var hasErrors = tracker.HasCsvParseErrors;
 
         for (var i = 0; i < lines.Count; i++)
@@ -73,7 +69,6 @@ internal class BacklogParserWorker(
                 if (tracker.IsAlreadySentToIngester(line.Uuid))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
-                    alreadyDoneLines.Add(line);
                     continue;
                 }
 
@@ -90,7 +85,6 @@ internal class BacklogParserWorker(
                 await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
                 await tracker.UpdateToSentToIngesterAsync(line.Uuid);
-                successfulNewLines.Add(line);
 
                 logger.LogInformation("  success");
             }
@@ -98,7 +92,6 @@ internal class BacklogParserWorker(
             {
                 logger.LogError(ex, "Error processing line {LineId}:", line.id);
                 hasErrors = true;
-                failedToProcessLines.Add((line, ex));
                 await tracker.UpdateToParserFailedAsync(line.Uuid, ex);
             }
             finally
@@ -107,7 +100,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines);
+        tracker.LogFinalStatistics();
 
         return hasErrors ? 1 : 0;
     }

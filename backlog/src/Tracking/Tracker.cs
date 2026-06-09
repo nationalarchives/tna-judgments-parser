@@ -31,8 +31,7 @@ internal interface ITracker
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
 
-    void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
-        List<(CsvLine line, Exception exception)> failedToProcessLines);
+    void LogFinalStatistics();
 }
 
 internal class Tracker : ITracker
@@ -173,15 +172,16 @@ internal class Tracker : ITracker
         fileSystem.File.Copy(tempLogFile, trackerFilePath, true);
     }
 
-    public void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
-        List<(CsvLine line, Exception exception)> failedToProcessLines)
+    public void LogFinalStatistics()
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
             ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
+        var sentToIngester = currentRunTrackerLines.Values.Where(t => t.TrackerStatus == TrackerStatus.SentToIngester).ToArray();
+        var alreadyDoneLines = previousRunTrackerLines.Where(t => t.TrackerStatus == TrackerStatus.SentToIngester).ToArray();
         var successfulFileExtensionBreakdown = string.Join(", ",
-            successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
+            sentToIngester.GroupBy(l => l.FileExtension).Select(g => $"{g.Count()} {g.Key}"));
 
         logger.LogInformation("""
                               ---------------------------
@@ -190,12 +190,12 @@ internal class Tracker : ITracker
                                 - {MarkedToSkipLineCount} lines were marked in the csv to skip ({MarkedToSkipIds})
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
-            numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
+            numSkippedCsvLines + alreadyDoneLines.Length + sentToIngester.Length,
             NumAllLinesInCsv,
-            successfulNewLines.Count,
+            sentToIngester.Length,
             successfulFileExtensionBreakdown,
             numSkippedCsvLines, markedAsSkipIds,
-            alreadyDoneLines.Count
+            alreadyDoneLines.Length
         );
 
         if (csvParseErrors.Count > 0)
@@ -210,40 +210,42 @@ internal class Tracker : ITracker
             );
         }
 
-        if (failedToProcessLines.Count > 0)
+        var failedToProcessLines = currentRunTrackerLines.Values.Where(t => t.TrackerStatus == TrackerStatus.ParserFailed).ToArray();
+        
+        if (failedToProcessLines.Length > 0)
         {
             var failedIdsGroupedByErrorMessage = failedToProcessLines
-                .GroupBy(f =>
+                .GroupBy(t =>
                     {
-                        return f.exception.Message switch
+                        return t.ErrorMessage switch
                         {
-                            _ when f.exception.Message.StartsWith("Could not find file") => "Could not find file",
-                            _ when f.exception.Message.StartsWith("Couldn't find file with UUID") =>
+                            _ when t.ErrorMessage?.StartsWith("Could not find file") ?? false => "Could not find file",
+                            _ when t.ErrorMessage?.StartsWith("Couldn't find file with UUID") ?? false =>
                                 "Couldn't find file with UUID",
-                            _ when f.exception.Message.EndsWith("was not recognized as a valid DateTime.") =>
+                            _ when t.ErrorMessage?.EndsWith("was not recognized as a valid DateTime.") ?? false =>
                                 "String was not recognized as a valid DateTime",
-                            _ => f.exception.Message
+                            _ => t.ErrorMessage
                         };
                     },
-                    f => f.line.id);
+                    t => t.SourceUuid.ToString());
 
             var groupedErrorDescriptions = failedIdsGroupedByErrorMessage.Select(groupOfErrors =>
                 $"  - {groupOfErrors.Count()} lines failed with exception message \"{groupOfErrors.Key}\". Ids affected were: ({StringJoinFirstFive(groupOfErrors, ", ")})");
             var failedFileExtensionBreakdown = string.Join(", ",
-                failedToProcessLines.GroupBy(l => l.line.Extension).Select(g => $"{g.Count()} {g.Key}"));
+                failedToProcessLines.GroupBy(t => t.FileExtension).Select(g => $"{g.Count()} {g.Key}"));
 
             logger.LogError("""
                             ---------------------------
                             Failed to process {FailedLineCount} lines ({FailedFileExtensionBreakdown}), of which:
                             {GroupedErrorDescriptions}
                             """,
-                failedToProcessLines.Count,
+                failedToProcessLines.Length,
                 failedFileExtensionBreakdown,
                 StringJoinFirstFive(groupedErrorDescriptions, Environment.NewLine)
             );
         }
 
-        if (failedToProcessLines.Count == 0 && csvParseErrors.Count == 0)
+        if (failedToProcessLines.Length == 0 && csvParseErrors.Count == 0)
         {
             logger.LogInformation("No failed lines");
         }
