@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -59,7 +58,6 @@ internal class BacklogParserWorker(
             }
         }
 
-        var alreadyDoneLines = new List<CsvLine>();
         var hasErrors = tracker.HasCsvParseErrors;
 
         for (var i = 0; i < lines.Count; i++)
@@ -71,7 +69,6 @@ internal class BacklogParserWorker(
                 if (tracker.IsAlreadySentToIngester(line.Uuid))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
-                    alreadyDoneLines.Add(line);
                     continue;
                 }
 
@@ -103,7 +100,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics(alreadyDoneLines);
+        tracker.LogFinalStatistics();
 
         return hasErrors ? 1 : 0;
     }
