@@ -31,7 +31,7 @@ internal interface ITracker
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
 
-    void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
+    void LogFinalStatistics(List<CsvLine> alreadyDoneLines,
         List<(CsvLine line, Exception exception)> failedToProcessLines);
 }
 
@@ -173,15 +173,16 @@ internal class Tracker : ITracker
         fileSystem.File.Copy(tempLogFile, trackerFilePath, true);
     }
 
-    public void LogFinalStatistics(List<CsvLine> alreadyDoneLines, List<CsvLine> successfulNewLines,
+    public void LogFinalStatistics(List<CsvLine> alreadyDoneLines,
         List<(CsvLine line, Exception exception)> failedToProcessLines)
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
             ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
+        var sentToIngester = currentRunTrackerLines.Values.Where(t => t.TrackerStatus == TrackerStatus.SentToIngester).ToArray();
         var successfulFileExtensionBreakdown = string.Join(", ",
-            successfulNewLines.GroupBy(l => l.Extension).Select(g => $"{g.Count()} {g.Key}"));
+            sentToIngester.GroupBy(l => l.FileExtension).Select(g => $"{g.Count()} {g.Key}"));
 
         logger.LogInformation("""
                               ---------------------------
@@ -190,9 +191,9 @@ internal class Tracker : ITracker
                                 - {MarkedToSkipLineCount} lines were marked in the csv to skip ({MarkedToSkipIds})
                                 - {AlreadyDoneLineCount} lines were skipped because they had been processed in a previous run
                               """,
-            numSkippedCsvLines + alreadyDoneLines.Count + successfulNewLines.Count,
+            numSkippedCsvLines + alreadyDoneLines.Count + sentToIngester.Length,
             NumAllLinesInCsv,
-            successfulNewLines.Count,
+            sentToIngester.Length,
             successfulFileExtensionBreakdown,
             numSkippedCsvLines, markedAsSkipIds,
             alreadyDoneLines.Count

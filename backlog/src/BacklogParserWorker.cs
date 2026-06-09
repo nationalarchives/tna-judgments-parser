@@ -60,7 +60,6 @@ internal class BacklogParserWorker(
         }
 
         var alreadyDoneLines = new List<CsvLine>();
-        var successfulNewLines = new List<CsvLine>();
         var failedToProcessLines = new List<(CsvLine line, Exception exception)>();
         var hasErrors = tracker.HasCsvParseErrors;
 
@@ -90,7 +89,6 @@ internal class BacklogParserWorker(
                 await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
                 await tracker.UpdateToSentToIngesterAsync(line.Uuid);
-                successfulNewLines.Add(line);
 
                 logger.LogInformation("  success");
             }
@@ -107,7 +105,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics(alreadyDoneLines, successfulNewLines, failedToProcessLines);
+        tracker.LogFinalStatistics(alreadyDoneLines, failedToProcessLines);
 
         return hasErrors ? 1 : 0;
     }
