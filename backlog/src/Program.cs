@@ -18,7 +18,6 @@ using DotNetEnv.Configuration;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -141,7 +140,7 @@ public class Program
 
     private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        var appHost = CreateAppHost(isDryRun, id, autoPublish);
+        using var appHost = CreateAppHost(isDryRun, id, autoPublish);
 
         using var scope = appHost.Services.CreateScope();
         var backlogParserOptions = scope.ServiceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
@@ -204,12 +203,12 @@ public class Program
         return builder.Build();
     }
 
-    private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
+    private static readonly List<Action<IServiceCollection>> _dependencyInjectionOverrides = [];
 
     /// <summary>
     ///     Allow services like S3 to be mocked, but only during tests
     /// </summary>
-    internal static List<(Type serviceType, object instance, bool replace)> DependencyInjectionOverrides =>
+    internal static List<Action<IServiceCollection>> DependencyInjectionOverrides =>
         IsTest()
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
@@ -246,14 +245,9 @@ public class Program
 
     private static void OverrideDependencyInjection(IServiceCollection services)
     {
-        foreach (var (serviceType, instance, replace) in DependencyInjectionOverrides)
+        foreach (var dependencyOverrideAction in DependencyInjectionOverrides)
         {
-            if (replace)
-            {
-                services.RemoveAll(serviceType);
-            }
-
-            services.AddSingleton(serviceType, instance);
+            dependencyOverrideAction(services);
         }
     }
 
