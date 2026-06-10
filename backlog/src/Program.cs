@@ -16,6 +16,7 @@ using Backlog.Utilities;
 
 using DotNetEnv.Configuration;
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -236,6 +237,9 @@ public class Program
         services.AddScoped<IMetadataTransformer, MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
         services.AddSingleton<IFileSystem, FileSystem>();
+
+        services.AddDbContext<TrackerDbContext>((serviceProvider, options) =>
+            options.UseSqlite($"Data Source={serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value.TrackerFilePath}"));
 
         if (IsTest())
         {

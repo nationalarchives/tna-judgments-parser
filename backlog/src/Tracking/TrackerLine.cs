@@ -4,8 +4,11 @@ using System;
 
 using CsvHelper.Configuration.Attributes;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace Backlog.Tracking;
 
+[PrimaryKey(nameof(SourceUuid), nameof(ParserRunId))]
 internal class TrackerLine
 {
     public string? Court { get; set; }
