@@ -1,15 +1,14 @@
 #nullable enable
 
 using System;
-using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Backlog.Options;
 using Backlog.Tracking;
 
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
+
+using Shouldly;
 
 using test.Mocks;
 
@@ -17,58 +16,39 @@ using Xunit;
 
 namespace test.backlog;
 
-public class TestTracker
+public sealed class TestTracker : IDisposable
 {
-    private const string TrackerFilePath = "/tracker.csv";
-
-    private const string TrackerCsvHeader =
-        "Court,FileExtension,SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,CaseName,OriginalFileName,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated";
-
     private readonly FakeTimeProvider fakeTimeProvider = new();
-    private readonly MockFileSystem mockFileSystem = new();
     private readonly MockLogger<Tracker> mockLogger = new();
 
-    private readonly IOptions<BacklogParserOptions> options =
-        BacklogParserOptionsHelper.Create(trackerFilePath: TrackerFilePath);
-
-    private Tracker tracker;
+    private readonly Tracker tracker;
+    private readonly TrackerDbContext trackerDbContext;
 
     public TestTracker()
     {
-        tracker = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
+        trackerDbContext = TrackerDbHelper.CreateInMemoryTrackerDb();
+        tracker = new Tracker(fakeTimeProvider, mockLogger.Object, trackerDbContext);
     }
 
-    private void SetupTrackerWithExistingData(params string[] trackerDataLines)
+    public void Dispose()
     {
-        var fullTrackerContents = string.Join(Environment.NewLine, trackerDataLines.Prepend(TrackerCsvHeader));
-        mockFileSystem.AddFile(TrackerFilePath, new MockFileData(fullTrackerContents));
-
-        // recreate tracker object because it reads the old tracker file on initialisation
-        tracker = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
+        trackerDbContext.Dispose();
     }
 
     [Fact]
     public void CurrentParserRunId_IsDifferentForEveryRun()
     {
-        // Simulate new runs by creating a new tracker instance
-        var tracker1 = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
-        var tracker2 = new Tracker(options, mockFileSystem, fakeTimeProvider, mockLogger.Object);
-        
-        Assert.NotEqual(tracker1.CurrentParserRunId, tracker2.CurrentParserRunId);
+        var tracker1 = new Tracker(fakeTimeProvider, mockLogger.Object, trackerDbContext);
+        var tracker2 = new Tracker(fakeTimeProvider, mockLogger.Object, trackerDbContext);
+
+        tracker1.CurrentParserRunId.ShouldNotBe(tracker2.CurrentParserRunId);
     }
 
     [Fact]
-    public void IsAlreadySentToIngester_WhenNoTrackerFileExists_ReturnsFalse()
+    public async Task IsAlreadySentToIngester_WhenNoTrackerDbExists_ReturnsFalse()
     {
-        mockFileSystem.RemoveFile(TrackerFilePath);
-        Assert.False(tracker.IsAlreadySentToIngester(Guid.NewGuid()));
-    }
-
-    [Fact]
-    public void IsAlreadySentToIngester_WhenTrackerFileIsEmpty_ReturnsFalse()
-    {
-        mockFileSystem.AddEmptyFile(TrackerFilePath);
-        Assert.False(tracker.IsAlreadySentToIngester(Guid.NewGuid()));
+        var result = await tracker.IsAlreadySentToIngesterAsync(Guid.NewGuid());
+        result.ShouldBeFalse();
     }
 
     [Theory]
@@ -77,51 +57,114 @@ public class TestTracker
     [InlineData(TrackerStatus.ParserFailed, false)]
     [InlineData(TrackerStatus.IngesterFailed, false)]
     [InlineData(TrackerStatus.SentToIngester, true)]
-    public void IsAlreadySentToIngester_WhenUuidWasSentInPreviousRun_Returns(TrackerStatus previousTrackerStatus,
+    public async Task IsAlreadySentToIngester_WhenUuidWasSentInPreviousRun_Returns(TrackerStatus previousTrackerStatus,
         bool expectedResult)
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
-        SetupTrackerWithExistingData(
-            $"UKSC,docx,{sourceUuid},00000000-0000-0000-0000-000000000099,{previousTrackerStatus},ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
+        trackerDbContext.SetupTrackerWithExistingData(new TrackerLine
+        {
+            Court = "UKSC",
+            ParserRunId = Guid.Parse("00000000-0000-0000-0000-000000000099"),
+            TrackerStatus = previousTrackerStatus,
+            SourceUuid = sourceUuid,
+            TreReference = "ref1",
+            Ncn = "ncn1",
+            CaseName = "V v V",
+            OriginalFileName = "word.docx",
+            DocumentContentHash = "hash1",
+            CsvMetadataHash = "metahash1",
+            ErrorMessage = "",
+            TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+        });
 
-        Assert.Equal(expectedResult, tracker.IsAlreadySentToIngester(sourceUuid));
+        var result = await tracker.IsAlreadySentToIngesterAsync(sourceUuid);
+        result.ShouldBe(expectedResult);
     }
 
     [Fact]
-    public void IsAlreadySentToIngester_MultiplePreviousRunsWithOneSuccess_ReturnsTrue()
+    public async Task IsAlreadySentToIngester_MultiplePreviousRunsWithOneSuccess_ReturnsTrue()
     {
         var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
-        SetupTrackerWithExistingData(
-            $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
-            $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,V v V,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
-        );
 
-        Assert.True(tracker.IsAlreadySentToIngester(sourceUuid));
+        trackerDbContext.SetupTrackerWithExistingData(
+            new TrackerLine
+            {
+                Court = "UKSC",
+                ParserRunId = Guid.Parse("00000000-0000-0000-0000-000000000099"),
+                TrackerStatus = TrackerStatus.ParserFailed,
+                SourceUuid = sourceUuid,
+                TreReference = "ref1",
+                Ncn = "ncn1",
+                CaseName = "V v V",
+                OriginalFileName = "word.docx",
+                DocumentContentHash = "hash1",
+                CsvMetadataHash = "metahash1",
+                ErrorMessage = "",
+                TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 14, 10, 30, 0, TimeSpan.Zero)
+            },
+            new TrackerLine
+            {
+                Court = "UKSC",
+                ParserRunId = Guid.Parse("00000000-0000-0000-0000-000000000098"),
+                TrackerStatus = TrackerStatus.SentToIngester,
+                SourceUuid = sourceUuid,
+                TreReference = "ref1",
+                Ncn = "ncn1",
+                CaseName = "V v V",
+                OriginalFileName = "word.docx",
+                DocumentContentHash = "hash1",
+                CsvMetadataHash = "metahash1",
+                ErrorMessage = "",
+                TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+            });
+
+        var result = await tracker.IsAlreadySentToIngesterAsync(sourceUuid);
+        result.ShouldBeTrue();
     }
 
     [Fact]
-    public void IsAlreadySentToIngester_WhenDifferentUuidWasSent_ReturnsFalse()
+    public async Task IsAlreadySentToIngester_WhenDifferentUuidWasSent_ReturnsFalse()
     {
-        SetupTrackerWithExistingData(
-            $"UKSC,docx,99999999-9999-9999-9999-999999999999,00000000-0000-0000-0000-000000000099,{TrackerStatus.SentToIngester},ref1,ncn1,,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000");
+        trackerDbContext.SetupTrackerWithExistingData(new TrackerLine
+        {
+            Court = "UKSC",
+            ParserRunId = Guid.Parse("00000000-0000-0000-0000-000000000099"),
+            TrackerStatus = TrackerStatus.SentToIngester,
+            SourceUuid = Guid.Parse("99999999-9999-9999-9999-999999999999"),
+            TreReference = "ref1",
+            Ncn = "ncn1",
+            CaseName = "V v V",
+            OriginalFileName = "word.docx",
+            DocumentContentHash = "hash1",
+            CsvMetadataHash = "metahash1",
+            ErrorMessage = "",
+            TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+        });
 
-        Assert.False(tracker.IsAlreadySentToIngester(Guid.Parse("00000000-0000-0000-0000-000000000001")));
+        var result = await tracker.IsAlreadySentToIngesterAsync(Guid.NewGuid());
+        result.ShouldBeFalse();
     }
 
     [Fact]
-    public async Task StartTrackingAsync_WritesStartedStatusWithUuidAndRunIdToFile()
+    public async Task StartTrackingAsync_WritesStartedStatusWithUuidAndRunIdToDb()
     {
-        const string sourceUuid = "00000000-0000-0000-0000-000000000001";
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
-        
-        await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, "my-metadata-hash");
+        var now = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero);
+        fakeTimeProvider.SetUtcNow(now);
 
-        var trackerLines =
-            await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
-        Assert.Equal([
-            TrackerCsvHeader,
-            $"UKFTT-GRC,.pdf,{sourceUuid},{tracker.CurrentParserRunId},Started,,,,/some/long/path/example.pdf,,my-metadata-hash,,2025-06-15 10:30:00.000"
-        ], trackerLines);
+        var uuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
+        await tracker.StartTrackingAsync(uuid, CsvMetadataLineHelper.DummyLine, "my-metadata-hash");
+
+        trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
+        {
+            SourceUuid = uuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            TrackerStatus = TrackerStatus.Started,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerLineLastUpdated = now
+        });
     }
 
     [Theory]
@@ -130,152 +173,242 @@ public class TestTracker
     public async Task UpdateToParsedAsync_SetsParsedStatusWithTreReferenceNcnAndContentHash(string? ncn)
     {
         // Arrange
-        const string sourceUuid = "00000000-0000-0000-0000-000000000001";
-        const string treReference = "00000000-0000-0000-0000-00000000002";
-        const string csvMetadataHash = "my-metadata-hash";
-        const string documentContentHash = "my-document-hash";
-        const string caseName = "Case Name";
+        var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-        // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
-        await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
+        trackerDbContext.SetupTrackerWithExistingData(new TrackerLine
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            TrackerStatus = TrackerStatus.Started,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+        });
 
-        // Arrange - advance time by a minute to ensure the timestamp is updated
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 31, 0, TimeSpan.Zero));
+        var now = new DateTimeOffset(2025, 6, 15, 10, 31, 0, TimeSpan.Zero);
+        fakeTimeProvider.SetUtcNow(now);
 
-        // Act - update tracker
-        await tracker.UpdateToParsedAsync(Guid.Parse(sourceUuid), treReference, ncn, documentContentHash, caseName);
+        // Act
+        await tracker.UpdateToParsedAsync(sourceUuid, "00000000-0000-0000-0000-00000000002", ncn, "my-document-hash",
+            "Case Name");
 
         // Assert
-        var trackerLines =
-            await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
-        Assert.Equal([
-                TrackerCsvHeader,
-                $"UKFTT-GRC,.pdf,{sourceUuid},{tracker.CurrentParserRunId},Parsed,{treReference},{ncn ?? ""},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:31:00.000"
-            ],
-            trackerLines);
+        trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            TrackerStatus = TrackerStatus.Parsed,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerLineLastUpdated = now,
+            TreReference = "00000000-0000-0000-0000-00000000002",
+            Ncn = ncn,
+            DocumentContentHash = "my-document-hash",
+            CaseName = "Case Name"
+        });
     }
 
     [Fact]
     public async Task UpdateToParserFailedAsync_SetsParserFailedStatusWithExceptionMessage()
     {
         // Arrange
-        const string sourceUuid = "00000000-0000-0000-0000-000000000001";
-        const string csvMetadataHash = "my-metadata-hash";
+        var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-        // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
-        await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
+        trackerDbContext.SetupTrackerWithExistingData(new TrackerLine
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            TrackerStatus = TrackerStatus.Started,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+        });
 
-        // Arrange - advance time by a minute to ensure the timestamp is updated
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 31, 0, TimeSpan.Zero));
+        var now = new DateTimeOffset(2025, 6, 15, 10, 31, 0, TimeSpan.Zero);
+        fakeTimeProvider.SetUtcNow(now);
 
-        // Act - update tracker
-        await tracker.UpdateToParserFailedAsync(Guid.Parse(sourceUuid),
-            new InvalidOperationException("Something went wrong"));
+        // Act
+        await tracker.UpdateToParserFailedAsync(sourceUuid, new InvalidOperationException("Something went wrong"));
 
         // Assert
-        var trackerLines =
-            await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
-        Assert.Equal([
-                TrackerCsvHeader,
-                $"UKFTT-GRC,.pdf,{sourceUuid},{tracker.CurrentParserRunId},ParserFailed,,,,/some/long/path/example.pdf,,{csvMetadataHash},Something went wrong,2025-06-15 10:31:00.000"
-            ],
-            trackerLines);
+        trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
+            {
+                SourceUuid = sourceUuid,
+                ParserRunId = tracker.CurrentParserRunId,
+                Court = "UKFTT-GRC",
+                OriginalFileName = "/some/long/path/example.pdf",
+                FileExtension = ".pdf",
+                CsvMetadataHash = "my-metadata-hash",
+                TrackerStatus = TrackerStatus.ParserFailed,
+                ErrorMessage = "Something went wrong",
+                TrackerLineLastUpdated = now
+            }
+        );
     }
 
     [Fact]
     public async Task UpdateToSentToIngesterAsync_SetsSentToIngesterStatus()
     {
         // Arrange
-        const string sourceUuid = "00000000-0000-0000-0000-000000000001";
-        const string treReference = "00000000-0000-0000-0000-00000000002";
-        const string csvMetadataHash = "my-metadata-hash";
-        const string documentContentHash = "my-document-hash";
-        const string ncn = "[2023] ABCD 123";
-        const string caseName = "Case Name";
+        var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
 
-        // Arrange - set existing tracker lines via tracker because it holds internal state separate to the file
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero));
-        await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
-        await tracker.UpdateToParsedAsync(Guid.Parse(sourceUuid), treReference, ncn, documentContentHash, caseName);
+        trackerDbContext.SetupTrackerWithExistingData(new TrackerLine
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            TrackerStatus = TrackerStatus.Parsed,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TreReference = "00000000-0000-0000-0000-00000000002",
+            Ncn = "[2023] ABCD 123",
+            DocumentContentHash = "my-document-hash",
+            CaseName = "Case Name",
+            TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+        });
 
-        // Arrange - advance time by a couple of minutes to ensure the timestamp is updated
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero));
+        var now = new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero);
+        fakeTimeProvider.SetUtcNow(now);
 
         // Act
-        await tracker.UpdateToSentToIngesterAsync(Guid.Parse(sourceUuid));
+        await tracker.UpdateToSentToIngesterAsync(sourceUuid);
 
         // Assert
-        var trackerLines =
-            await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
-
-        Assert.Equal(TrackerCsvHeader, trackerLines[0]);
-
-        Assert.Equal([
-                TrackerCsvHeader,
-                $"UKFTT-GRC,.pdf,{sourceUuid},{tracker.CurrentParserRunId},SentToIngester,{treReference},{ncn},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000"
-            ],
-            trackerLines);
+        trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerStatus = TrackerStatus.SentToIngester,
+            TreReference = "00000000-0000-0000-0000-00000000002",
+            Ncn = "[2023] ABCD 123",
+            CaseName = "Case Name",
+            DocumentContentHash = "my-document-hash",
+            TrackerLineLastUpdated = now
+        });
     }
 
     [Fact]
-    public void TrackSkipped_NewSkippedLine_DoesNotWriteToFile()
+    public void TrackSkipped_NewSkippedLine_DoesNotWriteToDb()
     {
         tracker.TrackSkipped("Line 5");
 
-        Assert.False(mockFileSystem.File.Exists(TrackerFilePath));
+        trackerDbContext.ParserEvents.ShouldBeEmpty();
     }
 
     [Fact]
     public void HasCsvParseErrors_WhenNoCsvParseErrors_ReturnsFalse()
     {
-        Assert.False(tracker.HasCsvParseErrors);
+        tracker.HasCsvParseErrors.ShouldBeFalse();
     }
 
     [Fact]
     public void HasCsvParseErrors_WhenCsvParseErrorExists_ReturnsTrue()
     {
         tracker.TrackCsvParseError("Line 3: missing field");
-        Assert.True(tracker.HasCsvParseErrors);
+        tracker.HasCsvParseErrors.ShouldBeTrue();
     }
 
     [Fact]
     public async Task TrackerOperations_DoNotOverwritePreviousRunLines()
     {
-        // Arrange
-        const string sourceUuid = "00000000-0000-0000-0000-000000000001";
-        const string treReference = "00000000-0000-0000-0000-00000000002";
-        const string csvMetadataHash = "my-metadata-hash";
-        const string documentContentHash = "my-document-hash";
-        const string caseName = "Case Name";
-        const string ncn = "[2023] ABCD 123";
-
-        // Arrange
-        string[] oldTrackerLines =
+        // Arrange - seed previous run data
+        var sourceUuid = Guid.Parse("00000000-0000-0000-0000-000000000001");
+        TrackerLine[] previousTrackerLines =
         [
-            "UKSC,docx,e169cd7c-6fe0-446d-91d2-9e4de2829b38,10000000-0000-0000-0000-000000000099,SentToIngester,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-14 09:30:00.000",
-            $"UKSC,docx,{sourceUuid},10000000-0000-0000-0000-000000000099,ParserFailed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-14 10:30:00.000",
-            $"UKSC,docx,{sourceUuid},20000000-0000-0000-0000-000000000099,Parsed,ref1,ncn1,Case Name,word.docx,hash1,metahash1,,2025-06-15 10:30:00.000"
+            new()
+            {
+                Court = "UKSC",
+                FileExtension = "docx",
+                SourceUuid = Guid.Parse("e169cd7c-6fe0-446d-91d2-9e4de2829b38"),
+                ParserRunId = Guid.Parse("10000000-0000-0000-0000-000000000099"),
+                TrackerStatus = TrackerStatus.SentToIngester,
+                TreReference = "ref1",
+                Ncn = "ncn1",
+                CaseName = "Case Name",
+                OriginalFileName = "word.docx",
+                DocumentContentHash = "hash1",
+                CsvMetadataHash = "metahash1",
+                ErrorMessage = "",
+                TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 14, 9, 30, 0, TimeSpan.Zero)
+            },
+            new()
+            {
+                Court = "UKSC",
+                FileExtension = "docx",
+                SourceUuid = sourceUuid,
+                ParserRunId = Guid.Parse("10000000-0000-0000-0000-000000000099"),
+                TrackerStatus = TrackerStatus.ParserFailed,
+                TreReference = "ref1",
+                Ncn = "ncn1",
+                CaseName = "Case Name",
+                OriginalFileName = "word.docx",
+                DocumentContentHash = "hash1",
+                CsvMetadataHash = "metahash1",
+                ErrorMessage = "",
+                TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 14, 10, 30, 0, TimeSpan.Zero)
+            },
+            new()
+            {
+                Court = "UKSC",
+                FileExtension = "docx",
+                SourceUuid = sourceUuid,
+                ParserRunId = Guid.Parse("20000000-0000-0000-0000-000000000099"),
+                TrackerStatus = TrackerStatus.Parsed,
+                TreReference = "ref1",
+                Ncn = "ncn1",
+                CaseName = "Case Name",
+                OriginalFileName = "word.docx",
+                DocumentContentHash = "hash1",
+                CsvMetadataHash = "metahash1",
+                ErrorMessage = "",
+                TrackerLineLastUpdated = new DateTimeOffset(2025, 6, 15, 10, 30, 0, TimeSpan.Zero)
+            }
         ];
+        trackerDbContext.SetupTrackerWithExistingData(previousTrackerLines);
 
-        SetupTrackerWithExistingData(oldTrackerLines);
-        fakeTimeProvider.SetUtcNow(new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero));
+        var now = new DateTimeOffset(2025, 6, 15, 10, 32, 0, TimeSpan.Zero);
+        fakeTimeProvider.SetUtcNow(now);
 
         // Act - trigger all tracker operations
-        _ = tracker.IsAlreadySentToIngester(Guid.Parse(sourceUuid));
-        await tracker.StartTrackingAsync(Guid.Parse(sourceUuid), CsvMetadataLineHelper.DummyLine, csvMetadataHash);
-        await tracker.UpdateToParsedAsync(Guid.Parse(sourceUuid), treReference, ncn, documentContentHash, caseName);
+        _ = tracker.IsAlreadySentToIngesterAsync(sourceUuid);
+        await tracker.StartTrackingAsync(sourceUuid, CsvMetadataLineHelper.DummyLine, "my-metadata-hash");
+        await tracker.UpdateToParsedAsync(sourceUuid, "00000000-0000-0000-0000-00000000002", "[2023] ABCD 123",
+            "my-document-hash", "Case Name");
+        await tracker.UpdateToSentToIngesterAsync(sourceUuid);
 
-        await tracker.UpdateToSentToIngesterAsync(Guid.Parse(sourceUuid));
-
-        var trackerLines =
-            await mockFileSystem.File.ReadAllLinesAsync(TrackerFilePath, TestContext.Current.CancellationToken);
-        Assert.Equal([
-                TrackerCsvHeader,
-                .. oldTrackerLines,
-                $"UKFTT-GRC,.pdf,{sourceUuid},{tracker.CurrentParserRunId},SentToIngester,{treReference},{ncn},{caseName},/some/long/path/example.pdf,{documentContentHash},{csvMetadataHash},,2025-06-15 10:32:00.000"
-            ],
-            trackerLines);
+        // Assert - previous run lines are still present plus the new one
+        trackerDbContext.ShouldHaveChangesSaved();
+        trackerDbContext.ParserEvents.Count().ShouldBe(4);
+        trackerDbContext.ParserEvents.ShouldContain(previousTrackerLines[0]);
+        trackerDbContext.ParserEvents.ShouldContain(previousTrackerLines[1]);
+        trackerDbContext.ParserEvents.ShouldContain(previousTrackerLines[2]);
+        trackerDbContext.ParserEvents
+                        .Single(t => t.ParserRunId == tracker.CurrentParserRunId)
+                        .ShouldBe(new TrackerLine
+                        {
+                            TrackerStatus = TrackerStatus.SentToIngester,
+                            ParserRunId = tracker.CurrentParserRunId,
+                            SourceUuid = sourceUuid,
+                            TreReference = "00000000-0000-0000-0000-00000000002",
+                            Ncn = "[2023] ABCD 123",
+                            CaseName = "Case Name",
+                            DocumentContentHash = "my-document-hash",
+                            CsvMetadataHash = "my-metadata-hash",
+                            Court = "UKFTT-GRC",
+                            FileExtension = ".pdf",
+                            OriginalFileName = "/some/long/path/example.pdf",
+                            TrackerLineLastUpdated = now
+                        });
     }
 }

@@ -2,19 +2,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.IO.Abstractions;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Backlog.Csv;
-using Backlog.Options;
 
-using CsvHelper;
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Backlog.Tracking;
 
@@ -25,41 +19,40 @@ internal interface ITracker
     int NumAllLinesInCsv { get; set; }
     void TrackCsvParseError(string errorMessage);
     void TrackSkipped(string identifier);
-    bool IsAlreadySentToIngester(Guid sourceUuid);
+    Task<bool> IsAlreadySentToIngesterAsync(Guid sourceUuid);
     Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, string csvMetadataHash);
     Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName);
     Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception);
     Task UpdateToSentToIngesterAsync(Guid sourceUuid);
-
-    void LogFinalStatistics();
+    Task LogFinalStatisticsAsync();
 }
 
 internal class Tracker : ITracker
 {
-    private readonly IFileSystem fileSystem;
-    private readonly TimeProvider timeProvider;
-    private readonly ILogger<Tracker> logger;
     private readonly List<string> skippedCsvLineIdentifiers = [];
     private readonly List<string> csvParseErrors = [];
+    private readonly TimeProvider timeProvider;
+    private readonly ILogger<Tracker> logger;
+    private readonly TrackerDbContext trackerDbContext;
 
-    public Tracker(IOptions<BacklogParserOptions> backlogParserOptions, IFileSystem fileSystem,
-        TimeProvider timeProvider, ILogger<Tracker> logger)
+
+    public Tracker(TimeProvider timeProvider, ILogger<Tracker> logger, TrackerDbContext trackerDbContext)
     {
-        this.fileSystem = fileSystem;
         this.timeProvider = timeProvider;
         this.logger = logger;
-        trackerFilePath = backlogParserOptions.Value.TrackerFilePath;
+        this.trackerDbContext = trackerDbContext;
 
-        if (fileSystem.File.Exists(trackerFilePath) &&
-            !string.IsNullOrWhiteSpace(fileSystem.File.ReadAllText(trackerFilePath)))
-        {
-            previousRunTrackerLines = ReadTrackerFile();
-        }
+        trackerDbContext.Database.Migrate();
     }
 
-    private readonly TrackerLine[] previousRunTrackerLines = [];
-    private readonly Dictionary<Guid, TrackerLine> currentRunTrackerLines = new();
-    private readonly string trackerFilePath;
+    private IQueryable<TrackerLine> PreviousRunTrackerLines => trackerDbContext.ParserEvents
+                                                                               .Where(t => t.ParserRunId !=
+                                                                                   CurrentParserRunId);
+
+    private IQueryable<TrackerLine> CurrentRunTrackerLines => trackerDbContext.ParserEvents
+                                                                              .Where(t => t.ParserRunId ==
+                                                                                  CurrentParserRunId);
+
 
     public Guid CurrentParserRunId { get; } = Guid.NewGuid();
     public bool HasCsvParseErrors => csvParseErrors.Any();
@@ -75,19 +68,16 @@ internal class Tracker : ITracker
         skippedCsvLineIdentifiers.Add(identifier);
     }
 
-    public bool IsAlreadySentToIngester(Guid sourceUuid)
+    public async Task<bool> IsAlreadySentToIngesterAsync(Guid sourceUuid)
     {
-        var alreadySentToIngester = previousRunTrackerLines.Any(previousRunTrackerLine =>
-            previousRunTrackerLine.SourceUuid == sourceUuid &&
-            previousRunTrackerLine.TrackerStatus ==
-            TrackerStatus.SentToIngester);
-
-        return alreadySentToIngester;
+        return await PreviousRunTrackerLines.AnyAsync(previousRunTrackerLine =>
+            previousRunTrackerLine.SourceUuid == sourceUuid
+            && previousRunTrackerLine.TrackerStatus == TrackerStatus.SentToIngester);
     }
 
     public async Task StartTrackingAsync(Guid sourceUuid, CsvLine csvLine, string csvMetadataHash)
     {
-        var trackerLine = new TrackerLine
+        trackerDbContext.ParserEvents.Add(new TrackerLine
         {
             SourceUuid = sourceUuid,
             ParserRunId = CurrentParserRunId,
@@ -97,16 +87,15 @@ internal class Tracker : ITracker
             FileExtension = csvLine.Extension,
             OriginalFileName = csvLine.FilePath,
             Court = csvLine.Court
+        });
 
-        };
-        currentRunTrackerLines.Add(trackerLine.SourceUuid, trackerLine);
-
-        await UpdateTrackerFileAsync();
+        await trackerDbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash, string? caseName)
+    public async Task UpdateToParsedAsync(Guid sourceUuid, string treReference, string? ncn, string documentContentHash,
+        string? caseName)
     {
-        var trackerLine = currentRunTrackerLines[sourceUuid];
+        var trackerLine = await CurrentRunTrackerLines.SingleAsync(t => t.SourceUuid == sourceUuid);
 
         trackerLine.TrackerStatus = TrackerStatus.Parsed;
         trackerLine.TreReference = treReference;
@@ -115,70 +104,44 @@ internal class Tracker : ITracker
         trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
         trackerLine.CaseName = caseName;
 
-        await UpdateTrackerFileAsync();
+        await trackerDbContext.SaveChangesAsync();
     }
 
     public async Task UpdateToParserFailedAsync(Guid sourceUuid, Exception exception)
     {
-        var trackerLine = currentRunTrackerLines[sourceUuid];
-        
+        var trackerLine = await CurrentRunTrackerLines.SingleAsync(t => t.SourceUuid == sourceUuid);
+
         trackerLine.TrackerStatus = TrackerStatus.ParserFailed;
         trackerLine.ErrorMessage = exception.Message;
         trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
 
-        await UpdateTrackerFileAsync();
+        await trackerDbContext.SaveChangesAsync();
     }
 
     public async Task UpdateToSentToIngesterAsync(Guid sourceUuid)
     {
-        var trackerLine = currentRunTrackerLines[sourceUuid];
-        
+        var trackerLine = await CurrentRunTrackerLines.SingleAsync(t => t.SourceUuid == sourceUuid);
+
         trackerLine.TrackerStatus = TrackerStatus.SentToIngester;
         trackerLine.TrackerLineLastUpdated = timeProvider.GetUtcNow();
 
-        await UpdateTrackerFileAsync();
+        await trackerDbContext.SaveChangesAsync();
     }
 
-    private TrackerLine[] ReadTrackerFile()
-    {
-        using var fileSystemStream = fileSystem.File.OpenRead(trackerFilePath);
-        using var streamReader = new StreamReader(fileSystemStream);
-        using var csv = new CsvReader(streamReader, CultureInfo.InvariantCulture);
-
-        // Read the header first
-        csv.Read();
-        csv.ReadHeader();
-
-        return csv.GetRecords<TrackerLine>().ToArray();
-    }
-
-    private async Task UpdateTrackerFileAsync()
-    {
-        var newFileContents = previousRunTrackerLines.Concat(currentRunTrackerLines.Values).ToArray();
-
-        // We update by overwriting the file.
-        // First write to a temp file (so we don't lose data if the operation fails)
-        var tempLogFile = fileSystem.Path.Combine(fileSystem.Path.GetTempPath(), fileSystem.Path.GetRandomFileName());
-        await using (var fileSystemStream = fileSystem.File.OpenWrite(tempLogFile))
-        {
-            await using var streamWriter = new StreamWriter(fileSystemStream);
-            await using var csv = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
-
-            await csv.WriteRecordsAsync(newFileContents);
-        }
-
-        //Then overwrite the old log with the new temp log
-        fileSystem.File.Copy(tempLogFile, trackerFilePath, true);
-    }
-
-    public void LogFinalStatistics()
+    public async Task LogFinalStatisticsAsync()
     {
         var numSkippedCsvLines = skippedCsvLineIdentifiers.Count;
         var markedAsSkipIds = numSkippedCsvLines > 0
             ? StringJoinFirstFive(skippedCsvLineIdentifiers, ", ")
             : string.Empty;
-        var sentToIngester = currentRunTrackerLines.Values.Where(t => t.TrackerStatus == TrackerStatus.SentToIngester).ToArray();
-        var alreadyDoneLines = previousRunTrackerLines.Where(t => t.TrackerStatus == TrackerStatus.SentToIngester).ToArray();
+
+        var sentToIngester = await CurrentRunTrackerLines
+                                   .Where(t => t.TrackerStatus == TrackerStatus.SentToIngester)
+                                   .ToArrayAsync();
+        var alreadyDoneLines = await trackerDbContext.ParserEvents
+                                                     .Where(t => t.ParserRunId != CurrentParserRunId)
+                                                     .Where(t => t.TrackerStatus == TrackerStatus.SentToIngester)
+                                                     .ToArrayAsync();
         var successfulFileExtensionBreakdown = string.Join(", ",
             sentToIngester.GroupBy(l => l.FileExtension).Select(g => $"{g.Count()} {g.Key}"));
 
@@ -209,8 +172,10 @@ internal class Tracker : ITracker
             );
         }
 
-        var failedToProcessLines = currentRunTrackerLines.Values.Where(t => t.TrackerStatus == TrackerStatus.ParserFailed).ToArray();
-        
+        var failedToProcessLines = await CurrentRunTrackerLines
+                                         .Where(t => t.TrackerStatus == TrackerStatus.ParserFailed)
+                                         .ToArrayAsync();
+
         if (failedToProcessLines.Length > 0)
         {
             var failedIdsGroupedByErrorMessage = failedToProcessLines

@@ -2,8 +2,6 @@
 
 using System;
 
-using CsvHelper.Configuration.Attributes;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Backlog.Tracking;
@@ -23,7 +21,5 @@ internal class TrackerLine
     public string? DocumentContentHash { get; set; }
     public string? CsvMetadataHash { get; set; }
     public string? ErrorMessage { get; set; }
-
-    [Format("yyyy-MM-dd HH:mm:ss.fff")]
     public DateTimeOffset TrackerLineLastUpdated { get; set; }
 }
