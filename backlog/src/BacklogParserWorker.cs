@@ -80,7 +80,7 @@ internal class BacklogParserWorker(
                 var bundleFileName = bundle.Uuid + ".tar.gz";
                 var output = Path.Combine(backlogParserOptions.Value.OutputFolderPath, bundleFileName);
                 logger.LogInformation("  Writing to output: {Output}", output);
-                File.WriteAllBytes(output, bundle.TarGz);
+                await File.WriteAllBytesAsync(output, bundle.TarGz);
 
                 await bucket.UploadBundleAsync(bundleFileName, bundle.TarGz);
 
