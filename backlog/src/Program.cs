@@ -172,6 +172,10 @@ public class Program
         var builder = Host.CreateApplicationBuilder();
         builder.Configuration.AddDotNetEnv();
 
+        // explicitly add user secrets configuration provider so the Production dotnet environment can access it because we always run this application from local machines
+        builder.Configuration.AddUserSecrets<Program>();
+
+        // bind configuration to the options pattern
         builder.Services.AddOptions<BacklogParserOptions>()
                .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
                .Configure(options =>

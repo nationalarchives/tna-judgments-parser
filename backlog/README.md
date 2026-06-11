@@ -17,7 +17,7 @@ This module provides a specialized entry point to the parser specifically design
       * [Optional Columns](#optional-columns)
       * [CSV Line Example](#csv-line-example)
     * [Tracker CSV](#tracker-csv)
-    * [Environment Variables](#environment-variables)
+    * [Configuration variables](#configuration-variables)
       * [AWS Configuration](#aws-configuration)
   * [Development](#development)
     * [Components](#components)
@@ -29,7 +29,8 @@ This module provides a specialized entry point to the parser specifically design
 
 Please refer to the [internal documentation](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1437794305/) for details on the full process including retrieving and validating inputs, performing file conversions and what to look for when doing a dry run.
 
-Please refer to [wider bulk upload process](./bulk-upload-process.md) for more details on how bulk upload affects the rest of the system and how to ensure that it is successful.
+Please refer to [wider bulk upload process](./docs/bulk-upload-process.md) for more details on how bulk upload affects
+the rest of the system and how to ensure that it is successful.
 
 ### Pre-requisites
 
@@ -48,10 +49,7 @@ dotnet run split <source folder> --destination <destination folder>
 ### Backlog Parser
 
 1. **Prepare data directory structure** as shown in the [Directory Structure](#directory-structure) section.
-2. **Set environment variables** shown in [Environment Variables](#environment-variables) section by either:
-    - Exporting in the shell (e.g. `export MY_VAR=value`)
-    - Adding them to a `.env` file in the assembly folder
-    - Adding them to the build/run configuration in your IDE (e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
+2. **Set configuration variables** as shown in the [Configuration section](#configuration-variables)
 3. **Run the processor** using the [Options](#options) below.
     - It is recommended to do a dry run before uploading to S3 to ensure that there are no hidden complications in the new data.
 
@@ -160,18 +158,54 @@ This is created and populated by the Backlog Parser. It tracks which judgments h
 - Some files might fail and need reprocessing
 - Source files might be updated and need reprocessing
 
-### Environment Variables
+### Configuration variables
 
-The module uses environment variables for configuration. Backlog Parser settings are bound from the `BacklogParser` configuration section, so environment variables use the `BacklogParser__` prefix.
+Configuration uses
+the [options pattern](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options) where possible
+and can be set as follows:
 
-| Variable                                        | Description                                                                                               | Default                                                         |
-|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `BacklogParser__CourtMetadataFilePath`          | Path to the CSV file containing court metadata                                                            | None - required                                                 |
-| `BacklogParser__DataFolderPath`                 | Path to the folder containing judgment data files                                                         | None - required                                                 |
-| `BacklogParser__TrackerFilePath`                | Path to the CSV file tracking uploaded judgments                                                          | None - required                                                 |
-| `BacklogParser__OutputFolderPath`               | Path to where generated bundle files will be saved                                                        | None - required                                                 |
-| `BacklogParser__BucketName`                     | AWS bucket to upload processed files and xml to                                                           | None - must be set unless using dry run mode                    |
-| `AWS_REGION`                                    | AWS region for S3 bucket operations                                                                       | Defaults to the region configured in AWS deployment environment |
+| Section       | Key                     | Description                                                                      |
+|---------------|-------------------------|----------------------------------------------------------------------------------|
+| BacklogParser | `CourtMetadataFilePath` | Path to the CSV file containing court metadata                                   |
+| BacklogParser | `DataFolderPath`        | Path to the folder containing judgment data files                                |
+| BacklogParser | `TrackerFilePath`       | Path to the CSV file tracking uploaded judgments                                 |
+| BacklogParser | `OutputFolderPath`      | Path to where generated bundle files will be saved                               |
+| BacklogParser | `BucketName`            | AWS bucket to upload processed files and xml to - optional if using dry run mode |
+| -             | `AWS_REGION`            | AWS region for S3 bucket operations - optional if using dry run mode             |
+| -             | `AWS_PROFILE`           | AWS profile for authentication - optional if using dry run mode                  |
+
+Configuration can be set by either:
+
+-
+Using [.NET user secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?&tabs=linux%2Cpowershell#use-the-secret-manager-tool)
+for local development configuration
+    - Use `Section:Key` format for user secrets cli
+      ```bash 
+      dotnet user-secrets set "Section:Key" "value"
+      dotnet user-secrets list
+      ```
+    - Use JSON when editing the user secrets file via IDE
+      ```json
+      {
+        "Section": {
+          "Key": "value"
+        },
+        "Logging": {
+          "LogLevel": {
+            "Default": "Information",
+            "Microsoft.EntityFrameworkCore": "Warning"
+          }
+        },
+        "AWS_REGION": "eu-west-2"
+      }
+      ```
+- Using environment variables
+    - Use `Section__Key` format for environment variables
+    - Set by:
+        - Exporting environment variables in the shell - `export Section__Key=value`
+        - Adding environment variables to a `.env` file in the assembly folder - `Section__Key="value"`
+        - Adding environment variables to the build/run configuration in your IDE (
+          e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
 
 #### AWS Configuration
 
