@@ -172,8 +172,11 @@ public class Program
         var builder = Host.CreateApplicationBuilder();
         builder.Configuration.AddDotNetEnv();
 
-        // explicitly add user secrets configuration provider so the Production dotnet environment can access it because we always run this application from local machines
+        // Explicitly add user secrets configuration provider so the Production dotnet environment can access it
+        // because we always run this application from local machines. Then re-add the environment variables config
+        // provider, so the default precedence is unchanged and tests can override it
         builder.Configuration.AddUserSecrets<Program>();
+        builder.Configuration.AddEnvironmentVariables();
 
         // bind configuration to the options pattern
         builder.Services.AddOptions<BacklogParserOptions>()
