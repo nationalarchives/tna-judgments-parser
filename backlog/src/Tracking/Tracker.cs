@@ -90,7 +90,6 @@ internal class Tracker : ITracker
         var trackerLine = new TrackerLine
         {
             SourceUuid = sourceUuid,
-            CsvLine = csvLine,
             ParserRunId = CurrentParserRunId,
             TrackerStatus = TrackerStatus.Started,
             TrackerLineLastUpdated = timeProvider.GetUtcNow(),
