@@ -16,7 +16,7 @@ This module provides a specialized entry point to the parser specifically design
       * [Required Columns](#required-columns)
       * [Optional Columns](#optional-columns)
       * [CSV Line Example](#csv-line-example)
-    * [Tracker CSV](#tracker-csv)
+    * [Tracker database](#tracker-database)
     * [Configuration variables](#configuration-variables)
       * [AWS Configuration](#aws-configuration)
   * [Development](#development)
@@ -150,13 +150,18 @@ id,court,FilePath,Extension,decision_datetime,CaseNo,claimants,respondent,main_c
 - Line 2 = ID 124 (Jones vs HMRC)
 - Line 3 = ID 125 (Williams vs Home Office)
 
-### Tracker CSV
+### Tracker database
 
-This is created and populated by the Backlog Parser. It tracks which judgments have been uploaded to production, preventing duplicate processing. This is particularly important for batch processing where:
+The tracker is a SQLite database created and populated by the Backlog Parser. It tracks the status of each document in a batch (e.g. whether it failed parsing or got sent to the ingester) and is also used to exclude previously published documents from being processed again.
 
-- Multiple runs might be needed to process all files
-- Some files might fail and need reprocessing
-- Source files might be updated and need reprocessing
+Use the [dotnet ef tool to create new migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli) when the model changes:
+
+```bash
+cd backlog   # first ensure that you are in the backlog directory
+dotnet ef migrations add <migration name>
+```
+
+On startup, the parser applies any pending EF Core migrations automatically.
 
 ### Configuration variables
 
@@ -168,7 +173,7 @@ and can be set as follows:
 |---------------|-------------------------|----------------------------------------------------------------------------------|
 | BacklogParser | `CourtMetadataFilePath` | Path to the CSV file containing court metadata                                   |
 | BacklogParser | `DataFolderPath`        | Path to the folder containing judgment data files                                |
-| BacklogParser | `TrackerFilePath`       | Path to the CSV file tracking uploaded judgments                                 |
+| BacklogParser | `TrackerFilePath`       | Path to the SQLite db file which tracks uploaded judgments                       |
 | BacklogParser | `OutputFolderPath`      | Path to where generated bundle files will be saved                               |
 | BacklogParser | `BucketName`            | AWS bucket to upload processed files and xml to - optional if using dry run mode |
 | -             | `AWS_REGION`            | AWS region for S3 bucket operations - optional if using dry run mode             |
