@@ -66,7 +66,7 @@ internal class BacklogParserWorker(
 
             try
             {
-                if (tracker.IsAlreadySentToIngester(line.Uuid))
+                if (await tracker.IsAlreadySentToIngesterAsync(line.Uuid))
                 {
                     logger.LogInformation("Skipping {LineId} because it was previously processed", line.id);
                     continue;
@@ -100,7 +100,7 @@ internal class BacklogParserWorker(
             }
         }
 
-        tracker.LogFinalStatistics();
+        await tracker.LogFinalStatisticsAsync();
 
         return hasErrors ? 1 : 0;
     }

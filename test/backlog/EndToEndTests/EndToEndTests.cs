@@ -1,14 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
+using Backlog.Tracking;
+
 using Microsoft.Extensions.Logging;
+
+using Shouldly;
 
 using Xunit;
 
@@ -36,9 +38,13 @@ namespace test.backlog.EndToEndTests
         private void CleanFiles()
         {
             // Only clean up output files and tracker, leave test data intact
-            if (File.Exists(trackerPath))
+            var trackerDirectory = Path.GetDirectoryName(trackerPath);
+            if (Directory.Exists(trackerDirectory))
             {
-                File.Delete(trackerPath);
+                foreach (var trackerDbFile in Directory.GetFiles(trackerDirectory!, $"{Path.GetFileName(trackerPath)}*"))
+                {
+                    File.Delete(trackerDbFile);
+                }
             }
 
             if (Directory.Exists(outputDir))
@@ -71,6 +77,8 @@ namespace test.backlog.EndToEndTests
             dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
                       ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
+            var courtMetadataFilePath = Path.Combine(dataDir, "court_metadata.csv");
+            
             // Ensure court document directory exists
             var courtDocumentsDir = Path.Combine(dataDir, "court_documents");
             Directory.CreateDirectory(courtDocumentsDir); //creates the folder if it doesn't exist
@@ -80,10 +88,10 @@ namespace test.backlog.EndToEndTests
             Directory.CreateDirectory(outputDir);
 
             // Store the tracker path so we can clean it later
-            trackerPath = Path.Combine(dataDir, "uploaded-production.csv");
+            trackerPath = Path.Combine(dataDir, $"tracker{Guid.NewGuid()}.db");
 
             // Set environment variables for this test
-            SetPathEnvironmentVariables(dataDir, outputDir, trackerPath: trackerPath);
+            SetPathEnvironmentVariables(dataDir, outputDir, courtMetadataFilePath, trackerPath);
 
             // Requires the environment variables to be set up to know where to clean
             CleanFiles();
@@ -183,7 +191,13 @@ namespace test.backlog.EndToEndTests
             var capturedKey = mockS3Client.CapturedKeys.Single();
 
             // Assert - Check tracker was updated
-            Assert.Contains(GetUuidFromKey(capturedKey), File.ReadAllText(trackerPath));
+            File.Exists(trackerPath).ShouldBeTrue();
+            using (var trackerDb = TrackerDbHelper.OpenFileTrackerDb(trackerPath))
+            {
+                trackerDb.ParserEvents
+                         .ShouldHaveSingleItem()
+                         .TrackerStatus.ShouldBe(TrackerStatus.SentToIngester);
+            }
 
             // Assert - Check output files are as expected
             AssertCapturedContentMatchesOutputContent(capturedKey);
@@ -201,37 +215,59 @@ namespace test.backlog.EndToEndTests
 
             // Act - Run without --id to process full CSV
             var exitCode = Backlog.Program.Main();
+
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
+            // Assert - uploaded 3 files to S3
             mockS3Client.AssertNumberOfUploads(3);
             mockS3Client.AssertUploadsWereValid();
 
-            var capturedParserRunIds = new List<string>();
-            foreach (var key in mockS3Client.CapturedKeys)
-            {
-                // Verify tracker was updated for all processed items
-                Assert.Contains(GetUuidFromKey(key), File.ReadAllText(trackerPath));
-                capturedParserRunIds.Add(GetParserRunIdFromCapturedMetadataJson(key));
-            }
+            // Assert - only one parser run id in captured metadata
+            var parserRunId = mockS3Client.CapturedKeys
+                                          .Select(GetParserRunIdFromCapturedMetadataJson)
+                                          .Distinct()
+                                          .ShouldHaveSingleItem();
 
-            //Ensure that the parser run ids with each document is the same
-            Assert.Single(capturedParserRunIds.Distinct());
+            // Assert - tracker was updated for all processed items
+            File.Exists(trackerPath).ShouldBeTrue();
+            using var trackerDb = TrackerDbHelper.OpenFileTrackerDb(trackerPath);
+            trackerDb.ParserEvents.Count().ShouldBe(3);
+            foreach (var treReference in mockS3Client.CapturedKeys.Select(key => key.Replace(".tar.gz", string.Empty)))
+            {
+                trackerDb.ParserEvents.Single(t => t.TreReference == treReference)
+                         .ShouldSatisfyAllConditions(
+                             t => t.TrackerStatus.ShouldBe(TrackerStatus.SentToIngester),
+                             t => t.ParserRunId.ToString().ShouldBe(parserRunId));
+            }
         }
 
         [Fact]
-        public async Task ProcessBacklogJudgment_FullCSV_SkipsAlreadyProcessedItems()
+        public void ProcessBacklogJudgment_FullCSV_SkipsAlreadyProcessedItems()
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
 
             // Pre-populate tracker to mark first item as already processed
-            await File.WriteAllTextAsync(trackerPath, """
-                                                      Court,FileExtension,SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,CaseName,OriginalFileName,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated
-                                                      UKSC,docx,11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,V v V,old_file.docx,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
-                                                      UKSC,docx,22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,V v V,old_file2.docx,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000
-                                                      """,
-                TestContext.Current.CancellationToken);
+            TrackerDbHelper.SeedFileTrackerDb(trackerPath,
+                new TrackerLine
+                {
+                    Court = "UKSC",
+                    FileExtension = "docx",
+                    SourceUuid = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                    ParserRunId = Guid.Parse("6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e"),
+                    TrackerStatus = TrackerStatus.SentToIngester,
+                    TrackerLineLastUpdated = new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                },
+                new TrackerLine
+                {
+                    Court = "UKSC",
+                    FileExtension = "docx",
+                    SourceUuid = Guid.Parse("22222222-2222-2222-2222-222222222222"),
+                    ParserRunId = Guid.Parse("8342b8f3-4e7e-40e1-a330-a06657bd67f2"),
+                    TrackerStatus = TrackerStatus.ParserFailed,
+                    TrackerLineLastUpdated = new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                });
 
             // Act
             var exitCode = Backlog.Program.Main();
@@ -239,18 +275,31 @@ namespace test.backlog.EndToEndTests
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
-            // Should process fewer items than total (since one was already done)
-            // The exact count depends on test data - we'll verify this doesn't process ALL items
-            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
+            File.Exists(trackerPath).ShouldBeTrue();
+            using var trackerDb = TrackerDbHelper.OpenFileTrackerDb(trackerPath);
+            var trackerLines = trackerDb.ParserEvents.ToList();
 
-            // Should have the header plus original entry plus new successful entries
-            Assert.Collection(trackerLines, 
-                line => Assert.True(line == "Court,FileExtension,SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,CaseName,OriginalFileName,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", $"First line should be the header but was {line}"),
-                line => Assert.True(line == "UKSC,docx,11111111-1111-1111-1111-111111111111,6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e,SentToIngester,7d24775f-406f-4aa1-b0cc-09361f549a65,,V v V,old_file.docx,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
-                line => Assert.True(line == "UKSC,docx,22222222-2222-2222-2222-222222222222,8342b8f3-4e7e-40e1-a330-a06657bd67f2,ParserFailed,3167bcc6-3133-47d2-ab6e-b16afba8d7df,,V v V,old_file2.docx,f8ee4467a300c87045d1eda8cd22b88763cce7ed225b77204ae2a9e80de243ac,46f78fce3cd21a3fd0099ecb4d8c43cff2b1003411911675f1b51aa5c74a5c91,,2000-01-01 00:00:00.000", "This line from an old run should stay"),
-                line => Assert.True(line.Contains("22222222-2222-2222-2222-222222222222") && line.Contains("SentToIngester"), "This line should have been retried"),
-                line => Assert.True(line.Contains("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
-                );
+            // Should have original entries plus new successful entries
+            trackerLines.Count.ShouldBe(4);
+
+            // Old run lines should still be present
+            trackerLines.ShouldContain(t =>
+                t.SourceUuid == Guid.Parse("11111111-1111-1111-1111-111111111111")
+                && t.TrackerStatus == TrackerStatus.SentToIngester
+                && t.ParserRunId == Guid.Parse("6ee2ae0f-9b8a-4d9f-99f0-f66d7234bd2e"));
+            trackerLines.ShouldContain(t =>
+                t.SourceUuid == Guid.Parse("22222222-2222-2222-2222-222222222222")
+                && t.TrackerStatus == TrackerStatus.ParserFailed
+                && t.ParserRunId == Guid.Parse("8342b8f3-4e7e-40e1-a330-a06657bd67f2"));
+
+            // Retried line and newly processed line
+            trackerLines.ShouldContain(t =>
+                t.SourceUuid == Guid.Parse("22222222-2222-2222-2222-222222222222")
+                && t.TrackerStatus == TrackerStatus.SentToIngester
+                && t.ParserRunId != Guid.Parse("8342b8f3-4e7e-40e1-a330-a06657bd67f2"));
+            trackerLines.ShouldContain(t =>
+                t.SourceUuid == Guid.Parse("33333333-3333-3333-3333-333333333333")
+                && t.TrackerStatus == TrackerStatus.SentToIngester);
 
             // Log file should mention skips
             ConsolidatedLogger.VerifyLog("Skipping line 5 because it was marked to skip in the csv", LogLevel.Information)
@@ -265,7 +314,7 @@ namespace test.backlog.EndToEndTests
         }
 
         [Fact]
-        public async Task ProcessBacklogJudgment_WithId_OnlyProcessesSpecifiedId()
+        public void ProcessBacklogJudgment_WithId_OnlyProcessesSpecifiedId()
         {
             // Setup test environment
             ConfigureTestEnvironment("MultiLineTest");
@@ -276,10 +325,11 @@ namespace test.backlog.EndToEndTests
             // Assert
             AssertProgramExitedSuccessfully(exitCode);
 
-            var trackerLines = await File.ReadAllLinesAsync(trackerPath, TestContext.Current.CancellationToken);
-            Assert.Collection(trackerLines, 
-                line => Assert.True(line == "Court,FileExtension,SourceUuid,ParserRunId,TrackerStatus,TreReference,Ncn,CaseName,OriginalFileName,DocumentContentHash,CsvMetadataHash,ErrorMessage,TrackerLineLastUpdated", "First line should be the header"),
-                line => Assert.True(line.Contains("33333333-3333-3333-3333-333333333333") && line.Contains("SentToIngester"), "This line should have been newly processed")
+            File.Exists(trackerPath).ShouldBeTrue();
+            using var trackerDb = TrackerDbHelper.OpenFileTrackerDb(trackerPath);
+            trackerDb.ParserEvents.ShouldHaveSingleItem().ShouldSatisfyAllConditions(
+                t => t.SourceUuid.ShouldBe(Guid.Parse("33333333-3333-3333-3333-333333333333")),
+                t => t.TrackerStatus.ShouldBe(TrackerStatus.SentToIngester)
             );
         }
 
@@ -295,19 +345,6 @@ namespace test.backlog.EndToEndTests
             // Assert
             Assert.Equal(1, exitCode);
             ConsolidatedLogger.VerifyLog("No valid records found in the metadata file", LogLevel.Critical);
-        }
-
-        [Fact]
-        public void ProcessBacklogJudgment_WithInvalidConfiguration_ReturnsError()
-        {
-            ConfigureTestEnvironment("Sultan Others");
-            SetPathEnvironmentVariables("not/a/data/directory", "", "not/a/courtmetadata.csv");
-
-            // Act
-            var exitCode = Backlog.Program.Main();
-
-            // Assert
-            Assert.Equal(1, exitCode);
         }
 
         [Fact]

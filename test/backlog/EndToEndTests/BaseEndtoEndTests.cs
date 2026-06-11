@@ -95,14 +95,10 @@ public abstract class BaseEndToEndTests : IDisposable
 
     }
 
-    protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
-        string? courtMetadataPath = null, string? trackerPath = null)
+    protected static void SetPathEnvironmentVariables(string dataDir, string outputPath, string courtMetadataFilePath,
+        string trackerPath)
     {
-        outputPath ??= Path.Combine(dataDir, "output");
-        courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
-        trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
-
-        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataPath);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataFilePath);
         Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", dataDir);
         Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", trackerPath);
         Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", outputPath);

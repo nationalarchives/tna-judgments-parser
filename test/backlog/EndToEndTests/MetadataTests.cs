@@ -51,7 +51,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         // Set environment variables
         courtMetadataPath = Path.Combine(tempDataDir, "court_metadata.csv");
-        var trackerPath = Path.Combine(tempDataDir, "uploaded-production.csv");
+        var trackerPath = Path.Combine(tempDataDir, $"tracker{Guid.NewGuid()}.db");
 
         SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath);
     }
