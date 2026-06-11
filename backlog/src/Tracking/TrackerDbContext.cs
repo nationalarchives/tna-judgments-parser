@@ -9,6 +9,7 @@ internal class TrackerDbContext(DbContextOptions<TrackerDbContext> options) : Db
 {
     public DbSet<TrackerLine> ParserEvents { get; set; }
     public DbSet<CloudwatchSummaryLogLine> CloudwatchSummaryLogLines { get; set; }
+    public DbSet<MarkLogicParserRunDocument> MarkLogicParserRunDocuments { get; set; }
     
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
