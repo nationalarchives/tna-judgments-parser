@@ -176,8 +176,7 @@ and can be set as follows:
 
 Configuration can be set by either:
 
--
-Using [.NET user secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?&tabs=linux%2Cpowershell#use-the-secret-manager-tool)
+- Using [.NET user secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?&tabs=linux%2Cpowershell#use-the-secret-manager-tool)
 for local development configuration
     - Use `Section:Key` format for user secrets cli
       ```bash 
