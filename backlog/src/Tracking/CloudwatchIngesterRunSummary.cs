@@ -9,7 +9,7 @@ namespace Backlog.Tracking;
 
 [Index(nameof(NcnReference))]
 [Index(nameof(TreReference))]
-public class CloudwatchSummaryLogLine
+public class CloudwatchIngesterRunSummary
 {
     [Key]
     public Guid RequestId { get; set; }

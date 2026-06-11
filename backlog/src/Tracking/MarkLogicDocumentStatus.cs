@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Backlog.Tracking;
 
 [Index(nameof(AwsRequestId))]
-public class MarkLogicParserRunDocument
+public class MarkLogicDocumentStatus
 {
     public string DocumentUri { get; set; }
 
