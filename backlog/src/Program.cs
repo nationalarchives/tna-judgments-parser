@@ -14,8 +14,6 @@ using Backlog.Src;
 using Backlog.Tracking;
 using Backlog.Utilities;
 
-using DotNetEnv.Configuration;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -170,7 +168,6 @@ public class Program
     private static IHost CreateAppHost(bool isDryRun, uint? id, bool autoPublish)
     {
         var builder = Host.CreateApplicationBuilder();
-        builder.Configuration.AddDotNetEnv();
 
         // Explicitly add user secrets configuration provider so the Production dotnet environment can access it
         // because we always run this application from local machines. Then re-add the environment variables config
