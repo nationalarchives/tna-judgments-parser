@@ -31,7 +31,7 @@ When bulk uploading a batch we need to:
 
     subgraph Log locations
       direction LR  
-      tracker[Parser tracker csv]
+      tracker[Parser tracker db]
       cloudwatch[AWS Cloudwatch logs]
       marklogic[Marklogic query]
     end
@@ -84,7 +84,7 @@ See [configure and run backlog parser](../README.md#backlog-parser) for details 
 
 #### Backlog tracker csv
 
-Found in [backlog parser outputs](../README.md#tracker-csv)
+Found in [backlog parser outputs](../README.md#tracker-database)
 
 #### AWS Ingester logs
 

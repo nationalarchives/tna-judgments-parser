@@ -3,6 +3,7 @@ using System;
 using Backlog.Tracking;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,14 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backlog.Migrations
 {
     [DbContext(typeof(TrackerDbContext))]
-    partial class TrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260611164803_AddMarkLogicParserRunDocuments")]
+    partial class AddMarkLogicParserRunDocuments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.27");
 
-            modelBuilder.Entity("Backlog.Tracking.CloudwatchIngesterRunSummary", b =>
+            modelBuilder.Entity("Backlog.Tracking.CloudwatchSummaryLogLine", b =>
                 {
                     b.Property<Guid>("RequestId")
                         .ValueGeneratedOnAdd()
@@ -28,21 +31,26 @@ namespace Backlog.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastErrorMessage")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastInfoMessage")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastWarningMessage")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MarkLogicUri")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NcnReference")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("TreReference")
+                    b.Property<Guid>("TreReference")
                         .HasColumnType("TEXT");
 
                     b.HasKey("RequestId");
@@ -51,10 +59,10 @@ namespace Backlog.Migrations
 
                     b.HasIndex("TreReference");
 
-                    b.ToTable("CloudwatchIngesterRunSummaries");
+                    b.ToTable("CloudwatchSummaryLogLines");
                 });
 
-            modelBuilder.Entity("Backlog.Tracking.MarkLogicDocumentStatus", b =>
+            modelBuilder.Entity("Backlog.Tracking.MarkLogicParserRunDocument", b =>
                 {
                     b.Property<Guid>("FakeTreUuid")
                         .ValueGeneratedOnAdd()
@@ -74,7 +82,7 @@ namespace Backlog.Migrations
 
                     b.HasIndex("AwsRequestId");
 
-                    b.ToTable("MarkLogicDocumentStatuses");
+                    b.ToTable("MarkLogicParserRunDocuments");
                 });
 
             modelBuilder.Entity("Backlog.Tracking.TrackerLine", b =>
