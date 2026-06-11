@@ -176,8 +176,7 @@ and can be set as follows:
 
 Configuration can be set by either:
 
-- Using [.NET user secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?&tabs=linux%2Cpowershell#use-the-secret-manager-tool)
-for local development configuration
+- Using [.NET user secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?&tabs=linux%2Cpowershell#use-the-secret-manager-tool) for local development configuration
     - Use `Section:Key` format for user secrets cli
       ```bash 
       dotnet user-secrets set "Section:Key" "value"
@@ -202,9 +201,7 @@ for local development configuration
     - Use `Section__Key` format for environment variables
     - Set by:
         - Exporting environment variables in the shell - `export Section__Key=value`
-        - Adding environment variables to a `.env` file in the assembly folder - `Section__Key="value"`
-        - Adding environment variables to the build/run configuration in your IDE (
-          e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
+        - Adding environment variables to the build/run configuration in your IDE (e.g. [Run configs in Rider](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html#envvars-progargs))
 
 #### AWS Configuration
 
