@@ -8,6 +8,7 @@ namespace Backlog.Tracking;
 internal class TrackerDbContext(DbContextOptions<TrackerDbContext> options) : DbContext(options)
 {
     public DbSet<TrackerLine> ParserEvents { get; set; }
+    public DbSet<CloudwatchSummaryLogLine> CloudwatchSummaryLogLines { get; set; }
     
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
