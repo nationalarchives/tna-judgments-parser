@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/dotnet:8@sha256:ef6cfff005b2af97fb28ffbb1276a4fd74e36c29e551cd28fd174a0ee5e5dd00 AS base
+FROM public.ecr.aws/lambda/dotnet:8@sha256:f8663aa546fb882a6f6865979394c6ff924945f296c790d6f3217f96ca892726 AS base
 WORKDIR /var/task
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:fc69dc5e0c9789adaac5c8efce71ead4d016a51318667c4f26ce93574b1b9403 AS build-env
