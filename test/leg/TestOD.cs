@@ -63,7 +63,7 @@ public class TestOD {
 
     [Fact]
     public void RegenerateAllTestFiles() {
-        DocumentHelpers.SkipUnlessUpdatingFixtures();
+        TestFileUpdateHelpers.SkipUnlessUpdatingFixtures();
         var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,
             "..", "..", "..", ".."
@@ -77,10 +77,11 @@ public class TestOD {
                 var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
                 var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "od");
                 var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
-                var written = DocumentHelpers.WriteLegAknFixtureIfChanged(outputPath, result.Serialize());
-                try { result.SaveImages(testFolder); }
-                catch (Exception ex) { System.Console.WriteLine($"  SaveImages failed for {filename}: {ex.Message}"); }
-                if (written) System.Console.WriteLine($"Regenerated {filename}.akn");
+                if (TestFileUpdateHelpers.WriteLegAknFixtureIfChanged(outputPath, result.Serialize())) {
+                    try { result.SaveImages(testFolder); }
+                    catch (Exception ex) { System.Console.WriteLine($"  SaveImages failed for {filename}: {ex.Message}"); }
+                    System.Console.WriteLine($"Regenerated {filename}.akn");
+                }
             } catch (Exception ex) {
                 System.Console.WriteLine($"FAILED to regenerate {filename}: {ex.GetType().Name}: {ex.Message}");
             }

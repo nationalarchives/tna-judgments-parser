@@ -63,7 +63,7 @@ public class TestEM {
 
     [Fact]
     public void RegenerateAllTestFiles() {
-        DocumentHelpers.SkipUnlessUpdatingFixtures();
+        TestFileUpdateHelpers.SkipUnlessUpdatingFixtures();
         var projectRoot = System.IO.Path.GetFullPath(System.IO.Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,
             "..", "..", "..", ".."
@@ -76,9 +76,10 @@ public class TestEM {
             var result = Helper.Parse(docx, filename + ".docx", renderer: UK.Gov.Legislation.Test.LocalRendererHelper.GetOrNull());
             var testFolder = System.IO.Path.Combine(projectRoot, "test", "leg", "em", "original filenames");
             var outputPath = System.IO.Path.Combine(testFolder, $"{filename}.akn");
-            var written = DocumentHelpers.WriteLegAknFixtureIfChanged(outputPath, result.Serialize());
-            result.SaveImages(testFolder);
-            if (written) System.Console.WriteLine($"Regenerated {filename}.akn");
+            if (TestFileUpdateHelpers.WriteLegAknFixtureIfChanged(outputPath, result.Serialize())) {
+                result.SaveImages(testFolder);
+                System.Console.WriteLine($"Regenerated {filename}.akn");
+            }
         }
     }
 

@@ -2,7 +2,6 @@
 
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Xsl;
 
@@ -20,49 +19,6 @@ public static class DocumentHelpers
     public static void AssertValidMainAkn(XmlDocument akn)
     {
         Assert.Empty(UK.Gov.Legislation.Validator.Shared.ValidateAgainstMainAkn(akn));
-    }
-
-    // Guards the fixture regenerators (RegenerateAllTestFiles / RegenerateAllHtml): they rewrite the
-    // golden fixtures on disk, so they only run when UPDATE_XML=true. Otherwise a normal test run
-    // rewrites every fixture and the comparison tests pass tautologically against their own output.
-    public static void SkipUnlessUpdatingFixtures([CallerMemberName] string caller = "")
-    {
-        var enabled = bool.TryParse(Environment.GetEnvironmentVariable("UPDATE_XML"), out var update) && update;
-        Assert.SkipUnless(enabled,
-            $"Not a test. To run it: dotnet test test/test.csproj --filter \"FullyQualifiedName~{caller}\" -e UPDATE_XML=\"true\"");
-    }
-
-    // Strips non-deterministic metadata from a leg .akn (FRBRdate dates, ukm:Parser version, uk:hash)
-    // so a regeneration only diffs on real changes. (.html embeds none of this, so needs no equivalent.)
-    private const string LegNonDeterministicMetadataXslt = @"<?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0' xmlns:akn='http://docs.oasis-open.org/legaldocml/ns/akn/3.0' xmlns:ukm='http://www.legislation.gov.uk/namespaces/metadata' xmlns:uk='https://legislation.gov.uk/akn'>
-  <xsl:template match='akn:FRBRdate/@date'/>
-  <xsl:template match='ukm:Parser'/>
-  <xsl:template match='uk:hash/text()'/>
-  <xsl:template match='@*|node()'>
-    <xsl:copy>
-      <xsl:apply-templates select='@*|node()'/>
-    </xsl:copy>
-  </xsl:template>
-</xsl:stylesheet>";
-
-    /// <summary>
-    /// Writes the regenerated .akn only when it differs from disk after stripping non-deterministic
-    /// metadata, keeping deliberate regenerations to meaningful diffs. Returns whether it wrote.
-    /// </summary>
-    public static bool WriteLegAknFixtureIfChanged(string path, string newXml)
-    {
-        if (File.Exists(path)
-            && string.Equals(
-                RemoveNonDeterministicMetadata(newXml, LegNonDeterministicMetadataXslt),
-                RemoveNonDeterministicMetadata(File.ReadAllText(path), LegNonDeterministicMetadataXslt),
-                StringComparison.Ordinal))
-        {
-            return false;
-        }
-
-        File.WriteAllText(path, newXml);
-        return true;
     }
 
     public static byte[] ReadDocx(int i)

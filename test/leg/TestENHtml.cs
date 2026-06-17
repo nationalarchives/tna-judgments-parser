@@ -55,7 +55,7 @@ public class TestENHtml {
 
     [Fact]
     public void RegenerateAllHtml() {
-        DocumentHelpers.SkipUnlessUpdatingFixtures();
+        TestFileUpdateHelpers.SkipUnlessUpdatingFixtures();
         if (!HtmlBuilder.IsAvailable())
             Assert.Skip("HtmlBuilder unavailable - install Oxygen or set OXYGEN_HOME.");
 
