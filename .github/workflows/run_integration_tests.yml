@@ -24,7 +24,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
         with:
-          dotnet-version: '8.0.x' # Adjust to your target version
+          dotnet-version: '10.0.x' # Adjust to your target version
 
       # Install dependencies
       - name: Install dependencies
