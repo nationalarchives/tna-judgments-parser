@@ -5,8 +5,8 @@
   * [Bulk ingestion events](#bulk-ingestion-events-)
   * [Running a bulk upload](#running-a-bulk-upload)
   * [Verifying document status after a bulk upload](#verifying-document-status-after-a-bulk-upload)
-    * [Get logs as csv](#get-logs-as-csv)
-      * [Backlog tracker csv](#backlog-tracker-csv)
+    * [Get logs](#get-logs)
+      * [Backlog tracker db](#backlog-tracker-db)
       * [AWS Ingester logs](#aws-ingester-logs)
       * [MarkLogic logs](#marklogic-logs)
     * [Consolidating log CSVs with DuckDB](#consolidating-log-csvs-with-duckdb)
@@ -31,7 +31,7 @@ When bulk uploading a batch we need to:
 
     subgraph Log locations
       direction LR  
-      tracker[Parser tracker csv]
+      tracker[Parser tracker db]
       cloudwatch[AWS Cloudwatch logs]
       marklogic[Marklogic query]
     end
@@ -80,11 +80,11 @@ See [configure and run backlog parser](../README.md#backlog-parser) for details 
 
 ## Verifying document status after a bulk upload
 
-### Get logs as csv
+### Get logs
 
-#### Backlog tracker csv
+#### Backlog tracker db
 
-Found in [backlog parser outputs](../README.md#tracker-csv)
+This is a SQLite db created by the backlog parser run - see [backlog parser outputs](../README.md#tracker-database)
 
 #### AWS Ingester logs
 
