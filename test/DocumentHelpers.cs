@@ -46,8 +46,10 @@ public static class DocumentHelpers
   </xsl:template>
 </xsl:stylesheet>";
 
-    // Writes the regenerated .akn only when it differs from disk after stripping non-deterministic
-    // metadata, keeping deliberate regenerations to meaningful diffs. Returns whether it wrote.
+    /// <summary>
+    /// Writes the regenerated .akn only when it differs from disk after stripping non-deterministic
+    /// metadata, keeping deliberate regenerations to meaningful diffs. Returns whether it wrote.
+    /// </summary>
     public static bool WriteLegAknFixtureIfChanged(string path, string newXml)
     {
         if (File.Exists(path)
