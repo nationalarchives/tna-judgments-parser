@@ -1,7 +1,7 @@
 Judgments parser
 ================
 
-This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 8.0.
+This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 10.0.
 
 <!-- TOC -->
 * [Judgments parser](#judgments-parser)
