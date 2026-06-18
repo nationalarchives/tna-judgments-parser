@@ -89,12 +89,19 @@ internal class MetadataTransformer(
 
     internal static StubMetadata MakeMetadata(CsvLine line)
     {
+        var decisionDateAsString = line.DecisionDateTime.ToString("yyyy-MM-dd");
+
+        var wNamedDate = decisionDateAsString == UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate
+            ? new WNamedDate { Date = decisionDateAsString, Name = "decision" }
+            : new WNamedDate { Date = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate, Name = "dummy" };
+        
+        
         StubMetadata meta = new()
         {
             Type = JudgmentType.Decision,
             Court = Courts.GetByCode(line.Court),
             Jurisdictions = line.Jurisdictions.Select(jurisdiction => new OutsideJurisdiction { ShortName = jurisdiction }),
-            Date = new WNamedDate { Date = line.DecisionDateTime.ToString("yyyy-MM-dd"), Name = "decision" },
+            Date = wNamedDate,
             Name = line.FirstPartyName + " v " + line.Respondent,
             CaseNumbers = line.CaseNo.ToList(),
             Parties = line.Parties.ToList(),

@@ -1,15 +1,16 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 
+using Backlog.Src;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace Backlog.Src
+namespace Backlog
 {
 
     internal class Stub
@@ -121,6 +122,11 @@ namespace Backlog.Src
 
         private void Lifecycle(XmlElement meta)
         {
+            if (Data.Date.Date == Metadata.DummyDate)
+            {
+                return;
+            }
+
             XmlElement lifecycle = CreateAndAppend("lifecycle", meta);
             lifecycle.SetAttribute("source", "#");
             XmlElement eventRef = CreateAndAppend("eventRef", lifecycle);
