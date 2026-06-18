@@ -243,6 +243,7 @@ namespace Backlog.Src
 
         public void Serialize(Stream stream)
         {
+            Validate();
             Serializer.Serialize(Document, stream);
         }
 
