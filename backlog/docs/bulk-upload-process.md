@@ -9,8 +9,7 @@
       * [Backlog tracker db](#backlog-tracker-db)
       * [AWS Ingester logs](#aws-ingester-logs)
       * [MarkLogic logs](#marklogic-logs)
-    * [Consolidating log CSVs with DuckDB](#consolidating-log-csvs-with-duckdb)
-    * [Analysing the logs](#analysing-the-logs)
+    * [Consolidating logs with SQLite](#consolidating-logs-with-sqlite)
 <!-- TOC -->
 
 The Bulk upload process is triggered by the backlog parser but runs through multiple services. 
@@ -119,23 +118,15 @@ This is a SQLite db created by the backlog parser run - see [backlog parser outp
 - Run [marklogic-ingested-parser-run.xquery](./marklogic-ingested-parser-run.xquery) with parser-run-id from the tracker
 - Copy results as raw text and paste into a new csv file
 
-### Consolidating log CSVs with DuckDB
+### Consolidating logs with SQLite
 
-Use [DuckDB](https://duckdb.org/docs/current/clients/cli/overview) to query the csv files and consolidate into a single csv file.
-
-```bash
-brew install duckdb
-```
-
-Then run:
+Run:
 
 ```bash
 consolidate_bulk_logs.sh
 ```
 
-### Analysing the logs
-
-Open the consolidated csv ([OpenRefine](https://openrefine.org/) is a good tool for this) and investigate any documents that are **not** in `Published` or `ParserFailed` states. These are the documents that encountered errors during the ingestion and publishing process and could indicate wider issues.
+The parser tracker db will be updated with the marklogic and cloudwatch logs. Use SQLite to interrogate it for information on the overall run status.
 
 ```mermaid
 graph TD

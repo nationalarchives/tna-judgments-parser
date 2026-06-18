@@ -2,8 +2,13 @@
 set -euo pipefail
 
 usage() {
-    echo "Usage: $0 [--parser <file>] [--cloudwatch <file>] [--marklogic <file>] [--output <file>]"
+    echo "Usage: $0 [--db <file>] [--cloudwatch <file>] [--marklogic <file>]"
+    echo ""
     echo "  Any omitted file argument will open a file picker dialog."
+    echo ""
+    echo "  --db               SQLite parser tracker database"
+    echo "  --cloudwatch       CloudWatch CSV to insert into CloudwatchIngesterRunSummaries"
+    echo "  --marklogic        MarkLogic CSV to insert into MarkLogicDocumentStatuses"
     exit "${1:-1}"
 }
 
@@ -12,90 +17,94 @@ pick_file() {
         || { echo "Selection cancelled."; exit 1; }
 }
 
-pick_save() {
-    osascript -e "POSIX path of (choose file name with prompt \"$1\" default name \"$2\")" \
-        || { echo "Selection cancelled."; exit 1; }
-}
+command -v sqlite3 >/dev/null 2>&1 || { echo "sqlite3 is not installed."; exit 1; }
 
-show_if_any() {
-    local status="$1" query="$2"
-    local count
-    count=$(duckdb -csv -c "SELECT COUNT(*) FROM '${OUTPUT_CSV}' WHERE status = '${status}';" | tail -1)
-    [[ "$count" -gt 0 ]] || return 0
-    echo ""
-    echo "────────────────────────────── ${status} (${count}) ──────────────────────────────"
-    duckdb -c "${query}"
-}
-
-command -v duckdb >/dev/null 2>&1 || { echo "duckdb is not installed."; exit 1; }
-
-PARSER_CSV="" CLOUDWATCH_CSV="" MARKLOGIC_CSV="" OUTPUT_CSV=""
+PARSER_DB=""
+CLOUDWATCH_CSV=""
+MARKLOGIC_CSV=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --parser)     PARSER_CSV="$2";     shift 2 ;;
-        --cloudwatch) CLOUDWATCH_CSV="$2"; shift 2 ;;
-        --marklogic)  MARKLOGIC_CSV="$2";  shift 2 ;;
-        --output)     OUTPUT_CSV="$2";     shift 2 ;;
+        --database|--db) PARSER_DB="$2";      shift 2 ;;
+        --cloudwatch)    CLOUDWATCH_CSV="$2"; shift 2 ;;
+        --marklogic)     MARKLOGIC_CSV="$2";  shift 2 ;;
         --help|-h) usage 0 ;;
         *) echo "Unknown argument: $1"; usage ;;
     esac
 done
 
-[[ -z "$PARSER_CSV"     ]] && PARSER_CSV=$(pick_file     "Select Parser Tracker CSV")
+[[ -z "$PARSER_DB"      ]] && PARSER_DB=$(pick_file  "Select Parser Tracker SQLite DB")
 [[ -z "$CLOUDWATCH_CSV" ]] && CLOUDWATCH_CSV=$(pick_file "Select CloudWatch CSV")
 [[ -z "$MARKLOGIC_CSV"  ]] && MARKLOGIC_CSV=$(pick_file  "Select MarkLogic CSV")
-[[ -z "$OUTPUT_CSV"     ]] && OUTPUT_CSV=$(pick_save     "Save consolidated output as…" "output.csv")
 
-for f in "$PARSER_CSV" "$CLOUDWATCH_CSV" "$MARKLOGIC_CSV"; do
+for f in "$PARSER_DB" "$CLOUDWATCH_CSV" "$MARKLOGIC_CSV"; do
     [[ -f "$f" ]] || { echo "File not found: $f"; exit 1; }
 done
 
-duckdb -c "
-COPY (
-    SELECT pt.* EXCLUDE rn, cw.* EXCLUDE treReference, ml.*,
-        CASE
-            WHEN ml.AWS_request_id IS NOT NULL AND ml.published = 'true'  THEN 'Published'
-            WHEN ml.AWS_request_id IS NOT NULL AND ml.published = 'false' THEN 'Ingested'
-            WHEN ml.AWS_request_id IS NOT NULL                            THEN 'unknown'
-            WHEN cw.treReference   IS NOT NULL                            THEN 'FailedIngestion'
-            ELSE pt.TrackerStatus
-        END AS status
-    FROM (
-        SELECT *, ROW_NUMBER() OVER (
-            PARTITION BY SourceUuid ORDER BY TrackerLineLastUpdated DESC
-        ) AS rn
-        FROM '${PARSER_CSV}'
-    ) pt
-    LEFT JOIN '${CLOUDWATCH_CSV}' cw
-           ON pt.TreReference = cw.treReference
-          AND pt.TreReference != ''
-    LEFT JOIN '${MARKLOGIC_CSV}' ml
-           ON cw.\"@requestId\" = ml.AWS_request_id
-    WHERE rn = 1
-) TO '${OUTPUT_CSV}' (HEADER, DELIMITER ',');
-"
+echo ""
+echo "Importing CloudWatch and MarkLogic CSVs into:"
+echo "  ${PARSER_DB}"
+
+sqlite3 "$PARSER_DB" <<SQL
+PRAGMA foreign_keys = OFF;
+
+DROP TABLE IF EXISTS temp_cloudwatch_import;
+DROP TABLE IF EXISTS temp_marklogic_import;
+
+.mode csv
+.import '${CLOUDWATCH_CSV}' temp_cloudwatch_import
+.import '${MARKLOGIC_CSV}' temp_marklogic_import
+
+.mode box
+
+--Cloudwatch csv header:     @requestId,markLogicUri,treReference,ncnReference,lastInfoMessage,lastWarningMessage,lastErrorMessage,lambdaReport
+INSERT INTO CloudwatchIngesterRunSummaries (
+    RequestId,
+    LambdaReport,
+    LastErrorMessage,
+    LastInfoMessage,
+    LastWarningMessage,
+    MarkLogicUri,
+    NcnReference,
+    TreReference
+)
+SELECT
+    "@requestId",
+    COALESCE(lambdaReport, ''),
+    NULLIF(lastErrorMessage, ''),
+    NULLIF(lastInfoMessage, ''),
+    NULLIF(lastWarningMessage, ''),
+    NULLIF(markLogicUri, ''),
+    NULLIF(ncnReference, ''),
+    NULLIF(treReference, '')
+FROM temp_cloudwatch_import
+WHERE NULLIF("@requestId", '') IS NOT NULL;
+
+
+--Marklogic csv header:    document_URI,fake_TRE_UUID,published,AWS_request_id
+INSERT INTO MarkLogicDocumentStatuses (
+    FakeTreUuid,
+    DocumentUri,
+    Published,
+    AwsRequestId
+)
+SELECT
+    fake_TRE_UUID,
+    COALESCE(document_URI, ''),
+    CASE LOWER(COALESCE(published, ''))
+        WHEN 'true' THEN 1
+        WHEN '1' THEN 1
+        WHEN 'yes' THEN 1
+        ELSE 0
+    END,
+    COALESCE(AWS_request_id, '')
+FROM temp_marklogic_import
+WHERE NULLIF(fake_TRE_UUID, '') IS NOT NULL;
+SQL
 
 echo ""
-duckdb -c "
-SELECT status, COUNT(*) AS count FROM '${OUTPUT_CSV}' GROUP BY status ORDER BY count DESC;
-SELECT COUNT(*) AS total FROM '${OUTPUT_CSV}';
-"
-
-show_if_any "Ingested" \
-    "SELECT status, SourceUuid, TreReference, Ncn, document_URI, AWS_request_id, lambdaReport, published
-     FROM '${OUTPUT_CSV}' WHERE status = 'Ingested';"
-
-show_if_any "FailedIngestion" \
-    "SELECT status, SourceUuid, TreReference, Ncn, document_URI, AWS_request_id, lastErrorMessage, lastWarningMessage
-     FROM '${OUTPUT_CSV}' WHERE status = 'FailedIngestion';"
-
-show_if_any "unknown" \
-    "SELECT * FROM '${OUTPUT_CSV}' WHERE status = 'unknown';"
-
+echo "Tracker database updated successfully"
 echo ""
-echo "Output written to: ${OUTPUT_CSV}"
-echo ""
-echo "To explore the output interactively:"
-echo "  duckdb -cmd \"CREATE VIEW output AS SELECT * FROM '${OUTPUT_CSV}';\""
+echo "To explore the tracker database interactively:"
+echo "  sqlite3 \"${PARSER_DB}\""
 echo ""
