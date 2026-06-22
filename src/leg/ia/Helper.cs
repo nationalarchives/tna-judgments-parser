@@ -1424,11 +1424,11 @@ class Helper : BaseHelper {
                     href = $"{expressionUri}#{name}";
                 }
 
-                AddTocItem(xml, toc, href, tocNumber, headingText);
+                AddTocItem(xml, toc, href, null, headingText);
                 tocNumber++;
             }
         }
-        
+
         // Add ALL section entries
         if (allSections != null && allSections.Count > 0) {
             foreach (XmlElement section in allSections) {
@@ -1452,7 +1452,7 @@ class Helper : BaseHelper {
                     href = "#" + eId;
                 }
 
-                AddTocItem(xml, toc, href, tocNumber, headingText);
+                AddTocItem(xml, toc, href, SectionDisplayNum(section, nsmgr), headingText);
                 tocNumber++;
             }
         }
@@ -1480,19 +1480,31 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Add a TOC item to the TOC element
+    /// Add a TOC item to the TOC element. Prefixes the document's own number
+    /// (<paramref name="num"/>, e.g. "1." or "A.") when the section has one;
+    /// otherwise shows the heading text alone. legislation.gov.uk numbers a TOC
+    /// entry only where the content is numbered, so we never synthesise one.
     /// </summary>
-    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, int tocNumber, string headingText) {
+    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, string num, string headingText) {
         var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
         tocItem.SetAttribute("href", href);
         tocItem.SetAttribute("level", "2");
-        
+
         var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
         inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
+        inlineHeading.InnerText = string.IsNullOrEmpty(num) ? headingText : $"{num} {headingText}";
         tocItem.AppendChild(inlineHeading);
-        
+
         toc.AppendChild(tocItem);
+    }
+
+    /// The document's own number for this section (e.g. "1.", "A."), whitespace-
+    /// collapsed, or null when the section carries no number.
+    private static string SectionDisplayNum(XmlElement section, XmlNamespaceManager nsmgr) {
+        var num = section.SelectSingleNode("akn:num", nsmgr);
+        string text = num?.InnerText?.Trim();
+        if (string.IsNullOrEmpty(text)) return null;
+        return System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
     }
 
     /// <summary>
