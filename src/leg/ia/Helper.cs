@@ -521,7 +521,7 @@ class Helper : BaseHelper {
         // Must be substantive but heading-like (not too long)
         if (boldText.Length < 5 || boldText.Length > 200) return false;
 
-        if (IsFigureOrTableCaption(boldText)) return false;
+        if (IsNonHeadingLabel(boldText)) return false;
 
         // Extract heading (remove trailing colons)
         headingText = boldText.Replace(":", "").Trim();
@@ -556,7 +556,7 @@ class Helper : BaseHelper {
         string totalText = firstP.InnerText?.Trim() ?? "";
         if (boldText.Length < totalText.Length * 0.5) return false;
 
-        if (IsFigureOrTableCaption(boldText)) return false;
+        if (IsNonHeadingLabel(boldText)) return false;
 
         headingText = boldText.Replace(":", "").Trim();
         return true;
@@ -564,11 +564,32 @@ class Helper : BaseHelper {
 
     internal static bool IsFigureOrTableCaption(string text) {
         if (string.IsNullOrEmpty(text)) return false;
+        // Caption word followed by a number ("Table 40") or a single letter label
+        // ("Table A:", "Figure B"). The \b stops it matching real headings whose
+        // next word merely starts with a capital ("Table of contents").
         return System.Text.RegularExpressions.Regex.IsMatch(
             text,
-            @"^(Figure|Fig\.?|Table|Chart|Box|Diagram|Map|Exhibit|Graph)\s*[A-Z]?[\-\.]?\s*\d",
+            @"^(Figure|Fig\.?|Table|Chart|Box|Diagram|Map|Exhibit|Graph)\s*([0-9]+|[A-Z])\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase);
     }
+
+    // Table/figure notes and cross-references that are sometimes bolded like a
+    // heading but are not section titles ("Note ...", "See Annex A", "Source: ...").
+    // "Sources:" with a colon is a caption; "Sources of ..." without one is a real
+    // heading, so the colon is required for the Source(s) case.
+    internal static bool IsTableNoteOrReference(string text) {
+        if (string.IsNullOrEmpty(text)) return false;
+        return System.Text.RegularExpressions.Regex.IsMatch(
+                text, @"^(Notes?|See)\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+            || System.Text.RegularExpressions.Regex.IsMatch(
+                text, @"^Sources?\s*:", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+    }
+
+    // A bold line that reads as a non-heading label (figure/table caption, or a
+    // note/source/cross-reference). The promotion heuristics keep these as body
+    // content instead of turning them into sections (and so into TOC entries).
+    internal static bool IsNonHeadingLabel(string text) =>
+        IsFigureOrTableCaption(text) || IsTableNoteOrReference(text);
 
     /// Promote chapter headings detected from Word style metadata
     /// (uk:headingDepth set by Builder; see DOCX.Styles.ClassifyHeading)
@@ -609,7 +630,7 @@ class Helper : BaseHelper {
                 int? depth = ReadHeadingDepth(el, nsmgr);
                 if (depth is int && !demoted.Contains(el)) {
                     string headingText = ReadHeadingText(el, nsmgr);
-                    if (string.IsNullOrWhiteSpace(headingText) || IsFigureOrTableCaption(headingText)) {
+                    if (string.IsNullOrWhiteSpace(headingText) || IsNonHeadingLabel(headingText)) {
                         (currentHeading == null ? hostKeep : currentBody).Add(el);
                         continue;
                     }
@@ -720,11 +741,11 @@ class Helper : BaseHelper {
     }
 
     /// Promote each annex (an attached <doc name="annex"> of flat bold-heading
-    /// paragraphs) into an addressable <hcontainer name="annex"> of <section>s
-    /// in the main body, so the TOC links to /annex/{N}/section/{M} paths. The
-    /// publisher resolves hierarchical paths, not eId fragments, and an IA annex
-    /// is a distinct appendix tier (the analogue of a Schedule), not body
-    /// sections, so it must not be flattened into /section/N.
+    /// paragraphs) into ordinary <section>s appended to the main body, so the
+    /// appendix content continues as /section/N like any other section. The
+    /// appendix's own title (e.g. "Appendix A: ...") becomes the heading of a
+    /// leading section. RenumberTopLevelMainBodySections then renumbers every
+    /// top-level section contiguously.
     private static void BuildAnnexTier(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
@@ -755,7 +776,7 @@ class Helper : BaseHelper {
             string currentHeading = null;
             var currentBody = new List<XmlElement>();
             foreach (var b in blocks) {
-                if (IsFlatBoldHeadingParagraph(b, nsmgr, out string h) && !IsFigureOrTableCaption(h)) {
+                if (IsFlatBoldHeadingParagraph(b, nsmgr, out string h) && !IsNonHeadingLabel(h)) {
                     if (currentHeading != null) groups.Add((currentHeading, currentBody));
                     currentHeading = h;
                     currentBody = new List<XmlElement>();
@@ -766,30 +787,22 @@ class Helper : BaseHelper {
             if (currentHeading != null) groups.Add((currentHeading, currentBody));
 
             // The annex's own title is the first leading bold paragraph (e.g.
-            // "Appendix A: ..."), too long to be a section heading; use it as the
-            // container heading. Any other leading content opens an intro section.
+            // "Appendix A: ..."), too long to be a section heading; when present it
+            // becomes the heading of the leading section. We do not fabricate an
+            // "Annex" heading when the source has none.
             string annexTitle = null;
             var leadingTitle = leading.FirstOrDefault(e =>
-                e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null);
+                e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null
+                && !IsNonHeadingLabel(e.InnerText?.Trim()));
             if (leadingTitle != null) {
                 annexTitle = leadingTitle.InnerText?.Trim();
                 leading.Remove(leadingTitle);
             }
-            if (string.IsNullOrWhiteSpace(annexTitle))
-                annexTitle = annexDocs.Count > 1 ? $"Annex {annexIndex}" : "Annex";
-
-            var hc = xml.CreateElement("hcontainer", AKN_NAMESPACE);
-            hc.SetAttribute("name", "annex");
-            hc.SetAttribute("eId", $"annex_{annexIndex}");
-            var hcHeading = xml.CreateElement("heading", AKN_NAMESPACE);
-            hcHeading.InnerText = annexTitle;
-            hc.AppendChild(hcHeading);
 
             int sectionIndex = 0;
             void AppendSection(string heading, List<XmlElement> body) {
                 sectionIndex++;
                 var sec = xml.CreateElement("section", AKN_NAMESPACE);
-                sec.SetAttribute("eId", $"annex_{annexIndex}__sec_{sectionIndex}");
                 if (!string.IsNullOrWhiteSpace(heading)) {
                     var hEl = xml.CreateElement("heading", AKN_NAMESPACE);
                     hEl.InnerText = heading;
@@ -798,15 +811,33 @@ class Helper : BaseHelper {
                 // Wrap loose blocks in paragraph/content (a section cannot hold p/
                 // table/blockContainer directly); same builder the body sections use.
                 AppendBodyToSection(xml, sec, body);
-                hc.AppendChild(sec);
+                // A section must have a content or structural child; if it carried
+                // only a heading (e.g. a title-only leading section), give it an
+                // empty <content/> so it stays schema-valid.
+                bool hasBody = false;
+                foreach (XmlNode ch in sec.ChildNodes) {
+                    if (ch is not XmlElement ce) continue;
+                    if (ce.LocalName == "heading" || ce.LocalName == "num") continue;
+                    hasBody = true;
+                    break;
+                }
+                if (!hasBody) sec.AppendChild(xml.CreateElement("content", AKN_NAMESPACE));
+                mainBody.AppendChild(sec);
             }
 
-            if (leading.Count > 0) AppendSection(null, leading);
+            // A genuine appendix title opens its own section (so it shows in the
+            // TOC), carrying any remaining leading content as its body. With no
+            // title, any leading content opens an untitled section; otherwise the
+            // content sections follow directly.
+            if (annexTitle != null) {
+                AppendSection(annexTitle, leading);
+            } else if (leading.Count > 0) {
+                AppendSection(null, leading);
+            }
             foreach (var (heading, body) in groups) AppendSection(heading, body);
 
-            mainBody.AppendChild(hc);
-            logger.LogInformation("Built annex {Index} ({Title}) with {Count} sections",
-                annexIndex, annexTitle, sectionIndex);
+            logger.LogInformation("Appended annex {Index} ({Title}) as {Count} body sections",
+                annexIndex, annexTitle ?? "untitled", sectionIndex);
         }
 
         attachments.ParentNode?.RemoveChild(attachments);
@@ -1366,7 +1397,6 @@ class Helper : BaseHelper {
         if (hcontainers != null && hcontainers.Count > 0) {
             foreach (XmlElement hcontainer in hcontainers) {
                 var name = hcontainer.GetAttribute("name");
-                if (name == "annex") continue;  // annex tier handled below as /annex/N/section/M
                 var eId = hcontainer.GetAttribute("eId");
                 
                 // For hcontainers, prioritize the name attribute over content extraction
@@ -1394,11 +1424,11 @@ class Helper : BaseHelper {
                     href = $"{expressionUri}#{name}";
                 }
 
-                AddTocItem(xml, toc, href, tocNumber, headingText);
+                AddTocItem(xml, toc, href, null, headingText);
                 tocNumber++;
             }
         }
-        
+
         // Add ALL section entries
         if (allSections != null && allSections.Count > 0) {
             foreach (XmlElement section in allSections) {
@@ -1422,28 +1452,8 @@ class Helper : BaseHelper {
                     href = "#" + eId;
                 }
 
-                AddTocItem(xml, toc, href, tocNumber, headingText);
+                AddTocItem(xml, toc, href, SectionDisplayNum(section, nsmgr), headingText);
                 tocNumber++;
-            }
-        }
-
-        // Annex tier: each <hcontainer name="annex"> contributes
-        // /annex/{N}/section/{M} entries (hierarchical paths, never fragments).
-        var annexContainers = xml.SelectNodes("//akn:mainBody/akn:hcontainer[@name='annex']", nsmgr);
-        if (annexContainers != null) {
-            int annexNo = 0;
-            foreach (XmlElement annex in annexContainers) {
-                annexNo++;
-                int secNo = 0;
-                foreach (XmlElement sec in annex.SelectNodes("akn:section", nsmgr)) {
-                    secNo++;
-                    string headingText = ExtractHeadingForToc(sec, nsmgr);
-                    string href = !string.IsNullOrEmpty(expressionUri)
-                        ? $"{expressionUri}/annex/{annexNo}/section/{secNo}"
-                        : "#" + sec.GetAttribute("eId");
-                    AddTocItem(xml, toc, href, tocNumber, headingText);
-                    tocNumber++;
-                }
             }
         }
 
@@ -1470,19 +1480,31 @@ class Helper : BaseHelper {
     }
 
     /// <summary>
-    /// Add a TOC item to the TOC element
+    /// Add a TOC item to the TOC element. Prefixes the document's own number
+    /// (<paramref name="num"/>, e.g. "1." or "A.") when the section has one;
+    /// otherwise shows the heading text alone. legislation.gov.uk numbers a TOC
+    /// entry only where the content is numbered, so we never synthesise one.
     /// </summary>
-    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, int tocNumber, string headingText) {
+    private static void AddTocItem(XmlDocument xml, XmlElement toc, string href, string num, string headingText) {
         var tocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
         tocItem.SetAttribute("href", href);
         tocItem.SetAttribute("level", "2");
-        
+
         var inlineHeading = xml.CreateElement("inline", AKN_NAMESPACE);
         inlineHeading.SetAttribute("name", "tocHeading");
-        inlineHeading.InnerText = $"{tocNumber}. {headingText}";
+        inlineHeading.InnerText = string.IsNullOrEmpty(num) ? headingText : $"{num} {headingText}";
         tocItem.AppendChild(inlineHeading);
-        
+
         toc.AppendChild(tocItem);
+    }
+
+    /// The document's own number for this section (e.g. "1.", "A."), whitespace-
+    /// collapsed, or null when the section carries no number.
+    private static string SectionDisplayNum(XmlElement section, XmlNamespaceManager nsmgr) {
+        var num = section.SelectSingleNode("akn:num", nsmgr);
+        string text = num?.InnerText?.Trim();
+        if (string.IsNullOrEmpty(text)) return null;
+        return System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
     }
 
     /// <summary>
@@ -1510,7 +1532,10 @@ class Helper : BaseHelper {
                 if (!string.IsNullOrEmpty(text) && text.Length > 5) {
                     // Clean up the text
                     text = text.Replace(":", "").Trim();
-                    
+
+                    // Skip captions/notes/references — they are not headings.
+                    if (IsNonHeadingLabel(text)) continue;
+
                     // Prefer question-style headings (very common in IAs)
                     if (text.EndsWith("?") || 
                         text.StartsWith("What", StringComparison.OrdinalIgnoreCase) ||
@@ -1536,7 +1561,7 @@ class Helper : BaseHelper {
                 string text = cell.InnerText?.Trim();
                 if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 200) {
                     text = text.Replace(":", "").Trim();
-                    if (!string.IsNullOrEmpty(text)) {
+                    if (!string.IsNullOrEmpty(text) && !IsNonHeadingLabel(text)) {
                         return TruncateHeading(text);
                     }
                 }
@@ -1547,7 +1572,7 @@ class Helper : BaseHelper {
         var firstPara = element.SelectSingleNode(".//akn:p[normalize-space()]", nsmgr);
         if (firstPara != null) {
             string text = firstPara.InnerText?.Trim();
-            if (!string.IsNullOrEmpty(text) && text.Length > 5) {
+            if (!string.IsNullOrEmpty(text) && text.Length > 5 && !IsNonHeadingLabel(text)) {
                 return TruncateHeading(text);
             }
         }
