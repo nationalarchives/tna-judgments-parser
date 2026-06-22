@@ -720,11 +720,11 @@ class Helper : BaseHelper {
     }
 
     /// Promote each annex (an attached <doc name="annex"> of flat bold-heading
-    /// paragraphs) into an addressable <hcontainer name="annex"> of <section>s
-    /// in the main body, so the TOC links to /annex/{N}/section/{M} paths. The
-    /// publisher resolves hierarchical paths, not eId fragments, and an IA annex
-    /// is a distinct appendix tier (the analogue of a Schedule), not body
-    /// sections, so it must not be flattened into /section/N.
+    /// paragraphs) into ordinary <section>s appended to the main body, so the
+    /// appendix content continues as /section/N like any other section. The
+    /// appendix's own title (e.g. "Appendix A: ...") becomes the heading of a
+    /// leading section. RenumberTopLevelMainBodySections then renumbers every
+    /// top-level section contiguously.
     private static void BuildAnnexTier(XmlDocument xml) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
@@ -766,8 +766,9 @@ class Helper : BaseHelper {
             if (currentHeading != null) groups.Add((currentHeading, currentBody));
 
             // The annex's own title is the first leading bold paragraph (e.g.
-            // "Appendix A: ..."), too long to be a section heading; use it as the
-            // container heading. Any other leading content opens an intro section.
+            // "Appendix A: ..."), too long to be a section heading; when present it
+            // becomes the heading of the leading section. We do not fabricate an
+            // "Annex" heading when the source has none.
             string annexTitle = null;
             var leadingTitle = leading.FirstOrDefault(e =>
                 e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null);
@@ -775,21 +776,11 @@ class Helper : BaseHelper {
                 annexTitle = leadingTitle.InnerText?.Trim();
                 leading.Remove(leadingTitle);
             }
-            if (string.IsNullOrWhiteSpace(annexTitle))
-                annexTitle = annexDocs.Count > 1 ? $"Annex {annexIndex}" : "Annex";
-
-            var hc = xml.CreateElement("hcontainer", AKN_NAMESPACE);
-            hc.SetAttribute("name", "annex");
-            hc.SetAttribute("eId", $"annex_{annexIndex}");
-            var hcHeading = xml.CreateElement("heading", AKN_NAMESPACE);
-            hcHeading.InnerText = annexTitle;
-            hc.AppendChild(hcHeading);
 
             int sectionIndex = 0;
             void AppendSection(string heading, List<XmlElement> body) {
                 sectionIndex++;
                 var sec = xml.CreateElement("section", AKN_NAMESPACE);
-                sec.SetAttribute("eId", $"annex_{annexIndex}__sec_{sectionIndex}");
                 if (!string.IsNullOrWhiteSpace(heading)) {
                     var hEl = xml.CreateElement("heading", AKN_NAMESPACE);
                     hEl.InnerText = heading;
@@ -798,15 +789,33 @@ class Helper : BaseHelper {
                 // Wrap loose blocks in paragraph/content (a section cannot hold p/
                 // table/blockContainer directly); same builder the body sections use.
                 AppendBodyToSection(xml, sec, body);
-                hc.AppendChild(sec);
+                // A section must have a content or structural child; if it carried
+                // only a heading (e.g. a title-only leading section), give it an
+                // empty <content/> so it stays schema-valid.
+                bool hasBody = false;
+                foreach (XmlNode ch in sec.ChildNodes) {
+                    if (ch is not XmlElement ce) continue;
+                    if (ce.LocalName == "heading" || ce.LocalName == "num") continue;
+                    hasBody = true;
+                    break;
+                }
+                if (!hasBody) sec.AppendChild(xml.CreateElement("content", AKN_NAMESPACE));
+                mainBody.AppendChild(sec);
             }
 
-            if (leading.Count > 0) AppendSection(null, leading);
+            // A genuine appendix title opens its own section (so it shows in the
+            // TOC), carrying any remaining leading content as its body. With no
+            // title, any leading content opens an untitled section; otherwise the
+            // content sections follow directly.
+            if (annexTitle != null) {
+                AppendSection(annexTitle, leading);
+            } else if (leading.Count > 0) {
+                AppendSection(null, leading);
+            }
             foreach (var (heading, body) in groups) AppendSection(heading, body);
 
-            mainBody.AppendChild(hc);
-            logger.LogInformation("Built annex {Index} ({Title}) with {Count} sections",
-                annexIndex, annexTitle, sectionIndex);
+            logger.LogInformation("Appended annex {Index} ({Title}) as {Count} body sections",
+                annexIndex, annexTitle ?? "untitled", sectionIndex);
         }
 
         attachments.ParentNode?.RemoveChild(attachments);
@@ -1366,7 +1375,6 @@ class Helper : BaseHelper {
         if (hcontainers != null && hcontainers.Count > 0) {
             foreach (XmlElement hcontainer in hcontainers) {
                 var name = hcontainer.GetAttribute("name");
-                if (name == "annex") continue;  // annex tier handled below as /annex/N/section/M
                 var eId = hcontainer.GetAttribute("eId");
                 
                 // For hcontainers, prioritize the name attribute over content extraction
@@ -1424,26 +1432,6 @@ class Helper : BaseHelper {
 
                 AddTocItem(xml, toc, href, tocNumber, headingText);
                 tocNumber++;
-            }
-        }
-
-        // Annex tier: each <hcontainer name="annex"> contributes
-        // /annex/{N}/section/{M} entries (hierarchical paths, never fragments).
-        var annexContainers = xml.SelectNodes("//akn:mainBody/akn:hcontainer[@name='annex']", nsmgr);
-        if (annexContainers != null) {
-            int annexNo = 0;
-            foreach (XmlElement annex in annexContainers) {
-                annexNo++;
-                int secNo = 0;
-                foreach (XmlElement sec in annex.SelectNodes("akn:section", nsmgr)) {
-                    secNo++;
-                    string headingText = ExtractHeadingForToc(sec, nsmgr);
-                    string href = !string.IsNullOrEmpty(expressionUri)
-                        ? $"{expressionUri}/annex/{annexNo}/section/{secNo}"
-                        : "#" + sec.GetAttribute("eId");
-                    AddTocItem(xml, toc, href, tocNumber, headingText);
-                    tocNumber++;
-                }
             }
         }
 
