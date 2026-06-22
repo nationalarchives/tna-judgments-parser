@@ -49,6 +49,10 @@ public class TestDetectionHeuristics {
     [InlineData("Chart 1: Estimated numbers", true)]
     [InlineData("Box 1 Eligible population", true)]
     [InlineData("Diagram 3 - overview", true)]
+    // Letter-labelled captions (no digit) — previously slipped through.
+    [InlineData("Table A: Overall and stakeholder impacts", true)]
+    [InlineData("Table B: Impacts on wider Government priorities", true)]
+    [InlineData("Figure B", true)]
     [InlineData("", false)]
     [InlineData(null, false)]
     [InlineData("Figure references are listed below", false)]
@@ -57,6 +61,23 @@ public class TestDetectionHeuristics {
     [InlineData("Table of contents", false)]
     public void IsFigureOrTableCaption(string input, bool expected) {
         Assert.Equal(expected, IaHelper.IsFigureOrTableCaption(input));
+    }
+
+    [Theory]
+    [InlineData("Note ACSP registration costs are included under do nothing", true)]
+    [InlineData("Notes on duties and estimates, where applicable", true)]
+    [InlineData("See Annex A", true)]
+    [InlineData("Source: ADEPT", true)]
+    [InlineData("Sources: WRAP and Defra", true)]
+    // Real headings that merely start with similar words — must NOT be rejected.
+    [InlineData("Sources of data and evidence", false)]
+    [InlineData("Seen and reviewed evidence", false)]
+    [InlineData("Notebook methodology", false)]
+    [InlineData("Background", false)]
+    [InlineData("", false)]
+    [InlineData(null, false)]
+    public void IsTableNoteOrReference(string input, bool expected) {
+        Assert.Equal(expected, IaHelper.IsTableNoteOrReference(input));
     }
 
     [Theory]

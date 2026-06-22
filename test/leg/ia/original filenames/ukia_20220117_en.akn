@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/data.akn" />
-          <FRBRdate date="2026-06-04" name="historic-akn-transform" />
+          <FRBRdate date="2026-06-22" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <ukm:Parser Name="core" Value="1.9.0" />
+        <ukm:Parser Name="core" Value="1.10.0" />
         <ukm:Parser Name="legislation" Value="1.0.0" />
         <dc:title>Impact Assessment for The Neonatal Care Leave and Miscellaneous Amendments Regulations 2025</dc:title>
         <dc:description>Impact Assessment for The Neonatal Care Leave and Miscellaneous Amendments Regulations 2025</dc:description>
@@ -106,7 +106,7 @@
         <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/46" level="2"><inline name="tocHeading">45. Risks and Assumptions</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/47" level="2"><inline name="tocHeading">46. Modelling risk and assumptions</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/48" level="2"><inline name="tocHeading">47. Annex A Estimating absence costs to employers</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/49" level="2"><inline name="tocHeading">48. Box 8: Calculating overall wage-like costs To derive the overall contribution to the statutory payments (wage-like costs) we must also consider the distribution of employees across small and large firms, as well the amounts firms contribute to the statutory payments or in the case of small firms, receive a small compensatory amount per employee per week The Box below shows how we have calculated the weighted contribution to the neonatal payments.The figure is negative for small firms as they receive a small abatement of 3% in addition to the full amount of statutory payments, which they can recover. The weighted contribution is in level terms, to calculate this as %, we divide by the statutory rate for 2021/22, which yields:This is then applied to each employee estimated to take-up the policy to derive both Exchequer and the business contribution to statutory payments at an aggregate level.</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/49" level="2"><inline name="tocHeading">48. Annex B Estimating wage-like costs</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/uksi/2025/375/impacts/2022/117/section/50" level="2"><inline name="tocHeading">49. Annex C Theory of Change</inline></tocItem>
       </toc>
       <section class="summary" eId="section_2">
@@ -3518,7 +3518,6 @@
         </paragraph>
       </section>
       <section eId="section_49">
-        <heading>Box 8: Calculating overall wage-like costs To derive the overall contribution to the statutory payments (wage-like costs) we must also consider the distribution of employees across small and large firms, as well the amounts firms contribute to the statutory payments or in the case of small firms, receive a small compensatory amount per employee per week The Box below shows how we have calculated the weighted contribution to the neonatal payments.The figure is negative for small firms as they receive a small abatement of 3% in addition to the full amount of statutory payments, which they can recover. The weighted contribution is in level terms, to calculate this as %, we divide by the statutory rate for 2021/22, which yields:This is then applied to each employee estimated to take-up the policy to derive both Exchequer and the business contribution to statutory payments at an aggregate level.</heading>
         <paragraph>
           <content>
             <p><span style="color:#000000"><b>Annex B: Estimating wage-like costs</b></span></p>
@@ -3534,6 +3533,7 @@
               <num>120.</num>
               <p><span style="color:#000000">Large employers (those with a National Insurance contributions bill of over £45,000) can recover 92% of statutory payments and will therefore face costs of 0.08</span><span style="color:#000000">∗</span><span style="color:#000000">£156.66 (2021/22 rates) =£12.53 for each week of leave taken.  Non-wage labour costs are already accounted for in the re-organisation costs and the £12.53 has therefore not been uprated further. Smaller employers (those with a National Insurance contributions bill of £45,000 or less) can reclaim 103% of statutory payments made to their employees through HMRC. They will on average receive 1.03</span><span style="color:#000000">∗</span><span style="color:#000000">£156.66=£161.36 and derive a benefit of £4.70 in terms of wage-like costs per additional week of leave taken. The Box below shows how we have calculated the weighted contribution to the neonatal payments.</span></p>
             </blockContainer>
+            <p><b><u>Box 8: Calculating overall wage-like costs</u></b> To derive the overall contribution to the statutory payments (wage-like costs) we must also consider the distribution of employees across small and large firms, as well the amounts firms contribute to the statutory payments or in the case of small firms, receive a small compensatory amount per employee per week The Box below shows how we have calculated the weighted contribution to the neonatal payments.The figure is negative for small firms as they receive a small abatement of 3% in addition to the full amount of statutory payments, which they can recover. The weighted contribution is in level terms, to calculate this as %, we divide by the statutory rate for 2021/22, which yields:<span style="color:#000000">This is then applied to each employee estimated to take-up the policy to derive both Exchequer and the business contribution to statutory payments at an aggregate level.</span></p>
             <p><b>Table 15: Estimated number of parents taking Neonatal Care Leave/Pay by length</b></p>
             <table uk:widths="0.88in 0.74in 0.18in 0.58in 0.38in 0.64in 0.97in 0.89in 0.96in 0.76in">
               <tr>

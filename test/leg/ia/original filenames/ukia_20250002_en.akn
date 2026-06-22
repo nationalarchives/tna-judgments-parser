@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/data.akn" />
-          <FRBRdate date="2026-06-04" name="historic-akn-transform" />
+          <FRBRdate date="2026-06-22" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <ukm:Parser Name="core" Value="1.9.0" />
+        <ukm:Parser Name="core" Value="1.10.0" />
         <ukm:Parser Name="legislation" Value="1.0.0" />
         <dc:title>Impact Assessment for The Separation of Waste (England) Regulations 2025</dc:title>
         <dc:description>Impact Assessment for The Separation of Waste (England) Regulations 2025</dc:description>
@@ -87,12 +87,12 @@
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/27" level="2"><inline name="tocHeading">26. Non-household municipal (NHM) sector options</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/28" level="2"><inline name="tocHeading">27. Non-household municipal familiarisation costs</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/29" level="2"><inline name="tocHeading">28. Municipal sector options 1M-4M: detailed summary of costs and benefits</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/30" level="2"><inline name="tocHeading">29. Table 40: Projected net change to dry recycling tonnages under option 1M, in thousand tonnes (Kt) Municipal DMR tonnages will not equal HH DMR + NHM DMR tonnages as explained.</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/30" level="2"><inline name="tocHeading">29. Familiarisation and inconvenience costs to households</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/31" level="2"><inline name="tocHeading">30. Anaerobic digestion (AD) plants</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/32" level="2"><inline name="tocHeading">31. Impact on In-Vessel Composting (IVC) Projects</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/33" level="2"><inline name="tocHeading">32. Impact on open windrows</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/34" level="2"><inline name="tocHeading">33. Table 45: Summaries of variables tested for the combined sensitivity analysis, presented by sector</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/35" level="2"><inline name="tocHeading">34. Table 50: Household recycling scenarios' GHGs emissions savings in million tonnes of CO2e</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/34" level="2"><inline name="tocHeading">33. Sensitivities</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/35" level="2"><inline name="tocHeading">34. carbon budget (2028-2032)</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/36" level="2"><inline name="tocHeading">35. Annex D: Covid-19 considerations</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/37" level="2"><inline name="tocHeading">36. Annex E: Sources of data and evidence</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/ukdsi/2025/9780348266566/impacts/2025/2/section/38" level="2"><inline name="tocHeading">37. Annex F: Quality assurance</inline></tocItem>
@@ -12284,7 +12284,6 @@
         </paragraph>
       </section>
       <section eId="section_30">
-        <heading>Table 40: Projected net change to dry recycling tonnages under option 1M, in thousand tonnes (Kt) Municipal DMR tonnages will not equal HH DMR + NHM DMR tonnages as explained.</heading>
         <paragraph>
           <content>
             <p>Annex A: Non-monetised costs and benefits and wider IA assessments</p>
@@ -12312,6 +12311,7 @@
             <p>Under all municipal options, we expect the NHM sector to offset the loss of supply of comingled dry recyclables to MRFs from the household sector. All NHM scenarios assume significant increases in the collection of dry mixed materials that will need to be sorted by MRFs.</p>
             <p>Irrespective of the above, it is very likely that MRFs will need to make some changes. This is, for example, to reflect changes in the composition of recyclate to include materials such as plastic films. MRFs might need to invest in technologies such as air scythes or vacuum chutes to prevent films being wrapped around rollers<authorialNote marker="321"><p> Based on WRAP’s advice.</p></authorialNote>. This has been modelled via higher MRF gate fees associated with additional materials (see Section 6 for further detail).</p>
             <p>Tables 40, 41, 42 &amp; 43 show the projected changes to dry recycling tonnages under Options 1M, 2M, 3M and 4M. For the below tables, we have given the breakdown for additional dry material recycling tonnages by sector. Please note that in the tables, HH and NHM tonnages only include direct recycling, whilst the municipal sector includes indirect recycling as explained in the glossary. Therefore, it should be noted that the additional HH and NHM dry recycling tonnages will not equal the additional municipal dry recycling tonnages. </p>
+            <p><b>Table 40: Projected net change to dry recycling tonnages under option 1M, in thousand tonnes (Kt)</b><authorialNote marker="322"><p> Municipal DMR tonnages will not equal HH DMR + NHM DMR tonnages as explained.</p></authorialNote></p>
             <table uk:widths="1.67in 0.98in 1.08in 1.08in 0.89in 1.25in">
               <tr>
                 <td>
@@ -12930,13 +12930,13 @@
         </paragraph>
       </section>
       <section eId="section_34">
-        <heading>Table 45: Summaries of variables tested for the combined sensitivity analysis, presented by sector</heading>
         <paragraph>
           <content>
             <p>Annex B: Sensitivity analyses</p>
             <p>Sensitivity analyses explores how the outcome of the policy scenarios may vary due to uncertainty around key input variables used in our models. This policy affects the household and non-household municipal sectors, and also has cross-cutting impacts (such as carbon emissions). As part of our sensitivity analyses, we scrutinised the quality of evidence and approach to accounting for uncertainty in both sectors. This was to identify relevant variables to determine how switching their values change the overall outcome of the net present value (NPV) for the four municipal options delivered in this impact assessment. The same methodology was applied to the cross-cutting impacts. </p>
             <p>Table 44 lists all the variables that we use for our combined sensitivity analysis to identify our low and high NPV for each municipal option (also presented in the summary sheets at the beginning of this document). This means that we combine several sensitivities (concerning both sectors as well as wider impacts) to identify the best and worst outcome; and how these outcomes differ from our central scenario(s). Low NPV estimates assume low benefits and high costs. High NPV estimates assume high benefits and low costs.  </p>
             <p>In Table 45, we also explain the rationale for including each variable for the combined sensitivity analysis. We ensured that these variables can be isolated to avoid double counting.</p>
+            <p><b>Table 45: Summaries of variables tested for the combined sensitivity analysis, presented by sector</b></p>
             <table uk:widths="1.28in 3.54in 1.48in 1.18in">
               <tr>
                 <td>
@@ -14160,7 +14160,6 @@
         </paragraph>
       </section>
       <section eId="section_35">
-        <heading>Table 50: Household recycling scenarios' GHGs emissions savings in million tonnes of CO2e</heading>
         <paragraph>
           <content>
             <p>Annex C: Greenhouse gas emissions impact</p>
@@ -14176,6 +14175,7 @@
               <p>Reduced amount of household residual waste decreases the proportion of EfW capacity used by local authorities. This allows the NHM waste to utilise it and reduce the amount of waste sent to landfill.</p>
             </blockContainer>
             <p>Option 2hh shows slightly lower GHG savings as a result of LAs switching to a charged garden waste service. As a result, it is expected that a small percentage of garden waste in the charged garden waste scenario may be diverted from recycling to the residual waste stream.</p>
+            <p><b>Table 50: Household recycling scenarios' GHGs emissions savings in million tonnes of CO</b><b>2</b><b>e</b></p>
             <table uk:widths="1.97in 1.92in 1.92in">
               <tr>
                 <td>

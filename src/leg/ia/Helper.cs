@@ -521,7 +521,7 @@ class Helper : BaseHelper {
         // Must be substantive but heading-like (not too long)
         if (boldText.Length < 5 || boldText.Length > 200) return false;
 
-        if (IsFigureOrTableCaption(boldText)) return false;
+        if (IsNonHeadingLabel(boldText)) return false;
 
         // Extract heading (remove trailing colons)
         headingText = boldText.Replace(":", "").Trim();
@@ -556,7 +556,7 @@ class Helper : BaseHelper {
         string totalText = firstP.InnerText?.Trim() ?? "";
         if (boldText.Length < totalText.Length * 0.5) return false;
 
-        if (IsFigureOrTableCaption(boldText)) return false;
+        if (IsNonHeadingLabel(boldText)) return false;
 
         headingText = boldText.Replace(":", "").Trim();
         return true;
@@ -564,11 +564,32 @@ class Helper : BaseHelper {
 
     internal static bool IsFigureOrTableCaption(string text) {
         if (string.IsNullOrEmpty(text)) return false;
+        // Caption word followed by a number ("Table 40") or a single letter label
+        // ("Table A:", "Figure B"). The \b stops it matching real headings whose
+        // next word merely starts with a capital ("Table of contents").
         return System.Text.RegularExpressions.Regex.IsMatch(
             text,
-            @"^(Figure|Fig\.?|Table|Chart|Box|Diagram|Map|Exhibit|Graph)\s*[A-Z]?[\-\.]?\s*\d",
+            @"^(Figure|Fig\.?|Table|Chart|Box|Diagram|Map|Exhibit|Graph)\s*([0-9]+|[A-Z])\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase);
     }
+
+    // Table/figure notes and cross-references that are sometimes bolded like a
+    // heading but are not section titles ("Note ...", "See Annex A", "Source: ...").
+    // "Sources:" with a colon is a caption; "Sources of ..." without one is a real
+    // heading, so the colon is required for the Source(s) case.
+    internal static bool IsTableNoteOrReference(string text) {
+        if (string.IsNullOrEmpty(text)) return false;
+        return System.Text.RegularExpressions.Regex.IsMatch(
+                text, @"^(Notes?|See)\b", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+            || System.Text.RegularExpressions.Regex.IsMatch(
+                text, @"^Sources?\s*:", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+    }
+
+    // A bold line that reads as a non-heading label (figure/table caption, or a
+    // note/source/cross-reference). The promotion heuristics keep these as body
+    // content instead of turning them into sections (and so into TOC entries).
+    internal static bool IsNonHeadingLabel(string text) =>
+        IsFigureOrTableCaption(text) || IsTableNoteOrReference(text);
 
     /// Promote chapter headings detected from Word style metadata
     /// (uk:headingDepth set by Builder; see DOCX.Styles.ClassifyHeading)
@@ -609,7 +630,7 @@ class Helper : BaseHelper {
                 int? depth = ReadHeadingDepth(el, nsmgr);
                 if (depth is int && !demoted.Contains(el)) {
                     string headingText = ReadHeadingText(el, nsmgr);
-                    if (string.IsNullOrWhiteSpace(headingText) || IsFigureOrTableCaption(headingText)) {
+                    if (string.IsNullOrWhiteSpace(headingText) || IsNonHeadingLabel(headingText)) {
                         (currentHeading == null ? hostKeep : currentBody).Add(el);
                         continue;
                     }
@@ -755,7 +776,7 @@ class Helper : BaseHelper {
             string currentHeading = null;
             var currentBody = new List<XmlElement>();
             foreach (var b in blocks) {
-                if (IsFlatBoldHeadingParagraph(b, nsmgr, out string h) && !IsFigureOrTableCaption(h)) {
+                if (IsFlatBoldHeadingParagraph(b, nsmgr, out string h) && !IsNonHeadingLabel(h)) {
                     if (currentHeading != null) groups.Add((currentHeading, currentBody));
                     currentHeading = h;
                     currentBody = new List<XmlElement>();
@@ -771,7 +792,8 @@ class Helper : BaseHelper {
             // "Annex" heading when the source has none.
             string annexTitle = null;
             var leadingTitle = leading.FirstOrDefault(e =>
-                e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null);
+                e.LocalName == "p" && e.SelectSingleNode("akn:b", nsmgr) != null
+                && !IsNonHeadingLabel(e.InnerText?.Trim()));
             if (leadingTitle != null) {
                 annexTitle = leadingTitle.InnerText?.Trim();
                 leading.Remove(leadingTitle);
@@ -1498,7 +1520,10 @@ class Helper : BaseHelper {
                 if (!string.IsNullOrEmpty(text) && text.Length > 5) {
                     // Clean up the text
                     text = text.Replace(":", "").Trim();
-                    
+
+                    // Skip captions/notes/references — they are not headings.
+                    if (IsNonHeadingLabel(text)) continue;
+
                     // Prefer question-style headings (very common in IAs)
                     if (text.EndsWith("?") || 
                         text.StartsWith("What", StringComparison.OrdinalIgnoreCase) ||
@@ -1524,7 +1549,7 @@ class Helper : BaseHelper {
                 string text = cell.InnerText?.Trim();
                 if (!string.IsNullOrEmpty(text) && text.Length > 10 && text.Length < 200) {
                     text = text.Replace(":", "").Trim();
-                    if (!string.IsNullOrEmpty(text)) {
+                    if (!string.IsNullOrEmpty(text) && !IsNonHeadingLabel(text)) {
                         return TruncateHeading(text);
                     }
                 }
@@ -1535,7 +1560,7 @@ class Helper : BaseHelper {
         var firstPara = element.SelectSingleNode(".//akn:p[normalize-space()]", nsmgr);
         if (firstPara != null) {
             string text = firstPara.InnerText?.Trim();
-            if (!string.IsNullOrEmpty(text) && text.Length > 5) {
+            if (!string.IsNullOrEmpty(text) && text.Length > 5 && !IsNonHeadingLabel(text)) {
                 return TruncateHeading(text);
             }
         }
