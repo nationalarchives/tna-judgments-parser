@@ -25,7 +25,9 @@ public class TestIA {
         var resourceNames = assembly.GetManifestResourceNames();
         
         // Match pattern: test.leg.ia.original_filenames.ukia_20250001_en.docx
-        var regex = new Regex(@"^test\.leg\.ia\.original_filenames\.(ukia_\d+_en)\.docx$");
+        // Includes Scottish SI/Draft IAs (ssifia/sdsifia, the latter ISBN-numbered)
+        // with an optional _NNN version suffix.
+        var regex = new Regex(@"^test\.leg\.ia\.original_filenames\.((?:ukia|ssifia|sdsifia)_\d+_en(?:_\d+)?)\.docx$");
         return resourceNames
             .Select(name => regex.Match(name))
             .Where(match => match.Success)

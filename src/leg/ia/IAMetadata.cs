@@ -29,14 +29,20 @@ class IAMetadata : DocumentMetadata {
     // Full UKIA URI (e.g., http://www.legislation.gov.uk/id/ukia/2025/17)
     public string UkiaUri { get; init; }
 
+    // The IA filename's series prefix (ukia/ssifia/sdsifia) and its /impacts identity.
+    public string IaSeries { get; init; }
+    public string ImpactsYear { get; init; }
+    public string ImpactsNumber { get; init; }
+
     /// <summary>
-    /// Image filenames use the IA's own identifier (ukia/year/number) rather than the
-    /// parent legislation path, so images from different IAs under the same legislation
-    /// are always distinguishable.
+    /// Image filenames use the IA's own identifier ({series}/{impacts-year}/{impacts-number},
+    /// e.g. ukia/2025/17 or ssifia/2026/173) rather than the parent legislation path, so
+    /// images from different IAs under the same legislation are always distinguishable and
+    /// the image name matches the document's own filename scheme.
     /// </summary>
     public override string ImageFileIdentifier =>
-        UkiaYear.HasValue && UkiaNumber.HasValue
-            ? $"ukia/{UkiaYear.Value}/{UkiaNumber.Value}"
+        !string.IsNullOrEmpty(IaSeries) && !string.IsNullOrEmpty(ImpactsYear) && !string.IsNullOrEmpty(ImpactsNumber)
+            ? $"{IaSeries}/{ImpactsYear}/{ImpactsNumber}"
             : base.ImageFileIdentifier;
 
     internal static IAMetadata Make(List<IBlock> header, WordprocessingDocument doc, LegislativeDocumentConfig config, string filename) {
@@ -48,25 +54,17 @@ class IAMetadata : DocumentMetadata {
         DateTime? modified = DocxLastModified.Get(doc);
         Dictionary<string, Dictionary<string, string>> css = DOCX.CSS.Extract(doc.MainDocumentPart, "#doc");
 
-        // Parse filename to get year/number for URI construction and metadata lookup
-        string shortUri = null;
-        string legislationUri = null;
-        IAMappingRecord mappingRecord = null;
-
-        var parsed = IALegislationMapping.ParseFilename(filename);
-        if (parsed.HasValue) {
-            var (year, number) = parsed.Value;
-            legislationUri = IALegislationMapping.GetLegislationUri(year, number);
-            
-            // Look up full mapping record for additional metadata
-            mappingRecord = IALegislationMapping.GetMappingRecord(year, number);
-            
-            // Build URI with stage component if available
-            shortUri = IALegislationMapping.BuildShortUriComponent(year, number, mappingRecord?.DocumentStage);
-        }
+        // Look up the mapping record by the actual filename (handles every IA
+        // jurisdiction: ukia, ssifia, sdsifia) and build the URI from it.
+        IAMappingRecord mappingRecord = IALegislationMapping.GetMappingRecord(filename);
+        string shortUri = IALegislationMapping.BuildShortUriComponent(mappingRecord);
+        string legislationUri = mappingRecord?.LegislationUri;
 
         return new IAMetadata {
             ShortUriComponent = shortUri,
+            IaSeries = mappingRecord?.IaSeries,
+            ImpactsYear = mappingRecord?.ImpactsYear,
+            ImpactsNumber = mappingRecord?.ImpactsNumber,
             ExpressionDate = Builder.FormatDateOnly(modified),
             ExpressionDateName = modified is null ? null : "lastModified",
             Name = name,

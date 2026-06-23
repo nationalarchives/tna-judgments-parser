@@ -28,7 +28,7 @@ public class TestIAHtml {
 
     private static IEnumerable<object[]> GetTestFiles() {
         var assembly = Assembly.GetExecutingAssembly();
-        var regex = new Regex(@"^test\.leg\.ia\.original_filenames\.(ukia_\d+_en)\.akn$");
+        var regex = new Regex(@"^test\.leg\.ia\.original_filenames\.((?:ukia|ssifia|sdsifia)_\d+_en(?:_\d+)?)\.akn$");
         return assembly.GetManifestResourceNames()
             .Select(name => regex.Match(name))
             .Where(match => match.Success)
