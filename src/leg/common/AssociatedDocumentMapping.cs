@@ -120,11 +120,30 @@ internal static class AssociatedDocumentMapping {
     /// Gets the full mapping record for the given filename.
     /// Returns null if no mapping found.
     /// </summary>
+    /// <remarks>
+    /// The delivered DOCX is sometimes versioned (e.g. <c>sdsifia_9780111019269_en_001</c>)
+    /// while the CSV key, derived from the deployment PDF URI, has no version suffix
+    /// (<c>sdsifia_9780111019269_en</c>), and vice versa. So after an exact miss we retry
+    /// with the trailing <c>_NNN</c> version suffix stripped.
+    /// </remarks>
     public static AssociatedDocumentRecord GetRecord(string filename) {
         string key = NormalizeFilename(filename);
         if (_records.TryGetValue(key, out var record))
             return record;
+
+        string baseKey = StripVersionSuffix(key);
+        if (baseKey != key && _records.TryGetValue(baseKey, out record))
+            return record;
+
         return null;
+    }
+
+    private static string StripVersionSuffix(string normalizedName) {
+        if (string.IsNullOrEmpty(normalizedName))
+            return normalizedName;
+        var match = System.Text.RegularExpressions.Regex.Match(
+            normalizedName, @"^(?<base>.+_en)_\d+$", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        return match.Success ? match.Groups["base"].Value : normalizedName;
     }
 
     /// <summary>
