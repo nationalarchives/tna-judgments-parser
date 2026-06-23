@@ -44,10 +44,16 @@ class ImageConverter {
                 continue;
             }
             Tuple<WMF.ImageType, byte[]> converted = null;
-            if (image.Name.EndsWith(".emf"))
-                converted = EMF.Convert(image.Read());
-            else if (image.Name.EndsWith(".wmf"))
-                converted = WMF.Convert(image.Read());
+            try {
+                if (image.Name.EndsWith(".emf"))
+                    converted = EMF.Convert(image.Read());
+                else if (image.Name.EndsWith(".wmf"))
+                    converted = WMF.Convert(image.Read());
+            } catch (Exception e) {
+                logger.LogWarning("error converting {name}: {message}; keeping original", image.Name, e.Message);
+                images.Add(image);
+                continue;
+            }
 
             if (converted is null) {
                 logger.LogDebug("{name} not converted", image.Name);
@@ -77,7 +83,10 @@ class ImageConverter {
                 images.Add(converted2);
                 continue;
             }
-            throw new Exception();
+            // Defensive: the converter only yields BMP today, but never fail the whole
+            // document on an unexpected type -- keep the original and carry on.
+            logger.LogWarning("unexpected converted image type for {name}; keeping original", image.Name);
+            images.Add(image);
         }
         setter(images);
     }
@@ -127,15 +136,23 @@ class ImageConverter {
                 string changedSrc = MakeChangedSrc(changedRef.Src, n);
                 changedRef.Src = changedSrc;
                 byte[] data;
-                if (changedRef.Crop is not null) {
-                    logger.LogInformation("cropping {} to ({}, {}, {}, {})", changedRef.Src, changedRef.Crop.Value.Top, changedRef.Crop.Value.Right, changedRef.Crop.Value.Bottom, changedRef.Crop.Value.Left);
-                    data = Mutate.Crop(image.Read(), changedRef.Crop.Value);
-                } else {
+                // Crop/rotate go through ImageSharp, which can't decode every embedded
+                // format (e.g. vector EMF/WMF metafiles). Degrade to the unmodified image
+                // rather than failing the whole document when the mutation can't be applied.
+                try {
+                    if (changedRef.Crop is not null) {
+                        logger.LogInformation("cropping {} to ({}, {}, {}, {})", changedRef.Src, changedRef.Crop.Value.Top, changedRef.Crop.Value.Right, changedRef.Crop.Value.Bottom, changedRef.Crop.Value.Left);
+                        data = Mutate.Crop(image.Read(), changedRef.Crop.Value);
+                    } else {
+                        data = image.Read();
+                    }
+                    if (changedRef.Rotate.HasValue) {
+                        logger.LogInformation("rotating {} by {}", changedRef.Src, changedRef.Rotate.Value);
+                        data = Mutate.Rotate(data, changedRef.Rotate.Value);
+                    }
+                } catch (Exception e) {
+                    logger.LogWarning("cannot crop/rotate {Src} ({Type}); keeping the unmodified image: {Message}", changedSrc, image.ContentType, e.Message);
                     data = image.Read();
-                }
-                if (changedRef.Rotate.HasValue) {
-                    logger.LogInformation("rotating {} by {}", changedRef.Src, changedRef.Rotate.Value);
-                    data = Mutate.Rotate(data, changedRef.Rotate.Value);
                 }
                 var converted = new ConvertedImage {
                     Name = changedSrc,

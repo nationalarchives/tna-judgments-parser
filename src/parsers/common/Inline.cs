@@ -68,6 +68,15 @@ class Inline {
         if (e is Drawing draw) {
             var resolver = DrawingResolver.Current;
             int drawingIndex = resolver?.NextDrawingIndex() ?? -1;
+            // An embedded EMF/WMF metafile that our bitmap extractor can't rasterise and
+            // ImageSharp can't decode is better taken from the renderer. Prefer the
+            // rendered rasterisation only when the renderer actually produced one;
+            // otherwise fall through to direct extraction (so extractable metafiles, and
+            // the no-renderer path, are unchanged).
+            if (resolver is not null && WImageRef.IsMetafileDrawing(draw)) {
+                IInline rendered = resolver.TryGetRenderedDrawing(drawingIndex);
+                if (rendered is not null) return rendered;
+            }
             IInline img = WImageRef.Make(main, draw);
             if (img != null) return img;
             return resolver?.TryResolveUnrenderedDrawing(draw, rProps, drawingIndex)

@@ -69,15 +69,9 @@ public sealed class RenderSession : IDrawingResolver {
             DocumentFormat.OpenXml.Wordprocessing.Drawing draw,
             RunProperties rProps,
             int drawingIndex) {
-        if (drawingIndex >= 0 && DocxBytes != null) {
-            byte[] bytes = GetRenderedDrawing(drawingIndex);
-            if (bytes != null && bytes.Length > 0) {
-                var (ext, mime) = ImageFormat.Detect(bytes);
-                string name = $"rendered_drawing_{drawingIndex:D3}.{ext}";
-                AddRenderedImage(new WRenderedImage(name, mime, bytes));
-                return new WRenderedImageRef(name);
-            }
-        }
+        IInline rendered = TryGetRenderedRef(drawingIndex);
+        if (rendered is not null)
+            return rendered;
         if (!AllowUnrenderedCharts) {
             var (graphicType, caption) = DescribeDrawing(draw);
             throw new UnrenderableDrawingException(
@@ -85,6 +79,24 @@ public sealed class RenderSession : IDrawingResolver {
                 "renderer unavailable or returned no image");
         }
         return MakeDrawingPlaceholder(draw, rProps);
+    }
+
+    IInline IDrawingResolver.TryGetRenderedDrawing(int drawingIndex) => TryGetRenderedRef(drawingIndex);
+
+    /// <summary>
+    /// Emit a reference to the pre-rendered image for this drawing index, adding it to
+    /// the session's rendered images, or null when nothing was rendered for it.
+    /// </summary>
+    private IInline TryGetRenderedRef(int drawingIndex) {
+        if (drawingIndex < 0 || DocxBytes == null)
+            return null;
+        byte[] bytes = GetRenderedDrawing(drawingIndex);
+        if (bytes == null || bytes.Length == 0)
+            return null;
+        var (ext, mime) = ImageFormat.Detect(bytes);
+        string name = $"rendered_drawing_{drawingIndex:D3}.{ext}";
+        AddRenderedImage(new WRenderedImage(name, mime, bytes));
+        return new WRenderedImageRef(name);
     }
 
     private static (string graphicType, string caption) DescribeDrawing(DocumentFormat.OpenXml.Wordprocessing.Drawing draw) {

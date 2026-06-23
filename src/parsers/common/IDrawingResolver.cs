@@ -37,6 +37,15 @@ internal interface IDrawingResolver {
         RunProperties rProps,
         int drawingIndex);
 
+    /// <summary>
+    /// Returns a reference to the pre-rendered image for the given drawing index when
+    /// one is available, or <c>null</c> when nothing was rendered (no placeholder, no
+    /// throw). Lets callers prefer a rendered rasterisation for embedded images the
+    /// parser can't decode itself (e.g. vector EMF/WMF metafiles) while falling back to
+    /// direct extraction when no render exists.
+    /// </summary>
+    IInline TryGetRenderedDrawing(int drawingIndex);
+
 }
 
 /// <summary>
