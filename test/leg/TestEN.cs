@@ -87,6 +87,7 @@ public class TestEN {
 
     [Fact]
     public void RegenerateAllTestFiles() {
+        TestFileUpdateHelpers.SkipUnlessUpdatingFixtures();
         var projectRoot = Path.GetFullPath(Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
             "..", "..", "..", ".."
@@ -102,9 +103,10 @@ public class TestEN {
                 var testFolder = Path.Combine(projectRoot, "test", "leg", "en");
                 var normalizedName = UK.Gov.Legislation.Common.ENLegislationMapping.NormalizeFilename(filename);
                 var outputPath = Path.Combine(testFolder, $"{normalizedName}.akn");
-                File.WriteAllText(outputPath, result.Serialize());
-                result.SaveImages(testFolder);
-                Console.WriteLine($"Regenerated {normalizedName}.akn (from {filename}.docx)");
+                if (TestFileUpdateHelpers.WriteLegAknFixtureIfChanged(outputPath, result.Serialize())) {
+                    result.SaveImages(testFolder);
+                    Console.WriteLine($"Regenerated {normalizedName}.akn (from {filename}.docx)");
+                }
             } catch (Exception ex) {
                 failures.Add($"{filename}: {ex.Message}");
                 Console.WriteLine($"Skipped {filename}: {ex.Message}");
