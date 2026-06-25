@@ -21,7 +21,6 @@ public static class DocumentHelpers
         Assert.Empty(UK.Gov.Legislation.Validator.Shared.ValidateAgainstMainAkn(akn));
     }
 
-
     public static byte[] ReadDocx(int i)
     {
         return ReadDocx($"test.judgments.test{i}.docx");
