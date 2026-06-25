@@ -79,6 +79,23 @@ public class WImageRef : IImageRef {
         return new WImageRef(main, drawing);
     }
 
+    /// <summary>
+    /// True when the drawing's embedded image is a vector metafile (EMF/WMF). Our
+    /// bitmap extractor only lifts an embedded raster out of a metafile and can't
+    /// rasterise vector drawing commands, and ImageSharp can't decode metafiles at
+    /// all, so callers with a renderer available should prefer rendering these.
+    /// </summary>
+    public static bool IsMetafileDrawing(Drawing drawing) {
+        DrawingML.Blip blip = drawing.Descendants<DrawingML.Blip>().FirstOrDefault();
+        if (blip?.Embed is null)
+            return false;
+        Uri partUri = DOCX.Relationships.GetUriForImage(blip.Embed, drawing);
+        string path = partUri?.OriginalString;
+        return path is not null
+            && (path.EndsWith(".emf", StringComparison.OrdinalIgnoreCase)
+                || path.EndsWith(".wmf", StringComparison.OrdinalIgnoreCase));
+    }
+
     public WImageRef(MainDocumentPart main, Drawing drawing) {
         bool isAbsolutelyPositioned = drawing.ChildElements.OfType<DrawingML.Wordprocessing.Anchor>().Any(); // types are WrapSquare, WrapTight, WrapThrough, WrapTopBottom and WrapNone
         if (isAbsolutelyPositioned)
