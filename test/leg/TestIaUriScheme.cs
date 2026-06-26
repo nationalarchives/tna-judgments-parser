@@ -54,6 +54,24 @@ public class TestIaUriScheme {
         Assert.Equal(expectedShortUri, IALegislationMapping.BuildShortUriComponent(record));
     }
 
+    [Theory]
+    // A ukia absent from the mapping CSV must still get its standalone
+    // ukia/{year}/{number} URI, not an empty one (year 2099 keeps it out of the CSV).
+    [InlineData("ukia_20990001_en", "ukia/2099/1")]
+    [InlineData("ukia_20990123_en", "ukia/2099/123")]
+    public void UnmappedUkiaFallsBackToStandaloneUri(string filename, string expected) {
+        var record = IALegislationMapping.GetMappingRecord(filename);
+        Assert.NotNull(record);
+        Assert.Equal(expected, IALegislationMapping.BuildShortUriComponent(record));
+    }
+
+    [Fact]
+    public void UnmappedNonUkiaHasNoStandaloneFallback() {
+        // Scottish/other schemes have no standalone URI, so an unmapped one stays
+        // unmapped (null) rather than being given a bogus ukia/... URI.
+        Assert.Null(IALegislationMapping.GetMappingRecord("ssifia_20990001_en"));
+    }
+
 }
 
 }
