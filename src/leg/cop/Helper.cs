@@ -44,7 +44,7 @@ class Helper : BaseHelper {
     }
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
-        TocGenerator.Generate(xml, "The whole Code of Practice", TocGenerator.TocStrategy.BoldTitleDocumentOrder);
+        TocGenerator.Generate(xml, TocGenerator.TocStrategy.BoldTitleDocumentOrder);
     }
 
 }

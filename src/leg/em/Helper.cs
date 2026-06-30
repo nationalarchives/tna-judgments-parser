@@ -56,28 +56,7 @@ class Helper : BaseHelper {
 
     protected override void ApplyDocumentSpecificProcessing(XmlDocument xml) {
         StripLeadingTabMarkers(xml);
-        var nsmgr = new XmlNamespaceManager(xml.NameTable);
-        nsmgr.AddNamespace("akn", AKN_NAMESPACE);
-        nsmgr.AddNamespace("ukm", "http://www.legislation.gov.uk/namespaces/metadata");
-        var documentMainType = xml.SelectSingleNode("//akn:proprietary/ukm:DocumentMainType/@Value", nsmgr)?.Value;
-        TocGenerator.Generate(xml, GetWholeDocumentLabel(documentMainType));
-    }
-
-    /// <summary>
-    /// Get the appropriate "whole document" label based on EM document type.
-    /// </summary>
-    private static string GetWholeDocumentLabel(string documentMainType) {
-        if (string.IsNullOrEmpty(documentMainType))
-            return "The whole Explanatory Memorandum";
-
-        string typeLower = documentMainType.ToLowerInvariant();
-
-        if (typeLower.Contains("policynote"))
-            return "The whole Policy Note";
-        if (typeLower.Contains("executivenote"))
-            return "The whole Executive Note";
-
-        return "The whole Explanatory Memorandum";
+        TocGenerator.Generate(xml);
     }
 
 }
