@@ -134,3 +134,13 @@ You can run this code in a Dev Container in VSCode or [other IDES](https://conta
 You can now run tests in debug mode from the Flask (Testing) icon on the left.
 
 Configuration lives in `devcontainer.json`.
+
+### Pre-commit hooks
+
+We use [Husky .Net](https://alirezanet.github.io/Husky.Net/) for precommit hooks.
+
+```
+dotnet new tool-manifest
+dotnet tool install Husky
+dotnet husky install
+```
