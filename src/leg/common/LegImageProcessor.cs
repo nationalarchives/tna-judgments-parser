@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 
+using UK.Gov.Legislation.Common.Rendering;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Models;
 using Imaging = UK.Gov.NationalArchives.Imaging;
@@ -44,22 +46,20 @@ class LegImageProcessor {
         logger.LogInformation("Processing {Count} images for {Uri} (file identifier: {Id})",
             document.Images.Count(), shortUri, fileIdentifier);
 
-        // Collect image references from all parts of the document (Header, Body, Annexes)
-        IEnumerable<IImageRef> refs;
-        if (document is IDividedDocument dividedDoc) {
-            var bodyRefs = UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(dividedDoc.Body);
-            var headerRefs = dividedDoc.Header != null
-                ? UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(dividedDoc.Header)
-                : Enumerable.Empty<IImageRef>();
-            var annexRefs = dividedDoc.Annexes != null
-                ? dividedDoc.Annexes.SelectMany(a => UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(a.Contents))
-                : Enumerable.Empty<IImageRef>();
-            refs = bodyRefs.Concat(headerRefs).Concat(annexRefs);
-        } else if (document is IUndividedDocument undividedDoc) {
-            refs = UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(undividedDoc.Body);
-        } else {
-            refs = Enumerable.Empty<IImageRef>();
-        }
+        // Collect image references from every region (Header, Body, Annexes) for both
+        // document shapes; a missed region leaves its images unprocessed and refs dangling.
+        var headerRefs = document.Header != null
+            ? UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(document.Header)
+            : Enumerable.Empty<IImageRef>();
+        IEnumerable<IImageRef> bodyRefs = document switch {
+            IDividedDocument dividedDoc => UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(dividedDoc.Body),
+            IUndividedDocument undividedDoc => UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(undividedDoc.Body),
+            _ => Enumerable.Empty<IImageRef>()
+        };
+        var annexRefs = document.Annexes != null
+            ? document.Annexes.SelectMany(a => UK.Gov.Legislation.Judgments.Util.Descendants<IImageRef>(a.Contents))
+            : Enumerable.Empty<IImageRef>();
+        IEnumerable<IImageRef> refs = headerRefs.Concat(bodyRefs).Concat(annexRefs);
 
         // Step 1: Convert EMF/WMF to intermediate format (reuse existing ImageConverter)
         List<IImage> images = document.Images.ToList();
@@ -76,9 +76,13 @@ class LegImageProcessor {
                 gifData = ConvertToGif(image.Read());
                 logger.LogDebug("Converted {Name} to GIF", image.Name);
             } catch (Exception e) {
-                logger.LogWarning("Cannot convert {Name} to GIF: {Message}. Skipping image.", image.Name, e.Message);
-                sequence++;
-                continue;
+                gifData = RenderToGif(image);  // fall back to the renderer before giving up
+                if (gifData is null) {
+                    logger.LogWarning("Cannot convert {Name} to GIF: {Message}. Dropping image.", image.Name, e.Message);
+                    sequence++;
+                    continue;
+                }
+                logger.LogInformation("Recovered {Name} via the renderer", image.Name);
             }
 
             // Generate new S3-style filename with .gif extension
@@ -113,6 +117,23 @@ class LegImageProcessor {
         using var stream = new MemoryStream();
         image.SaveAsGif(stream);
         return stream.ToArray();
+    }
+
+    // Rasterise via the active renderer (LibreOffice) when ImageSharp can't read the
+    // image, then take the normal GIF path. Null if no renderer is available or it fails.
+    private static byte[] RenderToGif(IImage image) {
+        var renderer = RenderSession.Current?.Renderer;
+        if (renderer is null)
+            return null;
+        byte[] png = renderer.RenderImage(image.Read(), Path.GetExtension(image.Name), CancellationToken.None);
+        if (png is null || png.Length == 0)
+            return null;
+        try {
+            return ConvertToGif(png);
+        } catch (Exception e) {
+            logger.LogWarning("Renderer output for {Name} still not convertible: {Message}", image.Name, e.Message);
+            return null;
+        }
     }
 
 }
