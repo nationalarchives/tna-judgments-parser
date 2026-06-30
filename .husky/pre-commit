@@ -1,0 +1,29 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+## husky task runner examples -------------------
+## Note : for local installation use 'dotnet' prefix. e.g. 'dotnet husky'
+
+## run all tasks
+#husky run
+
+### run all tasks with group: 'group-name'
+#husky run --group group-name
+
+## run task with name: 'task-name'
+#husky run --name task-name
+
+## pass hook arguments to task
+#husky run --args "$1" "$2"
+
+
+# Check for linting errors
+if ! dotnet husky run --name "dotnet-format--verify-no-changes"; then
+    echo "⚠️ Linting errors detected! Auto-fixing affected files..."
+    
+    dotnet husky run --name "dotnet-format" --quiet
+
+    echo "👍 Auto-fixing complete. Please review and stage the changes before committing."
+
+    exit 1
+fi
