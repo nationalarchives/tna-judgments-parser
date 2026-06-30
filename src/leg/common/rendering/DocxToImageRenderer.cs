@@ -74,7 +74,43 @@ public sealed class DocxToImageRenderer {
         }
     }
 
-    private bool ConvertToHtml(string inputDocx, string outDir, CancellationToken ct) {
+    private bool ConvertToHtml(string inputDocx, string outDir, CancellationToken ct)
+        => RunConvert("html", inputDocx, outDir, ct);
+
+    // Rasterise a single embedded image (e.g. a metafile the in-process converters
+    // can't read) by letting LibreOffice convert it to PNG. Returns null on any
+    // failure so callers can fall back. Same soffice machinery as the html path.
+    public byte[] RenderImage(byte[] image, string sourceExtension, CancellationToken ct) {
+        if (image == null || image.Length == 0) return null;
+        if (!File.Exists(sofficePath)) {
+            logger.LogWarning("soffice not found at {Path}; cannot render image", sofficePath);
+            return null;
+        }
+        string ext = string.IsNullOrEmpty(sourceExtension) ? ".img" : sourceExtension;
+        if (!ext.StartsWith('.')) ext = "." + ext;
+
+        string workDir = Path.Combine(Path.GetTempPath(), $"leg_img_{Guid.NewGuid():N}");
+        Directory.CreateDirectory(workDir);
+        try {
+            string input = Path.Combine(workDir, "input" + ext);
+            File.WriteAllBytes(input, image);
+            if (!RunConvert("png", input, workDir, ct)) return null;
+            string output = Path.Combine(workDir, "input.png");
+            if (!File.Exists(output)) {
+                logger.LogWarning("soffice did not produce a PNG for the image");
+                return null;
+            }
+            return File.ReadAllBytes(output);
+        } catch (Exception ex) {
+            logger.LogWarning(ex, "image render failed");
+            return null;
+        } finally {
+            try { Directory.Delete(workDir, recursive: true); }
+            catch (Exception ex) { logger.LogDebug(ex, "failed to clean up {WorkDir}", workDir); }
+        }
+    }
+
+    private bool RunConvert(string target, string input, string outDir, CancellationToken ct) {
         // Per-invocation user profile so concurrent soffice processes don't collide on the default profile.
         string profileDir = Path.Combine(outDir, "profile");
         Directory.CreateDirectory(profileDir);
@@ -90,10 +126,10 @@ public sealed class DocxToImageRenderer {
         psi.ArgumentList.Add($"-env:UserInstallation={profileUri}");
         psi.ArgumentList.Add("--headless");
         psi.ArgumentList.Add("--convert-to");
-        psi.ArgumentList.Add("html");
+        psi.ArgumentList.Add(target);
         psi.ArgumentList.Add("--outdir");
         psi.ArgumentList.Add(outDir);
-        psi.ArgumentList.Add(inputDocx);
+        psi.ArgumentList.Add(input);
 
         subprocessGate.Wait(ct);
         try {

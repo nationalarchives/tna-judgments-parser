@@ -1466,6 +1466,10 @@ class Helper : BaseHelper {
 
     private static bool IsFlatBoldHeadingParagraph(XmlElement paragraph, XmlNamespaceManager nsmgr, out string headingText) {
         headingText = null;
+        // A paragraph carrying an image is content (e.g. a chart with a bold caption),
+        // not a heading; treating it as one discards the image, since the annex tier
+        // builds headings as text only (LEG-162).
+        if (paragraph.SelectSingleNode(".//akn:img", nsmgr) != null) return false;
         string fullText = paragraph.InnerText?.Trim() ?? "";
         if (fullText.Length < 3 || fullText.Length > 200) return false;
         var bold = paragraph.SelectSingleNode("akn:b", nsmgr);

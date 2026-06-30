@@ -20,7 +20,7 @@
         <FRBRManifestation>
           <FRBRthis value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
           <FRBRuri value="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/data.akn" />
-          <FRBRdate date="2026-06-22" name="historic-akn-transform" />
+          <FRBRdate date="2026-06-30" name="historic-akn-transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/akn+xml" />
         </FRBRManifestation>
@@ -29,7 +29,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
       </references>
       <proprietary source="#" xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <ukm:Parser Name="core" Value="1.10.0" />
+        <ukm:Parser Name="core" Value="1.10.1" />
         <ukm:Parser Name="legislation" Value="1.0.0" />
         <dc:title>Impact Assessment for The Venture Capital Funds (Amendment) (EU Exit) Regulations 2019</dc:title>
         <dc:description>Impact Assessment for The Venture Capital Funds (Amendment) (EU Exit) Regulations 2019</dc:description>
@@ -51,7 +51,7 @@
           <ukm:TotalParagraphs Value="124" />
           <ukm:BodyParagraphs Value="101" />
           <ukm:ScheduleParagraphs Value="23" />
-          <ukm:TotalImages Value="1" />
+          <ukm:TotalImages Value="2" />
         </ukm:Statistics>
         <ukm:Hash>33560e7d191d44c2a81fcc9893e1fe7265c901d3b6c69f78805e2ed6188317c2</ukm:Hash>
       </proprietary>
@@ -102,10 +102,9 @@
         <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/42" level="2"><inline name="tocHeading">Annex A</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/43" level="2"><inline name="tocHeading">Method</inline></tocItem>
         <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/44" level="2"><inline name="tocHeading">Assumptions and evidence base</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/45" level="2"><inline name="tocHeading">Assumed reading speed (wpm) by Flesch Reading Score</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/46" level="2"><inline name="tocHeading">Breakdown of Familiarisation Costs</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/47" level="2"><inline name="tocHeading">Monetised Familiarisation Costs by SI</inline></tocItem>
-        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/48" level="2"><inline name="tocHeading">Annex B – Summary of SI provisions which come into force pre-exit</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/45" level="2"><inline name="tocHeading">Breakdown of Familiarisation Costs</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/46" level="2"><inline name="tocHeading">Monetised Familiarisation Costs by SI</inline></tocItem>
+        <tocItem href="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/section/47" level="2"><inline name="tocHeading">Annex B – Summary of SI provisions which come into force pre-exit</inline></tocItem>
       </toc>
       <section class="summary" eId="section_2">
         <heading>Summary</heading>
@@ -3156,14 +3155,11 @@
             </table>
             <p>The time spent reading and familiarising is based on the word length of the SI and the difficulty of the text based on the Flesch Reading Scale. </p>
             <p>It is assumed that, as legal experts, readers will generally be familiar with this type of literature so we have taken the upper bound of the reading speed of difficult text, i.e. 100 words per minute. Furthermore, it is assumed that this form of familiarisation will be undertaken on a one-off basis.</p>
+            <p><img src="http://www.legislation.gov.uk/uksi/2019/333/impacts/2019/60/images/ukia_2019_60_en_002.gif" /><b>Assumed reading speed (wpm) by Flesch Reading Score:</b></p>
           </content>
         </paragraph>
       </section>
       <section eId="section_45">
-        <heading>Assumed reading speed (wpm) by Flesch Reading Score</heading>
-        <content />
-      </section>
-      <section eId="section_46">
         <heading>Breakdown of Familiarisation Costs</heading>
         <paragraph>
           <content>
@@ -3206,7 +3202,7 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_47">
+      <section eId="section_46">
         <heading>Monetised Familiarisation Costs by SI</heading>
         <paragraph>
           <content>
@@ -3415,7 +3411,7 @@
           </content>
         </paragraph>
       </section>
-      <section eId="section_48">
+      <section eId="section_47">
         <paragraph>
           <content>
             <p><span style="color:#2F5496">Annex B – Summary of SI provisions which come into force pre-exit</span></p>

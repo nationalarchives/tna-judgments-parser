@@ -19,6 +19,9 @@ public sealed class LocalSubprocessRenderer : IDrawingRenderer {
     public IReadOnlyList<byte[]> RenderAllDrawings(byte[] docx, CancellationToken ct)
         => inner.RenderAllDrawings(docx, ct);
 
+    public byte[] RenderImage(byte[] image, string sourceExtension, CancellationToken ct)
+        => inner.RenderImage(image, sourceExtension, ct);
+
 }
 
 }

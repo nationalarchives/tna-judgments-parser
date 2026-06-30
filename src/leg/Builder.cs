@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Linq;
 
+using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Common;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Models;
@@ -18,6 +20,8 @@ class Builder : AkN.Builder {
 
     override protected string UKNS => "https://legislation.gov.uk/akn";
     private const string UKM_NS = "http://www.legislation.gov.uk/namespaces/metadata";
+
+    private static readonly ILogger logger = Logging.Factory.CreateLogger<Builder>();
 
     /// <summary>
     /// IA's section detection (BaseHelper.ApplyDocumentSpecificProcessing)
@@ -492,10 +496,17 @@ class Builder : AkN.Builder {
             XmlElement e = CreateAndAppend("docProponent", parent);
             foreach (Judgments.IInline child in docDept.Contents)
                 AddInlineNoBr(e, child);
+        } else if (model is IImageRef imageRef && !IsUploadedImageSrc(imageRef.Src)) {
+            // Drop refs that never resolved to an uploaded URL rather than emit a dangling <img>.
+            logger.LogWarning("dropping image reference with no uploaded image: {Src}", imageRef.Src);
         } else {
             base.AddInline(parent, model);
         }
     }
+
+    private static bool IsUploadedImageSrc(string src) =>
+        src is not null && (src.StartsWith("http://www.legislation.gov.uk/", StringComparison.Ordinal)
+                         || src.StartsWith("https://www.legislation.gov.uk/", StringComparison.Ordinal));
 
     private string ExtractDateFromContent(IEnumerable<Judgments.IInline> contents) {
         return null;
