@@ -91,16 +91,6 @@ class Helper : BaseHelper {
 
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
 
-        // Add "whole document" link first
-        var wholeDocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
-        wholeDocItem.SetAttribute("href", expressionUri ?? "#doc");
-        wholeDocItem.SetAttribute("level", "1");
-        var wholeDocHeading = xml.CreateElement("inline", AKN_NAMESPACE);
-        wholeDocHeading.SetAttribute("name", "tocHeading");
-        wholeDocHeading.InnerText = "The whole Explanatory Note";
-        wholeDocItem.AppendChild(wholeDocHeading);
-        toc.AppendChild(wholeDocItem);
-
         // Walk direct children of mainBody in document order
         int sectionCounter = 0;
         foreach (XmlNode child in mainBody.ChildNodes) {

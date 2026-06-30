@@ -21,9 +21,8 @@ internal static class TocGenerator {
     private static readonly ILogger logger = Logging.Factory.CreateLogger(typeof(TocGenerator));
 
     /// <summary>
-    /// Walking strategies supported by <see cref="Generate"/>. BoldTitleDocumentOrder
-    /// also implies "skip if no structural entries found" (produces no TOC on
-    /// unstructured content rather than a lone whole-document link).
+    /// Walking strategies supported by <see cref="Generate"/>. Either way, no TOC is
+    /// emitted when there are no structural entries.
     /// </summary>
     public enum TocStrategy {
         /// <summary>
@@ -39,7 +38,7 @@ internal static class TocGenerator {
         BoldTitleDocumentOrder
     }
 
-    public static void Generate(XmlDocument xml, string wholeDocumentLabel, TocStrategy strategy = TocStrategy.MultiXPath) {
+    public static void Generate(XmlDocument xml, TocStrategy strategy = TocStrategy.MultiXPath) {
         var nsmgr = new XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", AKN_NAMESPACE);
         nsmgr.AddNamespace("ukm", UKM_NAMESPACE);
@@ -63,15 +62,6 @@ internal static class TocGenerator {
 
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
 
-        var wholeDocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
-        wholeDocItem.SetAttribute("href", expressionUri ?? "#doc");
-        wholeDocItem.SetAttribute("level", "1");
-        var wholeDocHeading = xml.CreateElement("inline", AKN_NAMESPACE);
-        wholeDocHeading.SetAttribute("name", "tocHeading");
-        wholeDocHeading.InnerText = wholeDocumentLabel;
-        wholeDocItem.AppendChild(wholeDocHeading);
-        toc.AppendChild(wholeDocItem);
-
         int structuralCount = strategy switch {
             TocStrategy.BoldTitleDocumentOrder => PopulateBoldTitleInOrder(xml, toc, mainBody, expressionUri, nsmgr),
             _ => PopulateMultiXPath(xml, toc, expressionUri, nsmgr)
@@ -79,9 +69,9 @@ internal static class TocGenerator {
 
         structuralCount += PopulateFromAttachments(xml, toc, expressionUri, nsmgr);
 
-        // BoldTitleDocumentOrder callers (CoP/OD/TN) don't want a TOC that's just the
-        // whole-document link on unstructured content; MultiXPath (EM) historically always emits.
-        if (strategy == TocStrategy.BoldTitleDocumentOrder && structuralCount == 0)
+        // Don't emit an empty TOC; the whole-document link that used to guarantee one
+        // entry is now supplied by the publisher, so unstructured content gets no TOC.
+        if (structuralCount == 0)
             return;
 
         if (mainBody.FirstChild != null)
@@ -138,7 +128,8 @@ internal static class TocGenerator {
     private static int PopulateFromAttachments(XmlDocument xml, XmlElement toc, string expressionUri, XmlNamespaceManager nsmgr) {
         var annexBodies = xml.SelectNodes("//akn:attachments/akn:attachment/akn:doc/akn:mainBody", nsmgr);
         if (annexBodies == null || annexBodies.Count == 0) return 0;
-        int nextTocNumber = toc.ChildNodes.Count;
+        // Continue 1-based numbering after the body entries already in the TOC.
+        int nextTocNumber = toc.ChildNodes.Count + 1;
         int added = 0;
         foreach (XmlNode annexBody in annexBodies) {
             foreach (XmlNode child in annexBody.ChildNodes) {

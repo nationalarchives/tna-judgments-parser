@@ -1380,17 +1380,7 @@ class Helper : BaseHelper {
         var hcontainers = xml.SelectNodes("//akn:mainBody/akn:hcontainer[@name]", nsmgr);
         
         var toc = xml.CreateElement("toc", AKN_NAMESPACE);
-        
-        // Add "whole document" link first (always present)
-        var wholeDocItem = xml.CreateElement("tocItem", AKN_NAMESPACE);
-        wholeDocItem.SetAttribute("href", expressionUri ?? "#doc");
-        wholeDocItem.SetAttribute("level", "1");
-        var wholeDocHeading = xml.CreateElement("inline", AKN_NAMESPACE);
-        wholeDocHeading.SetAttribute("name", "tocHeading");
-        wholeDocHeading.InnerText = "The whole Impact Assessment";
-        wholeDocItem.AppendChild(wholeDocHeading);
-        toc.AppendChild(wholeDocItem);
-        
+
         int tocNumber = 1;
         
         // Add hcontainer entries first (usually summary at the top)
