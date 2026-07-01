@@ -37,6 +37,33 @@ public class TestRenderedChartIntegration {
     }
 
     [Fact]
+    public void ParseIaWithSmartArt_RecoversViaIsolatedRender() {
+        if (string.IsNullOrEmpty(SofficePath) || !File.Exists(SofficePath))
+            Assert.Skip("LibreOffice not available; set LEG_SOFFICE_PATH to run this test.");
+
+        string projectRoot = Path.GetFullPath(Path.Combine(
+            System.AppDomain.CurrentDomain.BaseDirectory,
+            "..", "..", "..", ".."));
+        byte[] docx = File.ReadAllBytes(Path.Combine(
+            projectRoot, "test", "leg", "ia", "ukia_20140346_en.docx"));
+
+        var renderer = new LocalSubprocessRenderer(SofficePath);
+
+        // The SmartArt diagram has no blip and the whole-document marker render can't map
+        // it; strict mode throws unless the isolated-render fallback recovers it. Reaching
+        // an image (not a placeholder) proves the recovery.
+        var result = IaHelper.Parse(
+            docx, "ukia_20140346_en.docx",
+            simplify: true,
+            allowUnrenderedCharts: false,
+            renderer: renderer);
+
+        string akn = result.Serialize();
+        Assert.Contains("<img ", akn);
+        Assert.DoesNotContain("[Diagram", akn);
+    }
+
+    [Fact]
     public void ParseIaWithoutRenderer_KeepsTextPlaceholderInLenientMode() {
         string projectRoot = Path.GetFullPath(Path.Combine(
             System.AppDomain.CurrentDomain.BaseDirectory,
