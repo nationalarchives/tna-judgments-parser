@@ -63,7 +63,9 @@ class XmlDocument_ : IXmlDocument {
         int savedCount = 0;
         foreach (var image in Images) {
             if (image is not RenamedImage renamedImage || string.IsNullOrEmpty(renamedImage.RelativePath)) {
-                logger.LogWarning("Image {Name} does not have a relative path and cannot be saved", image.Name);
+                // Don't read image.Name here: an unprocessed WImage would touch its source
+                // package, which may already be disposed by this point.
+                logger.LogWarning("Skipping an image with no relative path (not a processed image)");
                 continue;
             }
 

@@ -36,8 +36,11 @@ class LegImageProcessor {
 
         string shortUri = document.Meta.ShortUriComponent;
         if (string.IsNullOrEmpty(shortUri)) {
-            logger.LogWarning("Document has no ShortUriComponent, cannot generate S3 image names");
-            return document.Images;
+            // Without a URI we can't name or upload images; drop them (the builder then
+            // drops their now-unresolved refs) rather than return raw WImages, which
+            // are unsaveable and throw once the source package is disposed.
+            logger.LogWarning("Document has no ShortUriComponent; dropping images (cannot generate S3 names)");
+            return Enumerable.Empty<IImage>();
         }
 
         string fileIdentifier = document.Meta.ImageFileIdentifier ?? shortUri;

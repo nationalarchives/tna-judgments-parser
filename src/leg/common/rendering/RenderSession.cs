@@ -5,6 +5,8 @@ using System.Threading;
 
 using DocumentFormat.OpenXml.Wordprocessing;
 
+using Microsoft.Extensions.Logging;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 
@@ -13,6 +15,7 @@ namespace UK.Gov.Legislation.Common.Rendering {
 public sealed class RenderSession : IDrawingResolver {
 
     private static readonly AsyncLocal<RenderSession> _current = new();
+    private static readonly ILogger logger = Logging.Factory.CreateLogger<RenderSession>();
 
     public static RenderSession Current => _current.Value;
 
@@ -72,6 +75,9 @@ public sealed class RenderSession : IDrawingResolver {
         IInline rendered = TryGetRenderedRef(drawingIndex);
         if (rendered is not null)
             return rendered;
+        IInline isolated = TryIsolatedRenderRef(draw, drawingIndex);
+        if (isolated is not null)
+            return isolated;
         if (!AllowUnrenderedCharts) {
             var (graphicType, caption) = DescribeDrawing(draw);
             throw new UnrenderableDrawingException(
@@ -96,6 +102,35 @@ public sealed class RenderSession : IDrawingResolver {
         var (ext, mime) = ImageFormat.Detect(bytes);
         string name = $"rendered_drawing_{drawingIndex:D3}.{ext}";
         AddRenderedImage(new WRenderedImage(name, mime, bytes));
+        return new WRenderedImageRef(name);
+    }
+
+    /// <summary>
+    /// Fallback when the whole-document render didn't yield an image for this drawing
+    /// (e.g. SmartArt, which the marker/index mapping can miss): render the drawing on
+    /// its own docx, one drawing, one image, no mapping to get wrong. Null if there is
+    /// no renderer or it produces nothing.
+    /// </summary>
+    private IInline TryIsolatedRenderRef(DocumentFormat.OpenXml.Wordprocessing.Drawing draw, int drawingIndex) {
+        if (DocxBytes == null || Renderer is NullRenderer)
+            return null;
+        byte[] image;
+        try {
+            byte[] isolatedDocx = IsolatedDrawingDocx.Build(DocxBytes, draw);
+            if (isolatedDocx == null)
+                return null;
+            image = Renderer.RenderAllDrawings(isolatedDocx, CancellationToken.None)?
+                .FirstOrDefault(b => b != null && b.Length > 0);
+        } catch (Exception e) {
+            logger.LogWarning(e, "isolated drawing render failed");
+            return null;
+        }
+        if (image == null || image.Length == 0)
+            return null;
+        var (ext, mime) = ImageFormat.Detect(image);
+        string name = $"rendered_drawing_{drawingIndex:D3}.{ext}";
+        AddRenderedImage(new WRenderedImage(name, mime, image));
+        logger.LogInformation("recovered drawing {Index} via isolated render", drawingIndex);
         return new WRenderedImageRef(name);
     }
 
