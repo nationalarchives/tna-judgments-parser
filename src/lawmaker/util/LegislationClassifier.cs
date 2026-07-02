@@ -152,6 +152,11 @@ public static class DocNames
         return docName.ToEnacted().Equals(DocName.UKPGA) || docName.ToEnacted().Equals(DocName.UKCM);
     }
     
+    public static bool IsNIPrimary(this DocName docName)
+    {
+        return docName.ToEnacted().Equals(DocName.NIA);
+    }
+    
     public static bool IsWelshPrimary(this DocName docName)
     {
         return docName.ToEnacted().Equals(DocName.ASC);

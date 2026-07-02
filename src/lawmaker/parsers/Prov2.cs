@@ -56,7 +56,7 @@ namespace UK.Gov.Legislation.Lawmaker
                 return null;
             if (!line.IsAllItalicized())
                 return null;
-            if (IsAtEnd())
+            if (i > Body.Count - 2)
                 return null;
 
             i += 1;

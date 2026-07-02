@@ -377,15 +377,17 @@ namespace UK.Gov.Legislation.Lawmaker
             if (styles.Count > 0)
                 block.SetAttribute("style", CSS.SerializeInline(styles));
             ContainingParagraphStyle = stripped.Style;
+            XmlElement tblock = doc.CreateElement("tblock", ns);
+            bool imgAdded = false;
             foreach (IInline inline in stripped.Contents)
                 // If line contains image, wrap with tblock first
-                if (inline is WImageRef wimageRef)
+                if (inline is WImageRef wimageRef && !imgAdded)
                 {
-                    XmlElement tblock = doc.CreateElement("tblock", ns);
                     parent.AppendChild(tblock);
                     tblock.SetAttribute("class", ns, "image centre");
                     tblock.AppendChild(block);
                     AddInline(block, inline);
+                    imgAdded = true;
                 } else {
                     AddInline(block, inline);
                 }
@@ -411,11 +413,13 @@ namespace UK.Gov.Legislation.Lawmaker
             IEnumerable<IInline> newContents = line.Contents
                 .SkipWhile(IInline.IsEmpty).Reverse()
                 .SkipWhile(IInline.IsEmpty).Reverse();
+                
+            // Return early if newContents is empty which means line only contains whitespaces
+            if (!newContents.Any()) 
+                return line;
 
             // Trim start of first inline
-            IInline first = null;
-            if (newContents.Any())
-                first = newContents.First();
+            IInline first = newContents.First();
             if (first is WText text)
             {
                 // regex selects any leading whitespace and removes it
@@ -490,6 +494,9 @@ namespace UK.Gov.Legislation.Lawmaker
             IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
             blocks(authorialNote, content);
         }
+        
+        // An approximate conversation based on how the Lawmaker editor converts image size into mm
+        // The numbers are not perfect and resulted from trial and error
         private double PtToMM(float pt)
         {
             return Math.Floor(pt * 25.4/300*1.44); //transforming between different measurements
@@ -499,9 +506,12 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             foreach (string style in model.Style.Split(";"))
             {
-                img.SetAttribute(
+                if (style.Any(char.IsDigit))
+                {
+                    img.SetAttribute(
                     style.Split(":")[0], 
                     PtToMM(float.Parse(Regex.Replace(style, @"[^0-9.-]", ""))).ToString());
+                }
             }
         }
 
@@ -509,9 +519,9 @@ namespace UK.Gov.Legislation.Lawmaker
             XmlElement img = doc.CreateElement("img", ns);
             img.SetAttribute("src", "/document/image?filename="+model.Src+"&ds=LEGI_DRAFTING");
             img.SetAttribute("alt", model.Src);
-            ExtractDimensions(img, model);
             if (model.Style is not null)
                 img.SetAttribute("style", model.Style);
+            ExtractDimensions(img, model);
             parent.AppendChild(img);
         }
 
