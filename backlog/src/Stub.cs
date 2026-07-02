@@ -75,7 +75,10 @@ namespace Backlog.Src
             uri.SetAttribute("value", Data.WorkURI);
             XmlElement date = CreateAndAppend("FRBRdate", work);
             date.SetAttribute("date", Data.Date?.Date);
-            date.SetAttribute("name", Data.Date?.Name);
+            if (Data.Date?.Date == "1000-01-01")
+                date.SetAttribute("name", "dummy");
+            else
+                date.SetAttribute("name", Data.Date?.Name);
             XmlElement author = CreateAndAppend("FRBRauthor", work);
             author.SetAttribute("href", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
             XmlElement country = CreateAndAppend("FRBRcountry", work);
