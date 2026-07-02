@@ -62,9 +62,13 @@ namespace UK.Gov.Legislation.Lawmaker
             }
             else
             {
-                // Left-aligned in UK, SP & SC Bills, center-aligned in NI Bills.
-                // Best to not use alignment at all
-                return line.IsPartiallyItalicized();
+                if (!line.IsPartiallyItalicized())
+                    return false;
+                if (frames.CurrentDocName.IsNIPrimary())
+                    return line.IsCenterAligned();
+                // Left-aligned in UK, SP & SC Bills
+                return line.IsLeftAligned();
+                
             }
         }
 
