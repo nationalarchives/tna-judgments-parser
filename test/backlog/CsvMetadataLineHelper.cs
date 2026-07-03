@@ -19,12 +19,12 @@ public static class CsvMetadataLineHelper
     {
         id = "007",
         Court = "UKFTT-GRC",
-        FilePath = "",
+        FilePath = "/some/long/path/example.pdf",
         Extension = ".pdf",
         DecisionDateTime = DateTime.MinValue,
         CaseNo = ["ABC/2023/001"],
         Respondent = "The respondent",
-        Uuid = "00000000-0000-0000-0000-000000000007"
+        Uuid = Guid.Parse("00000000-0000-0000-0000-000000000007")
     };
 
     internal static readonly CsvLine DummyLineWithClaimants = DummyLine with { Claimants = "The claimants" };

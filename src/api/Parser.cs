@@ -31,7 +31,12 @@ public class InvalidAkNException : Exception {
     public InvalidAkNException(ValidationEventArgs cause) : base(cause.Message, cause.Exception) { }
 }
 
-public class Parser(ILogger<Parser> logger, AkN.IValidator validator)
+public interface IParser
+{
+    Response Parse(Request request);
+}
+
+public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
 {
     /// <exception cref="InvalidAkNException"></exception>
     public Response Parse(Request request) {

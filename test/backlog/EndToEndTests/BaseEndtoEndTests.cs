@@ -6,6 +6,8 @@ using System.IO;
 
 using Amazon.S3;
 
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Time.Testing;
 
@@ -35,20 +37,30 @@ public abstract class BaseEndToEndTests : IDisposable
         // Clear lingering overrides from previous tests (overrides are in a static context)
         Environment.SetEnvironmentVariable("IS_TEST", "true");
         Backlog.Program.DependencyInjectionOverrides.Clear();
-        
+
         // Configure S3 client
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Backlog.Program.DependencyInjectionOverrides.Add((typeof(IAmazonS3), mockS3Client.Object, true));
+        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        {
+            service.RemoveAll<IAmazonS3>();
+            service.AddScoped<IAmazonS3>(_ => mockS3Client.Object);
+        });
 
         // Control time
-        Backlog.Program.DependencyInjectionOverrides.Add((typeof(TimeProvider), fakeTimeProvider, true));
+        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        {
+            service.RemoveAll<TimeProvider>();
+            service.AddScoped<TimeProvider>(_ => fakeTimeProvider);
+        });
 
         // Mock logger
         var mockLoggerProvider = new Mock<ILoggerProvider>();
         mockLoggerProvider.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => ConsolidatedLogger.Object);
 
-        Backlog.Program.DependencyInjectionOverrides.Add(
-            (typeof(ILoggerProvider), mockLoggerProvider.Object, false));
+        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        {
+            service.AddSingleton<ILoggerProvider>(_ => mockLoggerProvider.Object);
+        });
     }
 
     public void Dispose()
@@ -83,14 +95,10 @@ public abstract class BaseEndToEndTests : IDisposable
 
     }
 
-    protected static void SetPathEnvironmentVariables(string dataDir, string? outputPath = null,
-        string? courtMetadataPath = null, string? trackerPath = null)
+    protected static void SetPathEnvironmentVariables(string dataDir, string outputPath, string courtMetadataFilePath,
+        string trackerPath)
     {
-        outputPath ??= Path.Combine(dataDir, "output");
-        courtMetadataPath ??= Path.Combine(dataDir, "court_metadata.csv");
-        trackerPath ??= Path.Combine(dataDir, "uploaded-production.csv");
-
-        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataPath);
+        Environment.SetEnvironmentVariable("BacklogParser__CourtMetadataFilePath", courtMetadataFilePath);
         Environment.SetEnvironmentVariable("BacklogParser__DataFolderPath", dataDir);
         Environment.SetEnvironmentVariable("BacklogParser__TrackerFilePath", trackerPath);
         Environment.SetEnvironmentVariable("BacklogParser__OutputFolderPath", outputPath);

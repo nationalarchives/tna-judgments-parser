@@ -6,6 +6,7 @@ using System.Linq;
 
 using Backlog.Csv;
 using Backlog.Options;
+using Backlog.Tracking;
 using Backlog.TreMetadata;
 
 using Microsoft.Extensions.Options;
@@ -20,11 +21,24 @@ using UK.Gov.NationalArchives.Judgments.Api;
 
 namespace Backlog.Src;
 
-internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserOptions, TimeProvider timeProvider)
+internal interface IMetadataTransformer
 {
-    internal FullTreMetadata CreateFullTreMetadata(Guid parserRunId, string sourceFilename, string sourceMimeType,
-        string contentHash, Image[] images, Meta responseMeta, List<IMetadataField> externalMetadataFields,
-        bool xmlContainsDocumentText)
+    FullTreMetadata CreateFullTreMetadata(string bundleSourceFilename, string primarySourceFilename,
+        string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText);
+
+    List<IMetadataField> CsvLineToMetadataFields(CsvLine csvLine);
+}
+
+internal class MetadataTransformer(
+    IOptions<BacklogParserOptions> backlogParserOptions,
+    TimeProvider timeProvider,
+    ITracker tracker)
+    : IMetadataTransformer
+{
+    public FullTreMetadata CreateFullTreMetadata(string bundleSourceFilename,
+        string primarySourceFilename, string sourceMimeType, string sourceHash, Image[] images, Meta responseMeta,
+        List<IMetadataField> externalMetadataFields, bool xmlContainsDocumentText)
     {
         var metadata = new FullTreMetadata
         {
@@ -35,7 +49,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     Reference = Guid.NewGuid().ToString(),
                     Payload = new Payload
                     {
-                        Filename = sourceFilename,
+                        Filename = bundleSourceFilename,
                         Images = images.Select(i => i.Name).ToArray(),
                         Log = null
                     }
@@ -49,15 +63,15 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                     Extensions = responseMeta.Extensions,
                     Attachments = responseMeta.Attachments ?? [],
                     DocumentType = Enum.Parse<DocumentType>(responseMeta.DocumentType, true),
-                    ParserRunId = parserRunId,
+                    ParserRunId = tracker.CurrentParserRunId,
                     ErrorMessages = [],
                     MetadataFields = externalMetadataFields,
                     PrimarySource = new PrimarySourceFile
                     {
-                        Filename = sourceFilename,
+                        Filename = primarySourceFilename,
                         Mimetype = sourceMimeType,
                         Route = Route.Bulk,
-                        Sha256 = contentHash,
+                        Sha256 = sourceHash,
                         RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
                     },
                     XmlContainsDocumentText = xmlContainsDocumentText
@@ -66,7 +80,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
                 {
                     AutoPublish = backlogParserOptions.Value.AutoPublish,
                     ErrorOnExistingDocument = true,
-                    Source = new SourceDocument { Format = sourceMimeType, Hash = contentHash }
+                    Source = new SourceDocument { Format = sourceMimeType, Hash = sourceHash }
                 }
             }
         };
@@ -86,7 +100,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
             Parties = line.Parties.ToList(),
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
-            Cite = line.Ncn,
+            Cite = line.CleanedNcn,
             WebArchivingLink = line.WebArchiving
         };
         return meta;
@@ -117,7 +131,7 @@ internal class MetadataTransformer(IOptions<BacklogParserOptions> backlogParserO
 
         if (csvLine.Ncn is not null)
         {
-            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.Ncn));
+            metadataFields.Add(CreateExternalMetadataField(MetadataFieldName.Ncn, csvLine.CleanedNcn));
         }
 
         if (csvLine.HeadnoteSummary is not null)

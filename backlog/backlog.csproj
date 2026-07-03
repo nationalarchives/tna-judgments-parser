@@ -7,23 +7,28 @@
     <TargetFramework>net8.0</TargetFramework>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <RootNamespace>Backlog</RootNamespace>
+    <UserSecretsId>c49a8229-6b2b-4c8d-bbf8-c150743e70b4</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.27">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.27" />
     <PackageReference Include="TestableIO.System.IO.Abstractions.Wrappers" Version="22.1.1" />
     <ProjectReference Include="../judgments.csproj" />
-    <PackageReference Include="AWSSDK.SSO" Version="4.0.2.31" />
-    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.4" />
+    <PackageReference Include="AWSSDK.SSO" Version="4.0.100" />
+    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.100" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.23.4" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.100" />
     <ProjectReference Include="../TRE/TRE.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetEnv" Version="3.2.0" />
-    <None Update=".env">
+    <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -12,7 +12,7 @@ public static class BacklogParserOptionsHelper
         string dataFolderPath = @"c:\my-data-dir\",
         string courtMetadataFilePath = @"c:\my-data-dir\court-metadata.csv",
         string outputFolderPath = @"c:\my-data-dir\output",
-        string trackerFilePath = @"c:\my-data-dir\tracker.csv",
+        string trackerFilePath = ":memory:", // Default to in-memory sqlite db for test independence
         bool autoPublish = false,
         bool isDryRun = false,
         string? bucketName = null

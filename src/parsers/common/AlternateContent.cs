@@ -54,7 +54,13 @@ class AlternateContent2 {
             if (choice.FirstChild is Picture pict)
                 return WImageRef.Make(main, pict);
             if (fallback.FirstChild is Drawing drawing)
-                return new WImageRef(main, drawing);
+                return WImageRef.Make(main, drawing);
+        }
+        // Chart Extensions 1.0 - Microsoft Office 2016 Chart Extensions
+        // https://docs.microsoft.com/en-us/openspecs/office_standards/ms-docx/
+        if (choice.Requires == "cx1") {
+            Logger.LogDebug("Skipping cx1 (Chart Extensions 1.0) content, using fallback");
+            return MapFallback(main, rprops, fallback);
         }
         throw new Exception();
     }

@@ -78,12 +78,6 @@ To invoke the parser programatically, clients should use the classes in the [UK.
         - Name, a string, the name of the image as referred to in the XML
     - Meta, a [Meta](./src/api/Meta.cs) object, as above
 
-
-### REST API
-
-A REST API, mimicking the above, is available at <https://parse.judgments.tna.jurisdatum.com>. Its specification can be found at [/api.yaml](https://parse.judgments.tna.jurisdatum.com/api.yaml).
-
-
 ### CLI
 
 The parser can also be invoked from the command line, as follows:

@@ -1,5 +1,5 @@
 using System.Xml;
-
+using System;
 using Backlog.Src;
 
 using Xunit;
@@ -204,5 +204,45 @@ public class TestStub
         var doc = new XmlDocument();
         doc.LoadXml(xml);
         doc.DoesNotHaveNodeWithName("uk:webarchiving");
+    }
+
+    [Fact]
+    public void Stub_WithDummyDate_AppearsInXmlAsDummyDate()
+    {
+        // Arrange
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            DecisionDateTime = DateTime.Parse("1000-01-01")
+        };
+        var metadata = MetadataTransformer.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "dummy").And().HasAttribute("date", "1000-01-01");
+    }
+
+    [Fact]
+    public void Stub_WithNormalDate_AppearsInXmlAsNonDummyDate()
+    {
+        // Arrange
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            DecisionDateTime = DateTime.Parse("2025-01-01")
+        };
+        var metadata = MetadataTransformer.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "decision").And().HasAttribute("date", "2025-01-01");
     }
 }

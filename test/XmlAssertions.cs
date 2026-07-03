@@ -20,6 +20,14 @@ public static class XmlAssertions
         return nodeMatches[0]!;
     }
 
+    public static XmlNode HasAttribute(this XmlNode node, string attributeName, string expectedValue)
+    {
+        var attribute = node.Attributes?[attributeName];
+        Assert.NotNull(attribute);
+        Assert.Equal(expectedValue, attribute!.InnerText);
+        return node;
+    }
+
     public static void DoesNotHaveNodeWithName(this XmlDocument doc, string name)
     {
         var nodeMatches = doc.GetElementsByTagName(name);
@@ -69,6 +77,12 @@ public static class XmlAssertions
     public static XmlNode HaveValueMatching(this XmlNode node, string expectedValueRegex)
     {
         Assert.Matches(expectedValueRegex, node.InnerText);
+        return node;
+    }
+    
+    public static XmlNode HaveValue(this XmlNode node, string expectedValue)
+    {
+        Assert.Equal(expectedValue, node.InnerText);
         return node;
     }
 
@@ -129,7 +143,18 @@ public static class XmlAssertions
 
         return node;
     }
-    
+
+    public static XmlNode HasChildWithName(this XmlNode node, string name)
+{
+    var child = node.Cast<XmlNode>()
+        .FirstOrDefault(child =>
+            string.Equals(child.Name, name, StringComparison.InvariantCultureIgnoreCase));
+
+    if (child == null)
+        Assert.Fail($"Did not find a child of {node.Name} with name {name}");
+
+    return child;
+}
     public static XmlNode DoesNotHaveChildWithName(this XmlNode node, string name)
     {
         var childNodes = node.Cast<XmlNode>();

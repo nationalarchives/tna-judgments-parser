@@ -14,11 +14,9 @@ using Backlog.Src;
 using Backlog.Tracking;
 using Backlog.Utilities;
 
-using DotNetEnv.Configuration;
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -141,7 +139,7 @@ public class Program
 
     private static int RunBacklogParser(bool isDryRun, uint? id, bool autoPublish)
     {
-        var appHost = CreateAppHost(isDryRun, id, autoPublish);
+        using var appHost = CreateAppHost(isDryRun, id, autoPublish);
 
         using var scope = appHost.Services.CreateScope();
         var backlogParserOptions = scope.ServiceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value;
@@ -155,7 +153,7 @@ public class Program
             logger.LogInformation("Using court metadata from: {PathToCourtMetadataFile}",
                 backlogParserOptions.CourtMetadataFilePath);
 
-            var backlogParserWorker = scope.ServiceProvider.GetRequiredService<BacklogParserWorker>();
+            var backlogParserWorker = scope.ServiceProvider.GetRequiredService<IBacklogParserWorker>();
             Directory.CreateDirectory(backlogParserOptions.OutputFolderPath);
 
             return backlogParserWorker.RunAsync().Result;
@@ -170,8 +168,14 @@ public class Program
     private static IHost CreateAppHost(bool isDryRun, uint? id, bool autoPublish)
     {
         var builder = Host.CreateApplicationBuilder();
-        builder.Configuration.AddDotNetEnv();
 
+        // Explicitly add user secrets configuration provider so the Production dotnet environment can access it
+        // because we always run this application from local machines. Then re-add the environment variables config
+        // provider, so the default precedence is unchanged and tests can override it
+        builder.Configuration.AddUserSecrets<Program>();
+        builder.Configuration.AddEnvironmentVariables();
+
+        // bind configuration to the options pattern
         builder.Services.AddOptions<BacklogParserOptions>()
                .Bind(builder.Configuration.GetSection(BacklogParserOptions.SectionName))
                .Configure(options =>
@@ -200,23 +204,25 @@ public class Program
         return builder.Build();
     }
 
-    private static List<(Type serviceType, object instance, bool replace)> _dependencyInjectionOverrides = [];
+    private static readonly List<Action<IServiceCollection>> _dependencyInjectionOverrides = [];
 
     /// <summary>
     ///     Allow services like S3 to be mocked, but only during tests
     /// </summary>
-    internal static List<(Type serviceType, object instance, bool replace)> DependencyInjectionOverrides =>
+    internal static List<Action<IServiceCollection>> DependencyInjectionOverrides =>
         IsTest()
             ? _dependencyInjectionOverrides
             : throw new InvalidOperationException("Cannot use dependency injection overrides in production");
 
     internal static void ConfigureDependencyInjection(IServiceCollection services, bool isDryRun = false)
     {
-        services.AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator, UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
-        services.AddScoped<Parser>();
-        services.AddScoped<BacklogParserWorker>();
-        services.AddScoped<CsvMetadataReader>();
-        services.AddScoped<BacklogFiles>();
+        services
+            .AddScoped<UK.Gov.Legislation.Judgments.AkomaNtoso.IValidator,
+                UK.Gov.Legislation.Judgments.AkomaNtoso.Validator>();
+        services.AddScoped<IParser, Parser>();
+        services.AddScoped<IBacklogParserWorker, BacklogParserWorker>();
+        services.AddScoped<ICsvMetadataReader, CsvMetadataReader>();
+        services.AddScoped<IBacklogFiles, BacklogFiles>();
         services.AddScoped<ITracker, Tracker>();
         if (isDryRun)
         {
@@ -228,9 +234,12 @@ public class Program
             services.AddScoped<IBucket, Bucket>();
         }
 
-        services.AddScoped<MetadataTransformer>();
+        services.AddScoped<IMetadataTransformer, MetadataTransformer>();
         services.AddScoped<TimeProvider>(_ => TimeProvider.System);
         services.AddSingleton<IFileSystem, FileSystem>();
+
+        services.AddDbContext<TrackerDbContext>((serviceProvider, options) =>
+            options.UseSqlite($"Data Source={serviceProvider.GetRequiredService<IOptions<BacklogParserOptions>>().Value.TrackerFilePath}"));
 
         if (IsTest())
         {
@@ -240,14 +249,9 @@ public class Program
 
     private static void OverrideDependencyInjection(IServiceCollection services)
     {
-        foreach (var (serviceType, instance, replace) in DependencyInjectionOverrides)
+        foreach (var dependencyOverrideAction in DependencyInjectionOverrides)
         {
-            if (replace)
-            {
-                services.RemoveAll(serviceType);
-            }
-
-            services.AddSingleton(serviceType, instance);
+            dependencyOverrideAction(services);
         }
     }
 

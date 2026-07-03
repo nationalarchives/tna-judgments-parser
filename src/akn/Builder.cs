@@ -331,6 +331,7 @@ abstract class Builder {
                 if (cell.ColSpan is not null)
                     td.SetAttribute("colspan", cell.ColSpan.ToString());
                 Dictionary<string, string> styles = cell.GetCSSStyles();
+                ApplyTableCellStyleCleanup(cell, styles);
                 if (styles.Any())
                     td.SetAttribute("style", CSS.SerializeInline(styles));
                 tr.AppendChild(td);
@@ -354,11 +355,27 @@ abstract class Builder {
 
     protected string ContainingParagraphStyle;
 
+    /// <summary>
+    /// Extension point: subclasses may add doc-type-specific attributes
+    /// to the block element after the standard <c>class</c> attribute
+    /// has been set and before content is appended. Default no-op.
+    /// </summary>
+    protected virtual void DecorateBlockElement(XmlElement block, ILine line) { }
+
+    /// <summary>
+    /// Extension point: subclasses may mutate a table cell's serialised
+    /// CSS styles before they are written to the <c>td</c>/<c>th</c>.
+    /// Default no-op — the base builder emits cell styles unchanged, as
+    /// on main.
+    /// </summary>
+    protected virtual void ApplyTableCellStyleCleanup(ICell cell, Dictionary<string, string> styles) { }
+
     protected virtual XmlElement Block(XmlElement parent, ILine line, string name) {
         XmlElement block = doc.CreateElement(name, ns);
         parent.AppendChild(block);
         if (line.Style is not null)
             block.SetAttribute("class", line.Style);
+        DecorateBlockElement(block, line);
         Dictionary<string, string> styles = line.GetCSSStyles();
         if (styles.Count > 0)
             block.SetAttribute("style", CSS.SerializeInline(styles));
@@ -814,12 +831,12 @@ abstract class Builder {
         AddHash(akn, UKNS);
     }
 
-    protected static void AddHash(XmlDocument akn, string ns) {
-        string value = SHA256.Hash(akn);
+    protected static void AddHash(XmlDocument akn, string ns, string prefix = "uk", string localName = "hash") {
+        string value = ContentHash.CalculateContentHash(akn);
         XmlNamespaceManager nsmgr = new XmlNamespaceManager(akn.NameTable);
         nsmgr.AddNamespace("akn", Builder.ns);
         XmlElement proprietary = (XmlElement) akn.SelectSingleNode("/akn:akomaNtoso/akn:*/akn:meta/akn:proprietary", nsmgr);
-        XmlElement hash = akn.CreateElement("uk", "hash", ns);
+        XmlElement hash = akn.CreateElement(prefix, localName, ns);
         proprietary.AppendChild(hash);
         hash.AppendChild(akn.CreateTextNode(value));
     }
