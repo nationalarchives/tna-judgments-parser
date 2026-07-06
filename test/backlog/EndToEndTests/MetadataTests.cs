@@ -19,7 +19,7 @@ namespace test.backlog.EndToEndTests;
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
     private const int DocIdWithJurisdiction = 70;
-    private const string Uuid = "c2d8f30f-7b43-4fdc-a54f-ac4a526fedda";
+    private readonly Guid uuid = Guid.NewGuid();
     private string? courtMetadataPath;
     private string? tempDataDir;
 
@@ -47,11 +47,11 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         // Create files
         var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1,2,3,4];
-        File.WriteAllBytes(Path.Combine(courtDocumentsDir, Uuid), contents);
+        File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid.ToString()), contents);
 
         // Set environment variables
         courtMetadataPath = Path.Combine(tempDataDir, "court_metadata.csv");
-        var trackerPath = Path.Combine(tempDataDir, "uploaded-production.csv");
+        var trackerPath = Path.Combine(tempDataDir, $"tracker{Guid.NewGuid()}.db");
 
         SetPathEnvironmentVariables(tempDataDir, outputPath, courtMetadataPath, trackerPath);
     }
@@ -104,8 +104,8 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
-            Ncn = "[1989] UKUT 1234 (LC)",
-            Uuid = Uuid
+            Ncn = "[1989] UKUT 001234 (LC)",
+            Uuid = uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -154,17 +154,17 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             DecisionDateTime = new DateTime(2099, 01, 31, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["new case number"],
             Court = "UKUT-LC",
-            Ncn = "new ncn",
+            Ncn = "[1989] UKUT 001234 (LC)",
             Claimants = "new claimants",
             Respondent = "new respondent",
             Jurisdictions = ["new jurisdiction"],
             WebArchiving = "my web archiving link",
-            Uuid = Uuid
+            Uuid = uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -175,7 +175,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         doc.HasSingleNodeWithName("proprietary")
            .Which().HasChildrenMatching(
                child => child.Should().Match("uk:court", "UKUT-LC"),
-               child => child.Should().Match("uk:cite", "new ncn"),
+               child => child.Should().Match("uk:cite", "[1989] UKUT 1234 (LC)"),
                child => child.Should().Match("uk:caseNumber", "new case number"),
                child => child.Should().Match("uk:party", "new claimants", ("role", "Claimant")),
                child => child.Should().Match("uk:party", "new respondent", ("role", "Respondent")),
@@ -209,7 +209,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Appellants = "new appellants",
             Respondent = "new respondent",
             Jurisdictions = ["A jurisdiction which is not in the original document"],
-            Uuid = Uuid
+            Uuid = uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -240,7 +240,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights", "new jurisdiction"],
-            Uuid = Uuid
+            Uuid = uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
@@ -293,7 +293,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     private XmlDocument GetXmlDocumentFromS3()
     {
         var key = mockS3Client.CapturedKeys.Single();
-        var actualXml = ZipFileHelpers.GetFileFromZippedContent(mockS3Client.GetCapturedContent(key), @"\.xml$");
+        var actualXml = mockS3Client.GetCapturedContent(key).GetFileFromZippedContentAsString("judgment.xml");
         PrintToOutputWithNumberedLines(actualXml);
         var doc = new XmlDocument();
         doc.LoadXml(actualXml);
@@ -315,17 +315,17 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
             Extension = ".docx",
             DecisionDateTime = new DateTime(2023, 11, 01, 00, 00, 00, DateTimeKind.Utc),
             CaseNo = ["EA/2023/0132"],
-            Ncn = "[2023] UKFTT 916 (GRC)",
+            Ncn = "[2023] UKFTT 00916 (GRC)",
             Court = "UKFTT-GRC",
             Appellants = "NIGEL RAWLINS",
             Respondent = "THE INFORMATION COMMISSIONER",
             Jurisdictions = ["InformationRights"],
-            Uuid = Uuid
+            Uuid = uuid
         };
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -375,6 +375,9 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                                ("shortForm", "InformationRights"))
            );
 
+        doc.HasSingleNodeWithName("neutralCitation")
+           .Which().Should().HaveValue("[2023] UKFTT 00916 (GRC)");
+        
         doc.HasSingleNodeWithName("docJurisdiction")
            .Which().Should().HaveValueMatching("Information Rights")
            .And().Attributes.ThatMatch(

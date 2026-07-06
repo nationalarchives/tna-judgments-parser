@@ -6,9 +6,12 @@ using System.Linq;
 
 using Backlog.Options;
 using Backlog.Src;
+using Backlog.Tracking;
 
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
+
+using Moq;
 
 using TRE.Metadata;
 using TRE.Metadata.Enums;
@@ -28,11 +31,12 @@ public class TestMetadataTransformer
     private readonly FakeTimeProvider fakeTimeProvider = new();
     private readonly MetadataTransformer metadataTransformer;
     private readonly IOptions<BacklogParserOptions> options;
+    private readonly Mock<ITracker> mockTracker = new();
 
     public TestMetadataTransformer()
     {
         options = BacklogParserOptionsHelper.Create(autoPublish: true);
-        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider);
+        metadataTransformer = new MetadataTransformer(options, fakeTimeProvider, mockTracker.Object);
     }
 
     [Theory]
@@ -46,8 +50,7 @@ public class TestMetadataTransformer
         var responseMeta = new Api.Meta { DocumentType = "decision" };
 
         // Act
-        var result = metadataTransformer.CreateFullTreMetadata(
-            Guid.NewGuid(),
+        var result = metadataTransformer.CreateFullTreMetadata("test.pdf",
             "test.pdf",
             sourceMimeType,
             contentHash,
@@ -76,6 +79,7 @@ public class TestMetadataTransformer
         fakeTimeProvider.AdjustTime(expectedDate);
 
         var parserRunId = Guid.NewGuid();
+        mockTracker.SetupGet(t => t.CurrentParserRunId).Returns(parserRunId);
 
         var extensions = new Api.Extensions
         {
@@ -102,7 +106,10 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,"test.docx", "application/pdf", "1234-456-789",
+            "test.doc.docx",
+            "test.doc",
+            "application/pdf",
+            "1234-456-789",
             [],
             responseMeta,
             externalMetadataFields,
@@ -124,7 +131,7 @@ public class TestMetadataTransformer
         Assert.Equal(externalMetadataFields, result.Parameters.PARSER.MetadataFields);
         Assert.Equal(xmlContainsDocumentText, result.Parameters.PARSER.XmlContainsDocumentText);
 
-        Assert.Equal("test.docx", result.Parameters.PARSER.PrimarySource.Filename);
+        Assert.Equal("test.doc", result.Parameters.PARSER.PrimarySource.Filename);
         Assert.Equal("application/pdf", result.Parameters.PARSER.PrimarySource.Mimetype);
         Assert.Equal(Route.Bulk, result.Parameters.PARSER.PrimarySource.Route);
         Assert.Equal("1234-456-789", result.Parameters.PARSER.PrimarySource.Sha256);
@@ -144,7 +151,7 @@ public class TestMetadataTransformer
 
         // Act
         var result = metadataTransformer.CreateFullTreMetadata(
-            Guid.NewGuid(),
+            sourceFilename,
             sourceFilename,
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
@@ -163,11 +170,8 @@ public class TestMetadataTransformer
     [Fact]
     public void CreateFullTreMetadata_Generates_UniqueTreReference()
     {
-        var parserRunId = Guid.NewGuid();
-
-        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
-            "test-file.docx",
+        var firstFullTreMetadata = metadataTransformer.CreateFullTreMetadata("test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
             [],
@@ -175,9 +179,8 @@ public class TestMetadataTransformer
             [],
             false
         );
-        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata(
-            parserRunId,
-            "test-file.docx",
+        var secondFullTreMetadata = metadataTransformer.CreateFullTreMetadata("test-file.doc.docx",
+            "test-file.doc",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "sha256:abc",
             [],
@@ -305,13 +308,13 @@ public class TestMetadataTransformer
     }
 
     [Fact]
-    public void CsvLineToMetadataFields_Ncn_IsIncludedWhenPresent()
+    public void CsvLineToMetadataFields_Ncn_IncludesCleanedNcnWhenPresent()
     {
-        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "NCN123" };
+        var csvLine = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2025] UKUT 0027 (LC)" };
 
         var fields = metadataTransformer.CsvLineToMetadataFields(csvLine);
 
-        AssertHasSingleMetadataFieldWithValue("NCN123", MetadataFieldName.Ncn, fields);
+        AssertHasSingleMetadataFieldWithValue("[2025] UKUT 27 (LC)", MetadataFieldName.Ncn, fields);
     }
 
     [Fact]

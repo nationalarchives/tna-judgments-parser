@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Extensions.Logging;
@@ -113,31 +114,43 @@ internal class Fields2 {
         return contents;
     }
 
+    private const string WordNamespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+
     private static string ExtractDropdownValue(Run run) {
-        const string wordNamespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
-        
         try {
             var formFieldData = FindFormFieldData(run);
-            if (formFieldData == null) return null;
-
-            var dropdownData = formFieldData.ChildElements.FirstOrDefault(e => e.LocalName == "ddList");
-            if (dropdownData == null) return null;
-
-            var resultElement = dropdownData.ChildElements.FirstOrDefault(e => e.LocalName == "result");
-            if (resultElement == null) return null;
-
-            string selectedIndexText = resultElement.GetAttribute("val", wordNamespace).Value;
-            if (!int.TryParse(selectedIndexText, out int selectedIndex)) return null;
+            var dropdownData = formFieldData?.ChildElements.FirstOrDefault(e => e.LocalName == "ddList");
+            if (dropdownData is null)
+                return null;
 
             var listItems = dropdownData.ChildElements.Where(e => e.LocalName == "listEntry").ToList();
-            if (selectedIndex < 0 || selectedIndex >= listItems.Count) return null;
+            if (listItems.Count == 0)
+                return null;
 
-            return listItems[selectedIndex].GetAttribute("val", wordNamespace).Value;
+            // Word's <w:result w:val="N"> is a 0-based index into the listEntry
+            // items. A missing or out-of-range result means nothing was selected;
+            // Word then shows the first entry as the default.
+            var result = dropdownData.ChildElements.FirstOrDefault(e => e.LocalName == "result");
+            OpenXmlElement selected =
+                result is not null
+                && int.TryParse(GetVal(result), out int index)
+                && index >= 0 && index < listItems.Count
+                    ? listItems[index]
+                    : listItems[0];
+            return GetVal(selected);
         } catch (Exception ex) {
             Logger.LogWarning(ex, "Error extracting dropdown value");
             return null;
         }
     }
+
+    /// <summary>
+    /// Reads the <c>w:val</c> attribute, or null if absent.
+    /// Uses GetAttributes() rather than GetAttribute(), which throws
+    /// KeyNotFoundException when the attribute isn't present.
+    /// </summary>
+    private static string GetVal(OpenXmlElement e) =>
+        e.GetAttributes().FirstOrDefault(a => a.LocalName == "val" && a.NamespaceUri == WordNamespace).Value;
 
     private static FormFieldData FindFormFieldData(Run run) {
         var paragraph = run.Parent;

@@ -5,10 +5,21 @@ using System.IO;
 using System.Xml;
 using System.Xml.Xsl;
 
+using Xunit;
+
 namespace test;
 
 public static class DocumentHelpers
 {
+    /// <summary>
+    /// Assert that the parser's output is valid against the full OASIS Akoma Ntoso 3.0
+    /// schema. Used by every leg test theory to enforce the AKN-validity invariant on
+    /// every fixture (not just new ones lacking an expected .akn).
+    /// </summary>
+    public static void AssertValidMainAkn(XmlDocument akn)
+    {
+        Assert.Empty(UK.Gov.Legislation.Validator.Shared.ValidateAgainstMainAkn(akn));
+    }
 
     public static byte[] ReadDocx(int i)
     {
@@ -21,6 +32,11 @@ public static class DocumentHelpers
     }
 
     public static byte[] ReadDocx(string resource)
+    {
+        return GetEmbeddedResourceAsBytes(resource);
+    }
+    
+    public static byte[] GetEmbeddedResourceAsBytes(string resource)
     {
         using var stream = GetManifestResourceStream(resource);
         using StreamReader reader = new(stream);

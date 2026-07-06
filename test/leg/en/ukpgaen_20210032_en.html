@@ -1,0 +1,1244 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <style>
+article { margin: 0.5in 1in }
+p.center { text-align: center }
+section { position: relative }
+h2 { font-size: inherit; font-weight: normal }
+.section > h2 > .num { display: inline-block; width: 0.5in }
+.paragraph { margin-left: 0.5in }
+.paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
+.subparagraph { margin-left: 0.5in }
+.subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+section > .level > h2 { margin-left: 0.5in }
+table { border-collapse: collapse }
+th, td { border: thin dotted; padding: 3pt }
+td:has(p.ia-title) { padding: 0 }
+td { vertical-align: top }
+.fn { vertical-align: super; font-size: small }
+
+/* Paragraph tab-stops: Word uses <w:tab/> with paragraph tab stops to push trailing
+ * content to the right margin (e.g. IA "Heading1" with "Section: Summary" + tab +
+ * "Policy Option 1"). HTML has no native tab; emulate the common right-alignment
+ * case by making the paragraph a flex row — content before the tab stays left,
+ * the tab pushes everything after it to the right edge.
+ * Only apply when there is a non-tab element BEFORE the tab; a leading tab
+ * (used as an indent in some EM headings) should render as a plain space, not
+ * push the heading to the right edge. */
+p:has(> *:not(.tab) ~ span.tab) { display: flex; align-items: baseline; flex-wrap: wrap }
+p:has(> *:not(.tab) ~ span.tab) > span.tab { flex: 1 1 auto }
+.footnote > p:first-child > .marker:first-child { vertical-align: super; font-size: small }
+.blockContainer { position: relative; margin-left: 0.5in }
+.blockContainer > p:first-child > .num:first-child { position: absolute; margin-left: -0.25in }
+.attachment { margin-top: 2em }
+
+/* Impact Assessment styles */
+article[data-doc-type='ImpactAssessment'] {
+	font-family: Arial, sans-serif;
+}
+
+article[data-doc-type='ImpactAssessment'] * {
+	font-family: Arial, sans-serif !important;
+}
+
+article[data-doc-type='ImpactAssessment'] .paragraph:not(.num) {
+	margin-left: 0 !important;
+}
+
+/* IA paragraph classes */
+.ia-table-text { font-size: 11pt; margin: 2pt 4pt; line-height: 1.2 }
+.ia-head-label { font-size: 12pt; margin: 2pt 4pt }
+.ia-title { font-size: 16pt; background: #000; color: #fff; margin: 0; padding: 8pt; text-align: center }
+.ia-header-text { font-size: 10pt; margin: 2pt 4pt }
+.ia-stage { font-size: 11pt; margin: 2pt 4pt }
+/* IA semantic inline elements */
+.docTitle, .docNumber, .docStage, .docDate, .docProponent { 
+	font-size: 11pt; 
+	line-height: 1.2;
+}
+
+/* IA table styling */
+.ia-table {
+	border: 1px solid black;
+	width: 100%;
+	margin: 6pt 0;
+}
+
+.ia-table th,
+.ia-table td {
+	border: 1px solid black;
+	padding: 4pt 6pt;
+	vertical-align: top;
+}
+
+.ia-table td p {
+	margin: 2pt 4pt;
+	line-height: 1.2;
+}
+
+.ia-table td p:empty {
+	margin: 0;
+	height: 4pt;
+}
+
+/* Center spanning header cells */
+.ia-table tr:first-child td[colspan="5"] .ia-table-text {
+	text-align: center;
+}
+
+/* IA cover-sheet styling. Originally an <hcontainer name="summary">; now
+ * promoted to <section class="summary"> so its TOC link is /section/N
+ * instead of a fragment. Both selectors kept so older snapshots still
+ * style correctly. */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table {
+	border: none;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table {
+	border: none;
+	margin: 0;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table td table td,
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table td table td {
+	border: 1px solid black;
+}
+
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary .ia-table tr:first-child td:nth-child(2),
+article[data-doc-type='ImpactAssessment'] .section.summary .ia-table tr:first-child td:nth-child(2) {
+	border: none;
+	padding: 0;
+}
+
+
+/* Hide extra rows in nested tables */
+article[data-doc-type='ImpactAssessment'] .hcontainer.summary table td table tr:nth-child(n+7),
+article[data-doc-type='ImpactAssessment'] .section.summary table td table tr:nth-child(n+7) {
+	display: none !important;
+}
+
+/* IA references often contain very long URLs that would otherwise extend
+ * past the column edge. Allow them to break anywhere. */
+article[data-doc-type='ImpactAssessment'] a[href] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+/* Empty paragraphs inside cells are Word artifacts that add stray vertical
+ * gaps. Layout-only fix; the AKN keeps them. */
+article[data-doc-type='ImpactAssessment'] td > p:empty,
+article[data-doc-type='ImpactAssessment'] th > p:empty {
+	display: none;
+}
+
+.blockContainer {
+	margin: 6pt 0;
+	padding: 4pt;
+}
+
+/* Page-top header strip with the "back to TOC" link. Mirrors the
+ * .plainView #header style on legislation.gov.uk: a thin header
+ * with a bold right-aligned link, separated from page content by a
+ * thin grey rule. (screen.css:1245-1249) */
+.toc-header {
+	min-height: 3em;
+	padding: 0.75em 0;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #d3d3d3;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 1em;
+	font-family: Arial, "Garuda", sans-serif;
+	color: #292929;
+}
+.toc-link {
+	grid-column: 1;
+	justify-self: start;
+	color: #000;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.toc-link:hover, .toc-link:focus {
+	text-decoration: underline;
+}
+/* Sits on the right; disabled on the whole-doc HTML (you are already
+ * on full view). Frontend activates with an href on section views. */
+.full-view-link {
+	grid-column: 3;
+	justify-self: end;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+}
+.full-view-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.full-view-link:not(.disabled) {
+	color: #000;
+}
+.full-view-link:not(.disabled):hover, .full-view-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+/* Section nav buttons. Mirror legislation.gov.uk's .userFunctionalElement
+ * (screen.css:1083) so frontend devs can hook up prev/next without
+ * restyling. Disabled state shows on whole-doc view; activating a link
+ * colours it #016398 (the live "active" hue). Arrow glyphs replace the
+ * sprite icons used on legislation.gov.uk so no image asset is needed. */
+.section-nav {
+	grid-column: 2;
+	justify-self: center;
+	display: inline-flex;
+	gap: 0.5em;
+	align-items: center;
+}
+.section-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.15em 0.65em 0.2em;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	text-align: center;
+	font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
+	font-weight: bold;
+	font-size: inherit;
+	text-decoration: none;
+	background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+}
+/* Tiny CSS-drawn triangles, recolour with the link's currentColor so
+ * disabled/active states inherit through naturally. */
+.prev-section::before {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0.42em 0.32em 0;
+	border-color: transparent currentColor transparent transparent;
+}
+.next-section::after {
+	content: "";
+	display: inline-block;
+	width: 0; height: 0;
+	border-style: solid;
+	border-width: 0.32em 0 0.32em 0.42em;
+	border-color: transparent transparent transparent currentColor;
+}
+.section-link.disabled {
+	color: #ACACAC;
+	cursor: not-allowed;
+}
+.section-link:not(.disabled) {
+	color: #016398;
+	border-color: #069;
+}
+.section-link:not(.disabled):hover, .section-link:not(.disabled):focus {
+	text-decoration: underline;
+}
+
+/* Shared heading styles for text-oriented leg documents */
+article[data-doc-type='ExplanatoryNotes'] .preface,
+article[data-doc-type='CodeOfPractice'] .preface,
+article[data-doc-type='TranspositionNote'] .preface {
+	margin-bottom: 1.5em;
+}
+article[data-doc-type='ExplanatoryNotes'] .preface > p,
+article[data-doc-type='CodeOfPractice'] .preface > p,
+article[data-doc-type='TranspositionNote'] .preface > p {
+	font-size: 20pt;
+	line-height: 1.2;
+	margin: 0 0 6pt 0;
+	font-weight: bold;
+}
+article[data-doc-type='ExplanatoryNotes'] section.section > h2,
+article[data-doc-type='CodeOfPractice'] section.section > h2,
+article[data-doc-type='TranspositionNote'] section.section > h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+/* Legacy "level with inline bold p" pattern used for introductory/sub-headings */
+article[data-doc-type='ExplanatoryNotes'] section.level > p:only-child > b:only-child,
+article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child,
+article[data-doc-type='TranspositionNote'] section.level > p:only-child > b:only-child {
+	font-size: 14pt;
+	display: inline-block;
+	margin-top: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+</style>
+   </head>
+   <body>
+      <header class="toc-header"><a class="toc-link" href="/contents">Back to Table of Contents</a><nav class="section-nav"><a class="section-link prev-section disabled" aria-disabled="true">Previous section</a><a class="section-link next-section disabled" aria-disabled="true">Next section</a></nav><a class="full-view-link disabled" aria-disabled="true">Back to full view</a></header>
+      <article id="doc" data-doc-type="ExplanatoryNotes">
+         <div class="preface">
+            <p>
+               <span style="color:#000000">
+                  <b>SOCIAL SECURITY (UP-RATING OF BENEFITS) ACT 2021</b>
+                  </span>
+               </p>
+            <p>
+               <span style="color:#000000">EXPLANATORY NOTES</span>
+               </p>
+         </div>
+         <div class="body">
+            <section class="level">
+               <p>
+                  <span style="color:#0076BF">
+                     <b>What these notes do</b>
+                     </span>
+                  </p>
+            </section>
+            <section class="level heading">
+               <h2><span class="heading">These Explanatory Notes relate to the Social Security (Up-rating of Benefits) Act
+                     2021 (c. 32) which received Royal Assent on 17 November 2021. </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <span style="color:#548DD4">•</span>
+                        </span></h2>
+                  <p>These Explanatory Notes have been prepared by the Department for Work and Pensions
+                     in order to assist the reader. They do not form part of the Act <span style="color:#000000">and have not been endorsed by Parliament.</span></p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <span style="color:#548DD4">•</span>
+                        </span></h2>
+                  <p>
+                     <span style="color:#000000">These Explanatory Notes explain what each part of the Social Security (Up-rating of
+                        Benefits) Act 2021 will mean in practice; provide background information on the development
+                        of policy; and provide additional information on how the Act will affect existing
+                        legislation in this area. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">
+                        <span style="color:#548DD4">•</span>
+                        </span></h2>
+                  <p>
+                     <span style="color:#000000">These Explanatory Notes might best be read alongside the Social Security (Up-rating
+                        of Benefits) Act 2021. They are not, and are not intended to be, a comprehensive description
+                        of the Act.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_1" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Overview of the Act</b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">1 </span></h2>
+                  <p>
+                     <span style="color:#000000">The Act has two sections:</span>
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <span style="color:#000000">Section 1 provides for a review of the state pension and certain other benefits by
+                           reference to inflation and for the up-rating of the state pension and those other
+                           benefits by at least inflation or 2.5%, whichever is higher. This will apply only
+                           for the tax year 2022-23. </span>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>
+                        <span style="color:#000000">Section 2 contains the technical provisions in the Act which cover the short title,
+                           extent and commencement.</span>
+                        </p>
+                  </section>
+               </section>
+            </section>
+            <section id="section_2" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Policy background</b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">2 </span></h2>
+                  <p>
+                     <span style="color:#000000">Up-rating is the annual mechanism by which the Secretary of State is required by law
+                        to conduct a review of applicable benefit and pension rates each year to determine
+                        whether they have retained their value in relation to the general level of prices
+                        or earnings. Where the relevant benefit or pension rates have not retained their value,
+                        legislation provides that the Secretary of State is required to (or in some instances
+                        may) up-rate their value. There are three sets of benefit groups:</span>
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">a.</span></h2>
+                     <p>
+                        <span style="color:#000000">those that must rise at least in line with earnings: these are the basic State Pension
+                           and the full rate of the new State Pension, the Standard Minimum Guarantee in Pension
+                           Credit and survivors’ benefits in Industrial Death Benefit;</span>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">b.</span></h2>
+                     <p>
+                        <span style="color:#000000">those that must rise at least in line with prices: these are mainly additional needs
+                           benefits, the largest of which are Personal Independence Payment, Disability Living
+                           Allowance, Attendance Allowance and Carer’s Allowance. Other benefits that must also
+                           rise at least in line with prices include the Additional State Pension;</span>
+                        </p>
+                  </section>
+                  <section class="subparagraph num">
+                     <h2><span class="num">c.</span></h2>
+                     <p>
+                        <span style="color:#000000">those over which the Secretary of State has discretion: the largest of these is Universal
+                           Credit but also included are Employment and Support Allowance and Jobseeker’s Allowance.
+                           This group is often referred to as the ‘working age benefits’.</span>
+                        </p>
+                  </section>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">3 </span></h2>
+                  <p>
+                     <span style="color:#000000">Since 2011, the up-rating process has used the September Consumer Prices Index (CPI)
+                        figure for the rise in prices and the May-July Average Weekly Earnings (AWE) figure
+                        for the growth in earnings.  </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">4 </span></h2>
+                  <p>
+                     <span style="color:#000000">Final AWE figures for May to July, published on 12 October 2021, has earnings growth
+                        at 8.3%. The exceptionally high growth figure is inflated by the negative growth in
+                        earnings last year and the unusual employment market flows during the pandemic. This
+                        would have significant spending implications for State Pensions and other benefits
+                        linked to earnings. Once added, these increases would become the baseline for subsequent
+                        years. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">5 </span></h2>
+                  <p>
+                     <span style="color:#000000">This Act modifies section 150A of the Social Security Administration Act 1992 (the
+                        1992 Act) for the tax year 2022-23 so as to provide for the up-rating of the basic
+                        State Pension and certain other benefits by at least inflation or 2.5%, whichever
+                        is higher. Without the modification section 150A would require up-rating by reference
+                        to the increase in earnings.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">6 </span></h2>
+                  <p>
+                     <span style="color:#000000">Last year, when earnings fell by 1%, the Government took forward primary legislation
+                        to ensure that State Pensions could nonetheless be increased and increased State Pensions
+                        by 2.5%, well above both earnings (minus 1%) and price inflation (0.5%). If it had
+                        not taken this action, most State Pensions would have been frozen.  Due to earnings
+                        growth being inflated due to negative growth last year and the unusual employment
+                        market flows during a pandemic, a further one-year adjustment is needed.  For the
+                        tax year 2022-23 the State Pension and certain other benefits will be up-rated by
+                        at least inflation or 2.5%, whichever is higher.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_3" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Legal background</b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">7 </span></h2>
+                  <p>
+                     <span style="color:#000000">The following gives a brief overview of the existing legislation that is referenced
+                        by this Act. Further explanation if required is provided in the section by section
+                        commentary. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">8 </span></h2>
+                  <p>
+                     <span style="color:#000000">The 1992 Act provides for the annual up-rating of social security benefits specified
+                        in sections 150, 150A and 151A.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">9 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 150(1) of the 1992 Act requires the Secretary of State to review social security
+                        benefits, to determine whether they have retained their value in relation to the general
+                        level of prices. If the benefits have not retained their value, subsection (2)(a)
+                        requires the Secretary of State to bring forward a draft up-rating order to up-rate
+                        some of them by at least as much as the increase in the general level of prices. The
+                        main benefits affected are Attendance Allowance, Carer’s Allowance, Disability Living
+                        Allowance, Personal Independence Payment and the Additional State Pension. The Secretary
+                        of State has a discretion under subsection (2)(b) as to whether or not to increase
+                        other benefits in the draft up-rating order. The main benefits affected are the working
+                        age benefits. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">10 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 151A of the 1992 Act requires the inherited increments of the old State Pension
+                        and certain amounts exceeding the full rate of the new State Pension (payable under
+                        transitional arrangements) to be increased in line with prices if there has been an
+                        increase in prices over the review period. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">11 </span></h2>
+                  <p>
+                     <span style="color:#000000">Under section 150(1) and 151A (8) the Secretary of State has discretion as to how
+                        to measure changes in the general level of prices. In recent years she has decided
+                        to measure the increase in prices over the review period using the CPI.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">12 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 150A of the 1992 Act requires the Secretary of State to review certain benefits,
+                        to determine whether they have retained their value in relation to the general level
+                        of earnings. If the benefits have not retained their value, subsection (2) requires
+                        the Secretary of State to bring forward a draft up-rating order to up-rate them by
+                        at least as much as the increase in the level of earnings. Benefits affected are:
+                        the basic State Pension, the full rate of the new State Pension, the Standard Minimum
+                        Guarantee element of Pension Credit, and survivors’ benefits in Industrial Death Benefit.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">13 </span></h2>
+                  <p>
+                     <span style="color:#000000">Under section 150A (8) the Secretary of State has discretion over how to measure changes
+                        in the general level of earnings and has decided to measure the increase over the
+                        appropriate period using the AWE index for the quarter ending July in any given year.
+                        </span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_4" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Territorial extent and application</b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">14 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 2 covers the territorial extent of the Act. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">15 </span></h2>
+                  <p>
+                     <span style="color:#000000">The provisions of this Act extend to England and Wales and Scotland. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">16 </span></h2>
+                  <p>
+                     <span style="color:#000000">Survivors’ benefits in Industrial Death Benefit are devolved to the Scottish Parliament.
+                        As a consequence, the Scottish Parliament passed a Legislative Consent Motion for
+                        the Act. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">17 </span></h2>
+                  <p>
+                     <span style="color:#000000">Up-rating is a transferred matter in Northern Ireland, although the Department for
+                        Communities has a policy of maintaining parity with Great Britain through its own
+                        legislation.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">18 </span></h2>
+                  <p>
+                     <span style="color:#000000">See the table in Annex A for a summary of the position regarding territorial extent
+                        and application in the United Kingdom.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_5" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Commentary on provisions of Act</b>
+                        </span>
+                     </span></h2>
+               <section class="level">
+                  <p>
+                     <span style="color:#0070C0">
+                        <b>Section 1: Up-rating of state pension and certain other benefits following review
+                           in tax year 2021-22</b>
+                        </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">19 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 subsection (1) provides for a review of the basic State Pension, the full
+                        rate of the new State Pension, the Standard Minimum Guarantee in Pension Credit and
+                        survivors’ benefits in Industrial Death Benefit by reference to prices (instead of
+                        earnings).</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">20 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 subsection (2)(a) operates on section 150A (2) of the 1992 Act so that if
+                        those benefits have not retained their value in relation to the general level of prices,
+                        the Secretary of State is required to bring forward an up-rating order to up-rate
+                        them by at least as much as the increase in the general level of prices.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">21 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 subsection (2)(b) inserts a new subsection (2A) into section 150A which
+                        imposes a duty on the Secretary of State to increase those benefits by not less than
+                        2.5% if either inflation has been less than 2.5%, or if there has been no inflation,
+                        over the review period.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">22 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 subsection (2)(b) also inserts a new subsection (2B) into section 150A so
+                        that where provision in respect of the amounts of survivors’ benefits in Industrial
+                        Death Benefit is within the legislative competence of the Scottish Parliament, subsection
+                        (2A) has effect as if references to the Secretary of State and to Parliament were
+                        references to the Scottish Ministers and the Scottish Parliament respectively.</span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">23 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 subsection (2)(e) amends section 150A (8) to enable the Secretary of State
+                        to estimate the general level of prices in such manner as she thinks fit. </span>
+                     </p>
+               </section>
+               <section class="level">
+                  <p>
+                     <span style="color:#0070C0">
+                        <b>Section 2: Extent, commencement and short title</b>
+                        </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">24 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 2 provides details of the territorial extent, commencement and short title
+                        of the Act. </span>
+                     </p>
+               </section>
+               <section class="paragraph num">
+                  <h2><span class="num">25 </span></h2>
+                  <p>
+                     <span style="color:#000000">Section 1 and 2 of the Act come into force on Royal Assent.</span>
+                     </p>
+               </section>
+            </section>
+            <section id="section_6" class="section heading">
+               <h2><span class="heading">
+                     <span style="color:#0070C0">
+                        <b>Related documents</b>
+                        </span>
+                     </span></h2>
+               <section class="paragraph num">
+                  <h2><span class="num">26 </span></h2>
+                  <p>
+                     <span style="color:#000000">The following document is relevant to the Act and can be read at the stated location:</span>
+                     </p>
+                  <section class="subparagraph num">
+                     <h2><span class="num">
+                           <span style="color:#4F81BD">•</span>
+                           </span></h2>
+                     <p>
+                        <span style="color:#000000">Social Security Administration Act 1992 – relevant sections 150, 150A and 151A </span>
+                        <a href="https://www.legislation.gov.uk/ukpga/1992/5/contents">
+                           <span style="color:#0070C0">
+                              <u>https://www.legislation.gov.uk/ukpga/1992/5/contents</u>
+                              </span>
+                           </a>
+                        </p>
+                  </section>
+               </section>
+            </section>
+         </div>
+         <section class="attachment" data-name="annex">
+            <div class="body">
+               <p>
+                  <span style="color:#0070C0">
+                     <b>Annex A - Territorial extent and application in the United Kingdom</b>
+                     </span>
+                  </p>
+               <table>
+                  <colgroup>
+                     <col style="width:13.31%">
+                     <col style="width:19.44%">
+                     <col style="width:18.91%">
+                     <col style="width:20.67%">
+                     <col style="width:27.67%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Provision</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Extends to E &amp; W and applies to England?</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Extends to E &amp; W and applies to Wales?</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Extends and applies to Scotland?</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Extends and applies to Northern Ireland?</b>
+                                 </span>
+                              </p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Section 1</span>
+                              </p>
+                           <p>
+                              <span style="color:#000000">Section 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                           <p>
+                              <span style="color:#000000">Yes</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">No</span>
+                              </p>
+                           <p>
+                              <span style="color:#000000">No</span>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <p>
+                  <span style="color:#0070C0">
+                     <b>Subject matter and legislative competence of devolved legislatures</b>
+                     </span>
+                  </p>
+               <div class="blockContainer">
+                  <p><span class="num">27 </span>
+                     <span style="color:#000000">Survivors’ benefits in Industrial Death Benefit fall within the legislative competence
+                        of the Scottish Parliament.</span>
+                     </p>
+               </div>
+            </div>
+         </section>
+         <section class="attachment" data-name="annex">
+            <div class="body">
+               <p>
+                  <span style="color:#0070C0">
+                     <b>Annex B - Hansard References</b>
+                     </span>
+                  </p>
+               <div class="blockContainer">
+                  <p><span class="num">28 </span>
+                     <span style="color:#000000">The following table sets out the dates and Hansard references for each stage of the
+                        Act's passage through Parliament. </span>
+                     </p>
+               </div>
+               <table>
+                  <colgroup>
+                     <col style="width:27.19%">
+                     <col style="width:23.05%">
+                     <col style="width:49.76%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Stage</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Date</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Hansard Reference</b>
+                                 </span>
+                              </p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <span style="color:#000000">
+                                 <i>House of Commons</i>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Introduction</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">08 September 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2021-09-08/debates/BB44677E-50D7-46C9-86F7-CEDEBA8CE2FD/PointOfOrder">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 700 Col. 318</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Second Reading</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">20 September 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2021-09-20/debates/65E253F9-5FC6-46C5-ADC8-124C0B50515C/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 701 Col. 61</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Committee</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">20 September 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2021-09-20/debates/CC67172E-B5F6-4DF5-98DD-4DCD394CD62A/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 701 Col. 94</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Report and Third Reading</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">20 September 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2021-09-20/debates/CC67172E-B5F6-4DF5-98DD-4DCD394CD62A/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 701 Col. 102</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="3">
+                           <p>
+                              <span style="color:#000000">
+                                 <i>House of Lords</i>
+                                 </span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Introduction</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">11 October 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-10-11/debates/275A877F-BFF5-4ACA-943B-E886AA59813E/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 814 Col. 1656</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Second Reading</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">13 October 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-10-13/debates/7CEE6115-3BE0-409E-BACC-517493188571/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 814 Col. 1847</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Committee</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">26 October 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-10-26/debates/E4ABC15E-943B-4E01-AB9D-9B6C19D7A480/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 815 Col. 725</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Report </span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">2 November 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-11-02/debates/66CC8879-2C1E-43D8-B04E-B30DCF2B5647/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 815 Col. 1121</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Third Reading</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">9 November 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-11-08/debates/59B72562-12D2-457C-9D9A-AD49C754EEA3/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 815 Col. 1445</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Commons Consideration of Lords Amendments</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">15 November 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/commons/2021-11-15/debates/BC49F882-CC13-45BA-B055-5634A436E6F3/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 703 Col. 358</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Lord Consideration of Commons Reasons</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">16 November 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/lords/2021-11-16/debates/037A7142-2687-48E4-BD4D-D5E94EE2FC83/SocialSecurity(Up-RatingOfBenefits)Bill">
+                                 <span style="color:#0070C0">
+                                    <u>Vol. 816 Col. 161</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td rowspan="2">
+                           <p>
+                              <span style="color:#000000">Royal Assent</span>
+                              </p>
+                        </td>
+                        <td rowspan="2">
+                           <p>
+                              <span style="color:#000000">17 November 2021</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Commons/2021-11-17/debates/1875E137-83B5-4AEA-B9E3-D7D2E61ED93A/RandoxCovidContracts">
+                                 <span style="color:#0070C0">
+                                    <u>House of Commons Vol. 703 Col. 623</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <a href="https://hansard.parliament.uk/Lords/2021-11-17/debates/E194AC6E-DA6E-4ECB-B3C0-6BF16DC19D69/RoyalAssent">
+                                 <span style="color:#0070C0">
+                                    <u>House of Lords Vol. 816 Col. 278</u>
+                                    </span>
+                                 </a>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+         <section class="attachment" data-name="annex">
+            <div class="body">
+               <p>
+                  <span style="color:#0070C0">
+                     <b>Annex C - Progress of Bill Table</b>
+                     </span>
+                  </p>
+               <div class="blockContainer">
+                  <p><span class="num">29 </span>
+                     <span style="color:#000000">This Annex shows how each section and Schedule of the Act was numbered during the
+                        passage of the Bill through Parliament. </span>
+                     </p>
+               </div>
+               <table>
+                  <colgroup>
+                     <col style="width:16.53%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                     <col style="width:16.69%">
+                  </colgroup>
+                  <tbody>
+                     <tr>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Section of the Act</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Bill as Introduced in the Commons</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Bill as amended in Committee in the Commons </b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Bill as introduced in the Lords</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Bill as amended in Committee in the Lords</b>
+                                 </span>
+                              </p>
+                        </th>
+                        <th>
+                           <p>
+                              <span style="color:#000000">
+                                 <b>Bill as amended on Report in the Lords</b>
+                                 </span>
+                              </p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Section 1</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 1</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 1</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 1</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 1</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 1</span>
+                              </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Section 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 2</span>
+                              </p>
+                        </td>
+                        <td>
+                           <p>
+                              <span style="color:#000000">Clause 2</span>
+                              </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </section>
+      </article>
+   </body>
+</html>

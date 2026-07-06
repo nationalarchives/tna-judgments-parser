@@ -138,7 +138,8 @@ internal class ListNum {
         string fieldName = null;
         Match match = Regex.Match(fieldCode, @"^ LISTNUM (""?([^""\\]+?)""?) ");
         if (match.Success) {
-            fieldName = match.Groups[1].Value;
+            // Use Group 2 as to not include the quotes if they are present
+            fieldName = match.Groups[2].Value;
         }
         int fieldLvl = -1;
         match = Regex.Match(fieldCode, @"\\l (\d)");
@@ -146,7 +147,7 @@ internal class ListNum {
             fieldLvl = int.Parse(match.Groups[1].Value) - 1; // fieldLvl is 0 based
         }
         int fieldStart = -1;
-        match = Regex.Match(fieldCode, @"\\s (\d)");
+        match = Regex.Match(fieldCode, @"\\s (\d+)");
         if (match.Success) {
             fieldStart = int.Parse(match.Groups[1].Value);
         }
@@ -160,7 +161,7 @@ internal class ListNum {
             }
             else {
                 int n = CountPreceding(first, fieldCode) + 1;
-                fieldNum = FormatNNumberDefault(fieldLvl, n);
+                fieldNum = FormatNNumberDefault(fieldLvl + 1, n); // FormatNNumberDefault expects the lvl not to be 0 based
             }
         }
         else {
