@@ -404,8 +404,6 @@ namespace UK.Gov.Legislation.Lawmaker
         {
             if (line is not WLine wLine)
                 return line;
-            if (line.Contents.Count() == 0)
-                return line;
 
             List<IInline> trimmedInlines = [];
 
