@@ -494,23 +494,23 @@ namespace UK.Gov.Legislation.Lawmaker
             IEnumerable<IBlock> content = FootnoteEnricher.EnrichInside(fn.Content);
             blocks(authorialNote, content);
         }
-        
+
         // An approximate conversation based on how the Lawmaker editor converts image size into mm
         // The numbers are not perfect and resulted from trial and error
-        private double PtToMM(float pt)
+        private double PtToMM(double pt)
         {
             return Math.Floor(pt * 25.4/300*1.44); //transforming between different measurements
         }
 
+        // Extract float CSS values as set them on `img`
         private void ExtractDimensions(XmlElement img, IImageRef model)
         {
-            foreach (string style in model.Style.Split(";"))
+            foreach (string style in model.Style.Split(";", StringSplitOptions.TrimEntries))
             {
-                if (style.Any(char.IsDigit))
+                if (style.Split(":", 2, StringSplitOptions.TrimEntries) is [var key, var val]
+                    && double.TryParse(Regex.Replace(val, @"[^0-9.-]", ""), out double parsedValue))
                 {
-                    img.SetAttribute(
-                    style.Split(":")[0], 
-                    PtToMM(float.Parse(Regex.Replace(style, @"[^0-9.-]", ""))).ToString());
+                    img.SetAttribute(key, PtToMM(parsedValue).ToString());
                 }
             }
         }
