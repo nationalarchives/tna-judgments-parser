@@ -116,6 +116,13 @@ When significant changes are made to the parser some tests may fail due to diffe
 dotnet test --project test/test.csproj --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
 ```
 
+## Six Labors Licence Key
+
+If running locally, put the licence at sixlabors.lic in the root directory of this repo, or ensure that the $SIX_LABORS_LIC docker variable is populated
+(potentially via [/vars in the terraform environment](https://github.com/nationalarchives/da-tre-terraform-environments/tree/main/vars))
+
+Additionally it is stored in the github actions secrets as SIXLABORSLICENSEKEY.
+
 ## Other Documentation
 
 - See [Backlog readme](./backlog/README.md) for bulk parse documentation.
