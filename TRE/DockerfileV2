@@ -11,12 +11,13 @@ COPY ["judgments.csproj", "judgments.csproj"]
 RUN dotnet restore judgments.csproj
 COPY ["TRE/TRE.csproj", "TRE/TRE.csproj"]
 RUN dotnet restore TRE/TRE.csproj
+
+RUN --mount=type=secret,id=SIXLABORS_LICENSE_KEY,env=SIXLABORS_LICENSE_KEY echo "$SIXLABORS_LICENSE_KEY" > ./sixlabors.lic
 # Copy the rest of the repo over
 COPY . ./
 
 FROM build-env AS publish
-
-RUN dotnet publish TRE/TRE.csproj -c Release -o /app/publish --no-restore
+RUN --mount=type=secret,id=SIXLABORS_LICENSE_KEY,env=SIXLABORS_LICENSE_KEY dotnet publish TRE/TRE.csproj -c Release -o /app/publish --no-restore
 
 FROM base AS final
 
