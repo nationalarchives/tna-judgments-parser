@@ -518,8 +518,10 @@ namespace UK.Gov.Legislation.Lawmaker
             img.SetAttribute("src", "/document/image?filename="+model.Src+"&ds=LEGI_DRAFTING");
             img.SetAttribute("alt", model.Src);
             if (model.Style is not null)
+            {
                 img.SetAttribute("style", model.Style);
-            ExtractDimensions(img, model);
+                ExtractDimensions(img, model);
+            }
             parent.AppendChild(img);
         }
 
