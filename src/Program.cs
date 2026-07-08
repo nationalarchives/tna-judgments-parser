@@ -13,12 +13,15 @@ using UK.Gov.Legislation.Judgments;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using UK.Gov.Legislation.Lawmaker;
+using System.Collections.Generic;
+using UK.Gov.Legislation.Lawmaker.Api;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
 
 public class Program {
     private const int Success = 0;
+    private const int Failure = 1;
 
     private static readonly RootCommand Command;
     private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
@@ -134,13 +137,16 @@ public class Program {
                 docName = null;
             }
             if (docName != null) {
-                LegislationClassifier classifier = new LegislationClassifier((DocName)docName, subType, procedure);
+                LegislationClassifier classifier = new LegislationClassifier((DocName) docName, subType, procedure);
                 LanguageService languageService = new LanguageService(language);
-                var xml = Helper.LocalParse(input.FullName, classifier, languageService).Xml;
+                Response localResponse = Helper.LocalParse(input.FullName, classifier, languageService);
                 if (output is not null)
-                    File.WriteAllText(output.FullName, xml);
+                    File.WriteAllText(output.FullName, localResponse.Xml);
                 else
-                    Console.WriteLine(xml);
+                    Console.WriteLine(localResponse.Xml);
+
+                if (outputZip is not null)
+                    SaveImagesToZip(localResponse.Images, outputZip);
                 return Success;
             }
             logger?.LogCritical("unrecognized document type: {}", hint);
@@ -191,6 +197,34 @@ public class Program {
             entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
             zip.Write(image.Content, 0, image.Content.Length);
+        }
+    }
+
+    private static void SaveImagesToZip(IEnumerable<Image> images, FileInfo file)
+    {
+        using var stream = new FileStream(file.FullName, FileMode.Create);
+        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
+        foreach (var image in images)
+        {
+            var entry = archive.CreateEntry(image.Name);
+            using var zip = entry.Open();
+            zip.Write(image.Content, 0, image.Content.Length);
+        }
+    }
+
+    private static void SaveZip(IXmlDocument em, FileInfo file) {
+        using var stream = new FileStream(file.FullName, FileMode.Create);
+        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
+        var entry = archive.CreateEntry("judgment.xml");
+        using (var zip = entry.Open()) {
+            byte[] bytes = Encoding.UTF8.GetBytes(em.Serialize());
+            zip.Write(bytes, 0, bytes.Length);
+        }
+        foreach (var image in em.Images) {
+            entry = archive.CreateEntry(image.Name);
+            using var zip = entry.Open();
+            byte[] bytes = image.Read();
+            zip.Write(bytes, 0, bytes.Length);
         }
     }
 

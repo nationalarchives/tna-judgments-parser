@@ -9,8 +9,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-using DocumentFormat.OpenXml.Spreadsheet;
-using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
 using static UK.Gov.Legislation.Lawmaker.LanguageService;
 
@@ -102,10 +100,10 @@ partial record LdappTableNumber(
     List<WLine>? Captions
 ) : ILineable {
 
-    private static readonly LanguagePatterns TableNumberPatterns = new()
+    internal static readonly LanguagePatterns TableNumberPatterns = new()
     {
-        [Lang.EN] = [@"^Table\s+\w+$"],
-        [Lang.CY] = [@"^Tabl\s+\w+$"]
+        [Lang.EN] = [@"^(?:The\s+Table|Table\s+\w+)$"], // e.g. matches The Table & Table 1
+        [Lang.CY] = [@"^(?:Y\s+Tabl|Tabl\s+\w+)$"],    // e.g. matches Y Tabl & Tabl 1
     };
 
     public IEnumerable<WLine> Lines => Captions is null ? [Number] : Captions.Prepend(Number);
