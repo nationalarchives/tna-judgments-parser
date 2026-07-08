@@ -18,12 +18,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.27" />
     <PackageReference Include="TestableIO.System.IO.Abstractions.Wrappers" Version="22.1.1" />
     <ProjectReference Include="../judgments.csproj" />
-    <PackageReference Include="AWSSDK.SSO" Version="4.0.100" />
-    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.100" />
+    <PackageReference Include="AWSSDK.SSO" Version="4.0.100.2" />
+    <PackageReference Include="AWSSDK.SSOOIDC" Version="4.0.100.2" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
-    <PackageReference Include="AWSSDK.S3" Version="4.0.100" />
+    <PackageReference Include="AWSSDK.S3" Version="4.0.100.2" />
     <ProjectReference Include="../TRE/TRE.csproj" />
   </ItemGroup>
 
