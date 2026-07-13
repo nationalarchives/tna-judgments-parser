@@ -2,9 +2,9 @@
 
 using System;
 
-using Backlog.Csv;
-
 using Backlog.Src;
+
+using Shouldly;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -14,6 +14,8 @@ namespace test.backlog.MetadataTests;
 
 public class TestMakeMetadata
 {
+    private readonly DateTime dummyDate = new(1000, 01, 01, 00, 00, 00, 00, DateTimeKind.Utc);
+
     [Fact]
     public void MakeMetadata_WithBasicLine_CreatesCorrectMetadata()
     {
@@ -280,5 +282,30 @@ public class TestMakeMetadata
 
         // Assert
         Assert.Empty(result.Jurisdictions);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithDummyDate_SetsNamedDateToDummy()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { DecisionDateTime = dummyDate };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Date.Date.ShouldBe("1000-01-01");
+        result.Date.Name.ShouldBe("dummy");
+    }
+
+    [Fact]
+    public void MakeMetadata_WithRealDate_SetsNamedDateToDecision()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            DecisionDateTime = new DateTime(2020, 11, 05, 01, 00, 00, DateTimeKind.Utc)
+        };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Date.Date.ShouldBe("2020-11-05");
+        result.Date.Name.ShouldBe("decision");
     }
 }

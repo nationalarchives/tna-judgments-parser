@@ -140,6 +140,58 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
     }
 
     [Fact]
+    public void ProcessBacklogTribunal_DocxWithDummyDecisionDate_UsesDateFromDocument()
+    {
+        const int docWithDecisionDate = 13;
+        var originalFileName = $"test{docWithDecisionDate}.docx";
+
+        ConfigureTestEnvironment(docWithDecisionDate);
+
+        var metadataLine = new CsvLine
+        {
+            id = docWithDecisionDate.ToString(),
+            FilePath = originalFileName,
+            Extension = ".docx",
+            DecisionDateTime = new DateTime(1000, 01, 01, 00, 00, 00, DateTimeKind.Utc),
+            Court = "UKUT-IA",
+            Claimants = "a claimant",
+            Respondent = "a respondent",
+            Uuid = uuid
+        };
+        WriteCourtMetadataCsv(metadataLine);
+
+        // Act
+        var exitCode = Backlog.Program.Main();
+
+        //Assert
+        AssertProgramExitedSuccessfully(exitCode);
+
+        var doc = GetXmlDocumentFromS3();
+
+        // Assert xml is as expected
+        doc.HasSingleNodeWithName("FRBRWork")
+           .Which().HasChildMatching("FRBRdate", "", ("name", "decision"), ("date", "2021-04-12"));
+
+        doc.HasSingleNodeWithName("FRBRExpression")
+           .Which().HasChildMatching("FRBRdate", "", ("name", "decision"), ("date", "2021-04-12"));
+
+        doc.HasSingleNodeWithName("lifecycle")
+           .Which().HasChildrenMatching(
+               child => child.Should().Match(
+                   "eventRef",
+                   "",
+                   ("refersTo", "#hearing"), ("date", "2021-03-24"), ("source", "#")),
+               child => child.Should().Match(
+                   "eventRef",
+                   "",
+                   ("refersTo", "#decision"), ("date", "2021-04-12"), ("source", "#"))
+           );
+
+        doc.HasSingleNodeWithName("proprietary")
+           .Which().HasChildMatching("uk:year", "2021");
+    }
+
+    [Fact]
     public void ProcessBacklogTribunal_PdfWithExternalMetaData_AddsMetadata()
     {
         var originalFileName = "test.pdf";
@@ -188,6 +240,45 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         doc.HasSingleNodeWithName("references")
            .Which().DoesNotHaveChildWithName("docJurisdiction");
+    }
+
+    [Fact]
+    public void ProcessBacklogTribunal_PdfWithDummyDecisionDate_OutputsDummyDate()
+    {
+        var originalFileName = "test.pdf";
+
+        ConfigureTestEnvironment(null);
+
+        var metadataLine = new CsvLine
+        {
+            id = "42",
+            FilePath = originalFileName,
+            Extension = ".pdf",
+            DecisionDateTime = new DateTime(1000, 01, 01, 00, 00, 00, DateTimeKind.Utc),
+            Court = "UKUT-LC",
+            Ncn = "[1989] UKUT 001234 (LC)",
+            Claimants = "new claimants",
+            Respondent = "new respondent",
+            Uuid = uuid
+        };
+        WriteCourtMetadataCsv(metadataLine);
+
+        // Act
+        var exitCode = Backlog.Program.Main();
+
+        //Assert
+        AssertProgramExitedSuccessfully(exitCode);
+
+        var doc = GetXmlDocumentFromS3();
+
+        // Assert - dummy date is in FRBR Work and Expression
+        doc.HasSingleNodeWithName("FRBRWork")
+           .Which().HasChildMatching("FRBRdate", "", ("name", "dummy"), ("date", "1000-01-01"));
+        doc.HasSingleNodeWithName("FRBRExpression")
+           .Which().HasChildMatching("FRBRdate", "", ("name", "dummy"), ("date", "1000-01-01"));
+
+        // Assert - lifecycle is not present because we have no real date
+        doc.DoesNotHaveNodeWithName("lifecycle");
     }
 
     [Fact]

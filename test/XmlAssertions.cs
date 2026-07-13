@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Xml;
 
@@ -128,20 +129,39 @@ public static class XmlAssertions
                 }
             }
 
-            Assert.True(hasPassedInspection, $"""Found unexpected child node <{child.Name}> with value "{child.InnerText}" in <{node.Name}>""");
+            Assert.True(hasPassedInspection,
+                $"Found unexpected child node in <{node.Name}>: {XmlNodeAsFormattedString(child)}");
         }
 
         Assert.True(unpassedInspectors.Count == 0, $"{unpassedInspectors.Count} inspectors were not satisfied for <{node.Name}>");
     }
-    
-    public static XmlNode HasChildMatching(this XmlNode node, string expectedName, string expectedValue)
+
+    public static XmlNode HasChildMatching(this XmlNode node, string expectedName, string expectedValue,
+        params (string key, string value)[] expectedAttributes)
     {
         var childNodes = node.Cast<XmlNode>();
-        
-        if (!childNodes.Any(child => child.IsMatch(expectedName, expectedValue).isMatch))
-            Assert.Fail($"Could not find a child of {node.Name} with name {expectedName} and value \"{expectedValue}\"");
+
+        if (!childNodes.Any(child => child.IsMatch(expectedName, expectedValue, expectedAttributes).isMatch))
+        {
+            Assert.Fail(
+                $"""
+                 Could not find a child with name {expectedName}, value "{expectedValue}" and attributes [{string.Join(", ", expectedAttributes.Select(x => x.key + ":" + x.value))}] in:
+                 {XmlNodeAsFormattedString(node)}
+                 """);
+        }
 
         return node;
+    }
+
+    private static string XmlNodeAsFormattedString(XmlNode node)
+    {
+        using var stringWriter = new StringWriter();
+        using var xmlTextWriter = new XmlTextWriter(stringWriter);
+        xmlTextWriter.Formatting = Formatting.Indented;
+
+        node.WriteTo(xmlTextWriter);
+
+        return stringWriter.ToString();
     }
 
     public static XmlNode HasChildWithName(this XmlNode node, string name)

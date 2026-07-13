@@ -77,14 +77,7 @@ internal class Stub
 
         var date = CreateAndAppend("FRBRdate", work);
         date.SetAttribute("date", stubMetadata.Date?.Date);
-        if (stubMetadata.Date?.Date == "1000-01-01")
-        {
-            date.SetAttribute("name", "dummy");
-        }
-        else
-        {
-            date.SetAttribute("name", stubMetadata.Date?.Name);
-        }
+        date.SetAttribute("name", stubMetadata.Date?.Name);
 
         var author = CreateAndAppend("FRBRauthor", work);
         author.SetAttribute("href", "#" + Metadata.MakeCourtId(stubMetadata.Court));
@@ -143,11 +136,16 @@ internal class Stub
 
     private void Lifecycle(XmlElement meta)
     {
+        if (stubMetadata.Date?.Date == Metadata.DummyDate)
+        {
+            return;
+        }
+        
         var lifecycle = CreateAndAppend("lifecycle", meta);
         lifecycle.SetAttribute("source", "#");
 
         var eventRef = CreateAndAppend("eventRef", lifecycle);
-        eventRef.SetAttribute("date", stubMetadata.Date.Date);
+        eventRef.SetAttribute("date", stubMetadata.Date!.Date);
         eventRef.SetAttribute("refersTo", "#" + Metadata.MakeDateId(stubMetadata.Date));
         eventRef.SetAttribute("source", "#");
     }
