@@ -91,10 +91,21 @@ internal class MetadataTransformer(
     {
         var decisionDateAsString = line.DecisionDateTime.ToString("yyyy-MM-dd");
 
-        var wNamedDate = decisionDateAsString == UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate
+        var isDummyDate = decisionDateAsString == UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate;
+        var wNamedDate = isDummyDate
             ? new WNamedDate { Date = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate, Name = "dummy" }
             : new WNamedDate { Date = decisionDateAsString, Name = "decision" };
-        
+
+        var hasNcn = line.CleanedNcn is not null;
+        var shortUriComponent = hasNcn ? Citations.MakeUriComponent(line.CleanedNcn) : null;
+
+        var year = (hasNcn, isDummyDate) switch
+        {
+            (hasNcn: true, _) => Citations.YearFromUriComponent(shortUriComponent),
+            (hasNcn: false, isDummyDate: false) => line.DecisionDateTime.Year,
+            (hasNcn: false, isDummyDate: true) => null
+        };
+
         StubMetadata meta = new()
         {
             Type = JudgmentType.Decision,
@@ -107,6 +118,8 @@ internal class MetadataTransformer(
             Categories = line.Categories.ToList(),
             SourceFormat = GetMimeType(line.Extension),
             Cite = line.CleanedNcn,
+            Year = year,
+            ShortUriComponent = shortUriComponent,
             WebArchivingLink = line.WebArchiving
         };
         return meta;
