@@ -1,5 +1,9 @@
-using System.Xml;
+#nullable enable
+
 using System;
+using System.Xml;
+
+using Backlog.Csv;
 using Backlog.Src;
 
 using Xunit;
@@ -8,241 +12,146 @@ namespace test.backlog.MetadataTests;
 
 public class TestStub
 {
-    [Fact]
-    public void Stub_WithNCN_AppearsInXmlAsCite()
+    private readonly DateTime dummyDate = new(1000, 01, 01, 00, 00, 00, 00, DateTimeKind.Utc);
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("   ")]
+    [InlineData("")]
+    public void Stub_WithoutNCN_DoesNotHaveUkCite(string? blankNcn)
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            Ncn = "[2023] UKUT 123 (IAC)"
+            Ncn = blankNcn
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        Assert.Contains("<uk:cite>[2023] UKUT 123 (IAC)</uk:cite>", xml);
+        resultXml.DoesNotHaveNodeWithName("uk:cite");
     }
 
-    [Fact]
-    public void Stub_WithEmptyNCN_DoesNotAppearInXml()
+    [Theory]
+    [InlineData("[2023] UKUT 123 (IAC)")]
+    [InlineData("[2023] EWCA Civ 123 & 124")]
+    public void Stub_WithNCN_AppearsCorrectlyInXml(string ncn)
     {
         // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            Ncn = ""
+            Ncn = ncn
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        Assert.DoesNotContain("<uk:cite", xml);
-        Assert.DoesNotContain("</uk:cite>", xml);
-    }
-
-    [Fact]
-    public void Stub_WithNullNCN_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            // ncn is not set (null)
-            Ncn = null
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        Assert.DoesNotContain("<uk:cite", xml);
-        Assert.DoesNotContain("</uk:cite>", xml);
-    }
-
-    [Fact]
-    public void Stub_WithWhitespaceNCN_DoesNotAppearInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Ncn = "   "
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        Assert.DoesNotContain("<uk:cite", xml);
-        Assert.DoesNotContain("</uk:cite>", xml);
-    }
-
-    [Fact]
-    public void Stub_WithNCNSpecialCharacters_AppearsCorrectlyInXml()
-    {
-        // Arrange
-        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
-        {
-            Ncn = "[2023] EWCA Civ 123 & 124"
-        };
-        var metadata = MetadataTransformer.MakeMetadata(line);
-
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
-
-        // Assert
-        Assert.Contains("<uk:cite", xml);
-        Assert.Contains("[2023] EWCA Civ 123 &amp; 124", xml);
-        Assert.Contains("</uk:cite>", xml);
+        resultXml.HasSingleNodeWithName("proprietary")
+                 .Which().HasChildMatching("uk:cite", ncn);
     }
     
     [Fact]
     public void Stub_WithSingleJurisdiction_AppearsInXmlAsUkJurisdiction()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             Jurisdictions = ["new jurisdiction"]
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:jurisdiction", "new jurisdiction");
+        resultXml.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:jurisdiction", "new jurisdiction");
     }
     
     [Fact]
     public void Stub_WithMultipleJurisdictions_AppearInXmlAsUkJurisdictions()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             Jurisdictions = ["new jurisdiction", "other new jurisdiction"]
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.HasSingleNodeWithName("proprietary").Which()
-           .HasChildMatching("uk:jurisdiction", "new jurisdiction")
-           .And().HasChildMatching("uk:jurisdiction", "other new jurisdiction");
+        resultXml.HasSingleNodeWithName("proprietary").Which()
+                 .HasChildMatching("uk:jurisdiction", "new jurisdiction")
+                 .And().HasChildMatching("uk:jurisdiction", "other new jurisdiction");
     }
 
     [Fact]
     public void Stub_WithNoJurisdiction_DoesNotAppearInXml()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             Jurisdictions = []
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:jurisdiction");
+        resultXml.DoesNotHaveNodeWithName("uk:jurisdiction");
     }
 
     [Fact]
     public void Stub_WithWebArchivingLink_AppearsInXmlAsUkWebarchiving()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             WebArchiving = "a web archive link"
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:webarchiving", "a web archive link");
+        resultXml.HasSingleNodeWithName("proprietary").Which()
+                 .HasChildMatching("uk:webarchiving", "a web archive link");
     }
 
     [Fact]
     public void Stub_WithNoWebArchivingLink_DoesNotAppearInXml()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
             WebArchiving = null
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.DoesNotHaveNodeWithName("uk:webarchiving");
+        resultXml.DoesNotHaveNodeWithName("uk:webarchiving");
     }
 
     [Fact]
     public void Stub_WithDummyDate_AppearsInXmlAsDummyDate()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            DecisionDateTime = DateTime.Parse("1000-01-01")
+            DecisionDateTime = dummyDate
         };
-        var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
-        var stub = Stub.Make(metadata);
-        var xml = stub.Serialize();
+        var resultXml = Act(line);
 
-        // Assert
-        var doc = new XmlDocument();
-        doc.LoadXml(xml);
-        doc.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "dummy").And().HasAttribute("date", "1000-01-01");
+        resultXml.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "dummy").And().HasAttribute("date", "1000-01-01");
     }
 
     [Fact]
     public void Stub_WithNormalDate_AppearsInXmlAsNonDummyDate()
     {
-        // Arrange
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
-            DecisionDateTime = DateTime.Parse("2025-01-01")
+            DecisionDateTime = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
         };
+
+        var resultXml = Act(line);
+
+        resultXml.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which()
+                 .HasAttribute("name", "decision").And().HasAttribute("date", "2025-01-01");
+    }
+
+    private static XmlDocument Act(CsvLine line)
+    {
         var metadata = MetadataTransformer.MakeMetadata(line);
 
-        // Act
         var stub = Stub.Make(metadata);
         var xml = stub.Serialize();
 
-        // Assert
         var doc = new XmlDocument();
         doc.LoadXml(xml);
-        doc.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "decision").And().HasAttribute("date", "2025-01-01");
+        return doc;
     }
 }
