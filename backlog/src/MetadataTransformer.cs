@@ -119,6 +119,7 @@ internal class MetadataTransformer(
             SourceFormat = GetMimeType(line.Extension),
             Cite = line.CleanedNcn,
             Year = year,
+            Number = Citations.NumberFromUriComponent(shortUriComponent),
             ShortUriComponent = shortUriComponent,
             WebArchivingLink = line.WebArchiving
         };

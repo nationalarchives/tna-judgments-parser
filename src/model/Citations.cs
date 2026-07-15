@@ -173,7 +173,12 @@ public class Citations {
         return int.Parse(year);
     }
 
-    internal static int NumberFromUriComponent(string uri) {
+    public static int? NumberFromUriComponent(string uri)
+    {
+        if (uri is null)
+        {
+            return null;
+        }
         string num = Regex.Match(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/\d{4}/(\d+)").Groups[2].Value;
         return int.Parse(num);
     }

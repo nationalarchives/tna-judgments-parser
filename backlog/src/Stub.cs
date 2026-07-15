@@ -195,6 +195,11 @@ internal class Stub
             CreateAndAppendUk(proprietary, "year", stubMetadata.Year.Value.ToString());
         }
 
+        if (stubMetadata.Number.HasValue)
+        {
+            CreateAndAppendUk(proprietary, "number", stubMetadata.Number.Value.ToString());
+        }
+
         foreach (var caseNo in stubMetadata.CaseNumbers)
         {
             CreateAndAppendUk(proprietary, "caseNumber", caseNo);

@@ -320,6 +320,16 @@ public class TestMakeMetadata
     }
 
     [Fact]
+    public void MakeMetadata_WithNcn_SetsNumberFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Number.ShouldBe(2345);
+    }
+
+    [Fact]
     public void MakeMetadata_WithoutNcn_UsesDateAsYear()
     {
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
@@ -340,5 +350,15 @@ public class TestMakeMetadata
         var result = MetadataTransformer.MakeMetadata(line);
 
         result.Year.ShouldBe(null);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithoutNcn_SetsNumberToNull()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Number.ShouldBe(null);
     }
 }

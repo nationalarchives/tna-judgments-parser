@@ -181,6 +181,18 @@ public class TestStub
         resultXml.HasSingleNodeWithName("proprietary")
                  .Which().HasChildMatching("uk:year", "2024");
     }
+
+    [Fact]
+    public void Stub_WithNcn_GetsNumberFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var resultXml = Act(line);
+
+        resultXml.HasSingleNodeWithName("proprietary")
+                 .Which().HasChildMatching("uk:number", "2345");
+    }
+
     [Fact]
     public void Stub_WithoutNcn_UsesDateAsYear()
     {
@@ -203,6 +215,16 @@ public class TestStub
         var resultXml = Act(line);
 
         resultXml.DoesNotHaveNodeWithName("uk:year");
+    }
+
+    [Fact]
+    public void Stub_WithoutNcn_HasNoUkNumber()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var resultXml = Act(line);
+
+        resultXml.DoesNotHaveNodeWithName("uk:number");
     }
 
     private static XmlDocument Act(CsvLine line)

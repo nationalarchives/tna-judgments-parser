@@ -235,6 +235,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                child => child.Should().Match("uk:sourceFormat", "application/pdf"),
                child => child.Should().HaveName("uk:parser"),
                child => child.Should().Match("uk:year", "1989"),
+               child => child.Should().Match("uk:number", "1234"),
                child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
