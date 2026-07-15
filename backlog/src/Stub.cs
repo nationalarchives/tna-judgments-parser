@@ -1,3 +1,4 @@
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -5,256 +6,255 @@ using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 
-using UK.Gov.Legislation.Judgments;
+using Backlog.Src;
+
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
-using UK.Gov.NationalArchives.CaseLaw.Model;
 
-namespace Backlog.Src
+namespace Backlog;
+
+internal class Stub
 {
+    private const string AknNamespace = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+    private const string UkNamespace = "https://caselaw.nationalarchives.gov.uk/akn";
 
-    internal class Stub
+    private readonly XmlDocument document = new();
+    private readonly StubMetadata stubMetadata;
+
+    private Stub(StubMetadata stubMetadata)
     {
-        internal static Stub Make(StubMetadata data)
-        {
-            return new(data);
-        }
+        this.stubMetadata = stubMetadata;
 
-        private static readonly string AKNNS = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
-        private static readonly string UKNS = "https://caselaw.nationalarchives.gov.uk/akn";
+        var root = CreateAndAppend("akomaNtoso", document);
 
-        private readonly XmlDocument Document = new();
-        private readonly IMetadataExtended Data;
+        var main = CreateAndAppend("judgment", root);
+        main.SetAttribute("name", stubMetadata.Type.ToString().ToLower());
 
-        private XmlElement CreateAndAppend(string name, XmlNode parent)
-        {
-            XmlElement e = Document.CreateElement(name, AKNNS);
-            parent.AppendChild(e);
-            return e;
-        }
-
-        private XmlElement CreateAndAppendUK(string name, XmlNode parent)
-        {
-            XmlElement e = Document.CreateElement("uk", name, UKNS);
-            parent.AppendChild(e);
-            return e;
-        }
-        private Stub(StubMetadata data)
-        {
-            Data = data;
-            XmlElement root = CreateAndAppend("akomaNtoso", Document);
-            XmlElement main = CreateAndAppend("judgment", root);
-            main.SetAttribute("name", Enum.GetName(typeof(JudgmentType), data.Type).ToLower());
-            Meta(main);
-            Body(main);
-        }
-
-        private void Meta(XmlElement judgment)
-        {
-            XmlElement meta = CreateAndAppend("meta", judgment);
-            Identification(meta);
-            Lifecycle(meta);
-            References(meta);
-            Proprietary(meta);
-        }
-
-        private void Identification(XmlElement meta)
-        {
-            XmlElement identification = CreateAndAppend("identification", meta);
-            identification.SetAttribute("source", "#tna");
-            Work(identification);
-            Expression(identification);
-            Manifestation(identification);
-        }
-
-        private void Work(XmlElement identification)
-        {
-            XmlElement work = CreateAndAppend("FRBRWork", identification);
-            XmlElement ths = CreateAndAppend("FRBRthis", work);
-            ths.SetAttribute("value", Data.WorkThis);
-            XmlElement uri = CreateAndAppend("FRBRuri", work);
-            uri.SetAttribute("value", Data.WorkURI);
-            XmlElement date = CreateAndAppend("FRBRdate", work);
-            date.SetAttribute("date", Data.Date?.Date);
-            if (Data.Date?.Date == "1000-01-01")
-                date.SetAttribute("name", "dummy");
-            else
-                date.SetAttribute("name", Data.Date?.Name);
-            XmlElement author = CreateAndAppend("FRBRauthor", work);
-            author.SetAttribute("href", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
-            XmlElement country = CreateAndAppend("FRBRcountry", work);
-            country.SetAttribute("value", "GB-UKM");
-            if (Data.Name is not null)
-            {
-                XmlElement name = CreateAndAppend("FRBRname", work);
-                name.SetAttribute("value", Data.Name);
-            }
-        }
-
-        private void Expression(XmlElement identification)
-        {
-            XmlElement expr = CreateAndAppend("FRBRExpression", identification);
-            XmlElement ths = CreateAndAppend("FRBRthis", expr);
-            ths.SetAttribute("value", Data.ExpressionThis);
-            XmlElement uri = CreateAndAppend("FRBRuri", expr);
-            uri.SetAttribute("value", Data.ExpressionUri);
-            XmlElement date = CreateAndAppend("FRBRdate", expr);
-            date.SetAttribute("date", Data.Date?.Date);
-            date.SetAttribute("name", Data.Date?.Name);
-            XmlElement author = CreateAndAppend("FRBRauthor", expr);
-            author.SetAttribute("href", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
-            XmlElement lang = CreateAndAppend("FRBRlanguage", expr);
-            lang.SetAttribute("language", "eng");
-        }
-
-        private void Manifestation(XmlElement identification)
-        {
-            XmlElement mani = CreateAndAppend("FRBRManifestation", identification);
-            XmlElement ths = CreateAndAppend("FRBRthis", mani);
-            ths.SetAttribute("value", Data.ManifestationThis);
-            XmlElement uri = CreateAndAppend("FRBRuri", mani);
-            uri.SetAttribute("value", Data.ManifestationUri);
-            XmlElement date = CreateAndAppend("FRBRdate", mani);
-            date.SetAttribute("date", DateTime.UtcNow.ToString("s"));
-            date.SetAttribute("name", "transform");
-            XmlElement author = CreateAndAppend("FRBRauthor", mani);
-            author.SetAttribute("href", "#tna");
-            XmlElement format = CreateAndAppend("FRBRformat", mani);
-            format.SetAttribute("value", "application/xml");
-        }
-
-        private void Lifecycle(XmlElement meta)
-        {
-            XmlElement lifecycle = CreateAndAppend("lifecycle", meta);
-            lifecycle.SetAttribute("source", "#");
-            XmlElement eventRef = CreateAndAppend("eventRef", lifecycle);
-            eventRef.SetAttribute("date", Data.Date.Date);
-            eventRef.SetAttribute("refersTo", "#" + UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
-            eventRef.SetAttribute("source", "#");
-        }
-
-        private void References(XmlElement meta)
-        {
-            XmlElement references = CreateAndAppend("references", meta);
-            references.SetAttribute("source", "#tna");
-            XmlElement tna = CreateAndAppend("TLCOrganization", references);
-            tna.SetAttribute("eId", "tna");
-            tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
-            tna.SetAttribute("showAs", "The National Archives");
-            if (Data.Court is not null)
-            {
-                XmlElement tldOrg = CreateAndAppend("TLCOrganization", references);
-                tldOrg.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeCourtId(Data.Court));
-                tldOrg.SetAttribute("href", Data.Court.URL);
-                tldOrg.SetAttribute("showAs", Data.Court.Name);
-            }
-            XmlElement tlcEvent = CreateAndAppend("TLCEvent", references);
-            tlcEvent.SetAttribute("eId", UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.MakeDateId(Data.Date));
-            tlcEvent.SetAttribute("href", "#");
-            tlcEvent.SetAttribute("showAs", Data.Date.Name);
-        }
-
-        private void Proprietary(XmlElement meta)
-        {
-            XmlElement proprietary = CreateAndAppend("proprietary", meta);
-            proprietary.SetAttribute("xmlns:uk", UKNS);
-            proprietary.SetAttribute("source", "#");
-            if (Data.Court is not null)
-            {
-                XmlElement court = CreateAndAppendUK("court", proprietary);
-                proprietary.AppendChild(court);
-                court.AppendChild(Document.CreateTextNode(Data.Court.Code));
-            }
-
-            foreach (var jurisdiction in Data.Jurisdictions)
-            {
-                XmlElement jurisdictionNode = CreateAndAppendUK("jurisdiction", proprietary);
-                proprietary.AppendChild(jurisdictionNode);
-                jurisdictionNode.AppendChild(Document.CreateTextNode(jurisdiction.ShortName));
-            }
-            
-            XmlElement year = CreateAndAppendUK("year", proprietary);
-            proprietary.AppendChild(year);
-            year.AppendChild(Document.CreateTextNode(Data.Date.Date[..4]));
-            foreach (var caseNo in Data.CaseNumbers)
-            {
-                XmlElement number = CreateAndAppendUK("caseNumber", proprietary);
-                proprietary.AppendChild(number);
-                number.AppendChild(Document.CreateTextNode(caseNo));
-
-            }
-            foreach (UK.Gov.NationalArchives.CaseLaw.Model.Party pty in Data.Parties)
-            {
-                XmlElement party = CreateAndAppendUK("party", proprietary);
-                proprietary.AppendChild(party);
-                party.SetAttribute("role", pty.Role.ShowAs());
-                party.AppendChild(Document.CreateTextNode(pty.Name));
-            }
-            foreach (var cat in Data.Categories)
-            {
-                AddCategory(proprietary, cat);
-            }
-            if (!string.IsNullOrWhiteSpace(Data.Cite))
-            {
-                XmlElement cite = CreateAndAppendUK("cite", proprietary);
-                proprietary.AppendChild(cite);
-                cite.AppendChild(Document.CreateTextNode(Data.Cite));
-            }
-            if (!string.IsNullOrWhiteSpace(Data.WebArchivingLink))
-            {
-                XmlElement webarchivingNode = CreateAndAppendUK("webarchiving", proprietary);
-                proprietary.AppendChild(webarchivingNode);
-                webarchivingNode.AppendChild(Document.CreateTextNode(Data.WebArchivingLink));
-            }
-            XmlElement sourceFormat = CreateAndAppendUK("sourceFormat", proprietary);
-            proprietary.AppendChild(sourceFormat);
-            sourceFormat.AppendChild(Document.CreateTextNode(Data.SourceFormat));
-
-            XmlElement parser = CreateAndAppendUK("parser", proprietary);
-            proprietary.AppendChild(parser);
-            parser.AppendChild(Document.CreateTextNode(UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.GetParserVersion()));
-        }
-
-        internal static XmlElement AddProprietaryField(XmlElement proprietary, string name, string value) {
-            XmlElement proprietaryField = proprietary.OwnerDocument.CreateElement("uk", name, UKNS);
-            proprietary.AppendChild(proprietaryField);
-            var text = proprietary.OwnerDocument.CreateTextNode(value);
-            proprietaryField.AppendChild(text);
-            return proprietaryField;
-        }
-
-        internal static void AddCategory(XmlElement proprietary, ICategory value) {
-            var proprietaryWithCategory = AddProprietaryField(proprietary, "category", value.Name);
-            if (value.Parent is not null)
-                proprietaryWithCategory.SetAttribute("parent", value.Parent);
-        }
-
-        /* body */
-
-        private void Body(XmlElement judgment)
-        {
-            XmlElement header = CreateAndAppend("header", judgment);
-            XmlElement body = CreateAndAppend("judgmentBody", judgment);
-            XmlElement decision = CreateAndAppend("decision", body);
-            XmlElement p = CreateAndAppend("p", decision);
-        }
-
-        public List<ValidationEventArgs> Validate()
-        {
-            UK.Gov.Legislation.Judgments.AkomaNtoso.Validator validator = new();
-            return validator.Validate(Document);
-        }
-
-        public void Serialize(Stream stream)
-        {
-            Serializer.Serialize(Document, stream);
-        }
-
-        public string Serialize() {
-            using MemoryStream stream = new ();
-            Serialize(stream);
-            return System.Text.Encoding.UTF8.GetString(stream.ToArray());
-        }
-
+        Meta(main);
+        Body(main);
     }
 
+    internal static Stub Make(StubMetadata data)
+    {
+        return new Stub(data);
+    }
+
+    private XmlElement CreateAndAppend(string name, XmlNode parent)
+    {
+        var e = document.CreateElement(name, AknNamespace);
+        parent.AppendChild(e);
+        return e;
+    }
+
+    private void Meta(XmlElement judgment)
+    {
+        var meta = CreateAndAppend("meta", judgment);
+
+        Identification(meta);
+        Lifecycle(meta);
+        References(meta);
+        Proprietary(meta);
+    }
+
+    private void Identification(XmlElement meta)
+    {
+        var identification = CreateAndAppend("identification", meta);
+        identification.SetAttribute("source", "#tna");
+
+        Work(identification);
+        Expression(identification);
+        Manifestation(identification);
+    }
+
+    private void Work(XmlElement identification)
+    {
+        var work = CreateAndAppend("FRBRWork", identification);
+
+        var ths = CreateAndAppend("FRBRthis", work);
+        ths.SetAttribute("value", stubMetadata.WorkThis);
+
+        var uri = CreateAndAppend("FRBRuri", work);
+        uri.SetAttribute("value", stubMetadata.WorkURI);
+
+        var date = CreateAndAppend("FRBRdate", work);
+        date.SetAttribute("date", stubMetadata.Date?.Date);
+        if (stubMetadata.Date?.Date == "1000-01-01")
+        {
+            date.SetAttribute("name", "dummy");
+        }
+        else
+        {
+            date.SetAttribute("name", stubMetadata.Date?.Name);
+        }
+
+        var author = CreateAndAppend("FRBRauthor", work);
+        author.SetAttribute("href", "#" + Metadata.MakeCourtId(stubMetadata.Court));
+
+        var country = CreateAndAppend("FRBRcountry", work);
+        country.SetAttribute("value", "GB-UKM");
+
+        if (stubMetadata.Name is not null)
+        {
+            var name = CreateAndAppend("FRBRname", work);
+            name.SetAttribute("value", stubMetadata.Name);
+        }
+    }
+
+    private void Expression(XmlElement identification)
+    {
+        var expr = CreateAndAppend("FRBRExpression", identification);
+
+        var ths = CreateAndAppend("FRBRthis", expr);
+        ths.SetAttribute("value", stubMetadata.ExpressionThis);
+
+        var uri = CreateAndAppend("FRBRuri", expr);
+        uri.SetAttribute("value", stubMetadata.ExpressionUri);
+
+        var date = CreateAndAppend("FRBRdate", expr);
+        date.SetAttribute("date", stubMetadata.Date?.Date);
+        date.SetAttribute("name", stubMetadata.Date?.Name);
+
+        var author = CreateAndAppend("FRBRauthor", expr);
+        author.SetAttribute("href", "#" + Metadata.MakeCourtId(stubMetadata.Court));
+
+        var lang = CreateAndAppend("FRBRlanguage", expr);
+        lang.SetAttribute("language", "eng");
+    }
+
+    private void Manifestation(XmlElement identification)
+    {
+        var mani = CreateAndAppend("FRBRManifestation", identification);
+
+        var ths = CreateAndAppend("FRBRthis", mani);
+        ths.SetAttribute("value", stubMetadata.ManifestationThis);
+
+        var uri = CreateAndAppend("FRBRuri", mani);
+        uri.SetAttribute("value", stubMetadata.ManifestationUri);
+
+        var date = CreateAndAppend("FRBRdate", mani);
+        date.SetAttribute("date", DateTime.UtcNow.ToString("s"));
+        date.SetAttribute("name", "transform");
+
+        var author = CreateAndAppend("FRBRauthor", mani);
+        author.SetAttribute("href", "#tna");
+
+        var format = CreateAndAppend("FRBRformat", mani);
+        format.SetAttribute("value", "application/xml");
+    }
+
+    private void Lifecycle(XmlElement meta)
+    {
+        var lifecycle = CreateAndAppend("lifecycle", meta);
+        lifecycle.SetAttribute("source", "#");
+
+        var eventRef = CreateAndAppend("eventRef", lifecycle);
+        eventRef.SetAttribute("date", stubMetadata.Date.Date);
+        eventRef.SetAttribute("refersTo", "#" + Metadata.MakeDateId(stubMetadata.Date));
+        eventRef.SetAttribute("source", "#");
+    }
+
+    private void References(XmlElement meta)
+    {
+        var references = CreateAndAppend("references", meta);
+        references.SetAttribute("source", "#tna");
+
+        var tna = CreateAndAppend("TLCOrganization", references);
+        tna.SetAttribute("eId", "tna");
+        tna.SetAttribute("href", "https://www.nationalarchives.gov.uk/");
+        tna.SetAttribute("showAs", "The National Archives");
+
+        if (stubMetadata.Court is not null)
+        {
+            var tldOrg = CreateAndAppend("TLCOrganization", references);
+            tldOrg.SetAttribute("eId", Metadata.MakeCourtId(stubMetadata.Court));
+            tldOrg.SetAttribute("href", stubMetadata.Court.URL);
+            tldOrg.SetAttribute("showAs", stubMetadata.Court.Name);
+        }
+
+        var tlcEvent = CreateAndAppend("TLCEvent", references);
+        tlcEvent.SetAttribute("eId", Metadata.MakeDateId(stubMetadata.Date));
+        tlcEvent.SetAttribute("href", "#");
+        tlcEvent.SetAttribute("showAs", stubMetadata.Date.Name);
+    }
+
+    private void Proprietary(XmlElement meta)
+    {
+        var proprietary = CreateAndAppend("proprietary", meta);
+        proprietary.SetAttribute("xmlns:uk", UkNamespace);
+        proprietary.SetAttribute("source", "#");
+
+        if (stubMetadata.Court is not null)
+        {
+            CreateAndAppendUk(proprietary, "court", stubMetadata.Court.Code);
+        }
+
+        foreach (var jurisdiction in stubMetadata.Jurisdictions)
+        {
+            CreateAndAppendUk(proprietary, "jurisdiction", jurisdiction.ShortName);
+        }
+
+        CreateAndAppendUk(proprietary, "year", stubMetadata.Date.Date[..4]);
+
+        foreach (var caseNo in stubMetadata.CaseNumbers)
+        {
+            CreateAndAppendUk(proprietary, "caseNumber", caseNo);
+        }
+
+        foreach (var pty in stubMetadata.Parties)
+        {
+            var party = CreateAndAppendUk(proprietary, "party", pty.Name);
+            party.SetAttribute("role", pty.Role.ShowAs());
+        }
+
+        foreach (var cat in stubMetadata.Categories)
+        {
+            var category = CreateAndAppendUk(proprietary, "category", cat.Name);
+            if (cat.Parent is not null)
+            {
+                category.SetAttribute("parent", cat.Parent);
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(stubMetadata.Cite))
+        {
+            CreateAndAppendUk(proprietary, "cite", stubMetadata.Cite);
+        }
+
+        if (!string.IsNullOrWhiteSpace(stubMetadata.WebArchivingLink))
+        {
+            CreateAndAppendUk(proprietary, "webarchiving", stubMetadata.WebArchivingLink);
+        }
+
+        CreateAndAppendUk(proprietary, "sourceFormat", stubMetadata.SourceFormat);
+        CreateAndAppendUk(proprietary, "parser", Metadata.GetParserVersion());
+    }
+
+    private XmlElement CreateAndAppendUk(XmlElement proprietary, string name, string value)
+    {
+        var e = document.CreateElement("uk", name, UkNamespace);
+        proprietary.AppendChild(e);
+
+        e.AppendChild(document.CreateTextNode(value));
+        return e;
+    }
+
+    private void Body(XmlElement judgment)
+    {
+        CreateAndAppend("header", judgment);
+        var body = CreateAndAppend("judgmentBody", judgment);
+        var decision = CreateAndAppend("decision", body);
+        CreateAndAppend("p", decision);
+    }
+
+    public List<ValidationEventArgs> Validate()
+    {
+        Validator validator = new();
+        return validator.Validate(document);
+    }
+
+    public string Serialize()
+    {
+        using MemoryStream stream = new();
+        Serializer.Serialize(document, stream);
+        return System.Text.Encoding.UTF8.GetString(stream.ToArray());
+    }
 }
