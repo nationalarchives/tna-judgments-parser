@@ -163,12 +163,22 @@ public class Citations {
         return Regex.IsMatch(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/\d{4}/\d+(/press-summary/\d+)?$");
     }
 
-    internal static int YearFromUriComponent(string uri) {
+    public static int? YearFromUriComponent(string uri)
+    {
+        if (uri is null)
+        {
+            return null;
+        }
         string year = Regex.Match(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/(\d{4})/\d+").Groups[2].Value;
         return int.Parse(year);
     }
 
-    internal static int NumberFromUriComponent(string uri) {
+    public static int? NumberFromUriComponent(string uri)
+    {
+        if (uri is null)
+        {
+            return null;
+        }
         string num = Regex.Match(uri, @"^[a-z]+(/[a-z]+[1-3]?)?/\d{4}/(\d+)").Groups[2].Value;
         return int.Parse(num);
     }

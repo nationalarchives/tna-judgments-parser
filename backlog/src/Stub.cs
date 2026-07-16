@@ -190,7 +190,15 @@ internal class Stub
             CreateAndAppendUk(proprietary, "jurisdiction", jurisdiction.ShortName);
         }
 
-        CreateAndAppendUk(proprietary, "year", stubMetadata.Date.Date[..4]);
+        if (stubMetadata.Year.HasValue)
+        {
+            CreateAndAppendUk(proprietary, "year", stubMetadata.Year.Value.ToString());
+        }
+
+        if (stubMetadata.Number.HasValue)
+        {
+            CreateAndAppendUk(proprietary, "number", stubMetadata.Number.Value.ToString());
+        }
 
         foreach (var caseNo in stubMetadata.CaseNumbers)
         {

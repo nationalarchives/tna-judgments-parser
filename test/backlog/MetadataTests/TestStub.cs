@@ -171,6 +171,62 @@ public class TestStub
                  .HasAttribute("name", "decision").And().HasAttribute("date", "2025-01-01");
     }
 
+    [Fact]
+    public void Stub_WithNcn_GetsYearFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var resultXml = Act(line);
+
+        resultXml.HasSingleNodeWithName("proprietary")
+                 .Which().HasChildMatching("uk:year", "2024");
+    }
+
+    [Fact]
+    public void Stub_WithNcn_GetsNumberFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var resultXml = Act(line);
+
+        resultXml.HasSingleNodeWithName("proprietary")
+                 .Which().HasChildMatching("uk:number", "2345");
+    }
+
+    [Fact]
+    public void Stub_WithoutNcn_UsesDateAsYear()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            DecisionDateTime = new DateTime(2019, 03, 21, 0, 0, 0, DateTimeKind.Utc)
+        };
+
+        var resultXml = Act(line);
+
+        resultXml.HasSingleNodeWithName("proprietary")
+                 .Which().HasChildMatching("uk:year", "2019");
+    }
+
+    [Fact]
+    public void Stub_WithDummyDateAndWithoutNcn_HasNoUkYear()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { DecisionDateTime = dummyDate };
+
+        var resultXml = Act(line);
+
+        resultXml.DoesNotHaveNodeWithName("uk:year");
+    }
+
+    [Fact]
+    public void Stub_WithoutNcn_HasNoUkNumber()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var resultXml = Act(line);
+
+        resultXml.DoesNotHaveNodeWithName("uk:number");
+    }
+
     private static XmlDocument Act(CsvLine line)
     {
         var metadata = MetadataTransformer.MakeMetadata(line);

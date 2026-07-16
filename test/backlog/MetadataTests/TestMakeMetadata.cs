@@ -308,4 +308,57 @@ public class TestMakeMetadata
         result.Date.Date.ShouldBe("2020-11-05");
         result.Date.Name.ShouldBe("decision");
     }
+
+    [Fact]
+    public void MakeMetadata_WithNcn_SetsYearFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Year.ShouldBe(2024);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithNcn_SetsNumberFromNcn()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { Ncn = "[2024] UKFTT 2345 (GRC)" };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Number.ShouldBe(2345);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithoutNcn_UsesDateAsYear()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            Ncn = null, DecisionDateTime = new DateTime(2019, 03, 21, 0, 0, 0, DateTimeKind.Utc)
+        };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Year.ShouldBe(2019);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithDummyDateAndWithoutNcn_SetsYearToNull()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with { DecisionDateTime = dummyDate };
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Year.ShouldBe(null);
+    }
+
+    [Fact]
+    public void MakeMetadata_WithoutNcn_SetsNumberToNull()
+    {
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants;
+
+        var result = MetadataTransformer.MakeMetadata(line);
+
+        result.Number.ShouldBe(null);
+    }
 }

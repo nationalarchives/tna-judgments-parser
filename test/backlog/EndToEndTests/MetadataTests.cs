@@ -234,7 +234,8 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                child => child.Should().Match("uk:jurisdiction", "new jurisdiction"),
                child => child.Should().Match("uk:sourceFormat", "application/pdf"),
                child => child.Should().HaveName("uk:parser"),
-               child => child.Should().Match("uk:year", "2099"),
+               child => child.Should().Match("uk:year", "1989"),
+               child => child.Should().Match("uk:number", "1234"),
                child => child.Should().Match("uk:webarchiving", "my web archiving link")
            );
 
@@ -279,6 +280,10 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         // Assert - lifecycle is not present because we have no real date
         doc.DoesNotHaveNodeWithName("lifecycle");
+
+        // Assert proprietary node uses year from cite not dummy date
+        doc.HasSingleNodeWithName("proprietary")
+           .Which().HasChildMatching("uk:year", "1989");
     }
 
     [Fact]
