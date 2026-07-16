@@ -127,6 +127,7 @@ internal class BacklogParserWorker(
         }
         else
         {
+            var decisionDateAsString = csvLine.DecisionDateTime.ToString("yyyy-MM-dd");
             var request = new Api.Request
             {
                 Meta = new Api.Meta
@@ -134,7 +135,9 @@ internal class BacklogParserWorker(
                     DocumentType = "decision",
                     Cite = csvLine.CleanedNcn,
                     Court = csvLine.Court,
-                    Date = csvLine.DecisionDateTime.ToString("yyyy-MM-dd"),
+                    Date = decisionDateAsString == UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate
+                        ? null
+                        : decisionDateAsString,
                     Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
                     JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
                     Extensions = new Api.Extensions

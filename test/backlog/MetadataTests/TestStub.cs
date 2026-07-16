@@ -117,8 +117,10 @@ public class TestStub
         resultXml.DoesNotHaveNodeWithName("uk:webarchiving");
     }
 
-    [Fact]
-    public void Stub_WithDummyDate_AppearsInXmlAsDummyDate()
+    [Theory]
+    [InlineData("FRBRWork")]
+    [InlineData("FRBRExpression")]
+    public void Stub_WithDummyDate_AppearsInXmlAsDummyDate(string frbrNode)
     {
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
@@ -127,11 +129,36 @@ public class TestStub
 
         var resultXml = Act(line);
 
-        resultXml.HasSingleNodeWithName("FRBRWork").Which().HasChildWithName("FRBRdate").Which().HasAttribute("name", "dummy").And().HasAttribute("date", "1000-01-01");
+        resultXml.HasSingleNodeWithName(frbrNode)
+           .Which().HasChildMatching(
+               "FRBRdate",
+               "",
+               ("name", "dummy"), ("date", "1000-01-01")
+           );
     }
 
     [Fact]
-    public void Stub_WithNormalDate_AppearsInXmlAsNonDummyDate()
+    public void Stub_WithDummyDate_DoesNotHaveLifecycle()
+    {
+        // Arrange
+        var line = CsvMetadataLineHelper.DummyLineWithClaimants with
+        {
+            DecisionDateTime = DateTime.Parse("1000-01-01")
+        };
+        var metadata = MetadataTransformer.MakeMetadata(line);
+
+        // Act
+        var stub = Stub.Make(metadata);
+        var xml = stub.Serialize();
+
+        // Assert
+        var doc = new XmlDocument();
+        doc.LoadXml(xml);
+        doc.DoesNotHaveNodeWithName("lifecycle");
+    }
+
+    [Fact]
+    public void Stub_WithNormalDate_AppearsInXmlAsDecisionDate()
     {
         var line = CsvMetadataLineHelper.DummyLineWithClaimants with
         {
