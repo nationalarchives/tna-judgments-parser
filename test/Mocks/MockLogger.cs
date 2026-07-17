@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Linq;
 
 using Microsoft.Extensions.Logging;
 
@@ -10,6 +11,14 @@ namespace test.Mocks;
 
 public class MockLogger<T> : Mock<ILogger<T>>
 {
+    public string GetLogMessageContaining(string partialMessage)
+    {
+        return Invocations.Where(i => i.Method.Name == nameof(ILogger.Log))
+                          .Where(i => i.Arguments[2].ToString()!.Contains(partialMessage))
+                          .Select(i => i.Arguments[2].ToString()!)
+                          .Single();
+    }
+
     public MockLogger<T> VerifyLog(string expectedMessage, LogLevel expectedLogLevel, Times? times = null)
     {
         times ??= Times.Once();
