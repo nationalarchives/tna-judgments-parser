@@ -1,0 +1,19 @@
+<Project>
+  <!-- Additional Build behaviour that should be used by all projects in this repository-->
+
+  <!-- Do a dotnet tool restore then install the latest version of Husky if there's been a tool version update -->
+  <!-- Only run if we're in a .git repository (i.e. don't run in CI or on Docker build because it will fail)-->
+  <Target Name="Husky" 
+          BeforeTargets="Restore;CollectPackageReferences"
+          Condition="Exists('$(MSBuildThisFileDirectory).git') and $(CI) != 'true'"
+          Inputs="$(MSBuildThisFileDirectory).config/dotnet-tools.json"
+          Outputs="$(MSBuildThisFileDirectory).husky/_/install.stamp">
+    <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
+    <Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+    <Touch Files="$(MSBuildThisFileDirectory).husky/_/install.stamp" AlwaysCreate="true"
+           Condition="Exists('$(MSBuildThisFileDirectory).husky/_')" />
+    <ItemGroup>
+      <FileWrites Include="$(MSBuildThisFileDirectory).husky/_/install.stamp" />
+    </ItemGroup>
+  </Target>
+</Project>

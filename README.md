@@ -1,17 +1,22 @@
-Judgments parser
-================
+# Judgments parser
 
 This parser converts UK judgments from .docx format to XML. It is written in C# and requires .NET 8.0.
 
 <!-- TOC -->
 * [Judgments parser](#judgments-parser)
   * [Release process](#release-process)
+    * [Find Case Law](#find-case-law)
   * [Deployment](#deployment)
-  * [Using the parser](#using-the-parser)
+    * [Find Case Law](#find-case-law-1)
+      * [Validating a deployment](#validating-a-deployment)
+  * [Using the parser API](#using-the-parser-api)
     * [C# API](#c-api)
-    * [REST API](#rest-api)
     * [CLI](#cli)
-  * [Tests](#tests)
+  * [Local development](#local-development)
+    * [Dev Containers](#dev-containers)
+    * [Pre-commit hooks](#pre-commit-hooks)
+    * [Tests](#tests)
+  * [Other Documentation](#other-documentation)
 <!-- TOC -->
 
 ## Release process
@@ -47,7 +52,7 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
 
 1. Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the latest `<uk:parser>` version in it.
 
-## Using the parser
+## Using the parser API
 
 ### C# API
 
@@ -102,7 +107,33 @@ If the `--log` option is used, the parser will log its progress to the specified
 
 And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
 
-## Tests
+## Local development
+
+### Dev Containers
+
+You can run this code in a Dev Container in VSCode or [other IDES](https://containers.dev/supporting).
+
+* Install the `ms-vscode-remote.remote-containers` extension
+
+* Press F1, and select `Dev Containers: Open Folder in Container...`. Select the parser folder.
+
+You can now run tests in debug mode from the Flask (Testing) icon on the left.
+
+Configuration lives in `devcontainer.json`.
+
+### Pre-commit hooks
+
+We use [Husky .Net](https://alirezanet.github.io/Husky.Net/) for pre-commit hooks. It is versioned in `dotnet-tools.json` and is set to configure itself automatically upon build via `Directory.Build.targets`.
+
+To lint staged files before commit use:
+
+```bash
+dotnet husky run --name "dotnet-format"
+```
+
+To add or amend pre-commit hooks, edit `.husky/task-runner.json`
+
+### Tests
 
 There are a mixture of unit, integration and end to end tests which overall give a good coverage of the codebase. These run in CI and should be updated/added to when changes are made.
 
@@ -118,13 +149,8 @@ When significant changes are made to the parser some tests may fail due to diffe
 dotnet test tna-judgments-parser.sln --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
 ```
 
-### Dev Containers
-You can run this code in a Dev Container in VSCode or [other IDES](https://containers.dev/supporting).
+## Other Documentation
 
-* Install the `ms-vscode-remote.remote-containers` extension
-
-* Press F1, and select `Dev Containers: Open Folder in Container...`. Select the parser folder.
-
-You can now run tests in debug mode from the Flask (Testing) icon on the left.
-
-Configuration lives in `devcontainer.json`.
+- See [Backlog readme](./backlog/README.md) for bulk parse documentation.
+- See [Numbering3 docs](docs/numbering3.md) for information on the paragraph numbering algorithm.
+- See [Find Caselaw ADRs](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/doc/adr) for contextual information on some Parser decisions.
