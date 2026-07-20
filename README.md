@@ -128,3 +128,10 @@ You can run this code in a Dev Container in VSCode or [other IDES](https://conta
 You can now run tests in debug mode from the Flask (Testing) icon on the left.
 
 Configuration lives in `devcontainer.json`.
+
+## Six Labors Licence Key
+
+If running locally, put the licence at sixlabors.lic in the root directory of this repo, or ensure that the $SIX_LABORS_LIC docker variable is populated
+(potentially via [/vars in the terraform enviroment](https://github.com/nationalarchives/da-tre-terraform-environments/tree/main/vars))
+
+Additionally it is stored in the github actions secrets as SIXLABORSLICENSEKEY.

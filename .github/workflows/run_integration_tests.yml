@@ -1,4 +1,5 @@
 name: Run Integrations Tests
+permissions: {}
 
 on:
   pull_request:
@@ -19,6 +20,8 @@ jobs:
       # Checkout the code
       - name: Checkout code
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       # Set up .NET environment (assuming C# is the primary language)
       - name: Setup .NET
@@ -32,6 +35,8 @@ jobs:
 
       # Build
       - name: Build
+        env: 
+          SIXLABORSLICENSEKEY: ${{ secrets.SIXLABORSLICENSEKEY }}
         run: dotnet build tna-judgments-parser.sln --no-restore --configuration release
 
       # Run tests
