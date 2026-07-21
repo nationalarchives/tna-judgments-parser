@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -44,6 +45,9 @@ public partial class MockS3Client : Mock<IAmazonS3>, IDisposable
     }
 
     public IEnumerable<string> CapturedKeys => s3Captures.Keys;
+
+    public IEnumerable<string> TreReferencesFromCapturedKeys =>
+        CapturedKeys.Select(key => key.Replace(".tar.gz", string.Empty));
 
     public void Dispose()
     {

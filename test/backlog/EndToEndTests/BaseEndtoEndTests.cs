@@ -116,6 +116,14 @@ public abstract class BaseEndToEndTests : IDisposable
         return capturedUuid;
     }
 
+    protected Guid GetParserRunIdFromLogs()
+    {
+        //Get parser run Id
+        var parserRunId = Guid.Parse(ConsolidatedLogger.GetLogMessageContaining("Starting parser run")
+                                                       .Split(' ')[^1]);
+        return parserRunId;
+    }
+
     protected void PrintToOutputWithNumberedLines(string textToPrint)
     {
         PrintToOutputWithNumberedLines(textToPrint.Split(Environment.NewLine));
