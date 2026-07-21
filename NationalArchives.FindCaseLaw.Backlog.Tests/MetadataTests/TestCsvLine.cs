@@ -81,7 +81,7 @@ public class TestCsvLine
         // Assert
         Assert.Equal(PartyRole.Appellant, result);
     }
-    
+
     [Fact]
     public void Parties_WithClaimantsAndRespondent_ReturnsClaimantThenRespondent()
     {

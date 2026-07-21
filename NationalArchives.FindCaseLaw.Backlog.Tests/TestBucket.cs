@@ -68,7 +68,7 @@ public class TestBucket(ITestOutputHelper testOutputHelper)
         var mockAmazonS3 = new Mock<IAmazonS3>();
         mockAmazonS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
                     .ReturnsAsync(new PutObjectResponse { HttpStatusCode = HttpStatusCode.OK });
-        
+
         var bucket = new Bucket(mockAmazonS3.Object, options, mockLogger.Object);
 
         await bucket.UploadBundleAsync("test-key.tar.gz", [1, 2, 3]);

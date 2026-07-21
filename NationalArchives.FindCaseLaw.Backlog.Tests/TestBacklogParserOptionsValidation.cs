@@ -92,23 +92,23 @@ public class TestBacklogParserOptionsValidation
     }
 
     [Theory]
-    [InlineData("" )]
+    [InlineData("")]
     [InlineData(" ")]
     public void Validate_WhenTrackerFilePathIsMissing_ReturnsFailed(string trackerFilePath)
     {
-        var options = BacklogParserOptionsHelper.Create(isDryRun: true, trackerFilePath:trackerFilePath).Value;
+        var options = BacklogParserOptionsHelper.Create(isDryRun: true, trackerFilePath: trackerFilePath).Value;
 
         var result = validator.Validate(null, options);
 
         AssertSingleFailure(result, "TrackerFilePath: The TrackerFilePath field is required.");
     }
-    
+
     [Theory]
-    [InlineData("" )]
+    [InlineData("")]
     [InlineData(" ")]
     public void Validate_WhenOutputFolderPathIsMissing_ReturnsFailed(string outputFolderPath)
     {
-        var options = BacklogParserOptionsHelper.Create(isDryRun: true, outputFolderPath:outputFolderPath).Value;
+        var options = BacklogParserOptionsHelper.Create(isDryRun: true, outputFolderPath: outputFolderPath).Value;
 
         var result = validator.Validate(null, options);
 

@@ -22,7 +22,7 @@ public static class ZipFileHelpers
         {
             // Tar file names always start with a random GUID - e.g. 3ce8efd6-7524-4ab9-9686-3a0dbd3e5e8e/CCA20120008_20130118_order_appeal_discontinued.pdf
             // Remove this prefix because it's non-deterministic
-            var cleansedTarFileEntryName = entry.Name[(entry.Name.IndexOf('/') + 1) ..];
+            var cleansedTarFileEntryName = entry.Name[(entry.Name.IndexOf('/') + 1)..];
             if (cleansedTarFileEntryName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase))
             {
                 var entryDataStream = entry.DataStream;

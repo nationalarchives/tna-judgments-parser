@@ -212,7 +212,7 @@ public class TestMetadataTransformer
     public void CsvLineToMetadataFields_AllFields_HaveCurrentTimestamp()
     {
         var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
-        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        var expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
         fakeTimeProvider.AdjustTime(expectedDate);
 
         var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);

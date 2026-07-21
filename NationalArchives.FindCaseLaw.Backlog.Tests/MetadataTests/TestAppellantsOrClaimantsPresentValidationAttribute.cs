@@ -42,7 +42,7 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
     {
         var exception = Assert.Throws<InvalidOperationException>(() =>
             appellantsOrClaimantsPresentValidationAttribute.IsValid($"Not a {nameof(CsvLine)}"));
-        
+
         Assert.Equal($"AppellantsOrClaimantsPresentValidationAttribute can only be used on a {nameof(CsvLine)}",
             exception.Message);
     }

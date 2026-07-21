@@ -48,7 +48,7 @@ public class TestStub
         resultXml.HasSingleNodeWithName("proprietary")
                  .Which().HasChildMatching("uk:cite", ncn);
     }
-    
+
     [Fact]
     public void Stub_WithSingleJurisdiction_AppearsInXmlAsUkJurisdiction()
     {
@@ -61,7 +61,7 @@ public class TestStub
 
         resultXml.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:jurisdiction", "new jurisdiction");
     }
-    
+
     [Fact]
     public void Stub_WithMultipleJurisdictions_AppearInXmlAsUkJurisdictions()
     {

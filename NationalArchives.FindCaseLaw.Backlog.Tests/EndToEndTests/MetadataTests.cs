@@ -46,7 +46,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         Directory.CreateDirectory(courtDocumentsDir);
 
         // Create files
-        var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1,2,3,4];
+        var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1, 2, 3, 4];
         File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid.ToString()), contents);
 
         // Set environment variables
@@ -473,7 +473,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         doc.HasSingleNodeWithName("neutralCitation")
            .Which().Should().HaveValue("[2023] UKFTT 00916 (GRC)");
-        
+
         doc.HasSingleNodeWithName("docJurisdiction")
            .Which().Should().HaveValueMatching("Information Rights")
            .And().Attributes.ThatMatch(

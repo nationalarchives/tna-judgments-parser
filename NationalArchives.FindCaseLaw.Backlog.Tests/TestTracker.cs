@@ -238,17 +238,17 @@ public sealed class TestTracker : IDisposable
 
         // Assert
         trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
-            {
-                SourceUuid = sourceUuid,
-                ParserRunId = tracker.CurrentParserRunId,
-                Court = "UKFTT-GRC",
-                OriginalFileName = "/some/long/path/example.pdf",
-                FileExtension = ".pdf",
-                CsvMetadataHash = "my-metadata-hash",
-                TrackerStatus = TrackerStatus.ParserFailed,
-                ErrorMessage = "Something went wrong",
-                TrackerLineLastUpdated = now
-            }
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerStatus = TrackerStatus.ParserFailed,
+            ErrorMessage = "Something went wrong",
+            TrackerLineLastUpdated = now
+        }
         );
     }
 
