@@ -14,7 +14,10 @@ using Backlog.Tracking;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+using UK.Gov.Legislation.Judgments.AkomaNtoso;
+
 using Api = UK.Gov.NationalArchives.Judgments.Api;
+using Bundle = Backlog.Src.Bundle;
 
 namespace Backlog;
 
@@ -105,64 +108,62 @@ internal class BacklogParserWorker(
         return hasErrors ? 1 : 0;
     }
 
-    private Api.Response CreateResponse(CsvLine csvLine, string mimeType, byte[] sourceContent, bool isStub)
+    private Api.Response SendToParser(CsvLine csvLine, string mimeType, byte[] sourceContent)
     {
-        Api.Response response;
-        if (isStub)
+        var decisionDateAsString = csvLine.DecisionDateTime.ToString("yyyy-MM-dd");
+        var request = new Api.Request
         {
-            var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
-            var stub = Stub.Make(stubMetadata);
-
-            response = new Api.Response
+            Meta = new Api.Meta
             {
-                Xml = stub.Serialize(),
-                Meta = new Api.Meta
+                DocumentType = "decision",
+                Cite = csvLine.CleanedNcn,
+                Court = csvLine.Court,
+                Date = decisionDateAsString == Metadata.DummyDate
+                    ? null
+                    : decisionDateAsString,
+                Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
+                JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
+                Extensions = new Api.Extensions
                 {
-                    DocumentType = "decision",
-                    Court = stubMetadata.Court?.Code,
-                    Date = stubMetadata.Date?.Date,
-                    Name = stubMetadata.Name
+                    SourceFormat = mimeType,
+                    CaseNumbers = csvLine.CaseNo.ToList(),
+                    Parties = csvLine.Parties.ToList(),
+                    Categories = csvLine.Categories.ToList(),
+                    WebArchivingLink = csvLine.WebArchiving
                 }
-            };
-        }
-        else
+            },
+            Hint = Api.Hint.UKUT,
+            Content = sourceContent
+        };
+
+        var response = parser.Parse(request);
+
+        if (response.Xml.Contains("<header />"))
         {
-            var decisionDateAsString = csvLine.DecisionDateTime.ToString("yyyy-MM-dd");
-            var request = new Api.Request
-            {
-                Meta = new Api.Meta
-                {
-                    DocumentType = "decision",
-                    Cite = csvLine.CleanedNcn,
-                    Court = csvLine.Court,
-                    Date = decisionDateAsString == UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata.DummyDate
-                        ? null
-                        : decisionDateAsString,
-                    Name = csvLine.FirstPartyName + " v " + csvLine.Respondent,
-                    JurisdictionShortNames = csvLine.Jurisdictions.ToList(),
-                    Extensions = new Api.Extensions
-                    {
-                        SourceFormat = mimeType,
-                        CaseNumbers = csvLine.CaseNo.ToList(),
-                        Parties = csvLine.Parties.ToList(),
-                        Categories = csvLine.Categories.ToList(),
-                        WebArchivingLink = csvLine.WebArchiving
-                    }
-                },
-                Hint = Api.Hint.UKUT,
-                Content = sourceContent
-            };
-
-            response = parser.Parse(request);
-
-            if (response.Xml.Contains("<header />"))
-            {
-                throw new NotSupportedException(
-                    "Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
-            }
+            throw new NotSupportedException(
+                "Couldn't parse header - try updating titles used to identify the end of header in OptimizedUKUTParser.titles");
         }
 
         return response;
+    }
+
+    internal static Api.Response MakeStubResponse(CsvLine csvLine)
+    {
+        var stubMetadata = MetadataTransformer.MakeMetadata(csvLine);
+        var stub = Stub.Make(stubMetadata);
+
+        return new Api.Response
+        {
+            Xml = stub.Serialize(),
+            Meta = new Api.Meta
+            {
+                DocumentType = "decision",
+                Court = stubMetadata.Court?.Code,
+                Date = stubMetadata.Date?.Date,
+                Name = stubMetadata.Name,
+                Cite = stubMetadata.Cite
+            }
+        };
     }
 
     private async Task<Bundle> GenerateBundleAsync(CsvLine csvLine)
@@ -171,7 +172,7 @@ internal class BacklogParserWorker(
         var mimeType = MetadataTransformer.GetMimeType(csvLine.Extension);
 
         var isStub = string.Equals(mimeType, "application/pdf", StringComparison.InvariantCultureIgnoreCase);
-        var response = CreateResponse(csvLine, mimeType, sourceContent, isStub);
+        var response = isStub ? MakeStubResponse(csvLine) : SendToParser(csvLine, mimeType, sourceContent);
 
         var sourceHash = Hash(sourceContent);
         var images = response.Images?.ToArray() ?? [];
@@ -190,7 +191,7 @@ internal class BacklogParserWorker(
             mimeType, sourceHash, images, response.Meta, externalMetadataFields, !isStub);
 
         await tracker.UpdateToParsedAsync(csvLine.Uuid, trePipelineMetadata.Parameters.TRE.Reference, response.Meta.Cite, sourceHash, response.Meta.Name);
-        
+
         return Bundle.Make(response, trePipelineMetadata, sourceContent, bundleSourceFilename, images);
     }
 
