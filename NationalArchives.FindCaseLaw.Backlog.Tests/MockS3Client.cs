@@ -15,7 +15,7 @@ using Moq;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public partial class MockS3Client : Mock<IAmazonS3>, IDisposable
 {

@@ -8,7 +8,7 @@ using Backlog.Csv;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public static class CsvMetadataLineHelper
 {

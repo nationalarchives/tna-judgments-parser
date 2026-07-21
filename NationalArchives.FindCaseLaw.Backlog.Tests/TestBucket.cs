@@ -14,12 +14,13 @@ using Microsoft.Extensions.Logging;
 
 using Moq;
 
-using test.backlog.EndToEndTests;
+using NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
+
 using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestBucket(ITestOutputHelper testOutputHelper)
     : BaseEndToEndTests(testOutputHelper)

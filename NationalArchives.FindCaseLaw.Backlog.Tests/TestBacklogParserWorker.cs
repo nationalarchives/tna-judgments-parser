@@ -8,7 +8,7 @@ using Shouldly;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestBacklogParserWorker
 {

@@ -12,11 +12,13 @@ using Microsoft.Extensions.Logging;
 
 using Shouldly;
 
+using test;
+
 using Xunit;
 
 using Metadata = UK.Gov.Legislation.Judgments.AkomaNtoso.Metadata;
 
-namespace test.backlog.EndToEndTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
@@ -181,7 +183,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         fakeTimeProvider.AdjustTime(expectedTime);
 
         // Act
-        var exitCode = Backlog.Program.Main("--id", docId.ToString(), "--auto-publish");
+        var exitCode = global::Backlog.Program.Main("--id", docId.ToString(), "--auto-publish");
 
         // Assert - Program exited successfully
         AssertProgramExitedSuccessfully(exitCode);
@@ -216,7 +218,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         ConfigureTestEnvironment("MultiLineTest");
 
         // Act - Run without --id to process full CSV
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -272,7 +274,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
             });
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -322,7 +324,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         ConfigureTestEnvironment("MultiLineTest");
 
         // Act
-        var exitCode = Backlog.Program.Main("--id", "102");
+        var exitCode = global::Backlog.Program.Main("--id", "102");
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -342,7 +344,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         ConfigureTestEnvironment("EmptyCSVTest");
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         // Assert
         Assert.Equal(1, exitCode);
@@ -353,7 +355,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_WithInvalidIdArgument_ReturnsError()
     {
         // Act
-        var exitCode = Backlog.Program.Main("--id", "invalid");
+        var exitCode = global::Backlog.Program.Main("--id", "invalid");
 
         // Assert
         Assert.Equal(1, exitCode);
@@ -363,7 +365,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_WithInvalidArguments_ReturnsError()
     {
         // Act
-        var exitCode = Backlog.Program.Main("--unknown-arg");
+        var exitCode = global::Backlog.Program.Main("--unknown-arg");
 
         // Assert
         Assert.Equal(1, exitCode);
@@ -382,7 +384,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
 
         // Act
         var args = new[] { "--id", "20" }.Concat(extraArgs).ToArray();
-        var exitCode = Backlog.Program.Main(args);
+        var exitCode = global::Backlog.Program.Main(args);
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);

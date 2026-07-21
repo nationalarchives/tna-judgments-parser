@@ -24,7 +24,7 @@ using Xunit;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestMetadataTransformer
 {

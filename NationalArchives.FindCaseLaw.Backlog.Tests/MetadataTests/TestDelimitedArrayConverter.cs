@@ -1,7 +1,5 @@
 #nullable enable
 
-using System.Linq;
-
 using Backlog.Csv;
 
 using CsvHelper;
@@ -11,7 +9,7 @@ using Moq;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestDelimitedArrayConverter
 {

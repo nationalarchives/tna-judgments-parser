@@ -9,9 +9,11 @@ using Backlog.Tracking;
 
 using Shouldly;
 
+using test;
+
 using Xunit;
 
-namespace test.backlog.EndToEndTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 public class TrackerTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
@@ -178,7 +180,7 @@ public class TrackerTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTest
         fakeTimeProvider.AdjustTime(expectedTime);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
         AssertProgramExitedSuccessfully(exitCode);
 
         // Assert - tracker was updated for all processed items
@@ -232,7 +234,7 @@ public class TrackerTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTest
             skipped2);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
         AssertProgramExitedSuccessfully(exitCode);
 
         // Assert

@@ -18,7 +18,7 @@ using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public sealed class TestRead : IDisposable
 {

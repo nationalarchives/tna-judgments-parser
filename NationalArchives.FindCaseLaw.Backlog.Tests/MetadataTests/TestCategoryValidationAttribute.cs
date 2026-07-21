@@ -7,7 +7,7 @@ using Backlog.Csv;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestCategoryValidationAttribute
 {

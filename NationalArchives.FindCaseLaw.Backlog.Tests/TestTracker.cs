@@ -14,7 +14,7 @@ using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public sealed class TestTracker : IDisposable
 {

@@ -7,9 +7,11 @@ using Backlog;
 using Backlog.Csv;
 using Backlog.Src;
 
+using test;
+
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestStub
 {

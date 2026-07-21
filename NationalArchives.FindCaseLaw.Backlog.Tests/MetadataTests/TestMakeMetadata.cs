@@ -10,7 +10,7 @@ using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestMakeMetadata
 {

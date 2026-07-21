@@ -5,7 +5,7 @@ using Backlog;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public sealed class TestBacklogFiles
 {

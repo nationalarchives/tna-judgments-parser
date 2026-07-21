@@ -17,7 +17,7 @@ using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog.EndToEndTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 [Collection("EndToEnd")]
 public abstract class BaseEndToEndTests : IDisposable
@@ -36,18 +36,18 @@ public abstract class BaseEndToEndTests : IDisposable
 
         // Clear lingering overrides from previous tests (overrides are in a static context)
         Environment.SetEnvironmentVariable("IS_TEST", "true");
-        Backlog.Program.DependencyInjectionOverrides.Clear();
+        global::Backlog.Program.DependencyInjectionOverrides.Clear();
 
         // Configure S3 client
         Environment.SetEnvironmentVariable("AWS_REGION", "eu-west-2");
-        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        global::Backlog.Program.DependencyInjectionOverrides.Add(service =>
         {
             service.RemoveAll<IAmazonS3>();
             service.AddScoped<IAmazonS3>(_ => mockS3Client.Object);
         });
 
         // Control time
-        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        global::Backlog.Program.DependencyInjectionOverrides.Add(service =>
         {
             service.RemoveAll<TimeProvider>();
             service.AddScoped<TimeProvider>(_ => fakeTimeProvider);
@@ -57,7 +57,7 @@ public abstract class BaseEndToEndTests : IDisposable
         var mockLoggerProvider = new Mock<ILoggerProvider>();
         mockLoggerProvider.Setup(x => x.CreateLogger(It.IsAny<string>())).Returns(() => ConsolidatedLogger.Object);
 
-        Backlog.Program.DependencyInjectionOverrides.Add(service =>
+        global::Backlog.Program.DependencyInjectionOverrides.Add(service =>
         {
             service.AddSingleton<ILoggerProvider>(_ => mockLoggerProvider.Object);
         });
@@ -71,7 +71,7 @@ public abstract class BaseEndToEndTests : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        Backlog.Program.DependencyInjectionOverrides.Clear();
+        global::Backlog.Program.DependencyInjectionOverrides.Clear();
         CleanEnvironmentVariables();
     }
 

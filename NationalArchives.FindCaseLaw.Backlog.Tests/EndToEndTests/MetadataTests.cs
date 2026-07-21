@@ -10,11 +10,13 @@ using Backlog.Csv;
 
 using Microsoft.Extensions.Logging;
 
+using test;
+
 using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace test.backlog.EndToEndTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
@@ -110,7 +112,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -161,7 +163,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -216,7 +218,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -265,7 +267,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -310,7 +312,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
@@ -341,7 +343,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         // Assert program finished successfully
         AssertProgramExitedSuccessfully(exitCode);
@@ -421,7 +423,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
