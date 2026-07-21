@@ -25,11 +25,11 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     private static readonly string ExpectedParserVersion = typeof(Metadata)
                                                            .Assembly
                                                            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
-                                                           .InformationalVersion;
+                                                           .InformationalVersion!;
 
-    private string outputDir;
-    private string trackerPath;
-    private string dataDir;
+    private string? outputDir;
+    private string? trackerPath;
+    private string? dataDir;
 
     protected override void Dispose(bool disposing)
     {
@@ -105,7 +105,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     {
         var capturedContent = mockS3Client.GetCapturedContent(capturedKey);
 
-        var outputFilePath = Path.Combine(outputDir, capturedKey);
+        var outputFilePath = Path.Combine(outputDir!, capturedKey);
         Assert.True(File.Exists(outputFilePath), "Output file should exist");
 
         var outputContent = File.ReadAllBytes(outputFilePath);
@@ -165,7 +165,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     {
         var document = XDocument.Parse(xml, LoadOptions.PreserveWhitespace);
         XNamespace uk = "https://caselaw.nationalarchives.gov.uk/akn";
-        return document.Descendants(uk + "parser").FirstOrDefault()?.Value;
+        return document.Descendants(uk + "parser").FirstOrDefault()?.Value!;
     }
 
     [Theory]
@@ -253,7 +253,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         ConfigureTestEnvironment("MultiLineTest");
 
         // Pre-populate tracker to mark first item as already processed
-        TrackerDbHelper.SeedFileTrackerDb(trackerPath,
+        TrackerDbHelper.SeedFileTrackerDb(trackerPath!,
             new TrackerLine
             {
                 Court = "UKSC",

@@ -1,5 +1,3 @@
-#nullable enable
-
 using Backlog.Csv;
 
 using CsvHelper;

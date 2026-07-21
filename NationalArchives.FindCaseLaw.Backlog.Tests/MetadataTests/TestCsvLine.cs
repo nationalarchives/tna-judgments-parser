@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 
 using UK.Gov.Legislation.Judgments;

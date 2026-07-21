@@ -1,5 +1,3 @@
-#nullable enable
-
 using Backlog.Options;
 
 using Microsoft.Extensions.Options;

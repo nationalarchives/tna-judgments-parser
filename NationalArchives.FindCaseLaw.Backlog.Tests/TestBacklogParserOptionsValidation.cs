@@ -1,5 +1,3 @@
-#nullable enable
-
 using System.IO.Abstractions.TestingHelpers;
 
 using Backlog.Options;
