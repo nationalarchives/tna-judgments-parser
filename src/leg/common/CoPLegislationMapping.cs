@@ -107,25 +107,7 @@ internal static partial class CoPLegislationMapping {
     /// Normalizes the CoP type string to a document main type value.
     /// </summary>
     public static string NormalizeDocumentMainType(string copType) {
-        if (string.IsNullOrEmpty(copType))
-            return "CodeOfPractice";
-
-        string typeLower = copType.ToLowerInvariant();
-
-        if (typeLower.Contains("uk draft si"))
-            return "UnitedKingdomDraftCodeOfPractice";
-        if (typeLower.Contains("uk si"))
-            return "UnitedKingdomCodeOfPractice";
-        if (typeLower.Contains("scottish") && typeLower.Contains("draft"))
-            return "ScottishDraftCodeOfPractice";
-        if (typeLower.Contains("scottish"))
-            return "ScottishCodeOfPractice";
-        if (typeLower.Contains("ni") && typeLower.Contains("draft"))
-            return "NorthernIrelandDraftCodeOfPractice";
-        if (typeLower.Contains("ni"))
-            return "NorthernIrelandCodeOfPractice";
-
-        return "CodeOfPractice";
+        return DocumentMainTypeNormalizer.Normalize(copType, "CodeOfPractice", "CodeOfPractice");
     }
 
 }

@@ -93,25 +93,7 @@ internal static partial class TNLegislationMapping {
     /// Normalizes the TN type string to a document main type value.
     /// </summary>
     public static string NormalizeDocumentMainType(string tnType) {
-        if (string.IsNullOrEmpty(tnType))
-            return "TranspositionNote";
-
-        string typeLower = tnType.ToLowerInvariant();
-
-        if (typeLower.Contains("uk draft si"))
-            return "UnitedKingdomDraftTranspositionNote";
-        if (typeLower.Contains("uk si"))
-            return "UnitedKingdomTranspositionNote";
-        if (typeLower.Contains("scottish") && typeLower.Contains("draft"))
-            return "ScottishDraftTranspositionNote";
-        if (typeLower.Contains("scottish"))
-            return "ScottishTranspositionNote";
-        if (typeLower.Contains("ni") && typeLower.Contains("draft"))
-            return "NorthernIrelandDraftTranspositionNote";
-        if (typeLower.Contains("ni"))
-            return "NorthernIrelandTranspositionNote";
-
-        return "TranspositionNote";
+        return DocumentMainTypeNormalizer.Normalize(tnType, "TranspositionNote", "TranspositionNote");
     }
 
 }

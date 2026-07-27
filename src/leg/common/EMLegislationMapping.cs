@@ -130,27 +130,17 @@ internal static partial class EMLegislationMapping {
     /// Normalizes the EM type to a document main type value.
     /// </summary>
     public static string NormalizeDocumentMainType(string emType) {
-        if (string.IsNullOrEmpty(emType))
+        string jurisdiction = DocumentMainTypeNormalizer.Jurisdiction(emType);
+        if (jurisdiction is null)
             return "ExplanatoryMemorandum";
 
-        string typeLower = emType.ToLowerInvariant();
+        // Scotland's equivalent of an explanatory memorandum is a policy or executive note.
+        if (jurisdiction == "Scottish")
+            return emType.Contains("executive note", StringComparison.OrdinalIgnoreCase)
+                ? "ScottishExecutiveNote"
+                : "ScottishPolicyNote";
 
-        if (typeLower.Contains("uk draft si"))
-            return "UnitedKingdomDraftExplanatoryMemorandum";
-        if (typeLower.Contains("uk si") && typeLower.Contains("memorandum"))
-            return "UnitedKingdomExplanatoryMemorandum";
-        if (typeLower.Contains("scottish") && typeLower.Contains("draft") && typeLower.Contains("policy note"))
-            return "ScottishDraftPolicyNote";
-        if (typeLower.Contains("scottish") && typeLower.Contains("policy note"))
-            return "ScottishPolicyNote";
-        if (typeLower.Contains("scottish") && typeLower.Contains("executive note"))
-            return "ScottishExecutiveNote";
-        if (typeLower.Contains("ni") && typeLower.Contains("draft") && typeLower.Contains("memorandum"))
-            return "NorthernIrelandDraftExplanatoryMemorandum";
-        if (typeLower.Contains("ni") && typeLower.Contains("memorandum"))
-            return "NorthernIrelandExplanatoryMemorandum";
-
-        return "ExplanatoryMemorandum";
+        return jurisdiction + "ExplanatoryMemorandum";
     }
 
 }

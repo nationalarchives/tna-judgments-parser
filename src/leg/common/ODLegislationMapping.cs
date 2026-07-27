@@ -107,25 +107,7 @@ internal static partial class ODLegislationMapping {
     /// Normalizes the OD type string to a document main type value.
     /// </summary>
     public static string NormalizeDocumentMainType(string odType) {
-        if (string.IsNullOrEmpty(odType))
-            return "OtherDocument";
-
-        string typeLower = odType.ToLowerInvariant();
-
-        if (typeLower.Contains("uk draft si"))
-            return "UnitedKingdomDraftOtherDocument";
-        if (typeLower.Contains("uk si"))
-            return "UnitedKingdomOtherDocument";
-        if (typeLower.Contains("scottish") && typeLower.Contains("draft"))
-            return "ScottishDraftOtherDocument";
-        if (typeLower.Contains("scottish"))
-            return "ScottishOtherDocument";
-        if (typeLower.Contains("ni") && typeLower.Contains("draft"))
-            return "NorthernIrelandDraftOtherDocument";
-        if (typeLower.Contains("ni"))
-            return "NorthernIrelandOtherDocument";
-
-        return "OtherDocument";
+        return DocumentMainTypeNormalizer.Normalize(odType, "OtherDocument", "OtherDocument");
     }
 
 }

@@ -101,19 +101,15 @@ internal static partial class ENLegislationMapping {
     private static partial Regex LegislationUriRegex();
 
     public static string NormalizeDocumentMainType(string enType) {
-        if (string.IsNullOrEmpty(enType))
+        string jurisdiction = DocumentMainTypeNormalizer.Jurisdiction(enType);
+        if (jurisdiction is null)
             return "ExplanatoryNotes";
 
-        string typeLower = enType.ToLowerInvariant();
-
-        if (typeLower.Contains("scottish"))
-            return "ScottishActExplanatoryNotes";
-        if (typeLower.Contains("northern ireland") || typeLower.Contains("ni "))
-            return "NorthernIrelandActExplanatoryNotes";
-        if (typeLower.Contains("welsh") || typeLower.Contains("wales"))
-            return "WelshActExplanatoryNotes";
-
-        return "UnitedKingdomExplanatoryNotes";
+        // The devolved values carry "Act"; the UK one does not. Retained as-is: renaming
+        // these is a separate decision from the draft one.
+        return jurisdiction == "UnitedKingdom"
+            ? "UnitedKingdomExplanatoryNotes"
+            : jurisdiction + "ActExplanatoryNotes";
     }
 
 }

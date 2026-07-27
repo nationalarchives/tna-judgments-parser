@@ -78,7 +78,7 @@ internal static partial class IALegislationMapping {
             Title = record.DocumentTitle,
             IADate = record.DocumentDate,
             DocumentStage = record.DocumentStage,
-            DocumentMainType = record.DocumentType,
+            DocumentMainType = NormalizeDocumentMainType(record.DocumentType),
             Department = record.Department,
             ModifiedDate = record.ModifiedDate,
             LegislationUri = record.LegislationUri,
@@ -138,6 +138,28 @@ internal static partial class IALegislationMapping {
     /// </summary>
     public static string BuildUkiaUri(int year, int number) {
         return $"http://www.legislation.gov.uk/id/ukia/{year}/{number}";
+    }
+
+    /// <summary>
+    /// Normalizes the CSV document type to a document main type value.
+    /// </summary>
+    /// <remarks>
+    /// Unlike the other associated document mappings, the IA rows are not consistent: ukia rows
+    /// already carry a CLML-style value while the Scottish rows carry a descriptive label. Both
+    /// shapes have to be accepted.
+    /// </remarks>
+    public static string NormalizeDocumentMainType(string documentType) {
+        if (string.IsNullOrWhiteSpace(documentType))
+            return "ImpactAssessment";
+
+        // Already a CLML-style value rather than a descriptive label.
+        if (!documentType.Contains(' '))
+            return documentType;
+
+        string noun = documentType.Contains("equality", StringComparison.OrdinalIgnoreCase)
+            ? "EqualityImpactAssessment"
+            : "ImpactAssessment";
+        return DocumentMainTypeNormalizer.Normalize(documentType, noun, "ImpactAssessment");
     }
 
     /// <summary>
