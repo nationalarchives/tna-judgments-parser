@@ -1,5 +1,3 @@
-using System.Text.Json;
-
 namespace NationalArchives.FindCaseLaw.Utils.Tests;
 
 public class CourtStoreTests
@@ -13,10 +11,11 @@ public class CourtStoreTests
     [InlineData("EWHC-CHANCERY-APPEALS")]
     [InlineData("SIAC")]
     [InlineData("UKFTT-Estate")]
+    [InlineData("UKVAT")]
     public void Exists_GivenARealCourtCode_ReturnsTrue(string courtCode)
     {
         var result = courtStore.Exists(courtCode);
-        
+
         Assert.True(result);
     }
 
@@ -28,7 +27,7 @@ public class CourtStoreTests
     public void Exists_GivenABadCourtCode_ReturnsFalse(string courtCode)
     {
         var result = courtStore.Exists(courtCode);
-        
+
         Assert.False(result);
     }
 }
