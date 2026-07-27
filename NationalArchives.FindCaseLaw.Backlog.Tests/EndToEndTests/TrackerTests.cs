@@ -61,7 +61,8 @@ public class TrackerTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTest
             {
                 Extension = ".pdf";
                 Contents = DocumentHelpers.GetEmbeddedResourceAsBytes(
-                    "test.backlog.test_data.Money_Worries_Ltd_v_Office_of_Fair_Trading.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc");
+                    "NationalArchives.FindCaseLaw.Backlog.Tests.Data.Inputs.Pdf.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc",
+                    GetType().Assembly);
                 DocumentHash = "a12036d81e1e533b7aa91dcfa73c96c36abca19b8c78a52aeecef89e6a3a578b";
             }
             else

@@ -63,22 +63,31 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
         }
     }
 
-    private void ConfigureTestEnvironment(string testCaseName)
+    public enum TestCase
+    {
+        Doc,
+        DocxWithNcn,
+        DocxWithoutNcn,
+        EmptyCsv,
+        MultiLineCsv,
+        Pdf
+    }
+
+    private void ConfigureTestEnvironment(TestCase testCase)
     {
         // Use the test data directory with pre-populated files
         var workingDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-        var backlogDirectory = workingDirectory
-                               .Parent?
-                               .Parent?
-                               .Parent?
-                               .Parent?
-                               .GetDirectories("test").SingleOrDefault()?
-                               .GetDirectories("backlog").SingleOrDefault()
-                               ?? throw new DirectoryNotFoundException("Could not find backlog directory");
-        var testDataDirectory = backlogDirectory.GetDirectories("test-data").SingleOrDefault()
-                                ?? throw new DirectoryNotFoundException("Could not find test-data directory");
+        var testDataDirectory = workingDirectory
+                                .Parent?
+                                .Parent?
+                                .Parent?
+                                .GetDirectories("Data").SingleOrDefault()
+                                ?? throw new DirectoryNotFoundException("Could not find Data directory");
+        var testDataInputsDirectory = testDataDirectory.GetDirectories("Inputs").SingleOrDefault()
+                                      ?? throw new DirectoryNotFoundException("Could not find Inputs directory");
 
-        dataDir = testDataDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
+        var testCaseName = testCase.ToString();
+        dataDir = testDataInputsDirectory.GetDirectories(testCaseName).SingleOrDefault()?.FullName
                   ?? throw new DirectoryNotFoundException($"Could not find {testCaseName} directory");
 
         var courtMetadataFilePath = Path.Combine(dataDir, "court_metadata.csv");
@@ -116,7 +125,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     {
         var actualXml =
             mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("judgment.xml");
-        var expectedXml = DocumentHelpers.ReadXml(expectedXmlResourceName);
+        var expectedXml = DocumentHelpers.ReadXml(expectedXmlResourceName, GetType().Assembly);
 
         Assert.Equal(ExpectedParserVersion, ExtractParserVersion(actualXml));
 
@@ -131,7 +140,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     {
         var actualFileContents = mockS3Client.GetCapturedContent(capturedKey)
                                              .GetFileFromZippedContentAsBytes(bundleSourceName);
-        var expectedContents = DocumentHelpers.GetEmbeddedResourceAsBytes(testFileResourceName);
+        var expectedContents = DocumentHelpers.GetEmbeddedResourceAsBytes(testFileResourceName, GetType().Assembly);
 
         Assert.Equal(expectedContents, actualFileContents);
     }
@@ -149,7 +158,8 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     {
         var actualMetadataJson =
             mockS3Client.GetCapturedContent(capturedKey).GetFileFromZippedContentAsString("bulk-metadata.json");
-        var expectedMetadataJson = DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName);
+        var expectedMetadataJson =
+            DocumentHelpers.ReadEmbeddedResourceAsString(expectedMetadataJsonResourceName, GetType().Assembly);
 
         // Remove non-deterministic GUIDs
         actualMetadataJson = GuidRegex().Replace(actualMetadataJson, "");
@@ -169,15 +179,23 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     }
 
     [Theory]
-    [InlineData("2002-010.doc.docx", "test.backlog.test_data.Altaf_Ebrahim_t_a_Ebrahim___Co_v_OISC.court_documents.e14fb247-5d9b-42b8-9238-52ae3bd8345b.docx", "Altaf Ebrahim t_a Ebrahim & Co v OISC", 5)]
-    [InlineData("D 2011 306 Sultan  Others.docx", "test.backlog.test_data.Sultan_Others.court_documents.3cf61114-2d77-4e7a-aba0-6891faaf9d39.docx", "Sultan Others", 1243)]
-    [InlineData("CCA20120008_20130118_order_appeal_discontinued.pdf", "test.backlog.test_data.Money_Worries_Ltd_v_Office_of_Fair_Trading.court_documents.ac4e30ac-416c-494d-8a76-a0dee0ca93bc", "Money Worries Ltd v Office of Fair Trading", 20)]
-    [InlineData("original, document, name.docx", "test.backlog.test_data.DocxWithNcn.court_documents.f89b65cc-6709-4a2f-bc34-a2e21372dea6.docx", "DocxWithNcn", 42)]
-    public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string fileName, string resourceName,
-        string testCaseName, uint docId)
+    [InlineData("2002-010.doc.docx", "e14fb247-5d9b-42b8-9238-52ae3bd8345b.docx", TestCase.Doc, 5)]
+    [InlineData("D 2011 306 Sultan  Others.docx", "3cf61114-2d77-4e7a-aba0-6891faaf9d39.docx", TestCase.DocxWithoutNcn,
+        1243)]
+    [InlineData("CCA20120008_20130118_order_appeal_discontinued.pdf", "ac4e30ac-416c-494d-8a76-a0dee0ca93bc",
+        TestCase.Pdf, 20)]
+    [InlineData("original, document, name.docx", "f89b65cc-6709-4a2f-bc34-a2e21372dea6.docx", TestCase.DocxWithNcn, 42)]
+    public void ProcessBacklogJudgment_SuccessfullyUploadsExpectedFilesToS3(string fileName, string sourceFileName,
+        TestCase testCase, uint docId)
     {
+        var expectedSourceFileResourceName =
+            $"NationalArchives.FindCaseLaw.Backlog.Tests.Data.Inputs.{testCase}.court_documents.{sourceFileName}";
+        var expectedXmlResourceName = $"NationalArchives.FindCaseLaw.Backlog.Tests.Data.ExpectedOutput.{testCase}.xml";
+        var expectedMetadataJsonResourceName =
+            $"NationalArchives.FindCaseLaw.Backlog.Tests.Data.ExpectedOutput.{testCase}.json";
+
         // Setup test environment
-        ConfigureTestEnvironment(testCaseName);
+        ConfigureTestEnvironment(testCase);
         // This time is the "now" that is used in the "expected metadata" JSON fixture
         var expectedTime = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
         fakeTimeProvider.AdjustTime(expectedTime);
@@ -205,17 +223,17 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
 
         // Assert - Check output files are as expected
         AssertCapturedContentMatchesOutputContent(capturedKey);
-        AssertCapturedContentContainsExpectedSourceFile(capturedKey, fileName, resourceName);
-        AssertCapturedContentContainsExpectedXml(capturedKey, $"test.backlog.expected_output.{testCaseName}.xml");
+        AssertCapturedContentContainsExpectedSourceFile(capturedKey, fileName, expectedSourceFileResourceName);
+        AssertCapturedContentContainsExpectedXml(capturedKey, expectedXmlResourceName);
         AssertCapturedContentContainsExpectedMetadataJson(capturedKey,
-            $"test.backlog.expected_output.{testCaseName}.json");
+            expectedMetadataJsonResourceName);
     }
 
     [Fact]
     public void ProcessBacklogJudgment_FullCSV_ProcessesMultipleJudgments()
     {
         // Setup test environment for multi-line CSV test
-        ConfigureTestEnvironment("MultiLineTest");
+        ConfigureTestEnvironment(TestCase.MultiLineCsv);
 
         // Act - Run without --id to process full CSV
         var exitCode = global::Backlog.Program.Main();
@@ -250,7 +268,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_FullCSV_SkipsAlreadyProcessedItems()
     {
         // Setup test environment
-        ConfigureTestEnvironment("MultiLineTest");
+        ConfigureTestEnvironment(TestCase.MultiLineCsv);
 
         // Pre-populate tracker to mark first item as already processed
         TrackerDbHelper.SeedFileTrackerDb(trackerPath!,
@@ -321,7 +339,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_WithId_OnlyProcessesSpecifiedId()
     {
         // Setup test environment
-        ConfigureTestEnvironment("MultiLineTest");
+        ConfigureTestEnvironment(TestCase.MultiLineCsv);
 
         // Act
         var exitCode = global::Backlog.Program.Main("--id", "102");
@@ -341,7 +359,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_FullCSV_WithEmptyCSV_ReturnsError()
     {
         // Setup test environment with empty CSV
-        ConfigureTestEnvironment("EmptyCSVTest");
+        ConfigureTestEnvironment(TestCase.EmptyCsv);
 
         // Act
         var exitCode = global::Backlog.Program.Main();
@@ -379,7 +397,7 @@ public partial class EndToEndTests(ITestOutputHelper testOutputHelper) : BaseEnd
     public void ProcessBacklogJudgment_AutoPublish_IsConfigurableViaCli(string[] extraArgs, bool expectedAutoPublish)
     {
         // Setup test environment
-        ConfigureTestEnvironment("Money Worries Ltd v Office of Fair Trading");
+        ConfigureTestEnvironment(TestCase.Pdf);
         fakeTimeProvider.AdjustTime(new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero));
 
         // Act

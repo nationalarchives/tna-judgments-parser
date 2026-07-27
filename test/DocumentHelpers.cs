@@ -2,8 +2,11 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Xsl;
+
+using UK.Gov.Legislation;
 
 using Xunit;
 
@@ -18,7 +21,7 @@ public static class DocumentHelpers
     /// </summary>
     public static void AssertValidMainAkn(XmlDocument akn)
     {
-        Assert.Empty(UK.Gov.Legislation.Validator.Shared.ValidateAgainstMainAkn(akn));
+        Assert.Empty(Validator.Shared.ValidateAgainstMainAkn(akn));
     }
 
     public static byte[] ReadDocx(int i)
@@ -35,25 +38,26 @@ public static class DocumentHelpers
     {
         return GetEmbeddedResourceAsBytes(resource);
     }
-    
-    public static byte[] GetEmbeddedResourceAsBytes(string resource)
+
+    public static byte[] GetEmbeddedResourceAsBytes(string resource, Assembly? assembly = null)
     {
-        using var stream = GetManifestResourceStream(resource);
+        using var stream = GetManifestResourceStream(resource, assembly);
         using StreamReader reader = new(stream);
         MemoryStream ms = new();
         stream.CopyTo(ms);
         return ms.ToArray();
     }
 
-    private static Stream GetManifestResourceStream(string resource)
+    private static Stream GetManifestResourceStream(string resource, Assembly? assembly)
     {
         Stream? stream = null;
         try
         {
-            var assembly = typeof(DocumentHelpers).Assembly;
+            assembly ??= typeof(DocumentHelpers).Assembly;
             stream = assembly.GetManifestResourceStream(resource);
             return stream ?? throw new InvalidOperationException(
-                $"Resource {resource} was not found in the assembly. Has it been included as an embedded resource?");
+                $"Resource {resource} was not found in the assembly. Has it been included as an embedded resource?" +
+                "\n" + string.Join(", ", assembly.GetManifestResourceNames()));
         }
         catch
         {
@@ -67,14 +71,14 @@ public static class DocumentHelpers
         return ReadXml($"test.judgments.test{i}.xml");
     }
 
-    public static string ReadXml(string resource)
+    public static string ReadXml(string resource, Assembly? assembly = null)
     {
-        return ReadEmbeddedResourceAsString(resource);
+        return ReadEmbeddedResourceAsString(resource, assembly);
     }
 
-    public static string ReadEmbeddedResourceAsString(string resource)
+    public static string ReadEmbeddedResourceAsString(string resource, Assembly? assembly = null)
     {
-        using var stream = GetManifestResourceStream(resource);
+        using var stream = GetManifestResourceStream(resource, assembly);
         using StreamReader reader = new(stream);
         return reader.ReadToEnd();
     }

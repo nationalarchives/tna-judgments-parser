@@ -23,9 +23,13 @@
     <PackageReference Include="TestableIO.System.IO.Abstractions.TestingHelpers" Version="22.2.0" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
 
-    <EmbeddedResource Include="./expected-output/*.json" />
-    <EmbeddedResource Include="./expected-output/*.xml" />
-    <EmbeddedResource Include="./test-data/*/court_documents/*"/>
+  <ItemGroup>
+    <EmbeddedResource Include="Data/Inputs/*/*.csv" />
+    <EmbeddedResource Include="Data/Inputs/*/court_documents/*" />
+    
+    <EmbeddedResource Include="Data/ExpectedOutput/*.json" />
+    <EmbeddedResource Include="Data/ExpectedOutput/*.xml" />
   </ItemGroup>
 </Project>
