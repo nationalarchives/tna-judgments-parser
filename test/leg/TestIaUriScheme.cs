@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Xunit;
 
 using UK.Gov.Legislation.Common;
@@ -55,21 +57,17 @@ public class TestIaUriScheme {
     }
 
     [Theory]
-    // A ukia absent from the mapping CSV must still get its standalone
-    // ukia/{year}/{number} URI, not an empty one (year 2099 keeps it out of the CSV).
-    [InlineData("ukia_20990001_en", "ukia/2099/1")]
-    [InlineData("ukia_20990123_en", "ukia/2099/123")]
-    public void UnmappedUkiaFallsBackToStandaloneUri(string filename, string expected) {
-        var record = IALegislationMapping.GetMappingRecord(filename);
-        Assert.NotNull(record);
-        Assert.Equal(expected, IALegislationMapping.BuildShortUriComponent(record));
-    }
-
-    [Fact]
-    public void UnmappedNonUkiaHasNoStandaloneFallback() {
-        // Scottish/other schemes have no standalone URI, so an unmapped one stays
-        // unmapped (null) rather than being given a bogus ukia/... URI.
-        Assert.Null(IALegislationMapping.GetMappingRecord("ssifia_20990001_en"));
+    // A ukia absent from the mapping CSV used to be given a synthesised standalone
+    // ukia/{year}/{number} URI. That produced documents with a plausible URI and nothing
+    // else: no title, publisher, date or classification. 87 such AKNs reached the corpus
+    // and had to be deleted, so an unresolvable IA must now fail instead.
+    // Year 2099 keeps these out of the CSV.
+    [InlineData("ukia_20990001_en")]
+    [InlineData("ukia_20990123_en")]
+    [InlineData("ssifia_20990001_en")]
+    [InlineData("sdsifia_9999999999999_en")]
+    public void UnmappedIaIsRejected(string filename) {
+        Assert.Throws<KeyNotFoundException>(() => IALegislationMapping.GetMappingRecord(filename));
     }
 
 }

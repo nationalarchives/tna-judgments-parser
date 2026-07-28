@@ -56,7 +56,12 @@ class IAMetadata : DocumentMetadata {
 
         // Look up the mapping record by the actual filename (handles every IA
         // jurisdiction: ukia, ssifia, sdsifia) and build the URI from it.
-        IAMappingRecord mappingRecord = IALegislationMapping.GetMappingRecord(filename);
+        IAMappingRecord mappingRecord;
+        try {
+            mappingRecord = IALegislationMapping.GetMappingRecord(filename);
+        } catch (KeyNotFoundException ex) {
+            throw new InvalidOperationException($"Cannot process IA file '{filename}': {ex.Message}", ex);
+        }
         string shortUri = IALegislationMapping.BuildShortUriComponent(mappingRecord);
         string legislationUri = mappingRecord?.LegislationUri;
 

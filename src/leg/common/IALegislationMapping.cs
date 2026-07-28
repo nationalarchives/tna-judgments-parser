@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -34,20 +35,14 @@ internal static partial class IALegislationMapping {
         IAFileId fileId = ParseIAFilename(filename);
         var record = AssociatedDocumentMapping.GetRecord(filename);
 
-        if (record is null) {
-            // Not in the CSV: a ukia still has a standalone ukia/{year}/{number} URI, so
-            // build a minimal record from the filename for that fallback. Other schemes
-            // have no standalone form and stay unmapped.
-            if (fileId is not { HasYearNumber: true } || fileId.Series != "ukia")
-                return null;
-            return new IAMappingRecord {
-                IaSeries = fileId.Series,
-                UkiaYear = fileId.Year,
-                UkiaNumber = int.TryParse(fileId.Number, out int fn) ? (int?) fn : null,
-                ImpactsYear = fileId.Year.Value.ToString(),
-                ImpactsNumber = fileId.Number,
-            };
-        }
+        // Without a CSV record there is no title, publisher, date or classification, so the
+        // document cannot produce a loadable AKN. Fail rather than emit one, matching the
+        // EM/EN/TN/CoP/OD mappings. A ukia used to be given a synthesised standalone URI
+        // here, which is how 87 unusable AKNs reached the corpus: a plausible URI and
+        // nothing else.
+        if (record is null)
+            throw new KeyNotFoundException(
+                $"No CSV mapping found for IA filename '{filename}'. All IAs must have a CSV entry.");
 
         // The IA's identity within /impacts: a ukia IA has its own series year/number
         // (independent of the parent legislation); a Scottish SI/Draft IA is identified
