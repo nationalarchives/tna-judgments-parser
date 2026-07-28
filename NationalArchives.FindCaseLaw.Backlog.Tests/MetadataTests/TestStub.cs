@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Xml;
 
@@ -7,9 +5,11 @@ using Backlog;
 using Backlog.Csv;
 using Backlog.Src;
 
+using test;
+
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestStub
 {
@@ -48,7 +48,7 @@ public class TestStub
         resultXml.HasSingleNodeWithName("proprietary")
                  .Which().HasChildMatching("uk:cite", ncn);
     }
-    
+
     [Fact]
     public void Stub_WithSingleJurisdiction_AppearsInXmlAsUkJurisdiction()
     {
@@ -61,7 +61,7 @@ public class TestStub
 
         resultXml.HasSingleNodeWithName("proprietary").Which().HasChildMatching("uk:jurisdiction", "new jurisdiction");
     }
-    
+
     [Fact]
     public void Stub_WithMultipleJurisdictions_AppearInXmlAsUkJurisdictions()
     {

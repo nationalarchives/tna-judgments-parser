@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +22,7 @@ using Xunit;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
 using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestMetadataTransformer
 {
@@ -212,7 +210,7 @@ public class TestMetadataTransformer
     public void CsvLineToMetadataFields_AllFields_HaveCurrentTimestamp()
     {
         var metadataLine = CsvMetadataLineHelper.DummyLineWithClaimants;
-        DateTimeOffset expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
+        var expectedDate = new DateTimeOffset(1999, 9, 9, 9, 9, 9, TimeSpan.Zero);
         fakeTimeProvider.AdjustTime(expectedDate);
 
         var result = metadataTransformer.CsvLineToMetadataFields(metadataLine);

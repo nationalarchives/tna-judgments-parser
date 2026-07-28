@@ -1,7 +1,4 @@
-#nullable enable
-
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
 
 using Backlog.Options;
 
@@ -9,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestBacklogParserOptionsValidation
 {
@@ -92,23 +89,23 @@ public class TestBacklogParserOptionsValidation
     }
 
     [Theory]
-    [InlineData("" )]
+    [InlineData("")]
     [InlineData(" ")]
     public void Validate_WhenTrackerFilePathIsMissing_ReturnsFailed(string trackerFilePath)
     {
-        var options = BacklogParserOptionsHelper.Create(isDryRun: true, trackerFilePath:trackerFilePath).Value;
+        var options = BacklogParserOptionsHelper.Create(isDryRun: true, trackerFilePath: trackerFilePath).Value;
 
         var result = validator.Validate(null, options);
 
         AssertSingleFailure(result, "TrackerFilePath: The TrackerFilePath field is required.");
     }
-    
+
     [Theory]
-    [InlineData("" )]
+    [InlineData("")]
     [InlineData(" ")]
     public void Validate_WhenOutputFolderPathIsMissing_ReturnsFailed(string outputFolderPath)
     {
-        var options = BacklogParserOptionsHelper.Create(isDryRun: true, outputFolderPath:outputFolderPath).Value;
+        var options = BacklogParserOptionsHelper.Create(isDryRun: true, outputFolderPath: outputFolderPath).Value;
 
         var result = validator.Validate(null, options);
 

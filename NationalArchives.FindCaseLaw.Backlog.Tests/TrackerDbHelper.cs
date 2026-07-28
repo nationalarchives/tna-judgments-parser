@@ -1,5 +1,3 @@
-#nullable enable
-
 using Backlog.Tracking;
 
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +6,7 @@ using Shouldly;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 internal static class TrackerDbHelper
 {

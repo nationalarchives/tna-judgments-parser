@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +16,7 @@ using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public sealed class TestRead : IDisposable
 {
@@ -163,9 +161,9 @@ public sealed class TestRead : IDisposable
 
         Assert.Empty(result);
         var expectedErrorMessage = $"Line 2: Could not convert field `Uuid` with value \"{badUuid}\" to type `Guid` [{csvLine}]";
-       mockTracker.Verify(t => t.TrackCsvParseError(expectedErrorMessage), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(expectedErrorMessage), Times.Once);
     }
-    
+
     [Fact]
     public void Read_WithDodgySkippedLines_DoesNotOutputValidationErrors()
     {

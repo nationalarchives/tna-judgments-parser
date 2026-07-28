@@ -1,14 +1,13 @@
-#nullable enable
-
-using System.Linq;
-
 using Backlog.Csv;
+
 using CsvHelper;
 using CsvHelper.Configuration;
+
 using Moq;
+
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestDelimitedArrayConverter
 {

@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +8,13 @@ using Backlog.Csv;
 
 using Microsoft.Extensions.Logging;
 
+using test;
+
 using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace test.backlog.EndToEndTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTests(testOutputHelper)
 {
@@ -46,7 +46,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         Directory.CreateDirectory(courtDocumentsDir);
 
         // Create files
-        var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1,2,3,4];
+        var contents = testJudgmentNumber is not null ? DocumentHelpers.ReadDocx(testJudgmentNumber.Value) : [1, 2, 3, 4];
         File.WriteAllBytes(Path.Combine(courtDocumentsDir, uuid.ToString()), contents);
 
         // Set environment variables
@@ -110,7 +110,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -161,7 +161,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -216,7 +216,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -265,7 +265,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         //Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -310,7 +310,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         //Assert
         Assert.True(exitCode != 0, "Expected program to error but it exited successfully");
@@ -341,7 +341,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main([]);
+        var exitCode = global::Backlog.Program.Main([]);
 
         // Assert program finished successfully
         AssertProgramExitedSuccessfully(exitCode);
@@ -421,7 +421,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
         WriteCourtMetadataCsv(metadataLine);
 
         // Act
-        var exitCode = Backlog.Program.Main();
+        var exitCode = global::Backlog.Program.Main();
 
         // Assert
         AssertProgramExitedSuccessfully(exitCode);
@@ -473,7 +473,7 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
 
         doc.HasSingleNodeWithName("neutralCitation")
            .Which().Should().HaveValue("[2023] UKFTT 00916 (GRC)");
-        
+
         doc.HasSingleNodeWithName("docJurisdiction")
            .Which().Should().HaveValueMatching("Information Rights")
            .And().Attributes.ThatMatch(

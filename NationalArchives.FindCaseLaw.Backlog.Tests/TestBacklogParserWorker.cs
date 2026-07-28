@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 
 using Backlog;
@@ -8,7 +6,7 @@ using Shouldly;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestBacklogParserWorker
 {

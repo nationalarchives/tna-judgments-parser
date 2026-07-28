@@ -1,10 +1,8 @@
-#nullable enable
-
 using Backlog.Options;
 
 using Microsoft.Extensions.Options;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public static class BacklogParserOptionsHelper
 {

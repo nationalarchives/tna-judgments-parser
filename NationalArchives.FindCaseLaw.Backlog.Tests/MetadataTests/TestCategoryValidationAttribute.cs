@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,7 +5,7 @@ using Backlog.Csv;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestCategoryValidationAttribute
 {

@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,7 +5,7 @@ using Backlog.Csv;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestAppellantsOrClaimantsPresentValidationAttribute
 {
@@ -42,7 +40,7 @@ public class TestAppellantsOrClaimantsPresentValidationAttribute
     {
         var exception = Assert.Throws<InvalidOperationException>(() =>
             appellantsOrClaimantsPresentValidationAttribute.IsValid($"Not a {nameof(CsvLine)}"));
-        
+
         Assert.Equal($"AppellantsOrClaimantsPresentValidationAttribute can only be used on a {nameof(CsvLine)}",
             exception.Message);
     }

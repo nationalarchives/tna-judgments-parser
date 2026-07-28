@@ -1,12 +1,10 @@
-#nullable enable
-
 using System;
 
 using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace test.backlog.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
 
 public class TestCsvLine
 {
@@ -81,7 +79,7 @@ public class TestCsvLine
         // Assert
         Assert.Equal(PartyRole.Appellant, result);
     }
-    
+
     [Fact]
     public void Parties_WithClaimantsAndRespondent_ReturnsClaimantThenRespondent()
     {

@@ -5,7 +5,7 @@ using Backlog;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public sealed class TestBacklogFiles
 {
@@ -80,7 +80,7 @@ public sealed class TestBacklogFiles
 
         var exception = Assert.Throws<MoreThanOneFileFoundException>(() => backlogFiles.ReadFile(uuid));
 
-        var expectedCourtDocumentsPath = mockFileSystem.Path.Combine("batch-x","court_documents");
+        var expectedCourtDocumentsPath = mockFileSystem.Path.Combine("batch-x", "court_documents");
         Assert.Equal(
             $"There should only be one file in {expectedCourtDocumentsPath} matching UUID a80ed36d-7a5c-4956-894d-51b14c89aa79 but found 2: [\"a80ed36d-7a5c-4956-894d-51b14c89aa79\", \"a80ed36d-7a5c-4956-894d-51b14c89aa79.docx\"]",
             exception.Message);

@@ -1,44 +1,48 @@
 using System;
+using System.Collections.Generic;
+using System.CommandLine;
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-
-using System.CommandLine;
 
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation;
 using UK.Gov.Legislation.Judgments;
-using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
-using Api = UK.Gov.NationalArchives.Judgments.Api;
 using UK.Gov.Legislation.Lawmaker;
-using System.Collections.Generic;
 using UK.Gov.Legislation.Lawmaker.Api;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("test")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("backlog")]
+using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
+using Api = UK.Gov.NationalArchives.Judgments.Api;
 
-public class Program {
+[assembly: InternalsVisibleTo("test")]
+[assembly: InternalsVisibleTo("NationalArchives.FindCaseLaw.Backlog.Tests")]
+[assembly: InternalsVisibleTo("backlog")]
+
+public class Program
+{
     private const int Success = 0;
     private const int Failure = 1;
 
     private static readonly RootCommand Command;
-    private static readonly Option<FileInfo> InputOption = new("--input"){ Description = "the .docx file", Required = true };
-    private static readonly Option<FileInfo> OutputOption = new("--output"){ Description = "the .xml file"};
-    private static readonly Option<FileInfo> OutputZipOption = new("--output-zip"){ Description = "the .zip file"};
-    private static readonly Option<FileInfo> OutputHtmlOption = new("--output-html"){ Description = "the .html file (leg doc types only)"};
-    private static readonly Option<FileInfo> LogOption = new("--log"){ Description = "the log file"};
-    private static readonly Option<bool> TestOption = new("--test"){ Description = "whether to test the result"};
-    private static readonly Option<FileInfo> AttachmentOption = new("--attachment"){ Description = "an associated file to include"};
-    private static readonly Option<string> HintOption = new("--hint"){ Description = "the type of document: 'em', 'en', 'ia', 'tn', 'cop', 'od' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'"};
-    private static readonly Option<string> SubtypeOption = new("--subtype"){ Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type"};
-    private static readonly Option<string> ProcedureOption = new("--procedure"){ Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type"};
-    private static readonly Option<string[]> LanguageOption = new("--language"){ Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true};
-    private static readonly Option<string> ManifestationNameOption = new("--manifestation-name"){ Description = "value for FRBRManifestation/FRBRdate/@name identifying the workflow (default: historic-akn-transform)"};
-    private static readonly Option<bool> ValidateAknOption = new("--validate-akn"){ Description = "instead of transforming, validate --input as an AKN file and emit JSON to stdout" };
+    private static readonly Option<FileInfo> InputOption = new("--input") { Description = "the .docx file", Required = true };
+    private static readonly Option<FileInfo> OutputOption = new("--output") { Description = "the .xml file" };
+    private static readonly Option<FileInfo> OutputZipOption = new("--output-zip") { Description = "the .zip file" };
+    private static readonly Option<FileInfo> OutputHtmlOption = new("--output-html") { Description = "the .html file (leg doc types only)" };
+    private static readonly Option<FileInfo> LogOption = new("--log") { Description = "the log file" };
+    private static readonly Option<bool> TestOption = new("--test") { Description = "whether to test the result" };
+    private static readonly Option<FileInfo> AttachmentOption = new("--attachment") { Description = "an associated file to include" };
+    private static readonly Option<string> HintOption = new("--hint") { Description = "the type of document: 'em', 'en', 'ia', 'tn', 'cop', 'od' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'" };
+    private static readonly Option<string> SubtypeOption = new("--subtype") { Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type" };
+    private static readonly Option<string> ProcedureOption = new("--procedure") { Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type" };
+    private static readonly Option<string[]> LanguageOption = new("--language") { Description = "the language(s) of the document - the default is English", AllowMultipleArgumentsPerToken = true };
+    private static readonly Option<string> ManifestationNameOption = new("--manifestation-name") { Description = "value for FRBRManifestation/FRBRdate/@name identifying the workflow (default: historic-akn-transform)" };
+    private static readonly Option<bool> ValidateAknOption = new("--validate-akn") { Description = "instead of transforming, validate --input as an AKN file and emit JSON to stdout" };
 
-    static Program() {
+    static Program()
+    {
         Command = new RootCommand {
             InputOption,
             OutputOption,
@@ -57,13 +61,15 @@ public class Program {
         Command.SetAction(Dispatch);
     }
 
-    static int Dispatch(ParseResult parseResult) {
+    static int Dispatch(ParseResult parseResult)
+    {
         if (parseResult.GetValue(ValidateAknOption))
             return ValidateAkn(parseResult);
         return Transform(parseResult);
     }
 
-    static int ValidateAkn(ParseResult parseResult) {
+    static int ValidateAkn(ParseResult parseResult)
+    {
         FileInfo input = parseResult.GetValue(InputOption);
         var xml = new System.Xml.XmlDocument();
         xml.Load(input.FullName);
@@ -71,13 +77,14 @@ public class Program {
         var aknErrs = Validator.Shared.ValidateAgainstMainAkn(xml);
         var nsmgr = new System.Xml.XmlNamespaceManager(xml.NameTable);
         nsmgr.AddNamespace("akn", "http://docs.oasis-open.org/legaldocml/ns/akn/3.0");
-        string expressionUri = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRthis", nsmgr) as System.Xml.XmlElement)?.GetAttribute("value");
-        string frbrDateName = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("name");
-        string frbrDateValue = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("date");
-        bool hasPreface = xml.SelectSingleNode("//akn:preface", nsmgr) != null;
+        var expressionUri = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRthis", nsmgr) as System.Xml.XmlElement)?.GetAttribute("value");
+        var frbrDateName = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("name");
+        var frbrDateValue = (xml.SelectSingleNode("//akn:FRBRExpression/akn:FRBRdate", nsmgr) as System.Xml.XmlElement)?.GetAttribute("date");
+        var hasPreface = xml.SelectSingleNode("//akn:preface", nsmgr) != null;
         var bodyChildren = xml.SelectNodes("//akn:mainBody/*", nsmgr);
-        bool hasBody = bodyChildren != null && bodyChildren.Count > 0;
-        var report = new {
+        var hasBody = bodyChildren != null && bodyChildren.Count > 0;
+        var report = new
+        {
             file = input.Name,
             expressionUri,
             frbrDate = new { name = frbrDateName, date = frbrDateValue },
@@ -86,11 +93,12 @@ public class Program {
             subschemaErrors = subErrs.ConvertAll(e => new { line = e.Exception?.LineNumber ?? 0, msg = e.Message }),
             mainAknErrors = aknErrs.ConvertAll(e => new { line = e.Exception?.LineNumber ?? 0, msg = e.Message }),
         };
-        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(report));
+        Console.WriteLine(JsonSerializer.Serialize(report));
         return (subErrs.Count == 0 && aknErrs.Count == 0) ? 0 : 1;
     }
 
-    public static int Main(string[] args) {
+    public static int Main(string[] args)
+    {
         return Command.Parse(args).Invoke();
     }
 
@@ -116,12 +124,14 @@ public class Program {
         var (input, output, outputZip, outputHtml, log, test, attachment, hint, subType, procedure, language, manifestationName) = GetParsedArgs(parseResult);
 
         ILogger logger = null;
-        if (log is not null) {
+        if (log is not null)
+        {
             Logging.SetConsoleAndFile(log, LogLevel.Debug);
             logger = Logging.Factory.CreateLogger<Program>();
             logger.LogInformation("parsing " + input.FullName);
         }
-        if (LegCLI.IsLegHint(hint)) {
+        if (LegCLI.IsLegHint(hint))
+        {
             LegCLI.Transform(hint, input, output, outputZip, outputHtml, log, attachment, manifestationName);
             return Success;
         }
@@ -129,16 +139,21 @@ public class Program {
         // GetDocName returns null only for empty input and throws for an
         // unrecognised value, so catch that to emit a friendly error rather
         // than an unhandled stack trace.
-        if (!string.IsNullOrEmpty(hint)) {
+        if (!string.IsNullOrEmpty(hint))
+        {
             DocName? docName;
-            try {
+            try
+            {
                 docName = DocNames.GetDocName(hint);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 docName = null;
             }
-            if (docName != null) {
-                LegislationClassifier classifier = new LegislationClassifier((DocName) docName, subType, procedure);
-                LanguageService languageService = new LanguageService(language);
+            if (docName != null)
+            {
+                var classifier = new LegislationClassifier((DocName)docName, subType, procedure);
+                var languageService = new LanguageService(language);
                 Response localResponse = Helper.LocalParse(input.FullName, classifier, languageService);
                 if (output is not null)
                     File.WriteAllText(output.FullName, localResponse.Xml);
@@ -154,13 +169,16 @@ public class Program {
             Environment.Exit(1);
         }
         // No hint: fall through to the judgment parser path.
-        byte[] docx = File.ReadAllBytes(input.FullName);
+        var docx = File.ReadAllBytes(input.FullName);
         Api.Request request;
-        if (attachment is null) {
+        if (attachment is null)
+        {
             request = new Api.Request { Content = docx };
-        } else {
-            byte[] docxA = File.ReadAllBytes(attachment.FullName);
-            Api.Attachment a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
+        }
+        else
+        {
+            var docxA = File.ReadAllBytes(attachment.FullName);
+            var a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
             request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
         }
 
@@ -178,22 +196,26 @@ public class Program {
         return Success;
     }
 
-    private static void SaveZip(Api.Response response, FileInfo file) {
+    private static void SaveZip(Api.Response response, FileInfo file)
+    {
         using var stream = new FileStream(file.FullName, FileMode.Create);
         using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
         var entry = archive.CreateEntry("judgment.xml");
-        using (var zip = entry.Open()) {
-            byte[] bytes = Encoding.UTF8.GetBytes(response.Xml);
+        using (var zip = entry.Open())
+        {
+            var bytes = Encoding.UTF8.GetBytes(response.Xml);
             zip.Write(bytes, 0, bytes.Length);
         }
         entry = archive.CreateEntry("meta.json");
-        using (var zip = entry.Open()) {
-            JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            string json = JsonSerializer.Serialize(response.Meta, options);
-            byte[] bytes = Encoding.UTF8.GetBytes(json);
+        using (var zip = entry.Open())
+        {
+            var options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            var json = JsonSerializer.Serialize(response.Meta, options);
+            var bytes = Encoding.UTF8.GetBytes(json);
             zip.Write(bytes, 0, bytes.Length);
         }
-        foreach (var image in response.Images) {
+        foreach (var image in response.Images)
+        {
             entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
             zip.Write(image.Content, 0, image.Content.Length);
@@ -212,23 +234,27 @@ public class Program {
         }
     }
 
-    private static void SaveZip(IXmlDocument em, FileInfo file) {
+    private static void SaveZip(IXmlDocument em, FileInfo file)
+    {
         using var stream = new FileStream(file.FullName, FileMode.Create);
         using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
         var entry = archive.CreateEntry("judgment.xml");
-        using (var zip = entry.Open()) {
-            byte[] bytes = Encoding.UTF8.GetBytes(em.Serialize());
+        using (var zip = entry.Open())
+        {
+            var bytes = Encoding.UTF8.GetBytes(em.Serialize());
             zip.Write(bytes, 0, bytes.Length);
         }
-        foreach (var image in em.Images) {
+        foreach (var image in em.Images)
+        {
             entry = archive.CreateEntry(image.Name);
             using var zip = entry.Open();
-            byte[] bytes = image.Read();
+            var bytes = image.Read();
             zip.Write(bytes, 0, bytes.Length);
         }
     }
 
-    private static void Print(Api.Meta meta) {
+    private static void Print(Api.Meta meta)
+    {
         Console.Error.WriteLine(meta.Uri);
         Console.Error.WriteLine(meta.Court);
         Console.Error.WriteLine(meta.Date);

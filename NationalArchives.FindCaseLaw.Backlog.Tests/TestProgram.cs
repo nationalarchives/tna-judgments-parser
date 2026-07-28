@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 
 using Backlog;
@@ -7,11 +5,11 @@ using Backlog.Options;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using test.backlog.EndToEndTests;
+using NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestProgram : BaseEndToEndTests // This isn't an end to end test but it does touch static state shared with the end to end tests
 {
@@ -33,7 +31,7 @@ public class TestProgram : BaseEndToEndTests // This isn't an end to end test bu
     {
         var services = new ServiceCollection();
 
-        Backlog.Program.ConfigureDependencyInjection(services);
+        global::Backlog.Program.ConfigureDependencyInjection(services);
 
         using var serviceProvider = services.BuildServiceProvider();
         var timeProvider = serviceProvider.GetRequiredService<TimeProvider>();
@@ -48,7 +46,7 @@ public class TestProgram : BaseEndToEndTests // This isn't an end to end test bu
         services.AddLogging();
         services.Configure<BacklogParserOptions>(o => o.IsDryRun = true);
 
-        Backlog.Program.ConfigureDependencyInjection(services, isDryRun: true);
+        global::Backlog.Program.ConfigureDependencyInjection(services, isDryRun: true);
 
         using var provider = services.BuildServiceProvider();
         var bucket = provider.GetRequiredService<IBucket>();
@@ -63,7 +61,7 @@ public class TestProgram : BaseEndToEndTests // This isn't an end to end test bu
         services.AddLogging();
         services.Configure<BacklogParserOptions>(o => o.IsDryRun = false);
 
-        Backlog.Program.ConfigureDependencyInjection(services, isDryRun: false);
+        global::Backlog.Program.ConfigureDependencyInjection(services, isDryRun: false);
 
         using var provider = services.BuildServiceProvider();
         var bucket = provider.GetRequiredService<IBucket>();

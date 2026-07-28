@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Net;
 using System.Threading;
@@ -14,12 +12,13 @@ using Microsoft.Extensions.Logging;
 
 using Moq;
 
-using test.backlog.EndToEndTests;
+using NationalArchives.FindCaseLaw.Backlog.Tests.EndToEndTests;
+
 using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public class TestBucket(ITestOutputHelper testOutputHelper)
     : BaseEndToEndTests(testOutputHelper)
@@ -68,7 +67,7 @@ public class TestBucket(ITestOutputHelper testOutputHelper)
         var mockAmazonS3 = new Mock<IAmazonS3>();
         mockAmazonS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
                     .ReturnsAsync(new PutObjectResponse { HttpStatusCode = HttpStatusCode.OK });
-        
+
         var bucket = new Bucket(mockAmazonS3.Object, options, mockLogger.Object);
 
         await bucket.UploadBundleAsync("test-key.tar.gz", [1, 2, 3]);

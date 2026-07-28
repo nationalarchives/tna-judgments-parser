@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +12,7 @@ using test.Mocks;
 
 using Xunit;
 
-namespace test.backlog;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests;
 
 public sealed class TestTracker : IDisposable
 {
@@ -238,17 +236,17 @@ public sealed class TestTracker : IDisposable
 
         // Assert
         trackerDbContext.ShouldHaveSavedSingleTrackerLineWhichIs(new TrackerLine
-            {
-                SourceUuid = sourceUuid,
-                ParserRunId = tracker.CurrentParserRunId,
-                Court = "UKFTT-GRC",
-                OriginalFileName = "/some/long/path/example.pdf",
-                FileExtension = ".pdf",
-                CsvMetadataHash = "my-metadata-hash",
-                TrackerStatus = TrackerStatus.ParserFailed,
-                ErrorMessage = "Something went wrong",
-                TrackerLineLastUpdated = now
-            }
+        {
+            SourceUuid = sourceUuid,
+            ParserRunId = tracker.CurrentParserRunId,
+            Court = "UKFTT-GRC",
+            OriginalFileName = "/some/long/path/example.pdf",
+            FileExtension = ".pdf",
+            CsvMetadataHash = "my-metadata-hash",
+            TrackerStatus = TrackerStatus.ParserFailed,
+            ErrorMessage = "Something went wrong",
+            TrackerLineLastUpdated = now
+        }
         );
     }
 
