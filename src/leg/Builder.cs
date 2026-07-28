@@ -261,7 +261,10 @@ class Builder : AkN.Builder {
             dcPublisher.AppendChild(doc.CreateTextNode(data.Publisher));
         }
 
-        if (data.LegislationUri is not null) {
+        // An IA can exist with no parent legislation, and the CSV carries that as an empty
+        // string rather than null. Testing only for null emitted <ukm:Legislation URI="" />,
+        // which consumers reject; omit the element entirely instead.
+        if (!string.IsNullOrEmpty(data.LegislationUri)) {
             XmlElement legislation = doc.CreateElement("ukm", "Legislation", UKM_NS);
             proprietary.AppendChild(legislation);
             legislation.SetAttribute("URI", data.LegislationUri);
