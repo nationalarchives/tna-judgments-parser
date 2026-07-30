@@ -28,7 +28,8 @@ internal class NetrualCitation : Enricher2
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))", // EWCA/Civ/2017/1798
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
-        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCC \d+)", @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCR \d+)",
+        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCC \d+)",
+        @"^Neutral Citation( Number)?:? +(\[\d{4}\] EWCR \d+)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EAT \d+)"
     ];
 
@@ -44,8 +45,11 @@ internal class NetrualCitation : Enricher2
         @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$", // [2022] EWCA Crim 39
         @"(\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)", // [2018[ EWCA Civ 1744
-        @"^(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$", @"^(\[\d{4}\] EWCC \d+)", @"^(\[\d{4}\] EWCR \d+)",
-        @"^ *(\[?\d{4}\]? EAT \d+)$", @"^Neutral Citation Number:? (\[\d{4}\] UKIPTrib \d+)"
+        @"^(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
+        @"^(\[\d{4}\] EWCC \d+)",
+        @"^(\[\d{4}\] EWCR \d+)",
+        @"^ *(\[?\d{4}\]? EAT \d+)$",
+        @"^Neutral Citation Number:? (\[\d{4}\] UKIPTrib \d+)"
     ];
 
     private static Group Match(string text)
@@ -99,21 +103,6 @@ internal class NetrualCitation : Enricher2
         return replacement;
     }
 
-    private static List<IInline> Replace(WText fText, Group group)
-    {
-        return Replace(fText.Text, group, fText.properties);
-    }
-
-    private IEnumerable<T> Concat3<T>(IEnumerable<T> one, IEnumerable<T> two, IEnumerable<T> three)
-    {
-        return one.Concat(two).Concat(three);
-    }
-
-    private IEnumerable<T> Concat3<T>(T one, IEnumerable<T> two, IEnumerable<T> three)
-    {
-        return two.Prepend(one).Concat(three);
-    }
-
     protected override WLine Enrich(WLine line)
     {
         if (line.NormalizedContent.Contains("the draft judgment is only to be used to"))
@@ -126,183 +115,116 @@ internal class NetrualCitation : Enricher2
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
     {
-        if (line.Any())
+        var linesArray = line.ToArray(); //enumerate to an array so we don't waste resource recalculating lines
+        var numberOfLines = linesArray.Length;
+
+        if (numberOfLines == 0)
         {
-            var first = line.First();
-            if (first is WText fText)
-            {
-                if (fText.Text.Contains("linked")) // [2023] EWFC 194 & 195
-                {
-                    return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
-                }
-
-                var group = Match(fText.Text) ??
-                            Match2(fText.Text);
-
-                if (group is not null)
-                {
-                    var replacement = Replace(fText, group);
-                    var rest = line.Skip(1);
-                    return replacement.Concat(rest);
-                }
-            }
-
-            var last = line.Last();
-            if (last is WText fText2)
-            {
-                var group = Match(fText2.Text)
-                            ?? Match2(fText2.Text);
-
-                if (group is not null)
-                {
-                    if (first is WText fText1 && fText1.Text.Contains("linked")) // [2023] EWFC 169 & 170
-                    {
-                        return CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
-                    }
-
-                    var before = line.SkipLast(1);
-                    var replacement = Replace(fText2, group);
-                    return before.Concat(replacement);
-                }
-            }
+            return linesArray;
         }
 
-        if (line.Count() > 1)
+        var firstLineWText = linesArray[0] as WText;
+        var firstLineProperties = firstLineWText?.properties;
+        var normalisedFirstLineText = firstLineWText?.Text;
+
+        var secondLineWText = (numberOfLines >= 2 ? linesArray[1] : null) as WText;
+        var secondLineProperties = secondLineWText?.properties;
+        var normalisedSecondLineText = secondLineWText?.Text;
+
+        var thirdLineWText = (numberOfLines >= 3 ? linesArray[2] : null) as WText;
+        var thirdLineProperties = thirdLineWText?.properties;
+        var normalisedThirdLineText = thirdLineWText?.Text;
+
+        var lastLineWText = linesArray[^1] as WText;
+        var lastLineProperties = lastLineWText?.properties;
+        var normalisedLastLineText = lastLineWText?.Text;
+
+        switch (normalisedFirstLineText?.Trim(), normalisedSecondLineText?.Trim(), normalisedThirdLineText?.Trim())
         {
-            var first = line.First();
-            var second = line.Skip(1).First();
-            if (first is WText fText1 && second is WText fText2)
-            {
-                if (fText1.Text.Trim() == "Neutral Citation Number:")
+            case (not null, _, _) when normalisedFirstLineText!.Contains("linked"):
                 {
-                    var group = Match2(fText2.Text);
-                    if (group is not null)
-                    {
-                        var replacement = Replace(fText2, group);
-                        var rest = line.Skip(2);
-                        return replacement.Concat(rest).Prepend(first);
-                    }
+                    // [2023] EWFC 194 & 195, [2023] EWFC 169 & 170
+                    return CaseLawRef.EnrichFromEnd(linesArray, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
                 }
-
-                if (fText1.Text == "Neutral Citation Number: [" || fText1.Text == "Neutral Citation Number:  [" ||
-                    fText1.Text == "Neutral Citation No. [")
+            case (not null, _, _) when (Match(normalisedFirstLineText) ?? Match2(normalisedFirstLineText)) is var group
+                                       && group is not null:
                 {
-                    // EWHC/Admin/2004/584, EWHC/Admin/2014/1564, EWHC/Ch/2009/1908
-                    var group = Match2("[" + fText2.Text);
-                    if (group is not null)
-                    {
-                        var label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
-                        var nc = new WNeutralCitation("[" + fText2.Text, fText2.properties);
-                        var rest = line.Skip(2);
-                        return rest.Prepend(nc).Prepend(label);
-                    }
+                    var replacement = Replace(normalisedFirstLineText, group, firstLineProperties);
+                    return [.. replacement, .. linesArray.Skip(1)];
                 }
-
-                if (fText1.Text == "Neutral Citation Number" && fText2.Text.StartsWith(": "))
+            case (_, _, _) when numberOfLines == 1:
+                {
+                    return linesArray;
+                }
+            case (_, _, _) when normalisedLastLineText is not null
+                                && (Match(normalisedLastLineText) ?? Match2(normalisedLastLineText)) is var group
+                                && group is not null:
+                {
+                    var replacement = Replace(normalisedLastLineText, group, lastLineProperties);
+                    return [.. linesArray.SkipLast(1), .. replacement];
+                }
+            case ("Neutral Citation Number:", not null, _) when Match2(normalisedSecondLineText) is var group
+                                                                && group is not null:
+                {
+                    var replacement = Replace(normalisedSecondLineText, group, secondLineProperties);
+                    return [linesArray[0], .. replacement, .. linesArray.Skip(2)];
+                }
+            case ("Neutral Citation Number: ["
+                or "Neutral Citation Number:  ["
+                or "Neutral Citation No. ["
+                or "Neutral Citation figure: [", not null, _) when Match2("[" + normalisedSecondLineText) is not null:
+                {
+                    // EWHC/Admin/2004/584, EWHC/Admin/2014/1564, EWHC/Ch/2009/1908,  EWHC/Admin/2009/3312
+                    var label = new WText(normalisedFirstLineText[..^1], firstLineProperties);
+                    var nc = new WNeutralCitation("[" + normalisedSecondLineText, secondLineProperties);
+                    return [label, nc, .. linesArray.Skip(2)];
+                }
+            case ("Neutral Citation Number", not null, _) when normalisedSecondLineText.StartsWith(": ")
+                                                               && Match2(normalisedSecondLineText[2..]) is not null:
                 {
                     // EWHC/Comm/2005/279
-                    var group = Match2(fText2.Text.Substring(2));
-                    if (group is not null)
-                    {
-                        var split = new WText(fText2.Text.Substring(0, 2), fText2.properties);
-                        var nc = new WNeutralCitation(fText2.Text.Substring(2), fText2.properties);
-                        var rest = line.Skip(2);
-                        return new List<IInline>(3)
-                        {
-                            fText1,
-                            split,
-                            nc
-                        }.Concat(rest);
-                    }
+                    var split = new WText(normalisedSecondLineText.Substring(0, 2), secondLineProperties);
+                    var nc = new WNeutralCitation(normalisedSecondLineText.Substring(2), secondLineProperties);
+                    return [firstLineWText, split, nc, .. linesArray.Skip(2)];
                 }
-
-                if (fText1.Text == "Neutral Citation figure: [")
-                {
-                    // EWHC/Admin/2009/3312
-                    var group = Match2("[" + fText2.Text);
-                    if (group is not null)
-                    {
-                        var label = new WText(fText1.Text.Substring(0, fText1.Text.Length - 1), fText1.properties);
-                        var nc = new WNeutralCitation("[" + fText2.Text, fText2.properties);
-                        var rest = line.Skip(2);
-                        return rest.Prepend(nc).Prepend(label);
-                    }
-                }
-
-                if (fText2.Text == ")")
+            case (not null, ")", _) when normalisedFirstLineText + normalisedSecondLineText is var combined
+                                         && Match(combined) is var group
+                                         && group is not null:
                 {
                     // EWHC/Ch/2011/3553
-                    var text = fText1.Text + fText2.Text;
-                    var group = Match(text);
-                    if (group is not null)
-                    {
-                        var replacement = Replace(text, group, fText1.properties);
-                        var rest = line.Skip(1);
-                        return replacement.Concat(rest);
-                    }
+                    var replacement = Replace(combined, group, firstLineProperties);
+                    return [.. replacement, .. linesArray.Skip(1)];
                 }
-
-                if (fText1.Text == "[")
+            case ("[", not null, _) when normalisedFirstLineText + normalisedSecondLineText is var combined
+                                         && Match2(combined) is var group
+                                         && group is not null:
                 {
                     // [2021] EWHC 2776 (QB)
-                    var combined = fText1.Text + fText2.Text;
-                    var group = Match2(combined);
-                    if (group is not null)
-                    {
-                        var replacement = Replace(combined, group, fText2.properties);
-                        var rest = line.Skip(2);
-                        return replacement.Concat(rest);
-                    }
+                    var replacement = Replace(combined, group, secondLineProperties);
+                    return [.. replacement, .. linesArray.Skip(2)];
                 }
-
-                if (string.IsNullOrWhiteSpace(fText2.Text))
+            case ("Neutral Citation Number:" or "NCN:", _, not null) when Match2(normalisedThirdLineText) is var group
+                                                                          && group is not null:
                 {
-                    var third = line.Skip(2).FirstOrDefault();
-                    if (third is WText fText3)
-                    {
-                        ISet<string> prefixes = new HashSet<string> { "Neutral Citation Number:", "NCN:" };
-                        if (prefixes.Contains(fText1.Text))
-                        {
-                            var group = Match2(fText3.Text);
-                            if (group is not null)
-                            {
-                                var replacement = Replace(fText3.Text, group, fText3.properties);
-                                return Concat3(line.Take(2), replacement, line.Skip(3));
-                            }
-                        }
-                    }
+                    var replacement = Replace(normalisedThirdLineText, group, thirdLineProperties);
+                    return [.. linesArray.Take(2), .. replacement, .. linesArray.Skip(3)];
                 }
-            }
-
-            if ((first is WImageRef || first is WLineBreak) && second is WText wText)
-            {
-                var group = Match(wText.Text);
-                if (group is not null)
+            case (_, not null, _) when linesArray[0] is WImageRef or WLineBreak
+                                       && Match(normalisedSecondLineText) is var group
+                                       && group is not null:
                 {
-                    var replacement = Replace(wText, group);
-                    return Concat3(first, replacement, line.Skip(2));
+                    var replacement = Replace(normalisedSecondLineText, group, secondLineProperties);
+                    return [linesArray[0], .. replacement, .. linesArray.Skip(2)];
                 }
-            }
+            case (not null, not null, not null) when IInline.ToString(linesArray) is var combined
+                                                     && (Match(combined) ?? Match2(combined)) is var group
+                                                     && group is not null:
+                {
+                    // this won't preserve all run formatting
+                    return Replace(combined, group, firstLineProperties);
+                }
+            default:
+                return linesArray;
         }
-
-        if (line.Count() == 3)
-        {
-            var first = line.First();
-            var second = line.Skip(1).First();
-            var third = line.Last();
-            if (first is WText fText1 && second is WText && third is WText)
-            {
-                var text = IInline.ToString(line);
-                var group = Match(text)
-                            ?? Match2(text);
-
-                if (group is not null)
-                {
-                    return Replace(text, group, fText1.properties); // this won't preserve all run formatting
-                }
-            }
-        }
-
-        return line;
     }
 }
