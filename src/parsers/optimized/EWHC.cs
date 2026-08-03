@@ -198,12 +198,12 @@ class OptimizedEWHCParser : OptimizedParser
 
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage)
     {
-        return new NetrualCitation().Enrich(coverPage);
+        return new NeutralCitation().Enrich(coverPage);
     }
 
     private readonly List<Enricher> headerEnrichers = [
         new RestrictionsEnricher(),
-        new NetrualCitation(),
+        new NeutralCitation(),
         new CaseNo(),
         new CourtType(),
         new DocDate(),
