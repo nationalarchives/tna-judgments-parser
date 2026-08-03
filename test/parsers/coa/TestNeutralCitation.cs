@@ -17,9 +17,9 @@ public class TestNeutralCitation
     private readonly NeutralCitationForTests neutralCitation = new();
 
     /// <summary>
-    /// Wrapper class for testing protected NetrualCitation properties.
+    /// Wrapper class for testing protected NeutralCitation properties.
     /// </summary>
-    private class NeutralCitationForTests : NetrualCitation
+    private class NeutralCitationForTests : NeutralCitation
     {
         public IEnumerable<IInline> TriggerEnrich(params IInline[] line)
         {
