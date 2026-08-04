@@ -77,6 +77,23 @@ When bulk uploading a batch we need to:
 Please refer to the [internal documentation](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1437794305/) for details on the full process including retrieving and validating inputs, performing file conversions and what to look for when doing a dry run.
 See [configure and run backlog parser](../README.md#backlog-parser) for details on commands and flags.
 
+### Clearing a previous bulk upload in MarkLogic
+
+Two staging cleanup scripts are available:
+
+- [marklogic-delete-by-parser-run-id.xqy](./marklogic-delete-by-parser-run-id.xqy)
+  finds documents using the parser run ID.
+- [marklogic-delete-by-annotation-name.xqy](./marklogic-delete-by-annotation-name.xqy)
+  finds documents using the metadata CSV filename.
+
+Both scripts print the matching document URLs by default, with the delete calls
+commented out. Run the selected script first and verify that the returned
+documents and count are expected. To check whether a document is checked out,
+uncomment the checkout-status block in the script; it prints documents which
+are checked out. If documents are checked out, uncomment and run the
+`dls:break-checkout(...)` block first. Then uncomment the delete call and rerun
+the script.
+
 ## Verifying document status after a bulk upload
 
 ### Get logs
