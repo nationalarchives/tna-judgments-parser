@@ -77,6 +77,10 @@ When bulk uploading a batch we need to:
 Please refer to the [internal documentation](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1437794305/) for details on the full process including retrieving and validating inputs, performing file conversions and what to look for when doing a dry run.
 See [configure and run backlog parser](../README.md#backlog-parser) for details on commands and flags.
 
+### Clearing a previous bulk upload in MarkLogic
+
+Run the [marklogic-delete-by-annotation-name.xqy](./marklogic-delete-by-annotation-name.xqy) script on the MarkLogic console to clear documents created by a previous run.
+
 ## Verifying document status after a bulk upload
 
 ### Get logs
