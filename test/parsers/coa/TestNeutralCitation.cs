@@ -132,17 +132,19 @@ public class TestNeutralCitation
         result[2].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2023] EWFC 194");
     }
 
-    [Fact]
-    public void Enrich_TwoElements_PrefixThenBareCitation_TransformsLastElement()
+    [Theory]
+    [InlineData("Some heading: ", "[2022] EWCA Crim 733")]
+    [InlineData("NCN: ", "[2021] EWCA Crim 1412")]
+    public void Enrich_TwoElements_PrefixThenBareCitation_TransformsLastElement(string prefix, string ncn)
     {
-        var first = new WText("Some heading: ", new RunProperties());
-        var last = new WText("[2022] EWCA Crim 733", new RunProperties());
+        var first = new WText(prefix, new RunProperties());
+        var last = new WText(ncn, new RunProperties());
 
         var result = neutralCitation.TriggerEnrich(first, last).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
-        result[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2022] EWCA Crim 733");
+        result[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe(ncn);
     }
 
     [Fact]
