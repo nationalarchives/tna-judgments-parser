@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+using Shouldly;
+
 using test.Mocks;
 
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
@@ -22,14 +24,27 @@ public class Tests
     public static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
             Enumerable.Range(12, 16).Concat(
                 Enumerable.Range(29, Total - 29 + 1)));
-    
+
     public static readonly TheoryData<int> IndicesTheoryData = new(Indices);
 
     private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
 
     [Theory]
+    [InlineData("my.resource.name")]
+    public void Test_ftt_iac(string i)
+    {
+        var docx = DocumentHelpers.ReadDocx(i);
+
+        var actual = parser.Parse(new Api.Request { Content = docx });
+
+        actual.Meta.Court.ShouldBe("FTT-IAC");
+        actual.Xml.ShouldNotBeNull();
+    }
+
+    [Theory]
     [MemberData(nameof(IndicesTheoryData))]
-    public void Test(int i) {
+    public void Test(int i)
+    {
         var docx = DocumentHelpers.ReadDocx(i);
 
         var actual = parser.Parse(new Api.Request { Content = docx }).Xml;
@@ -41,12 +56,14 @@ public class Tests
     }
 
     [Theory]
-    [InlineData(11,"order")]
-    public void TestWithAttachment(int i, string name) {
+    [InlineData(11, "order")]
+    public void TestWithAttachment(int i, string name)
+    {
         var main = DocumentHelpers.ReadDocx(i, "main");
         var attach = DocumentHelpers.ReadDocx(i, name);
         Api.AttachmentType type;
-        switch (name) {
+        switch (name)
+        {
             case "order":
                 type = Api.AttachmentType.Order;
                 break;
@@ -66,7 +83,8 @@ public class Tests
 
     [Theory]
     [InlineData(28)]
-    public void TestWithImages(int i) {
+    public void TestWithImages(int i)
+    {
         var docx = DocumentHelpers.ReadDocx(i);
 
         var response = parser.Parse(new Api.Request { Content = docx });
@@ -77,11 +95,12 @@ public class Tests
         expectedXml = DocumentHelpers.RemoveNonDeterministicMetadata(expectedXml);
         Assert.Equal(expectedXml, actualXml);
         var assembly = Assembly.GetExecutingAssembly();
-        foreach (var actual in response.Images) {
-            using Stream stream = assembly.GetManifestResourceStream($"test.judgments.test{ i }-{ actual.Name }");
-            using MemoryStream ms = new MemoryStream();
+        foreach (var actual in response.Images)
+        {
+            using var stream = assembly.GetManifestResourceStream($"test.judgments.test{i}-{actual.Name}");
+            using var ms = new MemoryStream();
             stream.CopyTo(ms);
-            byte[] expected = ms.ToArray();
+            var expected = ms.ToArray();
             Assert.Equal(expected, actual.Content);
         }
     }
