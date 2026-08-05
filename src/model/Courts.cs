@@ -154,6 +154,7 @@ public static partial class Courts
     public static readonly Court EmploymentAppealTribunal = GetByCode("EAT");
 
     public static readonly Court FirstTierTribunal_Tax = GetByCode("UKFTT-TC");
+    public static readonly Court FirstTierTribunal_ImmigrationAndAsylum = GetByCode("UKFTT-IAC");
 
     public static readonly Court FirstTierTribunal_GRC = GetByCode("UKFTT-GRC");
 
