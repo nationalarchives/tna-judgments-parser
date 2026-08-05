@@ -22,7 +22,7 @@ internal class CourtType : AbstractCourtType
 
         new GRCCombo()
     ];
-    
+
     protected override IEnumerable<Combo2> Combo2s { get; } =
     [
         new()
@@ -44,6 +44,13 @@ internal class CourtType : AbstractCourtType
             Re1 = new Regex("^(IN THE )?UPPER TRIBUNAL$", RegexOptions.IgnoreCase),
             Re2 = new Regex(@"^\(?ADMINISTRATIVE APPEALS CHAMBER\)?$", RegexOptions.IgnoreCase),
             Court = Courts.UpperTribunal_AdministrativeAppealsChamber
+        },
+
+        new()
+        {
+            Re1 = Courts.FirstTierTribunalIdentifierRegex(),
+            Re2 = new Regex(@"^\(?Immigration and Asylum Chamber\)?$", RegexOptions.IgnoreCase),
+            Court = Courts.FirstTierTribunal_ImmigrationAndAsylum
         },
 
         new()
