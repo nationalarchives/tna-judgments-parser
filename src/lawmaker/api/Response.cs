@@ -2,30 +2,45 @@
 using System.Collections.Generic;
 using System.Text.Json;
 
-namespace UK.Gov.Legislation.Lawmaker.Api {
+namespace UK.Gov.Legislation.Lawmaker.Api;
 
-    public class Response {
 
-        public string Xml { get; init; }
+public class Response
+{
 
-        public IEnumerable<Image> Images { get; init; }
+    public string Xml { get; init; }
 
-        private static JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+    public IEnumerable<Image> Images { get; init; }
 
-        public string ToJson() {
-            return JsonSerializer.Serialize(this, options);
-        }
+    public ParseError Error { get; init; }
 
+    private static readonly JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
+    public string ToJson()
+    {
+        return JsonSerializer.Serialize(this, options);
     }
 
-    public class Image {
+}
 
-        public string Name { get; init; }
+public class ParseError
+{
 
-        public string Type { get; init; }
+    public int BlockNumber { get; init; }
 
-        public byte[] Content { get; init; }
+    public string BlockText { get; init; }
 
-    }
+    public string Message { get; init; }
+
+}
+
+public class Image
+{
+
+    public string Name { get; init; }
+
+    public string Type { get; init; }
+
+    public byte[] Content { get; init; }
 
 }
