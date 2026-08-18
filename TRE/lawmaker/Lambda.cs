@@ -104,8 +104,8 @@ public class Lambda
         }
         if (response.Error is not null)
         {
-            logger.LogError("parse error at block {}: {}", response.Error.BlockNumber, response.Error.Message);
-            errors.Add($"error parsing document at block {response.Error.BlockNumber}: {response.Error.Message}");
+            logger.LogError("parsing failed at block {}: {}\nblock text: {}", response.Error.BlockNumber, response.Error.Message, response.Error.BlockText);
+            errors.Add($"parsing failed at block {response.Error.BlockNumber}: {response.Error.Message}\nblock text: {response.Error.BlockText}");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
         var xmlFilename = inputs.ConsignmentReference + ".xml";
