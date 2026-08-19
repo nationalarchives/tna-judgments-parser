@@ -11,8 +11,6 @@ namespace UK.Gov.Legislation.Judgments.Parse;
 
 internal class PartyEnricher : Enricher
 {
-    private delegate IFormattedText Wrapper(string text, RunProperties props);
-
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
         var before = blocks.ToArray();
@@ -62,11 +60,7 @@ internal class PartyEnricher : Enricher
 
             var rest = before[i..];
             var found = EnrichMultiLinePartyBockOrNull(rest);
-            // if (found is null)
-            //     found = EnrichMultiLinePartyBockOrNull2(rest);
             found ??= EnrichMultiLinePartyBockOrNull2(rest);
-            // if (found is null)
-            //     found = EnrichMultiLinePartyBockOrNull3(rest);
             found ??= EnrichMultiLinePartyBockOrNull3(rest);
             if (found is not null)
             {
@@ -737,9 +731,6 @@ internal class PartyEnricher : Enricher
         }
     }
 
-
-    /* */
-
     private static bool IsBeforePartyMarker(IBlock block)
     {
         if (block is not WLine line)
@@ -937,11 +928,6 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        // if (block is WOldNumberedParagraph np) {
-        //     if (np.Contents.Count() != 1)
-        //         return false;
-        //     return IsPartyName(np.Contents.First());
-        // }
         if (block is not WLine line)
         {
             return false;
@@ -996,7 +982,7 @@ internal class PartyEnricher : Enricher
             }
 
             if (first is WText wText5 && second is WText wText6 && Regex.IsMatch(wText5.Text, @"^\(\d\) +$") &&
-                !string.IsNullOrWhiteSpace(wText6.Text)) //
+                !string.IsNullOrWhiteSpace(wText6.Text))
             {
                 return true;
             }
@@ -1015,7 +1001,7 @@ internal class PartyEnricher : Enricher
             // EWHC/Admin/2012/3928, EWHC/Admin/2007/552
             var second = line.Contents.Skip(1).First();
             var third = line.Contents.Skip(2).First();
-            if (first is not WText wText1)
+            if (first is not WText)
             {
                 return false;
             }
@@ -1025,7 +1011,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (third is not WText wText3)
+            if (third is not WText)
             {
                 return false;
             }
@@ -1036,7 +1022,6 @@ internal class PartyEnricher : Enricher
             }
 
             return true; // not same formatting in EWHC/Admin/2004/1823
-            // return IFormattedText.HaveSameFormatting(wText1, wText3);    // not really sure why this should matter
         }
 
         if (line.Contents.Count() == 4)
@@ -1044,13 +1029,12 @@ internal class PartyEnricher : Enricher
             // EWHC/Fam/2017/3707
             var second = line.Contents.Skip(1).First();
             var third = line.Contents.Skip(2).First();
-            var fourth = line.Contents.Skip(3).First();
             if (first is not WTab)
             {
                 return false;
             }
 
-            if (second is not WText wText1)
+            if (second is not WText)
             {
                 return false;
             }
@@ -1060,17 +1044,12 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (second is not WText wText3)
-            {
-                return false;
-            }
-
             if (!string.IsNullOrWhiteSpace(wText2.Text))
             {
                 return false;
             }
 
-            return IFormattedText.HaveSameFormatting(wText1, wText3);
+            return true;
         }
 
         return false;
@@ -1167,7 +1146,6 @@ internal class PartyEnricher : Enricher
 
     private static bool IsAnyPartyType(string s)
     {
-        // s = Regex.Replace(s, @"\s+", " ").Trim();
         if (IsFirstPartyType(s))
         {
             return true;
@@ -1314,39 +1292,6 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        // if (line.Contents.Count() == 3) {
-        //     IInline first = line.Contents.First();
-        //     IInline second = line.Contents.Skip(1).First();
-        //     IInline third = line.Contents.Skip(2).First();
-        //     if (first is not WText wText1)
-        //         return false;
-        //     if (second is not WTab)
-        //         return false;
-        //     if (third is not WText wText2)
-        //         return false;
-        //     string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
-        //     if (!IsAnyPartyType(s))
-        //         return false;
-        //     return true;
-        // }
-        // if (line.Contents.Count() == 4) {
-        //     IInline first = line.Contents.First();
-        //     IInline second = line.Contents.Skip(1).First();
-        //     IInline third = line.Contents.Skip(2).First();
-        //     IInline fourth = line.Contents.Skip(3).First();
-        //     if (first is not WTab)
-        //         return false;
-        //     if (second is not WText wText1)
-        //         return false;
-        //     if (third is not WTab)
-        //         return false;
-        //     if (fourth is not WText wText2)
-        //         return false;
-        //     string s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
-        //     if (!IsAnyPartyType(s))
-        //         return false;
-        //     return true;
-        // }
         if (line.Contents.Count() >= 3)
         {
             var before = line.Contents.SkipLast(3);
@@ -1358,7 +1303,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (antiPenult is not WText wText1)
+            if (antiPenult is not WText)
             {
                 return false;
             }
@@ -1388,34 +1333,6 @@ internal class PartyEnricher : Enricher
     private static WLine MakePartyAndRole(IBlock block)
     {
         var line = (WLine)block;
-        // if (line.Contents.Count() == 3) {
-        //     WText first = (WText) line.Contents.First();
-        //     WTab second = (WTab) line.Contents.Skip(1).First();
-        //     WText third = (WText) line.Contents.Skip(2).First();
-        //     string s = Regex.Replace(third.Text, @"\s+", " ").Trim();
-        //     PartyRole role = GetAnyPartyRole(s);
-        //     List<IInline> contents = new List<IInline>(3) {
-        //         new WParty(first.Text, first.properties) { Role = role },
-        //         second,
-        //         new WRole() { Role = role, Contents = new List<IInline>(1) { third } }
-        //     };
-        //     return new WLine(line, contents);
-        // }
-        // if (line.Contents.Count() == 4) {
-        //     WTab first = (WTab) line.Contents.First();
-        //     WText second = (WText) line.Contents.Skip(1).First();
-        //     WTab third = (WTab) line.Contents.Skip(2).First();
-        //     WText fourth = (WText) line.Contents.Skip(3).First();
-        //     string s = Regex.Replace(fourth.Text, @"\s+", " ").Trim();
-        //     PartyRole role = GetAnyPartyRole(s);
-        //     List<IInline> contents = new List<IInline>(4) {
-        //         first,
-        //         new WParty(second.Text, second.properties) { Role = role },
-        //         third,
-        //         new WRole() { Role = role, Contents = new List<IInline>(1) { fourth } }
-        //     };
-        //     return new WLine(line, contents);
-        // }
         if (line.Contents.Count() >= 3)
         {
             var before = line.Contents.SkipLast(3);
@@ -1631,8 +1548,6 @@ internal class PartyEnricher : Enricher
             return true;
         }
 
-        // if (content == "AND BETWEEN:")
-        //     return true;
         return false;
     }
 
@@ -1761,8 +1676,6 @@ internal class PartyEnricher : Enricher
             });
         }
 
-        // if (!IsEmptyCell(third))
-        //     return row;
         if (IsInTheMatterOfSomething(second))
         {
             second = EnrichInTheMatterOfSomething(second);
@@ -1882,8 +1795,6 @@ internal class PartyEnricher : Enricher
             return null;
         }
 
-        // if (!middle2.Contents.Where(block => block is WLine line && (IsBetweenPartyMarker(line) || IsBetweenPartyMarker2(line))).Any())
-        //     return null;
         if (!middle3.Contents.All(block => block is WLine line &&
                                            (IsEmptyLine(line) || (IsPartyName(line) && !IsSecondPartyType(line)))))
         {
@@ -2387,8 +2298,6 @@ internal class PartyEnricher : Enricher
             return PartyRole.Defendant; // ??? other role is Appellant
         }
 
-        // if (one == "" && two == "")    //
-        //     return PartyRole.;
         if (one == "Applicant/" && two == "Respondent") // [2021] EWCA Civ 1725
         {
             return PartyRole.Respondent;
@@ -2488,14 +2397,6 @@ internal class PartyEnricher : Enricher
             return PartyRole.Respondent;
         }
 
-        // if (blocks.Count() == 4) {
-        //     string one = ((WLine) blocks.First()).NormalizedContent();
-        //     string two = ((WLine) blocks.ElementAt(1)).NormalizedContent();
-        //     string three = ((WLine) blocks.ElementAt(2)).NormalizedContent();
-        //     string four = ((WLine) blocks.ElementAt(3)).NormalizedContent();
-        //     if (string.IsNullOrWhiteSpace(three) && four == "Intervener")
-        //         return GetTwoLinePartyRole(one, two);
-        // }
         return null;
     }
 
@@ -2559,7 +2460,6 @@ internal class PartyEnricher : Enricher
                 var filtered = line.Contents.Where(filter);
                 if (filtered.Count() == 1)
                 {
-                    // IEnumerable<IInline> mapped = line.Contents.Select(inline => filter(inline) ? new WParty((WText) inline) { Role = role } : inline);
                     var mapped = line.Contents.SelectMany(inline => filter(inline)
                         ? MakeOrSplitParty(((WText)inline).Text, ((WText)inline).properties, role)
                         : new List<IInline>(1) { inline });
@@ -2931,8 +2831,6 @@ internal class PartyEnricher : Enricher
             }
         }
 
-        // if (!firstPartyFound)
-        //     return cell;
         if (!emptyAfterFirstFound)
         {
             return cell;
