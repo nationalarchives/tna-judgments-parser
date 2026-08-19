@@ -11,8 +11,6 @@ namespace UK.Gov.Legislation.Judgments.Parse;
 
 internal class PartyEnricher : Enricher
 {
-    private delegate IFormattedText Wrapper(string text, RunProperties props);
-
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
         var before = blocks.ToArray();
@@ -1003,7 +1001,7 @@ internal class PartyEnricher : Enricher
             // EWHC/Admin/2012/3928, EWHC/Admin/2007/552
             var second = line.Contents.Skip(1).First();
             var third = line.Contents.Skip(2).First();
-            if (first is not WText wText1)
+            if (first is not WText)
             {
                 return false;
             }
@@ -1013,7 +1011,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (third is not WText wText3)
+            if (third is not WText)
             {
                 return false;
             }
@@ -1031,7 +1029,6 @@ internal class PartyEnricher : Enricher
             // EWHC/Fam/2017/3707
             var second = line.Contents.Skip(1).First();
             var third = line.Contents.Skip(2).First();
-            var fourth = line.Contents.Skip(3).First();
             if (first is not WTab)
             {
                 return false;
@@ -1311,7 +1308,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (antiPenult is not WText wText1)
+            if (antiPenult is not WText)
             {
                 return false;
             }
