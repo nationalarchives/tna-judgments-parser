@@ -1034,7 +1034,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (second is not WText wText1)
+            if (second is not WText)
             {
                 return false;
             }
@@ -1044,17 +1044,12 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (second is not WText wText3)
-            {
-                return false;
-            }
-
             if (!string.IsNullOrWhiteSpace(wText2.Text))
             {
                 return false;
             }
 
-            return IFormattedText.HaveSameFormatting(wText1, wText3);
+            return true;
         }
 
         return false;
