@@ -37,6 +37,12 @@ partial class BaseLegislativeDocumentParser : CaseLaw.OptimizedParser {
         logger.LogDebug("Parsed header with {} blocks, starting body at block {}", header.Count, i);
 
         List<IDivision> body = Body2();
+        if (Config.RenestDottedNumbers)
+        {
+            // Rebuild hierarchy the indentation rule could not see, because
+            // these documents number flush left. See src/leg/NUMBERING.md.
+            body = DottedNumberRenester.Renest(body);
+        }
         IEnumerable<IAnnex> annexes = Annexes();
         
         // Enhanced completion tracking

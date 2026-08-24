@@ -1,7 +1,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -35,13 +34,28 @@ partial class Parser : BaseLegislativeDocumentParser {
     // All parsing logic is now inherited from BaseLegislativeDocumentParser
 
     // In EMs, a bullet paragraph (•) can have nested sub-bullets (◦) but never a
-    // numbered N.M sub-paragraph — yet without this guard, when a numbered paragraph
+    // dotted sub-paragraph number at any supported depth (2.2, 2.2.1) — yet
+    // without this guard, when a numbered paragraph
     // (e.g. "2.2") follows a bullet list, its higher indent causes the parent-child
     // absorption logic to nest 2.2 inside the last bullet. We track the current parent
     // paragraph number via a stack and reject numbered-inside-bullet nesting.
 
-    [GeneratedRegex(@"^\d+\.\d+\.?$")]
-    private static partial Regex EMBodyParagraphNumberRegex();
+    /// <summary>
+    /// Whether a number is a dotted body-paragraph number such as "2.2" — the
+    /// kind that must never end up nested inside a bullet.
+    /// </summary>
+    /// <remarks>
+    /// Uses <see cref="DottedNumber"/> rather than a local regex so that /leg has
+    /// one definition of a dotted paragraph number. The regex this replaced,
+    /// <c>^\d+\.\d+\.?$</c>, matched two components only, so a three-component
+    /// "1.1.1" slipped past this guard, was absorbed under the bullet, and was
+    /// then faithfully preserved by the re-nester's I5 — contradicting the
+    /// three-component support NUMBERING.md §7 keeps in scope. No fixture shows
+    /// it (the corpus has no three-component numbering at all), so this changes
+    /// no current output.
+    /// </remarks>
+    internal static bool IsDottedBodyNumber(string text) =>
+        DottedNumber.TryParse(text, out DottedNumber number) && number.Depth > 1;
 
     private readonly System.Collections.Generic.Stack<string> _parentNumbers = new();
 
@@ -59,7 +73,7 @@ partial class Parser : BaseLegislativeDocumentParser {
         if (base.CannotBeSubparagraph(line))
             return true;
         if (_parentNumbers.TryPeek(out string parentNum) && IsBulletGlyph(parentNum)
-            && line is WOldNumberedParagraph np && EMBodyParagraphNumberRegex().IsMatch(np.Number.Text.Trim()))
+            && line is WOldNumberedParagraph np && IsDottedBodyNumber(np.Number?.Text))
             return true;
         return false;
     }

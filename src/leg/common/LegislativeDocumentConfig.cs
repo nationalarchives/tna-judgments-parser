@@ -48,6 +48,14 @@ public class LegislativeDocumentConfig {
     public System.Collections.Generic.Dictionary<string, string> DocumentTypeMapping { get; set; }
 
     /// <summary>
+    /// Whether to rebuild hierarchy from dotted decimal numbering after parsing,
+    /// so a flat run of 1., 1.1, 1.2 becomes nested (default false).
+    /// Needed where documents are numbered flush left and indentation carries
+    /// no structure. See <c>src/leg/NUMBERING.md</c>.
+    /// </summary>
+    public bool RenestDottedNumbers { get; set; } = false;
+
+    /// <summary>
     /// Creates configuration for Impact Assessments
     /// </summary>
     public static LegislativeDocumentConfig ForImpactAssessments() {
@@ -75,6 +83,7 @@ public class LegislativeDocumentConfig {
             Level2SubheadingStyle = "EMLevel2Subheading",
             UriSuffix = "/memorandum",
             DefaultDocumentType = "ExplanatoryMemorandum",
+            RenestDottedNumbers = true,
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Explanatory Memorandum To", "ExplanatoryMemorandum" },
                 { "Explanatory Memorandum", "ExplanatoryMemorandum" },
@@ -131,6 +140,7 @@ public class LegislativeDocumentConfig {
             Level2SubheadingStyle = "EMLevel2Subheading",
             UriSuffix = "/code-of-practice",
             DefaultDocumentType = "CodeOfPractice",
+            RenestDottedNumbers = true,
             DocumentTypeMapping = new System.Collections.Generic.Dictionary<string, string> {
                 { "Code of Practice", "CodeOfPractice" },
                 { "CODE OF PRACTICE", "CodeOfPractice" }
