@@ -1581,11 +1581,6 @@ internal class PartyEnricher : Enricher
         return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
     }
 
-    private static bool IsEmptyCell(WCell cell)
-    {
-        return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
-    }
-
     private static bool IsEmptyLine(IBlock block)
     {
         if (block is not WLine line)
