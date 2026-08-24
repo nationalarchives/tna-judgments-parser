@@ -1365,19 +1365,14 @@ internal class PartyEnricher : Enricher
         return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
     }
 
-    private static bool IsEmptyLine(IBlock block)
-    {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
-        return IsEmptyLine(line);
-    }
-
     private static bool IsEmptyLine(WLine line)
     {
         return string.IsNullOrWhiteSpace(line.NormalizedContent);
+    }
+
+    private static bool LineHasContent(WLine l)
+    {
+        return !IsEmptyLine(l);
     }
 
     private WRow EnrichRow(WRow row)
@@ -1527,7 +1522,7 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        if (middle2.Contents.Count(block => !IsEmptyLine(block)) != 1)
+        if (middle2.Contents.OfType<WLine>().Count(LineHasContent) != 1)
         {
             return false;
         }
@@ -1629,25 +1624,65 @@ internal class PartyEnricher : Enricher
 
     public static bool TryGetPartyRole(WCell cell, out PartyRole role)
     {
-        if (TryGetOneLinePartyRole(cell, out role))
+        var lineContents = cell.Contents
+                               .OfType<WLine>()
+                               .Where(LineHasContent)
+                               .Select(l => l.NormalizedContent)
+                               .ToArray();
+        switch (lineContents)
         {
-            return true;
-        }
+            case [var one] when TryGetOneLinePartyRole(one, out role):
+                return true;
 
-        if (TryGetTwoLinePartyRole(cell, out role))
-        {
-            return true;
-        }
+            case ["Defendant/", var two] when two.EndsWith("Claimant"): // EWHC/Ch/2008/2079
+                role = PartyRole.Defendant;
+                return true;
 
-        return TryGetNLinePartyRole(cell, out role);
+            case ["Claimant/", var two] when two.EndsWith("Defendant"): // EWHC/Ch/2008/2079
+                role = PartyRole.Claimant;
+                return true;
+
+            case ["Respondents", var two] when two.StartsWith("Respondent"): // EWHC/Fam/2013/1956
+                role = PartyRole.Respondent;
+                return true;
+
+            case [var one, var two] when TwoLinePartyRoles.TryGetValue((one, two), out role)
+                || TryGetPartyRoleForCombinedLabels(one, two, out role):
+                return true;
+
+            case ["Defendants", "Part 20 Claimant/", "Appellant"]:
+                role = PartyRole.Appellant;
+                return true;
+
+            case ["Respondents", "Appellant", "Respondent"]: // EWCA/Civ/2010/180
+                role = PartyRole.Respondent;
+                return true;
+
+            case { Length: >= 2 } when cell.Contents.All(block => block is WLine):
+                foreach (var (pattern, patternRole) in NLinePartyRolePatterns)
+                {
+                    if (lineContents.All(pattern.IsMatch))
+                    {
+                        role = patternRole;
+                        return true;
+                    }
+                }
+
+                role = default;
+                return false;
+
+            default:
+                role = default;
+                return false;
+        }
     }
 
     private static bool TryGetTwoDifferentRoles(WCell cell, out (PartyRole first, PartyRole second) roles)
     {
-        var lines = cell.Contents.Where(block => !IsEmptyLine(block)).ToArray();
-        if (lines is [WLine line1, WLine line2]
-            && TryGetOneLinePartyRole(line1, out var role1)
-            && TryGetOneLinePartyRole(line2, out var role2)
+        var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
+        if (linesWithContent.Length == 2
+            && TryGetOneLinePartyRole(linesWithContent[0].NormalizedContent, out var role1)
+            && TryGetOneLinePartyRole(linesWithContent[1].NormalizedContent, out var role2)
             && role1 != role2)
         {
             roles = (role1, role2);
@@ -1667,18 +1702,6 @@ internal class PartyEnricher : Enricher
                                                        [
                                                                new WRole { Role = role, Contents = line.Contents }
                                                        ])));
-    }
-
-    private static bool TryGetOneLinePartyRole(WCell cell, out PartyRole role)
-    {
-        var lines = cell.Contents.Where(block => !IsEmptyLine(block)).ToArray();
-        if (lines is [WLine line])
-        {
-            return TryGetOneLinePartyRole(line, out role);
-        }
-
-        role = default;
-        return false;
     }
 
     private static readonly Dictionary<string, PartyRole> OneLinePartyRoleLabels = new()
@@ -1766,50 +1789,10 @@ internal class PartyEnricher : Enricher
         ["Respondent/ First Defendant"] = PartyRole.Respondent
     };
 
-    private static bool TryGetOneLinePartyRole(WLine line, out PartyRole role)
+    private static bool TryGetOneLinePartyRole(string lineNormalizedContent, out PartyRole role)
     {
-        return OneLinePartyRoleLabels.TryGetValue(line.NormalizedContent, out role)
-            || TryGetPartyRole(line.NormalizedContent, out role);
-    }
-
-    private static bool TryGetTwoLinePartyRole(WCell cell, out PartyRole role)
-    {
-        var lines = cell.Contents.Where(l => !IsEmptyLine(l)).ToArray();
-
-        if (lines is [WLine line1, WLine line2])
-        {
-            return TryGetTwoLinePartyRole(line1.NormalizedContent, line2.NormalizedContent, out role);
-        }
-
-        role = default;
-        return false;
-    }
-
-    /// <summary>
-    ///  one/two combinations that aren't exact matches, so can't live in TwoLinePartyRoles
-    /// </summary>
-    private static bool TryGetTwoLinePartyRoleFromPattern(string one, string two, out PartyRole role)
-    {
-        if (one == "Defendant/" && two.EndsWith("Claimant")) // EWHC/Ch/2008/2079
-        {
-            role = PartyRole.Defendant;
-            return true;
-        }
-
-        if (one == "Claimant/" && two.EndsWith("Defendant")) // EWHC/Ch/2008/2079
-        {
-            role = PartyRole.Claimant;
-            return true;
-        }
-
-        if (one == "Respondents" && two.StartsWith("Respondent")) // EWHC/Fam/2013/1956
-        {
-            role = PartyRole.Respondent;
-            return true;
-        }
-
-        role = default;
-        return false;
+        return OneLinePartyRoleLabels.TryGetValue(lineNormalizedContent, out role)
+            || TryGetPartyRole(lineNormalizedContent, out role);
     }
 
     private static readonly Dictionary<(string one, string two), PartyRole> TwoLinePartyRoles = new()
@@ -1851,13 +1834,6 @@ internal class PartyEnricher : Enricher
         [("Appellant/", "Respondent")] = PartyRole.Respondent // [2020] EWHC 3409 (QB)
     };
 
-    private static bool TryGetTwoLinePartyRole(string one, string two, out PartyRole role)
-    {
-        return TryGetTwoLinePartyRoleFromPattern(one, two, out role)
-            || TwoLinePartyRoles.TryGetValue((one, two), out role)
-            || TryGetPartyRoleForCombinedLabels(one, two, out role);
-    }
-
     private static readonly (Regex Pattern, PartyRole Role)[] NLinePartyRolePatterns =
     [
         (new Regex(@"^\d(st|nd|rd|th)? Defendant$", RegexOptions.IgnoreCase), PartyRole.Defendant),
@@ -1868,50 +1844,6 @@ internal class PartyEnricher : Enricher
             PartyRole.Respondent), // EWFC/HCJ/2014/34, no space in EWHC/Fam/2013/1864
         (new Regex(@"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase), PartyRole.Respondent)
     ];
-
-    private static bool TryGetNLinePartyRole(WCell cell, out PartyRole role)
-    {
-        var blocks = cell.Contents.Where(block => !IsEmptyLine(block)).ToArray();
-        role = default;
-        if (blocks.Length < 2)
-        {
-            return false;
-        }
-
-        if (!blocks.All(block => block is WLine))
-        {
-            return false;
-        }
-
-        if (blocks.Length == 3)
-        {
-            var one = ((WLine)blocks[0]).NormalizedContent;
-            var two = ((WLine)blocks[1]).NormalizedContent;
-            var three = ((WLine)blocks[2]).NormalizedContent;
-            if (one == "Defendants" && two == "Part 20 Claimant/" && three == "Appellant")
-            {
-                role = PartyRole.Appellant;
-                return true;
-            }
-
-            if (one == "Respondents" && two == "Appellant" && three == "Respondent") // EWCA/Civ/2010/180
-            {
-                role = PartyRole.Respondent;
-                return true;
-            }
-        }
-
-        foreach (var (pattern, patternRole) in NLinePartyRolePatterns)
-        {
-            if (blocks.Cast<WLine>().All(line => pattern.IsMatch(line.NormalizedContent)))
-            {
-                role = patternRole;
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     private WCell EnrichCell(WCell cell, PartyRole role)
     {
@@ -2155,7 +2087,7 @@ internal class PartyEnricher : Enricher
                 return cell;
             }
 
-            if (IsEmptyLine(block))
+            if (IsEmptyLine(line))
             {
                 contents.Add(block);
                 continue;
@@ -2290,48 +2222,43 @@ internal class PartyEnricher : Enricher
 
     private WCell EnrichPartyTypesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
     {
+        if (cell.Contents.Any(block => block is not WLine))
+            return cell;
+
         var contents = new List<IBlock>();
         var firstPartyFound = false;
         var emptyAfterFirstFound = false;
-        foreach (var block in cell.Contents)
+
+        foreach (var line in cell.Contents.Cast<WLine>())
         {
-            if (IsEmptyLine(block))
+            if (IsEmptyLine(line))
             {
                 if (firstPartyFound)
                 {
                     emptyAfterFirstFound = true;
                 }
 
-                contents.Add(block);
+                contents.Add(line);
                 continue;
-            }
-
-            if (block is not WLine line)
-            {
-                return cell;
             }
 
             if (emptyAfterFirstFound)
             {
-                var role = new WRole { Contents = line.Contents, Role = roles.second };
-                var newLine = WLine.Make(line, [role]);
-                contents.Add(newLine);
+                contents.Add(WLine.Make(line, [new WRole { Contents = line.Contents, Role = roles.second }]));
             }
             else
             {
                 firstPartyFound = true;
-                var role = new WRole { Contents = line.Contents, Role = roles.first };
-                var newLine = WLine.Make(line, [role]);
-                contents.Add(newLine);
+                contents.Add(WLine.Make(line, [new WRole { Contents = line.Contents, Role = roles.first }]));
             }
         }
 
-        if (!emptyAfterFirstFound)
+        if (emptyAfterFirstFound)
         {
-            return cell;
+            return new WCell(cell.Row, cell.Props, contents);
         }
 
-        return new WCell(cell.Row, cell.Props, contents);
+        return cell;
     }
 
     private static bool IsInTheMatterOfSomething(WCell cell)
