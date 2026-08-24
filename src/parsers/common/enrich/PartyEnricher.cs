@@ -68,9 +68,12 @@ internal class PartyEnricher : Enricher
                 break;
             }
 
-            var block = before[i];
-            var enriched1 = EnrichBlock(block);
-            after.Add(enriched1);
+            after.Add(before[i] switch
+            {
+                WTable table => EnrichTable(table),
+                WLine line => Enrich(line),
+                _ => before[i]
+            });
             i += 1;
         }
 
@@ -81,18 +84,10 @@ internal class PartyEnricher : Enricher
     private static bool IsInTheMatterOf3(IBlock[] before, int i)
     {
         // EWCA/Civ/2008/1303
-        if (i > before.Length - 3)
-        {
-            return false;
-        }
-
-        var line1 = before[i];
-        var line2 = before[i + 1];
-        var line3 = before[i + 2];
-        return
-            IsBeforePartyMarker(line1) &&
-            IsInTheMatterOf1(line2) &&
-            IsAfterPartyMarker(line3);
+        return i <= before.Length - 3
+            && before[i] is WLine line1 && IsBeforePartyMarker(line1)
+            && before[i + 1] is WLine line2 && IsInTheMatterOf1(line2)
+            && before[i + 2] is WLine line3 && IsAfterPartyMarker(line3);
     }
 
     private static List<IBlock> EnrichInTheMatterOf3(IBlock[] before, int i)
@@ -108,24 +103,11 @@ internal class PartyEnricher : Enricher
     private static bool IsInTheMatterOf4(IBlock[] before, int i)
     {
         // EWHC/QB/2017/2921, EWHC/Ch/2006/3549
-        if (i > before.Length - 4)
-        {
-            return false;
-        }
-
-        var line1 = before[i];
-        var line2 = before[i + 1];
-        var line3 = before[i + 2];
-        var line4 = before[i + 3];
-        _ = IsBeforePartyMarker(line1);
-        _ = IsInTheMatterOf1(line2);
-        _ = IsInTheMatterOf2(line3);
-        _ = IsAfterPartyMarker(line4);
-        return
-            IsBeforePartyMarker(line1) &&
-            IsInTheMatterOf1(line2) &&
-            IsInTheMatterOf2(line3) &&
-            IsAfterPartyMarker(line4);
+        return i <= before.Length - 4
+            && before[i] is WLine line1 && IsBeforePartyMarker(line1)
+            && before[i + 1] is WLine line2 && IsInTheMatterOf1(line2)
+            && before[i + 2] is WLine line3 && IsInTheMatterOf2(line3)
+            && before[i + 3] is WLine line4 && IsAfterPartyMarker(line4);
     }
 
     private static List<IBlock> EnrichInTheMatterOf4(IBlock[] before, int i)
@@ -169,113 +151,41 @@ internal class PartyEnricher : Enricher
 
     private static bool IsThreeLinePartyBlock(IBlock[] before, int i)
     {
-        if (i > before.Length - 4)
-        {
-            return false;
-        }
-
-        var block1 = before[i];
-        var block2 = before[i + 1];
-        var block3 = before[i + 2];
-        var block4 = before[i + 3];
-        if (block1 is not WLine line1)
-        {
-            return false;
-        }
-
-        if (!IsRexOrRegina(line1))
-        {
-            return false;
-        }
-
-        if (!IsBetweenPartyMarker(block2))
-        {
-            return false;
-        }
-
-        if (!IsPartyName(block3))
-        {
-            return false;
-        }
-
-        if (!IsAfterPartyMarker(block4))
-        {
-            return false;
-        }
-
-        return true;
+        return i <= before.Length - 4
+            && before[i] is WLine line1 && IsRexOrRegina(line1)
+            && before[i + 1] is WLine line2 && IsBetweenPartyMarker(line2)
+            && before[i + 2] is WLine line3 && IsPartyName(line3)
+            && before[i + 3] is WLine line4 && IsAfterPartyMarker(line4);
     }
 
     private static List<IBlock> EnrichThreeLinePartyBlock(IBlock[] before, int i)
     {
-        var line1 = (WLine)before[i];
-        var line2 = before[i + 1];
-        var line3 = (WLine)before[i + 2];
         return
         [
-            MakeParty(line1, PartyRole.BeforeTheV),
-            line2,
-            MakeParty(line3, PartyRole.AfterTheV)
+            MakeParty((WLine)before[i], PartyRole.BeforeTheV),
+            before[i + 1],
+            MakeParty((WLine)before[i + 2], PartyRole.AfterTheV)
         ];
     }
 
     private static bool IsFourLinePartyBlock(IBlock[] before, int i)
     {
-        if (i > before.Length - 5)
-        {
-            return false;
-        }
-
-        var block1 = before[i];
-        var block2 = before[i + 1];
-        var block3 = before[i + 2];
-        var block4 = before[i + 3];
-        var block5 = before[i + 4];
-        if (block1 is not WLine line1)
-        {
-            return false;
-        }
-
-        if (!IsRexOrRegina(line1))
-        {
-            return false;
-        }
-
-        if (!IsBetweenPartyMarker(block2))
-        {
-            return false;
-        }
-
-        if (!IsPartyName(block3))
-        {
-            return false;
-        }
-
-        if (!IsPartyName(block4))
-        {
-            return false;
-        }
-
-        if (!IsAfterPartyMarker(block5))
-        {
-            return false;
-        }
-
-        return true;
+        return i <= before.Length - 5
+            && before[i] is WLine line1 && IsRexOrRegina(line1)
+            && before[i + 1] is WLine line2 && IsBetweenPartyMarker(line2)
+            && before[i + 2] is WLine line3 && IsPartyName(line3)
+            && before[i + 3] is WLine line4 && IsPartyName(line4)
+            && before[i + 4] is WLine line5 && IsAfterPartyMarker(line5);
     }
 
     private static List<IBlock> EnrichFourLinePartyBlock(IBlock[] before, int i)
     {
-        var line1 = (WLine)before[i];
-        var line2 = before[i + 1];
-        var line3 = (WLine)before[i + 2];
-        var line4 = (WLine)before[i + 3];
         return
         [
-            MakeParty(line1, PartyRole.BeforeTheV),
-            line2,
-            MakeParty(line3, PartyRole.AfterTheV),
-            MakeParty(line4, PartyRole.AfterTheV)
+            MakeParty((WLine)before[i], PartyRole.BeforeTheV),
+            before[i + 1],
+            MakeParty((WLine)before[i + 2], PartyRole.AfterTheV),
+            MakeParty((WLine)before[i + 3], PartyRole.AfterTheV)
         ];
     }
 
@@ -283,22 +193,12 @@ internal class PartyEnricher : Enricher
 
     private static bool IsFiveLinePartyBlock(IBlock[] before, int i)
     {
-        if (i > before.Length - 5)
-        {
-            return false;
-        }
-
-        var line1 = before[i];
-        var line2 = before[i + 1];
-        var line3 = before[i + 2];
-        var line4 = before[i + 3];
-        var line5 = before[i + 4];
-        return
-            IsBeforePartyMarker(line1) &&
-            IsPartyName(line2) &&
-            (IsBetweenPartyMarker(line3) || IsBetweenPartyMarker2(line3)) &&
-            IsPartyName(line4) &&
-            IsAfterPartyMarker(line5);
+        return i <= before.Length - 5
+            && before[i] is WLine line1 && IsBeforePartyMarker(line1)
+            && before[i + 1] is WLine line2 && IsPartyName(line2)
+            && before[i + 2] is WLine line3 && (IsBetweenPartyMarker(line3) || IsBetweenPartyMarker2(line3))
+            && before[i + 3] is WLine line4 && IsPartyName(line4)
+            && before[i + 4] is WLine line5 && IsAfterPartyMarker(line5);
     }
 
     private static List<IBlock> EnrichFiveLinePartyBlock(IBlock[] before, int i)
@@ -325,7 +225,10 @@ internal class PartyEnricher : Enricher
 
         var i = 0;
         var line = rest[i];
-        if (!IsBeforePartyMarker(line) && !IsBeforePartyMarker2(line) && !(successive && IsBeforePartyMarker3(line)))
+        if (line is not WLine beforeLine
+            || (!IsBeforePartyMarker(beforeLine)
+                && !IsBeforePartyMarker2(beforeLine)
+                && !(successive && IsBeforePartyMarker3(beforeLine))))
         {
             return false;
         }
@@ -351,7 +254,7 @@ internal class PartyEnricher : Enricher
             line = rest[i];
         }
 
-        if (IsBeforePartyMarker2(line))
+        if (line is WLine betweenMarker2 && IsBeforePartyMarker2(betweenMarker2))
         {
             result.Add(line);
             i += 1;
@@ -377,7 +280,7 @@ internal class PartyEnricher : Enricher
 
         line = rest[i];
         /* no "v" or "and" in EWHC/Comm/2013/3920 */
-        if (IsBetweenPartyMarker(line) || IsBetweenPartyMarker2(line))
+        if (line is WLine vOrAndMarker && (IsBetweenPartyMarker(vOrAndMarker) || IsBetweenPartyMarker2(vOrAndMarker)))
         {
             result.Add(line);
             i += 1;
@@ -403,7 +306,7 @@ internal class PartyEnricher : Enricher
 
         line = rest[i];
 
-        if (IsBetweenPartyMarker2(line))
+        if (line is WLine andMarker && IsBetweenPartyMarker2(andMarker))
         {
             result.Add(line);
             i += 1;
@@ -433,7 +336,7 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (IsAfterPartyMarker(line))
+        if (line is WLine afterLine && IsAfterPartyMarker(afterLine))
         {
             result.Add(line);
             enriched = result;
@@ -460,7 +363,7 @@ internal class PartyEnricher : Enricher
 
         var i = 0;
         var line = rest[i];
-        if (!IsBeforePartyMarker(line) && !IsBeforePartyMarker2(line))
+        if (line is not WLine beforeLine || (!IsBeforePartyMarker(beforeLine) && !IsBeforePartyMarker2(beforeLine)))
         {
             return false;
         }
@@ -473,7 +376,7 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (IsBeforePartyMarker2(line))
+        if (line is WLine betweenMarker2 && IsBeforePartyMarker2(betweenMarker2))
         {
             // perhaps do this only if first line isn't marker 2
             result.Add(line);
@@ -486,12 +389,12 @@ internal class PartyEnricher : Enricher
             line = rest[i];
         }
 
-        if (!IsPartyNameAndRole(line))
+        if (line is not WLine partyLine1 || !IsPartyNameAndRole(partyLine1))
         {
             return false;
         }
 
-        var party1 = MakePartyAndRole((WLine)line);
+        var party1 = MakePartyAndRole(partyLine1);
         result.Add(party1);
         i += 1;
         if (i == rest.Length)
@@ -500,7 +403,7 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (IsBetweenPartyMarker(line) || IsBetweenPartyMarker2(line))
+        if (line is WLine vOrAndMarker && (IsBetweenPartyMarker(vOrAndMarker) || IsBetweenPartyMarker2(vOrAndMarker)))
         {
             result.Add(line);
             i += 1;
@@ -516,12 +419,12 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (!IsPartyNameAndRole(line))
+        if (line is not WLine partyLine2 || !IsPartyNameAndRole(partyLine2))
         {
             return false;
         }
 
-        var party2 = MakePartyAndRole((WLine)line);
+        var party2 = MakePartyAndRole(partyLine2);
         result.Add(party2);
         i += 1;
         if (i == rest.Length)
@@ -530,7 +433,7 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (!IsAfterPartyMarker(line))
+        if (line is not WLine afterLine || !IsAfterPartyMarker(afterLine))
         {
             return false;
         }
@@ -552,7 +455,7 @@ internal class PartyEnricher : Enricher
 
         var i = 0;
         var line = rest[i];
-        if (!IsBeforePartyMarker(line))
+        if (line is not WLine beforeLine || !IsBeforePartyMarker(beforeLine))
         {
             return false;
         }
@@ -566,7 +469,7 @@ internal class PartyEnricher : Enricher
 
         line = rest[i];
         /* between */
-        if (!IsBeforePartyMarker2(line))
+        if (line is not WLine betweenMarker2 || !IsBeforePartyMarker2(betweenMarker2))
         {
             return false;
         }
@@ -587,7 +490,7 @@ internal class PartyEnricher : Enricher
 
         line = rest[i];
         /* and */
-        if (!IsBetweenPartyMarker2(line))
+        if (line is not WLine andMarker || !IsBetweenPartyMarker2(andMarker))
         {
             return false;
         }
@@ -614,7 +517,7 @@ internal class PartyEnricher : Enricher
 
         line = rest[i];
         /* v */
-        if (!IsBetweenPartyMarker(line))
+        if (line is not WLine vMarker || !IsBetweenPartyMarker(vMarker))
         {
             return false;
         }
@@ -640,7 +543,7 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (IsAfterPartyMarker(line))
+        if (line is WLine afterLine && IsAfterPartyMarker(afterLine))
         {
             result.Add(line);
             enriched = result;
@@ -660,7 +563,8 @@ internal class PartyEnricher : Enricher
         return TryEnrichPartyNamesWithRoleLabel(rest, IsSecondPartyType, GetSecondPartyRole, out enriched);
     }
 
-    private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] rest, Func<IBlock, bool> test, Func<IBlock, PartyRole> construct, out List<IBlock> enriched)
+    private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] rest, Func<WLine, bool> test,
+        Func<WLine, PartyRole> construct, out List<IBlock> enriched)
     {
         enriched = null;
         var i = 0;
@@ -669,29 +573,27 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        var line = rest[i];
-        if (!IsPartyName(line))
+        if (rest[i] is not WLine firstPartyLine || !IsPartyName(firstPartyLine))
         {
             return false;
         }
 
-        List<IBlock> stack = [line];
+        List<WLine> stack = [firstPartyLine];
         i += 1;
         while (true)
         {
-            if (i == rest.Length)
+            if (i == rest.Length || rest[i] is not WLine line)
             {
                 return false;
             }
 
-            line = rest[i];
             if (test(line))
             {
                 var role1 = construct(line);
                 enriched =
                 [
-                    .. stack.Select(block => MakeParty((WLine)block, role1)),
-                    MakeRole((WLine)line, role1)
+                    .. stack.Select(l => MakeParty(l, role1)),
+                    MakeRole(line, role1)
                 ];
                 return true;
             }
@@ -708,13 +610,8 @@ internal class PartyEnricher : Enricher
         }
     }
 
-    private static bool IsBeforePartyMarker(IBlock block)
+    private static bool IsBeforePartyMarker(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         if (Regex.IsMatch(normalized, @"^-( -)+$"))
         {
@@ -734,13 +631,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsBeforePartyMarker2(IBlock block)
+    private static bool IsBeforePartyMarker2(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':', '-');
         if (normalized.Equals("BETWEEN", StringComparison.InvariantCultureIgnoreCase))
@@ -751,13 +643,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsBeforePartyMarker3(IBlock block)
+    private static bool IsBeforePartyMarker3(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         normalized = Regex.Replace(normalized, @"\s+", "").TrimEnd(':');
         if (normalized.Equals("AND BETWEEN", StringComparison.InvariantCultureIgnoreCase))
@@ -768,13 +655,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsInTheMatterOfSomething(IBlock block)
+    private static bool IsInTheMatterOfSomething(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length != 1)
         {
@@ -799,13 +681,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsInTheMatterOf1(IBlock block)
+    private static bool IsInTheMatterOf1(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length == 1)
         {
@@ -836,13 +713,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsInTheMatterOf2(IBlock block)
+    private static bool IsInTheMatterOf2(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length != 1)
         {
@@ -867,44 +739,15 @@ internal class PartyEnricher : Enricher
         return WLine.Make(line, contents);
     }
 
-    private static bool IsPartyName(IBlock block)
+    private static bool IsPartyName(WLine line)
     {
-        if (IsBeforePartyMarker(block))
-        {
-            return false;
-        }
-
-        if (IsBeforePartyMarker2(block))
-        {
-            return false;
-        }
-
-        if (IsBetweenPartyMarker(block))
-        {
-            return false;
-        }
-
-        if (IsBetweenPartyMarker2(block))
-        {
-            return false;
-        }
-
-        if (IsAfterPartyMarker(block))
-        {
-            return false;
-        }
-
-        if (IsFirstPartyType(block))
-        {
-            return false;
-        }
-
-        if (IsSecondPartyType(block))
-        {
-            return false;
-        }
-
-        if (block is not WLine line)
+        if (IsBeforePartyMarker(line)
+            || IsBeforePartyMarker2(line)
+            || IsBetweenPartyMarker(line)
+            || IsBetweenPartyMarker2(line)
+            || IsAfterPartyMarker(line)
+            || IsFirstPartyType(line)
+            || IsSecondPartyType(line))
         {
             return false;
         }
@@ -1168,13 +1011,8 @@ internal class PartyEnricher : Enricher
         return TryGetPartyRole(s, out _);
     }
 
-    private static bool IsFirstPartyType(IBlock block)
+    private static bool IsFirstPartyType(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         return IsFirstPartyType(normalized);
     }
@@ -1239,24 +1077,14 @@ internal class PartyEnricher : Enricher
         }
     }
 
-    private static PartyRole GetFirstPartyRole(IBlock block)
+    private static PartyRole GetFirstPartyRole(WLine line)
     {
-        if (block is not WLine line)
-        {
-            throw new Exception();
-        }
-
         var normalized = line.NormalizedContent;
         return GetFirstPartyRole(normalized);
     }
 
-    private static bool IsPartyNameAndRole(IBlock block)
+    private static bool IsPartyNameAndRole(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length >= 3)
         {
@@ -1319,24 +1147,14 @@ internal class PartyEnricher : Enricher
         throw new Exception();
     }
 
-    private static bool IsBetweenPartyMarker(IBlock block)
+    private static bool IsBetweenPartyMarker(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         return IsV(normalized);
     }
 
-    private static bool IsBetweenPartyMarker2(IBlock block)
+    private static bool IsBetweenPartyMarker2(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         return IsAnd(normalized);
     }
@@ -1404,13 +1222,8 @@ internal class PartyEnricher : Enricher
         return TryGetPartyRole(s, out _);
     }
 
-    private static bool IsSecondPartyType(IBlock block)
+    private static bool IsSecondPartyType(WLine line)
     {
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
         var normalized = line.NormalizedContent;
         return IsSecondPartyType(normalized);
     }
@@ -1480,27 +1293,17 @@ internal class PartyEnricher : Enricher
         }
     }
 
-    private static PartyRole GetSecondPartyRole(IBlock block)
+    private static PartyRole GetSecondPartyRole(WLine line)
     {
-        if (block is not WLine line)
-        {
-            throw new Exception();
-        }
-
         var normalized = line.NormalizedContent;
         return GetSecondPartyRole(normalized);
     }
 
-    private static bool IsAfterPartyMarker(IBlock block)
+    private static bool IsAfterPartyMarker(WLine line)
     {
-        if (IsBeforePartyMarker(block))
+        if (IsBeforePartyMarker(line))
         {
             return true;
-        }
-
-        if (block is not WLine line)
-        {
-            return false;
         }
 
         var content = line.NormalizedContent;
@@ -1517,21 +1320,6 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-
-    private IBlock EnrichBlock(IBlock block)
-    {
-        if (block is WTable table)
-        {
-            return EnrichTable(table);
-        }
-
-        if (block is WLine line)
-        {
-            return Enrich(line);
-        }
-
-        return block;
-    }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
     {
@@ -2561,7 +2349,7 @@ internal class PartyEnricher : Enricher
     private static bool IsInTheMatterOfSomething(WCell cell)
     {
         var cellContents = cell.Contents.ToArray();
-        return cellContents.Length == 1 && IsInTheMatterOfSomething(cellContents[0]);
+        return cellContents is [WLine line] && IsInTheMatterOfSomething(line);
     }
 
     private WCell EnrichInTheMatterOfSomething(WCell cell)
