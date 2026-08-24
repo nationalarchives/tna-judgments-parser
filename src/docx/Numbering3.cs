@@ -347,7 +347,7 @@ partial class Numbering3
     }
 
 
-    [GeneratedRegex(@"^ ?LISTNUM ""(?<name>[A-Za-z][A-Za-z0-9]*)"" \\l (?<l>\d)( \\s (?<s>\d+))? $")]
+    [GeneratedRegex(@"^ ?LISTNUM +""?(?<name>[A-Za-z][A-Za-z0-9]*)""? \\l (?:\((?<lp>\d)\)|(?<l>\d))( \\s (?<s>\d+))? $")]
     private static partial Regex NamedListNumRegex();
 
     // KNOWN LIMITATIONS:
@@ -366,7 +366,17 @@ partial class Numbering3
         var name = match.Groups["name"].Value;
         AbstractNum absNum = Numbering.GetAbstractNum(ctx.Main, name);
         int absNumId = absNum.AbstractNumberId;
-        var ilvl = int.Parse(match.Groups["l"].Value) - 1; // ilvl indexes are 0 based
+        int ilvl;
+        if (match.Groups["lp"].Success)
+        {
+            // A parenthesised digit isn't valid LISTNUM \l syntax. Word ignores it and falls
+            // back to level 2 (ilvl=1), regardless of the digit inside the parens.
+            ilvl = 1;
+        }
+        else
+        {
+            ilvl = int.Parse(match.Groups["l"].Value) - 1; // ilvl indexes are 0 based
+        }
 
         if (!counters.ContainsKey(absNumId))
             counters[absNumId] = [];
