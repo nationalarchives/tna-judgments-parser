@@ -100,7 +100,7 @@ internal class PartyEnricher : Enricher
         return
         [
             before[i],
-            MakeDocTitle(before[i + 1]),
+            MakeDocTitle((WLine)before[i + 1]),
             before[i + 2]
         ];
     }
@@ -133,8 +133,8 @@ internal class PartyEnricher : Enricher
         return
         [
             before[i],
-            MakeDocTitle(before[i + 1]),
-            MakeDocTitle(before[i + 2]),
+            MakeDocTitle((WLine)before[i + 1]),
+            MakeDocTitle((WLine)before[i + 2]),
             before[i + 3]
         ];
     }
@@ -208,9 +208,9 @@ internal class PartyEnricher : Enricher
 
     private static List<IBlock> EnrichThreeLinePartyBlock(IBlock[] before, int i)
     {
-        var line1 = before[i];
+        var line1 = (WLine)before[i];
         var line2 = before[i + 1];
-        var line3 = before[i + 2];
+        var line3 = (WLine)before[i + 2];
         return
         [
             MakeParty(line1, PartyRole.BeforeTheV),
@@ -266,10 +266,10 @@ internal class PartyEnricher : Enricher
 
     private static List<IBlock> EnrichFourLinePartyBlock(IBlock[] before, int i)
     {
-        var line1 = before[i];
+        var line1 = (WLine)before[i];
         var line2 = before[i + 1];
-        var line3 = before[i + 2];
-        var line4 = before[i + 3];
+        var line3 = (WLine)before[i + 2];
+        var line4 = (WLine)before[i + 3];
         return
         [
             MakeParty(line1, PartyRole.BeforeTheV),
@@ -306,9 +306,9 @@ internal class PartyEnricher : Enricher
         return
         [
             before[i],
-            MakeParty(before[i + 1], PartyRole.BeforeTheV),
+            MakeParty((WLine)before[i + 1], PartyRole.BeforeTheV),
             before[i + 2],
-            MakeParty(before[i + 3], PartyRole.AfterTheV),
+            MakeParty((WLine)before[i + 3], PartyRole.AfterTheV),
             before[i + 4]
         ];
     }
@@ -491,7 +491,7 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        var party1 = MakePartyAndRole(line);
+        var party1 = MakePartyAndRole((WLine)line);
         result.Add(party1);
         i += 1;
         if (i == rest.Length)
@@ -521,7 +521,7 @@ internal class PartyEnricher : Enricher
             return false;
         }
 
-        var party2 = MakePartyAndRole(line);
+        var party2 = MakePartyAndRole((WLine)line);
         result.Add(party2);
         i += 1;
         if (i == rest.Length)
@@ -690,8 +690,8 @@ internal class PartyEnricher : Enricher
                 var role1 = construct(line);
                 enriched =
                 [
-                    .. stack.Select(block => MakeParty(block, role1)),
-                    MakeRole(line, role1)
+                    .. stack.Select(block => MakeParty((WLine)block, role1)),
+                    MakeRole((WLine)line, role1)
                 ];
                 return true;
             }
@@ -857,9 +857,8 @@ internal class PartyEnricher : Enricher
         return true;
     }
 
-    private static WLine MakeDocTitle(IBlock block)
+    private static WLine MakeDocTitle(WLine line)
     {
-        var line = (WLine)block;
         var lineContents = line.Contents.ToArray();
 
         var docTitle = new WDocTitle((WText)lineContents[0]);
@@ -1047,9 +1046,8 @@ internal class PartyEnricher : Enricher
         return [party];
     }
 
-    private static WLine MakeParty(IBlock name, PartyRole? role)
+    private static WLine MakeParty(WLine line, PartyRole? role)
     {
-        var line = (WLine)name;
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length == 1)
         {
@@ -1106,9 +1104,8 @@ internal class PartyEnricher : Enricher
         throw new Exception();
     }
 
-    private static WLine MakeRole(IBlock block, PartyRole role)
+    private static WLine MakeRole(WLine line, PartyRole role)
     {
-        var line = (WLine)block;
         return WLine.Make(line, [new WRole { Role = role, Contents = line.Contents }]);
     }
 
@@ -1296,9 +1293,8 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static WLine MakePartyAndRole(IBlock block)
+    private static WLine MakePartyAndRole(WLine line)
     {
-        var line = (WLine)block;
         var lineContents = line.Contents.ToArray();
         if (lineContents.Length >= 3)
         {
@@ -2570,7 +2566,7 @@ internal class PartyEnricher : Enricher
 
     private WCell EnrichInTheMatterOfSomething(WCell cell)
     {
-        var line = MakeDocTitle(cell.Contents.First());
+        var line = MakeDocTitle((WLine)cell.Contents.First());
         return new WCell(cell.Row, cell.Props, [line]);
     }
 
