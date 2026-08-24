@@ -166,6 +166,7 @@ abstract class Builder {
         if (eId is not null)
             level.SetAttribute("eId", eId);
         parent.AppendChild(level);
+        DecorateDivisionElement(level, div);
         if (div.Number is not null) {
             XmlElement num = AddAndWrapText(level, "num", div.Number);
         }
@@ -361,6 +362,13 @@ abstract class Builder {
     /// has been set and before content is appended. Default no-op.
     /// </summary>
     protected virtual void DecorateBlockElement(XmlElement block, ILine line) { }
+
+    /// <summary>
+    /// Extension point: subclasses may add doc-type-specific attributes to a
+    /// division element after <c>eId</c> is set and before <c>num</c>,
+    /// <c>heading</c> and content are appended. Default no-op.
+    /// </summary>
+    protected virtual void DecorateDivisionElement(XmlElement division, IDivision div) { }
 
     /// <summary>
     /// Extension point: subclasses may mutate a table cell's serialised

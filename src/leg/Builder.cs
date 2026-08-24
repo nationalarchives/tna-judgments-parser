@@ -41,6 +41,39 @@ class Builder : AkN.Builder {
     }
 
     /// <summary>
+    /// Records that a division sat flush with its parent in the source and is
+    /// nested only because the numbering pass rebuilt the hierarchy of the
+    /// dotted-number run around it (<see cref="Common.IFlushWithParent"/>).
+    /// Not every marked division has a number of its own: I7's absorbed run-in
+    /// headings are numberless and are marked all the same.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// The value states what the source looked like, not what a renderer should
+    /// do about it. Presentation is decided downstream — legislation.gov.uk
+    /// renders the published AKN with a stylesheet this repository does not
+    /// own, and <c>src/leg/akn2html.xsl</c> is a local proxy for it. See
+    /// NUMBERING.md §7.
+    /// </para>
+    /// <para>
+    /// Written in the <c>uk:</c> namespace rather than as a plain
+    /// <c>@class</c>, because pre-simplification a plain <c>@class</c> means
+    /// "Word style name" throughout this pipeline: the simplifier resolves it
+    /// into inherited CSS and then strips it. A namespaced one is exempt from
+    /// that reading and is promoted to plain <c>@class</c> on the way out
+    /// (<c>Simplify.cs:158-171</c>), which is precisely the escape hatch this
+    /// needs. Going through it keeps the provenance narrow: an unrelated Word
+    /// style class on a subparagraph is still stripped, as is any inline
+    /// <c>@style</c>, so nothing here becomes a standing exemption.
+    /// </para>
+    /// </remarks>
+    protected override void DecorateDivisionElement(XmlElement division, Judgments.IDivision div)
+    {
+        if (div is Common.IFlushWithParent)
+            division.SetAttribute("class", UKNS, "flush-with-parent");
+    }
+
+    /// <summary>
     /// Leg HTML output drops cosmetic table-cell styles Word inherits but
     /// the rendered legislation pages don't want: white / transparent
     /// backgrounds (the page background shows through), and per-cell

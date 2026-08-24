@@ -1,16 +1,28 @@
 # Dotted-Number Hierarchy in `/leg`
 
 **Status:** Implemented, not accepted — 2026-08-20. The structural pass is in
-and the suite is green — 900 passed, 0 failed, 331 skipped, last verified
-2026-08-21. Acceptance criterion 6 is unmet and cannot yet be attempted: it asks
-for *visual* parity with the
-Word original, and the HTML comparisons do not even execute here — they skip
-unless Oxygen/Saxon is reachable, and `HtmlBuilder` hardcodes a Windows
-`java.exe` path. The rendering follow-up in §7, a run in an environment where
-those comparisons execute, and a human check of rendered output are all required
-before rollout. The stale `.html` goldens are deliberate: see criterion 6.
+and the suite is green: 900 passed, 0 failed, 331 skipped at that point, and
+910/0/331 as of 2026-08-24 with the marker tests added below. The §7 rendering
+follow-up has landed: divisions this pass nests are
+marked `class="flush-with-parent"` and the proxy stylesheet removes the indent
+they would otherwise inherit. Acceptance criterion 6 is *not* thereby met, and
+is now split three ways (§9) because only part of it belongs to this change:
+**6a** — no unjustified movement in what the pass restructures — is
+**accepted, with a documented two-line ambiguity** (§9). A full positional
+census shows exactly 29 lines move, all from the article origin to the parent's
+text column, and nothing else in the corpus moves at all. Word puts 27 of those
+29 at that column. The other 2 are one Code of Practice heading where neither
+rendering was judged better than the other, reviewed and accepted as
+non-blocking — see §7.
+**6b** — the proxy stylesheet matching
+Word generally — is broader and pre-existing. **6c** — parity in what the public
+sees — needs confirmation from the web-tier owner that the marker survives and
+is honoured in a renderer this repository does not own.
+`src/leg/render-akn.sh` renders locally with a JRE and two jars, which makes the
+diagnostic runnable; it does not make `TestEMHtml`/`TestCoPHtml` execute, nor
+provision Saxon in CI. The stale `.html` goldens are deliberate: see criterion 6.
 
-**Scope:** the `/src/leg` associated-documents parser only. No change to the judgments parser or to `/src/lawmaker`.
+**Scope:** the `/src/leg` associated-documents parser. **No judgments or lawmaker behaviour change** — but note this is no longer literally "no change outside `/src/leg`": `src/akn/Builder.cs` gains a `DecorateDivisionElement` extension point, a no-op by default, following the pattern already established there by `DecorateBlockElement`. Judgment output is unaffected and the shared-Builder tests confirm it (`dotnet test test/test.csproj --filter "FullyQualifiedName~ApiTests"`, 119 passed).
 
 This document records a design decision, the evidence behind it, and the
 safety contract the implementation satisfies. §1-§9 were written before any
@@ -491,39 +503,187 @@ likely to be wrong on first attempt.
   change the model rather than work around it, and to decide whether a titled
   group is a new division type or an existing one gaining a heading.
 
-- **Rendering parity — a known requirement; mechanism deferred.**
-  Demoting `1.1` shifts it right by 0.5in in the HTML:
-  `associated-docs.css:6,8` sets `margin-left: 0.5in` on both `.paragraph` and
-  `.subparagraph`, and `akn2html.xsl:94-110` emits the class from `local-name()`,
-  so nesting compounds the margins. These documents are meant to look like
-  their Word originals: hierarchy inferred from numbering must not, by itself,
-  invent visual indentation absent from the source.
+- **Rendering parity — implemented as provenance on the model.**
+  Demoting `1.1` shifts it right by 0.5in: `associated-docs.css:6,8` sets
+  `margin-left: 0.5in` on both `.paragraph` and `.subparagraph`, and
+  `akn2html.xsl:94-110` emits the class from `local-name()`, so nesting
+  compounds the margins. These documents are meant to look like their Word
+  originals: hierarchy inferred from numbering must not, by itself, invent
+  visual indentation absent from the source.
 
-  I7 adds a second case, and a harder one. An absorbed mid-run heading becomes a
-  numberless `<subparagraph>`, so it takes the same `margin-left: 0.5in` from
-  `associated-docs.css:8` while having no number to anchor a rule to — a
-  flush-left bold line in the Word original that renders as an indented,
-  unnumbered fragment. Whatever marks demoted paragraphs has to cover these too,
-  and they cannot be identified after the fact by their numbering, because they
-  have none.
+  Every division this pass creates a level for therefore implements
+  `IFlushWithParent` (`common/InferredDivisions.cs`) and is serialised with
+  `class="flush-with-parent"`. Measured over the ten changed fixtures: **247 marked**
+  — 235 demoted divisions plus the 12 numberless subparagraphs I7 produces.
 
-  A marker such as a `no-indent` class is the likely mechanism, but its exact
-  representation and CSS are deliberately undecided. A global CSS rule for all
-  subparagraphs would conflate a flush-left `1.1` repaired by this pass with a
-  genuinely indented subparagraph. The pass has the reliable provenance: it
-  knows which divisions it demoted, while the division model has no direct
-  rendering-class property and only its contained blocks commonly retain the
-  originating `WLine`. That provenance therefore needs carrying through the
-  model and `Builder` into the XML/HTML. `akn2html.xsl:105-108` already copies a
-  division's XML `@class` into the HTML class list, so that route is plausible,
-  not yet decided.
+  The name records **provenance, not presentation**. `no-indent` was rejected:
+  it encodes a CSS instruction, and this repository does not own the stylesheet
+  legislation.gov.uk serves — `akn2html.xsl` is a local proxy for it. What
+  "flush in the source" implies visually is the renderer's decision.
 
-  The eventual CSS must be checked against both the accumulated section margin
-  and the number-heading offsets: `associated-docs.css:7,9` gives paragraph and
-  subparagraph headings different negative `margin-left` values. Removing only
-  the subparagraph's outer margin may not reproduce the original alignment.
-  Deferred from the hierarchy algorithm because the right remedy depends on
-  inspecting the actual rendering — see §9 — but required before rollout.
+  Three things deliberately go *unmarked*, and the distinction is the substance
+  of the mechanism:
+
+  | | marked? | why |
+  |---|---|---|
+  | a demoted numbered division | yes | the pass created its level |
+  | the numberless subparagraph from a mid-run heading (I7) | yes | likewise |
+  | the head of a run | no | it keeps the depth it already had |
+  | a child the parse had already nested (I5) | no | the source really did indent it |
+  | a heading absorbed into the head's `intro` (I7) | no | no *division* to mark — see below |
+
+  The first two rows are not alike, and neither are the last three. What the
+  marker does splits three ways:
+
+  | | count | effect | matches Word? |
+  |---|---:|---|---|
+  | numbered demotions | 235 | **preserved** — number and text stay where they rendered before the pass | unchanged |
+  | wrapped as a numberless `subparagraph` (I7), all EM | 12 | **corrected** — rendered at the article origin as bare `<level>`s, now at the parent's text column | yes |
+  | absorbed into `intro` (I7), EM | 15 | **corrected** — moved to the parent's rendered column | yes |
+  | absorbed into `intro` (I7), CoP | 2 | **moved** to the parent's rendered column at 0.5in | **undetermined** |
+
+  The last row was recorded as a regression until the rendering was measured
+  against the Word original; that framing was wrong, and what replaces it is a
+  judgement nobody has been willing to make either way.
+
+  The source line is `Appointments`, and it is the *second half* of the heading
+  `The role of the Commissioner for Public Appointments`, which the `.docx`
+  stores as two paragraphs. Word puts both halves at the margin, along with
+  everything else in that document, which has no indentation anywhere. The
+  stylesheet nonetheless renders every `.paragraph` at 0.5in — so the heading's
+  **first** half has always rendered 0.5in off, before this change and after it.
+  What the change does is move the second half from the article origin to the
+  same column as the first:
+
+  | | first half | second half |
+  |---|---|---|
+  | Word | margin | margin — together |
+  | before | 0.5in | 0 — split across two columns |
+  | after | 0.5in | 0.5in — together, both 0.5in off |
+
+  So the earlier claim — that the line "matched Word before and does not after"
+  — is true only of that half in isolation, and ignores that the half it
+  continues was already displaced. Read as a heading, the change replaces a
+  split with a uniform offset. Read as an absolute position, it replaces one
+  correct line with two incorrect ones.
+
+  Both readings were put side by side at matched scale against the Word page
+  and **neither was judged better than the other**. The ambiguity was reviewed
+  on that basis and accepted as non-blocking: it is 0.5in on one line of one
+  document — the two fixtures are the draft and made versions of the same 2018
+  Code — and the residual offset in either reading is the `.paragraph` rule,
+  which is 6b. If 6b is ever fixed for this document both halves land on the
+  margin together and the question dissolves. Accepting it is not a claim that
+  the new rendering is better; it is a judgement that the difference does not
+  matter enough to hold anything up.
+
+  The table's fourth row is marked "undetermined" in that sense — the visual
+  question, not the criterion. 6a itself is accepted (§9).
+
+  Rows 3 and 4 of the first table are refusals: marking them would assert
+  something false, and row 4 is the discrimination the marker exists to make.
+  Row 5 is a limitation, not a refusal — see below.
+
+  **Why letting the parent position these headings is right.** I7 takes a
+  run-in heading two ways depending on position: before any child it is
+  **absorbed** into the parent's `intro`, between children it is **wrapped** as
+  a numberless `subparagraph` (`Frame.Absorb`). The two words are used in that
+  sense throughout — "absorbed" is the `intro` destination only. Both shapes
+  occur in the same document, so it is tempting to
+  read that as an inconsistency needing repair before any CSS. All 29 such
+  lines across the five affected fixtures were measured against their Word
+  sources, and they resolve to exactly two combinations:
+
+  | count | style | left | hanging | text column |
+  |---:|---|---:|---:|---:|
+  | 27 | `EMLevel1Subheading` | 0.492in | 0.001in | 0.492in |
+  | 2 | `Normal` | 0 | 0 | 0 |
+
+  and in both cases that equals the **parent's own text column** in the source —
+  `EMSectionHeading` (`left 0.492in, hanging 0.492in`) for the EMs, `Normal` for
+  the CoP, whose document has no indentation anywhere. So the rule in the source
+  is not "0.492in"; it is *a run-in heading sits at its parent's text column*,
+  whichever of the two destinations it ends up in.
+
+  Where the stylesheet reproduces that column faithfully — the 27 EM cases — an
+  `intro` paragraph lands in exactly the right place, and marking those would
+  move correctly aligned headings out of alignment. Only the 12 that gained a
+  level needed moving, and they moved **to** that column, not back to where they
+  were.
+
+  Where it does not — the 2 CoP cases, where the stylesheet's 0.5in column does
+  not correspond to the source's zero — an `intro` paragraph lands 0.5in out.
+  A block-level marker would not rescue this on its own: the EM headings want the
+  parent column and the CoP heading wants zero, and the difference lies in the
+  parent's rendered position, not in anything the heading could carry. The fix
+  belongs at the paragraph CSS (criterion 6b), not at the heading.
+
+  **The `intro` case could be marked, and deliberately is not.** There is no
+  division there, but the line is still a block, and `DecorateBlockElement`
+  would carry block-level provenance perfectly well. That is declined rather
+  than impossible: "was a run-in heading" is a *semantic* fact orthogonal to the
+  *layout* fact `flush-with-parent` records, so doing it properly means a second
+  provenance vocabulary covering both shapes — the 12 divisions and the 17
+  blocks — which is the titled-group model below, arrived at piecemeal. ("Nothing
+  consumes it" is not the argument: nothing consumed the division marker either
+  until this change added CSS for it.) The cost of declining is real and worth
+  naming:
+  once absorbed into `intro`, those 17 lines are indistinguishable from the
+  parent's own body text, so their heading identity is lost.
+
+  The CSS needs two rules, not one, because the number offsets differ
+  (`associated-docs.css:7,9`):
+
+  ```css
+  .subparagraph.flush-with-parent { margin-left: 0 }
+  .subparagraph.flush-with-parent > h2 { margin-left: -0.5in }
+  ```
+
+  Without the second, a marked subparagraph's number sits at 0.125in rather
+  than flush — the `-0.375in` subparagraph offset applied at margin 0, where
+  the paragraph offset of `-0.5in` is what reproduces the original.
+
+  **The marker is also what keeps I7's two destinations consistent with each
+  other**, which was not appreciated when it was written. A wrapped numberless
+  `subparagraph` is a nested division and so compounds to 1.0in; an absorbed
+  `intro` paragraph is not and stays at 0.5in. Restricting the marker's CSS to
+  numbered divisions — `.subparagraph.flush-with-parent.num`, which the
+  stylesheet could express today since `akn2html.xsl` already appends `num`
+  when a division has one — was measured on `uksiem_20240868_en_001`:
+  *Where does the legislation extend to, and apply?* renders at 1.0in while
+  *What is being done and why?* renders at 0.5in, two instances of the same
+  heading 0.5in apart in one document, and the first further from Word than it
+  was before this branch. So the marker does not merely position those 12
+  lines; it hides the fact that I7 has two shapes for one concept. That is an
+  argument for fixing the model, not for exposing the seam in rendered output —
+  the people who would see it cannot act on it.
+
+  Two pipeline details this had to accommodate. First, everywhere else in this
+  pipeline a pre-simplification `@class` is a **Word style name**: the simplifier
+  resolves it into inherited CSS and then strips it, so writing the provenance
+  there would have had it silently consumed. The builder therefore writes
+  `uk:class`, which the simplifier promotes to a plain `@class` on the way out
+  (`Simplify.cs:158-171`) — an escape hatch that already existed. Exempting
+  `subparagraph` from stripping altogether would also have worked, but only by
+  turning "nothing else writes a class here today" into a standing exemption
+  that would leak a future Word style class or inline style;
+  `TestFlushWithParentMarker` pins the narrow behaviour. Second,
+  `em-subschema.xsd` had to re-admit the attribute, which it had narrowed away
+  even though canonical AKN allows it (`hierarchy` → `corereq` → `HTMLattrs` in
+  `akomantoso30.xsd`).
+
+  The name is meant literally: **flush with its parent's text column**, not with
+  the page. That column is 0.492in in the EMs and zero in the CoP measured — the
+  value is a property of the document, not of the marker. Downstream consumers
+  need that stated, so it belongs in the production integration contract
+  alongside the questions below.
+
+  **Still open, and outside this repository:** whether the published pipeline
+  preserves `@class` on `subparagraph`, exposes it to its stylesheet, and
+  reproduces the same shift in the first place. Until the web-tier owner
+  confirms those, the local Saxon render (`src/leg/render-akn.sh`) proves the
+  proxy's behaviour, not the public renderer's. If production cannot consume the
+  marker, visual parity is an integration requirement, not a parser fix.
 
 - **Mixed indentation under one parent is handled, not deferred.**
   `em/…/ukdsiem_9780111540145_en` indents `10.1`, so the parse already nested
@@ -674,6 +834,111 @@ Acceptance criteria:
 6. **Visual parity with the Word original, verified by looking at rendered
    output.** The oracle is *not* "the `.html` snapshots pass".
 
+   This is really three criteria, and conflating them made the whole thing look
+   unreachable when only part of it is ours:
+
+   - **6a — this change must not move what it restructures, without
+     justification. Accepted, with a documented two-line ambiguity.** The
+     census below establishes what moves and what does not; what follows is the
+     disposition.
+
+     Of the 29 lines that move, 27 are EM run-in headings (12 wrapped as
+     numberless `subparagraph`s, 15 absorbed into an `intro`), and Word puts all
+     27 at the parent's text column. Moving them is a correction, confirmed on
+     screen against the Word page rather than in selector counts.
+
+     The remaining 2 are the `Appointments` line in the 2018 Code of Practice —
+     one source line, appearing in both the draft and made fixtures. §7 sets out
+     why the earlier "regression" framing was wrong and why what replaces it is
+     a judgement rather than a measurement: the heading's other half was already
+     0.5in off, so the change trades a split heading for a uniformly displaced
+     one. Word, before and after were put side by side at matched scale and
+     **neither rendering was judged better than the other**. Reviewed on that
+     basis and accepted as non-blocking — it is 0.5in on one line of one
+     document, and the residual offset is 6b under either reading. This is not
+     a claim that those two lines match Word, nor that the new rendering
+     improves on the old.
+
+     Four ways to resolve it if it is ever worth resolving, none taken:
+
+     1. Carry block-level provenance and render those headings by source
+        layout. Insufficient alone — a static class cannot distinguish "wants
+        the parent column" (EM) from "wants zero" (CoP), because the difference
+        is in the parent's rendered position.
+     2. Fix the CoP paragraph CSS, after surveying enough CoP sources to justify
+        it. This is the root cause, and is 6b work.
+     3. Alter or gate I7 for CoP — trades structural correctness for one line's
+        alignment. Not recommended.
+     4. Leave it. **This is what is recorded here.**
+   - **6b — the proxy stylesheet matching Word generally.** Broader and
+     pre-existing. `uksicop_20180470_en` has no indentation at all in the source
+     — every paragraph `Normal`, no `w:ind`, no numbering — yet
+     `associated-docs.css` gives each one a 0.5in hanging indent. Nothing to do
+     with this pass, and not fixable by a marker.
+   - **6c — parity in what the public actually sees.** Depends on the web-tier
+     renderer contract (§7). Outside this repository.
+
+   6a is what this change is accountable for. 6b and
+   6c must not be allowed to make 6a look worse than it is, nor 6a's evidence be
+   allowed to imply anything about them.
+
+   **The census, so it can be re-run rather than believed.** Render each changed
+   fixture twice — the committed AKN at `27b0964f` for the "before" leg, the
+   working tree for "after" — and compare the two renderings element by element:
+
+   ```sh
+   git show 27b0964f:test/leg/cop/uksicop_20180470_en.akn > /tmp/before.akn
+   src/leg/render-akn.sh /tmp/before.akn -o /tmp/before.html
+   src/leg/render-akn.sh test/leg/cop/uksicop_20180470_en.akn -o /tmp/after.html
+   ```
+
+   Load both in same-sized iframes, take `querySelectorAll('p')` and
+   `querySelectorAll('h2')` in document order, and compare the *n*th element of
+   one to the *n*th of the other — ordinal, not by text, so repeated text is
+   never dropped. Assert equal lengths and equal whitespace-normalised text
+   before comparing anything else; the AKN indents nested elements more deeply,
+   so raw `textContent` differs on identical content and must be normalised.
+   Compare `Math.round(getBoundingClientRect().left)` for exact equality — no
+   tolerance — plus computed `fontSize`, `fontWeight`, `fontStyle`,
+   `marginTop`, `marginBottom`.
+
+   Result across the ten changed fixtures: **1,105 paragraphs, 672 numbers, 0
+   length mismatches, 0 text mismatches, 29 position changes (all 104 → 152),
+   0 number movements, 0 typography changes**, and every document identical in
+   height. 185 subparagraphs the parse had already nested (I5) carry no marker
+   and did not move.
+
+   **Baseline validation.** The "before" leg uses the *committed* fixtures at
+   `27b0964f` rather than rebuilding the parser there, which is only sound if
+   those fixtures were in step with that code. They were: a worktree at
+   `27b0964f` runs `TestCoP`/`TestEM` green (41 passed, 0 failed), and those
+   tests `Assert.Equal` the full serialised AKN against the committed fixture
+   after stripping only `FRBRdate/@date`, `ukm:Parser`, `uk:hash/text()` and six
+   `ukm:` metadata elements. The whole of `mainBody` is compared, which is
+   everything the census measures.
+
+   Environment, since positions are in CSS pixels: Chrome 151 at
+   `devicePixelRatio` 2, 1440px iframes, no page zoom; Saxon-HE 12.10 with
+   OpenJDK 25; Word column measurements from the source `.docx` exported to PDF
+   by Word 16.112.1 and read with `pdftotext -bbox-layout` (macOS-only — it
+   drives Word through `osascript`).
+
+   **One latent defect found while doing this, recorded rather than fixed.**
+   `associated-docs.css` styles Code of Practice run-in headings synthetically:
+
+   ```css
+   article[data-doc-type='CodeOfPractice'] section.level > p:only-child > b:only-child
+   ```
+
+   That selector keys on `section.level` — the shape a run-in heading has
+   *before* the pass. Absorbing one into an `intro` removes the `section.level`
+   ancestor, so the rule stops matching and the line drops from 14pt to the
+   inherited size. It does not fire in any current fixture only because the
+   `<b>` sits inside a `<span style="color:…">`, so `b:only-child` of the `p`
+   never matches. A Code of Practice whose run-in heading carries no colour run
+   would lose that treatment. This is a consequence of I7's provisional model,
+   not something to paper over with more CSS.
+
    `akn2html.xsl:94-110` builds a section's class from `local-name()` plus any
    `@name`/`@class`, then appends `num` and `heading` when those children exist,
    and emits `id` only when there is an `@eId`. So a demoted `10.2` that was
@@ -708,21 +973,30 @@ Acceptance criteria:
 
    The sequence is therefore:
 
-   1. **Portability first.** The comparisons must *execute* rather than skip.
-      `TestEMHtml` and `TestCoPHtml` call `Assert.Skip` unless Oxygen/Saxon is
-      reachable, and `HtmlBuilder` hardcodes `jre/bin/java.exe`
-      (`src/leg/HtmlBuilder.cs:34,94`), so they cannot run on macOS or on the
-      `ubuntu-latest` CI at all. **A green run is not evidence of no shift.**
-   2. **Leave the goldens stale meanwhile.** Their diff is the diagnostic — it
-      is how the rendering consequences become visible. Regenerating them now
-      would destroy exactly the signal §7's work depends on.
-   3. **Land the rendering follow-up in §7** and confirm parity by inspecting
-      rendered output against the Word original. A DOM snapshot cannot
-      establish this: it can only report that the DOM changed, which is already
-      known and intended.
-   4. **Regenerate the goldens only after that confirmation**, as a regression
-      guard rather than as the oracle. Intentional DOM differences legitimately
-      survive a parity check.
+   1. **Portability — local diagnostic enabled; test/CI portability remains open.**
+      `TestEMHtml`/`TestCoPHtml` still `Assert.Skip`: `HtmlBuilder` resolves
+      Java as `$OXYGEN_HOME/jre/bin/java.exe` (`src/leg/HtmlBuilder.cs:34,94`),
+      which is Windows-shaped — on macOS Oxygen's JRE is under
+      `.install4j/jre.bundle/`, so `IsAvailable()` returns false on machines
+      that have both Java and Saxon. Rather than deepen that coupling,
+      `src/leg/render-akn.sh` renders with a JRE and two jars (Saxon-HE +
+      xmlresolver) and no Oxygen. Fixing `HtmlBuilder` itself is still open, and
+      would be what revives the snapshot suites in CI.
+      **A green run is not evidence of no shift.**
+   2. ~~**Leave the goldens stale meanwhile.**~~ Their diff *was* the
+      diagnostic, and it is what produced the measurements in §7 — the 247
+      marked divisions, and the `EMLevel1Subheading` finding that stopped the
+      intro headings being marked. The `.akn` fixtures have now been regenerated
+      to carry the marker; the `.html` goldens have not, and stay stale.
+   3. **Confirm parity by inspecting rendered output against the Word
+      original** — still outstanding, and the substance of what remains. A DOM
+      snapshot cannot establish this: it can only report that the DOM changed,
+      which is already known and intended. This now also depends on the
+      web-tier answer in §7, since a marker the published renderer discards
+      buys nothing for the public rendering.
+   4. **Regenerate the `.html` goldens only after that confirmation**, as a
+      regression guard rather than as the oracle. Intentional DOM differences
+      legitimately survive a parity check.
 
 ## 10. Mechanism
 

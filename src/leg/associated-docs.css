@@ -7,6 +7,19 @@ h2 { font-size: inherit; font-weight: normal }
 .paragraph > h2 { position: absolute; margin-top: 0; margin-left: -0.5in }
 .subparagraph { margin-left: 0.5in }
 .subparagraph > h2 { position: absolute; margin-top: 0; margin-left: -0.375in }
+/* A subparagraph the parser nested while rebuilding a dotted-number run sat
+ * flush with its parent in the source, so it must not pick up the indent that
+ * real nesting carries. Some of these are numberless — run-in headings I7
+ * wrapped as a division rather than absorbing into a parent's intro — and the
+ * second rule simply does not reach those, since no num means no h2.
+ * The number needs the paragraph offset (-0.5in), not the
+ * subparagraph one: at margin-left 0 the -0.375in rule above would leave it
+ * 0.125in short of where an undemoted number sits.
+ * Restricting the first rule to .num would leave those numberless headings
+ * compounding to 1.0in while their absorbed twins stay at 0.5in — measured,
+ * see NUMBERING.md section 7. */
+.subparagraph.flush-with-parent { margin-left: 0 }
+.subparagraph.flush-with-parent > h2 { margin-left: -0.5in }
 section > .level > h2 { margin-left: 0.5in }
 table { border-collapse: collapse }
 th, td { border: thin dotted; padding: 3pt }

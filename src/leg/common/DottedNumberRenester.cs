@@ -170,13 +170,28 @@ internal static class DottedNumberRenester
                     WrapUp = branch.WrapUp
                 };
             case Parse.BranchSubparagraph branch:
-                return new Parse.BranchSubparagraph
                 {
-                    Number = branch.Number,
-                    Intro = branch.Intro,
-                    Children = Renest(branch.Children, Scope.Inside(branch)),
-                    WrapUp = branch.WrapUp
-                };
+                    // FlushBranchSubparagraph derives from this type, so this case
+                    // catches it too. Rebuilding it as the base would silently drop
+                    // IFlushWithParent — a provenance leak that only shows up on a
+                    // second pass, and which I6 forbids.
+                    var children = Renest(branch.Children, Scope.Inside(branch));
+                    return branch is IFlushWithParent
+                        ? new FlushBranchSubparagraph
+                        {
+                            Number = branch.Number,
+                            Intro = branch.Intro,
+                            Children = children,
+                            WrapUp = branch.WrapUp
+                        }
+                        : new Parse.BranchSubparagraph
+                        {
+                            Number = branch.Number,
+                            Intro = branch.Intro,
+                            Children = children,
+                            WrapUp = branch.WrapUp
+                        };
+                }
             case Models.BranchParagraph branch:
                 return new Models.BranchParagraph
                 {
@@ -465,6 +480,15 @@ internal static class DottedNumberRenester
 
         private IFormattedText NumberText { get; init; }
 
+        /// <summary>
+        /// Whether the division this frame was opened from was already marked.
+        /// Only <see cref="Close"/>'s root branch consults it: a run head keeps
+        /// whatever provenance it arrived with, rather than being re-judged by a
+        /// later pass that did not move it. Everything closed below the root was
+        /// created by this pass and is marked regardless.
+        /// </summary>
+        private bool SourceWasFlush { get; init; }
+
         private List<IBlock> Content { get; } = new();
 
         private List<IBlock> WrapUp { get; } = new();
@@ -481,6 +505,14 @@ internal static class DottedNumberRenester
         /// heading immediately above the child it introduces, which is where the
         /// Word original puts it. Neither is the right model — see
         /// <c>NUMBERING.md</c> §7.
+        ///
+        /// Only the second is marked <see cref="IFlushWithParent"/>, because only
+        /// the second adds a level. An intro heading already renders at the
+        /// parent's text column, which is where the source has it: all 29
+        /// absorbed headings across the affected fixtures sit exactly at their
+        /// parent's text column, in both the EMs (0.492in) and a CoP whose
+        /// document has no indentation at all (zero). Marking those too would
+        /// move correctly aligned headings out of alignment. See NUMBERING.md §7.
         /// </summary>
         internal void Absorb(List<IBlock> heading)
         {
@@ -489,7 +521,7 @@ internal static class DottedNumberRenester
             if (Children.Count == 0)
                 Content.AddRange(heading);
             else
-                Children.Add(new Parse.LeafSubparagraph { Contents = new List<IBlock>(heading) });
+                Children.Add(new FlushLeafSubparagraph { Contents = new List<IBlock>(heading) });
         }
 
         /// <summary>
@@ -515,7 +547,12 @@ internal static class DottedNumberRenester
                 throw new System.NotSupportedException(
                     $"Cannot re-nest division '{number}': it carries a heading, and no " +
                     "paragraph or subparagraph type can hold one. See NUMBERING.md §7.");
-            Frame frame = new() { Number = number, NumberText = div.Number };
+            Frame frame = new()
+            {
+                Number = number,
+                NumberText = div.Number,
+                SourceWasFlush = div is IFlushWithParent
+            };
             if (div is IBranch branch)
             {
                 if (branch.Intro is not null)
@@ -541,8 +578,26 @@ internal static class DottedNumberRenester
                 // paragraph or a subparagraph depends on the scope it was found
                 // in: a run inside a paragraph's child list has a subparagraph
                 // for its local root.
+                //
+                // The head keeps the depth it already had, so it is not
+                // IFlushWithParent: this pass nests things under it, never moves
+                // it. Everything Close emits below is a level the pass created,
+                // and is marked.
+                //
+                // A head that arrives already marked keeps the mark: a leaf this
+                // pass demoted on an earlier run can acquire children on a later
+                // one, and losing its provenance there would break I6 just as
+                // surely as re-deriving it would.
                 return rootIsParagraph
                     ? new Parse.BranchParagraph
+                    {
+                        Number = NumberText,
+                        Intro = Content,
+                        Children = Children,
+                        WrapUp = WrapUp
+                    }
+                    : SourceWasFlush
+                    ? new FlushBranchSubparagraph
                     {
                         Number = NumberText,
                         Intro = Content,
@@ -567,9 +622,9 @@ internal static class DottedNumberRenester
                     throw new System.NotSupportedException(
                         $"Cannot re-nest division '{Number}': it has wrap-up content but no " +
                         "children, and a leaf subparagraph cannot carry wrap-up.");
-                return new Parse.LeafSubparagraph { Number = NumberText, Contents = Content };
+                return new FlushLeafSubparagraph { Number = NumberText, Contents = Content };
             }
-            return new Parse.BranchSubparagraph
+            return new FlushBranchSubparagraph
             {
                 Number = NumberText,
                 Intro = Content,

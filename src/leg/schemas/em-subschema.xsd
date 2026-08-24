@@ -169,6 +169,13 @@
                 <xs:element ref="content" />
           </xs:choice>
         </xs:sequence>
+        <!-- Carries "flush-with-parent": this subparagraph sat flush with its parent
+             in the source and is nested only because the numbering pass rebuilt the
+             hierarchy of the dotted-number run around it — which includes numberless
+             absorbed headings. Canonical AKN already allows @class here
+             (hierarchy -> corereq -> HTMLattrs in akomantoso30.xsd); this
+             subschema narrows attributes away, so it has to be re-admitted. -->
+        <xs:attribute name="class" type="xs:string" />
     </xs:complexType>
 </xs:element>
 

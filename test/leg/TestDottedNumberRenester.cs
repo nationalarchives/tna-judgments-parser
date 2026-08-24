@@ -109,10 +109,10 @@ public class TestDottedNumberRenester
 
         // 1.1 was demoted AND converted leaf -> branch: this conversion has no
         // pre-existing implementation in the repo (NUMBERING.md §5).
-        var mid = Assert.IsType<BranchSubparagraph>(Assert.Single(root.Children));
+        var mid = Assert.IsType<FlushBranchSubparagraph>(Assert.Single(root.Children));
         Assert.Equal(new List<string> { "mid-content" }, Tags(mid.Intro));
 
-        var leaf = Assert.IsType<LeafSubparagraph>(Assert.Single(mid.Children));
+        var leaf = Assert.IsType<FlushLeafSubparagraph>(Assert.Single(mid.Children));
         Assert.Equal(new List<string> { "leaf-content" }, Tags(leaf.Contents));
     }
 
@@ -332,7 +332,8 @@ public class TestDottedNumberRenester
         Assert.Equal(
             "paragraph[10.](subparagraph[10.1],subparagraph[10.2],subparagraph[10.3])",
             Describe(result));
-        // the pre-existing child keeps its own content
+        // The pre-existing child keeps its own content — and stays a plain
+        // LeafSubparagraph: the pass did not move it, so it is not flush-marked.
         var parent = Assert.IsType<BranchParagraph>(Assert.Single(result));
         var first = Assert.IsType<LeafSubparagraph>(parent.Children.First());
         Assert.Equal(new List<string> { "existing" }, Tags(first.Contents));
@@ -424,9 +425,81 @@ public class TestDottedNumberRenester
             Describe(result));
         // it sits immediately above the child it introduces, as in the source
         var parent = Assert.IsType<BranchParagraph>(Assert.Single(result));
-        var heading = Assert.IsType<LeafSubparagraph>(parent.Children.ElementAt(2));
+        var heading = Assert.IsType<FlushLeafSubparagraph>(parent.Children.ElementAt(2));
         Assert.Null(heading.Number);
         Assert.Equal("Second", Assert.IsType<WLine>(heading.Contents.Single()).NormalizedContent);
+    }
+
+    /* provenance — which divisions carry the flush marker */
+
+    [Fact]
+    public void OnlyLevelsThePassCreatedAreMarkedFlushWithParent()
+    {
+        // The marker records that a division sat flush with its parent in the
+        // source. Two things must NOT carry it: the run head, which keeps the
+        // depth it already had, and a heading absorbed into the head's intro,
+        // which already renders at the parent's indent. Measured on
+        // uksiem_20240868_en_001, whose nine run-in headings are all
+        // EMLevel1Subheading at 0.492in — the same as the parent's own text —
+        // so marking the intro ones would push aligned headings out of line.
+        var input = new List<IDivision> {
+            Para("4.", "overview"), Heading("Intro heading"), Para("4.1"),
+            Heading("Mid-run heading"), Para("4.2")
+        };
+        var result = DottedNumberRenester.Renest(input);
+
+        var head = Assert.IsType<BranchParagraph>(Assert.Single(result));
+        Assert.IsNotAssignableFrom<IFlushWithParent>(head);
+
+        // The intro heading is content of the head, not a level of its own.
+        Assert.Equal("Intro heading",
+            Assert.IsType<WLine>(head.Intro.Last()).NormalizedContent);
+
+        // Everything the pass gave a level to is marked — the demoted numbered
+        // children and the numberless subparagraph the mid-run heading became.
+        Assert.All(head.Children, c => Assert.IsAssignableFrom<IFlushWithParent>(c));
+        Assert.Equal(
+            new List<string> { "4.1", null, "4.2" },
+            head.Children.Select(c => c.Number?.Text).ToList());
+    }
+
+    [Fact]
+    public void AMarkedBranchKeepsItsMarkOnASecondPass()
+    {
+        // I6 for provenance, not just for shape. FlushBranchSubparagraph derives
+        // from Parse.BranchSubparagraph, so RenestWithin's case for the base type
+        // catches it as well; rebuilding it as the base would launder the mark
+        // away on any later pass. Leaves hid this — RenestWithin returns them
+        // untouched — so it only shows on a demoted division that has children.
+        var input = new List<IDivision> {
+            Para("1.", "root"), Para("1.1", "mid"), Para("1.1.1", "leaf")
+        };
+        var once = DottedNumberRenester.Renest(input);
+        var twice = DottedNumberRenester.Renest(once);
+
+        foreach (var result in new[] { once, twice })
+        {
+            var root = Assert.IsType<BranchParagraph>(Assert.Single(result));
+            var mid = Assert.IsType<FlushBranchSubparagraph>(Assert.Single(root.Children));
+            Assert.IsType<FlushLeafSubparagraph>(Assert.Single(mid.Children));
+        }
+        Assert.Equal(Describe(once), Describe(twice));
+    }
+
+    [Fact]
+    public void APreExistingChildIsNotMarkedFlushWithParent()
+    {
+        // I5 keeps a child the parse already nested. The source indented it, so
+        // its indent is real and the marker must not claim otherwise — even
+        // though its flat siblings, joining alongside it, are marked.
+        var input = new List<IDivision> {
+            BranchWithChild("10.", "10.1"), Para("10.2")
+        };
+        var parent = Assert.IsType<BranchParagraph>(
+            Assert.Single(DottedNumberRenester.Renest(input)));
+
+        Assert.IsNotAssignableFrom<IFlushWithParent>(parent.Children.ElementAt(0));
+        Assert.IsAssignableFrom<IFlushWithParent>(parent.Children.ElementAt(1));
     }
 
     [Fact]
@@ -552,7 +625,7 @@ public class TestDottedNumberRenester
         var parent = Assert.IsType<BranchParagraph>(Assert.Single(twice));
         Assert.Equal("Leading",
             Assert.IsType<WLine>(parent.Intro.Last()).NormalizedContent);
-        var middle = Assert.IsType<LeafSubparagraph>(parent.Children.ElementAt(1));
+        var middle = Assert.IsType<FlushLeafSubparagraph>(parent.Children.ElementAt(1));
         Assert.Equal("Middle",
             Assert.IsType<WLine>(middle.Contents.Single()).NormalizedContent);
     }
@@ -611,7 +684,8 @@ public class TestDottedNumberRenester
             "paragraph[10.](subparagraph[10.1],subparagraph[10.2]," +
             "subparagraph[10.3],subparagraph[10.4])",
             Describe(result));
-        // pre-existing children keep their own content, in their original order
+        // Pre-existing children keep their own content, in their original order,
+        // and are not flush-marked — the pass did not create their level.
         Assert.Equal(new List<string> { "first" },
             Tags(Assert.IsType<LeafSubparagraph>(parent.Children.ElementAt(0)).Contents));
         Assert.Equal(new List<string> { "second" },
@@ -752,6 +826,8 @@ public class TestDottedNumberRenester
             "paragraph[4.](subparagraph[4.1](subparagraph[4.1.1],subparagraph[4.1.2]))",
             Describe(result));
         var outer = Assert.IsType<BranchParagraph>(Assert.Single(result));
+        // 4.1 heads the run, so it keeps the depth it already had and is not
+        // flush-marked; the levels built beneath it are.
         var inner = Assert.IsType<BranchSubparagraph>(Assert.Single(outer.Children));
 
         // Describe renders numbers, not text, so content assertions are the only
@@ -759,9 +835,9 @@ public class TestDottedNumberRenester
         Assert.Equal(new List<string> { "intro" }, Tags(outer.Intro));
         Assert.Equal(new List<string> { "one" }, Tags(inner.Intro));
         Assert.Equal(new List<string> { "one-one" },
-            Tags(Assert.IsType<LeafSubparagraph>(inner.Children.ElementAt(0)).Contents));
+            Tags(Assert.IsType<FlushLeafSubparagraph>(inner.Children.ElementAt(0)).Contents));
         Assert.Equal(new List<string> { "one-two" },
-            Tags(Assert.IsType<LeafSubparagraph>(inner.Children.ElementAt(1)).Contents));
+            Tags(Assert.IsType<FlushLeafSubparagraph>(inner.Children.ElementAt(1)).Contents));
 
         // I6 for the nested scope specifically: a second pass must not re-read
         // the new BranchSubparagraph root as a fresh run head.
@@ -771,7 +847,7 @@ public class TestDottedNumberRenester
             Assert.Single(Assert.IsType<BranchParagraph>(Assert.Single(twice)).Children));
         Assert.Equal(
             new List<string> { "one-one", "one-two" },
-            again.Children.Select(c => Tags(Assert.IsType<LeafSubparagraph>(c).Contents).Single())
+            again.Children.Select(c => Tags(Assert.IsType<FlushLeafSubparagraph>(c).Contents).Single())
                           .ToList());
     }
 
