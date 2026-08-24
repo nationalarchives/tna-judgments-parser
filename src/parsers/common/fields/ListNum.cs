@@ -165,6 +165,12 @@ internal class ListNum
         {
             fieldLvl = int.Parse(match.Groups[1].Value) - 1; // fieldLvl is 0 based
         }
+        else if (Regex.IsMatch(fieldCode, @"\\l \(\d+\)"))
+        {
+            // A parenthesised digit isn't valid LISTNUM \l syntax. Word ignores it and falls
+            // back to level 2 (ilvl=1), regardless of the digit inside the parens.
+            fieldLvl = 1;
+        }
         var fieldStart = -1;
         match = Regex.Match(fieldCode, @"\\s (\d+)");
         if (match.Success)
