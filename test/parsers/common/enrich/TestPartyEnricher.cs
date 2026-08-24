@@ -65,9 +65,13 @@ public class TestPartyEnricher
     [InlineData("Claimant/NotARole", null)]
     public void GetPartyRole_ParsesRoleFromFreeText(string text, PartyRole? expected)
     {
-        var actual = PartyEnricher.GetPartyRole(text);
+        var found = PartyEnricher.TryGetPartyRole(text, out var actual);
 
-        actual.ShouldBe(expected);
+        found.ShouldBe(expected is not null);
+        if (expected is not null)
+        {
+            actual.ShouldBe(expected.Value);
+        }
     }
 
     [Theory]
@@ -84,9 +88,13 @@ public class TestPartyEnricher
     {
         var cell = CellOf(text);
 
-        var actual = PartyEnricher.GetPartyRole(cell);
+        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
 
-        actual.ShouldBe(expected);
+        found.ShouldBe(expected is not null);
+        if (expected is not null)
+        {
+            actual.ShouldBe(expected.Value);
+        }
     }
 
     [Theory]
@@ -100,8 +108,9 @@ public class TestPartyEnricher
     {
         var cell = CellOf(first, second);
 
-        var actual = PartyEnricher.GetPartyRole(cell);
+        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
 
+        found.ShouldBeTrue();
         actual.ShouldBe(expected);
     }
 
@@ -110,8 +119,9 @@ public class TestPartyEnricher
     {
         var cell = CellOf("1st Defendant", "2nd Defendant", "3rd Defendant");
 
-        var actual = PartyEnricher.GetPartyRole(cell);
+        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
 
+        found.ShouldBeTrue();
         actual.ShouldBe(PartyRole.Defendant);
     }
 
