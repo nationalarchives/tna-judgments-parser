@@ -1645,9 +1645,9 @@ internal class PartyEnricher : Enricher
     private static bool TryGetTwoDifferentRoles(WCell cell, out (PartyRole first, PartyRole second) roles)
     {
         var lines = cell.Contents.Where(block => !IsEmptyLine(block)).ToArray();
-        if (lines.Length == 2
-            && TryGetOneLinePartyRole(lines[0], out var role1)
-            && TryGetOneLinePartyRole(lines[1], out var role2)
+        if (lines is [WLine line1, WLine line2]
+            && TryGetOneLinePartyRole(line1, out var role1)
+            && TryGetOneLinePartyRole(line2, out var role2)
             && role1 != role2)
         {
             roles = (role1, role2);
@@ -1672,14 +1672,13 @@ internal class PartyEnricher : Enricher
     private static bool TryGetOneLinePartyRole(WCell cell, out PartyRole role)
     {
         var lines = cell.Contents.Where(block => !IsEmptyLine(block)).ToArray();
-        if (lines.Length == 1)
+        if (lines is [WLine line])
         {
-            return TryGetOneLinePartyRole(lines[0], out role);
+            return TryGetOneLinePartyRole(line, out role);
         }
 
         role = default;
         return false;
-
     }
 
     private static readonly Dictionary<string, PartyRole> OneLinePartyRoleLabels = new()
@@ -1767,21 +1766,10 @@ internal class PartyEnricher : Enricher
         ["Respondent/ First Defendant"] = PartyRole.Respondent
     };
 
-    private static bool TryGetOneLinePartyRole(IBlock block, out PartyRole role)
+    private static bool TryGetOneLinePartyRole(WLine line, out PartyRole role)
     {
-        if (block is not WLine line)
-        {
-            role = default;
-            return false;
-        }
-
-        var normalized = line.NormalizedContent;
-        if (OneLinePartyRoleLabels.TryGetValue(normalized, out role))
-        {
-            return true;
-        }
-
-        return TryGetPartyRole(normalized, out role);
+        return OneLinePartyRoleLabels.TryGetValue(line.NormalizedContent, out role)
+            || TryGetPartyRole(line.NormalizedContent, out role);
     }
 
     private static bool TryGetTwoLinePartyRole(WCell cell, out PartyRole role)
