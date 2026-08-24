@@ -59,9 +59,9 @@ internal class PartyEnricher : Enricher
             }
 
             var rest = before[i..];
-            var found = EnrichMultiLinePartyBockOrNull(rest);
-            found ??= EnrichMultiLinePartyBockOrNull2(rest);
-            found ??= EnrichMultiLinePartyBockOrNull3(rest);
+            var found = EnrichMultiLinePartyBlockOrNull(rest);
+            found ??= EnrichMultiLinePartyBlockWithInlineRolesOrNull(rest);
+            found ??= EnrichMultiLinePartyBlockWithTwoGroupsBeforeVOrNull(rest);
             if (found is not null)
             {
                 after.AddRange(found);
@@ -316,7 +316,7 @@ internal class PartyEnricher : Enricher
 
     /* multi-line */
 
-    private static List<IBlock> EnrichMultiLinePartyBockOrNull(IBlock[] rest, bool successive = false)
+    private static List<IBlock> EnrichMultiLinePartyBlockOrNull(IBlock[] rest, bool successive = false)
     {
         if (rest.Length == 0)
         {
@@ -363,7 +363,7 @@ internal class PartyEnricher : Enricher
             _ = rest[i];
         }
 
-        var firstGroupOfParites = Magic1(rest[i..]);
+        var firstGroupOfParites = EnrichFirstPartyGroupOrNull(rest[i..]);
         if (firstGroupOfParites is null)
         {
             return null;
@@ -390,7 +390,7 @@ internal class PartyEnricher : Enricher
             _ = rest[i];
         }
 
-        var secondGroupOfParites = Magic2(rest[i..]);
+        var secondGroupOfParites = EnrichSecondPartyGroupOrNull(rest[i..]);
         if (secondGroupOfParites is null)
         {
             return null;
@@ -417,14 +417,14 @@ internal class PartyEnricher : Enricher
             _ = rest[i];
         }
 
-        var thirdGroupOfParites = Magic2(rest[i..]);
+        var thirdGroupOfParites = EnrichSecondPartyGroupOrNull(rest[i..]);
         if (thirdGroupOfParites is not null)
         {
             enriched.AddRange(thirdGroupOfParites);
             i += thirdGroupOfParites.Count;
         }
 
-        var fourthGroupOfParites = Magic2(rest[i..]);
+        var fourthGroupOfParites = EnrichSecondPartyGroupOrNull(rest[i..]);
         if (fourthGroupOfParites is not null)
         {
             enriched.AddRange(fourthGroupOfParites);
@@ -443,7 +443,7 @@ internal class PartyEnricher : Enricher
             return enriched;
         }
 
-        var another = EnrichMultiLinePartyBockOrNull(rest[i..], true);
+        var another = EnrichMultiLinePartyBlockOrNull(rest[i..], true);
         if (another is not null)
         {
             enriched.AddRange(another);
@@ -453,7 +453,7 @@ internal class PartyEnricher : Enricher
         return enriched;
     }
 
-    private static List<IBlock> EnrichMultiLinePartyBockOrNull2(IBlock[] rest)
+    private static List<IBlock> EnrichMultiLinePartyBlockWithInlineRolesOrNull(IBlock[] rest)
     {
         // EWHC/Admin/2018/3311
         if (rest.Length == 0)
@@ -543,7 +543,7 @@ internal class PartyEnricher : Enricher
     }
 
     /* this one has two types of parties before the v */
-    private static List<IBlock> EnrichMultiLinePartyBockOrNull3(IBlock[] rest)
+    private static List<IBlock> EnrichMultiLinePartyBlockWithTwoGroupsBeforeVOrNull(IBlock[] rest)
     {
         // EWHC/Admin/2015/897
         if (rest.Length == 0)
@@ -574,7 +574,7 @@ internal class PartyEnricher : Enricher
 
         enriched.Add(line);
         i += 1;
-        var firstGroupOfParites = Magic1(rest[i..]);
+        var firstGroupOfParites = EnrichFirstPartyGroupOrNull(rest[i..]);
         if (firstGroupOfParites is null)
         {
             return null;
@@ -602,7 +602,7 @@ internal class PartyEnricher : Enricher
         }
 
         _ = rest[i];
-        var secondGroupOfParites = Magic1(rest[i..]);
+        var secondGroupOfParites = EnrichFirstPartyGroupOrNull(rest[i..]);
         if (secondGroupOfParites is null)
         {
             return null;
@@ -630,7 +630,7 @@ internal class PartyEnricher : Enricher
         }
 
         _ = rest[i];
-        var thirdGroupOfParites = Magic2(rest[i..]);
+        var thirdGroupOfParites = EnrichSecondPartyGroupOrNull(rest[i..]);
         if (thirdGroupOfParites is null)
         {
             return null;
@@ -653,17 +653,17 @@ internal class PartyEnricher : Enricher
         return null;
     }
 
-    private static List<IBlock> Magic1(IBlock[] rest)
+    private static List<IBlock> EnrichFirstPartyGroupOrNull(IBlock[] rest)
     {
-        return Magic(rest, IsFirstPartyType, GetFirstPartyRole);
+        return EnrichPartyNamesWithRoleLabelOrNull(rest, IsFirstPartyType, GetFirstPartyRole);
     }
 
-    private static List<IBlock> Magic2(IBlock[] rest)
+    private static List<IBlock> EnrichSecondPartyGroupOrNull(IBlock[] rest)
     {
-        return Magic(rest, IsSecondPartyType, GetSecondPartyRole);
+        return EnrichPartyNamesWithRoleLabelOrNull(rest, IsSecondPartyType, GetSecondPartyRole);
     }
 
-    private static List<IBlock> Magic(IBlock[] rest, Func<IBlock, bool> test, Func<IBlock, PartyRole> construct)
+    private static List<IBlock> EnrichPartyNamesWithRoleLabelOrNull(IBlock[] rest, Func<IBlock, bool> test, Func<IBlock, PartyRole> construct)
     {
         var i = 0;
         if (i == rest.Length)
@@ -1607,7 +1607,7 @@ internal class PartyEnricher : Enricher
         var rowCells = row.Cells.ToArray();
         if (rowCells.Length == 2)
         {
-            return EnrichRow2(row);
+            return EnrichTwoCellRow(row);
         }
 
         if (rowCells.Length != 3)
@@ -1663,7 +1663,7 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
-    private WRow EnrichRow2(WRow row)
+    private WRow EnrichTwoCellRow(WRow row)
     {
         var rowCells = row.Cells.ToArray();
         var first = (WCell)rowCells[0];
@@ -2243,7 +2243,7 @@ internal class PartyEnricher : Enricher
             return PartyRole.Appellant;
         }
 
-        return GetPartyRole2(one, two);
+        return GetPartyRoleForCombinedLabels(one, two);
     }
 
     private static PartyRole? GetNLinePartyRole(WCell cell)
@@ -2794,7 +2794,7 @@ internal class PartyEnricher : Enricher
             if (!string.IsNullOrWhiteSpace(one) &&
                 !string.IsNullOrWhiteSpace(two)) // not if at beginning or end of line
             {
-                return GetPartyRole2(one, two);
+                return GetPartyRoleForCombinedLabels(one, two);
             }
         }
 
@@ -2803,14 +2803,14 @@ internal class PartyEnricher : Enricher
             var (one, two) = s.Split(" and ", 2) switch { var x => (x[0], x[1]) };
             if (!string.IsNullOrWhiteSpace(one) && !string.IsNullOrWhiteSpace(two))
             {
-                return GetPartyRole2(one, two);
+                return GetPartyRoleForCombinedLabels(one, two);
             }
         }
 
-        return GetPartyRole1(s);
+        return GetPartyRoleForSingleLabel(s);
     }
 
-    private static PartyRole? GetPartyRole1(string s)
+    private static PartyRole? GetPartyRoleForSingleLabel(string s)
     {
         s = Regex.Replace(s, @"\s+", " ").Trim(' ', '/', '(', ')');
         if (s.StartsWith("Part 20 ", StringComparison.InvariantCultureIgnoreCase))
@@ -2902,7 +2902,7 @@ internal class PartyEnricher : Enricher
         return null;
     }
 
-    private static PartyRole? GetPartyRole2(string s1, string s2)
+    private static PartyRole? GetPartyRoleForCombinedLabels(string s1, string s2)
     {
         var role1 = GetPartyRole(s1);
         var role2 = GetPartyRole(s2);
