@@ -1622,6 +1622,23 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
+    public static bool TryGetPartyRole(string s, out PartyRole role)
+    {
+        if (s.Split('/', 2) is [var beforeSlash, var afterSlash]
+            && !string.IsNullOrWhiteSpace(beforeSlash) && !string.IsNullOrWhiteSpace(afterSlash))
+        {
+            return TryGetPartyRoleForCombinedLabels(beforeSlash, afterSlash, out role);
+        }
+
+        if (s.Split(" and ", 2) is [var beforeAnd, var afterAnd]
+            && !string.IsNullOrWhiteSpace(beforeAnd) && !string.IsNullOrWhiteSpace(afterAnd))
+        {
+            return TryGetPartyRoleForCombinedLabels(beforeAnd, afterAnd, out role);
+        }
+
+        return TryGetPartyRoleForSingleLabel(s, out role);
+    }
+
     public static bool TryGetPartyRole(WCell cell, out PartyRole role)
     {
         var lineContents = cell.Contents
@@ -2292,32 +2309,6 @@ internal class PartyEnricher : Enricher
         }
 
         return line;
-    }
-
-    /* new methods */
-
-    public static bool TryGetPartyRole(string s, out PartyRole role)
-    {
-        if (s.Contains('/'))
-        {
-            var (one, two) = s.Split('/', 2) switch { var x => (x[0], x[1]) };
-            if (!string.IsNullOrWhiteSpace(one) &&
-                !string.IsNullOrWhiteSpace(two)) // not if at beginning or end of line
-            {
-                return TryGetPartyRoleForCombinedLabels(one, two, out role);
-            }
-        }
-
-        if (s.Contains(" and "))
-        {
-            var (one, two) = s.Split(" and ", 2) switch { var x => (x[0], x[1]) };
-            if (!string.IsNullOrWhiteSpace(one) && !string.IsNullOrWhiteSpace(two))
-            {
-                return TryGetPartyRoleForCombinedLabels(one, two, out role);
-            }
-        }
-
-        return TryGetPartyRoleForSingleLabel(s, out role);
     }
 
     private static readonly HashSet<string> PrefixesToStrip =
