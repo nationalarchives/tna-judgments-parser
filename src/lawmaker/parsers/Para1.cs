@@ -50,9 +50,13 @@ public partial class LegislationParser
             // Special case: if the next number immediately follows the
             // previous Para1 number (e.g., h -> i, k -> l, u -> v, w -> x)
             // we treat it as a Para1 instead of Para2, despite being roman.
+            // Once a roman-numeral sub-list is under way, a later candidate is only
+            // accepted as its continuation if it is numerically sequential to the
+            // sub-paragraph it follows (e.g. (l) after (i), (ii) is not).
             var nextIsPara1 = next is Para2
-                && IsSubsequentAlphabetic(num.Text, next.Number.Text)
-                && children.Count == 0;
+                && (children.Count == 0
+                    ? IsSubsequentAlphabetic(num.Text, next.Number.Text)
+                    : IsRomanSequenceBroken(children[^1].Number.Text, next.Number.Text));
 
             if (nextIsPara1 || !Para1.IsValidChild(next))
             {

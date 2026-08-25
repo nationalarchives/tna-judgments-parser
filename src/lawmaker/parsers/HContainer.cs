@@ -571,6 +571,20 @@ public partial class LegislationParser
         return false;
     }
 
+    // Returns true if lo and hi are both plain lowercase roman numerals and hi's value
+    // isn't exactly one more than lo's. Used to stop a paragraph such as (l) being treated
+    // as continuing a roman-numeral sub-list from (i), (ii), since l is itself a valid
+    // (though here unrelated) roman numeral. Anything outside plain roman numerals (e.g. a
+    // z-prefixed or lettered-suffix form) is left alone, since it isn't a plain sequence.
+    private static bool IsRomanSequenceBroken(string lo, string hi)
+    {
+        lo = lo.Trim('(', ')');
+        hi = hi.Trim('(', ')');
+        if (!Regex.IsMatch(lo, @"^[ivxlcdm]+$") || !Regex.IsMatch(hi, @"^[ivxlcdm]+$"))
+            return false;
+        return Roman.LowerRomanToInt(hi) != Roman.LowerRomanToInt(lo) + 1;
+    }
+
 
 
     /*
