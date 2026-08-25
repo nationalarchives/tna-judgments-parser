@@ -20,40 +20,35 @@ internal class PartyEnricher : Enricher
         {
             if (IsInTheMatterOf3(before, i))
             {
-                var enriched3 = EnrichInTheMatterOf3(before, i);
-                after.AddRange(enriched3);
+                after.AddRange(EnrichInTheMatterOf3(before, i));
                 i += 3;
                 break;
             }
 
             if (IsInTheMatterOf4(before, i))
             {
-                var enriched4 = EnrichInTheMatterOf4(before, i);
-                after.AddRange(enriched4);
+                after.AddRange(EnrichInTheMatterOf4(before, i));
                 i += 4;
                 break;
             }
 
             if (IsThreeLinePartyBlock(before, i))
             {
-                var enriched3 = EnrichThreeLinePartyBlock(before, i);
-                after.AddRange(enriched3);
+                after.AddRange(EnrichThreeLinePartyBlock(before, i));
                 i += 3;
                 break;
             }
 
             if (IsFourLinePartyBlock(before, i))
             {
-                var enriched4 = EnrichFourLinePartyBlock(before, i);
-                after.AddRange(enriched4);
+                after.AddRange(EnrichFourLinePartyBlock(before, i));
                 i += 4;
                 break;
             }
 
             if (IsFiveLinePartyBlock(before, i))
             {
-                var enriched5 = EnrichFiveLinePartyBlock(before, i);
-                after.AddRange(enriched5);
+                after.AddRange(EnrichFiveLinePartyBlock(before, i));
                 i += 5;
                 break;
             }
@@ -1388,51 +1383,38 @@ internal class PartyEnricher : Enricher
             return EnrichTwoCellRow(row);
         }
 
-        if (rowCells.Length != 3)
-        {
-            return row;
-        }
-
-        var first = (WCell)rowCells[0];
-        var second = (WCell)rowCells[1];
-        var third = (WCell)rowCells[2];
-        if (!IsEmptyCell(first))
+        if (rowCells is not [WCell first, WCell second, WCell third] || IsCellWithContent(first))
         {
             return row;
         }
 
         if (TryGetPartyRole(third, out var role))
         {
-            second = EnrichCell(second, role);
-            third = EnrichCellWithPartyRole(third, role);
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                 first,
-                second,
-                third
+                EnrichCell(second, role),
+                EnrichCellWithPartyRole(third, role)
             ]);
         }
 
         if (IsInTheMatterOfSomething(second))
         {
-            second = EnrichInTheMatterOfSomething(second);
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                 first,
-                second,
+                EnrichInTheMatterOfSomething(second),
                 third
             ]);
         }
 
         if (TryGetTwoDifferentRoles(third, out var twoRoles))
         {
-            second = EnrichPartyNamesWithTwoRoles(second, twoRoles);
-            third = EnrichPartyTypesWithTwoRoles(third, twoRoles);
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                 first,
-                second,
-                third
+                EnrichPartyNamesWithTwoRoles(second, twoRoles),
+                EnrichPartyTypesWithTwoRoles(third, twoRoles)
             ]);
         }
 
@@ -1444,19 +1426,18 @@ internal class PartyEnricher : Enricher
         var rowCells = row.Cells.ToArray();
         var first = (WCell)rowCells[0];
         var second = (WCell)rowCells[1];
-        if (IsEmptyCell(first))
+
+        if (IsCellWithContent(first) && TryGetPartyRole(second, out var role))
         {
-            return row;
+            return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
+            [
+                EnrichCell(first, role),
+                EnrichCellWithPartyRole(second, role)
+            ]);
         }
 
-        if (!TryGetPartyRole(second, out var role))
-        {
-            return row;
-        }
+        return row;
 
-        first = EnrichCell(first, role);
-        second = EnrichCellWithPartyRole(second, role);
-        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties, [first, second]);
     }
 
     private bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
@@ -1615,11 +1596,10 @@ internal class PartyEnricher : Enricher
 
         if (TryGetPartyRole(roleCell, out var role))
         {
-            partyCell = EnrichCell(partyCell, role);
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                     before,
-                    partyCell,
+                    EnrichCell(partyCell, role),
                     after
             ]);
         }
