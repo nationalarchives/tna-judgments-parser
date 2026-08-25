@@ -305,6 +305,18 @@ public partial class LegislationParser
         List<IBlock> wrapUp = [];
         if (children.Count == 0)
             return wrapUp;
+        // A paragraph styled "DefPara" closes the whole list rather than continuing the
+        // last item, but it has already been absorbed into that item's own content by the
+        // time we get here. Peel any trailing DefPara paragraphs back out, as long as there's
+        // an actual list to close (closing words cannot be the only child, same as below).
+        if (children.Count > 1 && children.Last() is Leaf trailingLeaf)
+        {
+            while (trailingLeaf.Contents.Count > 1 && trailingLeaf.Contents[^1] is WLine trailingLine && trailingLine.HasStyle("DefPara"))
+            {
+                wrapUp.Insert(0, trailingLine);
+                trailingLeaf.Contents.RemoveAt(trailingLeaf.Contents.Count - 1);
+            }
+        }
         if (children.Last() is not UnnumberedLeaf leaf)
             // Closing Words must be the final child
             return wrapUp;
