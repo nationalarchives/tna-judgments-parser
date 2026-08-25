@@ -37,6 +37,31 @@ same release, both bump.
 
 ## Starting point
 
-`1.0.0` was set when the dual-emission `ukm:Parser` design landed. It is
-the baseline for everything downstream; the next leg behaviour change
-that ships will be the first bump.
+`1.0.0` was set when the dual-emission `ukm:Parser` design landed
+(2026-05-20), in anticipation of a first release that did not happen:
+the release was blocked by the flush-left dotted-numbering defect that
+`1.1.0` fixes. No AKN produced by `1.0.0` was ever published or exposed
+to an external consumer.
+
+Internal artifacts do exist. Batch runs from June and July 2026 wrote
+AKN to the transfer bucket after dual emission had landed, so those
+objects carry `Name="legislation" Value="1.0.0"`. That is precisely why
+the version distinction matters: `ukm:Parser` is what triage reads to
+tell pre-fix objects from post-fix ones, and without a bump they are
+indistinguishable.
+
+`1.1.0` is therefore the first bump, and — if release proceeds from
+here — the first version whose output is public.
+
+**Why MINOR and not MAJOR.** `1.1.0` rebuilds paragraph hierarchy from
+dotted numbering, which renumbers `paragraph_N` eIds: they are assigned
+by TOC position (`TocGenerator.EmitTocEntry`), so collapsing a flat run
+into a hierarchy both drops ids and repoints the survivors at different
+content. Against a published corpus that is squarely MAJOR. Against no
+external consumers it breaks nothing, and the MAJOR row is conditioned
+on breaking one.
+
+The corollary is that identifier stability starts at `1.1.0`, not
+before. After first release, removing or reassigning a published eId is
+a breaking change and bumps MAJOR. Adding an eId to content that had
+none is additive and does not.

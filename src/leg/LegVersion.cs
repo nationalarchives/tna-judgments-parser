@@ -8,7 +8,7 @@ namespace UK.Gov.Legislation {
 /// </summary>
 internal static class LegVersion {
 
-    internal const string Current = "1.0.0";
+    internal const string Current = "1.1.0";
 
 }
 
