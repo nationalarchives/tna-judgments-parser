@@ -1360,6 +1360,11 @@ internal class PartyEnricher : Enricher
         return enrichedRows;
     }
 
+    private static bool IsCellWithContent(ICell cell)
+    {
+        return !IsEmptyCell(cell);
+    }
+
     private static bool IsEmptyCell(ICell cell)
     {
         return cell.Contents.All(block => block is WLine line && IsEmptyLine(line));
