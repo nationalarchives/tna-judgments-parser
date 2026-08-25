@@ -104,10 +104,10 @@ public class BlockParser : IParser<IBlock>
     public List<R> MatchWhile<R>(Predicate<IBlock> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
     {
         List<R> matches = [];
-        while (Current() is IBlock r
+        while (!IsAtEnd()
+            && Current() is IBlock r
             && condition(r)
-            && Match(strategies) is R match
-            && !IsAtEnd())
+            && Match(strategies) is R match)
         {
             matches.Add(match);
         }
@@ -119,10 +119,10 @@ public class BlockParser : IParser<IBlock>
     public List<R>? MatchWhile<R>(Predicate<R> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
     {
         List<R> matches = [];
-        while (Current() is R r
+        while (!IsAtEnd()
+            && Current() is R r
             && condition(r)
-            && Match(strategies) is R match
-            && !IsAtEnd())
+            && Match(strategies) is R match)
         {
             matches.Add(match);
         }
