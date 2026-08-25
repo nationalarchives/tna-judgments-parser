@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using DocumentFormat.OpenXml.Wordprocessing;
-
 using UK.Gov.Legislation.Judgments.Utils;
 
 namespace UK.Gov.Legislation.Judgments.Parse;
@@ -855,23 +853,6 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static IInline[] MakeOrSplitParty(string text, RunProperties props, PartyRole role)
-    {
-        if (text.StartsWith("(1)") && text.Contains("(2)"))
-        {
-            // ewhc/admin/2022/273
-            var i = text.IndexOf("(2)");
-            var text1 = text.Substring(0, i);
-            var text2 = text.Substring(i);
-            var party1 = new WParty(text1, props) { Role = role };
-            var party2 = new WParty(text2, props) { Role = role };
-            return [party1, party2];
-        }
-
-        var party = new WParty(text, props) { Role = role };
-        return [party];
-    }
-
     private static WLine MakeParty(WLine line, PartyRole? role)
     {
         var lineContents = line.Contents.ToArray();
@@ -1255,7 +1236,7 @@ internal class PartyEnricher : Enricher
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                 first,
-                EnrichCell(second, role),
+                EnrichCellWithParty(second, role),
                 EnrichCellWithPartyRole(third, role)
             ]);
         }
@@ -1293,7 +1274,7 @@ internal class PartyEnricher : Enricher
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
-                EnrichCell(first, role),
+                EnrichCellWithParty(first, role),
                 EnrichCellWithPartyRole(second, role)
             ]);
         }
@@ -1419,7 +1400,7 @@ internal class PartyEnricher : Enricher
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
                 thisRowFirstCell,
-                EnrichCell(thisRowMiddleCell, role),
+                EnrichCellWithParty(thisRowMiddleCell, role),
                 thisRowLastCell
             ]);
         }
@@ -1577,221 +1558,74 @@ internal class PartyEnricher : Enricher
         (new Regex(@"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase), PartyRole.Respondent)
     ];
 
-    private WCell EnrichCell(WCell cell, PartyRole role)
+    private WCell EnrichCellWithParty(WCell cell, PartyRole role)
     {
         var contents = cell.Contents.Select(block =>
             {
-                if (block is WOldNumberedParagraph np)
+                return block switch
                 {
-                    // EWCA/Civ/2015/455
-                    var npContents = np.Contents.ToArray();
-                    if (npContents.Length != 1 || npContents[0] is not WText wText2)
-                    {
-                        return np;
-                    }
+                    WOldNumberedParagraph wOldNumberedParagraph =>
+                        wOldNumberedParagraph.Contents.ToArray() is [WText wText]
+                            ? new WOldNumberedParagraph(wOldNumberedParagraph, [new WParty(wText) { Role = role }])
+                            : wOldNumberedParagraph, // EWCA/Civ/2015/455
 
-                    var party2 = new WParty(wText2) { Role = role };
-                    return new WOldNumberedParagraph(np, [party2]);
-                }
+                    WLine line => EnrichLineWithParty(line, role),
 
-                if (block is not WLine line)
-                {
-                    return block;
-                }
-
-                var lineContents = line.Contents.ToArray();
-                if (lineContents.Length == 0)
-                {
-                    return line;
-                }
-
-                Func<IInline, bool> filter = inline =>
-                {
-                    if (inline is not WText wText)
-                    {
-                        return false;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(wText.Text))
-                    {
-                        return false;
-                    }
-
-                    var trimmed = wText.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
-                    {
-                        return false;
-                    }
-
-                    if (IsAnd(trimmed))
-                    {
-                        return false;
-                    }
-
-                    return true;
+                    _ => block
                 };
-                var filtered = lineContents.Where(filter);
-                if (filtered.Count() == 1)
-                {
-                    var mapped = lineContents.SelectMany(inline => filter(inline)
-                        ? MakeOrSplitParty(((WText)inline).Text, ((WText)inline).properties, role)
-                        : [inline]);
-                    return WLine.Make(line, mapped);
-                }
-
-                if (lineContents.Any(inline => inline is WText wt && Regex.IsMatch(wt.Text, @"^\(\d+\) ")) &&
-                    lineContents.All(inline => inline is WLineBreak || (inline is WText wt &&
-                        (string.IsNullOrEmpty(wt.Text) ||
-                            Regex.IsMatch(wt.Text, @"^\(\d+\) ")))))
-                {
-                    var mapped = lineContents.Select(inline =>
-                    {
-                        if (inline is WText wt)
-                        {
-                            if (string.IsNullOrEmpty(wt.Text))
-                            {
-                                return inline;
-                            }
-
-                            return new WParty(wt) { Role = role };
-                        }
-
-                        return inline;
-                    });
-                    return WLine.Make(line, mapped);
-                }
-
-                /* these should be rewritten so they do nothing if their conditions aren't met (instead of returning) */
-                if (lineContents.Length == 1)
-                {
-                    if (lineContents[0] is not WText wText)
-                    {
-                        return line;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(wText.Text))
-                    {
-                        return line;
-                    }
-
-                    var trimmed = wText.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
-                    {
-                        return line;
-                    }
-
-                    if (IsAnd(trimmed))
-                    {
-                        return line;
-                    }
-
-                    var party = new WParty(wText) { Role = role };
-                    return WLine.Make(line, [party]);
-                }
-
-                if (lineContents.Length == 2)
-                {
-                    if (lineContents[0] is not WText wText1)
-                    {
-                        return line;
-                    }
-
-                    if (lineContents[1] is not WText wText2)
-                    {
-                        return line;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(wText1.Text))
-                    {
-                        return line;
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(wText2.Text))
-                    {
-                        return line;
-                    }
-
-                    var trimmed = wText1.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
-                    {
-                        return line;
-                    }
-
-                    if (IsAnd(trimmed))
-                    {
-                        return line;
-                    }
-
-                    var party = new WParty(wText1) { Role = role };
-                    return WLine.Make(line, [party, lineContents[1]]);
-                }
-
-                if (lineContents.Length == 3)
-                {
-                    // [2021] EWCA Civ 1876
-                    if (lineContents[0] is WText wText1
-                        && lineContents[1] is WLineBreak
-                        && lineContents[2] is WText
-                        && string.Equals(wText1.Text, "SECRETARY OF STATE ", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var party = new WParty2(lineContents.Cast<ITextOrWhitespace>()) { Role = role };
-                        return WLine.Make(line, [party]);
-                    }
-                }
-
-                if (lineContents.All(inline => inline is WText))
-                {
-                    var party = new WParty2(lineContents.Cast<WText>());
-                    return WLine.Make(line, [party]);
-                }
-
-                if (lineContents.Length == 3)
-                {
-                    // EWHC/Ch/2018/2498
-                    if (lineContents[0] is not WText wText1)
-                    {
-                        return line;
-                    }
-
-                    if (lineContents[1] is not WTab)
-                    {
-                        return line;
-                    }
-
-                    if (lineContents[2] is not WText wText3)
-                    {
-                        return line;
-                    }
-
-                    if (!Regex.IsMatch(wText1.Text, @"^\d\.$"))
-                    {
-                        return line;
-                    }
-
-                    var trimmed = wText3.Text.Trim();
-                    if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
-                    {
-                        return line;
-                    }
-
-                    if (IsAnd(trimmed))
-                    {
-                        return line;
-                    }
-
-                    var party = new WParty(wText3) { Role = role };
-                    return WLine.Make(line,
-                    [
-                        lineContents[0],
-                        lineContents[1],
-                        party
-                    ]);
-                }
-
-                return line;
             }
-        );
+        ).ToArray();
         return new WCell(cell.Row, cell.Props, contents);
+    }
+
+    private static WLine EnrichLineWithParty(WLine line, PartyRole role)
+    {
+        var lineContents = line.Contents.ToArray();
+
+        return lineContents switch
+        {
+            [] => line,
+
+            [WText { Text: "SECRETARY OF STATE " }, WLineBreak, WText] // [2021] EWCA Civ 1876
+                => WLine.Make(line, [new WParty2(lineContents.Cast<ITextOrWhitespace>()) { Role = role }]),
+
+            _ when lineContents.OfType<WText>().Count(wText => IsNotBlank(wText)
+                    && !IsInBrackets(wText.Text)
+                    && !IsConnectorText(wText.Text)) == 1
+                => WLine.Make(line, lineContents.SelectMany(inline => EnrichWTextWithParties(inline, role)).ToArray()),
+
+            _ when lineContents.OfType<WText>()
+                               .Count(wText => IsNotBlank(wText) && !IsInBrackets(wText.Text)
+                                   && !IsConnectorText(wText.Text)) > 1
+                => WLine.Make(line, [new WParty2(lineContents.Cast<WText>()) { Role = role }]),
+
+            _ => line
+        };
+    }
+
+    private static IEnumerable<IInline> EnrichWTextWithParties(IInline inline, PartyRole role)
+    {
+        if (inline is WText text)
+        {
+            // Is this a case of two party names in one line - ewhc/admin/2022/273
+            if (text.Text.StartsWith("(1)") && text.Text.Contains("(2)"))
+            {
+                var i = text.Text.IndexOf("(2)", StringComparison.Ordinal);
+                return
+                [
+                    new WParty(text.Text[..i], text.properties) { Role = role },
+                    new WParty(text.Text[i..], text.properties) { Role = role }
+                ];
+            }
+
+            // Make sure this is the wText with a party name in it rather than some connection or descriptive text
+            if (IsNotBlank(text) && !IsConnectorText(text.Text) && !IsInBrackets(text.Text))
+            {
+                return [new WParty(text.Text, text.properties) { Role = role }];
+            }
+        }
+
+        return [inline];
     }
 
     private static bool IsNotBlank(WText wText)
@@ -1829,6 +1663,11 @@ internal class PartyEnricher : Enricher
     {
         var trimmed = s.Trim();
         return trimmed.StartsWith('(') && trimmed.EndsWith(')');
+    }
+
+    private static bool IsConnectorText(string s)
+    {
+        return Regex.IsMatch(s, @"^(\s|_|-|–|\d|\.|\+|&|and)*$", RegexOptions.IgnoreCase);
     }
 
     private WCell EnrichPartyNamesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
