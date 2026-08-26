@@ -55,6 +55,8 @@ public partial class LegislationParser
 
         if (i == Body.Count)
             return new DefinitionLeaf { Contents = intro };
+        if (IsEndOfQuotedStructure(intro))
+            return new DefinitionLeaf { Contents = intro };
 
         List<IDivision> children = [];
         List<IBlock> wrapUp = [];

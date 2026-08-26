@@ -60,6 +60,16 @@ class LastLine()
                     inlines.AddRange(line.Contents);
             }
         }
+        // If the leaf's own last content block isn't a text line (e.g. a table
+        // substituted by a quoted structure), its closing content - including any
+        // end quote - lives inside that block instead, so look there rather than
+        // at the leaf's last ILine block, which would otherwise be earlier text.
+        if (leaf.Contents?.LastOrDefault() is IBlock last && last is not ILine)
+        {
+            var fromLastBlock = GetLastLine(leaf.Contents);
+            if (fromLastBlock != null)
+                return fromLastBlock;
+        }
         return IInline.ToString(inlines, "");
     }
 
@@ -178,10 +188,20 @@ class LastLine()
             return ReplaceLastOf(mod.Contents, replace);
         if (last is BlockQuotedStructure qs)
             return Replace(qs.Contents, replace);
+        if (last is LdappTableBlock tableBlock)
+        {
+            ICell lastCell = tableBlock.Table.Rows?.LastOrDefault()?.Cells?.LastOrDefault();
+            if (lastCell is null)
+                return false;
+            var cellContents = lastCell.Contents.ToList();
+            var result = ReplaceLastOf(cellContents, replace);
+            if (result)
+                lastCell.Contents = cellContents;
+            return result;
+        }
 
         if (last is not WLine line)
             return false;
-        // tables?
         WLine replacement = replace(line);
         if (replacement is null)
             return false;

@@ -259,6 +259,10 @@ public partial class LegislationParser
     {
         if (text == null)
             return false;
+        // Trailing whitespace (e.g. a literal space after a full stop) would
+        // otherwise defeat the '$'-anchored patterns below, since GetLastLine
+        // builds this string directly from a division's inlines without trimming.
+        text = text.TrimEnd();
 
         // A quote depth of 0 would mean we're not in a QuotedStructure to begin with,
         // so we can't be at the end of one.
@@ -426,7 +430,7 @@ public partial class LegislationParser
             {
                 // ParseLine has increased i so reset it before re-parsing
                 i = save;
-                child = ParsePara2(line);
+                child = ParsePara2(Body[save] as WLine);
             }
             if (child is null)
             {
@@ -594,7 +598,11 @@ public partial class LegislationParser
                     return null;
                 endText = wText.Text + endText;
                 inlineCount += 1;
-                match = Regex.Match(endText, EndPattern);
+                // Trim trailing whitespace (e.g. a literal space after a full stop) before
+                // matching, since EndPattern is anchored at the end of the string and would
+                // otherwise never match; match.Index still slices endText correctly, since
+                // trimming only removes characters after the point being matched.
+                match = Regex.Match(endText.TrimEnd(), EndPattern);
                 if (match.Success)
                     break;
             }
