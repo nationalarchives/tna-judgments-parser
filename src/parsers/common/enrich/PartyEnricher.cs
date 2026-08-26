@@ -1657,12 +1657,13 @@ internal class PartyEnricher : Enricher
     }
 
     /// <summary>
-    /// Returns true if this is a string enclosed in brackets
+    /// Returns true if this is a string enclosed in brackets unless there are nested brackets
+    /// "(some string in brackets)   " => true
+    /// "(3) Appellant CAKE (Cats Against Kipper Exploitation)" => false
     /// </summary>
     private static bool IsInBrackets(string s)
     {
-        var trimmed = s.Trim();
-        return trimmed.StartsWith('(') && trimmed.EndsWith(')');
+        return Regex.IsMatch(s, @"^\s*\([^()]+\)\s*$", RegexOptions.IgnoreCase);
     }
 
     private static bool IsConnectorText(string s)
