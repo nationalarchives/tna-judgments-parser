@@ -11,6 +11,16 @@ namespace UK.Gov.Legislation.Judgments.Parse;
 
 internal class PartyEnricher : Enricher
 {
+    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
+    {
+        throw new NotSupportedException();
+    }
+
+    protected override WLine Enrich(WLine line)
+    {
+        throw new NotSupportedException();
+    }
+
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
         var before = blocks.ToArray();
@@ -66,7 +76,7 @@ internal class PartyEnricher : Enricher
             after.Add(before[i] switch
             {
                 WTable table => EnrichTable(table),
-                WLine line => Enrich(line),
+                WLine line => EnrichLineWithDocTitle(line),
                 _ => before[i]
             });
             i += 1;
@@ -1315,13 +1325,6 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-
-    protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
-    {
-        return line;
-    }
-
-
     /* tables */
 
     private WTable EnrichTable(WTable table)
@@ -2233,25 +2236,14 @@ internal class PartyEnricher : Enricher
         return new WCell(cell.Row, cell.Props, [line]);
     }
 
-    protected override WLine Enrich(WLine line)
+    private WLine EnrichLineWithDocTitle(WLine line)
     {
-        var lineContents = line.Contents.ToArray();
-        if (lineContents.Length != 1)
+        return line.Contents.ToArray() switch
         {
-            return line;
-        }
-
-        if (lineContents[0] is not WText text)
-        {
-            return line;
-        }
-
-        if (text.Text.StartsWith("IN THE MATTER OF ", StringComparison.InvariantCultureIgnoreCase))
-        {
-            return WLine.Make(line, [new WDocTitle(text)]);
-        }
-
-        return line;
+            [WText wText] when wText.Text.StartsWith("IN THE MATTER OF ", StringComparison.InvariantCultureIgnoreCase)
+                => WLine.Make(line, [new WDocTitle(wText)]),
+            _ => line
+        };
     }
 
     private static readonly HashSet<string> PrefixesToStrip =
