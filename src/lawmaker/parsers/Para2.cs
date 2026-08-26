@@ -43,7 +43,20 @@ public partial class LegislationParser
                 break;
 
             var save = i;
-            IDivision next = ParseNextBodyDivision(l => ParseAndMemoize(l, "Para2", ParsePara2));
+            // Try Para3 (e.g. a sub-sub-paragraph like (aa)) in addition to the
+            // existing Para2 check, so it is recognised as this item's child before
+            // the generic dispatch order reaches Para1, whose broader lowercase-letter
+            // pattern would otherwise wrongly claim it as a sibling of the outer
+            // lettered paragraph.
+            IDivision next = ParseNextBodyDivision(l => ParseAndMemoize(l, "Para2", ParsePara2) ?? ParseAndMemoize(l, "Para3", ParsePara3));
+            // A Para3 candidate is only genuinely a child of this Para2 item if it is
+            // actually indented further than it. Otherwise it is a sibling at the same
+            // level that happens to use a disjoint format.
+            if (next is Para3 && Body[save] is WLine candidateLine && !LineIsIndentedMoreThan(candidateLine, line))
+            {
+                i = save;
+                break;
+            }
             if (!Para2.IsValidChild(next))
             {
                 i = save;

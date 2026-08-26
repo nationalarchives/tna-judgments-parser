@@ -102,13 +102,30 @@ internal interface Para3
 
     public static bool IsValidNumber(string num)
     {
-        var pattern = @"^\([A-Z]+\)$";
+        // Uppercase letters (A), or a single lowercase letter repeated exactly
+        // twice (aa), (bb), ... (zz), the convention for a sub-sub-paragraph
+        // nested under a roman-numeral sub-paragraph.
+        var pattern = @"^\([A-Z]+\)$|^\(([a-z])\1\)$";
         return Regex.IsMatch(num, pattern);
+    }
+
+    public static bool IsValidChild(IDivision child)
+    {
+        // A sub-sub-paragraph such as (aa)/(bb) is always a leaf: any roman-numeral
+        // item that follows it sits at a shallower indent than it does, so such an
+        // item belongs to the para2 item above it, not to this one.
+        return child switch
+        {
+            WDummyDivision
+            or UnnumberedParagraph
+                => true,
+            _ => false,
+        };
     }
 
 }
 
-internal class Para3Branch : Branch, Para2
+internal class Para3Branch : Branch, Para2, Para3
 {
 
     public override string Name { get; internal init; } = "level";
@@ -118,7 +135,7 @@ internal class Para3Branch : Branch, Para2
 }
 
 
-internal class Para3Leaf : Leaf, Para2
+internal class Para3Leaf : Leaf, Para2, Para3
 {
 
     public override string Name { get; internal init; } = "level";
