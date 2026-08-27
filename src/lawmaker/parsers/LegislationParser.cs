@@ -1,15 +1,19 @@
 #nullable enable
-using System.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+
 using DocumentFormat.OpenXml.Packaging;
+
 using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Lawmaker.Headers;
+
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using CaseLaw = UK.Gov.NationalArchives.CaseLaw.Parse;
 using DOCX = UK.Gov.Legislation.Judgments.DOCX;
-using UK.Gov.Legislation.Lawmaker.Headers;
-using UK.Gov.Legislation.Judgments.Parse;
 
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -38,7 +42,7 @@ public partial class LegislationParser
         return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
     }
 
-        public static Document Parse(WordprocessingDocument doc, LegislationClassifier classifier, LanguageService languageService)
+    public static Document Parse(WordprocessingDocument doc, LegislationClassifier classifier, LanguageService languageService)
     {
         CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
         WImage.Get(doc);
@@ -64,9 +68,9 @@ public partial class LegislationParser
     }
 
     private readonly ILogger Logger = Logging.Factory.CreateLogger<LegislationParser>();
-    private ProvisionRecords provisionRecords;
+    private readonly ProvisionRecords provisionRecords;
     private readonly Frames frames;
-    private Dictionary<string, Dictionary<string, string>>? Styles { get;  init; }
+    private Dictionary<string, Dictionary<string, string>>? Styles { get; init; }
 
 
     int parseDepth = 0;
@@ -76,14 +80,21 @@ public partial class LegislationParser
 
     private Lawmaker.Document Parse()
     {
-        Logger.LogDebug($"Begin parse");
-
-        Logger.LogDebug($"Parsing header...");
-        ParseAndEnrichHeader();
-        Logger.LogDebug($"Parsing body...");
-        ParseBody();
-        Logger.LogDebug($"Parsing conclusions...");
-        ParseConclusions();
+        try
+        {
+            Logger.LogDebug($"Begin parse");
+            Logger.LogDebug($"Parsing header...");
+            ParseAndEnrichHeader();
+            Logger.LogDebug($"Parsing body...");
+            ParseBody();
+            Logger.LogDebug($"Parsing conclusions...");
+            ParseConclusions();
+        }
+        catch (Exception ex)
+        {
+            var blockText = (i >= 0 && i < Body.Count) ? Body[i]?.ToString() : null;
+            throw new BlockParsingException(i, blockText, ex);
+        }
 
         if (i != Body.Count)
             Logger.LogWarning("parsing did not complete: {}", i);
@@ -98,7 +109,8 @@ public partial class LegislationParser
         quotationEnricher.EnrichDivisions(body);
 
         FootnoteEnricher footnoteEnricher = new();
-        FootnoteHeaderVisitor footnoteHeaderVisitor = new() {
+        FootnoteHeaderVisitor footnoteHeaderVisitor = new()
+        {
             FootnoteEnricher = footnoteEnricher,
         };
 
