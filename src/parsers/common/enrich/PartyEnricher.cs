@@ -764,13 +764,13 @@ internal class PartyEnricher : Enricher
         }
 
         if (lineContents.All(inline => inline is WText) &&
-            lineContents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text)))
+            lineContents.Cast<WText>().Any(IsNotBlank))
         {
             return true;
         }
 
         if (lineContents.All(inline => inline is ITextOrWhitespace) &&
-            lineContents.Any(inline => inline is WText wText && !string.IsNullOrWhiteSpace(wText.Text)))
+            lineContents.Any(inline => inline is WText wText && IsNotBlank(wText)))
         {
             return true;
         }
@@ -782,7 +782,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(wText1.Text))
+            if (IsBlank(wText1))
             {
                 return false;
             }
@@ -793,28 +793,28 @@ internal class PartyEnricher : Enricher
         if (lineContents.Length == 2)
         {
             if (lineContents[0] is WTab && lineContents[1] is WText wText2 &&
-                !string.IsNullOrWhiteSpace(wText2.Text)) // EWHC/Fam/2017/3707
+                IsNotBlank(wText2)) // EWHC/Fam/2017/3707
             {
                 return true;
             }
 
             if (lineContents[0] is WText wText3 && lineContents[1] is WText wText4 &&
-                !string.IsNullOrWhiteSpace(wText3.Text) &&
-                string.IsNullOrWhiteSpace(wText4.Text)) // EWCA/Crim/2014/465
+                IsNotBlank(wText3) &&
+                IsBlank(wText4)) // EWCA/Crim/2014/465
             {
                 return true;
             }
 
             if (lineContents[0] is WText wText5 && lineContents[1] is WText wText6 &&
                 Regex.IsMatch(wText5.Text, @"^\(\d\) +$") &&
-                !string.IsNullOrWhiteSpace(wText6.Text))
+                IsNotBlank(wText6))
             {
                 return true;
             }
 
             if (lineContents[0] is WText wText7 && lineContents[1] is WText wText8 &&
                 Regex.IsMatch(wText7.Text, @"^\d\. +$") &&
-                !string.IsNullOrWhiteSpace(wText8.Text)) // EWCA/Civ/2004/993
+                IsNotBlank(wText8)) // EWCA/Civ/2004/993
             {
                 return true;
             }
@@ -840,7 +840,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(wText2.Text))
+            if (IsNotBlank(wText2))
             {
                 return false;
             }
@@ -866,7 +866,7 @@ internal class PartyEnricher : Enricher
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(wText2.Text))
+            if (IsNotBlank(wText2))
             {
                 return false;
             }
@@ -906,14 +906,14 @@ internal class PartyEnricher : Enricher
         }
 
         if (lineContents.All(inline => inline is WText) &&
-            lineContents.Cast<WText>().Any(wText => !string.IsNullOrWhiteSpace(wText.Text)))
+            lineContents.Cast<WText>().Any(IsNotBlank))
         {
             var party = new WParty2(lineContents.Cast<WText>()) { Role = role };
             return WLine.Make(line, [party]);
         }
 
         if (lineContents.All(inline => inline is ITextOrWhitespace) &&
-            lineContents.Any(inline => inline is WText wText && !string.IsNullOrWhiteSpace(wText.Text)))
+            lineContents.Any(inline => inline is WText wText && IsNotBlank(wText)))
         {
             var before = lineContents.TakeWhile(inline => inline is not IFormattedText).ToArray();
             var main = lineContents.Skip(before.Length);
@@ -2025,16 +2025,41 @@ internal class PartyEnricher : Enricher
         return new WCell(cell.Row, cell.Props, contents);
     }
 
-    private static bool IsV(string s)
+    private static bool IsNotBlank(WText wText)
     {
-        char[] trim = { ' ', '-', '–' };
-        return s.Trim(trim).ToLower() == "v";
+        return !IsBlank(wText);
     }
 
+    private static bool IsBlank(WText wText)
+    {
+        return string.IsNullOrWhiteSpace(wText.Text);
+    }
+
+    /// <summary>
+    /// Returns true if this is a "v" string
+    /// Trims ' ', '-', '–' characters and uses case insensitive comparison
+    /// </summary>
+    private static bool IsV(string s)
+    {
+        return s.Trim(' ', '-', '–').Equals("v", StringComparison.InvariantCultureIgnoreCase);
+    }
+
+    /// <summary>
+    /// Returns true if this is an "and" string
+    /// Trims ' ', '-', '–' characters and uses case insensitive comparison
+    /// </summary>
     private static bool IsAnd(string s)
     {
-        char[] trim = { ' ', '-', '–' };
-        return s.Trim(trim).ToLower() == "and";
+        return s.Trim(' ', '-', '–').Equals("and", StringComparison.InvariantCultureIgnoreCase);
+    }
+
+    /// <summary>
+    /// Returns true if this is a string enclosed in brackets
+    /// </summary>
+    private static bool IsInBrackets(string s)
+    {
+        var trimmed = s.Trim();
+        return trimmed.StartsWith('(') && trimmed.EndsWith(')');
     }
 
     private WCell EnrichPartyNamesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
@@ -2065,20 +2090,19 @@ internal class PartyEnricher : Enricher
                     return cell;
                 }
 
-                if (string.IsNullOrWhiteSpace(wText.Text))
+                if (IsBlank(wText))
                 {
                     contents.Add(block);
                     continue;
                 }
 
-                var trimmed = wText.Text.Trim();
-                if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
+                if (IsInBrackets(wText.Text))
                 {
                     contents.Add(block);
                     continue;
                 }
 
-                if (IsAnd(trimmed))
+                if (IsAnd(wText.Text))
                 {
                     andFound = true;
                     contents.Add(block);
@@ -2118,26 +2142,25 @@ internal class PartyEnricher : Enricher
                     continue;
                 }
 
-                if (!string.IsNullOrWhiteSpace(wText1.Text))
+                if (IsNotBlank(wText1))
                 {
                     contents.Add(block);
                     continue;
                 }
 
-                if (string.IsNullOrWhiteSpace(wText2.Text))
+                if (IsBlank(wText2))
                 {
                     contents.Add(block);
                     continue;
                 }
 
-                var trimmed = wText2.Text.Trim();
-                if (trimmed.StartsWith('(') && trimmed.EndsWith(')'))
+                if (IsInBrackets(wText2.Text))
                 {
                     contents.Add(block);
                     continue;
                 }
 
-                if (IsAnd(trimmed))
+                if (IsAnd(wText2.Text))
                 {
                     andFound = true;
                     contents.Add(block);
