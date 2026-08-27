@@ -5,7 +5,9 @@ namespace UK.Gov.Legislation.Lawmaker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -39,7 +41,7 @@ public class BlockParser : IParser<IBlock>
     // for checking within the bounds of the Document Body.
     public IBlock? Peek(int num = 1)
     {
-        int peekIndex = i + num;
+        var peekIndex = i + num;
         if (peekIndex < 0 || peekIndex >= Body.Count)
             return null;
         return Body[peekIndex];
@@ -47,7 +49,7 @@ public class BlockParser : IParser<IBlock>
 
     public R? Peek<R>(IParser<IBlock>.ParseStrategy<R> strategy)
     {
-        int save = Save();
+        var save = Save();
         R? result = strategy(this);
         Restore(save);
         return result;
@@ -81,9 +83,9 @@ public class BlockParser : IParser<IBlock>
     public R? Match<R>(IParser<IBlock>.ParseStrategy<R> strategy)
     {
         // TODO: memoize here if needed
-        int save = this.Save();
+        var save = Save();
         R? block = strategy(this);
-        if (block == null) this.Restore(save);
+        if (block == null) Restore(save);
         return block;
     }
 

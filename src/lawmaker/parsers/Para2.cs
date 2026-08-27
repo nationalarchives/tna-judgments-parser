@@ -1,66 +1,66 @@
 
 using System.Collections.Generic;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.Legislation.Lawmaker
+namespace UK.Gov.Legislation.Lawmaker;
+
+
+public partial class LegislationParser
 {
 
-    public partial class LegislationParser
+    private HContainer ParseCurrentAsPara2()
     {
+        if (Current() is not WLine line)
+            return null;
+        return ParsePara2(line);
+    }
 
-        private HContainer ParseCurrentAsPara2() {
-            if (Current() is not WLine line)
-                return null;
-            return ParsePara2(line);
-        }
+    private HContainer ParsePara2(WLine line)
+    {
+        if (line is not WOldNumberedParagraph np)
+            return null;
+        var numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
+        if (!Para2.IsValidNumber(numText))
+            return null;
 
-        private HContainer ParsePara2(WLine line)
+        i += 1;
+
+        IFormattedText num = np.Number;
+        List<IBlock> intro = HandleParagraphs(np, l => ParseAndMemoize(l, "Para2", ParsePara2));
+
+        if (IsEndOfQuotedStructure(intro))
+            return new Para2Leaf { Number = num, Contents = intro };
+
+        List<IDivision> children = [];
+        List<IBlock> wrapUp = [];
+
+        var finalChildStart = i;
+        while (i < Body.Count)
         {
-            if (line is not WOldNumberedParagraph np)
-                return null;
-            string numText = IgnoreQuotedStructureStart(np.Number.Text, quoteDepth);
-            if (!Para2.IsValidNumber(numText))
-                return null;
+            if (BreakFromProv1())
+                break;
 
-            i += 1;
-
-            IFormattedText num = np.Number;
-            List<IBlock> intro = HandleParagraphs(np, l => ParseAndMemoize(l, "Para2", ParsePara2));
-
-            if (IsEndOfQuotedStructure(intro))
-                return new Para2Leaf { Number = num, Contents = intro };
-
-            List<IDivision> children = [];
-            List<IBlock> wrapUp = [];
-
-            int finalChildStart = i;
-            while (i < Body.Count)
+            var save = i;
+            IDivision next = ParseNextBodyDivision(l => ParseAndMemoize(l, "Para2", ParsePara2));
+            if (!Para2.IsValidChild(next))
             {
-                if (BreakFromProv1())
-                    break;
-
-                int save = i;
-                IDivision next = ParseNextBodyDivision(l => ParseAndMemoize(l, "Para2", ParsePara2));
-                if (!Para2.IsValidChild(next))
-                {
-                    i = save;
-                    break;
-                }
-                children.Add(next);
-                finalChildStart = save;
-
-                if (IsEndOfQuotedStructure(next))
-                    break;
+                i = save;
+                break;
             }
-            wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
+            children.Add(next);
+            finalChildStart = save;
 
-            if (children.Count == 0)
-                return new Para2Leaf { Number = num, Contents = intro };
-            else
-                return new Para2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
+            if (IsEndOfQuotedStructure(next))
+                break;
         }
+        wrapUp.AddRange(HandleWrapUp(children, finalChildStart));
 
+        if (children.Count == 0)
+            return new Para2Leaf { Number = num, Contents = intro };
+        else
+            return new Para2Branch { Number = num, Intro = intro, Children = children, WrapUp = wrapUp };
     }
 
 }
