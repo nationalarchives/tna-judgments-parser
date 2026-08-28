@@ -1595,7 +1595,16 @@ internal class PartyEnricher : Enricher
         ["Interested Party"] = PartyRole.InterestedParty,
         ["Interested parties"] = PartyRole.InterestedParty,
 
+        ["intervener"] = PartyRole.Intervener,
+        ["interveners"] = PartyRole.Intervener,
+
         ["Petitioner"] = PartyRole.Petitioner,
+        ["Petitioners"] = PartyRole.Petitioner,
+
+        ["requested person"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
+        ["requested persons"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
+
+        ["requesting state"] = PartyRole.RequestingState,
 
         ["Respondent"] = PartyRole.Respondent,
         ["Respondents"] = PartyRole.Respondent,
@@ -2166,38 +2175,6 @@ internal class PartyEnricher : Enricher
         "Inquiry " // [2022] EWHC 189 (Pat)
     ];
 
-    private static readonly Dictionary<string, PartyRole> SingleLabelPartyRoles = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["appellant"] = PartyRole.Appellant,
-        ["appellants"] = PartyRole.Appellant,
-
-        ["applicant"] = PartyRole.Applicant,
-        ["applicants"] = PartyRole.Applicant,
-
-        ["claimant"] = PartyRole.Claimant,
-        ["claimants"] = PartyRole.Claimant,
-
-        ["defendant"] = PartyRole.Defendant,
-        ["defendants"] = PartyRole.Defendant,
-
-        ["petitioner"] = PartyRole.Petitioner,
-        ["petitioners"] = PartyRole.Petitioner,
-
-        ["respondent"] = PartyRole.Respondent,
-        ["respondents"] = PartyRole.Respondent,
-
-        ["interested party"] = PartyRole.InterestedParty,
-        ["interested parties"] = PartyRole.InterestedParty,
-
-        ["intervener"] = PartyRole.Intervener,
-        ["interveners"] = PartyRole.Intervener,
-
-        ["requested person"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
-        ["requested persons"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
-
-        ["requesting state"] = PartyRole.RequestingState
-    };
-
     private static bool TryGetPartyRoleForSingleLabel(string s, out PartyRole role)
     {
         s = Regex.Replace(s, @"\s+", " ").Trim(' ', '/', '(', ')');
@@ -2217,7 +2194,7 @@ internal class PartyEnricher : Enricher
             s = s.Substring(s.IndexOf(' ') + 1);
         }
 
-        return SingleLabelPartyRoles.TryGetValue(s, out role);
+        return OneLinePartyRoleLabels.TryGetValue(s, out role);
     }
 
     private static bool TryGetPartyRoleForCombinedLabels(string s1, string s2, out PartyRole role)
