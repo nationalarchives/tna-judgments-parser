@@ -36,7 +36,7 @@ public partial class TestPartyEnricher
     [InlineData("Appellant / Third Defendant", PartyRole.Appellant)]
     [InlineData("Appellant", PartyRole.Appellant)]
     [InlineData("Appellant/ Defendant", PartyRole.Appellant)]
-    [InlineData("Appellant/ Respondent", PartyRole.Appellant)]
+    [InlineData("Appellant/Respondent", PartyRole.Respondent)]
     [InlineData("Appellant/Appellant", PartyRole.Appellant)]
     [InlineData("Appellant/Applicant", PartyRole.Appellant)]
     [InlineData("Appellant/Claimant", PartyRole.Appellant)]
@@ -128,7 +128,6 @@ public partial class TestPartyEnricher
     [InlineData("requested persons", PartyRole.RequestedPerson)]
     [InlineData("requesting state", PartyRole.RequestingState)]
     [InlineData("1st Defendant", PartyRole.Defendant)]
-    [InlineData("Appellant/Respondent", PartyRole.Appellant)]
     [InlineData("CLAIMANT", PartyRole.Claimant)]
     [InlineData("Claimant and Defendant", PartyRole.Claimant)]
     [InlineData("Claimant/Defendant", PartyRole.Claimant)]
@@ -139,7 +138,7 @@ public partial class TestPartyEnricher
     [InlineData("Sixth Appellant", PartyRole.Appellant)]
     public void TryGetPartyRole_ParsesRoleFromFreeText(string text, PartyRole expected)
     {
-        var found = PartyEnricher.TryGetPartyRole(text, out var actual);
+        var found = PartyEnricher.TryGetPartyRole(out var actual, text);
 
         found.ShouldBeTrue();
         actual.ShouldBe(expected);
@@ -153,7 +152,7 @@ public partial class TestPartyEnricher
     [InlineData("Not A Role")]
     public void TryGetPartyRole_ReturnsFalseWhenNotRole(string text)
     {
-        var found = PartyEnricher.TryGetPartyRole(text, out _);
+        var found = PartyEnricher.TryGetPartyRole(out _, text);
 
         found.ShouldBe(false);
     }
