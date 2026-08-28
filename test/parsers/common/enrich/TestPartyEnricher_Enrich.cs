@@ -11,7 +11,7 @@ using Xunit;
 
 namespace test.parsers.common.enrich;
 
-public class TestPartyEnricher
+public partial class TestPartyEnricher
 {
     private static readonly PartyEnricher PartyEnricher = new();
 
@@ -50,94 +50,6 @@ public class TestPartyEnricher
     private static WTable TableOf(WRow[] rows)
     {
         return new WTable(null, null, null, rows);
-    }
-
-    [Theory]
-    [InlineData("Claimant", PartyRole.Claimant)]
-    [InlineData("Claimants", PartyRole.Claimant)]
-    [InlineData("CLAIMANT", PartyRole.Claimant)]
-    [InlineData("(Claimant)", PartyRole.Claimant)]
-    [InlineData("First Claimant", PartyRole.Claimant)]
-    [InlineData("1st Defendant", PartyRole.Defendant)]
-    [InlineData("Third Respondent", PartyRole.Respondent)]
-    [InlineData("Sixth Appellant", PartyRole.Appellant)]
-    [InlineData("Applicant", PartyRole.Applicant)]
-    [InlineData("Petitioner", PartyRole.Petitioner)]
-    [InlineData("Interested Party", PartyRole.InterestedParty)]
-    [InlineData("Interested Parties", PartyRole.InterestedParty)]
-    [InlineData("Intervener", PartyRole.Intervener)]
-    [InlineData("Interveners", PartyRole.Intervener)]
-    [InlineData("Requested Person", PartyRole.RequestedPerson)]
-    [InlineData("Requesting State", PartyRole.RequestingState)]
-    [InlineData("Third Party", PartyRole.ThirdParty)]
-    [InlineData("Part 20 Defendant", PartyRole.Defendant)]
-    [InlineData("Claimant/Defendant", PartyRole.Claimant)]
-    [InlineData("Appellant/Respondent", PartyRole.Appellant)]
-    [InlineData("Respondent/Appellant", PartyRole.Appellant)]
-    [InlineData("Defendant/Applicant", PartyRole.Applicant)]
-    [InlineData("Claimant and Defendant", PartyRole.Claimant)]
-    [InlineData("Not A Role", null)]
-    [InlineData("Claimant/NotARole", null)]
-    public void GetPartyRole_ParsesRoleFromFreeText(string text, PartyRole? expected)
-    {
-        var found = PartyEnricher.TryGetPartyRole(text, out var actual);
-
-        found.ShouldBe(expected is not null);
-        if (expected is not null)
-        {
-            actual.ShouldBe(expected.Value);
-        }
-    }
-
-    [Theory]
-    [InlineData("Appellant", PartyRole.Appellant)]
-    [InlineData("Claimant", PartyRole.Claimant)]
-    [InlineData("Applicant", PartyRole.Applicant)]
-    [InlineData("Defendant", PartyRole.Defendant)]
-    [InlineData("Respondent", PartyRole.Respondent)]
-    [InlineData("Petitioner", PartyRole.Petitioner)]
-    [InlineData("Interested Party", PartyRole.InterestedParty)]
-    [InlineData("1st Claimant", PartyRole.Claimant)]
-    [InlineData("Jane Doe", null)]
-    public void GetPartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText(string text, PartyRole? expected)
-    {
-        var cell = CellOf(text);
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBe(expected is not null);
-        if (expected is not null)
-        {
-            actual.ShouldBe(expected.Value);
-        }
-    }
-
-    [Theory]
-    [InlineData("Claimant/", "Respondent", PartyRole.Respondent)]
-    [InlineData("Appellants/", "Claimants", PartyRole.Appellant)]
-    [InlineData("Respondent", "Defendant", PartyRole.Respondent)]
-    [InlineData("1st Respondent", "2nd Respondent", PartyRole.Respondent)]
-    [InlineData("Defendant/", "Applicant", PartyRole.Applicant)]
-    public void GetPartyRole_Cell_WithTwoNonEmptyLines_ParsesRoleFromCombinedText(string first, string second,
-        PartyRole expected)
-    {
-        var cell = CellOf(first, second);
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBeTrue();
-        actual.ShouldBe(expected);
-    }
-
-    [Fact]
-    public void GetPartyRole_Cell_WithThreeOrdinalDefendantLines_ReturnsDefendant()
-    {
-        var cell = CellOf("1st Defendant", "2nd Defendant", "3rd Defendant");
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBeTrue();
-        actual.ShouldBe(PartyRole.Defendant);
     }
 
     [Theory]
@@ -254,7 +166,8 @@ public class TestPartyEnricher
 
         result[0].ShouldBeSameAs(beforeMarker);
 
-        result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocTitle>().Text.ShouldBe("IN THE MATTER OF SOME TRUST");
+        result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocTitle>().Text
+                 .ShouldBe("IN THE MATTER OF SOME TRUST");
 
         result[2].ShouldBeSameAs(afterMarker);
     }
