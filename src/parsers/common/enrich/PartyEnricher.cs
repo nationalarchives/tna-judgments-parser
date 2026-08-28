@@ -1582,23 +1582,15 @@ internal class PartyEnricher : Enricher
     {
         var lineContents = line.Contents.ToArray();
 
-        return lineContents switch
+        static bool IsPartOfPartyName(WText wText)
+            => IsNotBlank(wText)
+            && !IsInBrackets(wText.Text)
+            && !IsConnectorText(wText.Text);
+
+        return lineContents.OfType<WText>().Count(IsPartOfPartyName) switch
         {
-            [] => line,
-
-            [WText { Text: "SECRETARY OF STATE " }, WLineBreak, WText] // [2021] EWCA Civ 1876
-                => WLine.Make(line, [new WParty2(lineContents.Cast<ITextOrWhitespace>()) { Role = role }]),
-
-            _ when lineContents.OfType<WText>().Count(wText => IsNotBlank(wText)
-                    && !IsInBrackets(wText.Text)
-                    && !IsConnectorText(wText.Text)) == 1
-                => WLine.Make(line, lineContents.SelectMany(inline => EnrichWTextWithParties(inline, role)).ToArray()),
-
-            _ when lineContents.OfType<WText>()
-                               .Count(wText => IsNotBlank(wText) && !IsInBrackets(wText.Text)
-                                   && !IsConnectorText(wText.Text)) > 1
-                => WLine.Make(line, [new WParty2(lineContents.Cast<WText>()) { Role = role }]),
-
+            1 => WLine.Make(line, lineContents.SelectMany(inline => EnrichWTextWithParties(inline, role)).ToArray()),
+            > 1 => WLine.Make(line, [new WParty2(lineContents.Cast<ITextOrWhitespace>()) { Role = role }]),
             _ => line
         };
     }
