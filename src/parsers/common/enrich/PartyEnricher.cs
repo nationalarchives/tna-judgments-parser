@@ -939,33 +939,53 @@ internal class PartyEnricher : Enricher
     {
         ["(APPELLANT)"] = PartyRole.Appellant,
         ["(APPELLANTS)"] = PartyRole.Appellant,
-        ["Appellant"] = PartyRole.Appellant,
+        ["1st Appellant"] = PartyRole.Appellant,
+        ["Appellant / Claimant"] = PartyRole.Appellant,
+        ["Appellant / Third Defendant"] = PartyRole.Appellant,
         ["Appellant"] = PartyRole.Appellant, // EWCA/Civ/2003/1686
+        ["Appellant/ Defendant"] = PartyRole.Appellant,
+        ["Appellant/ Respondent"] = PartyRole.Appellant, // [2021] EWCA Civ 1792
         ["Appellant/Appellant"] = PartyRole.Appellant,
-        ["Appellant/Applicant"] = PartyRole.Appellant,
+        ["Appellant/Applicant"] = PartyRole.Appellant, // [2021] EWCA Crim 1877
         ["Appellant/Claimant"] = PartyRole.Appellant,
         ["Appellant/Defendant"] = PartyRole.Appellant,
         ["Appellant/First Defendant"] = PartyRole.Appellant,
+        ["Appellants / Defendants"] = PartyRole.Appellant,
+        ["Appellants"] = PartyRole.Appellant,
         ["Appellants/ Claimants"] = PartyRole.Appellant,
+        ["Appellants/Claimants"] = PartyRole.Appellant,
         ["Applicant/Appellant"] = PartyRole.Appellant,
+        ["Claimant / Appellant"] = PartyRole.Appellant,
+        ["Claimant/ Appellant"] = PartyRole.Appellant,
         ["Claimant/Appellant"] = PartyRole.Appellant,
-        ["Claimants/Appellants"] = PartyRole.Appellant,
+        ["Claimants/ Appellants"] = PartyRole.Appellant,
+        ["Claimants/Appellants"] = PartyRole.Appellant, // [2021] EWCA Civ 1799
+        ["Defendant/ Appellant"] = PartyRole.Appellant,
         ["Defendant/Appellant"] = PartyRole.Appellant,
         ["Defendants / Appellants"] = PartyRole.Appellant,
+        ["Defendants/ Appellants"] = PartyRole.Appellant,
         ["Defendants/Appellants"] = PartyRole.Appellant,
+        ["Defendants/Appellants/"] = PartyRole.Appellant,
         ["FIRST DEFENDANT’S SOLICITOR/APPELLANT"] = PartyRole.Appellant, // EWCA/Civ/2006/1032
+        ["Respondent/Appellant"] = PartyRole.Appellant,
         ["Third Party/Appellant"] = PartyRole.Appellant, // [2022] EWHC 34 (Ch)
 
+        ["1st Applicant"] = PartyRole.Applicant,
+        ["2nd Applicant"] = PartyRole.Applicant,
         ["Applicant"] = PartyRole.Applicant,
+        ["Applicant/ Claimant"] = PartyRole.Applicant,
         ["Applicants"] = PartyRole.Applicant,
+        ["Applicants/Claimants"] = PartyRole.Applicant,
         ["Claimant/Applicant"] = PartyRole.Applicant,
+        ["Defendant/ Applicant"] = PartyRole.Applicant,
+        ["Respondent/Applicant"] = PartyRole.Applicant,
 
         ["(CLAIMANTS)"] = PartyRole.Claimant,
         ["(Claimant)"] = PartyRole.Claimant,
         ["Additional Claimant"] = PartyRole.Claimant,
         ["Claimant / Defendant to Counterclaim"] = PartyRole.Claimant,
         ["Claimant"] = PartyRole.Claimant,
-        ["Claimant/part 20 Defendant"] = PartyRole.Claimant,
+        ["Claimant/Part 20 Defendant"] = PartyRole.Claimant,
         ["Claimants"] = PartyRole.Claimant,
         ["First Claimant"] = PartyRole.Claimant,
         ["Second Claimant"] = PartyRole.Claimant,
@@ -984,38 +1004,64 @@ internal class PartyEnricher : Enricher
         ["Defendants"] = PartyRole.Defendant,
         ["First Defendant"] = PartyRole.Defendant,
         ["Second Defendant"] = PartyRole.Defendant,
+        ["Third Defendant"] = PartyRole.Defendant,
 
         ["(INTERESTED PARTIES)"] = PartyRole.InterestedParty,
         ["(INTERESTED PARTY)"] = PartyRole.InterestedParty,
         ["Interested Parties"] = PartyRole.InterestedParty,
         ["Interested Party"] = PartyRole.InterestedParty,
+        ["Interested parties"] = PartyRole.InterestedParty,
         ["Second Interested Party"] = PartyRole.InterestedParty,
         ["Third Interested Party"] = PartyRole.InterestedParty,
 
         ["Intervener"] = PartyRole.Intervener,
         ["Interveners"] = PartyRole.Intervener,
 
+        ["Petitioner"] = PartyRole.Petitioner,
+        ["Petitioners"] = PartyRole.Petitioner,
+
+        ["requested person"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
+        ["requested persons"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
+
+        ["requesting state"] = PartyRole.RequestingState,
+
         ["(RESPONDENT)"] = PartyRole.Respondent,
         ["(RESPONDENTS)"] = PartyRole.Respondent,
+        ["1st Respondent"] = PartyRole.Respondent,
+        ["2nd Respondent"] = PartyRole.Respondent,
+        ["3rd Respondent"] = PartyRole.Respondent, // EWCA/Civ/2012/378
+        ["Claimant / Respondent"] = PartyRole.Respondent,
+        ["Claimant/ Respondent"] = PartyRole.Respondent,
+        ["Claimant/Respondent"] = PartyRole.Respondent,
+        ["Claimants/Respondents"] = PartyRole.Respondent,
+        ["Clamaints/ Respondents"] = PartyRole.Respondent,
+        ["Defendant / Respondent"] = PartyRole.Respondent,
+        ["Defendant/ Respondent"] = PartyRole.Respondent,
         ["Defendant/Respondent"] = PartyRole.Respondent,
+        ["Defendants/ Respondents"] = PartyRole.Respondent,
         ["Defendants/Respondents"] = PartyRole.Respondent,
         ["First Respondent"] = PartyRole.Respondent,
-        ["Respondent"] = PartyRole.Respondent,
+        ["Fourth Respondent"] = PartyRole.Respondent,
+        ["Petitioner/Respondent"] = PartyRole.Respondent,
+        ["Respond-ents/ Defendants"] = PartyRole.Respondent,
+        ["Respondent / Defendant"] = PartyRole.Respondent,
+        ["Respondent"] = PartyRole.Respondent, // EWCA/Civ/2003/1686
+        ["Respondent/ Claimant"] = PartyRole.Respondent,
+        ["Respondent/ First Defendant"] = PartyRole.Respondent,
+        ["Respondent/Claimant"] = PartyRole.Respondent,
+        ["Respondent/Defendants"] = PartyRole.Respondent,
+        ["Respondent/Petitioner"] = PartyRole.Respondent, // [2021] EWCA Civ 1792
         ["Respondent/Respondent"] = PartyRole.Respondent,
+        ["Respondents / Claimants"] = PartyRole.Respondent,
+        ["Respondents Second and Third/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2004/1249
         ["Respondents"] = PartyRole.Respondent,
-        ["Respondents/ Defendants"] = PartyRole.Respondent,
+        ["Respondents/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2015/377, EWHC/QB/2006/582
+        ["Respondents/Claimants"] = PartyRole.Respondent,
         ["Respondents/Defendants"] = PartyRole.Respondent,
         ["Respondents/Respondents"] = PartyRole.Respondent,
         ["Respondnet"] = PartyRole.Respondent, // EWHC/Admin/2010/3393
         ["Second Respondent"] = PartyRole.Respondent,
-
-        ["Claimant/ Respondent"] = PartyRole.Respondent,
-        ["Claimant/Respondent"] = PartyRole.Respondent,
-        ["Claimants/Respondents"] = PartyRole.Respondent,
-        ["Respondent"] = PartyRole.Respondent, // EWCA/Civ/2003/1686
-        ["Respondent/Claimant"] = PartyRole.Respondent,
-
-        ["Petitioner"] = PartyRole.Petitioner
+        ["Third Respondent"] = PartyRole.Respondent,
     };
 
     private static bool IsPartyRole(string s)
@@ -1407,7 +1453,7 @@ internal class PartyEnricher : Enricher
                                .ToArray();
         switch (lineContents)
         {
-            case [var one] when TryGetOneLinePartyRole(one, out role):
+            case [var one] when TryGetPartyRole(one, out role):
                 return true;
 
             case ["defendant/", var two] when two.EndsWith("claimant"): // EWHC/Ch/2008/2079
@@ -1457,8 +1503,8 @@ internal class PartyEnricher : Enricher
     {
         var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
         if (linesWithContent.Length == 2
-            && TryGetOneLinePartyRole(linesWithContent[0].NormalizedContent, out var role1)
-            && TryGetOneLinePartyRole(linesWithContent[1].NormalizedContent, out var role2)
+            && TryGetPartyRole(linesWithContent[0].NormalizedContent, out var role1)
+            && TryGetPartyRole(linesWithContent[1].NormalizedContent, out var role2)
             && role1 != role2)
         {
             roles = (role1, role2);
@@ -1478,109 +1524,6 @@ internal class PartyEnricher : Enricher
                                                        [
                                                            new WRole { Role = role, Contents = line.Contents }
                                                        ])));
-    }
-
-    private static readonly Dictionary<string, PartyRole> OneLinePartyRoleLabels = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["Appellant"] = PartyRole.Appellant,
-        ["Appellants"] = PartyRole.Appellant,
-        ["Defendant/Appellant"] = PartyRole.Appellant,
-        ["Defendant/ Appellant"] = PartyRole.Appellant,
-        ["Defendants/Appellants"] = PartyRole.Appellant,
-        ["Appellants / Defendants"] = PartyRole.Appellant,
-        ["Defendants/Appellants/"] = PartyRole.Appellant,
-        ["Appellant/ Defendant"] = PartyRole.Appellant,
-        ["Appellants/Claimants"] = PartyRole.Appellant,
-        ["Appellants/ Claimants"] = PartyRole.Appellant,
-        ["Claimant/Appellant"] = PartyRole.Appellant,
-        ["Claimant/ Appellant"] = PartyRole.Appellant,
-        ["Claimant / Appellant"] = PartyRole.Appellant,
-        ["Appellant / Claimant"] = PartyRole.Appellant,
-        ["Appellant / Third Defendant"] = PartyRole.Appellant,
-        ["1st Appellant"] = PartyRole.Appellant,
-        ["Respondent/Appellant"] = PartyRole.Appellant,
-        ["Defendants/ Appellants"] = PartyRole.Appellant,
-        ["Appellant/ Respondent"] = PartyRole.Appellant, // [2021] EWCA Civ 1792
-        ["Claimants/ Appellants"] = PartyRole.Appellant,
-        ["Claimants/Appellants"] = PartyRole.Appellant, // [2021] EWCA Civ 1799
-        ["Appellant/Applicant"] = PartyRole.Appellant, // [2021] EWCA Crim 1877
-
-        ["Applicant"] = PartyRole.Applicant,
-        ["Applicants"] = PartyRole.Applicant,
-        ["Respondent/Applicant"] = PartyRole.Applicant,
-        ["Applicants/Claimants"] = PartyRole.Applicant,
-        ["Applicant/ Claimant"] = PartyRole.Applicant,
-        ["Claimant/Applicant"] = PartyRole.Applicant,
-        ["Defendant/ Applicant"] = PartyRole.Applicant,
-        ["1st Applicant"] = PartyRole.Applicant,
-        ["2nd Applicant"] = PartyRole.Applicant,
-
-        ["Claimant"] = PartyRole.Claimant,
-        ["Claimants"] = PartyRole.Claimant,
-        ["Claimant/Part 20 Defendant"] = PartyRole.Claimant,
-        ["Claimant / Defendant to Counterclaim"] = PartyRole.Claimant,
-        ["Additional Claimant"] = PartyRole.Claimant,
-
-        ["Defendant"] = PartyRole.Defendant,
-        ["Defendants"] = PartyRole.Defendant,
-        ["Defendant/Part 20 Claimant"] = PartyRole.Defendant,
-        ["First Defendant"] = PartyRole.Defendant,
-        ["Second Defendant"] = PartyRole.Defendant,
-        ["Third Defendant"] = PartyRole.Defendant,
-        ["Defendant / Counterclaimant"] = PartyRole.Defendant,
-
-        ["Interested Party"] = PartyRole.InterestedParty,
-        ["Interested parties"] = PartyRole.InterestedParty,
-
-        ["intervener"] = PartyRole.Intervener,
-        ["interveners"] = PartyRole.Intervener,
-
-        ["Petitioner"] = PartyRole.Petitioner,
-        ["Petitioners"] = PartyRole.Petitioner,
-
-        ["requested person"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
-        ["requested persons"] = PartyRole.RequestedPerson, // [2022] EWHC 273 (Admin)
-
-        ["requesting state"] = PartyRole.RequestingState,
-
-        ["Respondent"] = PartyRole.Respondent,
-        ["Respondents"] = PartyRole.Respondent,
-
-        ["Claimant/Respondent"] = PartyRole.Respondent,
-        ["Claimant/ Respondent"] = PartyRole.Respondent,
-        ["Claimant / Respondent"] = PartyRole.Respondent,
-        ["Clamaints/ Respondents"] = PartyRole.Respondent,
-        ["Respondent/Claimant"] = PartyRole.Respondent,
-        ["Respondent/ Claimant"] = PartyRole.Respondent,
-        ["Defendant/Respondent"] = PartyRole.Respondent,
-        ["Defendant/ Respondent"] = PartyRole.Respondent,
-        ["Defendant / Respondent"] = PartyRole.Respondent,
-        ["Defendants/Respondents"] = PartyRole.Respondent,
-        ["Defendants/ Respondents"] = PartyRole.Respondent,
-        ["Petitioner/Respondent"] = PartyRole.Respondent,
-        ["First Respondent"] = PartyRole.Respondent,
-        ["Second Respondent"] = PartyRole.Respondent,
-        ["Third Respondent"] = PartyRole.Respondent,
-        ["Fourth Respondent"] = PartyRole.Respondent,
-        ["1st Respondent"] = PartyRole.Respondent,
-        ["2nd Respondent"] = PartyRole.Respondent,
-        ["3rd Respondent"] = PartyRole.Respondent, // EWCA/Civ/2012/378
-        ["Respondents/Defendants"] = PartyRole.Respondent,
-        ["Respond-ents/ Defendants"] = PartyRole.Respondent,
-        ["Respondents/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2015/377, EWHC/QB/2006/582
-        ["Respondent/Defendants"] = PartyRole.Respondent,
-        ["Respondent / Defendant"] = PartyRole.Respondent,
-        ["Respondents Second and Third/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2004/1249
-        ["Respondent/Petitioner"] = PartyRole.Respondent, // [2021] EWCA Civ 1792
-        ["Respondents/Claimants"] = PartyRole.Respondent,
-        ["Respondents / Claimants"] = PartyRole.Respondent,
-        ["Respondent/ First Defendant"] = PartyRole.Respondent
-    };
-
-    private static bool TryGetOneLinePartyRole(string lineNormalizedContent, out PartyRole role)
-    {
-        return OneLinePartyRoleLabels.TryGetValue(lineNormalizedContent, out role)
-            || TryGetPartyRole(lineNormalizedContent, out role);
     }
 
     private static readonly Dictionary<(string one, string two), PartyRole> TwoLinePartyRoles =
@@ -2131,7 +2074,7 @@ internal class PartyEnricher : Enricher
             s = s.Substring(s.IndexOf(' ') + 1);
         }
 
-        return OneLinePartyRoleLabels.TryGetValue(s, out role);
+        return PartyRoles.TryGetValue(s, out role);
     }
 
     private static bool TryGetPartyRoleForCombinedLabels(string s1, string s2, out PartyRole role)
