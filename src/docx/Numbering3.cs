@@ -12,11 +12,13 @@ namespace UK.Gov.Legislation.Judgments.DOCX;
 partial class Numbering3
 {
 
+#nullable enable
     private readonly record struct LevelCounter(
         int Value,
         int NumId,
         string? StyleId,
         bool HasExplicitNumId);
+#nullable disable
 
     private class NumberingContext
     {
@@ -85,6 +87,7 @@ partial class Numbering3
         return 0;
     }
 
+#nullable enable
     private static bool ShouldSkipReset(
         NumberingContext ctx,
         Style currentStyle,
@@ -113,7 +116,7 @@ partial class Numbering3
             if (basedOn == targetStyleId)
                 return true;
 
-            Style baseStyle = Styles.GetStyle(ctx.Main, basedOn);
+            Style? baseStyle = Styles.GetStyle(ctx.Main, basedOn);
             if (baseStyle == null)
                 break;
 
@@ -121,6 +124,7 @@ partial class Numbering3
         }
         return false;
     }
+#nullable disable
 
     private static void CalculateAllNumbers(NumberingContext ctx)
     {
