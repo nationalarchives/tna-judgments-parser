@@ -1558,24 +1558,34 @@ internal class PartyEnricher : Enricher
         (new Regex(@"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase), PartyRole.Respondent)
     ];
 
-    private WCell EnrichCellWithParty(WCell cell, PartyRole role)
+    private static IBlock EnrichBlockWithParty(IBlock block, PartyRole role)
     {
-        var contents = cell.Contents.Select(block =>
-            {
-                return block switch
-                {
-                    WOldNumberedParagraph wOldNumberedParagraph =>
-                        wOldNumberedParagraph.Contents.ToArray() is [WText wText]
-                            ? new WOldNumberedParagraph(wOldNumberedParagraph, [new WParty(wText) { Role = role }])
-                            : wOldNumberedParagraph, // EWCA/Civ/2015/455
+        return block switch
+        {
+            WOldNumberedParagraph p => EnrichOldNumberedParagraphWithParty(p, role),
+            WLine line => EnrichLineWithParty(line, role),
+            _ => block
+        };
+    }
 
-                    WLine line => EnrichLineWithParty(line, role),
+    private static WCell EnrichCellWithParty(WCell cell, PartyRole role)
+    {
+        var contents = cell.Contents
+                           .Select(block => EnrichBlockWithParty(block, role))
+                           .ToArray();
 
-                    _ => block
-                };
-            }
-        ).ToArray();
         return new WCell(cell.Row, cell.Props, contents);
+    }
+
+    private static WOldNumberedParagraph EnrichOldNumberedParagraphWithParty(WOldNumberedParagraph paragraph,
+        PartyRole role)
+    {
+        if (paragraph.Contents.ToArray() is [WText wText])
+        {
+            return new WOldNumberedParagraph(paragraph, [new WParty(wText) { Role = role }]); // EWCA/Civ/2015/455
+        }
+
+        return paragraph;
     }
 
     private static WLine EnrichLineWithParty(WLine line, PartyRole role)
