@@ -373,9 +373,9 @@ partial class Numbering3
         int ilvl;
         if (match.Groups["lp"].Success)
         {
-            // A parenthesised digit isn't valid LISTNUM \l syntax. Word ignores it and falls
-            // back to level 2 (ilvl=1), regardless of the digit inside the parens.
-            ilvl = 1;
+            // A parenthesised digit isn't valid LISTNUM \l syntax, but treat it as the
+            // intended level, the same as the unparenthesised form.
+            ilvl = int.Parse(match.Groups["lp"].Value) - 1; // ilvl indexes are 0 based
         }
         else
         {
