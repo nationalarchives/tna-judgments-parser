@@ -1597,24 +1597,26 @@ internal class PartyEnricher : Enricher
 
     private static IEnumerable<IInline> EnrichWTextWithParties(IInline inline, PartyRole role)
     {
-        if (inline is WText text)
+        if (inline is not WText text)
         {
-            // Is this a case of two party names in one line - ewhc/admin/2022/273
-            if (text.Text.StartsWith("(1)") && text.Text.Contains("(2)"))
-            {
-                var i = text.Text.IndexOf("(2)", StringComparison.Ordinal);
-                return
-                [
-                    new WParty(text.Text[..i], text.properties) { Role = role },
-                    new WParty(text.Text[i..], text.properties) { Role = role }
-                ];
-            }
+            return [inline];
+        }
 
-            // Make sure this is the wText with a party name in it rather than some connection or descriptive text
-            if (IsNotBlank(text) && !IsConnectorText(text.Text) && !IsInBrackets(text.Text))
-            {
-                return [new WParty(text.Text, text.properties) { Role = role }];
-            }
+        // Is this a case of two party names in one line - ewhc/admin/2022/273
+        if (text.Text.StartsWith("(1)") && text.Text.Contains("(2)"))
+        {
+            var i = text.Text.IndexOf("(2)", StringComparison.Ordinal);
+            return
+            [
+                new WParty(text.Text[..i], text.properties) { Role = role },
+                new WParty(text.Text[i..], text.properties) { Role = role }
+            ];
+        }
+
+        // Make sure this is the wText with a party name in it rather than some connection or descriptive text
+        if (IsNotBlank(text) && !IsConnectorText(text.Text) && !IsInBrackets(text.Text))
+        {
+            return [new WParty(text.Text, text.properties) { Role = role }];
         }
 
         return [inline];
