@@ -17,9 +17,9 @@ public class TestPartyEnricher
 
     private static readonly WLine LineTemplate = new(null, new Paragraph());
 
-    private static WLine TextLine(string text)
+    private static WLine TextLine(params string[] text)
     {
-        return new WLine(LineTemplate, [new WText(text, null)]);
+        return new WLine(LineTemplate, text.Select(t => new WText(t, null)));
     }
 
     private static WRow RowOf(params string[] cells)
@@ -27,14 +27,29 @@ public class TestPartyEnricher
         return new WRow(TableOf(), null, null, cells.Select(c => CellOf(c)));
     }
 
+    private static WRow RowOf(WCell[] cells)
+    {
+        return new WRow(TableOf(), null, null, cells);
+    }
+
     private static WCell CellOf(params string[] lines)
     {
-        return new WCell(RowOf(), null, lines.Select(TextLine));
+        return new WCell(RowOf(), null, lines.Select(l => TextLine(l)));
+    }
+
+    private static WCell CellWithOneLineOf(params string[] text)
+    {
+        return new WCell(RowOf(), null, [TextLine(text)]);
     }
 
     private static WTable TableOf(params string[][] rows)
     {
         return new WTable(null, null, null, rows.Select(RowOf));
+    }
+
+    private static WTable TableOf(WRow[] rows)
+    {
+        return new WTable(null, null, null, rows);
     }
 
     [Theory]
@@ -619,118 +634,102 @@ public class TestPartyEnricher
                .Role.ShouldBe(PartyRole.Claimant);
     }
 
-    [Fact]
-    public void Enrich_TwoCellTableRow_NameCellWithTrailingConnectorTextRun_LeavesConnectorTextRunUnwrapped()
+    [Theory]
+    [InlineData("NNB Generation Company (SZC) Limited", " -and- ", PartyRole.Claimant)]
+    [InlineData("John Smith", " (formerly known as John Doe)", PartyRole.Appellant)]
+    public void Enrich_TwoCellTableRow_NameCellWithTrailingNonPartyTextRun_LeavesNonPartyTextRunUnwrapped(string partyName, string otherText, PartyRole role)
     {
-        var nameLine = new WLine(LineTemplate,
-            [new WText("NNB Generation Company (SZC) Limited", null), new WText(" -and- ", null)]);
-        var table = new WTable(null, null, null,
-        [
-            new WRow(TableOf(), null, null, [new WCell(RowOf(), null, [nameLine]), CellOf("Claimant")])
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf(partyName, otherText),
+                CellOf(role.ToString())
+            ])
         ]);
 
         var result = PartyEnricher.Enrich([table]);
 
         var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
-        var nameCellLine = resultTable.TypedRows.ShouldHaveSingleItem()
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
                                       .TypedCells[0].Contents.ShouldHaveSingleItem()
                                       .ShouldBeOfType<WLine>();
 
-        var party = nameCellLine.Contents.ElementAt(0).ShouldBeOfType<WParty>();
-        party.Role.ShouldBe(PartyRole.Claimant);
-        party.Text.ShouldBe("NNB Generation Company (SZC) Limited");
+        var party = resultCell.Contents.ElementAt(0).ShouldBeOfType<WParty>();
+        party.Role.ShouldBe(role);
+        party.Text.ShouldBe(partyName);
 
-        nameCellLine.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe(" -and- ");
-    }
-
-    [Fact]
-    public void Enrich_TwoCellTableRow_NameCellWithParentheticalAsideTextRun_LeavesAsideTextRunUnwrapped()
-    {
-        var nameLine = new WLine(LineTemplate,
-            [new WText("John Smith", null), new WText(" (formerly known as John Doe)", null)]);
-        var table = new WTable(null, null, null,
-        [
-            new WRow(TableOf(), null, null, [new WCell(RowOf(), null, [nameLine]), CellOf("Appellant")])
-        ]);
-
-        var result = PartyEnricher.Enrich([table]);
-
-        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
-        var nameCellLine = resultTable.TypedRows.ShouldHaveSingleItem()
-                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
-                                      .ShouldBeOfType<WLine>();
-
-        var party = nameCellLine.Contents.ElementAt(0).ShouldBeOfType<WParty>();
-        party.Role.ShouldBe(PartyRole.Appellant);
-        party.Text.ShouldBe("John Smith");
-
-        nameCellLine.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe(" (formerly known as John Doe)");
-    }
-
-    [Fact]
-    public void Enrich_TwoCellTableRow_NameCellWithNumberedTabbedName_AssignsPartyToNameAfterTab()
-    {
-        var nameLine = new WLine(LineTemplate,
-            [new WText("1.", null), new WTab(new TabChar()), new WText("John Smith", null)]);
-        var table = new WTable(null, null, null,
-        [
-            new WRow(TableOf(), null, null, [new WCell(RowOf(), null, [nameLine]), CellOf("Claimant")])
-        ]);
-
-        var result = PartyEnricher.Enrich([table]);
-
-        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
-        var nameCellLine = resultTable.TypedRows.ShouldHaveSingleItem()
-                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
-                                      .ShouldBeOfType<WLine>();
-
-        nameCellLine.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("1.");
-        nameCellLine.Contents.ElementAt(1).ShouldBeOfType<WTab>();
-        var party = nameCellLine.Contents.ElementAt(2).ShouldBeOfType<WParty>();
-        party.Role.ShouldBe(PartyRole.Claimant);
-        party.Text.ShouldBe("John Smith");
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe(otherText);
     }
 
     [Fact]
     public void Enrich_TwoCellTableRow_NameCellWithTwoQualifyingTextRuns_WrapsBothRunsAsOneParty()
     {
-        var nameLine = new WLine(LineTemplate,
-            [new WText("Big Company ", null), new WText("Limited", null)]);
-        var table = new WTable(null, null, null,
-        [
-            new WRow(TableOf(), null, null, [new WCell(RowOf(), null, [nameLine]), CellOf("Claimant")])
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf("Big Company ", "Limited"), CellOf("Claimant")
+            ])
         ]);
 
         var result = PartyEnricher.Enrich([table]);
 
         var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
-        var nameCellLine = resultTable.TypedRows.ShouldHaveSingleItem()
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
                                       .TypedCells[0].Contents.ShouldHaveSingleItem()
                                       .ShouldBeOfType<WLine>();
 
-        var party = nameCellLine.Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty2>();
+        var party = resultCell.Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty2>();
         party.Role.ShouldBe(PartyRole.Claimant);
         party.Text.ShouldBe("Big Company Limited");
     }
 
     [Fact]
-    public void Enrich_TwoCellTableRow_NameCellIsBareAndMarker_DoesNotWrapEitherRunAsParty()
+    public void Enrich_TwoCellTableRow_NameCellWithNumberedTabbedName_AssignsPartyToNameAfterTab()
     {
-        var nameLine = new WLine(LineTemplate, [new WText("- and ", null), new WText("–", null)]);
-        var table = new WTable(null, null, null,
-        [
-            new WRow(TableOf(), null, null, [new WCell(RowOf(), null, [nameLine]), CellOf("Defendant")])
+        var cellWithNumberedTabbedName = new WCell(RowOf(), null, [
+            new WLine(LineTemplate, [
+                new WText("1.", null),
+                new WTab(new TabChar()),
+                new WText("John Smith", null)
+            ])
+        ]);
+
+        var table = TableOf([
+            RowOf([cellWithNumberedTabbedName, CellOf("Claimant")])
         ]);
 
         var result = PartyEnricher.Enrich([table]);
 
         var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
-        var nameCellLine = resultTable.TypedRows.ShouldHaveSingleItem()
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
                                       .TypedCells[0].Contents.ShouldHaveSingleItem()
                                       .ShouldBeOfType<WLine>();
 
-        nameCellLine.Contents.Count().ShouldBe(2);
-        nameCellLine.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("- and ");
-        nameCellLine.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe("–");
+        resultCell.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("1.");
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WTab>();
+
+        var party = resultCell.Contents.ElementAt(2).ShouldBeOfType<WParty>();
+        party.Role.ShouldBe(PartyRole.Claimant);
+        party.Text.ShouldBe("John Smith");
+    }
+
+    [Fact]
+    public void Enrich_TwoCellTableRow_NameCellIsBareAndMarker_DoesNotWrapEitherRunAsParty()
+    {
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf("- and ", "–"),
+                CellOf("Defendant")
+            ])
+        ]);
+
+        var result = PartyEnricher.Enrich([table]);
+
+        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
+                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
+                                      .ShouldBeOfType<WLine>();
+
+        resultCell.Contents.Count().ShouldBe(2);
+        resultCell.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("- and ");
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe("–");
     }
 }
