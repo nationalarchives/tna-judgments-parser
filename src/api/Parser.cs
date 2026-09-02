@@ -95,6 +95,20 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
             var preParsed = new PreParser().Parse(doc);
             var attach2 = AkN.Parser.ConvertAttachments(attachments);
             IJudgment judgment = f(doc, preParsed, meta, attach2);
+
+            //** HACK - suppress misidentified parties by calling `CaseName.Extract` **
+            // For KBD and QBD cases, the king/queen and "on the application of" pieces of text are misidentified as
+            // their own parties.
+            // On a clean parse of the document, we create a case name which uses these misidentified parties to decide
+            // whether or not to add "(R on the application of)" to the case name and then "suppresses" these
+            // misidentified parties so they are not output in the xml.
+            // On a reparse of the document we are supplied with a case name via the outside metadata so we don't
+            // attempt to generate one. This means that the misidentified king/queen and "on the application of" parties
+            // are never suppressed on reparse and so incorrectly end up in the final xml.
+            // This hack fixes this issue by ensuring that the case name generation (and thus the misidentified party
+            // suppression) is always called.
+            _ = CaseName.Extract(judgment);
+
             return new AkN.Bundle(doc, judgment);
         };
     }

@@ -1,7 +1,5 @@
 #nullable enable
 
-using System.Linq;
-
 using Shouldly;
 
 using test.ApiTests;
@@ -16,11 +14,10 @@ namespace test.TRE;
 
 public class TestNoChange
 {
-    private static readonly int[] FailingTestsToSkip = [6, 8, 31, 32];
-    public static readonly TheoryData<int> PassingTests = new(Tests.Indices.Except(FailingTestsToSkip));
+    public static readonly TheoryData<int> IndicesTheoryData = TestParser_Judgments.IndicesTheoryData;
 
     [Theory]
-    [MemberData(nameof(PassingTests))]
+    [MemberData(nameof(IndicesTheoryData))]
     public void TestJudgments_WithMetadataFromOutputOfCleanRun_AreTheSameAsOutputFromCleanRun(int i)
     {
         var docx = DocumentHelpers.ReadDocx(i);
