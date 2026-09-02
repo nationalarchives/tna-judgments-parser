@@ -152,8 +152,19 @@ public partial class TestPartyEnricher
     [InlineData("Not A Role")]
     public void TryGetSinglePartyRole_ReturnsFalseWhenNotRole(string text)
     {
-        var found = PartyEnricher.TryGetPartyRole(out _, text);
         var found = PartyEnricher.TryGetSinglePartyRole(out _, text);
+
+        found.ShouldBe(false);
+    }
+
+    [Theory]
+    [InlineData("Claimant", "Interested Party")]
+    [InlineData("Appellant", "Third party")]
+    [InlineData("Respondents", "Third party")]
+    [InlineData("Respondents/Defendants", "Interested parties")]
+    public void TryGetSinglePartyRole_ReturnsFalseWhenLastRoleCannotBeCombined(params string[] inputRoleStrings)
+    {
+        var found = PartyEnricher.TryGetSinglePartyRole(out _, inputRoleStrings);
 
         found.ShouldBe(false);
     }

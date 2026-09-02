@@ -1335,6 +1335,8 @@ internal class PartyEnricher : Enricher
             [var partyRole] => partyRole,
             [var partyRole, ..] when AllRolesAre(partyRole) => partyRole, // All roles are the same
 
+            [.., PartyRole.ThirdParty or PartyRole.InterestedParty] => null,
+
             [PartyRole.Appellant, PartyRole.Respondent] => PartyRole.Respondent, // [2020] EWHC 3409 (QB)
             [PartyRole.Respondent, PartyRole.Appellant] => PartyRole.Appellant, // [2021] EWCA Civ 1961
 
@@ -1619,7 +1621,7 @@ internal class PartyEnricher : Enricher
                     continue;
                 }
 
-                if (andFound)
+                if (firstPartyFound && andFound)
                 {
                     secondPartyFound = true;
                     var party = new WParty(wText) { Role = roles.second };
