@@ -1383,15 +1383,8 @@ internal class PartyEnricher : Enricher
                     .ToArray();
         }
 
-        var cleanedParts = parts.Select(p => p.CleanWhitespace()
-                                              .Trim('(', ')')
-                                              .Trim());
-
-        var cleanedPartsWithoutPrefixes = cleanedParts
-                                          .Select(p => p.Equals("Third Party", StringComparison.OrdinalIgnoreCase)
-                                              ? p
-                                              : StripRolePrefix(p))
-                                          .ToArray();
+        var cleanedParts = parts.Select(p => p.CleanWhitespace().Trim('(', ')').Trim());
+        var cleanedPartsWithoutPrefixes = cleanedParts.Select(StripRolePrefix).ToArray();
 
         if (!cleanedPartsWithoutPrefixes.All(PartyRoles.ContainsKey))
         {
@@ -1405,6 +1398,11 @@ internal class PartyEnricher : Enricher
 
     private static string StripRolePrefix(string s)
     {
+        if (s.Equals("Third Party", StringComparison.OrdinalIgnoreCase))
+        {
+            return s;
+        }
+
         foreach (var prefix in
                  PrefixesToStrip.Where(prefix => s.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
         {
