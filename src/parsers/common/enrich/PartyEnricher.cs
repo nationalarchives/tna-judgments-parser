@@ -959,7 +959,7 @@ internal class PartyEnricher : Enricher
 
     private static bool IsPartyRole(string s)
     {
-        return TryGetSinglePartyRole(out _, s);
+        return TryGetSinglePartyRole(s, out _);
     }
 
     private static bool IsPartyRole(WLine line)
@@ -970,7 +970,7 @@ internal class PartyEnricher : Enricher
 
     private static PartyRole GetPartyRole(string s)
     {
-        return TryGetSinglePartyRole(out var role, s) ? role : throw new Exception();
+        return TryGetSinglePartyRole(s, out var role) ? role : throw new Exception();
     }
 
     private static PartyRole GetPartyRole(WLine line)
@@ -1316,10 +1316,15 @@ internal class PartyEnricher : Enricher
                                .Where(LineHasContent)
                                .Select(l => l.NormalizedContent)
                                .ToArray();
-        return TryGetSinglePartyRole(out role, lineContents);
+        return TryGetSinglePartyRole(lineContents, out role);
     }
 
-    internal static bool TryGetSinglePartyRole(out PartyRole role, params string[] inputRoleStrings)
+    internal static bool TryGetSinglePartyRole(string inputRoleStrings, out PartyRole role)
+    {
+        return TryGetSinglePartyRole([inputRoleStrings], out role);
+    }
+
+    internal static bool TryGetSinglePartyRole(string[] inputRoleStrings, out PartyRole role)
     {
         if (!TryGetPartyRoleParts(inputRoleStrings, out var roleParts))
         {
@@ -1432,8 +1437,8 @@ internal class PartyEnricher : Enricher
     {
         var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
         if (linesWithContent.Length == 2
-            && TryGetSinglePartyRole(out var role1, linesWithContent[0].NormalizedContent)
-            && TryGetSinglePartyRole(out var role2, linesWithContent[1].NormalizedContent)
+            && TryGetSinglePartyRole(linesWithContent[0].NormalizedContent, out var role1)
+            && TryGetSinglePartyRole(linesWithContent[1].NormalizedContent, out var role2)
             && role1 != role2)
         {
             roles = (role1, role2);

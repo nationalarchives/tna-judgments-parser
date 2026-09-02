@@ -138,7 +138,7 @@ public partial class TestPartyEnricher
     [InlineData("Sixth Appellant", PartyRole.Appellant)]
     public void TryGetSinglePartyRole_ParsesRoleFromFreeText(string text, PartyRole expected)
     {
-        var found = PartyEnricher.TryGetSinglePartyRole(out var actual, text);
+        var found = PartyEnricher.TryGetSinglePartyRole(text, out var actual);
 
         found.ShouldBeTrue();
         actual.ShouldBe(expected);
@@ -152,7 +152,7 @@ public partial class TestPartyEnricher
     [InlineData("Not A Role")]
     public void TryGetSinglePartyRole_ReturnsFalseWhenNotRole(string text)
     {
-        var found = PartyEnricher.TryGetSinglePartyRole(out _, text);
+        var found = PartyEnricher.TryGetSinglePartyRole(text, out _);
 
         found.ShouldBe(false);
     }
@@ -164,7 +164,7 @@ public partial class TestPartyEnricher
     [InlineData("Respondents/Defendants", "Interested parties")]
     public void TryGetSinglePartyRole_ReturnsFalseWhenLastRoleCannotBeCombined(params string[] inputRoleStrings)
     {
-        var found = PartyEnricher.TryGetSinglePartyRole(out _, inputRoleStrings);
+        var found = PartyEnricher.TryGetSinglePartyRole(inputRoleStrings, out _);
 
         found.ShouldBe(false);
     }
