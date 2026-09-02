@@ -136,9 +136,9 @@ public partial class TestPartyEnricher
     [InlineData("Requested Person", PartyRole.RequestedPerson)]
     [InlineData("Requesting State", PartyRole.RequestingState)]
     [InlineData("Sixth Appellant", PartyRole.Appellant)]
-    public void TryGetPartyRole_ParsesRoleFromFreeText(string text, PartyRole expected)
+    public void TryGetSinglePartyRole_ParsesRoleFromFreeText(string text, PartyRole expected)
     {
-        var found = PartyEnricher.TryGetPartyRole(out var actual, text);
+        var found = PartyEnricher.TryGetSinglePartyRole(out var actual, text);
 
         found.ShouldBeTrue();
         actual.ShouldBe(expected);
@@ -150,9 +150,10 @@ public partial class TestPartyEnricher
     [InlineData("Third not a role")]
     [InlineData("4th not and a role")]
     [InlineData("Not A Role")]
-    public void TryGetPartyRole_ReturnsFalseWhenNotRole(string text)
+    public void TryGetSinglePartyRole_ReturnsFalseWhenNotRole(string text)
     {
         var found = PartyEnricher.TryGetPartyRole(out _, text);
+        var found = PartyEnricher.TryGetSinglePartyRole(out _, text);
 
         found.ShouldBe(false);
     }
@@ -167,11 +168,11 @@ public partial class TestPartyEnricher
     [InlineData("Interested Party", PartyRole.InterestedParty)]
     [InlineData("1st Claimant", PartyRole.Claimant)]
     [InlineData("Jane Doe", null)]
-    public void TryGetPartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText(string text, PartyRole? expected)
+    public void TryGetSinglePartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText(string text, PartyRole? expected)
     {
         var cell = CellOf(text);
 
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out var actual);
 
         found.ShouldBe(expected is not null);
         if (expected is not null)
@@ -186,23 +187,23 @@ public partial class TestPartyEnricher
     [InlineData("Respondent", "Defendant", PartyRole.Respondent)]
     [InlineData("1st Respondent", "2nd Respondent", PartyRole.Respondent)]
     [InlineData("Defendant/", "Applicant", PartyRole.Applicant)]
-    public void TryGetPartyRole_Cell_WithTwoNonEmptyLines_ParsesRoleFromCombinedText(string first, string second,
+    public void TryGetSinglePartyRole_Cell_WithTwoNonEmptyLines_ParsesRoleFromCombinedText(string first, string second,
         PartyRole expected)
     {
         var cell = CellOf(first, second);
 
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out var actual);
 
         found.ShouldBeTrue();
         actual.ShouldBe(expected);
     }
 
     [Fact]
-    public void TryGetPartyRole_Cell_WithThreeOrdinalDefendantLines_ReturnsDefendant()
+    public void TryGetSinglePartyRole_Cell_WithThreeOrdinalDefendantLines_ReturnsDefendant()
     {
         var cell = CellOf("1st Defendant", "2nd Defendant", "3rd Defendant");
 
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out var actual);
 
         found.ShouldBeTrue();
         actual.ShouldBe(PartyRole.Defendant);

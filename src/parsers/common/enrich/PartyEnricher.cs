@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using UK.Gov.Legislation.Judgments.Utils;
-
 namespace UK.Gov.Legislation.Judgments.Parse;
 
 // there are "third" paries in EWCA/Civ/2015/631
@@ -961,7 +959,7 @@ internal class PartyEnricher : Enricher
 
     private static bool IsPartyRole(string s)
     {
-        return TryGetPartyRole(out _, s);
+        return TryGetSinglePartyRole(out _, s);
     }
 
     private static bool IsPartyRole(WLine line)
@@ -972,7 +970,7 @@ internal class PartyEnricher : Enricher
 
     private static PartyRole GetPartyRole(string s)
     {
-        return TryGetPartyRole(out var role, s) ? role : throw new Exception();
+        return TryGetSinglePartyRole(out var role, s) ? role : throw new Exception();
     }
 
     private static PartyRole GetPartyRole(WLine line)
@@ -1134,7 +1132,7 @@ internal class PartyEnricher : Enricher
             return row;
         }
 
-        if (TryGetPartyRole(third, out var role))
+        if (TryGetSinglePartyRole(third, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1173,7 +1171,7 @@ internal class PartyEnricher : Enricher
         var first = (WCell)rowCells[0];
         var second = (WCell)rowCells[1];
 
-        if (IsCellWithContent(first) && TryGetPartyRole(second, out var role))
+        if (IsCellWithContent(first) && TryGetSinglePartyRole(second, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1298,7 +1296,7 @@ internal class PartyEnricher : Enricher
             && next.Cells.ToArray() is [WCell nextRowFirstCell, WCell nextRowMiddleCell, WCell nextRowLastCell]
             && IsEmptyCell(thisRowFirstCell) && IsCellWithContent(thisRowMiddleCell) && IsEmptyCell(thisRowLastCell)
             && IsEmptyCell(nextRowFirstCell) && IsEmptyCell(nextRowMiddleCell) && IsCellWithContent(nextRowLastCell)
-            && TryGetPartyRole(nextRowLastCell, out var role))
+            && TryGetSinglePartyRole(nextRowLastCell, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1311,17 +1309,17 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
-    public static bool TryGetPartyRole(WCell cell, out PartyRole role)
+    internal static bool TryGetSinglePartyRole(WCell cell, out PartyRole role)
     {
         var lineContents = cell.Contents
                                .OfType<WLine>()
                                .Where(LineHasContent)
                                .Select(l => l.NormalizedContent)
                                .ToArray();
-        return TryGetPartyRole(out role, lineContents);
+        return TryGetSinglePartyRole(out role, lineContents);
     }
 
-    public static bool TryGetPartyRole(out PartyRole role, params string[] inputRoleStrings)
+    internal static bool TryGetSinglePartyRole(out PartyRole role, params string[] inputRoleStrings)
     {
         if (!TryGetPartyRoleParts(inputRoleStrings, out var roleParts))
         {
@@ -1434,8 +1432,8 @@ internal class PartyEnricher : Enricher
     {
         var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
         if (linesWithContent.Length == 2
-            && TryGetPartyRole(out var role1, linesWithContent[0].NormalizedContent)
-            && TryGetPartyRole(out var role2, linesWithContent[1].NormalizedContent)
+            && TryGetSinglePartyRole(out var role1, linesWithContent[0].NormalizedContent)
+            && TryGetSinglePartyRole(out var role2, linesWithContent[1].NormalizedContent)
             && role1 != role2)
         {
             roles = (role1, role2);
