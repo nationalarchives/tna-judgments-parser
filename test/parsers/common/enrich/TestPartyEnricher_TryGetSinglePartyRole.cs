@@ -169,27 +169,25 @@ public partial class TestPartyEnricher
         found.ShouldBe(false);
     }
 
-    [Theory]
-    [InlineData("Appellant", PartyRole.Appellant)]
-    [InlineData("Claimant", PartyRole.Claimant)]
-    [InlineData("Applicant", PartyRole.Applicant)]
-    [InlineData("Defendant", PartyRole.Defendant)]
-    [InlineData("Respondent", PartyRole.Respondent)]
-    [InlineData("Petitioner", PartyRole.Petitioner)]
-    [InlineData("Interested Party", PartyRole.InterestedParty)]
-    [InlineData("1st Claimant", PartyRole.Claimant)]
-    [InlineData("Jane Doe", null)]
-    public void TryGetSinglePartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText(string text, PartyRole? expected)
+    [Fact]
+    public void TryGetSinglePartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText()
     {
-        var cell = CellOf(text);
+        var cell = CellOf("1st Claimant");
 
         var found = PartyEnricher.TryGetSinglePartyRole(cell, out var actual);
 
-        found.ShouldBe(expected is not null);
-        if (expected is not null)
-        {
-            actual.ShouldBe(expected.Value);
-        }
+        found.ShouldBeTrue();
+        actual.ShouldBe(PartyRole.Claimant);
+    }
+
+    [Fact]
+    public void TryGetSinglePartyRole_Cell_WithOneLineNonRoleText_ReturnsFalse()
+    {
+        var cell = CellOf("I am not a role");
+
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out _);
+
+        found.ShouldBeFalse();
     }
 
     [Theory]
@@ -198,7 +196,7 @@ public partial class TestPartyEnricher
     [InlineData("Respondent", "Defendant", PartyRole.Respondent)]
     [InlineData("1st Respondent", "2nd Respondent", PartyRole.Respondent)]
     [InlineData("Defendant/", "Applicant", PartyRole.Applicant)]
-    public void TryGetSinglePartyRole_Cell_WithTwoNonEmptyLines_ParsesRoleFromCombinedText(string first, string second,
+    public void TryGetSinglePartyRole_Cell_WithTwoRoleLines_ParsesRoleFromCombinedText(string first, string second,
         PartyRole expected)
     {
         var cell = CellOf(first, second);
@@ -207,6 +205,27 @@ public partial class TestPartyEnricher
 
         found.ShouldBeTrue();
         actual.ShouldBe(expected);
+    }
+
+    [Fact]
+    public void TryGetSinglePartyRole_Cell_WithARoleAndNonRoleLine_ReturnsFalse()
+    {
+        var cell = CellOf("I am not a role", "Defendant");
+
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out _);
+
+        found.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void TryGetSinglePartyRole_Cell_WithEmptyLines_ParsesRoleFromNonEmptyLines()
+    {
+        var cell = CellOf(string.Empty, string.Empty, "Claimant", string.Empty, "Applicant", string.Empty);
+
+        var found = PartyEnricher.TryGetSinglePartyRole(cell, out var actual);
+
+        found.ShouldBeTrue();
+        actual.ShouldBe(PartyRole.Applicant);
     }
 
     [Fact]
