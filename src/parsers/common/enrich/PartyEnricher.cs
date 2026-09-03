@@ -171,19 +171,53 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    /* multi-line */
+    private sealed class BlockCursor(IBlock[] collection)
+    {
+        private int i;
+
+        public bool NextLineMatches(Func<WLine, bool> test)
+        {
+            return i < collection.Length
+                && collection[i] is WLine line
+                && test(line);
+        }
+
+        public WLine ReadNextLine()
+        {
+            return (WLine)collection[i++];
+        }
+
+        public bool TryReadNextLine(out WLine result)
+        {
+            if (i < collection.Length && collection[i] is WLine line)
+            {
+                result = line;
+                i++;
+                return true;
+            }
+
+            result = null;
+            return false;
+        }
+
+        public void AdvanceCursor(int num)
+        {
+            i += num;
+        }
+
+        public IBlock[] PeekRemaining()
+        {
+            return collection[i..];
+        }
+    }
+
 
     private static bool TryEnrichMultiLinePartyBlock(IBlock[] rest, bool successive, out WLine[] enriched)
     {
         enriched = null;
-        if (rest.Length == 0)
-        {
-            return false;
-        }
+        var blockCursor = new BlockCursor(rest);
 
-        var i = 0;
-
-        if (rest[i] is not WLine beforeLine
+        if (!blockCursor.TryReadNextLine(out var beforeLine)
             || (!IsBeforePartyMarker(beforeLine)
                 && !IsBeforePartyMarker2(beforeLine)
                 && !(successive && IsBeforePartyMarker3(beforeLine))))
@@ -192,104 +226,64 @@ internal class PartyEnricher : Enricher
         }
 
         List<WLine> result = [beforeLine];
-        i += 1;
-        if (i == rest.Length)
-        {
-            return false;
-        }
 
-        if (rest[i] is WLine inPrivate
-            && inPrivate.NormalizedContent.Equals("IN PRIVATE", StringComparison.OrdinalIgnoreCase))
+        if (blockCursor.NextLineMatches(inPrivate =>
+                inPrivate.NormalizedContent.Equals("IN PRIVATE", StringComparison.OrdinalIgnoreCase)))
         {
             // EWHC/Admin/2012/2822
-            result.Add(inPrivate);
-            i += 1;
-            if (i == rest.Length)
-            {
-                return false;
-            }
+            result.Add(blockCursor.ReadNextLine());
         }
 
-        if (rest[i] is WLine betweenMarker2 && IsBeforePartyMarker2(betweenMarker2))
+        if (blockCursor.NextLineMatches(IsBeforePartyMarker2))
         {
-            result.Add(betweenMarker2);
-            i += 1;
-            if (i == rest.Length)
-            {
-                return false;
-            }
+            result.Add(blockCursor.ReadNextLine());
         }
 
-        if (!TryEnrichPartyNamesWithRoleLabel(rest[i..], out var firstGroupOfParites))
+        if (!TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var firstGroupOfParites))
         {
             return false;
         }
-
         result.AddRange(firstGroupOfParites);
-        i += firstGroupOfParites.Length;
-        if (i == rest.Length)
-        {
-            return false;
-        }
+        blockCursor.AdvanceCursor(firstGroupOfParites.Length);
 
         /* no "v" or "and" in EWHC/Comm/2013/3920 */
-        if (rest[i] is WLine vOrAndMarker && (IsBetweenPartyMarker(vOrAndMarker) || IsBetweenPartyMarker2(vOrAndMarker)))
+        if (blockCursor.NextLineMatches(l => IsBetweenPartyMarker(l) || IsBetweenPartyMarker2(l)))
         {
-            result.Add(vOrAndMarker);
-            i += 1;
-            if (i == rest.Length)
-            {
-                return false;
-            }
+            result.Add(blockCursor.ReadNextLine());
         }
 
-        if (!TryEnrichPartyNamesWithRoleLabel(rest[i..], out var secondGroupOfParites))
+        if (!TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var secondGroupOfParites))
         {
             return false;
         }
-
         result.AddRange(secondGroupOfParites);
-        i += secondGroupOfParites.Length;
-        if (i == rest.Length)
+        blockCursor.AdvanceCursor(secondGroupOfParites.Length);
+
+        if (blockCursor.NextLineMatches(IsBetweenPartyMarker2))
         {
-            return false;
+            result.Add(blockCursor.ReadNextLine());
         }
 
-        if (rest[i] is WLine andMarker && IsBetweenPartyMarker2(andMarker))
-        {
-            result.Add(andMarker);
-            i += 1;
-            if (i == rest.Length)
-            {
-                return false;
-            }
-        }
-
-        if (TryEnrichPartyNamesWithRoleLabel(rest[i..], out var thirdGroupOfParites))
+        if (TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var thirdGroupOfParites))
         {
             result.AddRange(thirdGroupOfParites);
-            i += thirdGroupOfParites.Length;
+            blockCursor.AdvanceCursor(thirdGroupOfParites.Length);
         }
 
-        if (TryEnrichPartyNamesWithRoleLabel(rest[i..], out var fourthGroupOfParites))
+        if (TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var fourthGroupOfParites))
         {
             result.AddRange(fourthGroupOfParites);
-            i += fourthGroupOfParites.Length;
+            blockCursor.AdvanceCursor(fourthGroupOfParites.Length);
         }
 
-        if (i == rest.Length)
+        if (blockCursor.NextLineMatches(IsAfterPartyMarker))
         {
-            return false;
-        }
-
-        if (rest[i] is WLine afterLine && IsAfterPartyMarker(afterLine))
-        {
-            result.Add(afterLine);
+            result.Add(blockCursor.ReadNextLine());
             enriched = result.ToArray();
             return true;
         }
 
-        if (TryEnrichMultiLinePartyBlock(rest[i..], true, out var another))
+        if (TryEnrichMultiLinePartyBlock(blockCursor.PeekRemaining(), true, out var another))
         {
             result.AddRange(another);
         }
@@ -302,81 +296,43 @@ internal class PartyEnricher : Enricher
     {
         // EWHC/Admin/2018/3311
         enriched = null;
-        if (rest.Length == 0)
+        var blockCursor = new BlockCursor(rest);
+
+        if (!blockCursor.NextLineMatches(l => IsBeforePartyMarker(l) || IsBeforePartyMarker2(l)))
         {
             return false;
         }
+        List<WLine> result = [blockCursor.ReadNextLine()];
 
-        var i = 0;
+        if (blockCursor.NextLineMatches(IsBeforePartyMarker2))
+        {
+            result.Add(blockCursor.ReadNextLine());
+        }
 
-        if (rest[i] is not WLine beforeLine || (!IsBeforePartyMarker(beforeLine) && !IsBeforePartyMarker2(beforeLine)))
+        if (!blockCursor.TryReadNextLine(out var partyLine1) || !TryMakePartyAndRole(partyLine1, out var party1))
         {
             return false;
         }
-
-        List<WLine> result = [beforeLine];
-        i += 1;
-        if (i == rest.Length)
-        {
-            return false;
-        }
-
-        if (rest[i] is WLine betweenMarker2 && IsBeforePartyMarker2(betweenMarker2))
-        {
-            // perhaps do this only if first line isn't marker 2
-            result.Add(betweenMarker2);
-            i += 1;
-            if (i == rest.Length)
-            {
-                return false;
-            }
-        }
-
-        if (rest[i] is not WLine partyLine1 || !TryMakePartyAndRole(partyLine1, out var party1))
-        {
-            return false;
-        }
-
         result.Add(party1);
-        i += 1;
-        if (i == rest.Length)
+
+        if (!blockCursor.NextLineMatches(l => IsBetweenPartyMarker(l) || IsBetweenPartyMarker2(l)))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        if (rest[i] is WLine vOrAndMarker && (IsBetweenPartyMarker(vOrAndMarker) || IsBetweenPartyMarker2(vOrAndMarker)))
-        {
-            result.Add(vOrAndMarker);
-            i += 1;
-        }
-        else
+        if (!blockCursor.TryReadNextLine(out var partyLine2) || !TryMakePartyAndRole(partyLine2, out var party2))
         {
             return false;
         }
-
-        if (i == rest.Length)
-        {
-            return false;
-        }
-
-        if (rest[i] is not WLine partyLine2 || !TryMakePartyAndRole(partyLine2, out var party2))
-        {
-            return false;
-        }
-
         result.Add(party2);
-        i += 1;
-        if (i == rest.Length)
+
+        if (!blockCursor.NextLineMatches(IsAfterPartyMarker))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        if (rest[i] is not WLine afterLine || !IsAfterPartyMarker(afterLine))
-        {
-            return false;
-        }
-
-        result.Add(afterLine);
         enriched = result.ToArray();
         return true;
     }
@@ -386,103 +342,65 @@ internal class PartyEnricher : Enricher
     {
         // EWHC/Admin/2015/897
         enriched = null;
-        if (rest.Length == 0)
+        var blockCursor = new BlockCursor(rest);
+
+        if (!blockCursor.NextLineMatches(IsBeforePartyMarker))
         {
             return false;
         }
 
-        var i = 0;
-
-        if (rest[i] is not WLine beforeLine || !IsBeforePartyMarker(beforeLine))
-        {
-            return false;
-        }
-
-        List<WLine> result = [beforeLine];
-        i += 1;
-        if (i == rest.Length)
-        {
-            return false;
-        }
+        List<WLine> result = [blockCursor.ReadNextLine()];
 
         /* between */
-        if (rest[i] is not WLine betweenMarker2 || !IsBeforePartyMarker2(betweenMarker2))
+        if (!blockCursor.NextLineMatches(IsBeforePartyMarker2))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        result.Add(betweenMarker2);
-        i += 1;
-        if (!TryEnrichPartyNamesWithRoleLabel(rest[i..], out var firstGroupOfParites))
+        if (!TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var firstGroupOfParites))
         {
             return false;
         }
-
         result.AddRange(firstGroupOfParites);
-        i += firstGroupOfParites.Length;
-        if (i == rest.Length)
-        {
-            return false;
-        }
+        blockCursor.AdvanceCursor(firstGroupOfParites.Length);
 
         /* and */
-        if (rest[i] is not WLine andMarker || !IsBetweenPartyMarker2(andMarker))
+        if (!blockCursor.NextLineMatches(IsBetweenPartyMarker2))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        result.Add(andMarker);
-        i += 1;
-        if (i == rest.Length)
+        if (!TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var secondGroupOfParites))
         {
             return false;
         }
-
-        if (!TryEnrichPartyNamesWithRoleLabel(rest[i..], out var secondGroupOfParites))
-        {
-            return false;
-        }
-
         result.AddRange(secondGroupOfParites);
-        i += secondGroupOfParites.Length;
-        if (i == rest.Length)
-        {
-            return false;
-        }
+        blockCursor.AdvanceCursor(secondGroupOfParites.Length);
 
         /* v */
-        if (rest[i] is not WLine vMarker || !IsBetweenPartyMarker(vMarker))
+        if (!blockCursor.NextLineMatches(IsBetweenPartyMarker))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        result.Add(vMarker);
-        i += 1;
-        if (i == rest.Length)
+        if (!TryEnrichPartyNamesWithRoleLabel(blockCursor.PeekRemaining(), out var thirdGroupOfParites))
         {
             return false;
         }
-
-        if (!TryEnrichPartyNamesWithRoleLabel(rest[i..], out var thirdGroupOfParites))
-        {
-            return false;
-        }
-
         result.AddRange(thirdGroupOfParites);
-        i += thirdGroupOfParites.Length;
-        if (i == rest.Length)
+        blockCursor.AdvanceCursor(thirdGroupOfParites.Length);
+
+        if (!blockCursor.NextLineMatches(IsAfterPartyMarker))
         {
             return false;
         }
+        result.Add(blockCursor.ReadNextLine());
 
-        if (rest[i] is WLine afterLine && IsAfterPartyMarker(afterLine))
-        {
-            result.Add(afterLine);
-            enriched = result.ToArray();
-            return true;
-        }
-
-        return false;
+        enriched = result.ToArray();
+        return true;
     }
 
     private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] inputBlocks, out WLine[] enriched)
