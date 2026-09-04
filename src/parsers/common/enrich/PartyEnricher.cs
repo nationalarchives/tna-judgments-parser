@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using UK.Gov.Legislation.Judgments.Utils;
-
 namespace UK.Gov.Legislation.Judgments.Parse;
 
 // there are "third" paries in EWCA/Civ/2015/631
@@ -918,82 +916,24 @@ internal class PartyEnricher : Enricher
 
     private static readonly Dictionary<string, PartyRole> PartyRoles = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["(APPELLANT)"] = PartyRole.Appellant,
-        ["(APPELLANTS)"] = PartyRole.Appellant,
-        ["1st Appellant"] = PartyRole.Appellant,
-        ["Appellant / Claimant"] = PartyRole.Appellant,
-        ["Appellant / Third Defendant"] = PartyRole.Appellant,
         ["Appellant"] = PartyRole.Appellant, // EWCA/Civ/2003/1686
-        ["Appellant/ Defendant"] = PartyRole.Appellant,
-        ["Appellant/ Respondent"] = PartyRole.Appellant, // [2021] EWCA Civ 1792
-        ["Appellant/Appellant"] = PartyRole.Appellant,
-        ["Appellant/Applicant"] = PartyRole.Appellant, // [2021] EWCA Crim 1877
-        ["Appellant/Claimant"] = PartyRole.Appellant,
-        ["Appellant/Defendant"] = PartyRole.Appellant,
-        ["Appellant/First Defendant"] = PartyRole.Appellant,
-        ["Appellants / Defendants"] = PartyRole.Appellant,
         ["Appellants"] = PartyRole.Appellant,
-        ["Appellants/ Claimants"] = PartyRole.Appellant,
-        ["Appellants/Claimants"] = PartyRole.Appellant,
-        ["Applicant/Appellant"] = PartyRole.Appellant,
-        ["Claimant / Appellant"] = PartyRole.Appellant,
-        ["Claimant/ Appellant"] = PartyRole.Appellant,
-        ["Claimant/Appellant"] = PartyRole.Appellant,
-        ["Claimants/ Appellants"] = PartyRole.Appellant,
-        ["Claimants/Appellants"] = PartyRole.Appellant, // [2021] EWCA Civ 1799
-        ["Defendant/ Appellant"] = PartyRole.Appellant,
-        ["Defendant/Appellant"] = PartyRole.Appellant,
-        ["Defendants / Appellants"] = PartyRole.Appellant,
-        ["Defendants/ Appellants"] = PartyRole.Appellant,
-        ["Defendants/Appellants"] = PartyRole.Appellant,
-        ["Defendants/Appellants/"] = PartyRole.Appellant,
-        ["FIRST DEFENDANT’S SOLICITOR/APPELLANT"] = PartyRole.Appellant, // EWCA/Civ/2006/1032
-        ["Respondent/Appellant"] = PartyRole.Appellant,
-        ["Third Party/Appellant"] = PartyRole.Appellant, // [2022] EWHC 34 (Ch)
 
-        ["1st Applicant"] = PartyRole.Applicant,
-        ["2nd Applicant"] = PartyRole.Applicant,
         ["Applicant"] = PartyRole.Applicant,
-        ["Applicant/ Claimant"] = PartyRole.Applicant,
         ["Applicants"] = PartyRole.Applicant,
-        ["Applicants/Claimants"] = PartyRole.Applicant,
-        ["Claimant/Applicant"] = PartyRole.Applicant,
-        ["Defendant/ Applicant"] = PartyRole.Applicant,
-        ["Respondent/Applicant"] = PartyRole.Applicant,
-
-        ["(CLAIMANTS)"] = PartyRole.Claimant,
-        ["(Claimant)"] = PartyRole.Claimant,
-        ["Additional Claimant"] = PartyRole.Claimant,
-        ["Claimant / Defendant to Counterclaim"] = PartyRole.Claimant,
+        ["Counterclaimant"] = PartyRole.Claimant,
+        ["Defendant to Counterclaim"] = PartyRole.Claimant,
         ["Claimant"] = PartyRole.Claimant,
-        ["Claimant/Part 20 Defendant"] = PartyRole.Claimant,
         ["Claimants"] = PartyRole.Claimant,
-        ["First Claimant"] = PartyRole.Claimant,
-        ["Second Claimant"] = PartyRole.Claimant,
+        ["Clamaint"] = PartyRole.Claimant,
+        ["Clamaints"] = PartyRole.Claimant,
 
-        ["(1st DEFENDANT)"] = PartyRole.Defendant,
-        ["(2nd DEFENDANT)"] = PartyRole.Defendant,
-        ["(3rd DEFENDANT)"] = PartyRole.Defendant,
-        ["(DEFENDANTS)"] = PartyRole.Defendant,
-        ["(Defendant)"] = PartyRole.Defendant,
-        ["(FIRST DEFENDANT)"] = PartyRole.Defendant,
-        ["(SECOND DEFENDANT)"] = PartyRole.Defendant,
-        ["Applicants/Defendants"] = PartyRole.Defendant,
-        ["Defendant / Counterclaimant"] = PartyRole.Defendant,
         ["Defendant"] = PartyRole.Defendant,
-        ["Defendant/Part 20 Claimant"] = PartyRole.Defendant,
         ["Defendants"] = PartyRole.Defendant,
-        ["First Defendant"] = PartyRole.Defendant,
-        ["Second Defendant"] = PartyRole.Defendant,
-        ["Third Defendant"] = PartyRole.Defendant,
+        ["DEFENDANT’S SOLICITOR"] = PartyRole.Defendant, // EWCA/Civ/2006/1032
 
-        ["(INTERESTED PARTIES)"] = PartyRole.InterestedParty,
-        ["(INTERESTED PARTY)"] = PartyRole.InterestedParty,
         ["Interested Parties"] = PartyRole.InterestedParty,
         ["Interested Party"] = PartyRole.InterestedParty,
-        ["Interested parties"] = PartyRole.InterestedParty,
-        ["Second Interested Party"] = PartyRole.InterestedParty,
-        ["Third Interested Party"] = PartyRole.InterestedParty,
 
         ["Intervener"] = PartyRole.Intervener,
         ["Interveners"] = PartyRole.Intervener,
@@ -1006,48 +946,20 @@ internal class PartyEnricher : Enricher
 
         ["requesting state"] = PartyRole.RequestingState,
 
-        ["(RESPONDENT)"] = PartyRole.Respondent,
-        ["(RESPONDENTS)"] = PartyRole.Respondent,
-        ["1st Respondent"] = PartyRole.Respondent,
-        ["2nd Respondent"] = PartyRole.Respondent,
-        ["3rd Respondent"] = PartyRole.Respondent, // EWCA/Civ/2012/378
-        ["Claimant / Respondent"] = PartyRole.Respondent,
-        ["Claimant/ Respondent"] = PartyRole.Respondent,
-        ["Claimant/Respondent"] = PartyRole.Respondent,
-        ["Claimants/Respondents"] = PartyRole.Respondent,
-        ["Clamaints/ Respondents"] = PartyRole.Respondent,
-        ["Defendant / Respondent"] = PartyRole.Respondent,
-        ["Defendant/ Respondent"] = PartyRole.Respondent,
-        ["Defendant/Respondent"] = PartyRole.Respondent,
-        ["Defendants/ Respondents"] = PartyRole.Respondent,
-        ["Defendants/Respondents"] = PartyRole.Respondent,
-        ["First Respondent"] = PartyRole.Respondent,
-        ["Fourth Respondent"] = PartyRole.Respondent,
-        ["Petitioner/Respondent"] = PartyRole.Respondent,
-        ["Respond-ents/ Defendants"] = PartyRole.Respondent,
-        ["Respondent / Defendant"] = PartyRole.Respondent,
+        ["Respond-ent"] = PartyRole.Respondent,
+        ["Respond-ents"] = PartyRole.Respondent,
         ["Respondent"] = PartyRole.Respondent, // EWCA/Civ/2003/1686
-        ["Respondent/ Claimant"] = PartyRole.Respondent,
-        ["Respondent/ First Defendant"] = PartyRole.Respondent,
-        ["Respondent/Claimant"] = PartyRole.Respondent,
-        ["Respondent/Defendants"] = PartyRole.Respondent,
-        ["Respondent/Petitioner"] = PartyRole.Respondent, // [2021] EWCA Civ 1792
-        ["Respondent/Respondent"] = PartyRole.Respondent,
-        ["Respondents / Claimants"] = PartyRole.Respondent,
-        ["Respondents Second and Third/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2004/1249
+        ["Respondents Second and Third"] = PartyRole.Respondent,
         ["Respondents"] = PartyRole.Respondent,
-        ["Respondents/ Defendants"] = PartyRole.Respondent, // EWCA/Civ/2015/377, EWHC/QB/2006/582
-        ["Respondents/Claimants"] = PartyRole.Respondent,
-        ["Respondents/Defendants"] = PartyRole.Respondent,
-        ["Respondents/Respondents"] = PartyRole.Respondent,
         ["Respondnet"] = PartyRole.Respondent, // EWHC/Admin/2010/3393
-        ["Second Respondent"] = PartyRole.Respondent,
-        ["Third Respondent"] = PartyRole.Respondent,
+        ["Respondnets"] = PartyRole.Respondent,
+
+        ["Third Party"] = PartyRole.ThirdParty
     };
 
     private static bool IsPartyRole(string s)
     {
-        return PartyRoles.ContainsKey(s) || TryGetPartyRole(s, out _);
+        return TryGetSinglePartyRole(s, out _);
     }
 
     private static bool IsPartyRole(WLine line)
@@ -1056,19 +968,9 @@ internal class PartyEnricher : Enricher
         return IsPartyRole(normalized);
     }
 
-    private static PartyRole GetAnyPartyRole(string s)
-    {
-        return IsPartyRole(s) ? GetPartyRole(s) : throw new Exception();
-    }
-
     private static PartyRole GetPartyRole(string s)
     {
-        if (PartyRoles.TryGetValue(s, out var role))
-        {
-            return role;
-        }
-
-        return TryGetPartyRole(s, out role) ? role : throw new Exception();
+        return TryGetSinglePartyRole(s, out var role) ? role : throw new Exception();
     }
 
     private static PartyRole GetPartyRole(WLine line)
@@ -1125,8 +1027,7 @@ internal class PartyEnricher : Enricher
             var penult = (WTab)lineContents[^2];
             var last = (WText)lineContents[^1];
 
-            var s = Regex.Replace(last.Text, @"\s+", " ").Trim();
-            var role = GetAnyPartyRole(s);
+            var role = GetPartyRole(last.Text);
 
             var contents = before.Concat(
             [
@@ -1231,7 +1132,7 @@ internal class PartyEnricher : Enricher
             return row;
         }
 
-        if (TryGetPartyRole(third, out var role))
+        if (TryGetSinglePartyRole(third, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1270,7 +1171,7 @@ internal class PartyEnricher : Enricher
         var first = (WCell)rowCells[0];
         var second = (WCell)rowCells[1];
 
-        if (IsCellWithContent(first) && TryGetPartyRole(second, out var role))
+        if (IsCellWithContent(first) && TryGetSinglePartyRole(second, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1395,7 +1296,7 @@ internal class PartyEnricher : Enricher
             && next.Cells.ToArray() is [WCell nextRowFirstCell, WCell nextRowMiddleCell, WCell nextRowLastCell]
             && IsEmptyCell(thisRowFirstCell) && IsCellWithContent(thisRowMiddleCell) && IsEmptyCell(thisRowLastCell)
             && IsEmptyCell(nextRowFirstCell) && IsEmptyCell(nextRowMiddleCell) && IsCellWithContent(nextRowLastCell)
-            && TryGetPartyRole(nextRowLastCell, out var role))
+            && TryGetSinglePartyRole(nextRowLastCell, out var role))
         {
             return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
             [
@@ -1408,84 +1309,136 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
-    public static bool TryGetPartyRole(string s, out PartyRole role)
-    {
-        if (s.Split('/', 2) is [var beforeSlash, var afterSlash]
-            && !string.IsNullOrWhiteSpace(beforeSlash) && !string.IsNullOrWhiteSpace(afterSlash))
-        {
-            return TryGetPartyRoleForCombinedLabels(beforeSlash, afterSlash, out role);
-        }
-
-        if (s.Split(" and ", 2) is [var beforeAnd, var afterAnd]
-            && !string.IsNullOrWhiteSpace(beforeAnd) && !string.IsNullOrWhiteSpace(afterAnd))
-        {
-            return TryGetPartyRoleForCombinedLabels(beforeAnd, afterAnd, out role);
-        }
-
-        return TryGetPartyRoleForSingleLabel(s, out role);
-    }
-
-    public static bool TryGetPartyRole(WCell cell, out PartyRole role)
+    internal static bool TryGetSinglePartyRole(WCell cell, out PartyRole role)
     {
         var lineContents = cell.Contents
                                .OfType<WLine>()
                                .Where(LineHasContent)
-                               .Select(l => l.NormalizedContent.ToLower())
+                               .Select(l => l.NormalizedContent)
                                .ToArray();
-        switch (lineContents)
-        {
-            case [var one] when TryGetPartyRole(one, out role):
-                return true;
-
-            case ["defendant/", var two] when two.EndsWith("claimant"): // EWHC/Ch/2008/2079
-                role = PartyRole.Defendant;
-                return true;
-
-            case ["claimant/", var two] when two.EndsWith("defendant"): // EWHC/Ch/2008/2079
-                role = PartyRole.Claimant;
-                return true;
-
-            case ["respondents", var two] when two.StartsWith("respondent"): // EWHC/Fam/2013/1956
-                role = PartyRole.Respondent;
-                return true;
-
-            case [var one, var two] when TwoLinePartyRoles.TryGetValue((one, two), out role)
-                || TryGetPartyRoleForCombinedLabels(one, two, out role):
-                return true;
-
-            case ["defendants", "part 20 claimant/", "appellant"]:
-                role = PartyRole.Appellant;
-                return true;
-
-            case ["respondents", "appellant", "respondent"]: // EWCA/Civ/2010/180
-                role = PartyRole.Respondent;
-                return true;
-
-            case { Length: >= 2 } when cell.Contents.All(block => block is WLine):
-                foreach (var (pattern, patternRole) in NLinePartyRolePatterns)
-                {
-                    if (lineContents.All(pattern.IsMatch))
-                    {
-                        role = patternRole;
-                        return true;
-                    }
-                }
-
-                role = default;
-                return false;
-
-            default:
-                role = default;
-                return false;
-        }
+        return TryGetSinglePartyRole(lineContents, out role);
     }
+
+    internal static bool TryGetSinglePartyRole(string inputRoleStrings, out PartyRole role)
+    {
+        return TryGetSinglePartyRole([inputRoleStrings], out role);
+    }
+
+    internal static bool TryGetSinglePartyRole(string[] inputRoleStrings, out PartyRole role)
+    {
+        if (!TryGetPartyRoleParts(inputRoleStrings, out var roleParts))
+        {
+            role = default;
+            return false;
+        }
+
+        bool AllRolesAre(PartyRole role) => roleParts.All(r => r == role);
+        bool OneRoleIs(PartyRole role) => roleParts.Any(r => r == role);
+
+        PartyRole? result = roleParts switch
+        {
+            [var partyRole] => partyRole,
+            [var partyRole, ..] when AllRolesAre(partyRole) => partyRole, // All roles are the same
+
+            [.., PartyRole.ThirdParty or PartyRole.InterestedParty] => null,
+
+            [PartyRole.Appellant, PartyRole.Respondent] => PartyRole.Respondent, // [2020] EWHC 3409 (QB)
+            [PartyRole.Respondent, PartyRole.Appellant] => PartyRole.Appellant, // [2021] EWCA Civ 1961
+
+            [PartyRole.Respondent, PartyRole.Applicant] => PartyRole.Applicant,
+
+            { Length: 2 } when OneRoleIs(PartyRole.Appellant) => PartyRole.Appellant,
+            { Length: 2 } when OneRoleIs(PartyRole.Respondent) => PartyRole.Respondent,
+
+            [PartyRole.Claimant, PartyRole.Defendant] => PartyRole.Claimant,
+
+            [PartyRole.Applicant, PartyRole.Defendant] => PartyRole.Defendant,
+            [PartyRole.Defendant, PartyRole.Applicant] => PartyRole.Applicant, // [2019] EWHC 3963 (QB)
+
+            { Length: 2 } when OneRoleIs(PartyRole.Defendant) => PartyRole.Defendant,
+            { Length: 2 } when OneRoleIs(PartyRole.Applicant) => PartyRole.Applicant,
+
+            [PartyRole.Defendant, PartyRole.Claimant, PartyRole.Appellant] => PartyRole.Appellant,
+            [PartyRole.Respondent, PartyRole.Appellant, PartyRole.Respondent] => PartyRole.Respondent,
+
+            _ => null
+        };
+
+        if (result.HasValue)
+        {
+            role = result.Value;
+            return true;
+        }
+
+        role = default;
+        return false;
+    }
+
+    private static bool TryGetPartyRoleParts(string[] inputRoleStrings, out PartyRole[] roleParts)
+    {
+        var parts = inputRoleStrings
+                    .SelectMany(s => s.Split('/',
+                        StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                    .ToArray();
+        if (parts.Length < 2)
+        {
+            parts = inputRoleStrings
+                    .SelectMany(s => s.Split(" and ",
+                        StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                    .ToArray();
+        }
+
+        var cleanedParts = parts.Select(p => p.CleanWhitespace().Trim('(', ')').Trim());
+        var cleanedPartsWithoutPrefixes = cleanedParts.Select(StripRolePrefix).ToArray();
+
+        if (!cleanedPartsWithoutPrefixes.All(PartyRoles.ContainsKey))
+        {
+            roleParts = null;
+            return false;
+        }
+
+        roleParts = cleanedPartsWithoutPrefixes.Select(p => PartyRoles[p]).ToArray();
+        return true;
+    }
+
+    private static string StripRolePrefix(string s)
+    {
+        if (s.Equals("Third Party", StringComparison.OrdinalIgnoreCase))
+        {
+            return s;
+        }
+
+        foreach (var prefix in
+                 PrefixesToStrip.Where(prefix => s.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
+        {
+            s = s.Remove(0, prefix.Length).Trim();
+        }
+
+        s = Regex.Replace(s, @"^\d+(st|nd|rd|th)", "", RegexOptions.IgnoreCase).Trim();
+
+        return s;
+    }
+
+    private static readonly HashSet<string> PrefixesToStrip =
+    [
+        "First",
+        "Second",
+        "Third",
+        "Fourth",
+        "Fifth",
+        "Sixth",
+
+        "Additional",
+        "Inquiry", // [2022] EWHC 189 (Pat)
+        "Part 20"
+    ];
 
     private static bool TryGetTwoDifferentRoles(WCell cell, out (PartyRole first, PartyRole second) roles)
     {
         var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
         if (linesWithContent.Length == 2
-            && TryGetPartyRole(linesWithContent[0].NormalizedContent, out var role1)
-            && TryGetPartyRole(linesWithContent[1].NormalizedContent, out var role2)
+            && TryGetSinglePartyRole(linesWithContent[0].NormalizedContent, out var role1)
+            && TryGetSinglePartyRole(linesWithContent[1].NormalizedContent, out var role2)
             && role1 != role2)
         {
             roles = (role1, role2);
@@ -1506,57 +1459,6 @@ internal class PartyEnricher : Enricher
                                                            new WRole { Role = role, Contents = line.Contents }
                                                        ])));
     }
-
-    private static readonly Dictionary<(string one, string two), PartyRole> TwoLinePartyRoles =
-        new(new OrdinalIgnoreCaseTupleComparer())
-        {
-            [("Defendant/", "Appellant")] = PartyRole.Appellant, // EWCA/Civ/2011/1383
-            [("Claimant/", "Appellant")] = PartyRole.Appellant, // EWCA/Civ/2011/1277
-            [("Appellants/", "Defendants")] = PartyRole.Appellant,
-            [("Appellants/", "Defendants & Counterclaimants")] = PartyRole.Appellant, // EWCA/Civ/2017/97
-            [("Appellants/", "Claimants")] = PartyRole.Appellant, // EWCA/Civ/2015/377
-            [("Appellants", "Claimants")] = PartyRole.Appellant, // EWCA/Civ/2018/601
-            [("Appellant/", "Claimant")] = PartyRole.Appellant, // EWHC/Ch/2017/541
-            [("Appellant", "/Claimant")] = PartyRole.Appellant, // [2021] EWHC 3453 (QB)
-            [("Appellant/", "Defendant")] = PartyRole.Appellant, // EWHC/QB/2013/196
-            [("Claimants/", "Appellants")] = PartyRole.Appellant, // EWHC/Admin/2016/321
-            [("Defendants/", "Appellants")] = PartyRole.Appellant, // EWCA/Civ/2004/277
-            [("Respondent/", "Appellant")] = PartyRole.Appellant, // [2021] EWCA Civ 1961
-
-            [("Defendant/", "Applicant")] = PartyRole.Applicant, // EWHC/Ch/2017/916
-            [("Defendants/", "Applicants")] = PartyRole.Applicant, // [2021] EWHC 2684 (Comm)
-
-            [("First Defendant", "Second Defendant")] = PartyRole.Defendant, // EWHC/Admin/2010/2
-            [("Defendant/Part 20 Claimant", "Part 20 Claimant")] = PartyRole.Defendant, // EWHC/Ch/2003/812
-            [("1st Defendant/Part 20 Claimant", "2nd Defendant/Part 20 Defendant")] =
-                PartyRole.Defendant, // EWHC/QB/2004/1260
-            [("Defendant/", "Cross appellant")] = PartyRole.Defendant, // EWHC/QB/2013/652 ??? other role is Appellant
-
-            [("Claimant/", "Respondent")] = PartyRole.Respondent, // EWCA/Civ/2008/183
-            [("Claimants/", "Respondents")] = PartyRole.Respondent, // EWHC/Ch/2017/916
-            [("Respondent/", "Claimant")] = PartyRole.Respondent, // EWCA/Civ/2017/97
-            [("Respondent", "Intervener")] = PartyRole.Respondent, // EWCA/Civ/2016/176
-            [("Respondent/", "Defendant")] = PartyRole.Respondent, // EWHC/Ch/2017/541
-            [("Respondent", "Defendant")] = PartyRole.Respondent, // EWCA/Civ/2018/601
-            [("1st Respondent", "/Defendant")] = PartyRole.Respondent, // [2021] EWHC 3453 (QB)
-            [("Defendant/", "Respondent")] = PartyRole.Respondent, // EWHC/Admin/2015/1639
-            [("Defendants/", "Respondents")] = PartyRole.Respondent, // EWHC/Admin/2016/321
-            [("1st Respondent", "2nd Respondent")] = PartyRole.Respondent, // EWHC/Fam/2017/364, EWHC/Fam/2013/1864?
-            [("1st Respondent", "2ndRespondent")] = PartyRole.Respondent, // EWCA/Civ/2011/1253
-            [("Applicant/", "Respondent")] = PartyRole.Respondent, // [2021] EWCA Civ 1725
-            [("Appellant/", "Respondent")] = PartyRole.Respondent // [2020] EWHC 3409 (QB)
-        };
-
-    private static readonly (Regex Pattern, PartyRole Role)[] NLinePartyRolePatterns =
-    [
-        (new Regex(@"^\d(st|nd|rd|th)? Defendant$", RegexOptions.IgnoreCase), PartyRole.Defendant),
-        (new Regex(@"^(First|Second|Third|Fourth) Defendant$", RegexOptions.IgnoreCase),
-            PartyRole.Defendant), // EWHC/Fam/2003/365
-        (new Regex(@"^\d(st|nd|rd|th)? Appellant$", RegexOptions.IgnoreCase), PartyRole.Appellant),
-        (new Regex(@"^(\d(st|nd|rd|th)? ?)?Respondent$", RegexOptions.IgnoreCase),
-            PartyRole.Respondent), // EWFC/HCJ/2014/34, no space in EWHC/Fam/2013/1864
-        (new Regex(@"^(First|Second|Third|Fourth) Respondent$", RegexOptions.IgnoreCase), PartyRole.Respondent)
-    ];
 
     private static IBlock EnrichBlockWithParty(IBlock block, PartyRole role)
     {
@@ -1722,7 +1624,7 @@ internal class PartyEnricher : Enricher
                     continue;
                 }
 
-                if (andFound)
+                if (firstPartyFound && andFound)
                 {
                     secondPartyFound = true;
                     var party = new WParty(wText) { Role = roles.second };
@@ -1880,78 +1782,5 @@ internal class PartyEnricher : Enricher
                 => WLine.Make(line, [new WDocTitle(wText)]),
             _ => line
         };
-    }
-
-    private static readonly HashSet<string> PrefixesToStrip =
-    [
-        "1st ",
-        "2nd ",
-        "3rd ",
-        "4th ",
-        "5th ",
-        "6th ",
-        "First ",
-        "Second ",
-        "Third ",
-        "Fourth ",
-        "Fifth ",
-        "Sixth ",
-        "Inquiry " // [2022] EWHC 189 (Pat)
-    ];
-
-    private static bool TryGetPartyRoleForSingleLabel(string s, out PartyRole role)
-    {
-        s = Regex.Replace(s, @"\s+", " ").Trim(' ', '/', '(', ')');
-        if (s.StartsWith("Part 20 ", StringComparison.OrdinalIgnoreCase))
-        {
-            s = s.Substring(8);
-        }
-
-        if (s.Equals("Third Party", StringComparison.OrdinalIgnoreCase))
-        {
-            role = PartyRole.ThirdParty;
-            return true;
-        }
-
-        if (PrefixesToStrip.Any(prefix => s.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
-        {
-            s = s.Substring(s.IndexOf(' ') + 1);
-        }
-
-        return PartyRoles.TryGetValue(s, out role);
-    }
-
-    private static bool TryGetPartyRoleForCombinedLabels(string s1, string s2, out PartyRole role)
-    {
-        if (TryGetPartyRole(s1, out var role1)
-            && TryGetPartyRole(s2, out var role2))
-        {
-            if (role1 == PartyRole.Appellant || role2 == PartyRole.Appellant)
-            {
-                role = PartyRole.Appellant;
-                return true;
-            }
-
-            if (role1 == PartyRole.Respondent || role2 == PartyRole.Respondent)
-            {
-                role = PartyRole.Respondent;
-                return true;
-            }
-
-            if (role1 == PartyRole.Claimant && role2 == PartyRole.Defendant) // [2022] EWCA Civ 102
-            {
-                role = PartyRole.Claimant;
-                return true;
-            }
-
-            if (role1 == PartyRole.Defendant && role2 == PartyRole.Applicant) // [2019] EWHC 3963 (QB)
-            {
-                role = PartyRole.Applicant;
-                return true;
-            }
-        }
-
-        role = default;
-        return false;
     }
 }
