@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Veterinary Medicines (Amendment etc.) Regulations 2024" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
+        <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="000" />
+      </references>
+    </meta>
+    <coverPage />
+    <preface eId="fnt">
+      <block name="proceduralRubric">Draft Regulations laid before Parliament under section 47(3) and (6)(a) of the Medicines and Medical Devices Act 2021, for approval by resolution of each House of Parliament.</block>
+      <block name="banner">DRAFT STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">MEDICINES</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes these Regulations in exercise of the powers conferred by sections 10(1), 11, 12(1)(a), (b) and (c), and 43(2) of the Medicines and Medical Devices Act 2021<authorialNote marker="1" class="footnote"><p>2021 c. 3.</p></authorialNote> (“the Act”).</p>
+        <p>In accordance with section 10(2) of the Act, the Secretary of State’s overarching objective in making these Regulations is to promote one or more of the matters specified in that subsection.</p>
+        <p>The Secretary of State—</p>
+        <p>The Secretary of State has consulted in accordance with section 45(1) of the Act and has set out in the consultation document, in accordance with section 45(3) of the Act, a summary of the Secretary of State’s assessment of the matters mentioned in section 10 of the Act.</p>
+        <p>A draft of this instrument has been laid before Parliament and approved by a resolution of each House of Parliament in accordance with section 47(3) and (6)(a) of the Act.</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>Introduction</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Citation, commencement and extent</heading>
+          <num>1.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>These Regulations may be cited as the Veterinary Medicines (Amendment etc.) Regulations 2024 and come into force 21 days after the day on which they are made.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>These Regulations extend to England and Wales and Scotland.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_2" class="prov1">
+          <heading>Amendment to paragraph 57</heading>
+          <num>2.</num>
+          <intro>
+            <p>In paragraph 57 (adverse reactions to product administered in UK)—</p>
+          </intro>
+          <level class="para1">
+            <num>(a)</num>
+            <intro>
+              <p>in sub-paragraph (1)—</p>
+            </intro>
+            <level class="para2">
+              <num>(i)</num>
+              <content>
+                <p><mod>in paragraph (a) for <quotedText startQuote="“" endQuote="”">serious adverse reaction</quotedText> substitute <quotedText startQuote="“" endQuote="”">adverse event in respect of an animal</quotedText>;</mod></p>
+              </content>
+            </level>
+            <level class="para2">
+              <num>(ii)</num>
+              <intro>
+                <p>in paragraph (b)—</p>
+              </intro>
+              <level class="para3">
+                <num>(aa)</num>
+                <content>
+                  <p><mod>for <quotedText startQuote="“" endQuote="”">adverse reaction</quotedText> substitute <quotedText startQuote="“" endQuote="”">adverse event</quotedText>;</mod></p>
+                </content>
+              </level>
+              <level class="para3">
+                <num>(bb)</num>
+                <content>
+                  <p><mod>omit <quotedText startQuote="“" endQuote="”">or</quotedText>;</mod></p>
+                </content>
+              </level>
+            </level>
+            <level class="para2">
+              <num>(iii)</num>
+              <content>
+                <p><mod>omit <quotedText startQuote="“" endQuote="”">in the United Kingdom</quotedText>;</mod></p>
+              </content>
+            </level>
+          </level>
+        </article>
+      </part>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <block name="signature">Name</block>
+            <block name="role">Parliamentary Under Secretary of State</block>
+            <block name="date"><date date="9999-01-01">Date</date></block>
+            <block name="role">Department for Environment, Food and Rural Affairs</block>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+    <conclusions eId="backCover">
+      <blockContainer class="explanatoryNote">
+        <heading>EXPLANATORY NOTE</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>These Regulations amend the Veterinary Medicines Regulations 2013 (S.I. 2013/2033, “the 2013 Regulations”) in respect of Great Britain only.</p>
+      </blockContainer>
+    </conclusions>
+  </bill>
+</akomaNtoso>
