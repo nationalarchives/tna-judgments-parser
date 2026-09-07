@@ -1451,18 +1451,16 @@ internal class PartyEnricher : Enricher
 
         foreach (var line in cell.Contents.Cast<WLine>())
         {
-            if (IsEmptyLine(line))
+            if (IsEmptyLine(line) && firstPartyFound)
             {
-                if (firstPartyFound)
-                {
-                    emptyAfterFirstFound = true;
-                }
-
+                emptyAfterFirstFound = true;
                 contents.Add(line);
-                continue;
             }
-
-            if (emptyAfterFirstFound)
+            else if (IsEmptyLine(line))
+            {
+                contents.Add(line);
+            }
+            else if (emptyAfterFirstFound)
             {
                 contents.Add(WLine.Make(line, [new WRole { Contents = line.Contents, Role = roles.second }]));
             }
