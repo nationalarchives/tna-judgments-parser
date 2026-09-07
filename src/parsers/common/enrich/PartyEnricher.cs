@@ -1372,146 +1372,72 @@ internal class PartyEnricher : Enricher
 
     private WCell EnrichPartyNamesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
     {
+        if (cell.Contents.Any(b => b is not WLine))
+        {
+            return cell;
+        }
+
         var contents = new List<IBlock>();
         var firstPartyFound = false;
         var andFound = false;
         var secondPartyFound = false;
-        foreach (var block in cell.Contents)
-        {
-            if (block is not WLine line)
-            {
-                return cell;
-            }
 
+        foreach (var line in cell.Contents.Cast<WLine>())
+        {
             if (IsEmptyLine(line))
             {
-                contents.Add(block);
+                contents.Add(line);
                 continue;
             }
 
-            var lineContents = line.Contents.ToArray();
-            if (lineContents.Length == 1)
+            switch (line.Contents.ToArray())
             {
-                var first = lineContents[0];
-                if (first is not WText wText)
-                {
-                    return cell;
-                }
+                case [WText wText] when IsBlank(wText) || IsInBrackets(wText.Text):
+                    contents.Add(line);
+                    break;
 
-                if (IsBlank(wText))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsInBrackets(wText.Text))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsAnd(wText.Text))
-                {
+                case [.. { Length: 0 or 1 }, WText wText] when IsAnd(wText.Text):
                     andFound = true;
-                    contents.Add(block);
-                    continue;
-                }
+                    contents.Add(line);
+                    break;
 
-                if (firstPartyFound && andFound)
-                {
+                case [WText wText] when firstPartyFound && andFound:
                     secondPartyFound = true;
-                    var party = new WParty(wText) { Role = roles.second };
-                    var newLine = WLine.Make(line, [party]);
-                    contents.Add(newLine);
-                }
-                else
-                {
+                    contents.Add(WLine.Make(line, [new WParty(wText) { Role = roles.second }]));
+                    break;
+
+                case [WText wText]:
                     firstPartyFound = true;
-                    var party = new WParty(wText) { Role = roles.first };
-                    var newLine = WLine.Make(line, [party]);
-                    contents.Add(newLine);
-                }
-            }
-            else if (lineContents.Length == 2)
-            {
-                // EWHC/Admin/2016/176
+                    contents.Add(WLine.Make(line, [new WParty(wText) { Role = roles.first }]));
+                    break;
 
-                var first = lineContents[0];
-                var second = lineContents[1];
-                if (first is not WText wText1)
-                {
-                    contents.Add(block);
-                    continue;
-                }
+                case [WText wText1, WText wText2]
+                    when IsNotBlank(wText1) || IsBlank(wText2) || IsInBrackets(wText2.Text):
+                    contents.Add(line);
+                    break;
 
-                if (second is not WText wText2)
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsNotBlank(wText1))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsBlank(wText2))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsInBrackets(wText2.Text))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsAnd(wText2.Text))
-                {
-                    andFound = true;
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (andFound)
-                {
+                case [WText wText1, WText wText2] when andFound:
                     secondPartyFound = true;
-                    var party = new WParty(wText2) { Role = roles.second };
-                    var newLine = WLine.Make(line, [first, party]);
-                    contents.Add(newLine);
-                }
-                else
-                {
+                    contents.Add(WLine.Make(line, [wText1, new WParty(wText2) { Role = roles.second }]));
+                    break;
+
+                case [WText wText1, WText wText2]:
                     firstPartyFound = true;
-                    var party = new WParty(wText2) { Role = roles.first };
-                    var newLine = WLine.Make(line, [first, party]);
-                    contents.Add(newLine);
-                }
-            }
-            else
-            {
-                contents.Add(block);
+                    contents.Add(WLine.Make(line, [wText1, new WParty(wText2) { Role = roles.first }]));
+                    break;
+
+                default:
+                    contents.Add(line);
+                    break;
             }
         }
 
-        if (!firstPartyFound)
+        if (firstPartyFound && andFound && secondPartyFound)
         {
-            return cell;
+            return new WCell(cell.Row, cell.Props, contents);
         }
 
-        if (!andFound)
-        {
-            return cell;
-        }
-
-        if (!secondPartyFound)
-        {
-            return cell;
-        }
-
-        return new WCell(cell.Row, cell.Props, contents);
+        return cell;
     }
 
     private WCell EnrichPartyTypesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
