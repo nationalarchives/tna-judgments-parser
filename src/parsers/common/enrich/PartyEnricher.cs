@@ -374,12 +374,11 @@ internal class PartyEnricher : Enricher
             line = rest[i];
         }
 
-        if (line is not WLine partyLine1 || !IsPartyNameAndRole(partyLine1))
+        if (line is not WLine partyLine1 || !TryMakePartyAndRole(partyLine1, out var party1))
         {
             return false;
         }
 
-        var party1 = MakePartyAndRole(partyLine1);
         result.Add(party1);
         i += 1;
         if (i == rest.Length)
@@ -404,12 +403,11 @@ internal class PartyEnricher : Enricher
         }
 
         line = rest[i];
-        if (line is not WLine partyLine2 || !IsPartyNameAndRole(partyLine2))
+        if (line is not WLine partyLine2 || !TryMakePartyAndRole(partyLine2, out var party2))
         {
             return false;
         }
 
-        var party2 = MakePartyAndRole(partyLine2);
         result.Add(party2);
         i += 1;
         if (i == rest.Length)
@@ -538,56 +536,43 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] rest, out List<IBlock> enriched)
+    private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] inputBlocks, out List<IBlock> enriched)
     {
-        return TryEnrichPartyNamesWithRoleLabel(rest, IsPartyRole, GetPartyRole, out enriched);
-    }
+        if (inputBlocks.Length == 0 || inputBlocks[0] is not WLine firstPartyLine || !IsPartyName(firstPartyLine))
+        {
+            enriched = null;
+            return false;
+        }
 
-    private static bool TryEnrichPartyNamesWithRoleLabel(IBlock[] rest, Func<WLine, bool> test,
-        Func<WLine, PartyRole> construct, out List<IBlock> enriched)
-    {
+        List<WLine> foundPartyNames = [firstPartyLine];
+        foreach (var block in inputBlocks.Skip(1))
+        {
+            switch (block)
+            {
+                case WLine line when TryGetSinglePartyRole(line.NormalizedContent, out var role):
+                    {
+                        enriched =
+                        [
+                            .. foundPartyNames.Select(l => MakeParty(l, role)),
+                            MakeRole(line, role)
+                        ];
+                        return true;
+                    }
+                case WLine line when IsPartyName(line):
+                    {
+                        foundPartyNames.Add(line);
+                        break;
+                    }
+                default:
+                    {
+                        enriched = null;
+                        return false;
+                    }
+            }
+        }
+
         enriched = null;
-        var i = 0;
-        if (i == rest.Length)
-        {
-            return false;
-        }
-
-        if (rest[i] is not WLine firstPartyLine || !IsPartyName(firstPartyLine))
-        {
-            return false;
-        }
-
-        List<WLine> stack = [firstPartyLine];
-        i += 1;
-        while (true)
-        {
-            if (i == rest.Length || rest[i] is not WLine line)
-            {
-                return false;
-            }
-
-            if (test(line))
-            {
-                var role1 = construct(line);
-                enriched =
-                [
-                    .. stack.Select(l => MakeParty(l, role1)),
-                    MakeRole(line, role1)
-                ];
-                return true;
-            }
-
-            if (IsPartyName(line))
-            {
-                stack.Add(line);
-                i += 1;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        return false;
     }
 
     private static bool IsBeforePartyMarker(WLine line)
@@ -957,89 +942,30 @@ internal class PartyEnricher : Enricher
         ["Third Party"] = PartyRole.ThirdParty
     };
 
-    private static bool IsPartyRole(string s)
-    {
-        return TryGetSinglePartyRole(s, out _);
-    }
-
     private static bool IsPartyRole(WLine line)
     {
-        var normalized = line.NormalizedContent;
-        return IsPartyRole(normalized);
+        return TryGetSinglePartyRole(line.NormalizedContent, out _);
     }
 
-    private static PartyRole GetPartyRole(string s)
+    private static bool TryMakePartyAndRole(WLine line, out WLine enriched)
     {
-        return TryGetSinglePartyRole(s, out var role) ? role : throw new Exception();
-    }
-
-    private static PartyRole GetPartyRole(WLine line)
-    {
-        var normalized = line.NormalizedContent;
-        return GetPartyRole(normalized);
-    }
-
-    private static bool IsPartyNameAndRole(WLine line)
-    {
-        var lineContents = line.Contents.ToArray();
-        if (lineContents.Length >= 3)
+        if (line.Contents.ToArray() is [.. var startingTabs, WText partyNameText, WTab tab, WText roleText]
+            && startingTabs.All(l => l is WTab)
+            && TryGetSinglePartyRole(roleText.Text, out var role))
         {
-            var before = lineContents.SkipLast(3);
-            if (!before.All(i => i is WTab))
-            {
-                return false;
-            }
+            var contents = startingTabs.Concat(
+            [
+                new WParty(partyNameText.Text, partyNameText.properties) { Role = role },
+                tab,
+                new WRole { Role = role, Contents = [roleText] }
+            ]);
 
-            if (lineContents[^3] is not WText)
-            {
-                return false;
-            }
-
-            if (lineContents[^2] is not WTab)
-            {
-                return false;
-            }
-
-            if (lineContents[^1] is not WText wText2)
-            {
-                return false;
-            }
-
-            var s = Regex.Replace(wText2.Text, @"\s+", " ").Trim();
-            if (!IsPartyRole(s))
-            {
-                return false;
-            }
-
+            enriched = WLine.Make(line, contents);
             return true;
         }
 
+        enriched = null;
         return false;
-    }
-
-    private static WLine MakePartyAndRole(WLine line)
-    {
-        var lineContents = line.Contents.ToArray();
-        if (lineContents.Length >= 3)
-        {
-            var before = lineContents.SkipLast(3);
-            var antiPenult = (WText)lineContents[^3];
-            var penult = (WTab)lineContents[^2];
-            var last = (WText)lineContents[^1];
-
-            var role = GetPartyRole(last.Text);
-
-            var contents = before.Concat(
-            [
-                new WParty(antiPenult.Text, antiPenult.properties) { Role = role },
-                penult,
-                new WRole { Role = role, Contents = [last] }
-            ]);
-
-            return WLine.Make(line, contents);
-        }
-
-        throw new Exception();
     }
 
     private static bool IsBetweenPartyMarker(WLine line)

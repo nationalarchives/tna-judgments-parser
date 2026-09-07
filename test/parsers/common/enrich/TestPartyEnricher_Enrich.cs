@@ -253,7 +253,7 @@ public partial class TestPartyEnricher
     {
         var beforeMarker = TextLine("-----");
         var claimantLine = new WLine(LineTemplate,
-            [new WTab(new TabChar()), new WText("Jane", null), new WText(" Doe", null)]);
+            [Tab(), new WText("Jane", null), new WText(" Doe", null)]);
         var betweenMarker = TextLine("v");
         var defendantLine = TextLine("John Smith");
         var afterMarker = TextLine("-----");
@@ -348,12 +348,12 @@ public partial class TestPartyEnricher
         var beforeMarker = TextLine("BETWEEN");
         var claimantNameAndRole = new WLine(LineTemplate,
         [
-            new WText("Jane Doe", null), new WTab(new TabChar()), new WText("Claimant", null)
+            new WText("Jane Doe", null), Tab(), new WText("Claimant", null)
         ]);
         var between = TextLine("v");
         var defendantNameAndRole = new WLine(LineTemplate,
         [
-            new WText("John Smith", null), new WTab(new TabChar()), new WText("Defendant", null)
+            new WText("John Smith", null), Tab(), new WText("Defendant", null)
         ]);
         var afterMarker = TextLine("-----");
 
@@ -380,6 +380,117 @@ public partial class TestPartyEnricher
         defendantLine.Contents.ElementAt(2).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Defendant);
 
         result[4].ShouldBeSameAs(afterMarker);
+    }
+
+    [Fact]
+    public void Enrich_MultiLineBlock_WithLeadingTabsBeforeNameAndRole_AssignsRolesToEachSide()
+    {
+        var beforeMarker = TextLine("BETWEEN");
+        var claimantNameAndRole = new WLine(LineTemplate,
+            [Tab(), Tab(), new WText("Jane Doe", null), Tab(), new WText("Claimant", null)]
+            );
+        var between = TextLine("v");
+        var defendantNameAndRole = new WLine(LineTemplate,
+        [
+            new WText("John Smith", null), Tab(), new WText("Defendant", null)
+        ]);
+        var afterMarker = TextLine("-----");
+
+        var result = PartyEnricher.Enrich(
+            [
+                beforeMarker, claimantNameAndRole, between, defendantNameAndRole, afterMarker
+            ]
+        ).Cast<WLine>().ToArray();
+
+        var claimantLine = result[1];
+        claimantLine.Contents.ElementAt(0).ShouldBeOfType<WTab>();
+        claimantLine.Contents.ElementAt(1).ShouldBeOfType<WTab>();
+
+        var claimantParty = claimantLine.Contents.ElementAt(2).ShouldBeOfType<WParty>();
+        claimantParty.Role.ShouldBe(PartyRole.Claimant);
+        claimantParty.Text.ShouldBe("Jane Doe");
+        claimantLine.Contents.ElementAt(4).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Claimant);
+
+        var defendantLine = result[3];
+        var defendantParty = defendantLine.Contents.ElementAt(0).ShouldBeOfType<WParty>();
+        defendantParty.Role.ShouldBe(PartyRole.Defendant);
+        defendantParty.Text.ShouldBe("John Smith");
+        defendantLine.Contents.ElementAt(2).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Defendant);
+    }
+
+    private static WTab Tab()
+    {
+        return new WTab(new TabChar());
+    }
+
+    public static TheoryData<string, IBlock> NonMatchingNameAndRoleLines()
+    {
+        return new TheoryData<string, IBlock>
+        {
+            {
+                "too few content items", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab()
+                ])
+            },
+            {
+                "extra text before the name", new WLine(LineTemplate,
+                [
+                    new WText("Extra", null),
+                    new WText("John Smith", null), Tab(), new WText("Defendant", null)
+                ])
+            },
+            {
+                "unrecognised role text", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab(), new WText("Not A Role", null)
+                ])
+            },
+            {
+                "no tab before the role", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), new WText(" ", null), new WText("Defendant", null)
+                ])
+            },
+            {
+                "name is missing before the tab", new WLine(LineTemplate,
+                [
+                    Tab(), Tab(), new WText("Defendant", null)
+                ])
+            },
+            {
+                "role is missing after the tab", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab(), Tab()
+                ])
+            }
+        };
+    }
+
+    [Theory]
+    [MemberData(nameof(NonMatchingNameAndRoleLines))]
+    public void Enrich_MultiLineBlock_WithMalformedNameAndRoleTabbedLine_LeavesBlockUnchanged(string scenario,
+        IBlock defendantNameAndRoleLine)
+    {
+        var beforeMarker = TextLine("BETWEEN");
+        var claimantNameAndRole = new WLine(LineTemplate,
+        [
+            new WText("Jane Doe", null), Tab(), new WText("Claimant", null)
+        ]);
+        var between = TextLine("v");
+        var afterMarker = TextLine("-----");
+
+        var result = PartyEnricher.Enrich(
+            [
+                beforeMarker, claimantNameAndRole, between, defendantNameAndRoleLine, afterMarker
+            ]
+        ).Cast<WLine>().ToArray();
+
+        result[0].ShouldBeSameAs(beforeMarker, scenario);
+        result[1].ShouldBeSameAs(claimantNameAndRole, scenario);
+        result[2].ShouldBeSameAs(between, scenario);
+        result[3].ShouldBeSameAs(defendantNameAndRoleLine, scenario);
+        result[4].ShouldBeSameAs(afterMarker, scenario);
     }
 
     [Fact]
@@ -600,7 +711,7 @@ public partial class TestPartyEnricher
         var cellWithNumberedTabbedName = new WCell(RowOf(), null, [
             new WLine(LineTemplate, [
                 new WText("1.", null),
-                new WTab(new TabChar()),
+                Tab(),
                 new WText("John Smith", null)
             ])
         ]);
