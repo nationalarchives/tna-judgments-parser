@@ -487,6 +487,11 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
+    private static bool IsInTheMatterOfSomething(WCell cell)
+    {
+        return cell.Contents.ToArray() is [WLine line] && IsInTheMatterOfSomething(line);
+    }
+
     private static bool IsInTheMatterOfSomething(WLine line)
     {
         var lineContents = line.Contents.ToArray();
@@ -843,7 +848,7 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
-    private WRow EnrichTwoCellRow(WRow row)
+    private static WRow EnrichTwoCellRow(WRow row)
     {
         var rowCells = row.Cells.ToArray();
         var first = (WCell)rowCells[0];
@@ -862,7 +867,7 @@ internal class PartyEnricher : Enricher
 
     }
 
-    private bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
+    private static bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
     {
         // EWCA/Crim/2007/854, EWCA/Crim/2014/465
         enrichedRows = null;
@@ -968,7 +973,7 @@ internal class PartyEnricher : Enricher
         return true;
     }
 
-    private WRow EnrichRowWithPartyRoleFromNextRow(WRow row, WRow next)
+    private static WRow EnrichRowWithPartyRoleFromNextRow(WRow row, WRow next)
     {
         if (row.Cells.ToArray() is [WCell thisRowFirstCell, WCell thisRowMiddleCell, WCell thisRowLastCell]
             && next.Cells.ToArray() is [WCell nextRowFirstCell, WCell nextRowMiddleCell, WCell nextRowLastCell]
@@ -1364,19 +1369,13 @@ internal class PartyEnricher : Enricher
         return cell;
     }
 
-    private static bool IsInTheMatterOfSomething(WCell cell)
-    {
-        var cellContents = cell.Contents.ToArray();
-        return cellContents is [WLine line] && IsInTheMatterOfSomething(line);
-    }
-
-    private WCell EnrichInTheMatterOfSomething(WCell cell)
+    private static WCell EnrichInTheMatterOfSomething(WCell cell)
     {
         var line = MakeDocTitle((WLine)cell.Contents.First());
         return new WCell(cell.Row, cell.Props, [line]);
     }
 
-    private WLine EnrichLineWithDocTitle(WLine line)
+    private static WLine EnrichLineWithDocTitle(WLine line)
     {
         return line.Contents.ToArray() switch
         {
