@@ -107,7 +107,7 @@ internal class PartyEnricher : Enricher
     {
         if (before is [WLine line1, WLine line2, WLine line3, WLine line4, ..]
             && IsRexOrRegina(line1)
-            && IsBetweenPartyMarker(line2)
+            && IsV(line2)
             && IsPartyName(line3)
             && IsAfterPartyMarker(line4))
         {
@@ -128,7 +128,7 @@ internal class PartyEnricher : Enricher
     {
         if (before is [WLine line1, WLine line2, WLine line3, WLine line4, WLine line5, ..]
             && IsRexOrRegina(line1)
-            && IsBetweenPartyMarker(line2)
+            && IsV(line2)
             && IsPartyName(line3)
             && IsPartyName(line4)
             && IsAfterPartyMarker(line5))
@@ -152,7 +152,7 @@ internal class PartyEnricher : Enricher
         if (before is [WLine line1, WLine line2, WLine line3, WLine line4, WLine line5, ..]
             && IsBeforePartyMarker(line1)
             && IsPartyName(line2)
-            && (IsBetweenPartyMarker(line3) || IsBetweenPartyMarker2(line3))
+            && (IsV(line3) || IsAnd(line3))
             && IsPartyName(line4)
             && IsAfterPartyMarker(line5))
         {
@@ -247,7 +247,7 @@ internal class PartyEnricher : Enricher
         blockCursor.AdvanceCursor(firstGroupOfParites.Length);
 
         /* no "v" or "and" in EWHC/Comm/2013/3920 */
-        if (blockCursor.NextLineMatches(l => IsBetweenPartyMarker(l) || IsBetweenPartyMarker2(l)))
+        if (blockCursor.NextLineMatches(l => IsV(l) || IsAnd(l)))
         {
             result.Add(blockCursor.ReadNextLine());
         }
@@ -259,7 +259,7 @@ internal class PartyEnricher : Enricher
         result.AddRange(secondGroupOfParites);
         blockCursor.AdvanceCursor(secondGroupOfParites.Length);
 
-        if (blockCursor.NextLineMatches(IsBetweenPartyMarker2))
+        if (blockCursor.NextLineMatches(IsAnd))
         {
             result.Add(blockCursor.ReadNextLine());
         }
@@ -315,7 +315,7 @@ internal class PartyEnricher : Enricher
         }
         result.Add(party1);
 
-        if (!blockCursor.NextLineMatches(l => IsBetweenPartyMarker(l) || IsBetweenPartyMarker2(l)))
+        if (!blockCursor.NextLineMatches(l => IsV(l) || IsAnd(l)))
         {
             return false;
         }
@@ -366,7 +366,7 @@ internal class PartyEnricher : Enricher
         blockCursor.AdvanceCursor(firstGroupOfParites.Length);
 
         /* and */
-        if (!blockCursor.NextLineMatches(IsBetweenPartyMarker2))
+        if (!blockCursor.NextLineMatches(IsAnd))
         {
             return false;
         }
@@ -380,7 +380,7 @@ internal class PartyEnricher : Enricher
         blockCursor.AdvanceCursor(secondGroupOfParites.Length);
 
         /* v */
-        if (!blockCursor.NextLineMatches(IsBetweenPartyMarker))
+        if (!blockCursor.NextLineMatches(IsV))
         {
             return false;
         }
@@ -580,8 +580,8 @@ internal class PartyEnricher : Enricher
     {
         if (IsBeforePartyMarker(line)
             || IsBeforePartyMarker2(line)
-            || IsBetweenPartyMarker(line)
-            || IsBetweenPartyMarker2(line)
+            || IsV(line)
+            || IsAnd(line)
             || IsAfterPartyMarker(line)
             || IsPartyRole(line))
         {
@@ -725,18 +725,6 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
-    private static bool IsBetweenPartyMarker(WLine line)
-    {
-        var normalized = line.NormalizedContent;
-        return IsV(normalized);
-    }
-
-    private static bool IsBetweenPartyMarker2(WLine line)
-    {
-        var normalized = line.NormalizedContent;
-        return IsAnd(normalized);
-    }
-
     private static bool IsAfterPartyMarker(WLine line)
     {
         if (IsBeforePartyMarker(line))
@@ -797,7 +785,7 @@ internal class PartyEnricher : Enricher
         return string.IsNullOrWhiteSpace(line.NormalizedContent);
     }
 
-    private static bool LineHasContent(WLine l)
+    private static bool IsLineWithContent(WLine l)
     {
         return !IsEmptyLine(l);
     }
@@ -869,108 +857,58 @@ internal class PartyEnricher : Enricher
 
     private static bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
     {
-        // EWCA/Crim/2007/854, EWCA/Crim/2014/465
+        if (rows is [var firstRow, var secondRow, var thirdRow]
+            && TryEnrichRowWithRole(firstRow, PartyRole.BeforeTheV, out var firstEnriched)
+            && IsNotPartyRow(secondRow)
+            && TryEnrichRowWithRole(thirdRow, PartyRole.AfterTheV, out var thirdEnriched))
+        {
+            enrichedRows =
+            [
+                firstEnriched,
+                secondRow,
+                thirdEnriched
+            ];
+            return true;
+        }
+
         enrichedRows = null;
-        var firstRowCells = rows[0].Cells.ToArray();
-        if (firstRowCells.Length != 3)
+        return false;
+    }
+
+    private static bool IsNotPartyRow(WRow row)
+    {
+        return row.TypedCells.ToArray() is [var firstCell, var secondCell, var thirdCell]
+            && IsEmptyCell(firstCell)
+            && IsEmptyCell(thirdCell)
+            && secondCell.Contents.All(block => block is WLine line && !IsPartyName(line) && !IsPartyRole(line))
+            && secondCell.Contents.OfType<WLine>().Count(IsLineWithContent) == 1;
+    }
+
+    private static bool TryEnrichRowWithRole(WRow wRow, PartyRole role, out WRow enrichedRow)
+    {
+        if (wRow.TypedCells is [var firstCell, var middleCell, var lastCell]
+            && IsEmptyCell(firstCell)
+            && IsEmptyCell(lastCell)
+            && middleCell.Contents.All(block => block is WLine line && (IsEmptyLine(line) || IsPartyName(line))))
         {
-            return false;
+            var enrichedContents = middleCell.Contents.Cast<WLine>()
+                                             .Select(line => IsEmptyLine(line) ? line : MakeParty(line, role))
+                                             .ToArray();
+
+            enrichedRow = new WRow(
+                wRow.Table,
+                wRow.TablePropertyExceptions,
+                wRow.Properties,
+                [
+                    firstCell,
+                    new WCell(middleCell.Row, middleCell.Props, enrichedContents),
+                    lastCell
+                ]);
+            return true;
         }
 
-        var secondRowCells = rows[1].Cells.ToArray();
-        if (secondRowCells.Length != 3)
-        {
-            return false;
-        }
-
-        var thirdRowCells = rows[2].Cells.ToArray();
-        if (thirdRowCells.Length != 3)
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(firstRowCells[0]))
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(firstRowCells[^1]))
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(secondRowCells[0]))
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(secondRowCells[^1]))
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(thirdRowCells[0]))
-        {
-            return false;
-        }
-
-        if (IsCellWithContent(thirdRowCells[^1]))
-        {
-            return false;
-        }
-
-        var middle1 = rows[0].TypedCells[1];
-        var middle2 = rows[1].TypedCells[1];
-        var middle3 = rows[2].TypedCells[1];
-        if (!middle1.Contents.All(block => block is WLine line &&
-                                           (IsEmptyLine(line) || (IsPartyName(line) && !IsPartyRole(line)))))
-        {
-            return false;
-        }
-
-        if (!middle2.Contents.All(block => block is WLine line &&
-                                           (IsEmptyLine(line) || IsBetweenPartyMarker(line) ||
-                                            IsBetweenPartyMarker2(line))))
-        {
-            return false;
-        }
-
-        if (middle2.Contents.OfType<WLine>().Count(LineHasContent) != 1)
-        {
-            return false;
-        }
-
-        if (!middle3.Contents.All(block => block is WLine line &&
-                                           (IsEmptyLine(line) || (IsPartyName(line) && !IsPartyRole(line)))))
-        {
-            return false;
-        }
-
-        var newMiddle1 = new WCell(middle1.Row, middle1.Props,
-            middle1.Contents.Cast<WLine>()
-                   .Select(line => IsEmptyLine(line) ? line : MakeParty(line, PartyRole.BeforeTheV)));
-        var newMiddle3 = new WCell(middle3.Row, middle3.Props,
-            middle3.Contents.Cast<WLine>()
-                   .Select(line => IsEmptyLine(line) ? line : MakeParty(line, PartyRole.AfterTheV)));
-        enrichedRows =
-        [
-
-            new(rows[0].Table, rows[0].TablePropertyExceptions, rows[0].Properties,
-            [
-                    rows[0].TypedCells[0],
-                    newMiddle1,
-                    rows[0].TypedCells[^1]
-            ]),
-
-            rows[1],
-            new(rows[2].Table, rows[2].TablePropertyExceptions, rows[2].Properties,
-            [
-                    rows[2].TypedCells[0],
-                    newMiddle3,
-                    rows[2].TypedCells[^1]
-            ])
-        ];
-        return true;
+        enrichedRow = null;
+        return false;
     }
 
     private static WRow EnrichRowWithPartyRoleFromNextRow(WRow row, WRow next)
@@ -996,7 +934,7 @@ internal class PartyEnricher : Enricher
     {
         var lineContents = cell.Contents
                                .OfType<WLine>()
-                               .Where(LineHasContent)
+                               .Where(IsLineWithContent)
                                .Select(l => l.NormalizedContent)
                                .ToArray();
         return TryGetSinglePartyRole(lineContents, out role);
@@ -1118,7 +1056,7 @@ internal class PartyEnricher : Enricher
 
     private static bool TryGetTwoDifferentRoles(WCell cell, out (PartyRole first, PartyRole second) roles)
     {
-        var linesWithContent = cell.Contents.OfType<WLine>().Where(LineHasContent).ToArray();
+        var linesWithContent = cell.Contents.OfType<WLine>().Where(IsLineWithContent).ToArray();
         if (linesWithContent.Length == 2
             && TryGetSinglePartyRole(linesWithContent[0].NormalizedContent, out var role1)
             && TryGetSinglePartyRole(linesWithContent[1].NormalizedContent, out var role2)
@@ -1231,9 +1169,9 @@ internal class PartyEnricher : Enricher
     /// Returns true if this is a "v" string
     /// Trims ' ', '-', '–' characters and uses case insensitive comparison
     /// </summary>
-    private static bool IsV(string s)
+    private static bool IsV(WLine line)
     {
-        return s.Trim(' ', '-', '–').Equals("v", StringComparison.InvariantCultureIgnoreCase);
+        return line.NormalizedContent.Trim(' ', '-', '–').Equals("v", StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>
@@ -1243,6 +1181,14 @@ internal class PartyEnricher : Enricher
     private static bool IsAnd(string s)
     {
         return s.Trim(' ', '-', '–').Equals("and", StringComparison.InvariantCultureIgnoreCase);
+    }
+
+    /// <summary>
+    /// Returns true if this line only contains an "and" string
+    /// </summary>
+    private static bool IsAnd(WLine line)
+    {
+        return IsAnd(line.NormalizedContent);
     }
 
     /// <summary>
