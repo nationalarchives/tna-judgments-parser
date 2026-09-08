@@ -487,6 +487,11 @@ internal class PartyEnricher : Enricher
         return false;
     }
 
+    private static bool IsInTheMatterOfSomething(WCell cell)
+    {
+        return cell.Contents.ToArray() is [WLine line] && IsInTheMatterOfSomething(line);
+    }
+
     private static bool IsInTheMatterOfSomething(WLine line)
     {
         var lineContents = line.Contents.ToArray();
@@ -584,123 +589,8 @@ internal class PartyEnricher : Enricher
         }
 
         var lineContents = line.Contents.ToArray();
-        if (lineContents.Length == 0)
-        {
-            return false;
-        }
-
-        if (lineContents.All(inline => inline is WText) &&
-            lineContents.Cast<WText>().Any(IsNotBlank))
-        {
-            return true;
-        }
-
-        if (lineContents.All(inline => inline is ITextOrWhitespace) &&
-            lineContents.Any(inline => inline is WText wText && IsNotBlank(wText)))
-        {
-            return true;
-        }
-
-        if (lineContents.Length == 1)
-        {
-            if (lineContents[0] is not WText wText1)
-            {
-                return false;
-            }
-
-            if (IsBlank(wText1))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        if (lineContents.Length == 2)
-        {
-            if (lineContents[0] is WTab && lineContents[1] is WText wText2 &&
-                IsNotBlank(wText2)) // EWHC/Fam/2017/3707
-            {
-                return true;
-            }
-
-            if (lineContents[0] is WText wText3 && lineContents[1] is WText wText4 &&
-                IsNotBlank(wText3) &&
-                IsBlank(wText4)) // EWCA/Crim/2014/465
-            {
-                return true;
-            }
-
-            if (lineContents[0] is WText wText5 && lineContents[1] is WText wText6 &&
-                Regex.IsMatch(wText5.Text, @"^\(\d\) +$") &&
-                IsNotBlank(wText6))
-            {
-                return true;
-            }
-
-            if (lineContents[0] is WText wText7 && lineContents[1] is WText wText8 &&
-                Regex.IsMatch(wText7.Text, @"^\d\. +$") &&
-                IsNotBlank(wText8)) // EWCA/Civ/2004/993
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        if (lineContents.Length == 3)
-        {
-            // EWHC/Admin/2012/3928, EWHC/Admin/2007/552
-            if (lineContents[0] is not WText)
-            {
-                return false;
-            }
-
-            if (lineContents[1] is not WText wText2)
-            {
-                return false;
-            }
-
-            if (lineContents[2] is not WText)
-            {
-                return false;
-            }
-
-            if (IsNotBlank(wText2))
-            {
-                return false;
-            }
-
-            return true; // not same formatting in EWHC/Admin/2004/1823
-        }
-
-        if (lineContents.Length == 4)
-        {
-            // EWHC/Fam/2017/3707
-            if (lineContents[0] is not WTab)
-            {
-                return false;
-            }
-
-            if (lineContents[1] is not WText)
-            {
-                return false;
-            }
-
-            if (lineContents[2] is not WText wText2)
-            {
-                return false;
-            }
-
-            if (IsNotBlank(wText2))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        return false;
+        return lineContents.All(inline => inline is ITextOrWhitespace) &&
+            lineContents.Any(inline => inline is WText wText && IsNotBlank(wText));
     }
 
     private static WLine MakeParty(WLine line, PartyRole? role)
@@ -758,7 +648,7 @@ internal class PartyEnricher : Enricher
             return WLine.Make(line, [first, party]);
         }
 
-        throw new Exception();
+        throw new EnricherException($"Couldn't make {role} party for line {line}");
     }
 
     private static WLine MakeRole(WLine line, PartyRole role)
@@ -958,7 +848,7 @@ internal class PartyEnricher : Enricher
         return row;
     }
 
-    private WRow EnrichTwoCellRow(WRow row)
+    private static WRow EnrichTwoCellRow(WRow row)
     {
         var rowCells = row.Cells.ToArray();
         var first = (WCell)rowCells[0];
@@ -977,7 +867,7 @@ internal class PartyEnricher : Enricher
 
     }
 
-    private bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
+    private static bool TryEnrichThreeRowsWithNoRoles(List<WRow> rows, out WRow[] enrichedRows)
     {
         // EWCA/Crim/2007/854, EWCA/Crim/2014/465
         enrichedRows = null;
@@ -1083,7 +973,7 @@ internal class PartyEnricher : Enricher
         return true;
     }
 
-    private WRow EnrichRowWithPartyRoleFromNextRow(WRow row, WRow next)
+    private static WRow EnrichRowWithPartyRoleFromNextRow(WRow row, WRow next)
     {
         if (row.Cells.ToArray() is [WCell thisRowFirstCell, WCell thisRowMiddleCell, WCell thisRowLastCell]
             && next.Cells.ToArray() is [WCell nextRowFirstCell, WCell nextRowMiddleCell, WCell nextRowLastCell]
@@ -1372,146 +1262,72 @@ internal class PartyEnricher : Enricher
 
     private WCell EnrichPartyNamesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
     {
+        if (cell.Contents.Any(b => b is not WLine))
+        {
+            return cell;
+        }
+
         var contents = new List<IBlock>();
         var firstPartyFound = false;
         var andFound = false;
         var secondPartyFound = false;
-        foreach (var block in cell.Contents)
-        {
-            if (block is not WLine line)
-            {
-                return cell;
-            }
 
+        foreach (var line in cell.Contents.Cast<WLine>())
+        {
             if (IsEmptyLine(line))
             {
-                contents.Add(block);
+                contents.Add(line);
                 continue;
             }
 
-            var lineContents = line.Contents.ToArray();
-            if (lineContents.Length == 1)
+            switch (line.Contents.ToArray())
             {
-                var first = lineContents[0];
-                if (first is not WText wText)
-                {
-                    return cell;
-                }
+                case [WText wText] when IsBlank(wText) || IsInBrackets(wText.Text):
+                    contents.Add(line);
+                    break;
 
-                if (IsBlank(wText))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsInBrackets(wText.Text))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsAnd(wText.Text))
-                {
+                case [.. { Length: 0 or 1 }, WText wText] when IsAnd(wText.Text):
                     andFound = true;
-                    contents.Add(block);
-                    continue;
-                }
+                    contents.Add(line);
+                    break;
 
-                if (firstPartyFound && andFound)
-                {
+                case [WText wText] when firstPartyFound && andFound:
                     secondPartyFound = true;
-                    var party = new WParty(wText) { Role = roles.second };
-                    var newLine = WLine.Make(line, [party]);
-                    contents.Add(newLine);
-                }
-                else
-                {
+                    contents.Add(WLine.Make(line, [new WParty(wText) { Role = roles.second }]));
+                    break;
+
+                case [WText wText]:
                     firstPartyFound = true;
-                    var party = new WParty(wText) { Role = roles.first };
-                    var newLine = WLine.Make(line, [party]);
-                    contents.Add(newLine);
-                }
-            }
-            else if (lineContents.Length == 2)
-            {
-                // EWHC/Admin/2016/176
+                    contents.Add(WLine.Make(line, [new WParty(wText) { Role = roles.first }]));
+                    break;
 
-                var first = lineContents[0];
-                var second = lineContents[1];
-                if (first is not WText wText1)
-                {
-                    contents.Add(block);
-                    continue;
-                }
+                case [WText wText1, WText wText2]
+                    when IsNotBlank(wText1) || IsBlank(wText2) || IsInBrackets(wText2.Text):
+                    contents.Add(line);
+                    break;
 
-                if (second is not WText wText2)
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsNotBlank(wText1))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsBlank(wText2))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsInBrackets(wText2.Text))
-                {
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (IsAnd(wText2.Text))
-                {
-                    andFound = true;
-                    contents.Add(block);
-                    continue;
-                }
-
-                if (andFound)
-                {
+                case [WText wText1, WText wText2] when andFound:
                     secondPartyFound = true;
-                    var party = new WParty(wText2) { Role = roles.second };
-                    var newLine = WLine.Make(line, [first, party]);
-                    contents.Add(newLine);
-                }
-                else
-                {
+                    contents.Add(WLine.Make(line, [wText1, new WParty(wText2) { Role = roles.second }]));
+                    break;
+
+                case [WText wText1, WText wText2]:
                     firstPartyFound = true;
-                    var party = new WParty(wText2) { Role = roles.first };
-                    var newLine = WLine.Make(line, [first, party]);
-                    contents.Add(newLine);
-                }
-            }
-            else
-            {
-                contents.Add(block);
+                    contents.Add(WLine.Make(line, [wText1, new WParty(wText2) { Role = roles.first }]));
+                    break;
+
+                default:
+                    contents.Add(line);
+                    break;
             }
         }
 
-        if (!firstPartyFound)
+        if (firstPartyFound && andFound && secondPartyFound)
         {
-            return cell;
+            return new WCell(cell.Row, cell.Props, contents);
         }
 
-        if (!andFound)
-        {
-            return cell;
-        }
-
-        if (!secondPartyFound)
-        {
-            return cell;
-        }
-
-        return new WCell(cell.Row, cell.Props, contents);
+        return cell;
     }
 
     private WCell EnrichPartyTypesWithTwoRoles(WCell cell, (PartyRole first, PartyRole second) roles)
@@ -1525,18 +1341,16 @@ internal class PartyEnricher : Enricher
 
         foreach (var line in cell.Contents.Cast<WLine>())
         {
-            if (IsEmptyLine(line))
+            if (IsEmptyLine(line) && firstPartyFound)
             {
-                if (firstPartyFound)
-                {
-                    emptyAfterFirstFound = true;
-                }
-
+                emptyAfterFirstFound = true;
                 contents.Add(line);
-                continue;
             }
-
-            if (emptyAfterFirstFound)
+            else if (IsEmptyLine(line))
+            {
+                contents.Add(line);
+            }
+            else if (emptyAfterFirstFound)
             {
                 contents.Add(WLine.Make(line, [new WRole { Contents = line.Contents, Role = roles.second }]));
             }
@@ -1555,19 +1369,13 @@ internal class PartyEnricher : Enricher
         return cell;
     }
 
-    private static bool IsInTheMatterOfSomething(WCell cell)
-    {
-        var cellContents = cell.Contents.ToArray();
-        return cellContents is [WLine line] && IsInTheMatterOfSomething(line);
-    }
-
-    private WCell EnrichInTheMatterOfSomething(WCell cell)
+    private static WCell EnrichInTheMatterOfSomething(WCell cell)
     {
         var line = MakeDocTitle((WLine)cell.Contents.First());
         return new WCell(cell.Row, cell.Props, [line]);
     }
 
-    private WLine EnrichLineWithDocTitle(WLine line)
+    private static WLine EnrichLineWithDocTitle(WLine line)
     {
         return line.Contents.ToArray() switch
         {
