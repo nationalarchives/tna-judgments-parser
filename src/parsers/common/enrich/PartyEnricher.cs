@@ -648,7 +648,7 @@ internal class PartyEnricher : Enricher
             return WLine.Make(line, [first, party]);
         }
 
-        throw new Exception();
+        throw new EnricherException($"Couldn't make {role} party for line {line}");
     }
 
     private static WLine MakeRole(WLine line, PartyRole role)
