@@ -17,7 +17,7 @@ namespace test.ApiTests;
 
 public class TestParser_Judgments
 {
-    private const int Total = 99;
+    private const int Total = 100;
 
     private static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
         Enumerable.Range(12, 16).Concat(
