@@ -412,6 +412,7 @@ internal class PartyEnricher : Enricher
         }
 
         List<WLine> foundPartyNames = [firstPartyLine];
+        List<WLine> linesNotToEnrich = [];
         foreach (var block in inputBlocks.Skip(1))
         {
             switch (block)
@@ -421,6 +422,7 @@ internal class PartyEnricher : Enricher
                         enriched =
                         [
                             .. foundPartyNames.Select(l => MakeParty(l, role)),
+                            .. linesNotToEnrich,
                             MakeRole(line, role)
                         ];
                         return true;
@@ -428,6 +430,11 @@ internal class PartyEnricher : Enricher
                 case WLine line when IsPartyName(line):
                     {
                         foundPartyNames.Add(line);
+                        break;
+                    }
+                case WLine line when IsAnonymityDirection(line):
+                    {
+                        linesNotToEnrich.Add(line);
                         break;
                     }
                 default:
@@ -583,7 +590,9 @@ internal class PartyEnricher : Enricher
             || IsV(line)
             || IsAnd(line)
             || IsAfterPartyMarker(line)
-            || IsPartyRole(line))
+            || IsPartyRole(line)
+            || IsAnonymityDirection(line)
+           )
         {
             return false;
         }
@@ -591,6 +600,11 @@ internal class PartyEnricher : Enricher
         var lineContents = line.Contents.ToArray();
         return lineContents.All(inline => inline is ITextOrWhitespace) &&
             lineContents.Any(inline => inline is WText wText && IsNotBlank(wText));
+    }
+
+    private static bool IsAnonymityDirection(WLine line)
+    {
+        return line.NormalizedContent.Contains("ANONYMITY DIRECTION", StringComparison.OrdinalIgnoreCase);
     }
 
     private static WLine MakeParty(WLine line, PartyRole? role)

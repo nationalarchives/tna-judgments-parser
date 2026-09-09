@@ -736,6 +736,141 @@ public partial class TestPartyEnricher
     }
 
     [Fact]
+    public void Enrich_MultiLineBetweenBlock_WithTwoPartyNamesBeforeRoleLabel_AssignsRoleToEachName()
+    {
+        IBlock[] input =
+        [
+            TextLine("Between"),
+            TextLine("JANE DOE (First Appellant)"),
+            TextLine("JOHN SMITH (Second Appellant)"),
+            TextLine("Appellant"),
+            TextLine("and"),
+            TextLine("THE SECRETARY OF STATE FOR THE HOME DEPARTMENT"),
+            TextLine("Respondent")
+        ];
+
+        var result = PartyEnricher.Enrich(input).Cast<WLine>().ToArray();
+
+        result[0].ShouldBeSameAs(input[0]);
+
+        var firstParty = result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>();
+        firstParty.Role.ShouldBe(PartyRole.Appellant);
+        firstParty.Text.ShouldBe("JANE DOE (First Appellant)");
+
+        var secondParty = result[2].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>();
+        secondParty.Role.ShouldBe(PartyRole.Appellant);
+        secondParty.Text.ShouldBe("JOHN SMITH (Second Appellant)");
+
+        result[3].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Appellant);
+
+        result[4].ShouldBeSameAs(input[4]);
+
+        var respondentParty = result[5].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>();
+        respondentParty.Role.ShouldBe(PartyRole.Respondent);
+        respondentParty.Text.ShouldBe("THE SECRETARY OF STATE FOR THE HOME DEPARTMENT");
+
+        result[6].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Respondent);
+
+    }
+
+    [Fact]
+    public void
+        Enrich_MultiLineBetweenBlock_WithAnonymityDirectionLineAfterName_AssignsPartyAndRolesCorrectly()
+    {
+        IBlock[] input =
+        [
+            TextLine("Between"),
+            TextLine("JANE DOE"),
+            TextLine("(anonymity direction MADE)"),
+            TextLine("Appellant"),
+            TextLine("And"),
+            TextLine("THE SECRETARY OF STATE FOR THE HOME DEPARTMENT"),
+            TextLine("Respondent")
+        ];
+
+        var result = PartyEnricher.Enrich(input).Cast<WLine>().ToArray();
+
+        result[0].ShouldBeSameAs(input[0]);
+
+        var namedParty = result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>();
+        namedParty.Role.ShouldBe(PartyRole.Appellant);
+        namedParty.Text.ShouldBe("JANE DOE");
+
+        result[2].ShouldBeSameAs(input[2]);
+
+        result[3].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>()
+                 .Role.ShouldBe(PartyRole.Appellant);
+
+        result[4].ShouldBeSameAs(input[4]);
+
+        var respondentParty = result[5].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>();
+        respondentParty.Role.ShouldBe(PartyRole.Respondent);
+        respondentParty.Text.ShouldBe("THE SECRETARY OF STATE FOR THE HOME DEPARTMENT");
+
+        result[6].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>()
+                 .Role.ShouldBe(PartyRole.Respondent);
+    }
+
+    [Fact]
+    public void Enrich_MultiLineBetweenBlock_WithAnonymityDirectionAfterMultipleNames_AssignsPartyAndRolesCorrectly()
+    {
+        IBlock[] input =
+        [
+            TextLine("Between"),
+            TextLine("JANE DOE"),
+            TextLine("JOHN SMITH"),
+            TextLine("JAMES BROWN"),
+            TextLine("(anonymity direction nOT MADE)"),
+            TextLine("Appellants"),
+            TextLine("and"),
+            TextLine("THE SECRETARY OF STATE FOR THE HOME DEPARTMENT"),
+            TextLine("Respondent")
+        ];
+        var result = PartyEnricher.Enrich(input).Cast<WLine>().ToArray();
+
+        result[0].ShouldBeSameAs(input[0]);
+
+        result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>().Role.ShouldBe(PartyRole.Appellant);
+        result[2].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>().Role.ShouldBe(PartyRole.Appellant);
+        result[3].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>().Role.ShouldBe(PartyRole.Appellant);
+
+        result[4].ShouldBeSameAs(input[4]);
+
+        result[5].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Appellant);
+
+        result[6].ShouldBeSameAs(input[6]);
+
+        result[7].Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty>().Role.ShouldBe(PartyRole.Respondent);
+        result[8].Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Respondent);
+
+    }
+
+    [Theory]
+    [InlineData("(anonymity direction NOT MADE)")]
+    [InlineData("(anonymity direction not made)")]
+    [InlineData("(NO Anonymity direction MADE)")]
+    [InlineData("(anonymity direction  not MADE)")]
+    [InlineData("(anonymity direction Made)")]
+    [InlineData("(ANONYMITY DIRECTION MADE)")]
+    public void Enrich_MultiLineBetweenBlock_WithAnonymityDirectionLine_DoesNotAlterAnonymityDirection(
+        string anonymityDirectionText)
+    {
+        var anonymityDirection = TextLine(anonymityDirectionText);
+
+        var result = PartyEnricher.Enrich([
+            TextLine("Between"),
+            TextLine("Jane Doe"),
+            anonymityDirection,
+            TextLine("Appellant"),
+            TextLine("and"),
+            TextLine("John Smith"),
+            TextLine("Respondent")
+        ]).Cast<WLine>().ToArray();
+
+        result[2].ShouldBeSameAs(anonymityDirection);
+    }
+
+    [Fact]
     public void Enrich_TwoCellTableRow_NameCellIsBareAndMarker_DoesNotWrapEitherRunAsParty()
     {
         var table = TableOf([
