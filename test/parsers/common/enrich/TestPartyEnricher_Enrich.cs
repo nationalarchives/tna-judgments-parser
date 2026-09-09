@@ -11,15 +11,15 @@ using Xunit;
 
 namespace test.parsers.common.enrich;
 
-public class TestPartyEnricher
+public partial class TestPartyEnricher
 {
     private static readonly PartyEnricher PartyEnricher = new();
 
     private static readonly WLine LineTemplate = new(null, new Paragraph());
 
-    private static WLine TextLine(string text)
+    private static WLine TextLine(params string[] text)
     {
-        return new WLine(LineTemplate, [new WText(text, null)]);
+        return new WLine(LineTemplate, text.Select(t => new WText(t, null)));
     }
 
     private static WRow RowOf(params string[] cells)
@@ -27,9 +27,19 @@ public class TestPartyEnricher
         return new WRow(TableOf(), null, null, cells.Select(c => CellOf(c)));
     }
 
+    private static WRow RowOf(WCell[] cells)
+    {
+        return new WRow(TableOf(), null, null, cells);
+    }
+
     private static WCell CellOf(params string[] lines)
     {
-        return new WCell(RowOf(), null, lines.Select(TextLine));
+        return new WCell(RowOf(), null, lines.Select(l => TextLine(l)));
+    }
+
+    private static WCell CellWithOneLineOf(params string[] text)
+    {
+        return new WCell(RowOf(), null, [TextLine(text)]);
     }
 
     private static WTable TableOf(params string[][] rows)
@@ -37,92 +47,9 @@ public class TestPartyEnricher
         return new WTable(null, null, null, rows.Select(RowOf));
     }
 
-    [Theory]
-    [InlineData("Claimant", PartyRole.Claimant)]
-    [InlineData("Claimants", PartyRole.Claimant)]
-    [InlineData("CLAIMANT", PartyRole.Claimant)]
-    [InlineData("(Claimant)", PartyRole.Claimant)]
-    [InlineData("First Claimant", PartyRole.Claimant)]
-    [InlineData("1st Defendant", PartyRole.Defendant)]
-    [InlineData("Third Respondent", PartyRole.Respondent)]
-    [InlineData("Sixth Appellant", PartyRole.Appellant)]
-    [InlineData("Applicant", PartyRole.Applicant)]
-    [InlineData("Petitioner", PartyRole.Petitioner)]
-    [InlineData("Interested Party", PartyRole.InterestedParty)]
-    [InlineData("Interested Parties", PartyRole.InterestedParty)]
-    [InlineData("Intervener", PartyRole.Intervener)]
-    [InlineData("Interveners", PartyRole.Intervener)]
-    [InlineData("Requested Person", PartyRole.RequestedPerson)]
-    [InlineData("Requesting State", PartyRole.RequestingState)]
-    [InlineData("Third Party", PartyRole.ThirdParty)]
-    [InlineData("Part 20 Defendant", PartyRole.Defendant)]
-    [InlineData("Claimant/Defendant", PartyRole.Claimant)]
-    [InlineData("Appellant/Respondent", PartyRole.Appellant)]
-    [InlineData("Respondent/Appellant", PartyRole.Appellant)]
-    [InlineData("Defendant/Applicant", PartyRole.Applicant)]
-    [InlineData("Claimant and Defendant", PartyRole.Claimant)]
-    [InlineData("Not A Role", null)]
-    [InlineData("Claimant/NotARole", null)]
-    public void GetPartyRole_ParsesRoleFromFreeText(string text, PartyRole? expected)
+    private static WTable TableOf(WRow[] rows)
     {
-        var found = PartyEnricher.TryGetPartyRole(text, out var actual);
-
-        found.ShouldBe(expected is not null);
-        if (expected is not null)
-        {
-            actual.ShouldBe(expected.Value);
-        }
-    }
-
-    [Theory]
-    [InlineData("Appellant", PartyRole.Appellant)]
-    [InlineData("Claimant", PartyRole.Claimant)]
-    [InlineData("Applicant", PartyRole.Applicant)]
-    [InlineData("Defendant", PartyRole.Defendant)]
-    [InlineData("Respondent", PartyRole.Respondent)]
-    [InlineData("Petitioner", PartyRole.Petitioner)]
-    [InlineData("Interested Party", PartyRole.InterestedParty)]
-    [InlineData("1st Claimant", PartyRole.Claimant)]
-    [InlineData("Jane Doe", null)]
-    public void GetPartyRole_Cell_WithOneNonEmptyLine_ParsesRoleFromCellText(string text, PartyRole? expected)
-    {
-        var cell = CellOf(text);
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBe(expected is not null);
-        if (expected is not null)
-        {
-            actual.ShouldBe(expected.Value);
-        }
-    }
-
-    [Theory]
-    [InlineData("Claimant/", "Respondent", PartyRole.Respondent)]
-    [InlineData("Appellants/", "Claimants", PartyRole.Appellant)]
-    [InlineData("Respondent", "Defendant", PartyRole.Respondent)]
-    [InlineData("1st Respondent", "2nd Respondent", PartyRole.Respondent)]
-    [InlineData("Defendant/", "Applicant", PartyRole.Applicant)]
-    public void GetPartyRole_Cell_WithTwoNonEmptyLines_ParsesRoleFromCombinedText(string first, string second,
-        PartyRole expected)
-    {
-        var cell = CellOf(first, second);
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBeTrue();
-        actual.ShouldBe(expected);
-    }
-
-    [Fact]
-    public void GetPartyRole_Cell_WithThreeOrdinalDefendantLines_ReturnsDefendant()
-    {
-        var cell = CellOf("1st Defendant", "2nd Defendant", "3rd Defendant");
-
-        var found = PartyEnricher.TryGetPartyRole(cell, out var actual);
-
-        found.ShouldBeTrue();
-        actual.ShouldBe(PartyRole.Defendant);
+        return new WTable(null, null, null, rows);
     }
 
     [Theory]
@@ -239,7 +166,8 @@ public class TestPartyEnricher
 
         result[0].ShouldBeSameAs(beforeMarker);
 
-        result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocTitle>().Text.ShouldBe("IN THE MATTER OF SOME TRUST");
+        result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocTitle>().Text
+                 .ShouldBe("IN THE MATTER OF SOME TRUST");
 
         result[2].ShouldBeSameAs(afterMarker);
     }
@@ -325,7 +253,7 @@ public class TestPartyEnricher
     {
         var beforeMarker = TextLine("-----");
         var claimantLine = new WLine(LineTemplate,
-            [new WTab(new TabChar()), new WText("Jane", null), new WText(" Doe", null)]);
+            [Tab(), new WText("Jane", null), new WText(" Doe", null)]);
         var betweenMarker = TextLine("v");
         var defendantLine = TextLine("John Smith");
         var afterMarker = TextLine("-----");
@@ -420,12 +348,12 @@ public class TestPartyEnricher
         var beforeMarker = TextLine("BETWEEN");
         var claimantNameAndRole = new WLine(LineTemplate,
         [
-            new WText("Jane Doe", null), new WTab(new TabChar()), new WText("Claimant", null)
+            new WText("Jane Doe", null), Tab(), new WText("Claimant", null)
         ]);
         var between = TextLine("v");
         var defendantNameAndRole = new WLine(LineTemplate,
         [
-            new WText("John Smith", null), new WTab(new TabChar()), new WText("Defendant", null)
+            new WText("John Smith", null), Tab(), new WText("Defendant", null)
         ]);
         var afterMarker = TextLine("-----");
 
@@ -452,6 +380,117 @@ public class TestPartyEnricher
         defendantLine.Contents.ElementAt(2).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Defendant);
 
         result[4].ShouldBeSameAs(afterMarker);
+    }
+
+    [Fact]
+    public void Enrich_MultiLineBlock_WithLeadingTabsBeforeNameAndRole_AssignsRolesToEachSide()
+    {
+        var beforeMarker = TextLine("BETWEEN");
+        var claimantNameAndRole = new WLine(LineTemplate,
+            [Tab(), Tab(), new WText("Jane Doe", null), Tab(), new WText("Claimant", null)]
+            );
+        var between = TextLine("v");
+        var defendantNameAndRole = new WLine(LineTemplate,
+        [
+            new WText("John Smith", null), Tab(), new WText("Defendant", null)
+        ]);
+        var afterMarker = TextLine("-----");
+
+        var result = PartyEnricher.Enrich(
+            [
+                beforeMarker, claimantNameAndRole, between, defendantNameAndRole, afterMarker
+            ]
+        ).Cast<WLine>().ToArray();
+
+        var claimantLine = result[1];
+        claimantLine.Contents.ElementAt(0).ShouldBeOfType<WTab>();
+        claimantLine.Contents.ElementAt(1).ShouldBeOfType<WTab>();
+
+        var claimantParty = claimantLine.Contents.ElementAt(2).ShouldBeOfType<WParty>();
+        claimantParty.Role.ShouldBe(PartyRole.Claimant);
+        claimantParty.Text.ShouldBe("Jane Doe");
+        claimantLine.Contents.ElementAt(4).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Claimant);
+
+        var defendantLine = result[3];
+        var defendantParty = defendantLine.Contents.ElementAt(0).ShouldBeOfType<WParty>();
+        defendantParty.Role.ShouldBe(PartyRole.Defendant);
+        defendantParty.Text.ShouldBe("John Smith");
+        defendantLine.Contents.ElementAt(2).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Defendant);
+    }
+
+    private static WTab Tab()
+    {
+        return new WTab(new TabChar());
+    }
+
+    public static TheoryData<string, IBlock> NonMatchingNameAndRoleLines()
+    {
+        return new TheoryData<string, IBlock>
+        {
+            {
+                "too few content items", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab()
+                ])
+            },
+            {
+                "extra text before the name", new WLine(LineTemplate,
+                [
+                    new WText("Extra", null),
+                    new WText("John Smith", null), Tab(), new WText("Defendant", null)
+                ])
+            },
+            {
+                "unrecognised role text", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab(), new WText("Not A Role", null)
+                ])
+            },
+            {
+                "no tab before the role", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), new WText(" ", null), new WText("Defendant", null)
+                ])
+            },
+            {
+                "name is missing before the tab", new WLine(LineTemplate,
+                [
+                    Tab(), Tab(), new WText("Defendant", null)
+                ])
+            },
+            {
+                "role is missing after the tab", new WLine(LineTemplate,
+                [
+                    new WText("John Smith", null), Tab(), Tab()
+                ])
+            }
+        };
+    }
+
+    [Theory]
+    [MemberData(nameof(NonMatchingNameAndRoleLines))]
+    public void Enrich_MultiLineBlock_WithMalformedNameAndRoleTabbedLine_LeavesBlockUnchanged(string scenario,
+        IBlock defendantNameAndRoleLine)
+    {
+        var beforeMarker = TextLine("BETWEEN");
+        var claimantNameAndRole = new WLine(LineTemplate,
+        [
+            new WText("Jane Doe", null), Tab(), new WText("Claimant", null)
+        ]);
+        var between = TextLine("v");
+        var afterMarker = TextLine("-----");
+
+        var result = PartyEnricher.Enrich(
+            [
+                beforeMarker, claimantNameAndRole, between, defendantNameAndRoleLine, afterMarker
+            ]
+        ).Cast<WLine>().ToArray();
+
+        result[0].ShouldBeSameAs(beforeMarker, scenario);
+        result[1].ShouldBeSameAs(claimantNameAndRole, scenario);
+        result[2].ShouldBeSameAs(between, scenario);
+        result[3].ShouldBeSameAs(defendantNameAndRoleLine, scenario);
+        result[4].ShouldBeSameAs(afterMarker, scenario);
     }
 
     [Fact]
@@ -617,5 +656,104 @@ public class TestPartyEnricher
                .Contents.ShouldHaveSingleItem().ShouldBeOfType<WLine>()
                .Contents.ShouldHaveSingleItem().ShouldBeOfType<WRole>()
                .Role.ShouldBe(PartyRole.Claimant);
+    }
+
+    [Theory]
+    [InlineData("NNB Generation Company (SZC) Limited", " -and- ", PartyRole.Claimant)]
+    [InlineData("John Smith", " (formerly known as John Doe)", PartyRole.Appellant)]
+    public void Enrich_TwoCellTableRow_NameCellWithTrailingNonPartyTextRun_LeavesNonPartyTextRunUnwrapped(string partyName, string otherText, PartyRole role)
+    {
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf(partyName, otherText),
+                CellOf(role.ToString())
+            ])
+        ]);
+
+        var result = PartyEnricher.Enrich([table]);
+
+        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
+                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
+                                      .ShouldBeOfType<WLine>();
+
+        var party = resultCell.Contents.ElementAt(0).ShouldBeOfType<WParty>();
+        party.Role.ShouldBe(role);
+        party.Text.ShouldBe(partyName);
+
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe(otherText);
+    }
+
+    [Fact]
+    public void Enrich_TwoCellTableRow_NameCellWithTwoQualifyingTextRuns_WrapsBothRunsAsOneParty()
+    {
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf("Big Company ", "Limited"), CellOf("Claimant")
+            ])
+        ]);
+
+        var result = PartyEnricher.Enrich([table]);
+
+        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
+                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
+                                      .ShouldBeOfType<WLine>();
+
+        var party = resultCell.Contents.ShouldHaveSingleItem().ShouldBeOfType<WParty2>();
+        party.Role.ShouldBe(PartyRole.Claimant);
+        party.Text.ShouldBe("Big Company Limited");
+    }
+
+    [Fact]
+    public void Enrich_TwoCellTableRow_NameCellWithNumberedTabbedName_AssignsPartyToNameAfterTab()
+    {
+        var cellWithNumberedTabbedName = new WCell(RowOf(), null, [
+            new WLine(LineTemplate, [
+                new WText("1.", null),
+                Tab(),
+                new WText("John Smith", null)
+            ])
+        ]);
+
+        var table = TableOf([
+            RowOf([cellWithNumberedTabbedName, CellOf("Claimant")])
+        ]);
+
+        var result = PartyEnricher.Enrich([table]);
+
+        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
+                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
+                                      .ShouldBeOfType<WLine>();
+
+        resultCell.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("1.");
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WTab>();
+
+        var party = resultCell.Contents.ElementAt(2).ShouldBeOfType<WParty>();
+        party.Role.ShouldBe(PartyRole.Claimant);
+        party.Text.ShouldBe("John Smith");
+    }
+
+    [Fact]
+    public void Enrich_TwoCellTableRow_NameCellIsBareAndMarker_DoesNotWrapEitherRunAsParty()
+    {
+        var table = TableOf([
+            RowOf([
+                CellWithOneLineOf("- and ", "–"),
+                CellOf("Defendant")
+            ])
+        ]);
+
+        var result = PartyEnricher.Enrich([table]);
+
+        var resultTable = result.ShouldHaveSingleItem().ShouldBeOfType<WTable>();
+        var resultCell = resultTable.TypedRows.ShouldHaveSingleItem()
+                                      .TypedCells[0].Contents.ShouldHaveSingleItem()
+                                      .ShouldBeOfType<WLine>();
+
+        resultCell.Contents.Count().ShouldBe(2);
+        resultCell.Contents.ElementAt(0).ShouldBeOfType<WText>().Text.ShouldBe("- and ");
+        resultCell.Contents.ElementAt(1).ShouldBeOfType<WText>().Text.ShouldBe("–");
     }
 }

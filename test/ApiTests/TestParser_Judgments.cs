@@ -15,21 +15,22 @@ using Parser = UK.Gov.NationalArchives.Judgments.Api.Parser;
 
 namespace test.ApiTests;
 
-public class Tests
+public class TestParser_Judgments
 {
     private const int Total = 99;
 
-    public static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
-            Enumerable.Range(12, 16).Concat(
-                Enumerable.Range(29, Total - 29 + 1)));
-    
+    private static readonly IEnumerable<int> Indices = Enumerable.Range(1, 10).Concat(
+        Enumerable.Range(12, 16).Concat(
+            Enumerable.Range(29, Total - 29 + 1)));
+
     public static readonly TheoryData<int> IndicesTheoryData = new(Indices);
 
     private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
 
     [Theory]
     [MemberData(nameof(IndicesTheoryData))]
-    public void Test(int i) {
+    public void Parse_WithNoMetadata_ReturnsExpectedXml(int i)
+    {
         var docx = DocumentHelpers.ReadDocx(i);
 
         var actual = parser.Parse(new Api.Request { Content = docx }).Xml;
@@ -41,12 +42,14 @@ public class Tests
     }
 
     [Theory]
-    [InlineData(11,"order")]
-    public void TestWithAttachment(int i, string name) {
+    [InlineData(11, "order")]
+    public void Parse_WithAttachment_ReturnsExpectedXml(int i, string name)
+    {
         var main = DocumentHelpers.ReadDocx(i, "main");
         var attach = DocumentHelpers.ReadDocx(i, name);
         Api.AttachmentType type;
-        switch (name) {
+        switch (name)
+        {
             case "order":
                 type = Api.AttachmentType.Order;
                 break;
@@ -66,7 +69,8 @@ public class Tests
 
     [Theory]
     [InlineData(28)]
-    public void TestWithImages(int i) {
+    public void Parse_JudgmentWithImages_ReturnsImagesInResponse(int i)
+    {
         var docx = DocumentHelpers.ReadDocx(i);
 
         var response = parser.Parse(new Api.Request { Content = docx });
@@ -77,12 +81,39 @@ public class Tests
         expectedXml = DocumentHelpers.RemoveNonDeterministicMetadata(expectedXml);
         Assert.Equal(expectedXml, actualXml);
         var assembly = Assembly.GetExecutingAssembly();
-        foreach (var actual in response.Images) {
-            using Stream stream = assembly.GetManifestResourceStream($"test.judgments.test{ i }-{ actual.Name }");
-            using MemoryStream ms = new MemoryStream();
+        foreach (var actual in response.Images)
+        {
+            using var stream = assembly.GetManifestResourceStream($"test.judgments.test{i}-{actual.Name}");
+            using var ms = new MemoryStream();
             stream.CopyTo(ms);
-            byte[] expected = ms.ToArray();
+            var expected = ms.ToArray();
             Assert.Equal(expected, actual.Content);
         }
+    }
+
+    [Theory]
+    [InlineData(6)]
+    [InlineData(8)]
+    [InlineData(31)]
+    [InlineData(32)]
+    [InlineData(84)]
+    public void Parse_JudgmentWithKingOnTheApplicationOf_SuppressesPartiesOnReparseWithCaseName(int i)
+    {
+        var docx = DocumentHelpers.ReadDocx(i);
+
+        var cleanRunResponse = parser.Parse(new Api.Request { Content = docx });
+
+        var runWithExternalMetadataResponse = parser.Parse(new Api.Request
+        {
+            Content = docx,
+            Meta = cleanRunResponse.Meta,
+            Hint = Api.Hint.EWHC
+        });
+
+        var cleanRunResponseXml = DocumentHelpers.RemoveNonDeterministicMetadata(cleanRunResponse.Xml);
+        var runWithExternalMetadataResponseXml =
+            DocumentHelpers.RemoveNonDeterministicMetadata(runWithExternalMetadataResponse.Xml);
+
+        Assert.Equal(cleanRunResponseXml, runWithExternalMetadataResponseXml);
     }
 }
