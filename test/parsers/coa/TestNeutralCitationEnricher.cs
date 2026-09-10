@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using DocumentFormat.OpenXml.Wordprocessing;
-
 using Shouldly;
 
 using UK.Gov.Legislation.Judgments;
@@ -12,14 +10,14 @@ using Xunit;
 
 namespace test.parsers.coa;
 
-public class TestNeutralCitation
+public class TestNeutralCitationEnricher : ParserTestBase
 {
-    private readonly NeutralCitationForTests neutralCitation = new();
+    private readonly NeutralCitationEnricherForTests neutralCitationEnricher = new();
 
     /// <summary>
     /// Wrapper class for testing protected NeutralCitation properties.
     /// </summary>
-    private class NeutralCitationForTests : NeutralCitation
+    private class NeutralCitationEnricherForTests : NeutralCitationEnricher
     {
         public IEnumerable<IInline> TriggerEnrich(params IInline[] line)
         {
@@ -43,9 +41,9 @@ public class TestNeutralCitation
     [InlineData("[2014] EWHC 404 (KB)", "[2014] EWHC 404 (KB)")]
     public void Enrich_OneLineJustNcn_TransformsToWNeutralCitation(string input, string expectedNcn)
     {
-        var text = new WText(input, new RunProperties());
+        var text = Text(input);
 
-        var result = neutralCitation.TriggerEnrich(text).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(text).ToArray();
 
         result.ShouldHaveSingleItem()
               .ShouldBeOfType<WNeutralCitation>()
@@ -58,6 +56,7 @@ public class TestNeutralCitation
     [InlineData("Neutral Citation No. [2023] EWHC 2 (QB)", "Neutral Citation No. ", "[2023] EWHC 2 (QB)")]
     [InlineData("Neutral Citation Number [2024] EWCA Crim 3", "Neutral Citation Number ", "[2024] EWCA Crim 3")]
     [InlineData("NCN: [2021] EWCA Civ 1412", "NCN: ", "[2021] EWCA Civ 1412")]
+    [InlineData("NCN: [2021] EWCA Crim 1412", "NCN: ", "[2021] EWCA Crim 1412")]
     [InlineData("NCN No: [2022] EWCA Crim 39", "NCN No: ", "[2022] EWCA Crim 39")]
     [InlineData("Neutral Citation Nunber: [2006] EWCA Civ 1507", "Neutral Citation Nunber: ", "[2006] EWCA Civ 1507")]
     [InlineData("Neutral Citation Numer: [2015] EWHC 411 (Ch)", "Neutral Citation Numer: ", "[2015] EWHC 411 (Ch)")]
@@ -67,9 +66,9 @@ public class TestNeutralCitation
     public void Enrich_OneLinePrefixAndNcn_TransformsToWTextPrefixAndWNeutralCitation(string input,
         string expectedPrefix, string expectedNcn)
     {
-        var text = new WText(input, new RunProperties());
+        var text = Text(input);
 
-        var result = neutralCitation.TriggerEnrich(text).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(text).ToArray();
 
         result.Length.ShouldBe(2);
 
@@ -80,7 +79,7 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_EmptyLine_ReturnsEmpty()
     {
-        var result = neutralCitation.TriggerEnrich().ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich().ToArray();
 
         result.ShouldBeEmpty();
     }
@@ -90,7 +89,7 @@ public class TestNeutralCitation
     {
         var lineBreak = new WLineBreak();
 
-        var result = neutralCitation.TriggerEnrich(lineBreak).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(lineBreak).ToArray();
 
         result.ShouldHaveSingleItem().ShouldBeSameAs(lineBreak);
     }
@@ -98,9 +97,9 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_FirstTextContainsLinked_UsesCaseLawRefForEwfcCitationAtEnd()
     {
-        var text = new WText("These are linked judgments. [2023] EWFC 194", new RunProperties());
+        var text = Text("These are linked judgments. [2023] EWFC 194");
 
-        var result = neutralCitation.TriggerEnrich(text).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(text).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeOfType<WText>().Text.ShouldBe("These are linked judgments. ");
@@ -120,10 +119,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_LinkedTextInLastElementNotFirst_TreatedAsPlainCitationInsteadOfCaseLawRef_KnownBug()
     {
-        var first = new WText("Case note: ", new RunProperties());
-        var last = new WText("this is linked. [2023] EWFC 194", new RunProperties());
+        var first = Text("Case note: ");
+        var last = Text("this is linked. [2023] EWFC 194");
 
-        var result = neutralCitation.TriggerEnrich(first, last).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, last).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
@@ -137,10 +136,10 @@ public class TestNeutralCitation
     [InlineData("NCN: ", "[2021] EWCA Crim 1412")]
     public void Enrich_TwoElements_PrefixThenBareCitation_TransformsLastElement(string prefix, string ncn)
     {
-        var first = new WText(prefix, new RunProperties());
-        var last = new WText(ncn, new RunProperties());
+        var first = Text(prefix);
+        var last = Text(ncn);
 
-        var result = neutralCitation.TriggerEnrich(first, last).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, last).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
@@ -151,9 +150,9 @@ public class TestNeutralCitation
     public void Enrich_TwoElements_LineBreakThenBareCitation_TransformsLastElement()
     {
         var lineBreak = new WLineBreak();
-        var last = new WText("[2022] EWCA Crim 733", new RunProperties());
+        var last = Text("[2022] EWCA Crim 733");
 
-        var result = neutralCitation.TriggerEnrich(lineBreak, last).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(lineBreak, last).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(lineBreak);
@@ -163,10 +162,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_LastElementNotWText_ReturnsUnchanged()
     {
-        var first = new WText("no citation here", new RunProperties());
+        var first = Text("no citation here");
         var last = new WLineBreak();
 
-        var result = neutralCitation.TriggerEnrich(first, last).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, last).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
@@ -176,10 +175,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_TwoPlainTextElements_NoSpecialPatternMatches_ReturnsUnchanged()
     {
-        var first = new WText("Hello", new RunProperties());
-        var second = new WText("World", new RunProperties());
+        var first = Text("Hello");
+        var second = Text("World");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
@@ -189,11 +188,11 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_ThreeElements_NeutralCitationNumberColonPrefix_TransformsMiddleElement()
     {
-        var first = new WText("Neutral Citation Number: ", new RunProperties());
-        var second = new WText("[2026] EWCA Civ 972", new RunProperties());
-        var third = new WText(" see also", new RunProperties());
+        var first = Text("Neutral Citation Number: ");
+        var second = Text("[2026] EWCA Civ 972");
+        var third = Text(" see also");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
@@ -209,10 +208,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_OpenBracketAppendedToPrefix_TrailingTextIncorrectlyIncludedInCitation_KnownBug()
     {
-        var first = new WText("Neutral Citation Number: [", new RunProperties());
-        var second = new WText("2022] EWCA Civ 733 (unreported)", new RunProperties());
+        var first = Text("Neutral Citation Number: [");
+        var second = Text("2022] EWCA Civ 733 (unreported)");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
@@ -223,10 +222,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_PrefixWithoutColonThenColonSpaceAndCitation_TransformsSecondElement()
     {
-        var first = new WText("Neutral Citation Number", new RunProperties());
-        var second = new WText(": [2022] EWCA Civ 733", new RunProperties());
+        var first = Text("Neutral Citation Number");
+        var second = Text(": [2022] EWCA Civ 733");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
@@ -237,10 +236,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_FigurePrefixWithOpenBracket_TransformsSecondElement()
     {
-        var first = new WText("Neutral Citation figure: [", new RunProperties());
-        var second = new WText("2022] EWCA Civ 733", new RunProperties());
+        var first = Text("Neutral Citation figure: [");
+        var second = Text("2022] EWCA Civ 733");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation figure: ");
@@ -255,10 +254,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_TrailingCloseParenAsSecondElement_LeavesOriginalParenDangling_KnownBug()
     {
-        var first = new WText("Neutral Citation Number: [2011] EWHC 3553 (Ch", new RunProperties());
-        var second = new WText(")", new RunProperties());
+        var first = Text("Neutral Citation Number: [2011] EWHC 3553 (Ch");
+        var second = Text(")");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
@@ -270,10 +269,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_OpenBracketAsFirstElement_CombinesAndTransforms()
     {
-        var first = new WText("[", new RunProperties());
-        var second = new WText("2022] EWCA Civ 733", new RunProperties());
+        var first = Text("[");
+        var second = Text("2022] EWCA Civ 733");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.ShouldHaveSingleItem().ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2022] EWCA Civ 733");
     }
@@ -281,12 +280,12 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_WhitespaceSecondElement_RecognisedPrefixOnFirst_TransformsThirdElement()
     {
-        var first = new WText("Neutral Citation Number:", new RunProperties());
-        var second = new WText(" ", new RunProperties());
-        var third = new WText("[2022] EWCA Civ 733", new RunProperties());
-        var fourth = new WText(" see also", new RunProperties());
+        var first = Text("Neutral Citation Number:");
+        var second = Text(" ");
+        var third = Text("[2022] EWCA Civ 733");
+        var fourth = Text(" see also");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third, fourth).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third, fourth).ToArray();
 
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(first);
@@ -298,10 +297,10 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_WhitespaceSecondElement_NoThirdElement_ReturnsUnchanged()
     {
-        var first = new WText("NCN:", new RunProperties());
-        var second = new WText(" ", new RunProperties());
+        var first = Text("NCN:");
+        var second = Text(" ");
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
@@ -311,12 +310,12 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_WhitespaceSecondElement_PrefixNotRecognised_ReturnsUnchanged()
     {
-        var first = new WText("Something Else:", new RunProperties());
-        var second = new WText(" ", new RunProperties());
-        var third = new WText("[2022] EWCA Civ 733", new RunProperties());
-        var fourth = new WText(" filler", new RunProperties());
+        var first = Text("Something Else:");
+        var second = Text(" ");
+        var third = Text("[2022] EWCA Civ 733");
+        var fourth = Text(" filler");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third, fourth).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third, fourth).ToArray();
 
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(first);
@@ -328,11 +327,11 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_WhitespaceSecondElement_ThirdElementDoesNotMatch_ReturnsUnchanged()
     {
-        var first = new WText("NCN:", new RunProperties());
-        var second = new WText(" ", new RunProperties());
-        var third = new WText("not a valid citation", new RunProperties());
+        var first = Text("NCN:");
+        var second = Text(" ");
+        var third = Text("not a valid citation");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
@@ -349,10 +348,10 @@ public class TestNeutralCitation
     public void Enrich_TwoElements_RecognisedPrefixButInvalidCitation_ReturnsUnchanged(string firstText,
         string secondText)
     {
-        var first = new WText(firstText, new RunProperties());
-        var second = new WText(secondText, new RunProperties());
+        var first = Text(firstText);
+        var second = Text(secondText);
 
-        var result = neutralCitation.TriggerEnrich(first, second).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeSameAs(first);
@@ -363,10 +362,10 @@ public class TestNeutralCitation
     public void Enrich_LineBreakThenFullCitationText_TransformsSecondElement()
     {
         var lineBreak = new WLineBreak();
-        var second = new WText("Neutral Citation Number: [2020] EWCA Civ 100", new RunProperties());
-        var third = new WText(" trailing", new RunProperties());
+        var second = Text("Neutral Citation Number: [2020] EWCA Civ 100");
+        var third = Text(" trailing");
 
-        var result = neutralCitation.TriggerEnrich(lineBreak, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(lineBreak, second, third).ToArray();
 
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(lineBreak);
@@ -379,10 +378,10 @@ public class TestNeutralCitation
     public void Enrich_LineBreakThenNonMatchingText_ReturnsUnchanged()
     {
         var lineBreak = new WLineBreak();
-        var second = new WText("not a citation at all", new RunProperties());
-        var third = new WText(" trailing", new RunProperties());
+        var second = Text("not a citation at all");
+        var third = Text(" trailing");
 
-        var result = neutralCitation.TriggerEnrich(lineBreak, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(lineBreak, second, third).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(lineBreak);
@@ -393,11 +392,11 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_ThreeTextElementsSplitAcrossRuns_ConcatenatedTextMatches_ReturnsReplacement()
     {
-        var first = new WText("Neutral Cit", new RunProperties());
-        var second = new WText("ation Number: [2020] EWCA Civ", new RunProperties());
-        var third = new WText(" 100", new RunProperties());
+        var first = Text("Neutral Cit");
+        var second = Text("ation Number: [2020] EWCA Civ");
+        var third = Text(" 100");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third).ToArray();
 
         result.Length.ShouldBe(2);
         result[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
@@ -407,11 +406,11 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_ThreeElements_SecondNotWText_ReturnsUnchanged()
     {
-        var first = new WText("a", new RunProperties());
+        var first = Text("a");
         var lineBreak = new WLineBreak();
-        var third = new WText("b", new RunProperties());
+        var third = Text("b");
 
-        var result = neutralCitation.TriggerEnrich(first, lineBreak, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, lineBreak, third).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
@@ -422,11 +421,11 @@ public class TestNeutralCitation
     [Fact]
     public void Enrich_ThreeTextElements_NoMatchInConcatenatedText_ReturnsUnchanged()
     {
-        var first = new WText("Hello", new RunProperties());
-        var second = new WText(" there", new RunProperties());
-        var third = new WText(" friend", new RunProperties());
+        var first = Text("Hello");
+        var second = Text(" there");
+        var third = Text(" friend");
 
-        var result = neutralCitation.TriggerEnrich(first, second, third).ToArray();
+        var result = neutralCitationEnricher.TriggerEnrich(first, second, third).ToArray();
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(first);
