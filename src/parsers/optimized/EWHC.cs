@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
-
 
 using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 
@@ -198,12 +196,12 @@ class OptimizedEWHCParser : OptimizedParser
 
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage)
     {
-        return new NeutralCitation().Enrich(coverPage);
+        return new NeutralCitationEnricher().Enrich(coverPage);
     }
 
     private readonly List<Enricher> headerEnrichers = [
         new RestrictionsEnricher(),
-        new NeutralCitation(),
+        new NeutralCitationEnricher(),
         new CaseNo(),
         new CourtType(),
         new DocDate(),
