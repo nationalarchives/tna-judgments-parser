@@ -8,7 +8,7 @@ using UK.Gov.NationalArchives.Enrichment;
 
 namespace UK.Gov.Legislation.Judgments.Parse;
 
-internal class NeutralCitation : Enricher2
+internal class NeutralCitationEnricher : Enricher2
 {
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
