@@ -17,70 +17,116 @@ internal class NeutralCitationEnricher : Enricher2
                      .Concat(blocks.Skip(10));
     }
 
+    private static readonly string NeutralCitationNumberPrefixRegexPattern =
+        $@"Neutral\sCitation(?:\s+{NumberSpellingsRegexPattern})?\s*[:\.]?\s*";
+
+    private static readonly string NumberSpellingsRegexPattern = "(?:Number|No|Numer|Nunber)";
+
+    private static readonly string
+        EwhcCourtsRegexPattern = "(?:Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)";
+
+    // Use \s instead of " " to match non-breaking spaces
+    private static readonly string[] PrefixPatterns =
+    [
+        $@"NCN(?:\s+{NumberSpellingsRegexPattern})?\s*[:\.]?\s*",
+        NeutralCitationNumberPrefixRegexPattern,
+        @"Neutral\sCitation(?:\s+figure)?\s*[:\.]?\s*"
+    ];
+
+    // Use \s instead of " " to match non-breaking spaces
+    private static readonly string[] NcnPatterns =
+    [
+        $@"(\[\d{{4}}\]? EWHC +\d+ +\({EwhcCourtsRegexPattern}\.?\))", // . in EWHC/Comm/2007/197
+        $@"(\[\d{{4}}\] EWHC \d+ {EwhcCourtsRegexPattern})", // EWHC/Admin/2003/301
+        $@"(\[\d{{4}}\] EWCH \d+ \({EwhcCourtsRegexPattern}\))", // EWHC/Admin/2006/2373
+        $@"(\[\d{{4}}\] EHWC \d+ \({EwhcCourtsRegexPattern}\))", // [2022] EHWC 950 (Ch)
+        $@"(\[?\d{{4}}\] EWHC \d+ \({EwhcCourtsRegexPattern}\.?\))", // period after Admlty in EWHC/Admlty/2003/320
+        $@"(\[\d{{4}}\] EWHC \[\d+\] \({EwhcCourtsRegexPattern}\))$", // [2021] EWHC [3505] (IPEC)
+        @"(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)",
+        @"(\[\d{4}\] EWFC \d+( \(B\))?)",
+        @"(\[\d{4}\] EWCC \d+)",
+        @"(\[\d{4}\] EWCR \d+)",
+        @"(\[\d{4}\] EAT \d+)",
+        @"(\[\d{4}\]\sEWCA\s\d+\s\(?(?:Civ|Crim)\)?)", // EWCA/Civ/2017/1798
+        @"(\[\d{4}\]\sEWCA\s(Civ|Crim)\s\d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
+        @"(\[\d{4}\] EWHC \d+ \(Admin\))", // non-space in [2022] EWHC 307 (Admin)
+        @"(\[\d{4}\] EWFC \d+( \(B\))?)",
+        @"(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
+        @"(\[\d{4}\] EWCC \d+)",
+        @"(\[\d{4}\] UKIPTrib \d+)"
+    ];
+
     private static readonly string[] Patterns =
     [
-        @"^ ?Neutral Citation(?: Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^ *Neutral [Cc]itation(?: +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\]? EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\.?\))", // . in EWHC/Comm/2007/197
-        @"^Neutral Citation(?: Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC))", // EWHC/Admin/2003/301
-        @"^Neutral Citation(?: Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // EWHC/Admin/2006/2373
-        @"^Neutral Citation(?: Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // [2022] EHWC 950 (Ch)
-        @"^Neutral Citation(?: Number| No)?:? (\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)",
-        @"^Neutral Citation(?: Number)?:? (\[\d{4}\] EWFC \d+( \(B\))?)",
-        @"^Neutral Citation(?: Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))", // EWCA/Civ/2017/1798
-        @"^Neutral Citation(?: Number)?:? (\[\d{4}\] EWCA \d+ (Civ|Crim))",
-        @"^Neutral Citation(?: Number)?:? +(\[\d{4}\] EWCC \d+)",
-        @"^Neutral Citation(?: Number)?:? +(\[\d{4}\] EWCR \d+)",
-        @"^Neutral Citation(?: Number)?:? (\[\d{4}\] EAT \d+)",
-        @"^\s*(\[\d{4}\] EWCA (Civ|Crim) \d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
-        @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // period after Admlty in EWHC/Admlty/2003/320
-        @"^\s(\[\d{4}\] EWHC \d+ \(Admin\))", // non-space in [2022] EWHC 307 (Admin)
-        @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))$", // [2021] EWHC [3505] (IPEC)
-        @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)", // misspelling in EWCA/Civ/2006/1507
-        @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
-        @"^NCN:?\s+(\[\d{4}\] EWCA (Civ|Crim) \d+)$", // [2021] EWCA Crim 1412
-        @"^NCN No: (\[\d{4}\] EWCA (Civ|Crim) \d+)$", // [2022] EWCA Crim 39
+        $@"{NeutralCitationNumberPrefixRegexPattern}(\[\d{{4}}\]? EWHC +\d+ +\({EwhcCourtsRegexPattern}\.?\))", // . in EWHC/Comm/2007/197
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? +(\[\d{{4}}\] EWHC \d+ {EwhcCourtsRegexPattern})", // EWHC/Admin/2003/301
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? +(\[\d{{4}}\] EWCH \d+ \({EwhcCourtsRegexPattern}\))", // EWHC/Admin/2006/2373
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? +(\[\d{{4}}\] EHWC \d+ \({EwhcCourtsRegexPattern}\))", // [2022] EHWC 950 (Ch)
+        $@" *(\[?\d{{4}}\] EWHC \d+ \({EwhcCourtsRegexPattern}\.?\))", // period after Admlty in EWHC/Admlty/2003/320
+        $@"(\[\d{{4}}\] EWHC \[\d+\] \({EwhcCourtsRegexPattern}\))$", // [2021] EWHC [3505] (IPEC)
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? (\[\d{{4}}\] EWCOP \d+( \(T[1-3]\))?)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? (\[\d{{4}}\] EWFC \d+( \(B\))?)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? +(\[\d{{4}}\] EWCC \d+)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? +(\[\d{{4}}\] EWCR \d+)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? (\[\d{{4}}\] EAT \d+)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?[:\.]? *(\[\d{{4}}\] EWCA (Civ|Crim) \d+)",
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? (\[\d{{4}}\] EWCA \d+ \((Civ|Crim)\))", // EWCA/Civ/2017/1798
+        $@"Neutral Citation(?: {NumberSpellingsRegexPattern})?:? (\[\d{{4}}\] EWCA \d+ (Civ|Crim))",
+        @"\s*(\[\d{4}\] EWCA (Civ|Crim) \d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
+        @"\s(\[\d{4}\] EWHC \d+ \(Admin\))", // non-space in [2022] EWHC 307 (Admin)
+        $@"Neutral Citation {NumberSpellingsRegexPattern}: (\[\d{{4}}\] EWCA (Civ|Crim) \d+)", // misspelling in EWCA/Civ/2006/1507
+        @"NCN:?\s+(\[\d{4}\] EWCA (Civ|Crim) \d+)$", // [2021] EWCA Crim 1412
+        $@"NCN {NumberSpellingsRegexPattern}: (\[\d{{4}}\] EWCA (Civ|Crim) \d+)$", // [2022] EWCA Crim 39
+        $@"Neutral Citation {NumberSpellingsRegexPattern}: (\[\d{{4}}\[ EWCA (Civ|Crim) \d+)", // [2018[ EWCA Civ 1744
         @"(\[\d{4}\] EWFC \d+( \(B\))?)",
-        @"^Neutral Citation Number: (\[\d{4}\[ EWCA (Civ|Crim) \d+)", // [2018[ EWCA Civ 1744
-        @"^(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
-        @"^(\[\d{4}\] EWCC \d+)",
-        @"^(\[\d{4}\] EWCR \d+)",
-        @"^ *(\[?\d{4}\]? EAT \d+)$",
-        @"^Neutral Citation Number:? (\[\d{4}\] UKIPTrib \d+)"
+        @"(\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)$",
+        @"(\[\d{4}\] EWCC \d+)",
+        @"(\[\d{4}\] EWCR \d+)",
+        @" *(\[?\d{4}\]? EAT \d+)$",
+        $@"Neutral Citation {NumberSpellingsRegexPattern}:? (\[\d{{4}}\] UKIPTrib \d+)"
     ];
 
 
-    private static Group MatchNcn(string text)
+    private static bool TryMatchNcn(WText wText, out Group group)
+    {
+        return TryMatchNcn(wText.Text, out group);
+    }
+
+    private static bool TryMatchNcn(string text, out Group group)
     {
         foreach (var pattern in Patterns)
         {
             var match = Regex.Match(text, pattern, RegexOptions.IgnoreCase);
             if (match.Success)
             {
-                return match.Groups[1];
+                group = match.Groups[1];
+                return true;
             }
         }
 
-        return null;
+        group = null;
+        return false;
     }
 
-    private static List<IInline> Replace(string text, Group group, RunProperties rProps)
+    private static List<IInline> Replace(WText wText, Group neutralCitationRegexGroup)
+    {
+        return Replace(wText.Text, neutralCitationRegexGroup, wText.properties);
+    }
+
+    private static List<IInline> Replace(string text, Group neutralCitationRegexGroup, RunProperties rProps)
     {
         var replacement = new List<IInline>(3);
-        if (group.Index > 0)
+        if (neutralCitationRegexGroup.Index > 0)
         {
-            var before1 = text.Substring(0, group.Index);
-            var before2 = new WText(before1, rProps);
-            replacement.Add(before2);
+            replacement.Add(new WText(text[..neutralCitationRegexGroup.Index], rProps));
         }
 
-        var during1 = group.Value;
-        var during2 = new WNeutralCitation(during1, rProps);
-        replacement.Add(during2);
-        var after1 = text.Substring(group.Index + group.Length);
-        if (!string.IsNullOrEmpty(after1))
+        replacement.Add(new WNeutralCitation(neutralCitationRegexGroup.Value, rProps));
+
+        var indexAfterGroupMatch = neutralCitationRegexGroup.Index + neutralCitationRegexGroup.Length;
+        if (text.Length > indexAfterGroupMatch)
         {
-            var after2 = new WText(after1, rProps);
-            replacement.Add(after2);
+            replacement.Add(new WText(text[indexAfterGroupMatch..], rProps));
         }
 
         return replacement;
@@ -98,121 +144,78 @@ internal class NeutralCitationEnricher : Enricher2
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
     {
-        var linesArray = line.ToArray(); //enumerate to an array so we don't waste resource recalculating lines
-        var numberOfLines = linesArray.Length;
-
-        if (numberOfLines == 0)
+        return line.ToArray() switch
         {
-            return linesArray;
-        }
+            [WText first, ..] when first.Text.Contains("linked") =>
+                // [2023] EWFC 194 & 195, [2023] EWFC 169 & 170
+                CaseLawRef.EnrichFromEnd(line, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$"),
 
-        var firstLineWText = linesArray[0] as WText;
-        var firstLineProperties = firstLineWText?.properties;
-        var normalisedFirstLineText = firstLineWText?.Text;
+            [WText first, .. var rest] when TryMatchNcn(first, out var group)
+                => [.. Replace(first, group), .. rest],
 
-        var secondLineWText = (numberOfLines >= 2 ? linesArray[1] : null) as WText;
-        var secondLineProperties = secondLineWText?.properties;
-        var normalisedSecondLineText = secondLineWText?.Text;
+            [.. var before, WText last] when TryMatchNcn(last, out var group)
+                => [.. before, .. Replace(last, group)],
 
-        var thirdLineWText = (numberOfLines >= 3 ? linesArray[2] : null) as WText;
-        var thirdLineProperties = thirdLineWText?.properties;
-        var normalisedThirdLineText = thirdLineWText?.Text;
+            [WText { Text: "Neutral Citation Number:" } first, WText second, .. var rest]
+                when TryMatchNcn(second, out var group)
+                => [first, .. Replace(second, group), .. rest],
 
-        var lastLineWText = linesArray[^1] as WText;
-        var lastLineProperties = lastLineWText?.properties;
-        var normalisedLastLineText = lastLineWText?.Text;
+            [WText first, WText second, .. var rest]
+                when (first.Text?.Trim() == "NCN" || first.Text?.Trim() == "NCN:")
+                && TryMatchNcn(second, out var group)
+                => [first, .. Replace(second, group), .. rest],
 
-        switch (normalisedFirstLineText?.Trim(), normalisedSecondLineText?.Trim(), normalisedThirdLineText?.Trim())
-        {
-            case (not null, _, _) when normalisedFirstLineText!.Contains("linked"):
-                {
-                    // [2023] EWFC 194 & 195, [2023] EWFC 169 & 170
-                    return CaseLawRef.EnrichFromEnd(linesArray, @"(\[\d{4}\] EWFC \d+( \(B\))?)\.?$");
-                }
-            case (not null, _, _) when MatchNcn(normalisedFirstLineText) is var group
-                                       && group is not null:
-                {
-                    var replacement = Replace(normalisedFirstLineText, group, firstLineProperties);
-                    return [.. replacement, .. linesArray.Skip(1)];
-                }
-            case (_, _, _) when numberOfLines == 1:
-                {
-                    return linesArray;
-                }
-            case (_, _, _) when normalisedLastLineText is not null
-                                && MatchNcn(normalisedLastLineText) is var group
-                                && group is not null:
-                {
-                    var replacement = Replace(normalisedLastLineText, group, lastLineProperties);
-                    return [.. linesArray.SkipLast(1), .. replacement];
-                }
-            case ("Neutral Citation Number:", not null, _) when MatchNcn(normalisedSecondLineText) is var group
-                                                                && group is not null:
-                {
-                    var replacement = Replace(normalisedSecondLineText, group, secondLineProperties);
-                    return [linesArray[0], .. replacement, .. linesArray.Skip(2)];
-                }
-            case (not null, not null, _) when (normalisedFirstLineText?.Trim() == "NCN" || normalisedFirstLineText?.Trim() == "NCN:") && MatchNcn(normalisedSecondLineText) is var ncnGroup && ncnGroup is not null:
-                {
-                    var replacement = Replace(normalisedSecondLineText, ncnGroup, secondLineProperties);
-                    return [linesArray[0], .. replacement, .. linesArray.Skip(2)];
-                }
-            case ("Neutral Citation Number: ["
-                or "Neutral Citation Number:  ["
-                or "Neutral Citation No. ["
-                or "Neutral Citation figure: [", not null, _) when MatchNcn("[" + normalisedSecondLineText) is not null:
-                {
-                    // EWHC/Admin/2004/584, EWHC/Admin/2014/1564, EWHC/Ch/2009/1908,  EWHC/Admin/2009/3312
-                    var label = new WText(normalisedFirstLineText[..^1], firstLineProperties);
-                    var nc = new WNeutralCitation("[" + normalisedSecondLineText, secondLineProperties);
-                    return [label, nc, .. linesArray.Skip(2)];
-                }
-            case ("Neutral Citation Number", not null, _) when normalisedSecondLineText.StartsWith(": ")
-                                                               && MatchNcn(normalisedSecondLineText[2..]) is not null:
-                {
-                    // EWHC/Comm/2005/279
-                    var split = new WText(normalisedSecondLineText.Substring(0, 2), secondLineProperties);
-                    var nc = new WNeutralCitation(normalisedSecondLineText.Substring(2), secondLineProperties);
-                    return [firstLineWText, split, nc, .. linesArray.Skip(2)];
-                }
-            case (not null, ")", _) when normalisedFirstLineText + normalisedSecondLineText is var combined
-                                         && MatchNcn(combined) is var group
-                                         && group is not null:
-                {
-                    // EWHC/Ch/2011/3553
-                    var replacement = Replace(combined, group, firstLineProperties);
-                    return [.. replacement, .. linesArray.Skip(1)];
-                }
-            case ("[", not null, _) when normalisedFirstLineText + normalisedSecondLineText is var combined
-                                         && MatchNcn(combined) is var group
-                                         && group is not null:
-                {
-                    // [2021] EWHC 2776 (QB)
-                    var replacement = Replace(combined, group, secondLineProperties);
-                    return [.. replacement, .. linesArray.Skip(2)];
-                }
-            case ("Neutral Citation Number:" or "NCN:", _, not null) when MatchNcn(normalisedThirdLineText) is var group
-                                                                          && group is not null:
-                {
-                    var replacement = Replace(normalisedThirdLineText, group, thirdLineProperties);
-                    return [.. linesArray.Take(2), .. replacement, .. linesArray.Skip(3)];
-                }
-            case (_, not null, _) when linesArray[0] is WImageRef or WLineBreak
-                                       && MatchNcn(normalisedSecondLineText) is var group
-                                       && group is not null:
-                {
-                    var replacement = Replace(normalisedSecondLineText, group, secondLineProperties);
-                    return [linesArray[0], .. replacement, .. linesArray.Skip(2)];
-                }
-            case (not null, not null, not null) when IInline.ToString(linesArray) is var combined
-                                                     && MatchNcn(combined) is var group
-                                                     && group is not null:
-                {
-                    // this won't preserve all run formatting
-                    return Replace(combined, group, firstLineProperties);
-                }
-            default:
-                return linesArray;
-        }
+            [
+                    WText
+            {
+                Text: "Neutral Citation Number: [" or "Neutral Citation Number:  ["
+                        or "Neutral Citation No. [" or "Neutral Citation figure: ["
+            } first,
+                    WText second, .. var rest
+                ] when TryMatchNcn("[" + second.Text, out _) =>
+                // EWHC/Admin/2004/584, EWHC/Admin/2014/1564, EWHC/Ch/2009/1908,  EWHC/Admin/2009/3312
+                [
+                    new WText(first.Text[..^1], first.properties),
+                    new WNeutralCitation("[" + second.Text, second.properties), .. rest
+                ],
+
+            [WText { Text: "Neutral Citation Number" } first, WText second, .. var rest] when
+                second.Text.StartsWith(": ") && TryMatchNcn(second.Text[2..], out _) =>
+                // EWHC/Comm/2005/279
+                [
+                    first, new WText(second.Text[..2], second.properties),
+                    new WNeutralCitation(second.Text[2..], second.properties), .. rest
+                ],
+
+            [WText first, WText { Text: ")" } second, .. var rest]
+                when first.Text + second.Text is var combined && TryMatchNcn(combined, out var group)
+                =>
+                // EWHC/Ch/2011/3553
+                [.. Replace(combined, group, first.properties), .. rest],
+
+            [WText { Text: "[" } first, WText second, .. var rest]
+                when first.Text + second.Text is var combined
+                && TryMatchNcn(combined, out var group)
+                =>
+                // [2021] EWHC 2776 (QB)
+                [.. Replace(combined, group, second.properties), .. rest],
+
+            [WText { Text: "Neutral Citation Number:" or "NCN:" } first, WText second, WText third, .. var rest]
+                when
+                Regex.IsMatch(first.Text, NeutralCitationNumberPrefixRegexPattern)
+                && TryMatchNcn(third, out var group)
+                => [first, second, .. Replace(third, group), .. rest],
+
+            [{ } first and (WImageRef or WLineBreak), WText second, .. var rest]
+                when TryMatchNcn(second, out var group)
+                => [first, .. Replace(second, group), .. rest],
+
+            [WText first, ..] when IInline.ToString(line) is var combined
+                && TryMatchNcn(combined, out var group) =>
+                // this won't preserve all run formatting
+                Replace(combined, group, first.properties),
+
+            _ => line
+        };
     }
 }
