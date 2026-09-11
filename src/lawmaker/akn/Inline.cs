@@ -12,6 +12,19 @@ partial class Builder
 
     protected override void AddInline(XmlElement parent, IInline model)
     {
+        inlineDepth += 1;
+        try
+        {
+            AddInlineDispatch(parent, model);
+        }
+        finally
+        {
+            inlineDepth -= 1;
+        }
+    }
+
+    private void AddInlineDispatch(XmlElement parent, IInline model)
+    {
         if (model is Def def)
         {
             AddDef(parent, def);
