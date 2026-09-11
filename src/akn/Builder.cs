@@ -702,6 +702,14 @@ internal abstract class Builder
         return e;
     }
 
+    /// <summary>
+    /// Computes the CSS formatting for a run of text. A seam over
+    /// <see cref="IFormattedText.GetCSSStyles(string)"/> so subclasses (e.g. lawmaker)
+    /// can layer in additional formatting without affecting other document types.
+    /// </summary>
+    protected virtual Dictionary<string, string> GetInlineFormatting(IFormattedText model)
+        => model.GetCSSStyles(ContainingParagraphStyle);
+
     private void TextAndFormatting(XmlElement e, IFormattedText model)
     {
         if (model.Style is not null)
@@ -709,7 +717,7 @@ internal abstract class Builder
             e.SetAttribute("class", model.Style);
         }
 
-        var styles = model.GetCSSStyles(ContainingParagraphStyle);
+        var styles = GetInlineFormatting(model);
         if (styles.Count > 0)
         {
             e.SetAttribute("style", CSS.SerializeInline(styles));
@@ -1020,7 +1028,7 @@ internal abstract class Builder
             return;
         }
 
-        var styles = fText.GetCSSStyles(ContainingParagraphStyle);
+        var styles = GetInlineFormatting(fText);
         if (styles.Count > 0)
         {
             AddAndWrapText(parent, "span", fText);

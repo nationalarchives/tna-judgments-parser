@@ -77,7 +77,7 @@ class Simplifier : NationalArchives.AkomaNtoso.Simplifier
     private static bool ShouldInsertStyleTags(XmlText text)
     {
         List<string> allowedParents = ["span", "b", "i", "u", "sup", "sub"];
-        List<string> checkGrandparents = ["p", "heading", "block", "num", "tocItem"];
+        List<string> checkGrandparents = ["heading", "block", "num", "tocItem"];
         var parentName = text.ParentNode.LocalName;
         XmlNode grandparent = text.ParentNode.ParentNode;
         // Don't need to insert style tags for whitespace

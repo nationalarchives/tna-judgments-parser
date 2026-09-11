@@ -34,6 +34,48 @@ partial class Builder(Document bill, LanguageService languageService) : AkN.Buil
 
     private readonly Document bill = bill;
 
+    /// <summary>
+    /// Whole-paragraph emphasis (bold/italic/underline) for the <c>WLine</c> currently
+    /// being built as text/lists content, to be layered onto every run of that line even
+    /// when the run itself carries no formatting of its own. Only set while building
+    /// non-standard schedule/blockList content, where a whole-bold line cannot instead be
+    /// preserved by converting it to a <c>&lt;heading&gt;</c> (see LCO-5116).
+    /// </summary>
+    private Dictionary<string, string> paragraphEmphasis;
+
+    /// <summary>
+    /// Tracks recursion depth through <see cref="AddInline"/>, so <see cref="paragraphEmphasis"/>
+    /// only applies to a formatted-text run that is a direct child of the block/intro that set it -
+    /// never to text nested inside a named inline container (e.g. <c>&lt;shortTitle&gt;</c>,
+    /// <c>&lt;def&gt;</c>), which already carries its own semantic meaning and must not be
+    /// blanket-emphasised just because the containing paragraph happens to be.
+    /// </summary>
+    private int inlineDepth = 0;
+
+    protected override Dictionary<string, string> GetInlineFormatting(IFormattedText model)
+    {
+        Dictionary<string, string> styles = base.GetInlineFormatting(model);
+        if (paragraphEmphasis is not null && inlineDepth <= 1)
+            foreach (KeyValuePair<string, string> entry in paragraphEmphasis)
+                if (!styles.ContainsKey(entry.Key))
+                    styles[entry.Key] = entry.Value;
+        return styles;
+    }
+
+    private static Dictionary<string, string> WholeParagraphEmphasis(WLine line)
+    {
+        Dictionary<string, string> emphasis = [];
+        if (line is null)
+            return emphasis;
+        if (line.IsAllBold())
+            emphasis["font-weight"] = "bold";
+        if (line.IsAllItalicized())
+            emphasis["font-style"] = "italic";
+        if (line.IsAllUnderlined())
+            emphasis["text-decoration-line"] = "underline";
+        return emphasis;
+    }
+
     private XmlDocument Build()
     {
         XmlElement akomaNtoso = CreateAndAppend("akomaNtoso", doc);
@@ -386,6 +428,11 @@ partial class Builder(Document bill, LanguageService languageService) : AkN.Buil
         if (styles.Count > 0)
             block.SetAttribute("style", CSS.SerializeInline(styles));
         ContainingParagraphStyle = stripped.Style;
+        // Only plain <p> content (not <heading>/<subheading>/<shortTitle>/etc., which
+        // already convey their own semantic emphasis) should get whole-paragraph
+        // style-driven formatting filled in - see LCO-5116.
+        if (name == "p")
+            paragraphEmphasis = WholeParagraphEmphasis(stripped as WLine ?? line as WLine);
         XmlElement tblock = doc.CreateElement("tblock", ns);
         var imgAdded = false;
         foreach (IInline inline in stripped.Contents)
@@ -403,6 +450,7 @@ partial class Builder(Document bill, LanguageService languageService) : AkN.Buil
                 AddInline(block, inline);
             }
         ContainingParagraphStyle = null;
+        paragraphEmphasis = null;
         return block;
     }
 
@@ -543,7 +591,11 @@ partial class Builder(Document bill, LanguageService languageService) : AkN.Buil
         if (blockList.Intro is not null)
         {
             XmlElement intro = CreateAndAppend("listIntroduction", bl);
+            ContainingParagraphStyle = blockList.Intro.Style;
+            paragraphEmphasis = WholeParagraphEmphasis(blockList.Intro);
             AddInlines(intro, blockList.Intro.Contents);
+            ContainingParagraphStyle = null;
+            paragraphEmphasis = null;
         }
         AddBlocks(bl, blockList.Children);
     }
@@ -585,7 +637,13 @@ partial class Builder(Document bill, LanguageService languageService) : AkN.Buil
             foreach (IBlock block in item.Intro)
             {
                 if (block is WLine line)
+                {
+                    ContainingParagraphStyle = line.Style;
+                    paragraphEmphasis = WholeParagraphEmphasis(line);
                     AddInlines(listIntroductionElement, line.Contents);
+                    ContainingParagraphStyle = null;
+                    paragraphEmphasis = null;
+                }
                 else
                     AddBlocks(listIntroductionElement, [block]);
             }
