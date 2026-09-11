@@ -21,6 +21,10 @@ public partial class LegislationParser
         if (IsEndOfQuotedStructure(line.NormalizedContent))
             return new ScheduleGroupingSectionLeaf { Heading = line };
 
+        List<IBlock> contents = ParseLeafContents(line);
+        if (contents.Count > 0)
+            return new ScheduleGroupingSectionLeaf { Heading = line, Contents = contents };
+
         List<IDivision> children = [];
 
         while (i < Body.Count)

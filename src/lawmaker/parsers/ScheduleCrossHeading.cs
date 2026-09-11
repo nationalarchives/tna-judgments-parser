@@ -19,7 +19,11 @@ public partial class LegislationParser
         i += 1;
 
         if (IsEndOfQuotedStructure(line.NormalizedContent))
-            return new CrossHeadingLeaf { Heading = line };
+            return new ScheduleCrossHeadingLeaf { Heading = line };
+
+        List<IBlock> contents = ParseLeafContents(line);
+        if (contents.Count > 0)
+            return new ScheduleCrossHeadingLeaf { Heading = line, Contents = contents };
 
         List<IDivision> children = [];
         while (i < Body.Count)

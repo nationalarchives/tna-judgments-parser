@@ -658,9 +658,81 @@ public partial class LegislationParser
         // If the next line(s) do not constitute a division, handle them as paragraphs (or tables).
         IDivision next = ParseNextBodyDivision();
         i = save;
-        if (next is UnnumberedLeaf || next is UnknownLevel || next is WDummyDivision)
-            contents = HandleParagraphs(heading).Skip(1).ToList();
+        if (next is UnnumberedParagraph || next is UnknownLevel || next is WDummyDivision)
+        {
+            var raw = HandleParagraphs(heading).Skip(1).ToList();
+            raw.AddRange(CollectRemainingBlockListContent());
+            BlockParser blockParser = new(raw) { LanguageService = LanguageService };
+            contents = BlockList.ParseFrom(blockParser).ToList();
+        }
         return contents;
+    }
+
+    /// <summary>
+    /// Determines whether <paramref name="line"/> starts a genuine next structural
+    /// element, ending a run of non-standard schedule content being collected for
+    /// the <c>//blockList</c> fallback model.
+    /// </summary>
+    /// <remarks>
+    /// Deliberately excludes <see cref="PeekScheduleCrossHeading"/>: in secondary
+    /// documents that match requires only a bold, flush-left line, which is exactly
+    /// the shape of a "Work No. N" / heading-like line that must instead be retained
+    /// as (formatted) content within the blockList, per LCO-5116.
+    /// </remarks>
+    private bool IsScheduleContentBoundary(WLine line)
+    {
+        if (PeekSchedules(line)) return true;
+        if (PeekSchedule(line)) return true;
+        if (PeekSchedulePartHeading(line)) return true;
+        if (PeekScheduleChapterHeading(line)) return true;
+        if (PeekScheduleGroupingSectionHeading(line)) return true;
+        if (PeekSchProv1(line)) return true;
+        if (ExplanatoryNote.IsHeading(LanguageService, line)) return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Continues collecting non-standard schedule content (as raw <c>IBlock</c>s,
+    /// bypassing the <c>Para1</c>/<c>Para2</c>/<c>UnnumberedParagraph</c> division
+    /// model entirely) until the next genuine structural boundary is reached.
+    /// </summary>
+    /// <returns>The collected content, to be fed through <c>BlockList.ParseFrom</c>.</returns>
+    private List<IBlock> CollectRemainingBlockListContent()
+    {
+        List<IBlock> raw = [];
+        while (i < Body.Count)
+        {
+            if (Current() is not WLine line)
+            {
+                var save = i;
+                IDivision division = ParseNextBodyDivision();
+                if (division is WDummyDivision dummy && dummy.Contents.Any())
+                {
+                    raw.AddRange(dummy.Contents);
+                    continue;
+                }
+                i = save;
+                break;
+            }
+            if (IsScheduleContentBoundary(line))
+                break;
+
+            // A line that the normal dispatch would classify as UnknownLevel is a
+            // deliberately isolated fallback division (marked specially so it renders
+            // as its own <level>), not ordinary continuing prose - stop here and leave
+            // it for the caller to parse normally, rather than swallowing it raw.
+            var peekSave = i;
+            IDivision peekDivision = ParseNextBodyDivision();
+            i = peekSave;
+            if (peekDivision is UnknownLevel)
+                break;
+
+            i += 1;
+            HandleMod(line, raw);
+            if (IsEndOfQuotedStructure(line.TextContent))
+                break;
+        }
+        return raw;
     }
 
 }

@@ -51,9 +51,28 @@ public partial class LegislationParser
         }
         else
         {
-            intro = HandleParagraphs(np);
-            if (IsEndOfQuotedStructure(intro))
-                return new SchProv1Leaf { Number = num, Contents = intro };
+            List<IBlock> raw = HandleParagraphs(np);
+            if (IsEndOfQuotedStructure(raw))
+                return new SchProv1Leaf { Number = num, Contents = raw };
+
+            // A direct Para1/Definition/SchProv2 child is the standard model (handled
+            // correctly by the children loop below). But an UnnumberedParagraph (or
+            // unrecognised/table) child means this paragraph's content doesn't fit the
+            // standard model: parse the whole span (to the next SchProv1/grouping
+            // boundary) as text and (nested) lists instead, matching ParseLeafContents.
+            var peekSave = i;
+            IDivision peekChild = ParseNextBodyDivision();
+            i = peekSave;
+            if (peekChild is UnnumberedParagraph || peekChild is UnknownLevel || peekChild is WDummyDivision)
+            {
+                raw.AddRange(CollectRemainingBlockListContent());
+                BlockParser blockListParser = new(raw) { LanguageService = LanguageService };
+                var blockListContents = BlockList.ParseFrom(blockListParser).ToList();
+                return new SchProv1Leaf { Number = num, Contents = blockListContents };
+            }
+
+            BlockParser blockParser = new(raw) { LanguageService = LanguageService };
+            intro = BlockList.ParseFrom(blockParser).ToList();
         }
 
         var finalChildStart = i;
