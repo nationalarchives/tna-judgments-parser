@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Veterinary Medicines (Amendment etc.) Regulations 2024" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2024" />
+        <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="000" />
+      </references>
+    </meta>
+    <coverPage />
+    <preface eId="fnt">
+      <block name="proceduralRubric">Draft Regulations laid before Parliament under section 47(3) and (6)(a) of the Medicines and Medical Devices Act 2021, for approval by resolution of each House of Parliament.</block>
+      <block name="banner">DRAFT STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">MEDICINES</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="9999-01-01" /></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes these Regulations in exercise of the powers conferred by sections 10(1), 11, 12(1)(a), (b) and (c), and 43(2) of the Medicines and Medical Devices Act 2021<authorialNote marker="1" class="footnote"><p>2021 c. 3.</p></authorialNote> (“the Act”).</p>
+        <p>In accordance with section 10(2) of the Act, the Secretary of State’s overarching objective in making these Regulations is to promote one or more of the matters specified in that subsection.</p>
+        <p>The Secretary of State—</p>
+        <p>The Secretary of State has consulted in accordance with section 45(1) of the Act and has set out in the consultation document, in accordance with section 45(3) of the Act, a summary of the Secretary of State’s assessment of the matters mentioned in section 10 of the Act.</p>
+        <p>A draft of this instrument has been laid before Parliament and approved by a resolution of each House of Parliament in accordance with section 47(3) and (6)(a) of the Act.</p>
+      </formula>
+    </preamble>
+    <body>
+      <part eId="pt_1" class="group2">
+        <num>Part 1</num>
+        <heading>Introduction</heading>
+        <article eId="sec_1" class="prov1">
+          <heading>Citation, commencement and extent</heading>
+          <num>1.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <content>
+              <p>These Regulations may be cited as the Veterinary Medicines (Amendment etc.) Regulations 2024 and come into force 21 days after the day on which they are made.</p>
+            </content>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <content>
+              <p>These Regulations extend to England and Wales and Scotland.</p>
+            </content>
+          </paragraph>
+        </article>
+        <article eId="sec_2" class="prov1">
+          <heading>Information with the application: general</heading>
+          <num>2.</num>
+          <paragraph class="prov2">
+            <num>(1)</num>
+            <intro>
+              <p>An application must include the matters mentioned in sub-paragraph (2) and—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>where the veterinary medicinal product is an antimicrobial, the matters mentioned in sub-paragraph (4);</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <content>
+                <p>subject to sub-paragraph (6), where the product is to be administered to a food-producing animal and is a product containing pharmacologically active substances that are not permitted under Regulation (EC) No 470/2009 of the European Parliament and of the Council<authorialNote marker="2" class="footnote"><p>EUR 2009/470, amended by S.I. 2019/865 (itself amended by S.I. 2020/1461).</p></authorialNote>, the matter mentioned in sub-paragraph (5);</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <content>
+                <p>where the product contains or consists of genetically modified organisms, the matters mentioned in sub-paragraph (7).</p>
+              </content>
+            </level>
+          </paragraph>
+          <paragraph class="prov2">
+            <num>(2)</num>
+            <intro>
+              <p>For the purposes of sub-paragraph (1) the matters are—</p>
+            </intro>
+            <level class="para1">
+              <num>(a)</num>
+              <content>
+                <p>the name of the person who will hold the marketing authorisation and that person’s address or registered place of business;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(b)</num>
+              <intro>
+                <p>the name and the address or registered place of business of—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>the manufacturer of the finished product;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>any importer of the finished product;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(iii)</num>
+                <content>
+                  <p>the manufacturer of any active substances involved at each stage of the manufacture;</p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(c)</num>
+              <intro>
+                <p>the name and address of the sites where—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>each stage of the manufacture is carried out;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>any imported products are held; or</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(iii)</num>
+                <content>
+                  <p>any control or batch release is carried out;</p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(d)</num>
+              <content>
+                <p>the nature of the marketing authorisation being applied for, and the provisions in Part 2 of Schedule 1 which are relevant to the application;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(e)</num>
+              <intro>
+                <p>in relation to the veterinary medicinal product—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>the name and the ATCvet code;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>a description of the active substances within the product and, if applicable, a description of any diluent;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(iii)</num>
+                <content>
+                  <p>the strength of the product, or, in the case of an immunological veterinary medicinal product or a biological veterinary medicinal product that is not immunological, the biological activity, potency or titre;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(iv)</num>
+                <content>
+                  <p>the pharmaceutical form of the product;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(v)</num>
+                <content>
+                  <p>the route of administration;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(vi)</num>
+                <content>
+                  <p>a description of the target species;</p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(f)</num>
+              <content>
+                <p>a document showing that the manufacturer is authorised to produce veterinary medicinal products or a certificate of good manufacturing practice issued by the Secretary of State or equivalent certification issued by an authority recognised by the Secretary of State for that purpose, together with a description of the manufacturing process for the active substances and finished product which falls within scope of that authorisation or certificate;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(g)</num>
+              <content>
+                <p>the reference number and a summary of the pharmacovigilance system master file in relation to the product and, where appropriate, the risk management plan that the applicant will put in place;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(h)</num>
+              <content>
+                <p>the proposed summary of product characteristics;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(i)</num>
+              <content>
+                <p>a description of the final presentation, the packaging and labelling of the product;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(j)</num>
+              <content>
+                <p>the proposed text of the information to be included on the immediate packaging, the outer packaging and the information leaflet accompanying the product;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(k)</num>
+              <intro>
+                <p>details of any country where—</p>
+              </intro>
+              <level class="para2">
+                <num>(i)</num>
+                <content>
+                  <p>a marketing authorisation has been granted or revoked in relation to the product;</p>
+                </content>
+              </level>
+              <level class="para2">
+                <num>(ii)</num>
+                <content>
+                  <p>a marketing authorisation has been submitted or refused;</p>
+                </content>
+              </level>
+            </level>
+            <level class="para1">
+              <num>(l)</num>
+              <content>
+                <p>a summary of product characteristics included in the terms of any marketing authorisation granted by another country;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(m)</num>
+              <content>
+                <p>technical documentation demonstrating the quality, safety and efficacy of the product;</p>
+              </content>
+            </level>
+            <level class="para1">
+              <num>(n)</num>
+              <content>
+                <p>a report (a <def ukl:startQuote="“" ukl:endQuote="”">critical expert report</def>) on the quality, safety and efficacy of the product.</p>
+              </content>
+            </level>
+          </paragraph>
+        </article>
+      </part>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <block name="signature">Name</block>
+            <block name="role">Parliamentary Under Secretary of State</block>
+            <block name="date"><date date="9999-01-01">Date</date></block>
+            <block name="role">Department for Environment, Food and Rural Affairs</block>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+    <conclusions eId="backCover">
+      <blockContainer class="explanatoryNote">
+        <heading>EXPLANATORY NOTE</heading>
+        <subheading>(This note is not part of the Regulations)</subheading>
+        <p>These Regulations amend the Veterinary Medicines Regulations 2013 (S.I. 2013/2033, “the 2013 Regulations”) in respect of Great Britain only.</p>
+      </blockContainer>
+    </conclusions>
+  </bill>
+</akomaNtoso>
