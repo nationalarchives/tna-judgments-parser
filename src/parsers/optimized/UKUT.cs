@@ -212,6 +212,7 @@ internal class OptimizedUKUTParser : OptimizedParser
     [
         // new RemoveTrailingWhitespace(),
         // new Merger(),
+        new UKUT.AppealNumberEnricher(),
         new UKUT.CourtType(),
         new UKUT.Citation(),
         new UKUT.CourtType2(),
@@ -236,7 +237,7 @@ internal class OptimizedUKUTParser : OptimizedParser
         // should allow for multiple decisions
         var contents = Divisions();
         if (contents is null)
-            contents = new List<IDivision>();
+            contents = [];
         contents.AddRange(ParagraphsUntilEndOfBody());
         var decision = new Decision { Author = null, Contents = contents };
         return [decision];
