@@ -432,4 +432,35 @@ public class TestNeutralCitationEnricher : ParserTestBase
         result[1].ShouldBeSameAs(second);
         result[2].ShouldBeSameAs(third);
     }
+
+    /// <summary>
+    /// Regression test for the failure in TestParser_Judgments.Parse_WithNoMetadata_ReturnsExpectedXml(i: 2),
+    /// where an EWCA Crim judgment's "NCN: [2021] EWCA Crim 1412" line lost its citation entirely.
+    ///
+    /// Root cause: when a line has no match, Enrich(IEnumerable&lt;IInline&gt;) returns the freshly
+    /// built `linesArray` (from `line.ToArray()`) instead of the original `line` parameter. This new
+    /// array is never reference-equal to the input, so every unmatched line looks "changed" to the
+    /// caller. Enricher2's WCell/WRow/WTable traversal (see EnrichCell in Enrich.cs) stops enriching
+    /// a cell's remaining lines as soon as it sees one "changed" line, so a genuine match sitting
+    /// after an unmatched line in the same table cell (as in the real document, where the NCN line
+    /// follows a "CRIMINAL DIVISION" line in the same cell) is skipped instead of being transformed.
+    /// </summary>
+    [Fact]
+    public void Enrich_NcnLineFollowsNonMatchingLineInSameTableCell_StillTransformsNcnLine_KnownBug()
+    {
+        var nonMatchingLine = TextLine("CRIMINAL DIVISION");
+        var ncnLine = new WLine(LineTemplate, [Text("NCN: "), Text("[2021] EWCA Crim 1412")]);
+        var cell = new WCell(RowOf(), null, new IBlock[] { nonMatchingLine, ncnLine });
+        var table = TableOf([RowOf([cell])]);
+
+        var result = neutralCitationEnricher.Enrich(new IBlock[] { table }).ToArray();
+
+        var resultCell = result.OfType<WTable>().Single().TypedRows.Single().TypedCells.Single();
+        var resultNcnLine = resultCell.Contents.OfType<WLine>().Last();
+        var contents = resultNcnLine.Contents.ToArray();
+
+        contents.Length.ShouldBe(2);
+        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("NCN: ");
+        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2021] EWCA Crim 1412");
+    }
 }
