@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/" />
+          <FRBRdate date="2024-05-24" name="decision" />
+          <FRBRauthor href="#ukftt-iac" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="" />
+          <FRBRname value="IAMA PERSON v SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/" />
+          <FRBRdate date="2024-05-24" name="decision" />
+          <FRBRauthor href="#ukftt-iac" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
+          <FRBRdate date="2026-09-14T14:30:27" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2024-05-24" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-iac" href="https://www.judiciary.uk/courts-and-tribunals/tribunals/first-tier-tribunal/first-tier-tribunal-immigration-and-asylum-chamber/" showAs="United Kingdom First-tier Tribunal (Immigration and Asylum Chamber)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="iama-person" href="" showAs="IAMA PERSON" />
+        <TLCPerson eId="iamanother-person" href="" showAs="IAMANOTHER PERSON" />
+        <TLCPerson eId="iamalsoa-person" href="" showAs="IAMALSOA PERSON" />
+        <TLCPerson eId="secretary-of-state-for-the-home-department" href="" showAs="SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-IAC</uk:court>
+        <uk:parser>1.14.0</uk:parser>
+        <uk:hash>ad3dc5d93320fa90eb36d384532574a5a7278c71187ba053d43b950617c55fb9</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading3 { font-weight: bold; font-family: 'Calibri Light'; font-size: 13pt; }
+#judgment .BalloonText { font-family: Tahoma; font-size: 8pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#judgment .Header { font-size: 12pt; }
+#judgment .Footer { font-size: 12pt; }
+#judgment .Revision { font-size: 12pt; }
+#judgment .CommentText { font-size: 10pt; }
+#judgment .CommentSubject { font-weight: bold; font-size: 10pt; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+#judgment .UnresolvedMention { color: #605E5C; background-color: initial; }
+#judgment .HeaderChar { font-size: 12pt; }
+#judgment .FooterChar { font-size: 12pt; }
+#judgment .BalloonTextChar { font-family: Tahoma; font-size: 8pt; }
+#judgment .FollowedHyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #954F72; }
+#judgment .Heading3Char { font-weight: bold; font-family: 'Calibri Light'; font-size: 13pt; }
+#judgment .CommentReference { font-size: 8pt; }
+#judgment .CommentTextChar { }
+#judgment .CommentSubjectChar { font-weight: bold; }
+#judgment .TableGrid { }
+#judgment .TableGrid td { border: 0.5pt solid; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.change1.png" style="width:114.95pt;height:86.55pt" /></p>
+      <p style="margin-right:-0.06in;text-indent:-0.25in"><courtType refersTo="#ukftt-iac" style="font-weight:bold;font-family:'Book Antiqua';color:#000000">First-tier Tribunal</courtType></p>
+      <p style="margin-left:-0.25in;margin-right:-0.36in"><courtType refersTo="#ukftt-iac" style="font-weight:bold;font-family:'Book Antiqua';color:#000000">(Immigration and Asylum Chamber)     </courtType></p>
+      <p style="text-align:right;margin-left:-0.25in;margin-right:-0.36in"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Appeal Numbers: </span><docketNumber style="font-weight:bold;font-family:'Book Antiqua';color:#000000">HU/12345/2023</docketNumber><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">, </span><docketNumber style="font-weight:bold;font-family:'Book Antiqua';color:#000000">HU/23456/2023</docketNumber><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">, </span><docketNumber style="font-weight:bold;font-family:'Book Antiqua';color:#000000">HU/34567/2023</docketNumber><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000"> </span></p>
+      <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua'">THE IMMIGRATION ACTS</span></p>
+      <p style="margin-left:-0.25in;margin-right:-0.36in"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Heard at Hatton Cross on 19 April 2023</span></p>
+      <table uk:widths="3.93in">
+        <tr>
+          <td>
+            <p />
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">Before</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">RESIDENT JUDGE ALPHA</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">JUDGE OF THE FIRST-TIER TRIBUNAL BETA</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">Between</span></p>
+      <p style="text-align:center"><party refersTo="#iama-person" as="#appellant" style="font-weight:bold;font-family:'Book Antiqua'">IAMA PERSON</party></p>
+      <p style="text-align:center;margin-left:-0.2in"><party refersTo="#iamanother-person" as="#appellant" style="font-weight:bold;font-family:'Book Antiqua'">IAMANOTHER PERSON</party></p>
+      <p style="text-align:center;margin-left:-0.2in"><party refersTo="#iamalsoa-person" as="#appellant" style="font-weight:bold;font-family:'Book Antiqua'">IAMALSOA PERSON</party></p>
+      <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase;font-family:'Book Antiqua'">(anonymity direction nOT MADE)</span></p>
+      <p style="text-align:right"><role refersTo="#appellant" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua'">Appellants</role></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">and</span></p>
+      <p style="text-align:center"><party refersTo="#secretary-of-state-for-the-home-department" as="#respondent" style="font-weight:bold;font-family:'Book Antiqua'">SECRETARY OF STATE FOR THE HOME DEPARTMENT</party></p>
+      <p style="text-align:right"><role refersTo="#respondent" style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua'">Respondent</role></p>
+      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua'">Representation:</span></p>
+      <p style="margin-left:2in;text-indent:-2in"><span style="font-family:'Book Antiqua'">For the Appellant: </span><marker name="tab" /><span style="font-family:'Book Antiqua'">Mr A Gamma, Counsel, instructed by Refugee Legal Support</span></p>
+      <p style="margin-left:2in;text-indent:-2in"><span style="font-family:'Book Antiqua'">For the Respondent: </span><marker name="tab" /><span style="font-family:'Book Antiqua'">Ms A Delta, Senior Home Office Presenting Officer</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Book Antiqua'">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <content>
+            <p><marker name="tab" /><span style="font-weight:bold;font-family:'Book Antiqua'">The background</span></p>
+          </content>
+        </level>
+        <paragraph eId="para_1">
+          <num style="font-family:'Book Antiqua'">1.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.39in"><span style="font-family:'Book Antiqua'">Lots of information goes here</span></p>
+          </content>
+        </paragraph>
+        <paragraph eId="para_2">
+          <num style="font-family:'Book Antiqua'">2.</num>
+          <content>
+            <p style="text-align:justify;margin-left:0.39in"><span style="font-family:'Book Antiqua';color:#000000">This is a quote: </span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <paragraph>
+                  <num style="font-style:italic;font-family:'Book Antiqua';font-size:11pt;background-color:#FFFFFF">“10.</num>
+                  <content>
+                    <p class="ListParagraph" style="text-align:justify;margin-left:0.5in;text-indent:0.5in"><span style="font-style:italic;font-family:'Book Antiqua';font-size:11pt;color:initial;background-color:#FFFFFF">Some quoted text.”</span></p>
+                  </content>
+                </paragraph>
+              </embeddedStructure>
+            </block>
+          </content>
+        </paragraph>
+        <paragraph eId="para_3">
+          <num style="font-family:'Book Antiqua'">3.</num>
+          <intro>
+            <p style="text-align:justify;margin-left:0.39in"><span style="font-family:'Book Antiqua'">In reaching that decision we have more text to quote,</span></p>
+            <block name="embeddedStructure">
+              <embeddedStructure>
+                <level>
+                  <content>
+                    <p style="text-align:justify;margin-left:1in"><span style="font-family:'Book Antiqua'">“</span><span style="font-style:italic;font-family:'Book Antiqua'">This text is quoted with a different indent</span><span style="font-family:'Book Antiqua'">.”</span></p>
+                  </content>
+                </level>
+              </embeddedStructure>
+            </block>
+          </intro>
+          <subparagraph>
+            <num style="font-family:'Book Antiqua';margin-left:0.59in;text-indent:-0.39in">4.</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.59in"><span style="font-family:'Book Antiqua'">This last number is also indented differently to the other numbers for no particular reason</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.39in"><span style="font-weight:bold;font-family:'Book Antiqua'">Decision</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.39in"><span style="font-style:italic;font-family:'Bradley Hand ITC';font-size:18pt">A Alpha</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.39in"><span style="font-family:'Book Antiqua'">Resident Judge Alpha</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.39in"><docDate date="2024-05-24" refersTo="#decision" style="font-family:'Book Antiqua'">24 May 2024</docDate></p>
+              </content>
+            </subparagraph>
+          </subparagraph>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
