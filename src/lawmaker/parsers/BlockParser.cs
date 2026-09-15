@@ -5,7 +5,9 @@ namespace UK.Gov.Legislation.Lawmaker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -39,7 +41,7 @@ public class BlockParser : IParser<IBlock>
     // for checking within the bounds of the Document Body.
     public IBlock? Peek(int num = 1)
     {
-        int peekIndex = i + num;
+        var peekIndex = i + num;
         if (peekIndex < 0 || peekIndex >= Body.Count)
             return null;
         return Body[peekIndex];
@@ -47,7 +49,7 @@ public class BlockParser : IParser<IBlock>
 
     public R? Peek<R>(IParser<IBlock>.ParseStrategy<R> strategy)
     {
-        int save = Save();
+        var save = Save();
         R? result = strategy(this);
         Restore(save);
         return result;
@@ -81,9 +83,9 @@ public class BlockParser : IParser<IBlock>
     public R? Match<R>(IParser<IBlock>.ParseStrategy<R> strategy)
     {
         // TODO: memoize here if needed
-        int save = this.Save();
+        var save = Save();
         R? block = strategy(this);
-        if (block == null) this.Restore(save);
+        if (block == null) Restore(save);
         return block;
     }
 
@@ -102,10 +104,10 @@ public class BlockParser : IParser<IBlock>
     public List<R> MatchWhile<R>(Predicate<IBlock> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
     {
         List<R> matches = [];
-        while (Current() is IBlock r
+        while (!IsAtEnd()
+            && Current() is IBlock r
             && condition(r)
-            && Match(strategies) is R match
-            && !IsAtEnd())
+            && Match(strategies) is R match)
         {
             matches.Add(match);
         }
@@ -117,10 +119,10 @@ public class BlockParser : IParser<IBlock>
     public List<R>? MatchWhile<R>(Predicate<R> condition, params IParser<IBlock>.ParseStrategy<R>[] strategies)
     {
         List<R> matches = [];
-        while (Current() is R r
+        while (!IsAtEnd()
+            && Current() is R r
             && condition(r)
-            && Match(strategies) is R match
-            && !IsAtEnd())
+            && Match(strategies) is R match)
         {
             matches.Add(match);
         }
