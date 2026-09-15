@@ -613,8 +613,9 @@ internal abstract class Builder
             case ICourtType2 courtType2:
                 AddCourtType2(parent, courtType2);
                 break;
-            case ICaseNo caseNo:
-                AddAndWrapText(parent, "docketNumber", caseNo);
+            case (IAppealNo or ICaseNo) and IFormattedText docketNumber:
+                AddAndWrapText(parent, "docketNumber", docketNumber);
+
                 break;
             case IParty1 party:
                 AddParty(parent, party);
