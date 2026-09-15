@@ -360,15 +360,26 @@ partial class Numbering3
     // - Does not update lastIlvls[absNumId] or levelOwners[(absNumId, ilvl)]
     private static void HandleNamedListNum(NumberingContext ctx, Paragraph paragraph, Dictionary<int, Dictionary<int, LevelCounter>> counters)
     {
-        Match match = paragraph.Descendants<Run>()
+        // A paragraph can hold several LISTNUM fields (test49: LegalDefault followed by an
+        // unresolved SEQ1). Pick the first one whose name actually resolves, rather than the
+        // first match, so an earlier unresolved name doesn't shadow a later resolvable one.
+        Match match = null;
+        AbstractNum absNum = null;
+        foreach (Match candidate in paragraph.Descendants<Run>()
             .Select(r => NamedListNumRegex().Match(r.InnerText))
-            .Where(m => m.Success)
-            .FirstOrDefault();
+            .Where(m => m.Success))
+        {
+            AbstractNum candidateAbsNum = Numbering.GetAbstractNum(ctx.Main, candidate.Groups["name"].Value);
+            if (candidateAbsNum is not null)
+            {
+                match = candidate;
+                absNum = candidateAbsNum;
+                break;
+            }
+        }
         if (match is null)
             return;
 
-        var name = match.Groups["name"].Value;
-        AbstractNum absNum = Numbering.GetAbstractNum(ctx.Main, name);
         int absNumId = absNum.AbstractNumberId;
         int ilvl;
         if (match.Groups["lp"].Success)

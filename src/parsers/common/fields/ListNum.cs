@@ -183,7 +183,11 @@ internal class ListNum
         {
             if (fieldStart > -1)
             {
-                fieldNum = fieldName is not null
+                // An unresolved name has no abstract-number definition to format against
+                // (FormatNumber would throw); fall back to the same plain number used
+                // when there's no name at all, rather than letting that exception surface.
+                var abstractNum = fieldName is not null ? DOCX.Numbering.GetAbstractNum(main, fieldName) : null;
+                fieldNum = abstractNum is not null
                     ? DOCX.Numbering2.FormatNumber(fieldName, fieldLvl, fieldStart, main)
                     : "(1)";
             }
