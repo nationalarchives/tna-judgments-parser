@@ -10,7 +10,17 @@ internal class TrackerDbContext(DbContextOptions<TrackerDbContext> options) : Db
     public DbSet<TrackerLine> ParserEvents { get; set; }
     public DbSet<CloudwatchIngesterRunSummary> CloudwatchIngesterRunSummaries { get; set; }
     public DbSet<MarkLogicDocumentStatus> MarkLogicDocumentStatuses { get; set; }
-    
+    public DbSet<ParserControl> ParserControlView { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ParserControl>(entity =>
+        {
+            entity.ToView("ParserControlView");
+            entity.HasKey(e => e.SourceUuid);
+        });
+    }
+
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         configurationBuilder
