@@ -18,8 +18,8 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
 
         foreach (var inline in line.ToArray())
         {
-            if (inline is WText textToSplit
-                && TryEnrichTextContainingProceedingsIdentifier(textToSplit, out var enrichedText))
+            if (inline is WText wTextToEnrich
+                && TryEnrichTextContainingProceedingsIdentifier(wTextToEnrich, out var enrichedText))
             {
                 enrichedSuccessfully = true;
                 enriched.AddRange(enrichedText);
@@ -33,47 +33,66 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
         return enrichedSuccessfully ? enriched : line;
     }
 
-    private static bool TryEnrichTextContainingProceedingsIdentifier(WText textToSplit, out List<IInline> enriched)
+    private static bool TryEnrichTextContainingProceedingsIdentifier(WText originalWText, out List<IInline> enriched)
     {
-        enriched = [];
-
-        var originalText = textToSplit.Text;
-
-        var proceedingsIdentifierMatches = SlashGroupRegex().Matches(originalText)
-                                                            .Concat(DashGroupRegex().Matches(originalText))
-                                                            .Concat(DigitDottedRegex().Matches(originalText))
-                                                            .Concat(OldCareStandardsRegex().Matches(originalText))
-                                                            .Concat(UkfttTaxChamberCaseNumberRegex()
-                                                                .Matches(originalText))
-                                                            .Where(m => m.Value.Any(char.IsDigit))
-                                                            .OrderBy(m => m.Index).ToArray();
+        var proceedingsIdentifierMatches = GetProceedingsIdentifierMatches(originalWText.Text);
 
         if (proceedingsIdentifierMatches.Length == 0)
         {
+            enriched = [];
             return false;
         }
 
+        enriched = EnrichTextWithProceedingsIdentifiers(originalWText, proceedingsIdentifierMatches);
+
+        return true;
+    }
+
+    private static List<IInline> EnrichTextWithProceedingsIdentifiers(WText originalWText,
+        Match[] proceedingsIdentifierMatches)
+    {
+        var textToSplit = originalWText.Text;
+        List<IInline> enriched = [];
         var currentTextIndex = 0;
 
         foreach (var proceedingsIdentifierMatch in proceedingsIdentifierMatches)
         {
+            // Is there any non-proceedings identifier text before the current match?
             if (proceedingsIdentifierMatch.Index > currentTextIndex)
             {
-                enriched.Add(new WText(originalText[currentTextIndex..proceedingsIdentifierMatch.Index],
-                    textToSplit.properties));
+                enriched.Add(new WText(textToSplit[currentTextIndex..proceedingsIdentifierMatch.Index],
+                    originalWText.properties));
             }
 
-            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value, textToSplit.properties));
+            // add the matched proceedings identifier            
+            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value, originalWText.properties));
 
             currentTextIndex = proceedingsIdentifierMatch.Index + proceedingsIdentifierMatch.Length;
         }
 
-        if (currentTextIndex < originalText.Length)
+        // Is there any trailing text after the last match?
+        if (currentTextIndex < textToSplit.Length)
         {
-            enriched.Add(new WText(originalText[currentTextIndex..], textToSplit.properties));
+            enriched.Add(new WText(textToSplit[currentTextIndex..], originalWText.properties));
         }
 
-        return true;
+        return enriched;
+    }
+
+    private static Match[] GetProceedingsIdentifierMatches(string text)
+    {
+        Regex[] proceedingsIdentifierRegexes =
+        [
+            SlashGroupRegex(),
+            DashGroupRegex(),
+            DigitDottedRegex(),
+            OldCareStandardsRegex(),
+            UkfttTaxChamberCaseNumberRegex()
+        ];
+
+        return proceedingsIdentifierRegexes.SelectMany(r => r.Matches(text))
+                                           .Where(m => m.Value.Any(char.IsDigit))
+                                           .OrderBy(m => m.Index).ToArray();
     }
 
 
