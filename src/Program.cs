@@ -155,6 +155,12 @@ public class Program
                 var classifier = new LegislationClassifier((DocName)docName, subType, procedure);
                 var languageService = new LanguageService(language);
                 Response localResponse = Helper.LocalParse(input.FullName, classifier, languageService);
+                if (localResponse.Error is not null)
+                {
+                    logger?.LogCritical("parsing failed at block {}: {}\nblock text: {}", localResponse.Error.BlockNumber, localResponse.Error.Message, localResponse.Error.BlockText);
+                    Console.Error.WriteLine($"parsing failed at block {localResponse.Error.BlockNumber}: {localResponse.Error.Message}\nblock text: {localResponse.Error.BlockText}");
+                    return Failure;
+                }
                 if (output is not null)
                     File.WriteAllText(output.FullName, localResponse.Xml);
                 else

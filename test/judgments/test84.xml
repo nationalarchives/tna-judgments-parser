@@ -10,6 +10,7 @@
           <FRBRauthor href="#ewhc-kbd-admin" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="1094" />
+          <FRBRname value="L (R on the application of) v THE SERVICE COMPLAINTS OMBUDSMAN FOR THE ARMED FORCES" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2024/1094" />
@@ -21,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2024/1094/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2024/1094/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:21" name="transform" />
+          <FRBRdate date="2026-09-02T10:31:18" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -33,10 +34,12 @@
         <TLCOrganization eId="ewhc-kbd-admin" href="https://www.gov.uk/courts-tribunals/administrative-court" showAs="The Administrative Court (King's Bench Division)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
-        <TLCPerson eId="the-king" href="" showAs="THE KING" />
-        <TLCPerson eId="-on-the-application-of-" href="" showAs="-on the application of-" />
         <TLCPerson eId="l" href="" showAs="L" />
+        <TLCPerson eId="the-service-complaints-ombudsman-for-the-armed-forces" href="" showAs="THE SERVICE COMPLAINTS OMBUDSMAN FOR THE ARMED FORCES" />
+        <TLCPerson eId="ministry-of-defence" href="" showAs="MINISTRY OF DEFENCE" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCRole eId="interested-party" href="" showAs="Interested Party" />
         <TLCPerson eId="judge-mr-james-strachan-kc" href="/judge-mr-james-strachan-kc" showAs="Mr James Strachan KC" />
       </references>
       <proprietary source="#">
@@ -45,7 +48,7 @@
         <uk:number>1094</uk:number>
         <uk:cite>[2024] EWHC 1094 (Admin)</uk:cite>
         <uk:caseNumber>AC-2023-LON-002285</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.12.0</uk:parser>
         <uk:hash>c606bf07e81eb0066f5c7522fd00f56c299299aca6d1dd8aa152363be59b4595</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -134,8 +137,8 @@
             <p />
           </td>
           <td>
-            <p style="text-align:center"><party refersTo="#the-king" as="#claimant" style="font-weight:bold">THE KING</party></p>
-            <p style="text-align:center"><party refersTo="#-on-the-application-of-" as="#claimant" style="font-weight:bold">-on the application of-</party></p>
+            <p style="text-align:center"><span style="font-weight:bold">THE KING</span></p>
+            <p style="text-align:center"><span style="font-weight:bold">-on the application of-</span></p>
             <p style="text-align:center"><party refersTo="#l" as="#claimant" style="font-weight:bold">L </party></p>
           </td>
           <td>
@@ -152,10 +155,10 @@
             <p style="text-align:center" />
             <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
             <p style="text-align:center" />
-            <p style="text-align:center"><span style="font-weight:bold">THE SERVICE COMPLAINTS OMBUDSMAN FOR THE ARMED FORCES</span></p>
+            <p style="text-align:center"><party refersTo="#the-service-complaints-ombudsman-for-the-armed-forces" as="#defendant" style="font-weight:bold">THE SERVICE COMPLAINTS OMBUDSMAN FOR THE ARMED FORCES</party></p>
             <p style="text-align:center" />
             <p style="text-align:center"><span style="font-weight:bold">-and-</span></p>
-            <p style="text-align:center"><span style="font-weight:bold">MINISTRY OF DEFENCE </span></p>
+            <p style="text-align:center"><party refersTo="#ministry-of-defence" as="#interested-party" style="font-weight:bold">MINISTRY OF DEFENCE </party></p>
             <p style="text-align:right" />
             <p style="text-align:center" />
           </td>

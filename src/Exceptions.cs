@@ -4,3 +4,4 @@ namespace UK.Gov.Legislation.Judgments;
 
 public class MetadataConflictException(string message) : Exception(message);
 public class UnknownDocumentPartException(string message) : Exception(message);
+public class EnricherException(string message) : Exception(message);

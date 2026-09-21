@@ -10,7 +10,7 @@
           <FRBRauthor href="#ewhc-chancery-insolvencyandcompanies" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="3056" />
-          <FRBRname value="THE JOINT ADMINISTRATORS OF LEHMAN BROTHERS HOLDINGS PLC v LEHMAN BROTHERS HOLDINGS INC." />
+          <FRBRname value="THE JOINT ADMINISTRATORS OF LEHMAN BROTHERS HOLDINGS PLC v LB GP NO.1 LIMITED (in Liquidation)" />
         </FRBRWork>
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056" />
@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2023/3056/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:22" name="transform" />
+          <FRBRdate date="2026-08-26T14:29:54" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -35,6 +35,7 @@
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="the-joint-administrators-of-lehman-brothers-holdings-plc" href="" showAs="THE JOINT ADMINISTRATORS OF LEHMAN BROTHERS HOLDINGS PLC" />
+        <TLCPerson eId="lb-gp-no1-limited-in-liquidation" href="" showAs="LB GP NO.1 LIMITED (in Liquidation)" />
         <TLCPerson eId="lehman-brothers-holdings-inc" href="" showAs="LEHMAN BROTHERS HOLDINGS INC." />
         <TLCPerson eId="deutsche-bank-ag-london-branch" href="" showAs="DEUTSCHE BANK A.G. (London Branch)" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
@@ -47,7 +48,7 @@
         <uk:number>3056</uk:number>
         <uk:cite>[2023] EWHC 3056 (Ch)</uk:cite>
         <uk:caseNumber>CR-2008-000026</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.12.0</uk:parser>
         <uk:hash>9e8d8e35ba95486c9bf89b2e4d4757b475afe4f478f663dbdd0ba4c87f0513c0</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -182,7 +183,7 @@
             <p />
           </td>
           <td>
-            <p style="text-align:center"><span style="font-weight:bold;font-size:10pt"> (1) LB GP NO.1 LIMITED (in Liquidation)</span></p>
+            <p style="text-align:center"><party refersTo="#lb-gp-no1-limited-in-liquidation" as="#respondent" style="font-weight:bold;font-size:10pt"> (1) LB GP NO.1 LIMITED (in Liquidation)</party></p>
             <p style="text-align:center"><party refersTo="#lehman-brothers-holdings-inc" as="#respondent" style="font-weight:bold;font-size:10pt">(2) LEHMAN BROTHERS HOLDINGS INC.</party></p>
             <p style="text-align:center"><party refersTo="#deutsche-bank-ag-london-branch" as="#respondent" style="font-weight:bold;font-size:10pt">(3) DEUTSCHE BANK A.G. (London Branch)</party></p>
           </td>

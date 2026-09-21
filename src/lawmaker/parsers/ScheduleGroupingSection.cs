@@ -1,68 +1,72 @@
 
 using System.Collections.Generic;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.Legislation.Lawmaker
+namespace UK.Gov.Legislation.Lawmaker;
+
+
+public partial class LegislationParser
 {
 
-    public partial class LegislationParser
+    private HContainer ParseScheduleGroupingSection(WLine line)
     {
+        if (!PeekScheduleGroupingSectionHeading(line))
+            return null;
 
-        private HContainer ParseScheduleGroupingSection(WLine line)
+        var save1 = i;
+        i += 1;
+
+        if (IsEndOfQuotedStructure(line.NormalizedContent))
+            return new ScheduleGroupingSectionLeaf { Heading = line };
+
+        List<IBlock> contents = ParseLeafContents(line);
+        if (contents.Count > 0)
+            return new ScheduleGroupingSectionLeaf { Heading = line, Contents = contents };
+
+        List<IDivision> children = [];
+
+        while (i < Body.Count)
         {
-            if (!PeekScheduleGroupingSectionHeading(line))
-                return null;
+            HContainer peek = PeekGroupingProvision();
+            if (peek != null && !ScheduleGroupingSection.IsValidChild(peek))
+                break;
 
-            var save1 = i;
-            i += 1;
-
-            if (IsEndOfQuotedStructure(line.NormalizedContent))
-                return new ScheduleGroupingSectionLeaf { Heading = line };
-
-            List<IDivision> children = [];
-
-            while (i < Body.Count)
+            var save = i;
+            IDivision next = ParseNextBodyDivision();
+            if (!ScheduleGroupingSection.IsValidChild(next))
             {
-                HContainer peek = PeekGroupingProvision();
-                if (peek != null && !ScheduleGroupingSection.IsValidChild(peek))
-                    break;
-
-                int save = i;
-                IDivision next = ParseNextBodyDivision();
-                if (!ScheduleGroupingSection.IsValidChild(next)) {
-                    i = save;
-                    break;
-                }
-                children.Add(next);
-
-                if (IsEndOfQuotedStructure(next))
-                    break;
+                i = save;
+                break;
             }
-            if (children.Count == 0)
-            {
-                i = save1;
-                return null;
-            }
-            return new ScheduleGroupingSectionBranch { Heading = line, Children = children };
+            children.Add(next);
+
+            if (IsEndOfQuotedStructure(next))
+                break;
         }
-
-        private bool PeekScheduleGroupingSectionHeading(WLine line)
+        if (children.Count == 0)
         {
-            // Schedule grouping sections only exist in secondary legislation
-            if (!frames.IsSecondaryDocName())
-                return false;
-            if (line is WOldNumberedParagraph np)
-                return false;
-            if (!line.IsCenterAligned())
-                return false;
-            if (!line.IsPartiallyItalicized())
-                return false;
-            if (i == Body.Count - 1)
-                return false;
-            return true;
+            i = save1;
+            return null;
         }
+        return new ScheduleGroupingSectionBranch { Heading = line, Children = children };
+    }
 
+    private bool PeekScheduleGroupingSectionHeading(WLine line)
+    {
+        // Schedule grouping sections only exist in secondary legislation
+        if (!frames.IsSecondaryDocName())
+            return false;
+        if (line is WOldNumberedParagraph)
+            return false;
+        if (!line.IsCenterAligned())
+            return false;
+        if (!line.IsPartiallyItalicized())
+            return false;
+        if (i == Body.Count - 1)
+            return false;
+        return true;
     }
 
 }
