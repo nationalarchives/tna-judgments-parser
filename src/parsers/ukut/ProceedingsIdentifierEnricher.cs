@@ -119,7 +119,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     /// <summary>
     /// An older, bracketed-year reference number from Care Standards e.g. "[2010]1808.SW", "[2009] 1658 PT" or "[2002] 7.PC"
     /// </summary>
-    [GeneratedRegex(@"\[\d{4}\]\s*\d+[.\s]+[-A-Z]+$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"\[\d{4}\]\s*\d+[.\s]+[-A-Z]+(?=\s*$)", RegexOptions.IgnoreCase)]
     private static partial Regex OldCareStandardsRegex();
 
     /// <summary>

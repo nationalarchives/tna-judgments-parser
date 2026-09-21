@@ -139,10 +139,16 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
                  .Text.ShouldBe(proceedingsIdentifier);
     }
 
-    [Fact]
-    public void Enrich_ProceedingsIdentifierSurroundedBySpaces_SplitsOffLeadingAndTrailingWhitespace()
+    [Theory]
+    [InlineData("UT/2020/0043")] //SlashGroupRegex
+    [InlineData("UA-2021-000019-T")] //DashGroupRegex
+    [InlineData("2026-01951.EA")] // DigitDottedRegex
+    [InlineData("[2010]1808.SW")] // OldCareStandardsRegex
+    [InlineData("TC 1234")] //UkfttTaxChamberCaseNumberRegex
+    public void Enrich_ProceedingsIdentifierSurroundedBySpaces_SplitsOffLeadingAndTrailingWhitespace(
+        string proceedingsIdentifier)
     {
-        var line = TextLine(" TC 1234 ");
+        var line = TextLine($" {proceedingsIdentifier} ");
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
@@ -150,7 +156,7 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
         contents.Length.ShouldBe(3);
 
         contents[0].ShouldBeOfType<WText>().Text.ShouldBe(" ");
-        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("TC 1234");
+        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe(proceedingsIdentifier);
         contents[2].ShouldBeOfType<WText>().Text.ShouldBe(" ");
     }
 
