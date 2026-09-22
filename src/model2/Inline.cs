@@ -405,6 +405,8 @@ internal class WCourtType2 : ICourtType2
     public IEnumerable<IInline> Contents { get; init; }
 }
 
+internal class WProceedingsIdentifier(string text, RunProperties props) : WText(text, props), IProceedingsIdentifier;
+
 internal class WCaseNo(string text, RunProperties props) : WText(text, props), ICaseNo;
 
 internal class WDate(IEnumerable<IFormattedText> contents, DateTime date) : IDate
