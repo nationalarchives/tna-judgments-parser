@@ -20,6 +20,7 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 [assembly: InternalsVisibleTo("test")]
 [assembly: InternalsVisibleTo("NationalArchives.FindCaseLaw.Backlog.Tests")]
 [assembly: InternalsVisibleTo("backlog")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 public class Program
 {
