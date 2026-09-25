@@ -15,16 +15,16 @@ internal class WNamedDate : INamedDate
 internal class WMetadata : IMetadata
 {
     private readonly MainDocumentPart main;
-    private readonly Judgment judgment;
+    private readonly IJudgment judgment;
 
-    internal WMetadata(MainDocumentPart main, Judgment judgment)
+    internal WMetadata(MainDocumentPart main, IJudgment judgment)
     {
         this.main = main;
         this.judgment = judgment;
         ExternalAttachments = [];
     }
 
-    protected WMetadata(MainDocumentPart main, Judgment judgment, IEnumerable<IExternalAttachment> attachments)
+    protected WMetadata(MainDocumentPart main, IJudgment judgment, IEnumerable<IExternalAttachment> attachments)
     {
         this.main = main;
         this.judgment = judgment;
