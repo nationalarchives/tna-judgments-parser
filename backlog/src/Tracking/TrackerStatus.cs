@@ -7,5 +7,8 @@ public enum TrackerStatus
     Parsed,
     ParserFailed,
     SentToIngester,
-    IngesterFailed
+    Ingested,
+    IngesterFailed,
+    Published,
+    PublicationFailed
 }
