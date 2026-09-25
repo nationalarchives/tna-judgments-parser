@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.Enrichment;
+
 using Lang = UK.Gov.Legislation.Lawmaker.LanguageService.Lang;
 
 namespace UK.Gov.Legislation.Lawmaker;
@@ -53,11 +55,13 @@ public partial class LegislationParser
 
         if (i == Body.Count)
             return new DefinitionLeaf { Contents = intro };
+        if (IsEndOfQuotedStructure(intro))
+            return new DefinitionLeaf { Contents = intro };
 
         List<IDivision> children = [];
         List<IBlock> wrapUp = [];
 
-        int finalChildStart = i;
+        var finalChildStart = i;
         while (i < Body.Count)
         {
             if (BreakFromProv1())
@@ -66,7 +70,7 @@ public partial class LegislationParser
             if (PeekDefinition(Current()))
                 break;
 
-            int save = i;
+            var save = i;
             IBlock saveBlock = Body[i];
 
             IDivision next = ParseNextBodyDivision();
@@ -105,8 +109,8 @@ public partial class LegislationParser
         if (_definedTermPattern is not null)
             return _definedTermPattern;
 
-        string startQuote = "[\u201C]";
-        string endQuote = "[\u201D]";
+        var startQuote = "[\u201C]";
+        var endQuote = "[\u201D]";
         _definedTermPattern = $@"({startQuote}(?:(?!{startQuote}|{endQuote}).)*{endQuote})";
         return _definedTermPattern;
     }
