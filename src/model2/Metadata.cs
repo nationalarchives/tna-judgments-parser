@@ -1,6 +1,8 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 using DocumentFormat.OpenXml.Packaging;
@@ -18,18 +20,20 @@ internal class WMetadata : IMetadata
 {
     private readonly MainDocumentPart main;
     private readonly IJudgment judgment;
+    private readonly ICourtExtractor courtExtractor;
 
-    internal WMetadata(MainDocumentPart main, IJudgment judgment)
+    internal WMetadata(MainDocumentPart main, IJudgment judgment) : this(main, judgment, []) { }
+
+    internal WMetadata(MainDocumentPart main, IJudgment judgment, IEnumerable<IExternalAttachment> attachments) : this(
+        main, judgment, attachments, new CourtExtractor())
+    { }
+
+    internal WMetadata(MainDocumentPart main, IJudgment judgment, IEnumerable<IExternalAttachment> attachments,
+        ICourtExtractor courtExtractor)
     {
         this.main = main;
         this.judgment = judgment;
-        ExternalAttachments = [];
-    }
-
-    protected WMetadata(MainDocumentPart main, IJudgment judgment, IEnumerable<IExternalAttachment> attachments)
-    {
-        this.main = main;
-        this.judgment = judgment;
+        this.courtExtractor = courtExtractor;
         ExternalAttachments = attachments;
     }
 
@@ -69,9 +73,14 @@ internal class WMetadata : IMetadata
                 Courts.EwcopCourtCode when Cite is not null
                     && Courts.EWCOP_T3.CitationPattern!.IsMatch(Cite) => Courts.EWCOP_T3,
 
-                null when Cite is not null => Courts.ExtractFromCitation(Cite),
+                null when Cite is not null && DateOnly.TryParse(Date?.Date, CultureInfo.InvariantCulture, out var date)
+                    => courtExtractor.FromCitationAndDate(Cite, date),
+                null when Cite is not null
+                    => courtExtractor.FromCitationAndDate(Cite, null),
+
                 _ => field
             };
+
             return field;
         }
     }

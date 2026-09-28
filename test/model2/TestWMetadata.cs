@@ -27,10 +27,16 @@ public class TestWMetadata
 
     private static WMetadata CreateWMetadata(IJudgment judgment)
     {
+        return CreateWMetadata(judgment, Mock.Of<ICourtExtractor>());
+    }
+
+
+    private static WMetadata CreateWMetadata(IJudgment judgment, ICourtExtractor courtExtractor)
+    {
         var emptyWordDoc = WordprocessingDocument.Create(new MemoryStream(), WordprocessingDocumentType.Document);
         emptyWordDoc.AddMainDocumentPart();
 
-        return new WMetadata(emptyWordDoc.MainDocumentPart!, judgment);
+        return new WMetadata(emptyWordDoc.MainDocumentPart!, judgment, [], courtExtractor);
     }
 
     private static Mock<IJudgment> SetupMockJudgment(IEnumerable<IAnnex>? annexes = null,
@@ -116,7 +122,10 @@ public class TestWMetadata
         var mockJudgment = SetupMockJudgment(
             header: [LineWith(new WNeutralCitation("[2020] UKSC 5", null))]
         );
-        var wMetadata = CreateWMetadata(mockJudgment.Object);
+        var mockCourtExtractor = new Mock<ICourtExtractor>();
+        mockCourtExtractor.Setup(mce => mce.FromCitationAndDate("[2020] UKSC 5", null)).Returns(Courts.SupremeCourt);
+
+        var wMetadata = CreateWMetadata(mockJudgment.Object, mockCourtExtractor.Object);
 
         wMetadata.Court.ShouldBe(Courts.SupremeCourt);
     }
