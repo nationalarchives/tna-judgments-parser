@@ -30,7 +30,7 @@ public class TestWMetadata
         var emptyWordDoc = WordprocessingDocument.Create(new MemoryStream(), WordprocessingDocumentType.Document);
         emptyWordDoc.AddMainDocumentPart();
 
-        return new WMetadata(emptyWordDoc.MainDocumentPart, judgment);
+        return new WMetadata(emptyWordDoc.MainDocumentPart!, judgment);
     }
 
     private static Mock<IJudgment> SetupMockJudgment(IEnumerable<IAnnex>? annexes = null,
@@ -281,6 +281,7 @@ public class TestWMetadata
         ]);
         var wMetadata = CreateWMetadata(mockJudgment.Object);
 
+        wMetadata.Date.ShouldNotBeNull();
         wMetadata.Date.Date.ShouldBe("2020-12-01");
         wMetadata.Date.Name.ShouldBe("judgment");
     }
@@ -295,6 +296,7 @@ public class TestWMetadata
         ]);
         var wMetadata = CreateWMetadata(mockJudgment.Object);
 
+        wMetadata.Date.ShouldNotBeNull();
         wMetadata.Date.Date.ShouldBe("2021-03-15");
     }
 

@@ -128,12 +128,14 @@ public static partial class Courts
 
     /* other courts */
 
-    public static readonly Court EWCOP = GetByCode("EWCOP");
+    public const string EwcopCourtCode = "EWCOP";
+    public static readonly Court EWCOP = GetByCode(EwcopCourtCode);
     public static readonly Court EWCOP_T1 = GetByCode("EWCOP-T1");
     public static readonly Court EWCOP_T2 = GetByCode("EWCOP-T2");
     public static readonly Court EWCOP_T3 = GetByCode("EWCOP-T3");
 
-    public static readonly Court EWFC = GetByCode("EWFC");
+    public const string EwfcCourtCode = "EWFC";
+    public static readonly Court EWFC = GetByCode(EwfcCourtCode);
     public static readonly Court EWFC_B = GetByCode("EWFC-B");
 
     public static readonly Court EWCC = GetByCode("EWCC");
