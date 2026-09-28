@@ -34,6 +34,11 @@ class SpecialCharacter : WText
         var ch = (char)Int16.Parse(sym.Char, NumberStyles.AllowHexSpecifier);
         if (ch == 0x1E && sym.Font == "Arial Unicode MS")
             return new SpecialCharacter("-", rProps, new StringValue());
+        // 0xF0A2 (minute) and 0xF0B2 (second) in the Symbol font map to U+2032/U+2033 (WText.Text does the
+        // actual remapping), but Symbol is a custom 8-bit-encoded font that isn't guaranteed to have a glyph
+        // at those Unicode code points, so clear the font attribution the same way the 0x1E case above does.
+        if ((ch == 0xF0A2 || ch == 0xF0B2) && sym.Font == "Symbol")
+            return new SpecialCharacter(ch.ToString(), rProps, new StringValue());
         var text = ch.ToString();
         return new SpecialCharacter(text, rProps, sym.Font);
     }
