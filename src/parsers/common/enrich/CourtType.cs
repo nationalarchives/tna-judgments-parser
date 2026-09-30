@@ -1811,42 +1811,10 @@ internal class Combo1bis
 
     internal bool Match(IBlock one)
     {
-        if (one is not WLine line)
-        {
-            return false;
-        }
-
-        if (line.Contents.Count() != 3)
-        {
-            return false;
-        }
-
-        if (line.Contents.ElementAt(0) is not WText text1)
-        {
-            return false;
-        }
-
-        if (line.Contents.ElementAt(1) is not WLineBreak)
-        {
-            return false;
-        }
-
-        if (line.Contents.ElementAt(2) is not WText text2)
-        {
-            return false;
-        }
-
-        if (!Two.Re1.IsMatch(text1.Text.Trim()))
-        {
-            return false;
-        }
-
-        if (!Two.Re2.IsMatch(text2.Text.Trim()))
-        {
-            return false;
-        }
-
-        return true;
+        return one is WLine line
+            && line.Contents.ToArray() is [WText text1, WLineBreak, WText text2]
+            && Two.Re1.IsMatch(text1.Text.Trim())
+            && Two.Re2.IsMatch(text2.Text.Trim());
     }
 
     internal List<WLine> Transform(IBlock one)
