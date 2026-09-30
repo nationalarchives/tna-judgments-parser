@@ -34,11 +34,13 @@ public class TestCitations
     }
 
     [Theory]
-    [InlineData("[2020] EWHC 5 (Admin)", "[2020] EWHC 5 (Admin)")]
+    [InlineData("[2020] EWHC 5 (ADMIN)", "[2020] EWHC 5 (Admin)")]
     [InlineData("2020 EWCH 05 Ch", "[2020] EWHC 5 (Ch)")]
     [InlineData("[2020] EHWC 5 (Comm)", "[2020] EWHC 5 (Comm)")]
     [InlineData("[2020] EWHC 5 (KB)", "[2020] EWHC 5 (KB)")]
     [InlineData("[2020] EWHC 05 (TCC)", "[2020] EWHC 5 (TCC)")]
+    [InlineData("[2026] EWHC 5 (bP)", "[2026] EWHC 5 (BP)")]
+    [InlineData("[2026] EHWC 5 (BP)", "[2026] EWHC 5 (BP)")]
     public void Normalize_Ewhc_ReturnsCanonicalForm(string cite, string expected)
     {
         Citations.Normalize(cite).ShouldBe(expected);
@@ -109,6 +111,7 @@ public class TestCitations
     [InlineData("[2020] EAT 5", "eat/2020/5")]
     [InlineData("[2020] UKFTT 5 (TC)", "ukftt/tc/2020/5")]
     [InlineData("[2020] UKIPTrib 5", "ukiptrib/2020/5")]
+    [InlineData("[2026] EWHC 5 (BP)", "ewhc/bp/2026/5")]
     public void MakeUriComponent_NormalizedCitation_ReturnsLowercaseUriPath(string normalized, string expected)
     {
         Citations.MakeUriComponent(normalized).ShouldBe(expected);

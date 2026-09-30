@@ -52,7 +52,7 @@ public class Citations
             }
         }
 
-        match = Regex.Match(cite, @"^\[(\d{4})\] (EWHC|EWCH) \[?(\d+)\]? \(?(IPEC|KB|QB|SCCO|TCC)\)?$",
+        match = Regex.Match(cite, @"^\[(\d{4})\] (EWHC|EWCH|EHWC) \[?(\d+)\]? \(?(BP|IPEC|KB|QB|SCCO|TCC)\)?$",
             RegexOptions.IgnoreCase);
         if (match.Success)
         {
@@ -187,8 +187,7 @@ public class Citations
             return [match.Groups[2].Value, match.Groups[3].Value, match.Groups[1].Value, match.Groups[4].Value];
         }
 
-        match = Regex.Match(normalized,
-            @"^\[(\d{4})\] (EWHC) (\d+) \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\)$");
+        match = Regex.Match(normalized, $@"^\[(\d{{4}})\] (EWHC) (\d+) \(({Courts.EwhcCodesPattern})\)$");
         if (match.Success)
         {
             return [match.Groups[2].Value, match.Groups[4].Value, match.Groups[1].Value, match.Groups[3].Value];
