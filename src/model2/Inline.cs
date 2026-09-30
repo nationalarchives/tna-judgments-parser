@@ -276,7 +276,7 @@ internal class WText : IFormattedText
         }
     }
 
-    public string Text => text.Replace('\uF020', ' ').Replace('\uF0A2', '\u2032').Replace('\uF0B2', '\u2033'); // .Replace('\u00A0', ' ')
+    public string Text => text.Replace('\uF020', ' '); // .Replace('\u00A0', ' ')
 
     internal Tuple<WText, WText> Split(int i)
     {
