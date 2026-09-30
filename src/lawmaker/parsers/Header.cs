@@ -142,6 +142,12 @@ public partial class LegislationParser
                 preamble.Add(line);
                 i += 1;
             }
+            else if (preamble.Count > 0 && BlockListItem.IsNumbered(line))
+            {
+                // Numbered paragraphs in the preamble are kept so they can be parsed as a BlockList (LCO-5103)
+                preamble.Add(line);
+                i += 1;
+            }
             else if (!foundContents && (Match(Headers.SIPreface.Parse) is IBlock prefaceBlock))
             {
                 // SIPreface.Parse appropriately increments i
@@ -155,7 +161,8 @@ public partial class LegislationParser
         }
         if (PeekBodyStartProvision() != null)
         {
-            header = new NIHeader(new NICoverPage(coverPage), new NIPreface(preface), new Headers.Preamble(preamble));
+            var structuredPreamble = BlockList.ParseFrom(new BlockParser(preamble) { LanguageService = LanguageService });
+            header = new NIHeader(new NICoverPage(coverPage), new NIPreface(preface), new Headers.Preamble(structuredPreamble));
             return;
         }
         // we haven't found the body or we've misparsed the body as the heading
