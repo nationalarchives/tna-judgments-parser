@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admlty/2026/1234" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/admlty/2026/1234" />
+          <FRBRdate date="2026-11-30" name="judgment" />
+          <FRBRauthor href="#ewhc-bpd-admiralty" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="1234" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admlty/2026/1234" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admlty/2026/1234" />
+          <FRBRdate date="2026-11-30" name="judgment" />
+          <FRBRauthor href="#ewhc-bpd-admiralty" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/admlty/2026/1234/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/admlty/2026/1234/data.xml" />
+          <FRBRdate date="2026-10-01T17:02:38" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2026-11-30" refersTo="#judgment" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ewhc-bpd-admiralty" href="https://www.gov.uk/courts-tribunals/admiralty-court" showAs="The Business and Property Division (Admiralty Court)" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="party-one" href="" showAs="Party One" />
+        <TLCPerson eId="p2" href="" showAs="P2" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-the-honourable-mrs-justice-boris" href="/judge-the-honourable-mrs-justice-boris" showAs="THE HONOURABLE MRS JUSTICE BORIS" />
+      </references>
+      <proprietary source="#">
+        <uk:court>EWHC-BPD-Admiralty</uk:court>
+        <uk:year>2026</uk:year>
+        <uk:number>1234</uk:number>
+        <uk:cite>[2026] EWHC 1234 (Admlty)</uk:cite>
+        <uk:parser>1.17.0</uk:parser>
+        <uk:hash>1752a20d9b044966b35b0821cd1b6f8af2fdb9c7e4da69679dd9a91b7fa4aac5</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading3 { font-weight: bold; font-family: Arial; font-size: 13pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .CoverText { text-align: right; text-decoration-line: underline; text-decoration-style: solid; font-size: 12pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.5in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1in; margin-right: 1in; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .Heading { font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .FootnoteText { font-family: 'Calibri, sans-serif'; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; }
+#judgment .FootnoteTextChar { font-family: 'Calibri, sans-serif'; }
+#judgment .FootnoteReference { vertical-align: super; }
+#judgment .Hyperlink { text-decoration-line: underline; text-decoration-style: solid; color: #0000FF; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.75pt" /></p>
+      <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2026] EWHC 1234 (Admlty)</neutralCitation></p>
+      <p class="CoverText">Case No: AC 2025 LON 012345</p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-bpd-admiralty">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-bpd-admiralty" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">BUSINESS AND PROPERTY DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-bpd-admiralty"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'PT Serif';color:#343338;background-color:#FFFFFF">ADMIRALTY </span><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COURT</span></courtType></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2026-11-30" refersTo="#judgment">30 November 2026</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-the-honourable-mrs-justice-boris">THE HONOURABLE MRS JUSTICE BORIS</judge></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table uk:widths="1.23in 3.87in 1.24in">
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#party-one" as="#respondent" style="font-weight:bold">Party One</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent">Respondent</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center" />
+            <p style="text-align:center"><span style="font-weight:bold">- and –</span></p>
+            <p style="text-align:center" />
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p />
+            <p />
+          </td>
+          <td>
+            <p style="text-align:center"><party refersTo="#p2" as="#respondent" style="font-weight:bold">P2</party></p>
+          </td>
+          <td>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent">Respondent</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Boris Smith KC </span>(instructed by<span style="font-weight:bold"> Party One</span>) for the <span style="font-weight:bold">Appellant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Horace Doe KC and Toni Singh</span> (instructed by <span style="font-weight:bold">A Society</span>) for the <span style="font-weight:bold">Respondent</span></p>
+      <p style="text-align:center">Hearing dates: 05 October 2026</p>
+      <p style="text-align:center">Further written submissions:  13 November 2026</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p class="CoverDesc">Approved Judgment</p>
+      <p style="text-align:center">This judgment was handed down remotely at 11.15am on 30<span style="vertical-align:super;font-size:smaller">th</span> November 2026 by circulation to the parties or their representatives by e-mail and by release to the National Archives.</p>
+      <p style="text-align:center">.............................</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level class="author">
+          <content>
+            <p><span style="font-weight:bold">Mrs Justice Boris :</span></p>
+          </content>
+        </level>
+        <level eId="lvl_1">
+          <heading style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Introduction</span></heading>
+          <paragraph eId="para_1">
+            <num>1.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">This is an appeal. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level eId="lvl_2">
+          <heading style="text-align:justify"><span style="font-weight:bold">Some factual background</span></heading>
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">The Respondent is a person. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level eId="lvl_3">
+          <heading style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">The Legislative Framework and relevant legal principles</span></heading>
+          <paragraph eId="para_3">
+            <num>3.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">There is certain case law. </p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num>4.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">For these reasons, had it arisen, it would have failed. </p>
+            </content>
+          </paragraph>
+        </level>
+        <level eId="lvl_4">
+          <heading style="text-align:justify"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">Conclusions</span></heading>
+          <paragraph eId="para_5">
+            <num>5.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">In the light of my conclusions the appeal is therefore allowed</p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num>6.</num>
+            <content>
+              <p class="ParaLevel1" style="margin-left:0.5in">Finally I am grateful.</p>
+            </content>
+          </paragraph>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
