@@ -77,6 +77,9 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="test" />
+    <InternalsVisibleTo Include="NationalArchives.FindCaseLaw.Backlog.Tests" />
+    <InternalsVisibleTo Include="backlog" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
 
 </Project>
