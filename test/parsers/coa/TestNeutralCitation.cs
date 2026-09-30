@@ -12,7 +12,7 @@ namespace test.parsers.coa;
 
 public class TestNeutralCitation : ParserTestBase
 {
-    private static readonly NetrualCitation Enricher = new();
+    private static readonly NeutralCitationEnricher Enricher = new();
 
     [Theory]
     [InlineData("Neutral Citation Number: [2022] EWCA Civ 733", "[2022] EWCA Civ 733")]
