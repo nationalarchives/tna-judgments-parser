@@ -17,7 +17,7 @@ namespace test;
 
 public class UpdateXmlFiles
 {
-    private const int Total = 101;
+    private const int Total = 102;
     public static readonly TheoryData<int> IndicesTheoryData = new(
         Enumerable.Range(1, Total)
                   .Except([11]) //Skip 11 because it is a little more complicated
