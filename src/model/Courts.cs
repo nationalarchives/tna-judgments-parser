@@ -1,6 +1,5 @@
 #nullable enable
 
-using System.Linq;
 using System.Text.RegularExpressions;
 
 using NationalArchives.FindCaseLaw.Utils;
@@ -24,7 +23,7 @@ public record Court
     public Regex? CitationPattern => fclCourt.NcnPattern is not null ? new Regex(fclCourt.NcnPattern) : null;
 }
 
-public static partial class Courts
+public partial class Courts()
 {
     private static readonly CourtStore CourtStore = new();
 
@@ -36,33 +35,6 @@ public static partial class Courts
     public static Court GetByCode(string courtCode)
     {
         return new Court(CourtStore.Get(courtCode));
-    }
-
-    public static Court? ExtractFromCitation(string cite)
-    {
-        var cleanedCite = cite.CleanWhitespace();
-
-        if (string.IsNullOrWhiteSpace(cleanedCite))
-        {
-            return null;
-        }
-
-        var fclCourtMatchingCites = CourtStore
-                                    .Where(c => c.NcnPattern is not null
-                                                && Regex.IsMatch(cleanedCite, RegexHelpers.AddAnchors(c.NcnPattern)))
-                                    .ToArray();
-
-        return fclCourtMatchingCites switch
-        {
-            { Length: 0 } => null,
-            { Length: 1 } => new Court(fclCourtMatchingCites[0]),
-
-            // If there are more than one match then we'll return our best guess
-            // It's most likely to be a kings vs queens scenario then favour kings as new courts going through the parser
-            // are kings and historic tribunals going through backlog parser will have the court specified
-            // To do this we'll sort by code and return the first match because KBD > QBD
-            _ => new Court(fclCourtMatchingCites.OrderBy(c => c.Code).First())
-        };
     }
 
     public static readonly Court SupremeCourt = GetByCode("UKSC");
@@ -128,12 +100,14 @@ public static partial class Courts
 
     /* other courts */
 
-    public static readonly Court EWCOP = GetByCode("EWCOP");
+    public const string EwcopCourtCode = "EWCOP";
+    public static readonly Court EWCOP = GetByCode(EwcopCourtCode);
     public static readonly Court EWCOP_T1 = GetByCode("EWCOP-T1");
     public static readonly Court EWCOP_T2 = GetByCode("EWCOP-T2");
     public static readonly Court EWCOP_T3 = GetByCode("EWCOP-T3");
 
-    public static readonly Court EWFC = GetByCode("EWFC");
+    public const string EwfcCourtCode = "EWFC";
+    public static readonly Court EWFC = GetByCode(EwfcCourtCode);
     public static readonly Court EWFC_B = GetByCode("EWFC-B");
 
     public static readonly Court EWCC = GetByCode("EWCC");
