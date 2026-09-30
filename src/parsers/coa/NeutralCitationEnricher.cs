@@ -20,10 +20,10 @@ internal class NeutralCitationEnricher : Enricher2
     private static readonly string[] patterns =
     {
         @"^ ?Neutral Citation( Number| No)?[:\.]? *(\[\d{4}\] EWCA (Civ|Crim) \d+)",
-        @"^ *Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{4}\]? EWHC +\d+ +\((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\.?\))", // . in EWHC/Comm/2007/197
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWHC \d+ (Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC))", // EWHC/Admin/2003/301
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EWCH \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // EWHC/Admin/2006/2373
-        @"^Neutral Citation( Number| No)?:? +(\[\d{4}\] EHWC \d+ \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // [2022] EHWC 950 (Ch)
+        $@"^ *Neutral [Cc]itation( +[Nn]umber| No)? ?[:\.]? *(\[\d{{4}}\]? EWHC +\d+ +\(({Courts.EwhcCodesPattern})\.?\))", // . in EWHC/Comm/2007/197
+        $@"^Neutral Citation( Number| No)?:? +(\[\d{{4}}\] EWHC \d+ ({Courts.EwhcCodesPattern}))", // EWHC/Admin/2003/301
+        @$"^Neutral Citation( Number| No)?:? +(\[\d{{4}}\] EWCH \d+ \(({Courts.EwhcCodesPattern})\))", // EWHC/Admin/2006/2373
+        $@"^Neutral Citation( Number| No)?:? +(\[\d{{4}}\] EHWC \d+ \(({Courts.EwhcCodesPattern})\))", // [2022] EHWC 950 (Ch)
         @"^Neutral Citation( Number| No)?:? (\[\d{4}\] EWCOP \d+( \(T[1-3]\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWFC \d+( \(B\))?)",
         @"^Neutral Citation( Number)?:? (\[\d{4}\] EWCA \d+ \((Civ|Crim)\))", // EWCA/Civ/2017/1798
@@ -35,9 +35,9 @@ internal class NeutralCitationEnricher : Enricher2
     private static readonly string[] patterns2 =
     {
         @"^\s*(\[\d{4}\] EWCA (Civ|Crim) \d+)", // \s matches non-breaking space in [2022] EWCA Crim 733
-        @"^ *(\[?\d{4}\] EWHC \d+ \((Admin|Admlty\.?|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))", // period after Admlty in EWHC/Admlty/2003/320
+        $@"^ *(\[?\d{{4}}\] EWHC \d+ \(({Courts.EwhcCodesPattern})\.?\))", // period after Admlty in EWHC/Admlty/2003/320
         @"^\s(\[\d{4}\] EWHC \d+ \(Admin\))", // non-space in [2022] EWHC 307 (Admin)
-        @"^(\[\d{4}\] EWHC \[\d+\] \((Admin|Admlty|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC)\))$", // [2021] EWHC [3505] (IPEC)
+        $@"^(\[\d{{4}}\] EWHC \[\d+\] \(({Courts.EwhcCodesPattern})\))$", // [2021] EWHC [3505] (IPEC)
         @"^Neutral Citation Nunber: (\[\d{4}\] EWCA (Civ|Crim) \d+)", // misspelling in EWCA/Civ/2006/1507
         @"^Neutral Citation Numer: (\[\d{4}\] EWHC \d+ \(Ch\))$", // misspelling in EWHC/Ch/2015/411
         @"^NCN:? (\[\d{4}\] EWCA (Civ|Crim) \d+)$", // [2021] EWCA Crim 1412

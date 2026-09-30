@@ -138,6 +138,7 @@ public partial class Courts()
 
     public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
     public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
+    public const string EwhcCodesPattern = "Admin|Admlty|BP|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC";
 
     [GeneratedRegex(@"^(IN THE )?First-tier Tribunal$", RegexOptions.IgnoreCase, "en-GB")]
     public static partial Regex FirstTierTribunalIdentifierRegex();

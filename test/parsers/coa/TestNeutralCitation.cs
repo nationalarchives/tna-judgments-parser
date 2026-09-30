@@ -20,6 +20,7 @@ public class TestNeutralCitation : ParserTestBase
     [InlineData("Neutral Citation Number: [2003] EWHC 301 Admin", "[2003] EWHC 301 Admin")]
     [InlineData("Neutral Citation Number: [2006] EWCH 2373 (Admin)", "[2006] EWCH 2373 (Admin)")] // misspelling of EWHC
     [InlineData("Neutral Citation Number: [2022] EHWC 950 (Ch)", "[2022] EHWC 950 (Ch)")] // misspelling of EWHC
+    [InlineData("Neutral Citation Number: [2026] EWHC 1234 (BP)", "[2026] EWHC 1234 (BP)")]
     [InlineData("Neutral Citation Number: [2021] EWCOP 12", "[2021] EWCOP 12")]
     [InlineData("Neutral Citation Number: [2020] EWFC 45 (B)", "[2020] EWFC 45 (B)")]
     [InlineData("Neutral Citation Number: [2017] EWCA 1798 (Civ)", "[2017] EWCA 1798 (Civ)")]
@@ -27,6 +28,12 @@ public class TestNeutralCitation : ParserTestBase
     [InlineData("Neutral Citation Number: [2019] EWCC 3", "[2019] EWCC 3")]
     [InlineData("Neutral Citation Number: [2019] EWCR 3", "[2019] EWCR 3")]
     [InlineData("Neutral Citation Number: [2021] EAT 5", "[2021] EAT 5")]
+    [InlineData("Neutral Citation Nunber: [2006] EWCA Civ 1507", "[2006] EWCA Civ 1507")] // misspelling of Number
+    [InlineData("Neutral Citation Numer: [2015] EWHC 411 (Ch)", "[2015] EWHC 411 (Ch)")] // misspelling of Number
+    [InlineData("Neutral Citation Number: [2015] UKIPTrib 5", "[2015] UKIPTrib 5")]
+    [InlineData("NCN: [2021] EWCA Crim 1412", "[2021] EWCA Crim 1412")]
+    [InlineData("NCN No: [2022] EWCA Crim 39", "[2022] EWCA Crim 39")]
+    [InlineData("Neutral Citation Number: [2018[ EWCA Civ 1744", "[2018[ EWCA Civ 1744")] // stray bracket typo
     public void Enrich_SingleRunWithNeutralCitationLabel_MarksUpTheCitation(string text, string expectedCitation)
     {
         var line = TextLine(text);
@@ -40,27 +47,22 @@ public class TestNeutralCitation : ParserTestBase
     }
 
     [Theory]
-    [InlineData("[2022] EWCA Crim 733", "[2022] EWCA Crim 733")]
-    [InlineData("[2003] EWHC 320 (Admlty.)", "[2003] EWHC 320 (Admlty.)")] // trailing period after Admlty
-    [InlineData("[2021] EWHC [3505] (IPEC)", "[2021] EWHC [3505] (IPEC)")] // number itself in brackets
-    [InlineData("Neutral Citation Nunber: [2006] EWCA Civ 1507", "[2006] EWCA Civ 1507")] // misspelling of Number
-    [InlineData("Neutral Citation Numer: [2015] EWHC 411 (Ch)", "[2015] EWHC 411 (Ch)")] // misspelling of Number
-    [InlineData("NCN: [2021] EWCA Crim 1412", "[2021] EWCA Crim 1412")]
-    [InlineData("NCN No: [2022] EWCA Crim 39", "[2022] EWCA Crim 39")]
-    [InlineData("Neutral Citation Number: [2018[ EWCA Civ 1744", "[2018[ EWCA Civ 1744")] // stray bracket typo
-    [InlineData("[2021] EWCOP 12 (T1)", "[2021] EWCOP 12 (T1)")]
-    [InlineData("[2019] EWCC 3", "[2019] EWCC 3")]
-    [InlineData("[2019] EWCR 3", "[2019] EWCR 3")]
-    [InlineData("[2018] EAT 5", "[2018] EAT 5")]
-    [InlineData("Neutral Citation Number: [2015] UKIPTrib 5", "[2015] UKIPTrib 5")]
-    public void Enrich_SingleRunWithoutStandardLabel_MarksUpTheCitation(string text, string expectedCitation)
+    [InlineData("[2022] EWCA Crim 733")]
+    [InlineData("[2003] EWHC 320 (Admlty.)")] // trailing period after Admlty
+    [InlineData("[2021] EWHC [3505] (IPEC)")] // number itself in brackets
+    [InlineData("[2021] EWCOP 12 (T1)")]
+    [InlineData("[2019] EWCC 3")]
+    [InlineData("[2019] EWCR 3")]
+    [InlineData("[2018] EAT 5")]
+    [InlineData("[2026] EWHC 1234 (BP)")]
+    public void Enrich_SingleRunWithoutLabel_MarksUpTheCitation(string expectedCitation)
     {
-        var line = TextLine(text);
+        var line = TextLine(expectedCitation);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
-        var citation = contents.OfType<WNeutralCitation>().ShouldHaveSingleItem();
+        var citation = contents.ShouldHaveSingleItem().ShouldBeOfType<WNeutralCitation>();
         citation.Text.ShouldBe(expectedCitation);
     }
 
