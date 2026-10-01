@@ -31,6 +31,91 @@ public class TestCourtTypeEnrich : ParserTestBase
                 """, Courts.EwhcKbdAdminCourtCode)] // KBD combos are generated from QBD
     [InlineData("""
                 IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                """, Courts.EwhcBpdCourtCode)] // BPD court fallback, no specific list
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                ADMIRALTY COURT
+                """, Courts.EwhcBpdAdmiraltyCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION IN MANCHESTER
+                APPEALS LIST
+                """, Courts.EwhcBpdAppealsCourtCode)] // regional BPD
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                BUSINESS LIST
+                """, Courts.EwhcBpdBusinessCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                BUSINESS LIST IN WALES
+                """, Courts.EwhcBpdBusinessCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                LONDON CIRCUIT COMMERCIAL COURT
+                """, Courts.EwhcBpdCommercialCircuitCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                COMMERCIAL COURT
+                """, Courts.EwhcBpdCommercialCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                COMMERCIAL COURT
+                FINANCIAL LIST
+                """, Courts.EwhcBpdCommercialFinancialCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                COMPETITION LIST
+                """, Courts.EwhcBpdCompetitionCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                INSOLVENCY AND COMPANIES LIST
+                """, Courts.EwhcBpdInsolvencyAndCompaniesCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                INTELLECTUAL PROPERTY LIST
+                """, Courts.EwhcBpdIntellectualPropertyCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                INTELLECTUAL PROPERTY ENTERPRISE COURT
+                """, Courts.EwhcBpdIpecCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                PATENTS COURT
+                """, Courts.EwhcBpdPatentsCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                PROPERTY, TRUSTS AND PROBATE LIST
+                """, Courts.EwhcBpdPropertyTrustsProbateCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                PROPERTY TRUSTS AND PROBATE LIST IN BIRMINGHAM
+                """, Courts.EwhcBpdPropertyTrustsProbateCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                REVENUE LIST
+                """, Courts.EwhcBpdRevenueCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                BUSINESS AND PROPERTY DIVISION
+                TECHNOLOGY AND CONSTRUCTION COURT
+                """, Courts.EwhcBpdTccCourtCode)]
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
                 BUSINESS & PROPERTY COURTS OF ENGLAND AND WALES
                 TECHNOLOGY AND CONSTRUCTION COURT (KBD)
                 """, Courts.EwhcKbdTccCourtCode)] // ampersand
