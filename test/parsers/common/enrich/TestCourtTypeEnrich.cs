@@ -31,10 +31,21 @@ public class TestCourtTypeEnrich : ParserTestBase
                 """, Courts.EwhcKbdAdminCourtCode)] // KBD combos are generated from QBD
     [InlineData("""
                 IN THE HIGH COURT OF JUSTICE
+                BUSINESS & PROPERTY COURTS OF ENGLAND AND WALES
+                TECHNOLOGY AND CONSTRUCTION COURT (KBD)
+                """, Courts.EwhcKbdTccCourtCode)] // ampersand
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
                 QUEEN'S BENCH DIVISION
                 ADMINISTRATIVE COURT
                 PLANNING COURT
                 """, Courts.EwhcQbdPlanningCourtCode)] // four lines
+    [InlineData("""
+                IN THE HIGH COURT OF JUSTICE
+                KING'S BENCH DIVISION
+                BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES
+                COMMERCIAL COURT
+                """, Courts.EwhcKbdCommercialCourtCode)]
     [InlineData("""
                 IN THE HIGH COURT OF JUSTICE
                 BUSINESS AND PROPERTY COURTS

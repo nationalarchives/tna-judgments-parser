@@ -5,6 +5,25 @@ using System.Text.RegularExpressions;
 
 namespace UK.Gov.Legislation.Judgments.Parse;
 
+internal static partial class CourtTypeHeaderRegexes
+{
+    [GeneratedRegex(@"^IN\sTHE\sHIGH\sCOURTS?\sOF\sJUSTICE$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex InTheHighCourtOfJustice();
+
+    [GeneratedRegex(@"^(IN\s)?(THE\s)?BUSINESS\s(AND|&)\sPROPERTY\sCOURTS?$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex BusinessAndPropertyCourts();
+    [GeneratedRegex(@"^(IN\s)?(THE\s)?BUSINESS\s(AND|&)\sPROPERTY?\sCOURTS?\sOF\sENGLAND\s(AND?|&)\sWALES$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex BusinessAndPropertyCourtsOfEnglandAndWales();
+
+    [GeneratedRegex(@"^OF\sENGLAND\s(AND|&)\sWALES$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex OfEnglandAndWales();
+
+    [GeneratedRegex(@"^QUEEN['’]?S\sBENCH\sDIVISION$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex QueensBenchDivision();
+    [GeneratedRegex(@"^COMMERCIAL\sCOURT$", RegexOptions.IgnoreCase, "en-GB")]
+    public static partial Regex CommercialCourt();
+}
+
 internal abstract class Combo
 {
     protected bool Match(Regex regex, IBlock block)
@@ -259,11 +278,11 @@ internal class Combo6 : Combo
         new()
         {
             // [2022] EWHC 219 (Comm)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
-            Re5 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
+            Re4 = CourtTypeHeaderRegexes.CommercialCourt(),
+            Re5 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re6 = new Regex("^FINANCIAL LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Financial
         }
@@ -339,11 +358,11 @@ internal class Combo5 : Combo
     [
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re4 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re5 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
+            Re4 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re5 = CourtTypeHeaderRegexes.CommercialCourt(),
             Court = Courts.EWHC_QBD_Commercial
         }
     ];
@@ -414,33 +433,41 @@ internal class Combo4 : Combo
     [
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^ADMINISTRATIVE COURT", RegexOptions.IgnoreCase),
             Re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Planning
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN'S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^LEEDS DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^PLANNING COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Planning
         },
         new()
         {
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re3 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
+            Re4 = CourtTypeHeaderRegexes.CommercialCourt(),
+            Court = Courts.EWHC_QBD_Commercial
+        },
+        new()
+        {
             // EWHC/TCC/2018/2802
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re3 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
             Re4 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
@@ -448,7 +475,7 @@ internal class Combo4 : Combo
         new()
         {
             // EWHC/Ch/2014/1553
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^INTELLECTUAL PROPERTY and$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^COMMUNITY TRADE MARK COURT", RegexOptions.IgnoreCase),
@@ -457,8 +484,8 @@ internal class Combo4 : Combo
         new()
         {
             // [2021] EWHC 3295 (Pat)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^PATENTS COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Patents
@@ -466,8 +493,8 @@ internal class Combo4 : Combo
         new()
         {
             // [2021] EWHC 3296 (IPEC)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
@@ -475,70 +502,69 @@ internal class Combo4 : Combo
         new()
         {
             // [2021] EWHC 2842 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
         },
         new()
         {
             // [2022] EWHC 34 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^CHANCERY APPEALS$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex(@"^CHANCERY APPEALS \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new()
         {
             // [2021] EWHC 2972 (TCC), [2021] EWHC 3595 (TCC)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS?$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex(@"^TECHNOLOGY (AND|&) CONSTRUCTION COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^(THE )?BUSINESS AND PROPERTY COURTS OF ENGLAND (AND|&) WALES$",
-                RegexOptions.IgnoreCase),
-            Re3 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
+            Re3 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re4 = CourtTypeHeaderRegexes.CommercialCourt(),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             // [2022] EWHC 245 (Comm)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re4 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
+            Re3 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re4 = CourtTypeHeaderRegexes.CommercialCourt(),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             // [2022] EWHC 544 (Comm), [2022] EWHC 586 (Comm)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS?$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex(@"^COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             // [2021] EWHC 3432 (CH)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^BUSINESS LIST \(LONDON\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
@@ -546,26 +572,26 @@ internal class Combo4 : Combo
         new()
         {
             // [2021] EWHC 3514 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex(@"^BUSINESS LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
         },
         new()
         {
             // [2021] EWHC 1988 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS (AND|&) PROPERTY COURTS$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourts(),
+            Re3 = CourtTypeHeaderRegexes.OfEnglandAndWales(),
             Re4 = new Regex("^INSOLVENCY AND COMPANIES COURT LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         },
         new()
         {
             // [2022] EWHC (Ch) 1104
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^COMPANIES COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
@@ -662,8 +688,8 @@ internal class Combo3_1 : Combo
         new()
         {
             // [2021] EWHC 3347 (Ch), [2021] EWHC 3096 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex("Rolls Buildings?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
@@ -671,9 +697,8 @@ internal class Combo3_1 : Combo
         new()
         {
             // [2021] EWHC 3385 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY? COURTS OF ENGLAND (AND|&) WALES$",
-                RegexOptions.IgnoreCase), // no "Y" in [2021] EWHC 3385 (Ch)
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^Royal Courts of Justice$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
@@ -681,17 +706,17 @@ internal class Combo3_1 : Combo
         new()
         {
             // [2021] EWHC 3502 (QB)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^ROYAL COURTS OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^Queen['’]s Bench Division$", RegexOptions.IgnoreCase),
+            Re3 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re4 = new Regex("^Neutral Citation Number", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // [2022] EWHC 421 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re4 = new Regex("^7 Rolls Buildings$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -761,10 +786,8 @@ internal class Combo3 : Combo
     [
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 =
-                new Regex("^QUEEN[’']?S BENCH DIVISION$",
-                    RegexOptions.IgnoreCase), // no apostrophe in EWHC/Admin/2009/573
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 =
                 new Regex("^(THE )?ADMINISTRATIVE COURT",
                     RegexOptions.IgnoreCase), // "THE" in EWHC/Admin/2006/1205, "... AT ..." in EWHC/Admin/2013/733
@@ -772,24 +795,22 @@ internal class Combo3 : Combo
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^ADMINSTRATIVE COURT", RegexOptions.IgnoreCase), // spelling mistake in EWHC/Admin/2021/578
             Court = Courts.EWHC_QBD_Administrative
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 =
-                new Regex("^QUEEN[’']?S BENCH DIVISION$",
-                    RegexOptions.IgnoreCase), // no apostrophe in EWHC/Admin/2009/573
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^ADMIRALTY COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Admiralty
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 =
                 new Regex("^PLANNING COURT",
                     RegexOptions.IgnoreCase), // can be followed by city name EWHC/Admin/2018/1753
@@ -797,43 +818,43 @@ internal class Combo3 : Combo
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^LONDON CIRCUIT COMMERCIAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^LONDON CIRCUIT COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^TECHNOLOGY AND CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
-            Re1 = new Regex("^IN THE (HIGH COURT OF JUSTICE)$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^BIRMINGHAM DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // [2022] EWHC 157 (Comm)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN[’']?S BENCH DIVISION$", RegexOptions.IgnoreCase),
-            Re3 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re3 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Court = Courts.EWHC_QBD_BusinessAndProperty
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
             Re3 = new Regex("^PATENTS COURT", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Patents
@@ -841,35 +862,35 @@ internal class Combo3 : Combo
         new()
         {
             // EWHC/Patents/2005/1403
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISON$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^\(PATENTS COURT\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Patents
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
             Re3 = new Regex("^INTELLECTUAL PROPERTY( ENTERPRISE COURT)?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^INTELLECTUAL PROPERTY ENTERPRISE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IPEC
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^INTELLECTUAL PROPERTY LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_IntellectualProperty
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 =
                 new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \\(ChD\\)", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BUSINESS LIST", RegexOptions.IgnoreCase),
@@ -878,22 +899,22 @@ internal class Combo3 : Combo
         new()
         {
             // [2022] EWHC 48 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^BUSINESS LIST \(Ch ?D\)$", RegexOptions.IgnoreCase), // space in [2023] EWHC 1391 (Ch)
             Court = Courts.EWHC_Chancery_BusinessList
         },
         new()
         {
             // [2023] EWHC 1439 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS IN BIRMINGHAM$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^BUSINESS LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_BusinessList
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION", RegexOptions.IgnoreCase),
             Re3 = new Regex("^COMPANIES COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
@@ -901,112 +922,109 @@ internal class Combo3 : Combo
         new()
         {
             // [2021] EWHC 3199 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^COMPANIES COURT \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         },
         new()
         {
             // [2022] EWHC 24 (Ch), [2022] EWHC 202 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS", RegexOptions.IgnoreCase), // ... IN LEEDS
             Re3 = new Regex(@"^INSOLVENCY AND COMPANIES LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_InsolvencyAndCompanies
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^CHANCERY APPEALS \\(ChD\\)", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new()
         {
             // [2021] EWHC 3416 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS & PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex("^CHANCERY APPEALS$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^APPEALS \(CH D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
         },
         new()
         {
             // EWHC/Comm/2018/3326
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES",
-                RegexOptions.IgnoreCase), // missing D in EWHC/QB/2017/2921
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             // EWHC/Comm/2009/2941, EWHC/Comm/2004/2750
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 =
-                new Regex("^QUEEN['’]?S BENCH DIVISION$",
-                    RegexOptions.IgnoreCase), // no appostrophe in EWHC/Comm/2003/3161
-            Re3 = new Regex("^COMMERCIAL COURT$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
+            Re3 = CourtTypeHeaderRegexes.CommercialCourt(),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             // EWHC/Admin/2004/1441
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^DIVISIONAL COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD // ??? should it be QBD-General?
         },
         new()
         {
             // EWHC/QB/2016/1174, EWHC/QB/2017/1748
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^LONDON MERCANTILE COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
         new()
         {
             // [2021] EWHC 3054 (Comm)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS OF ENGLAND & WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^LONDON CIRCUIT COMMERCIAL COURT \(QBD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_Commercial_Circuit
         },
         new()
         {
             // EWHC/TCC/2018/751
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^BUSINESS AND PROPERTY COURTS? OF ENGLAND (AND|&) WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^TECHNOLOGY AND CONSTRUCTION COURT \(QBD?\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
             // EWHC/TCC/2011/3070
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^TECHNOLOGY & CONSTRUCTION COURT$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
             // EWHC/Costs/2012/90218
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^SENIOR COURTS COSTS OFFICE$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_SeniorCourtsCosts
         },
         new()
         {
             // [2021] EWHC 2950 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^FINANCIAL LIST$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Financial
@@ -1014,24 +1032,23 @@ internal class Combo3 : Combo
         new()
         {
             // [2021] EWHC 3306 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^IN THE BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^FINANCIAL LIST \(Ch ?D\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Financial
         },
         new()
         {
             // [2022] EHWC 950 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^(IN THE )?BUSINESS (AND|&) PROPERTY COURTS OF ENGLAND (AND|&) WALES$",
-                RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.BusinessAndPropertyCourtsOfEnglandAndWales(),
             Re3 = new Regex(@"^PROPERTY, TRUSTS (AND|&) PROBATE LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_PropertyTrustsProbate
         },
         new()
         {
             // [2023] EWHC 654 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^BUSINESS AND PROPERTY COURTS IN LEEDS$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^PROPERTY, TRUSTS (AND|&) PROBATE LIST \(ChD\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_PropertyTrustsProbate
@@ -1150,54 +1167,54 @@ internal class Combo2_1 : Combo
     [
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]?S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^(The )?Royal Courts of Justice", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN'’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^ON APPEAL FROM", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // EWHC/QB/2011/3104
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // EWHC/QB/2013/2997
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^Strand$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // EWHC/QB/2011/3068
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^IN THE MATTER OF"),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // EWHC/QB/2014/1972
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN['’]S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex("^The Combined Court Centre"),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // EWHC/Ch/2016/4063
-            Re1 = new Regex("^IN THE HIGH COURTS? OF JUSTICE$", RegexOptions.IgnoreCase), // S in EWHC/Ch/2009/2692
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^Royal Courts of Justice", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1205,7 +1222,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2015/274
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^[A-Z][a-z]+ Building, Royal Courts of Justice$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1213,7 +1230,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2008/1893
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^Before", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1221,7 +1238,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2013/200
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^Date", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1229,7 +1246,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2013/160, EWHC/Ch/2012/616
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^[A-Z][a-z]+ Building"),
             Court = Courts.EWHC_Chancery
@@ -1237,7 +1254,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2018/2783
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^\d+ [A-Z][a-z]+ Building"),
             Court = Courts.EWHC_Chancery
@@ -1245,7 +1262,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2014/1048
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("Building$"),
             Court = Courts.EWHC_Chancery
@@ -1253,7 +1270,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2016/1996, ewhc/ch/2011/3553
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex(@"^\(?CHANCERY DIVISION\)?$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^[A-Z]+ DISTRICT REGISTRY$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1261,7 +1278,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2016/243
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^IN THE MATTER OF"),
             Court = Courts.EWHC_Chancery
@@ -1269,7 +1286,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2018/106
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^Bristol Civil Justice Centre$"),
             Court = Courts.EWHC_Chancery
@@ -1277,7 +1294,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2013/3098
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^IN AN APPEAL FROM", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
@@ -1285,7 +1302,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2017/541
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^ON APPEAL FROM", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
@@ -1293,7 +1310,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // EWHC/Ch/2003/2985
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^Appeal against the decision of", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
@@ -1301,7 +1318,7 @@ internal class Combo2_1 : Combo
         new()
         {
             // [2021] EWHC 3418 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex(@"^BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES \(ChD\)$", RegexOptions.IgnoreCase),
             Re3 = new Regex("^ON APPEAL FROM", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery_Appeals
@@ -1309,15 +1326,15 @@ internal class Combo2_1 : Combo
         new()
         {
             // [2021] EWHC 3247 (QB)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
-            Re2 = new Regex("^QUEEN’S BENCH DIVISION$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.QueensBenchDivision(),
             Re3 = new Regex(@"^\[\d{4}\] EWHC \d+ \([A-Z]+[a-z]*\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD
         },
         new()
         {
             // [2021] EWHC 3260 (Ch)
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^CHANCERY DIVISION$", RegexOptions.IgnoreCase),
             Re3 = new Regex(@"^\[\d{4}\] EWHC \d+ \(Ch\)$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_Chancery
@@ -1503,54 +1520,54 @@ internal class Combo2 : Combo
         new()
         {
             // EWHC/Ch/2008/2029
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex(@"\(Chancery Division\)"),
             Court = Courts.EWHC_Chancery
         },
         new()
         {
             // [2023] EWHC 1593 (KB)
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("KING['’]S BENCH DIVISION"),
             Court = Courts.EWHC_KBD
         },
         new()
         {
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("FAMILY DIVISION"),
             Court = Courts.EWHC_Family
         },
         new()
         {
             // EWHC/Admin/2008/2214
-            Re1 = new Regex("IN THE HIGH COURT OF JUSTICE"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("ADMINISTRATIVE DIVISION"),
             Court = Courts.EWHC_QBD_Administrative
         },
         new()
         {
             // EWHC/Comm/2009/2472
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$"),
-            Re2 = new Regex("^COMMERCIAL COURT$"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
+            Re2 = CourtTypeHeaderRegexes.CommercialCourt(),
             Court = Courts.EWHC_QBD_Commercial
         },
         new()
         {
             //EWHC/TCC/2012/780
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^QUEEN'S BENCH DIVISION TECHNOLOGY AND CONSTRUCTION COURT$"),
             Court = Courts.EWHC_QBD_TCC
         },
         new()
         {
             // EWHC/Admin/2003/2846, EWHC/Admin/2006/1645, EWHC/Admin/2009/995
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^DIVISIONAL( COURT)?$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_QBD // this is risky
         },
         new()
         {
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$", RegexOptions.IgnoreCase),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^SENIOR COURTS COSTS OFFICE$", RegexOptions.IgnoreCase),
             Court = Courts.EWHC_SeniorCourtsCosts
         }
@@ -1657,7 +1674,7 @@ internal class Combo1_1 : Combo
         new()
         {
             // EWHC/Admin/2014/3257
-            Re1 = new Regex("^IN THE HIGH COURT OF JUSTICE$"),
+            Re1 = CourtTypeHeaderRegexes.InTheHighCourtOfJustice(),
             Re2 = new Regex("^Royal Courts of Justice"),
             Court = Courts.EWHC
         }
