@@ -4,159 +4,175 @@ using System.Text.RegularExpressions;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-namespace UK.Gov.Legislation.Lawmaker
+namespace UK.Gov.Legislation.Lawmaker;
+
+
+/* para1 */
+
+internal partial interface Para1
 {
 
-    /* para1 */
-
-    internal partial interface Para1
+    public static bool IsValidNumber(string num)
     {
-
-        public static bool IsValidNumber(string num)
-        {
-            string pattern = @"^\([a-z]+\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
-        public static bool IsValidChild(IDivision child)
-        {
-            if (child is Para2)
-                return true;
-            //if (child is Definition)
-            //    return true;
-            if (child is UnnumberedParagraph)
-                return true;
-            if (child is WDummyDivision)
-                return true;
-            return false;
-        }
-
+        var pattern = @"^\([a-z]+\)$";
+        return Regex.IsMatch(num, pattern);
     }
 
-    internal class Para1Branch : Branch, Para1
+    public static bool IsValidChild(IDivision child)
     {
-        public override string Name { get; internal init; } = "level";
-
-        public override string Class => "para1";
-
+        if (child is Para2)
+            return true;
+        //if (child is Definition)
+        //    return true;
+        if (child is UnnumberedParagraph)
+            return true;
+        if (child is WDummyDivision)
+            return true;
+        return false;
     }
 
+}
 
-    internal class Para1Leaf : Leaf, Para1
+internal class Para1Branch : Branch, Para1
+{
+    public override string Name { get; internal init; } = "level";
+
+    public override string Class => "para1";
+
+}
+
+
+internal class Para1Leaf : Leaf, Para1
+{
+    public override string Name { get; internal init; } = "level";
+
+    public override string Class => "para1";
+
+}
+
+/* para2 */
+
+internal interface Para2
+{
+
+    public static bool IsValidNumber(string num)
     {
-        public override string Name { get; internal init; } = "level";
-
-        public override string Class => "para1";
-
+        var pattern = @"^\(z*[ivxl]+[a-z]{0,3}\)$";
+        return Regex.IsMatch(num, pattern);
     }
 
-    /* para2 */
-
-    internal interface Para2
+    public static bool IsValidChild(IDivision child)
     {
-
-        public static bool IsValidNumber(string num)
+        return child switch
         {
-            string pattern = @"^\(z*[ivxl]+[a-z]{0,3}\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
-        public static bool IsValidChild(IDivision child)
-        {
-            return child switch {
             Para3
             or WDummyDivision
             or UnnumberedParagraph
-            //or Definition
+                //or Definition
                 => true,
-            _   => false,
-            };
-        }
-
+            _ => false,
+        };
     }
 
-    internal class Para2Branch : Branch, Para2
+}
+
+internal class Para2Branch : Branch, Para2
+{
+
+    public override string Name { get; internal init; } = "level";
+
+    public override string Class => "para2";
+
+}
+
+
+internal class Para2Leaf : Leaf, Para2
+{
+
+    public override string Name { get; internal init; } = "level";
+
+    public override string Class => "para2";
+
+}
+
+/* para3 */
+
+internal interface Para3
+{
+
+    public static bool IsValidNumber(string num)
     {
-
-        public override string Name { get; internal init; } = "level";
-
-        public override string Class => "para2";
-
+        // Uppercase letters (A), or a single lowercase letter repeated exactly
+        // twice (aa), (bb), ... (zz), the convention for a sub-sub-paragraph
+        // nested under a roman-numeral sub-paragraph.
+        var pattern = @"^\([A-Z]+\)$|^\(([a-z])\1\)$";
+        return Regex.IsMatch(num, pattern);
     }
 
-
-    internal class Para2Leaf : Leaf, Para2
+    public static bool IsValidChild(IDivision child)
     {
-
-        public override string Name { get; internal init; } = "level";
-
-        public override string Class => "para2";
-
-    }
-
-    /* para3 */
-
-    internal interface Para3
-    {
-
-        public static bool IsValidNumber(string num)
+        // A sub-sub-paragraph such as (aa)/(bb) is always a leaf: any roman-numeral
+        // item that follows it sits at a shallower indent than it does, so such an
+        // item belongs to the para2 item above it, not to this one.
+        return child switch
         {
-            string pattern = @"^\([A-Z]+\)$";
-            return Regex.IsMatch(num, pattern);
-        }
-
+            WDummyDivision
+            or UnnumberedParagraph
+                => true,
+            _ => false,
+        };
     }
 
-    internal class Para3Branch : Branch, Para2
-    {
+}
 
-        public override string Name { get; internal init; } = "level";
+internal class Para3Branch : Branch, Para2, Para3
+{
 
-        public override string Class => "para3";
+    public override string Name { get; internal init; } = "level";
 
-    }
+    public override string Class => "para3";
+
+}
 
 
-    internal class Para3Leaf : Leaf, Para2
-    {
+internal class Para3Leaf : Leaf, Para2, Para3
+{
 
-        public override string Name { get; internal init; } = "level";
+    public override string Name { get; internal init; } = "level";
 
-        public override string Class => "para3";
+    public override string Class => "para3";
 
-    }
+}
 
-    /* unnumbered paragraphs */
+/* unnumbered paragraphs */
 
-    internal interface UnnumberedParagraph : IDivision { }
+internal interface UnnumberedParagraph : IDivision { }
 
-    internal class UnnumberedBranch : Branch, UnnumberedParagraph
-    {
+internal class UnnumberedBranch : Branch, UnnumberedParagraph
+{
 
-        public override string Name { get; internal init; } = "level";
+    public override string Name { get; internal init; } = "level";
 
-        public override string Class => "unnumberedParagraph";
+    public override string Class => "unnumberedParagraph";
 
-    }
+}
 
-    internal class UnnumberedLeaf : Leaf, UnnumberedParagraph
-    {
+internal class UnnumberedLeaf : Leaf, UnnumberedParagraph
+{
 
-        public override string Name { get; internal init; } = "level";
+    public override string Name { get; internal init; } = "level";
 
-        public override string Class => "unnumberedParagraph";
+    public override string Class => "unnumberedParagraph";
 
-    }
+}
 
-    /* unknown */
+/* unknown */
 
-    internal class UnknownLevel : Leaf
-    {
+internal class UnknownLevel : Leaf
+{
 
-        public override string Name { get; internal init; } = "level";
+    public override string Name { get; internal init; } = "level";
 
-        public override string Class => null;
-
-    }
+    public override string Class => null;
 
 }

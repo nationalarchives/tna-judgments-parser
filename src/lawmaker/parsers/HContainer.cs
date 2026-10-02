@@ -305,6 +305,18 @@ public partial class LegislationParser
         List<IBlock> wrapUp = [];
         if (children.Count == 0)
             return wrapUp;
+        // A paragraph styled "DefPara" closes the whole list rather than continuing the
+        // last item, but it has already been absorbed into that item's own content by the
+        // time we get here. Peel any trailing DefPara paragraphs back out, as long as there's
+        // an actual list to close (closing words cannot be the only child, same as below).
+        if (children.Count > 1 && children.Last() is Leaf trailingLeaf)
+        {
+            while (trailingLeaf.Contents.Count > 1 && trailingLeaf.Contents[^1] is WLine trailingLine && trailingLine.HasStyle("DefPara"))
+            {
+                wrapUp.Insert(0, trailingLine);
+                trailingLeaf.Contents.RemoveAt(trailingLeaf.Contents.Count - 1);
+            }
+        }
         if (children.Last() is not UnnumberedLeaf leaf)
             // Closing Words must be the final child
             return wrapUp;
@@ -558,6 +570,21 @@ public partial class LegislationParser
 
         return false;
     }
+
+    // Returns true if lo and hi are both plain lowercase roman numerals and hi's value
+    // isn't exactly one more than lo's. Used to stop a paragraph such as (l) being treated
+    // as continuing a roman-numeral sub-list from (i), (ii), since l is itself a valid
+    // (though here unrelated) roman numeral. Anything outside plain roman numerals (e.g. a
+    // z-prefixed or lettered-suffix form) is left alone, since it isn't a plain sequence.
+    private static bool IsRomanSequenceBroken(string lo, string hi)
+    {
+        lo = lo.Trim('(', ')');
+        hi = hi.Trim('(', ')');
+        if (!Regex.IsMatch(lo, @"^[ivxlcdm]+$") || !Regex.IsMatch(hi, @"^[ivxlcdm]+$"))
+            return false;
+        return Roman.LowerRomanToInt(hi) != Roman.LowerRomanToInt(lo) + 1;
+    }
+
 
 
 
