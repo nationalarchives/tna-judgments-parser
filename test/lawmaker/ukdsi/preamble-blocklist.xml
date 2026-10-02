@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <bill name="uksi">
+  <bill name="ukdsi">
     <meta>
       <references source="#author">
         <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Veterinary Medicines (Amendment etc.) Regulations 2024" />
@@ -64,66 +64,13 @@
           </paragraph>
         </article>
         <article eId="sec_2" class="prov1">
-          <heading>Amendment to paragraph 57</heading>
+          <heading>Interpretation</heading>
           <num>2.</num>
-          <intro>
-            <p>In paragraph 57 (adverse reactions to product administered in UK)—</p>
-          </intro>
-          <level class="para1">
-            <num>(a)</num>
-            <intro>
-              <p>in sub-paragraph (1)—</p>
-            </intro>
-            <level class="para2">
-              <num>(i)</num>
-              <content>
-                <p><mod>in paragraph (a) for <quotedText startQuote="“" endQuote="”">serious adverse reaction</quotedText> substitute <quotedText startQuote="“" endQuote="”">adverse event in respect of an animal</quotedText>;</mod></p>
-              </content>
-            </level>
-            <level class="para2">
-              <num>(ii)</num>
-              <intro>
-                <p>in paragraph (b)—</p>
-              </intro>
-              <level class="para3">
-                <num>(aa)</num>
-                <content>
-                  <p><mod>for <quotedText startQuote="“" endQuote="”">adverse reaction</quotedText> substitute <quotedText startQuote="“" endQuote="”">adverse event</quotedText>;</mod></p>
-                </content>
-              </level>
-              <level class="para3">
-                <num>(bb)</num>
-                <content>
-                  <p><mod>omit <quotedText startQuote="“" endQuote="”">or</quotedText>;</mod></p>
-                </content>
-              </level>
-            </level>
-            <level class="para2">
-              <num>(iii)</num>
-              <content>
-                <p><mod>omit <quotedText startQuote="“" endQuote="”">in the United Kingdom</quotedText>;</mod></p>
-              </content>
-            </level>
-          </level>
+          <content>
+            <p>In these Regulations, “the 2013 Regulations” means the Veterinary Medicines Regulations 2013<authorialNote marker="2" class="footnote"><p>S.I. 2013/2033 (as amended by S.I. 2014/599, 2018/761, 2019/676 (itself amended by S.I. 2020/461), 865, 1488, 2020/1461 and 1631).</p></authorialNote>.</p>
+          </content>
         </article>
       </part>
-      <hcontainer name="signatures">
-        <hcontainer name="signatureBlock">
-          <content>
-            <block name="signature">Name</block>
-            <block name="role">Parliamentary Under Secretary of State</block>
-            <block name="date"><date date="9999-01-01">Date</date></block>
-            <block name="role">Department for Environment, Food and Rural Affairs</block>
-          </content>
-        </hcontainer>
-      </hcontainer>
     </body>
-    <conclusions eId="backCover">
-      <blockContainer class="explanatoryNote">
-        <heading>EXPLANATORY NOTE</heading>
-        <subheading>(This note is not part of the Regulations)</subheading>
-        <p>These Regulations amend the Veterinary Medicines Regulations 2013 (S.I. 2013/2033, “the 2013 Regulations”) in respect of Great Britain only.</p>
-      </blockContainer>
-    </conclusions>
   </bill>
 </akomaNtoso>
