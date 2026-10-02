@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:ukl="https://www.legislation.gov.uk/namespaces/UK-AKN" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <bill name="uksi">
+    <meta>
+      <references source="#author">
+        <TLCConcept eId="varSITitle" href="#varOntologies" showAs="The Road Vehicles (Construction and Use) (Amendment) Regulations 2022" />
+        <TLCConcept eId="varSIYear" href="#varOntologies" showAs="2022" />
+        <TLCConcept eId="varLaidDate" href="#varOntologies" showAs="2022-01-24T00:00:00.0000000" />
+        <TLCConcept eId="varCommenceDate" href="#varOntologies" showAs="2022-02-14T00:00:00.0000000" />
+        <TLCConcept eId="varSINoComp" href="#varOntologies" showAs="0000" />
+      </references>
+    </meta>
+    <coverPage />
+    <preface eId="fnt">
+      <block name="banner">STATUTORY INSTRUMENTS</block>
+      <block name="number"><docNumber><ref href="#varSINo" class="placeholder" /></docNumber></block>
+      <container name="subjects">
+        <container name="subject">
+          <block name="subject"><concept refersTo="" class="title">ROAD TRAFFIC</concept></block>
+        </container>
+      </container>
+      <block name="title"><docTitle><ref href="#varSITitle" class="placeholder" /></docTitle></block>
+      <container name="dates">
+        <block name="madeDate"><span>Made</span><docDate date="9999-01-01" /></block>
+        <block name="laidDate"><span>Laid before Parliament</span><docDate date="2022-01-24">24 January 2022</docDate></block>
+        <block eId="fnt__dates___commenceDate" name="commenceDate"><span>Coming into force</span><docDate date="2022-02-14">14 February 2022</docDate></block>
+      </container>
+    </preface>
+    <preamble eId="preamble">
+      <formula name="enactingText">
+        <p>The Secretary of State makes the following Regulations in exercise of the powers conferred by section 41(1), (2)(a) and (5) of the Road Traffic Act 1988 (the “1988 Act”)<authorialNote marker="1" class="footnote"><p>1988 c. 52; section 41 was amended by the Scotland Act 2016 (c. 11), Part 4, section 43, the Road Traffic Act 2006 (c. 49), sections 18(1) and 56, and the Road Traffic Act 1991 (c. 40), Schedule 4, paragraph 50 and Schedule 8.</p></authorialNote>.</p>
+        <p>Representative organisations have been consulted in accordance with section 195(2) of the 1988 Act.</p>
+      </formula>
+    </preamble>
+    <body>
+      <article eId="sec_1" class="prov1">
+        <heading>Citation, commencement and extent</heading>
+        <num>1.</num>
+        <paragraph class="prov2">
+          <num>(1)</num>
+          <content>
+            <p>These Regulations may be cited as the Road Vehicles (Construction and Use) (Amendment) Regulations 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(2)</num>
+          <content>
+            <p>These Regulations come into force on 14th February 2022.</p>
+          </content>
+        </paragraph>
+        <paragraph class="prov2">
+          <num>(3)</num>
+          <content>
+            <p>These Regulations extend to England and Wales and Scotland. For the purpose of Part 1 of the Act, contact plantprotection@cadentgas.com. See <a href="https://www.legislation.gov.uk/ukpga/2026/10/enacted">https://www.legislation.gov.uk/ukpga/2026/10/enacted</a>, <a href="https://www.gov.uk/">https://www.gov.uk</a> and <a href="http://www.gov.wales/">www.gov.wales</a>.</p>
+          </content>
+        </paragraph>
+      </article>
+      <hcontainer name="signatures">
+        <hcontainer name="signatureBlock">
+          <content>
+            <p>Signed by the authority of the Secretary of State for Transport</p>
+            <block name="role">Parliamentary Under Secretary of State</block>
+            <block name="date"><date date="2025-09-02">2nd September 2025</date></block>
+            <block name="role">Department for Transport</block>
+          </content>
+        </hcontainer>
+      </hcontainer>
+    </body>
+  </bill>
+</akomaNtoso>

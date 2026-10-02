@@ -1,7 +1,5 @@
 using System.Linq;
 
-using DocumentFormat.OpenXml.Wordprocessing;
-
 using Shouldly;
 
 using UK.Gov.Legislation.Judgments;
@@ -11,46 +9,9 @@ using Xunit;
 
 namespace test.parsers.common.enrich;
 
-public partial class TestPartyEnricher
+public class TestPartyEnricherEnrich : ParserTestBase
 {
     private static readonly PartyEnricher PartyEnricher = new();
-
-    private static readonly WLine LineTemplate = new(null, new Paragraph());
-
-    private static WLine TextLine(params string[] text)
-    {
-        return new WLine(LineTemplate, text.Select(t => new WText(t, null)));
-    }
-
-    private static WRow RowOf(params string[] cells)
-    {
-        return new WRow(TableOf(), null, null, cells.Select(c => CellOf(c)));
-    }
-
-    private static WRow RowOf(WCell[] cells)
-    {
-        return new WRow(TableOf(), null, null, cells);
-    }
-
-    private static WCell CellOf(params string[] lines)
-    {
-        return new WCell(RowOf(), null, lines.Select(l => TextLine(l)));
-    }
-
-    private static WCell CellWithOneLineOf(params string[] text)
-    {
-        return new WCell(RowOf(), null, [TextLine(text)]);
-    }
-
-    private static WTable TableOf(params string[][] rows)
-    {
-        return new WTable(null, null, null, rows.Select(RowOf));
-    }
-
-    private static WTable TableOf(WRow[] rows)
-    {
-        return new WTable(null, null, null, rows);
-    }
 
     [Theory]
     [InlineData("REX")]
@@ -416,11 +377,6 @@ public partial class TestPartyEnricher
         defendantParty.Role.ShouldBe(PartyRole.Defendant);
         defendantParty.Text.ShouldBe("John Smith");
         defendantLine.Contents.ElementAt(2).ShouldBeOfType<WRole>().Role.ShouldBe(PartyRole.Defendant);
-    }
-
-    private static WTab Tab()
-    {
-        return new WTab(new TabChar());
     }
 
     public static TheoryData<string, IBlock> NonMatchingNameAndRoleLines()

@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881" />
           <FRBRdate date="2025-07-25" name="judgment" />
-          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="1881" />
           <FRBRname value="AXA FRANCE IARD S.A. v SANTANDER CARDS UK LIMITED" />
@@ -16,13 +16,13 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881" />
           <FRBRdate date="2025-07-25" name="judgment" />
-          <FRBRauthor href="#ewhc-kbd" />
+          <FRBRauthor href="#ewhc-kbd-commercial" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:26" name="transform" />
+          <FRBRdate date="2026-10-01T14:31:53" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -31,7 +31,7 @@
         <eventRef date="2025-07-25" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
-        <TLCOrganization eId="ewhc-kbd" href="https://www.gov.uk/courts-tribunals/kings-bench-division-of-the-high-court" showAs="The King's Bench Division of the High Court" />
+        <TLCOrganization eId="ewhc-kbd-commercial" href="https://www.gov.uk/courts-tribunals/commercial-court" showAs="The Business and Property Courts (Commercial Court)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="axa-france-iard-sa" href="" showAs="AXA FRANCE IARD S.A." />
@@ -43,12 +43,12 @@
         <TLCPerson eId="judge-the-honourable-mrs-justice-dias" href="/judge-the-honourable-mrs-justice-dias" showAs="THE HONOURABLE MRS JUSTICE DIAS" />
       </references>
       <proprietary source="#">
-        <uk:court>EWHC-KBD</uk:court>
+        <uk:court>EWHC-KBD-Commercial</uk:court>
         <uk:year>2025</uk:year>
         <uk:number>1881</uk:number>
         <uk:cite>[2025] EWHC 1881 (Comm)</uk:cite>
         <uk:caseNumber>CL-2021-000046</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.17.0</uk:parser>
         <uk:hash>116fa7729d8be1750a8f1c0429f6b470e43d94c25fd31560efa0fe8e7b2686de</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -131,10 +131,10 @@
       <p style="text-align:center"><img src="image1.png" style="width:76.3pt;height:75.6pt" /></p>
       <p class="CoverText" style="text-align:left">Neutral Citation Number: <neutralCitation>[2025] EWHC 1881 (Comm)</neutralCitation></p>
       <p class="CoverText">Case No: <docketNumber>CL-2021-000046</docketNumber></p>
-      <p class="CoverMain"><courtType refersTo="#ewhc-kbd">IN THE HIGH COURT OF JUSTICE</courtType></p>
-      <p><courtType refersTo="#ewhc-kbd" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">KING'S BENCH DIVISION</courtType></p>
-      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES</span></p>
-      <p><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</span></p>
+      <p class="CoverMain"><courtType refersTo="#ewhc-kbd-commercial">IN THE HIGH COURT OF JUSTICE</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">KING'S BENCH DIVISION</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES</courtType></p>
+      <p><courtType refersTo="#ewhc-kbd-commercial" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">COMMERCIAL COURT</courtType></p>
       <p class="CoverText">Royal Courts of Justice, Rolls Building</p>
       <p class="CoverText">Fetter Lane, London, EC4A 1NL</p>
       <p class="CoverText">Date: <docDate date="2025-07-25" refersTo="#judgment">25<span style="vertical-align:super;font-size:smaller">th </span>July 2025</docDate></p>
@@ -4969,20 +4969,20 @@
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881" />
                 <FRBRdate date="2025-07-25" name="judgment" />
-                <FRBRauthor href="#ewhc-kbd" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881" />
                 <FRBRdate date="2025-07-25" name="judgment" />
-                <FRBRauthor href="#ewhc-kbd" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRlanguage language="eng" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/data.xml" />
-                <FRBRdate date="2026-01-22T09:58:26" name="transform" />
+                <FRBRdate date="2026-10-01T14:31:53" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>
@@ -6638,20 +6638,20 @@
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881/annex/2" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/comm/2025/1881" />
                 <FRBRdate date="2025-07-25" name="judgment" />
-                <FRBRauthor href="#ewhc-kbd" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/annex/2" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881" />
                 <FRBRdate date="2025-07-25" name="judgment" />
-                <FRBRauthor href="#ewhc-kbd" />
+                <FRBRauthor href="#ewhc-kbd-commercial" />
                 <FRBRlanguage language="eng" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/annex/2/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/comm/2025/1881/data.xml" />
-                <FRBRdate date="2026-01-22T09:58:27" name="transform" />
+                <FRBRdate date="2026-10-01T14:31:54" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

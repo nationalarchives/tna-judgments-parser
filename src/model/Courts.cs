@@ -1,6 +1,5 @@
 #nullable enable
 
-using System.Linq;
 using System.Text.RegularExpressions;
 
 using NationalArchives.FindCaseLaw.Utils;
@@ -24,7 +23,7 @@ public record Court
     public Regex? CitationPattern => fclCourt.NcnPattern is not null ? new Regex(fclCourt.NcnPattern) : null;
 }
 
-public static partial class Courts
+public partial class Courts()
 {
     private static readonly CourtStore CourtStore = new();
 
@@ -36,33 +35,6 @@ public static partial class Courts
     public static Court GetByCode(string courtCode)
     {
         return new Court(CourtStore.Get(courtCode));
-    }
-
-    public static Court? ExtractFromCitation(string cite)
-    {
-        var cleanedCite = cite.CleanWhitespace();
-
-        if (string.IsNullOrWhiteSpace(cleanedCite))
-        {
-            return null;
-        }
-
-        var fclCourtMatchingCites = CourtStore
-                                    .Where(c => c.NcnPattern is not null
-                                                && Regex.IsMatch(cleanedCite, RegexHelpers.AddAnchors(c.NcnPattern)))
-                                    .ToArray();
-
-        return fclCourtMatchingCites switch
-        {
-            { Length: 0 } => null,
-            { Length: 1 } => new Court(fclCourtMatchingCites[0]),
-
-            // If there are more than one match then we'll return our best guess
-            // It's most likely to be a kings vs queens scenario then favour kings as new courts going through the parser
-            // are kings and historic tribunals going through backlog parser will have the court specified
-            // To do this we'll sort by code and return the first match because KBD > QBD
-            _ => new Court(fclCourtMatchingCites.OrderBy(c => c.Code).First())
-        };
     }
 
     public static readonly Court SupremeCourt = GetByCode("UKSC");
@@ -81,59 +53,124 @@ public static partial class Courts
     public static readonly Court EWHC_KBD = GetByCode("EWHC-KBD");
     public static readonly Court EWHC_QBD = GetByCode("EWHC-QBD");
 
-    public static readonly Court EWHC_Chancery = GetByCode("EWHC-Chancery");
+    public const string EwhcChanceryCourtCode = "EWHC-Chancery";
+    public const string EwhcFamilyCourtCode = "EWHC-Family";
 
-    public static readonly Court EWHC_Family = GetByCode("EWHC-Family");
+    public static readonly Court EWHC_Chancery = GetByCode(EwhcChanceryCourtCode);
+    public static readonly Court EWHC_Family = GetByCode(EwhcFamilyCourtCode);
 
     /* The four courts (non-specialist) within the Queen's Bench Division */
 
-    public static readonly Court EWHC_QBD_Administrative = GetByCode("EWHC-QBD-Admin");
-    public static readonly Court EWHC_QBD_Planning = GetByCode("EWHC-QBD-Planning");
-    public static readonly Court EWHC_QBD_BusinessAndProperty = GetByCode("EWHC-QBD-BusinessAndProperty");
+    public const string EwhcQbdPlanningCourtCode = "EWHC-QBD-Planning";
+    public const string EwhcKbdAdminCourtCode = "EWHC-KBD-Admin";
+    public const string EwhcQbdAdminCourtCode = "EWHC-QBD-Admin";
+
+    public static readonly Court EWHC_QBD_Administrative = GetByCode(EwhcQbdAdminCourtCode);
+    public static readonly Court EWHC_QBD_Planning = GetByCode(EwhcQbdPlanningCourtCode);
+
 
     /* "Specialist" Business and Property Courts within the Queen's Bench Division */
 
-    public static readonly Court EWHC_QBD_Commercial = GetByCode("EWHC-QBD-Commercial");
+    public const string EwhcKbdAdmiraltyCourtCode = "EWHC-KBD-Admiralty";
+    public const string EwhcKbdBusinessAndPropertyCourtCode = "EWHC-KBD-BusinessAndProperty";
+    public const string EwhcKbdCommercialCircuitCourtCode = "EWHC-KBD-Commercial-Circuit";
+    public const string EwhcKbdCommercialCourtCode = "EWHC-KBD-Commercial";
+    public const string EwhcKbdCommercialFinancialCourtCode = "EWHC-KBD-Commercial-Financial";
+    public const string EwhcKbdTccCourtCode = "EWHC-KBD-TCC";
 
-    public static readonly Court EWHC_QBD_Admiralty = GetByCode("EWHC-QBD-Admiralty");
+    public const string EwhcQbdAdmiraltyCourtCode = "EWHC-QBD-Admiralty";
+    public const string EwhcQbdBusinessAndPropertyCourtCode = "EWHC-QBD-BusinessAndProperty";
+    public const string EwhcQbdCommercialCircuitCourtCode = "EWHC-QBD-Commercial-Circuit";
+    public const string EwhcQbdCommercialCourtCode = "EWHC-QBD-Commercial";
+    public const string EwhcQbdCommercialFinancialCourtCode = "EWHC-QBD-Commercial-Financial";
+    public const string EwhcQbdTccCourtCode = "EWHC-QBD-TCC";
 
-    public static readonly Court EWHC_QBD_TCC = GetByCode("EWHC-QBD-TCC");
-
-    public static readonly Court EWHC_QBD_Commercial_Financial = GetByCode("EWHC-QBD-Commercial-Financial");
-
-    public static readonly Court EWHC_QBD_Commercial_Circuit = GetByCode("EWHC-QBD-Commercial-Circuit");
+    public static readonly Court EWHC_QBD_BusinessAndProperty = GetByCode(EwhcQbdBusinessAndPropertyCourtCode);
+    public static readonly Court EWHC_QBD_Commercial = GetByCode(EwhcQbdCommercialCourtCode);
+    public static readonly Court EWHC_QBD_Admiralty = GetByCode(EwhcQbdAdmiraltyCourtCode);
+    public static readonly Court EWHC_QBD_TCC = GetByCode(EwhcQbdTccCourtCode);
+    public static readonly Court EWHC_QBD_Commercial_Financial = GetByCode(EwhcQbdCommercialFinancialCourtCode);
+    public static readonly Court EWHC_QBD_Commercial_Circuit = GetByCode(EwhcQbdCommercialCircuitCourtCode);
 
     /* Courts within the Chancery Division of the High Court -- all are specialist "Business and Property Courts" */
 
-    public static readonly Court EWHC_Chancery_BusinessAndProperty = GetByCode("EWHC-Chancery-BusinessAndProperty");
+    public const string EwhcChanceryAppealsCourtCode = "EWHC-Chancery-Appeals";
+    public const string EwhcChanceryBusinessAndPropertyCourtCode = "EWHC-Chancery-BusinessAndProperty";
+    public const string EwhcChanceryBusinessCourtCode = "EWHC-Chancery-Business";
+    public const string EwhcChanceryFinancialCourtCode = "EWHC-Chancery-Financial";
+    public const string EwhcChanceryInsolvencyAndCompaniesCourtCode = "EWHC-Chancery-InsolvencyAndCompanies";
+    public const string EwhcChanceryIntellectualPropertyCourtCode = "EWHC-Chancery-IntellectualProperty";
+    public const string EwhcChanceryIpecCourtCode = "EWHC-Chancery-IPEC";
+    public const string EwhcChanceryPatentsCourtCode = "EWHC-Chancery-Patents";
+    public const string EwhcChanceryPropertyTrustsProbateCourtCode = "EWHC-Chancery-PropertyTrustsProbate";
 
-    public static readonly Court EWHC_Chancery_BusinessList = GetByCode("EWHC-Chancery-Business");
+    public static readonly Court
+        EWHC_Chancery_BusinessAndProperty = GetByCode(EwhcChanceryBusinessAndPropertyCourtCode);
+
+    public static readonly Court EWHC_Chancery_BusinessList = GetByCode(EwhcChanceryBusinessCourtCode);
 
     public static readonly Court EWHC_Chancery_InsolvencyAndCompanies =
-        GetByCode("EWHC-Chancery-InsolvencyAndCompanies");
+        GetByCode(EwhcChanceryInsolvencyAndCompaniesCourtCode);
 
-    public static readonly Court EWHC_Chancery_Financial = GetByCode("EWHC-Chancery-Financial");
+    public static readonly Court EWHC_Chancery_Financial = GetByCode(EwhcChanceryFinancialCourtCode);
 
-    public static readonly Court EWHC_Chancery_IntellectualProperty = GetByCode("EWHC-Chancery-IntellectualProperty");
+    public static readonly Court EWHC_Chancery_IntellectualProperty =
+        GetByCode(EwhcChanceryIntellectualPropertyCourtCode);
 
-    public static readonly Court EWHC_Chancery_PropertyTrustsProbate = GetByCode("EWHC-Chancery-PropertyTrustsProbate");
+    public static readonly Court EWHC_Chancery_PropertyTrustsProbate =
+        GetByCode(EwhcChanceryPropertyTrustsProbateCourtCode);
 
-    public static readonly Court EWHC_Chancery_Patents = GetByCode("EWHC-Chancery-Patents");
-
-    public static readonly Court EWHC_Chancery_IPEC = GetByCode("EWHC-Chancery-IPEC");
-
-    public static readonly Court EWHC_Chancery_Appeals = GetByCode("EWHC-Chancery-Appeals");
+    public static readonly Court EWHC_Chancery_Patents = GetByCode(EwhcChanceryPatentsCourtCode);
+    public static readonly Court EWHC_Chancery_IPEC = GetByCode(EwhcChanceryIpecCourtCode);
+    public static readonly Court EWHC_Chancery_Appeals = GetByCode(EwhcChanceryAppealsCourtCode);
 
     public static readonly Court EWHC_SeniorCourtsCosts = GetByCode("EWHC-SeniorCourtsCosts");
 
+
+    /* Business and Property Division */
+
+    public const string EwhcBpdAdmiraltyCourtCode = "EWHC-BPD-Admiralty";
+    public const string EwhcBpdAppealsCourtCode = "EWHC-BPD-Appeals";
+    public const string EwhcBpdBusinessCourtCode = "EWHC-BPD-Business";
+    public const string EwhcBpdCommercialCircuitCourtCode = "EWHC-BPD-Commercial-Circuit";
+    public const string EwhcBpdCommercialCourtCode = "EWHC-BPD-Commercial";
+    public const string EwhcBpdCommercialFinancialCourtCode = "EWHC-BPD-Commercial-Financial";
+    public const string EwhcBpdCompetitionCourtCode = "EWHC-BPD-Competition";
+    public const string EwhcBpdCourtCode = "EWHC-BPD";
+    public const string EwhcBpdInsolvencyAndCompaniesCourtCode = "EWHC-BPD-InsolvencyAndCompanies";
+    public const string EwhcBpdIntellectualPropertyCourtCode = "EWHC-BPD-IntellectualProperty";
+    public const string EwhcBpdIpecCourtCode = "EWHC-BPD-IPEC";
+    public const string EwhcBpdPatentsCourtCode = "EWHC-BPD-Patents";
+    public const string EwhcBpdPropertyTrustsProbateCourtCode = "EWHC-BPD-PropertyTrustsProbate";
+    public const string EwhcBpdRevenueCourtCode = "EWHC-BPD-Revenue";
+    public const string EwhcBpdTccCourtCode = "EWHC-BPD-TCC";
+
+    public static readonly Court EwhcBpdAdmiralty = GetByCode(EwhcBpdAdmiraltyCourtCode);
+    public static readonly Court EwhcBpdAppeals = GetByCode(EwhcBpdAppealsCourtCode);
+    public static readonly Court EwhcBpdBusiness = GetByCode(EwhcBpdBusinessCourtCode);
+    public static readonly Court EwhcBpdCommercialCircuit = GetByCode(EwhcBpdCommercialCircuitCourtCode);
+    public static readonly Court EwhcBpdCommercial = GetByCode(EwhcBpdCommercialCourtCode);
+    public static readonly Court EwhcBpdCommercialFinancial = GetByCode(EwhcBpdCommercialFinancialCourtCode);
+    public static readonly Court EwhcBpdCompetition = GetByCode(EwhcBpdCompetitionCourtCode);
+    public static readonly Court EwhcBpd = GetByCode(EwhcBpdCourtCode);
+    public static readonly Court EwhcBpdInsolvencyAndCompanies = GetByCode(EwhcBpdInsolvencyAndCompaniesCourtCode);
+    public static readonly Court EwhcBpdIntellectualProperty = GetByCode(EwhcBpdIntellectualPropertyCourtCode);
+    public static readonly Court EwhcBpdIpec = GetByCode(EwhcBpdIpecCourtCode);
+    public static readonly Court EwhcBpdPatents = GetByCode(EwhcBpdPatentsCourtCode);
+    public static readonly Court EwhcBpdPropertyTrustsProbate = GetByCode(EwhcBpdPropertyTrustsProbateCourtCode);
+    public static readonly Court EwhcBpdRevenue = GetByCode(EwhcBpdRevenueCourtCode);
+    public static readonly Court EwhcBpdTcc = GetByCode(EwhcBpdTccCourtCode);
+
     /* other courts */
 
-    public static readonly Court EWCOP = GetByCode("EWCOP");
+    public const string EwcopCourtCode = "EWCOP";
+    public static readonly Court EWCOP = GetByCode(EwcopCourtCode);
     public static readonly Court EWCOP_T1 = GetByCode("EWCOP-T1");
     public static readonly Court EWCOP_T2 = GetByCode("EWCOP-T2");
     public static readonly Court EWCOP_T3 = GetByCode("EWCOP-T3");
 
-    public static readonly Court EWFC = GetByCode("EWFC");
+    public const string EwfcCourtCode = "EWFC";
+    public static readonly Court EWFC = GetByCode(EwfcCourtCode);
     public static readonly Court EWFC_B = GetByCode("EWFC-B");
 
     public static readonly Court EWCC = GetByCode("EWCC");
@@ -164,6 +201,7 @@ public static partial class Courts
 
     public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
     public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
+    public const string EwhcCodesPattern = "Admin|Admlty|BP|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC";
 
     [GeneratedRegex(@"^(IN THE )?First-tier Tribunal$", RegexOptions.IgnoreCase, "en-GB")]
     public static partial Regex FirstTierTribunalIdentifierRegex();

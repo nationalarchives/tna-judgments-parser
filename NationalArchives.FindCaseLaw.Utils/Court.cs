@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace NationalArchives.FindCaseLaw.Utils;
@@ -21,12 +20,20 @@ public readonly record struct Court()
     [JsonPropertyName("ncn_examples")] public string[] NcnExamples { get; init; } = [];
     [JsonPropertyName("param")] public string? Param { get; init; }
     [JsonPropertyName("start_year")] public int? StartYear { get; init; }
-    [JsonPropertyName("selectable")] public bool? Selectable { get; init; }
-    [JsonPropertyName("listable")] public bool? Listable { get; init; }
+    [JsonPropertyName("end_year")] public int? EndYear { get; init; }
+    [JsonPropertyName("ended")] public bool? Ended { get; init; }
+
+    [JsonPropertyName("show_in_search_filters")]
+    public required bool ShowInSearchFilters { get; init; }
+
+    [JsonPropertyName("show_in_public_directory")]
+    public required bool ShowInPublicDirectory { get; init; }
+
+    [JsonPropertyName("show_to_editors")] public required bool ShowToEditors { get; init; }
+    [JsonPropertyName("court_of_record")] public bool? CourtOfRecord { get; init; }
     [JsonPropertyName("identifier_iri")] public required string IdentifierIri { get; init; }
     [JsonPropertyName("grouped_name")] public string? GroupedName { get; init; }
     [JsonPropertyName("extra_params")] public string[] ExtraParams { get; init; } = [];
-    [JsonPropertyName("end_year")] public int? EndYear { get; init; }
     [JsonPropertyName("jurisdictions")] public Jurisdictions[] Jurisdictions { get; init; } = [];
 }
 

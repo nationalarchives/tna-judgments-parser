@@ -7,7 +7,7 @@ using Xunit;
 
 namespace test.parsers.common.enrich;
 
-public partial class TestPartyEnricher
+public class TestPartyEnricherTryGetSingleParty : ParserTestBase
 {
     [Theory]
     [InlineData("(1st DEFENDANT)", PartyRole.Defendant)]

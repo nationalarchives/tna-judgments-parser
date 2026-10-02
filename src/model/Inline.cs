@@ -238,6 +238,10 @@ internal interface ICourtType2 : ICourtType
     IEnumerable<IInline> Contents { get; init; }
 }
 
+internal interface IProceedingsIdentifier : IFormattedText
+{
+}
+
 internal interface ICaseNo : IFormattedText
 {
 }

@@ -1,4 +1,5 @@
 
+using System;
 using System.Linq;
 using System.Xml;
 
@@ -61,7 +62,31 @@ partial class Builder
         {
             return;
         }
+        if (model is IHyperlink2 link && !DisplayTextMatchesHref(link))
+        {
+            // Links whose visible text is not the URL itself are imported as plain text (LCO-5084)
+            AddInlines(parent, link.Contents);
+            return;
+        }
         base.AddInline(parent, model);
+    }
+
+    // Ignores a leading http:// or https:// and a trailing slash, so www.gov.wales matches http://www.gov.wales/
+    private static bool DisplayTextMatchesHref(IHyperlink2 link)
+    {
+        var text = NormaliseUrl(IInline.ToString(link.Contents));
+        var href = NormaliseUrl(Uri.UnescapeDataString(link.Href));
+        return string.Equals(text, href, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string NormaliseUrl(string url)
+    {
+        var normalised = url.Trim();
+        if (normalised.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            normalised = normalised["https://".Length..];
+        else if (normalised.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            normalised = normalised["http://".Length..];
+        return normalised.TrimEnd('/');
     }
 
     void AddDef(XmlElement parent, Def def)

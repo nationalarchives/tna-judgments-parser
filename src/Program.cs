@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.IO.Compression;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 
@@ -16,10 +15,6 @@ using UK.Gov.Legislation.Lawmaker.Api;
 
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using Api = UK.Gov.NationalArchives.Judgments.Api;
-
-[assembly: InternalsVisibleTo("test")]
-[assembly: InternalsVisibleTo("NationalArchives.FindCaseLaw.Backlog.Tests")]
-[assembly: InternalsVisibleTo("backlog")]
 
 public class Program
 {

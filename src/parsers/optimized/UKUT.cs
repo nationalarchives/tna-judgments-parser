@@ -210,14 +210,12 @@ internal class OptimizedUKUTParser : OptimizedParser
 
     private readonly List<Enricher> headerEnrichers =
     [
-        // new RemoveTrailingWhitespace(),
-        // new Merger(),
         new UKUT.CourtType(),
         new UKUT.Citation(),
         new UKUT.CourtType2(),
-        new UKUT.CaseNo(),
         new UKUT.Date1(),
         new PartyEnricher(),
+        new UKUT.ProceedingsIdentifierEnricher(),
         new UKUT.JudgeNames()
     ];
 
