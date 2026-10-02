@@ -7,7 +7,7 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ipec/2022/941" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/ipec/2022/941" />
           <FRBRdate date="2022-04-20" name="judgment" />
-          <FRBRauthor href="#ewhc-chancery-intellectualproperty" />
+          <FRBRauthor href="#ewhc-chancery-ipec" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="941" />
           <FRBRname value="MATCH GROUP, LLC v MUZMATCH LIMITED" />
@@ -16,13 +16,13 @@
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/941" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/941" />
           <FRBRdate date="2022-04-20" name="judgment" />
-          <FRBRauthor href="#ewhc-chancery-intellectualproperty" />
+          <FRBRauthor href="#ewhc-chancery-ipec" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/941/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/941/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:32" name="transform" />
+          <FRBRdate date="2026-10-01T14:31:54" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -31,7 +31,7 @@
         <eventRef date="2022-04-20" refersTo="#judgment" source="#" />
       </lifecycle>
       <references source="#tna">
-        <TLCOrganization eId="ewhc-chancery-intellectualproperty" href="https://www.gov.uk/courts-tribunals/the-intellectual-property-list" showAs="The Business and Property Courts (Intellectual Property List)" />
+        <TLCOrganization eId="ewhc-chancery-ipec" href="https://www.gov.uk/courts-tribunals/intellectual-property-enterprise-court" showAs="The Business and Property Courts (Intellectual Property Enterprise Court)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
         <TLCPerson eId="match-group-llc" href="" showAs="MATCH GROUP, LLC" />
@@ -43,11 +43,11 @@
         <TLCRole eId="defendant" href="" showAs="Defendant" />
       </references>
       <proprietary source="#">
-        <uk:court>EWHC-Chancery-IntellectualProperty</uk:court>
+        <uk:court>EWHC-Chancery-IPEC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>941</uk:number>
         <uk:cite>[2022] EWHC 941 (IPEC)</uk:cite>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.17.0</uk:parser>
         <uk:hash>dac04b11c8c1a0d8ace73b7d428599aefc8f8c7e4eccd5b3ea1dfd90f9c9974e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -112,10 +112,10 @@
       <p style="text-align:center"><img src="image1.png" style="width:76.5pt;height:75pt" /></p>
       <p><span style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Neutral Citation Number: </span><neutralCitation style="text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">[2022] EWHC 941 (IPEC)</neutralCitation></p>
       <p style="text-align:right"><span style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">Claim no. IP-2020-000080</span></p>
-      <p><courtType refersTo="#ewhc-chancery-intellectualproperty" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">in the HIGH court OF JUSTICE </courtType></p>
-      <p><courtType refersTo="#ewhc-chancery-intellectualproperty" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">BUSINESS AND PROPERTY COURTS OF ENGLAND &amp; WALES</courtType></p>
-      <p><courtType refersTo="#ewhc-chancery-intellectualproperty" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">INTELLECTUAL PROPERTY LIST (CHD)</courtType></p>
-      <p><span style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">INTELLECTUAL PROPERTY ENTERPRISE COURT </span></p>
+      <p><courtType refersTo="#ewhc-chancery-ipec" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">in the HIGH court OF JUSTICE </courtType></p>
+      <p><courtType refersTo="#ewhc-chancery-ipec" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">BUSINESS AND PROPERTY COURTS OF ENGLAND &amp; WALES</courtType></p>
+      <p><courtType refersTo="#ewhc-chancery-ipec" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">INTELLECTUAL PROPERTY LIST (CHD)</courtType></p>
+      <p><courtType refersTo="#ewhc-chancery-ipec" style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">INTELLECTUAL PROPERTY ENTERPRISE COURT </courtType></p>
       <p><span style="font-weight:bold;text-transform:uppercase;font-family:'Times New Roman'">EUROPEAN UNION TRADE MARK COURT</span></p>
       <p style="text-align:right"><span style="font-family:'Times New Roman'">Judgment handed down by email</span></p>
       <p style="text-align:right"><span style="font-family:'Times New Roman'">Date: </span><docDate date="2022-04-20" refersTo="#judgment" style="font-family:'Times New Roman'">Wednesday 20 April 2022</docDate></p>
