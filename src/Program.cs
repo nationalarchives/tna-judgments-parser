@@ -14,7 +14,6 @@ using UK.Gov.Legislation.Lawmaker;
 using UK.Gov.Legislation.Lawmaker.Api;
 
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
-using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 public class Program
 {
@@ -27,8 +26,6 @@ public class Program
     private static readonly Option<FileInfo> OutputZipOption = new("--output-zip") { Description = "the .zip file" };
     private static readonly Option<FileInfo> OutputHtmlOption = new("--output-html") { Description = "the .html file (leg doc types only)" };
     private static readonly Option<FileInfo> LogOption = new("--log") { Description = "the log file" };
-    private static readonly Option<bool> TestOption = new("--test") { Description = "whether to test the result" };
-    private static readonly Option<FileInfo> AttachmentOption = new("--attachment") { Description = "an associated file to include" };
     private static readonly Option<string> HintOption = new("--hint") { Description = "the type of document: 'em', 'en', 'ia', 'tn', 'cop', 'od' or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'" };
     private static readonly Option<string> SubtypeOption = new("--subtype") { Description = "the subtype of the document e.g. 'order'. Only applicable if --hint is a secondary type" };
     private static readonly Option<string> ProcedureOption = new("--procedure") { Description = "the procedure of the document e.g. 'made', 'draftaffirm'. Only applicable if --hint is a secondary type" };
@@ -44,8 +41,6 @@ public class Program
             OutputZipOption,
             OutputHtmlOption,
             LogOption,
-            TestOption,
-            AttachmentOption,
             HintOption,
             SubtypeOption,
             ProcedureOption,
@@ -97,7 +92,7 @@ public class Program
         return Command.Parse(args).Invoke();
     }
 
-    private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log, bool test, FileInfo attachment,
+    private static (FileInfo input, FileInfo output, FileInfo outputZip, FileInfo outputHtml, FileInfo log,
         string hint, string subType, string procedure, string[] language, string manifestationName) GetParsedArgs(ParseResult parseResult)
     {
         return (input: parseResult.GetValue(InputOption),
@@ -105,8 +100,6 @@ public class Program
             outputZip: parseResult.GetValue(OutputZipOption),
             outputHtml: parseResult.GetValue(OutputHtmlOption),
             log: parseResult.GetValue(LogOption),
-            test: parseResult.GetValue(TestOption),
-            attachment: parseResult.GetValue(AttachmentOption),
             hint: parseResult.GetValue(HintOption),
             subType: parseResult.GetValue(SubtypeOption),
             procedure: parseResult.GetValue(ProcedureOption),
@@ -116,7 +109,7 @@ public class Program
 
     static int Transform(ParseResult parseResult)
     {
-        var (input, output, outputZip, outputHtml, log, test, attachment, hint, subType, procedure, language, manifestationName) = GetParsedArgs(parseResult);
+        var (input, output, outputZip, outputHtml, log, hint, subType, procedure, language, manifestationName) = GetParsedArgs(parseResult);
 
         ILogger logger = null;
         if (log is not null)
@@ -127,7 +120,7 @@ public class Program
         }
         if (LegCLI.IsLegHint(hint))
         {
-            LegCLI.Transform(hint, input, output, outputZip, outputHtml, log, attachment, manifestationName);
+            LegCLI.Transform(hint, input, output, outputZip, outputHtml, log, null, manifestationName);
             return Success;
         }
 
@@ -169,58 +162,9 @@ public class Program
             Console.Error.WriteLine($"Error: Invalid hint '{hint}'. Supported values: 'em', 'en', 'ia', 'tn', 'cop', 'od', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
             Environment.Exit(1);
         }
-        // No hint: fall through to the judgment parser path.
-        var docx = File.ReadAllBytes(input.FullName);
-        Api.Request request;
-        if (attachment is null)
-        {
-            request = new Api.Request { Content = docx };
-        }
-        else
-        {
-            var docxA = File.ReadAllBytes(attachment.FullName);
-            var a = new Api.Attachment { Content = docxA, Filename = attachment.Name };
-            request = new Api.Request { Content = docx, Attachments = new Api.Attachment[] { a } };
-        }
-
-        var parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new AkN.Validator());
-        Api.Response response = parser.Parse(request);
-        if (outputZip is not null)
-            SaveZip(response, outputZip);
-        else if (output is not null)
-            File.WriteAllText(output.FullName, response.Xml);
-        else
-            Console.WriteLine(response.Xml);
-        if (test)
-            Print(response.Meta);
-
-        return Success;
-    }
-
-    private static void SaveZip(Api.Response response, FileInfo file)
-    {
-        using var stream = new FileStream(file.FullName, FileMode.Create);
-        using var archive = new ZipArchive(stream, ZipArchiveMode.Create);
-        var entry = archive.CreateEntry("judgment.xml");
-        using (var zip = entry.Open())
-        {
-            var bytes = Encoding.UTF8.GetBytes(response.Xml);
-            zip.Write(bytes, 0, bytes.Length);
-        }
-        entry = archive.CreateEntry("meta.json");
-        using (var zip = entry.Open())
-        {
-            var options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            var json = JsonSerializer.Serialize(response.Meta, options);
-            var bytes = Encoding.UTF8.GetBytes(json);
-            zip.Write(bytes, 0, bytes.Length);
-        }
-        foreach (var image in response.Images)
-        {
-            entry = archive.CreateEntry(image.Name);
-            using var zip = entry.Open();
-            zip.Write(image.Content, 0, image.Content.Length);
-        }
+        logger?.LogCritical("no hint provided");
+        Console.Error.WriteLine("Error: no hint provided. Supported values: 'em', 'en', 'ia', 'tn', 'cop', 'od', or a Lawmaker type such as 'nipubb', 'uksi', or 'ukprib'.");
+        return Failure;
     }
 
     private static void SaveImagesToZip(IEnumerable<Image> images, FileInfo file)
@@ -254,12 +198,4 @@ public class Program
         }
     }
 
-    private static void Print(Api.Meta meta)
-    {
-        Console.Error.WriteLine(meta.Uri);
-        Console.Error.WriteLine(meta.Court);
-        Console.Error.WriteLine(meta.Date);
-        Console.Error.WriteLine(meta.Cite);
-        Console.Error.Write(meta.Name);
-    }
 }
