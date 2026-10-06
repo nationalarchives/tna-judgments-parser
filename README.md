@@ -9,9 +9,7 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
   * [Deployment](#deployment)
     * [Find Case Law](#find-case-law-1)
       * [Validating a deployment](#validating-a-deployment)
-  * [Using the parser API](#using-the-parser-api)
-    * [C# API](#c-api)
-    * [CLI](#cli)
+  * [Using the parser CLI](#using-the-parser-cli)
   * [Local development](#local-development)
     * [Dev Containers](#dev-containers)
     * [Pre-commit hooks](#pre-commit-hooks)
@@ -52,60 +50,29 @@ This parser converts UK judgments from .docx format to XML. It is written in C# 
 
 1. Go to [Find Case Law](https://caselaw.nationalarchives.gov.uk/) and check that a new judgment has the latest `<uk:parser>` version in it.
 
-## Using the parser API
+## Using the parser CLI
 
-### C# API
+The repo's CLI (`dotnet run --input path/to/file.docx --hint <hint> ...`, run from the repo root) handles legislation and Lawmaker document types only. Judgment parsing (find-caselaw) is not available from this CLI.
 
-To invoke the parser programatically, clients should use the classes in the [UK.Gov.NationalArchives.Judgments.Api](./src/api/) namespace.
-1. Create a [Request](./src/api/Request.cs) object, with the following properties:
-    - Content (required), a byte array, the content of the judgment, in .docx format
-    - Filename (optional), a string, the name of .docx file containing the judgment
-    - Attachments (optional), an array of [Attachment](./src/api/Request.cs) objects, having the following properties:
-        - Content (required), a byte array, the content of the attachment, in .docx format
-        - Type (required), an [enum](./src/api/Request.cs), with the following possibe values: Order
-        - Filename (optional), a string, the name of .docx file containing the attachment
-    - Meta (optional), a [Meta](./src/api/Meta.cs) object, with the following properties:
-        - Court (optional), a string, the identifier of the court
-        - Cite (optional), a string, the natural citation of the case
-        - Date (optional), a [date](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6), the date of the judgment
-        - Name (optional), a string, the case name
-        - Uri (optional), a string, a URI for the judgment
-        - Attachments (optional), an array of [ExternalAttachment](./src/api/Meta.cs) objects, having the following properties:
-            - Name (required), a string, the name of the attachment for display
-            - Link (optional), a string, a URL for the attachment
-    - Hint (optional), an [enum](./src/api/Parser.cs), with the following possibe values: UKSC, UKCA, UKHC, UKUT, Judgment, PressSummary. If present, the parser will attempt to parse a judgment only of the specified type.
-2. Pass it to the Parse method in the [Parser](./src/api/Parser.cs) class,
-3. Receive a [Response](./src/api/Response.cs) object, which will have the following properties:
-    - Xml, a string, the judgment in LegalDocML
-    - Images, an array of [Image](./src/api/Response.cs) objects, having the following properties:
-        - Content, a byte array, the content of the image
-        - Type, a string, the MIME type of the image
-        - Name, a string, the name of the image as referred to in the XML
-    - Meta, a [Meta](./src/api/Meta.cs) object, as above
+The `--hint` option is required and selects the document type: `em`, `en`, `ia`, `tn`, `cop`, `od` for legislation, or a Lawmaker type such as `nipubb`, `uksi`, or `ukprib`. For example:
 
-### CLI
-
-The parser can also be invoked from the command line, as follows:
-
-    dotnet run --input path/to/file.docx
-
-So, for example, the following command will parse the included test document and direct the output to the console:
-
-    dotnet run --input test/judgments/test1.docx
+    dotnet run --hint em --input path/to/file.docx
 
 To direct the XML output to a file, use the `--output` option, like so:
 
-    dotnet run --input test/judgments/test1.docx --output something.xml
+    dotnet run --hint em --input path/to/file.docx --output something.xml
 
 To save the XML and all of the embedded images to a .zip file, use the `--output-zip` option, like so:
 
-    dotnet run --input test/judgments/test1.docx --output-zip something.zip
+    dotnet run --hint em --input path/to/file.docx --output-zip something.zip
 
 If the `--log` option is used, the parser will log its progress to the specified file. For example:
 
-    dotnet run --input test/judgments/test1.docx --output something.xml --log log.txt
+    dotnet run --hint em --input path/to/file.docx --output something.xml --log log.txt
 
-And if the `--test` option is used, the parser will perform a few tests and display the results either in the console or, if logging is enabled, to the log file.
+To validate an existing AKN file instead of transforming a .docx, use `--validate-akn`:
+
+    dotnet run --validate-akn --input path/to/file.akn
 
 ## Local development
 
