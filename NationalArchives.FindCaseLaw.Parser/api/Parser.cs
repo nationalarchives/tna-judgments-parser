@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Xml;
 using System.Xml.Schema;
 
 using Microsoft.Extensions.Logging;
@@ -57,7 +54,7 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
             throw new InvalidAkNException(errors.First());
         }
 
-        var xml = SerializeXml(bundle.Judgment);
+        var xml = AkN.Serializer.SerializeToString(bundle.Judgment);
         var aknMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
         var meta2 = ConvertInternalMetadata(aknMetadata);
         Log(meta2);
@@ -219,13 +216,6 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
         var doc = AkN.Parser.Read(docx);
         var ps = PS.Parser.Parse(doc, meta);
         return new AkN.PSBundle(doc, ps);
-    }
-
-    internal static string SerializeXml(XmlDocument judgment)
-    {
-        using var memStrm = new MemoryStream();
-        AkN.Serializer.Serialize(judgment, memStrm);
-        return Encoding.UTF8.GetString(memStrm.ToArray());
     }
 
     internal static Meta ConvertInternalMetadata(AkN.Meta meta)
