@@ -16,6 +16,12 @@ public class Serializer {
         new Serializer(stream).Serialize(doc);
     }
 
+    public static string SerializeToString(XmlDocument doc) {
+        using var memStrm = new MemoryStream();
+        Serialize(doc, memStrm);
+        return Encoding.UTF8.GetString(memStrm.ToArray());
+    }
+
     private readonly XmlTextWriter writer;
 
     private Serializer(Stream stream) {
