@@ -38,13 +38,13 @@ jobs:
       - name: Run tests
         env:
           XUNIT_PRINT_MAX_STRING_LENGTH: 100
-        run: dotnet test tna-judgments-parser.sln --no-build --configuration release --collect:"XPlat Code Coverage" --results-directory ./coverage
+        run: dotnet test --solution tna-judgments-parser.sln --no-build --configuration release --coverlet --coverlet-output-format cobertura --results-directory ./coverage
 
       - name: Upload coverage reports to Codecov
         if: ${{ !cancelled() }}
         uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
-          files: coverage/**/coverage.cobertura.xml
+          files: coverage/*.xml
           token: ${{ secrets.CODECOV_TOKEN }} # zizmor: ignore[secrets-outside-env]
 
       - name: Upload test results to Codecov
