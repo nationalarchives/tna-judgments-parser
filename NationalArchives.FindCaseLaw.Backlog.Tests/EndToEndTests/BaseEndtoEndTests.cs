@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Amazon.S3;
 
@@ -117,8 +118,8 @@ public abstract class BaseEndToEndTests : IDisposable
     protected Guid GetParserRunIdFromLogs()
     {
         //Get parser run Id
-        var parserRunId = Guid.Parse(ConsolidatedLogger.GetLogMessageContaining("Starting parser run")
-                                                       .Split(' ')[^1]);
+        var startingParserRunLogMessage = ConsolidatedLogger.LogMessages.Single(m => m.Contains("Starting parser run"));
+        var parserRunId = Guid.Parse(startingParserRunLogMessage.Split(' ')[^1]);
         return parserRunId;
     }
 
