@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Extensions.Logging;
@@ -11,13 +12,8 @@ namespace test.Mocks;
 
 public class MockLogger<T> : Mock<ILogger<T>>
 {
-    public string GetLogMessageContaining(string partialMessage)
-    {
-        return Invocations.Where(i => i.Method.Name == nameof(ILogger.Log))
-                          .Where(i => i.Arguments[2].ToString()!.Contains(partialMessage))
-                          .Select(i => i.Arguments[2].ToString()!)
-                          .Single();
-    }
+    public IEnumerable<string> LogMessages => Invocations.Where(i => i.Method.Name == nameof(ILogger.Log))
+                                                         .Select(i => i.Arguments[2]!.ToString()!);
 
     public MockLogger<T> VerifyLog(string expectedMessage, LogLevel expectedLogLevel, Times? times = null)
     {
@@ -27,7 +23,7 @@ public class MockLogger<T> : Mock<ILogger<T>>
             x => x.Log(
                 It.Is<LogLevel>(l => l == expectedLogLevel),
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString() == expectedMessage),
+                It.Is<It.IsAnyType>((v, t) => v!.ToString() == expectedMessage),
                 It.IsAny<Exception>(),
                 It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)),
             (Times)times);
