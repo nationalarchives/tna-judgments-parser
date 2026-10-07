@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
@@ -13,6 +14,7 @@ using Fonts = UK.Gov.Legislation.Judgments.DOCX.Fonts;
 
 namespace UK.Gov.Legislation.Judgments.Parse;
 
+[DebuggerDisplay("{text}")]
 internal class WText : IFormattedText
 {
     public readonly RunProperties properties;
@@ -362,11 +364,6 @@ internal class WText : IFormattedText
         }
 
         return formatting;
-    }
-
-    public override string ToString()
-    {
-        return "WText: " + text;
     }
 }
 
