@@ -8,4 +8,8 @@
     <ProjectReference Include="../judgments.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="test" />
+  </ItemGroup>
+
 </Project>
