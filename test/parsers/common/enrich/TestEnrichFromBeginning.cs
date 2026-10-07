@@ -27,7 +27,7 @@ public class TestEnrichFromBeginning : ParserTestBase
         return new EnrichedByTest(text, properties!);
     }
 
-    [Fact(Skip = "test fails due to known bug")]
+    [Fact]
     public void Enrich_PatternDoesNotMatch_ReturnsOriginalSequenceAndNeverInvokesConstructor()
     {
         IInline[] input = [new WText("nothing to see here", BoldStyling)];
@@ -226,7 +226,7 @@ public class TestEnrichFromBeginning : ParserTestBase
         result[1].ShouldMatch<EnrichedByTest>("ID12345", ItalicStyling);
     }
 
-    [Fact(Skip = "test fails due to known bug")]
+    [Fact]
     public void Enrich_WLineOverload_NoMatch_ReturnsSameLineInstance()
     {
         var line = TextLine("ordinary text");

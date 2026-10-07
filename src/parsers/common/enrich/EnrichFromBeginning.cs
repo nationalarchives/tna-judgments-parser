@@ -28,20 +28,18 @@ internal class EnrichFromBeginning
 
         List<int> inlinePositions = [0];
         var beginning = "";
-        Match match = null;
 
         foreach (var inlineElement in rawArray)
         {
             beginning += IInline.GetText(inlineElement);
             inlinePositions.Add(beginning.Length);
-            match = Regex.Match(beginning, pattern);
-            if (match.Success)
-            {
-                break;
-            }
         }
 
-        if (match == null)
+        // Match against the fully assembled text rather than growing it run-by-run: a pattern
+        // with an optional trailing component (e.g. "...\)?") could otherwise appear to succeed
+        // before a later run (e.g. a closing ")" in its own run) has even been considered.
+        var match = Regex.Match(beginning, pattern);
+        if (!match.Success)
         {
             return raw;
         }
@@ -76,17 +74,22 @@ internal class EnrichFromBeginning
         var inside = remainder.TakeWhile((_, index) =>
         {
             var adjustedIndex = index + before.Count;
-            return inlinePositions.Count > adjustedIndex + 1 && inlinePositions[adjustedIndex + 1] <= groupEnd;
+            // The start check excludes a zero-width Inline (e.g. a line break) that sits exactly
+            // at the end of the group: it contributes no characters to the match, so it belongs
+            // after the group, not inside it.
+            return inlinePositions.Count > adjustedIndex + 1
+                && inlinePositions[adjustedIndex] < groupEnd
+                && inlinePositions[adjustedIndex + 1] <= groupEnd;
         }).ToList();
 
         // Handle boundary condition where an Inline crosses the end of the group.
         // In which case, the Inline must be split.
         List<IInline> after = [];
         inlineIndex = before.Count + inside.Count;
+        start = inlinePositions[inlineIndex];
         var end = inlinePositions.ElementAtOrDefault(inlineIndex + 1);
-        if (end > groupEnd)
+        if (start < groupEnd && end > groupEnd)
         {
-            start = inlinePositions[inlineIndex];
             var inlineToSplit = remainder.Skip(inside.Count).OfType<WText>().FirstOrDefault();
             if (inlineToSplit is not null)
             {
