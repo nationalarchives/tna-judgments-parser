@@ -4,6 +4,7 @@ using System.Linq;
 
 using Shouldly;
 
+using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
 using Xunit;
@@ -34,20 +35,30 @@ public class TestNeutralCitation : ParserTestBase
     [InlineData("NCN: [2021] EWCA Crim 1412", "[2021] EWCA Crim 1412")]
     [InlineData("NCN No: [2022] EWCA Crim 39", "[2022] EWCA Crim 39")]
     [InlineData("Neutral Citation Number: [2018[ EWCA Civ 1744", "[2018[ EWCA Civ 1744")] // stray bracket typo
+    [InlineData("NUETRAL CITATION NUMBER: [2006] EWHC 1609 (Ch)", "[2006] EWHC 1609 (Ch)")] // typo in neutral
+    [InlineData("Neutral Citaion Number: [2013] EWHC 3865 (Admin)", "[2013] EWHC 3865 (Admin)")] // typo in citation
+    [InlineData("NC NUMBER: [2019] EWCA Civ 1779", "[2019] EWCA Civ 1779")]
+    [InlineData("NC. [2019] EWHC 818 (Fam)", "[2019] EWHC 818 (Fam)")]
+    [InlineData("NC: [2026] EWCA Crim 184", "[2026] EWCA Crim 184")]
+    [InlineData("Neutral Citation Number: [2022] EWCA Civ 733", "[2022] EWCA Civ 733")] // NBSP between prefix and citation
+    [InlineData("NCN: [2021] EWCA Crim 1412", "[2021] EWCA Crim 1412")] // NBSP between short prefix and citation
+    [InlineData("Neutral Citation Number: [2007] EWHC 197 (Comm)", "[2007] EWHC 197 (Comm)")] // NBSP inside the citation itself
     public void Enrich_SingleRunWithNeutralCitationLabel_MarksUpTheCitation(string text, string expectedCitation)
     {
-        var line = TextLine(text);
+        var line = StyledLine(text, BoldStyling);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe(text[..^expectedCitation.Length]);
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe(expectedCitation);
+
+        contents[0].ShouldMatch<WText>(text[..^expectedCitation.Length], BoldStyling);
+        contents[1].ShouldMatch<WNeutralCitation>(expectedCitation, BoldStyling);
     }
 
     [Theory]
-    [InlineData("[2022] EWCA Crim 733")]
+    [InlineData("[2022] EWCA (Crim) 733")] // crim in brackets
+    [InlineData("[2022] EWCA 733 civ")] // civ not in brackets
     [InlineData("[2003] EWHC 320 (Admlty.)")] // trailing period after Admlty
     [InlineData("[2021] EWHC [3505] (IPEC)")] // number itself in brackets
     [InlineData("[2021] EWCOP 12 (T1)")]
@@ -55,27 +66,29 @@ public class TestNeutralCitation : ParserTestBase
     [InlineData("[2019] EWCR 3")]
     [InlineData("[2018] EAT 5")]
     [InlineData("[2026] EWHC 1234 (BP)")]
+    [InlineData("[2022] EWCA Civ 733")] // NBSP throughout, no label
     public void Enrich_SingleRunWithoutLabel_MarksUpTheCitation(string expectedCitation)
     {
-        var line = TextLine(expectedCitation);
+        var line = StyledLine(expectedCitation, ItalicStyling);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
-        var citation = contents.ShouldHaveSingleItem().ShouldBeOfType<WNeutralCitation>();
-        citation.Text.ShouldBe(expectedCitation);
+        contents.ShouldHaveSingleItem().ShouldMatch<WNeutralCitation>(expectedCitation, ItalicStyling);
     }
 
-    [Fact]
-    public void Enrich_SingleRunWithLeadingSpaceBeforeEwhcAdmin_MarksUpTheCitation()
+    [Theory]
+    [InlineData(" ")]
+    [InlineData(" ")]
+    public void Enrich_SingleRunWithLeadingWhitespace_MarksUpTheCitation(string leadingWhitespace)
     {
-        var line = TextLine(" [2022] EWHC 307 (Admin)");
+        var line = TextLine(leadingWhitespace + "[2022] EWHC 307 (Admin)");
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe(" ");
+        contents[0].ShouldBeOfType<WText>().Text.ShouldBe(leadingWhitespace);
         contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2022] EWHC 307 (Admin)");
     }
 
@@ -83,6 +96,7 @@ public class TestNeutralCitation : ParserTestBase
     [InlineData("This is just ordinary text.")]
     [InlineData("EWCA Civ 100")] // no year, no brackets
     [InlineData("Neutral Citation Number: to follow")]
+    [InlineData("Ref [2023] EWFC 194 (B)")]
     public void Enrich_TextDoesNotContainNeutralCitation_LineIsUnchanged(string text)
     {
         var line = TextLine(text);
@@ -93,201 +107,271 @@ public class TestNeutralCitation : ParserTestBase
     }
 
     [Fact]
-    public void Enrich_SingleRunMentioningLinkedJudgments_MarksUpTrailingCitationAsRef()
+    public void Enrich_SingleRunMentioningLinkedJudgments_MarksUpTrailingCitationAsRefAndPreservesRunProperties()
     {
-        var line = TextLine("This judgment is linked to [2023] EWFC 194");
+        var line = StyledLine("This judgment is linked to [2023] EWFC 194", BoldStyling);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("This judgment is linked to ");
-        var wref = contents[1].ShouldBeOfType<WRef>();
-        wref.Text.ShouldBe("[2023] EWFC 194");
-        wref.IsNeutral.ShouldBe(true);
+
+        contents[0].ShouldMatch<WText>("This judgment is linked to ", BoldStyling);
+
+        contents[1].ShouldMatch<WRef>("[2023] EWFC 194", BoldStyling)
+                   .IsNeutral.ShouldBe(true);
     }
 
     [Fact]
-    public void Enrich_MultiRunFirstRunMentionsLinked_MarksUpTrailingCitationAsRefAcrossRuns()
+    public void Enrich_FirstOfTwoRunsMentionsLinkedJudgments_MarksUpTrailingCitationAsRefAndPreservesEachRunsProperties()
     {
-        var line = TextLine("These linked appeals are ", "[2023] EWFC 169");
+        IInline[] lineContents =
+        [
+            new WText("These linked appeals are ", BoldStyling),
+            new WText("[2023] EWFC 169", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
 
-        contents[0].ShouldBeSameAs(line.Contents.ToArray()[0]);
+        contents[0].ShouldBeSameAs(lineContents[0]);
 
-        var wref = contents[1].ShouldBeOfType<WRef>();
-        wref.Text.ShouldBe("[2023] EWFC 169");
-        wref.IsNeutral.ShouldBe(true);
+        contents[1].ShouldMatch<WRef>("[2023] EWFC 169", ItalicStyling)
+                   .IsNeutral.ShouldBe(true);
     }
 
     [Fact]
-    public void Enrich_LabelInOwnRunFollowedByCitationRun_MarksUpTheCitation()
+    public void Enrich_LabelRunThenExactCitationRun_MarksUpCitationAndPreservesEachRunsProperties()
     {
-        var line = TextLine("Neutral Citation Number:", "[2018] EWCA Civ 1744");
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number:", BoldStyling),
+            new WText("[2018] EWCA Civ 1744", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
-        contents[0].ShouldBeSameAs(line.Contents.ToArray()[0]);
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2018] EWCA Civ 1744");
+        contents[0].ShouldBeSameAs(lineContents[0]);
+        contents[1].ShouldMatch<WNeutralCitation>("[2018] EWCA Civ 1744", ItalicStyling);
     }
 
     [Theory]
     [InlineData("Neutral Citation Number: [")]
     [InlineData("Neutral Citation Number:  [")]
     [InlineData("Neutral Citation No. [")]
+    [InlineData("Neutral Citation figure: [")]
     public void Enrich_LabelRunEndsWithOpenBracket_JoinsWithNextRunAsCitation(string label)
     {
-        // the citation run must not itself already match a `patterns2` entry (e.g. an EWHC
-        // citation, whose bracket is optional in that regex) or the generic last-run handling
-        // further up the method would enrich it before this label-specific branch is reached
         var line = TextLine(label, "2018] EWCA Civ 1744");
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
+
         contents[0].ShouldBeOfType<WText>().Text.ShouldBe(label[..^1]);
         contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2018] EWCA Civ 1744");
     }
 
     [Fact]
-    public void Enrich_NeutralCitationFigureLabelEndsWithOpenBracket_JoinsWithNextRunAsCitation()
+    public void Enrich_CitationRunHasTrailingWhitespace_SplitsOffTrailingWhitespaceAndPreservesEachRunsProperties()
     {
-        var line = TextLine("Neutral Citation figure: [", "2009] EWCA Civ 400");
-
-        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
-
-        var contents = result[0].Contents.ToArray();
-        contents.Length.ShouldBe(2);
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation figure: ");
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2009] EWCA Civ 400");
-    }
-
-    [Fact]
-    public void Enrich_LabelRunWithoutColonFollowedByColonAndCitationRun_SplitsOffColonAndMarksUpCitation()
-    {
-        var line = TextLine("Neutral Citation Number", ": [2005] EWHC 279 (Comm)");
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation: ", BoldStyling),
+            new WText("[2009] EWCA Civ 400     ", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(3);
-        contents[0].ShouldBeSameAs(line.Contents.ToArray()[0]);
-        contents[1].ShouldBeOfType<WText>().Text.ShouldBe(": ");
-        contents[2].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2005] EWHC 279 (Comm)");
-    }
+        contents[0].ShouldBeSameAs(lineContents[0]);
 
-    [Fact(Skip = "This test fails because of a known bug")]
-    public void Enrich_ClosingParenthesisInItsOwnRun_JoinsWithPrecedingRunAsCitation()
-    {
-        var line = TextLine("Neutral Citation Number: [2011] EWHC 3553 (Ch", ")");
-
-        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
-
-        var contents = result[0].Contents.ToArray();
-        contents.Length.ShouldBe(2);
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2011] EWHC 3553 (Ch)");
+        contents[1].ShouldMatch<WNeutralCitation>("[2009] EWCA Civ 400", ItalicStyling);
+        contents[2].ShouldMatch<WText>("     ", ItalicStyling);
     }
 
     [Fact]
-    public void Enrich_OpeningBracketInItsOwnRun_JoinsWithFollowingRunAsCitation()
+    public void Enrich_LabelRunWithoutColonThenColonAndCitationRun_SplitsOffColonAndPreservesEachRunsProperties()
     {
-        var line = TextLine("[", "2021] EWCA Civ 2776");
-
-        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
-
-        var contents = result[0].Contents.ToArray();
-        contents.Length.ShouldBe(1);
-        contents[0].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2021] EWCA Civ 2776");
-    }
-
-    [Fact]
-    public void Enrich_LabelRunFollowedByCitationRunFollowedByMoreRuns_MarksUpTheCitationInSecondRun()
-    {
-        var line = TextLine("Neutral Citation Number:", "[2018] EWCA Civ 1744", " (unreported)");
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number", BoldStyling),
+            new WText(": [2005] EWHC 279 (Comm)", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(3);
 
-        contents[0].ShouldBeSameAs(line.Contents.ToArray()[0]);
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2018] EWCA Civ 1744");
-        contents[2].ShouldBeSameAs(line.Contents.ToArray()[2]);
+        contents[0].ShouldBeSameAs(lineContents[0]);
+
+        contents[1].ShouldMatch<WText>(": ", ItalicStyling);
+        contents[2].ShouldMatch<WNeutralCitation>("[2005] EWHC 279 (Comm)", ItalicStyling);
+    }
+
+    [Fact]
+    public void Enrich_ClosingParenthesisInItsOwnRun_JoinsAsCitationWithFirstRunsPropertiesOnly()
+    {
+        // known limitation: the closing-parenthesis run's formatting is silently dropped
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number: [2011] EWHC 3553 (Ch", BoldStyling),
+            new WText(")", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        var contents = result[0].Contents.ToArray();
+        contents.Length.ShouldBe(2);
+
+        contents[0].ShouldMatch<WText>("Neutral Citation Number: ", BoldStyling);
+        contents[1].ShouldMatch<WNeutralCitation>("[2011] EWHC 3553 (Ch)", BoldStyling);
+    }
+
+    [Fact]
+    public void Enrich_OpeningBracketInItsOwnRun_JoinsAsCitationWithFirstRunsPropertiesOnly()
+    {
+        // known limitation: the second run's formatting is silently dropped
+        IInline[] lineContents =
+        [
+            new WText("[", BoldStyling),
+            new WText("2021] EWCA Civ 2776", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        result[0].Contents.ShouldHaveSingleItem().ShouldMatch<WNeutralCitation>("[2021] EWCA Civ 2776", BoldStyling);
+    }
+
+    [Fact]
+    public void Enrich_LabelThenCitationThenTrailingRun_MarksUpCitationAndPreservesEachRunsProperties()
+    {
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number:", BoldStyling),
+            new WText("[2018] EWCA Civ 1744", ItalicStyling),
+            new WText(" (unreported)", UnderlineStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        var contents = result[0].Contents.ToArray();
+        contents.Length.ShouldBe(3);
+
+        contents[0].ShouldBeSameAs(lineContents[0]);
+
+        contents[1].ShouldMatch<WNeutralCitation>("[2018] EWCA Civ 1744", ItalicStyling);
+
+        contents[2].ShouldBeSameAs(lineContents[2]);
     }
 
     [Theory]
     [InlineData("Neutral Citation Number:")]
     [InlineData("NCN:")]
-    public void Enrich_LabelThenWhitespaceRunThenCitationRunThenMoreRuns_MarksUpTheCitationInThirdRun(string label)
+    public void
+        Enrich_LabelThenWhitespaceRunThenCitationRunThenMoreRuns_MarksUpTheCitationAndPreservesEachRunsProperties(
+            string label)
     {
-        var line = TextLine(label, " ", "[2021] EWCA Crim 1412", " (unreported)");
+        IInline[] lineContents =
+        [
+            new WText(label, BoldStyling),
+            new WText(" ", UnderlineStyling),
+            new WText("[2021] EWCA Crim 1412", ItalicStyling),
+            new WText(" (unreported)", BoldStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(4);
 
-        contents[0].ShouldBeSameAs(line.Contents.ToArray()[0]);
-        contents[1].ShouldBeSameAs(line.Contents.ToArray()[1]);
-        contents[2].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2021] EWCA Crim 1412");
-        contents[3].ShouldBeSameAs(line.Contents.ToArray()[3]);
+        contents[0].ShouldBeSameAs(lineContents[0]);
+        contents[1].ShouldBeSameAs(lineContents[1]);
+        contents[2].ShouldMatch<WNeutralCitation>("[2021] EWCA Crim 1412", ItalicStyling);
+        contents[3].ShouldBeSameAs(lineContents[3]);
     }
 
     [Fact]
-    public void Enrich_LineBreakFollowedByCitationRunFollowedByMoreRuns_MarksUpTheCitationAfterTheLineBreak()
+    public void Enrich_LineBreakThenLabelAndCitationInOneRun_MarksUpCitationAndPreservesEachRunsProperties()
     {
-        var lineBreak = new WLineBreak();
-        var line = new WLine(LineTemplate, [
-            lineBreak,
-            new WText("Neutral Citation Number: [2017] EWCA Civ 1798", null),
-            new WText(" (unreported)", null)
-        ]);
+        IInline[] lineContents =
+        [
+            new WLineBreak(),
+            new WText("Neutral Citation Number: [2017] EWCA Civ 1798", BoldStyling),
+            new WText(" (unreported)", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(4);
 
-        contents[0].ShouldBeSameAs(lineBreak);
-        contents[1].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
-        contents[2].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2017] EWCA Civ 1798");
-        contents[3].ShouldBeSameAs(line.Contents.ToArray()[2]);
+        contents[0].ShouldBeSameAs(lineContents[0]);
+
+        contents[1].ShouldMatch<WText>("Neutral Citation Number: ", BoldStyling);
+        contents[2].ShouldMatch<WNeutralCitation>("[2017] EWCA Civ 1798", BoldStyling);
+
+        contents[3].ShouldBeSameAs(lineContents[2]);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("    ")]
+    public void Enrich_WhitespaceThenLineBreakThenCitation_MarksUpTheCitationAfterTheLineBreak(string whitespace)
+    {
+        IInline[] lineContents =
+        [
+            Text(whitespace),
+            new WLineBreak(),
+            Text("Neutral Citation Number: [2017] EWCA Civ 1798")
+        ];
+        var line = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        var contents = result[0].Contents.ToArray();
+        contents.Length.ShouldBe(4);
+
+        contents[0].ShouldBeSameAs(lineContents[0]);
+        contents[1].ShouldBeSameAs(lineContents[1]);
+        contents[2].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
+        contents[3].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2017] EWCA Civ 1798");
     }
 
     [Fact]
-    public void Enrich_CitationSplitAcrossThreeRunsWithNoOtherRuleMatching_MarksUpTheConcatenatedCitation()
+    public void Enrich_CitationSplitAcrossThreeRuns_MarksUpConcatenatedCitationWithFirstRunsPropertiesOnly()
     {
-        var line = TextLine("Neutral Citation Number: [2020", "] EWHC 100", " (QB)");
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number: [2020", BoldStyling),
+            new WText("] EWHC 100", ItalicStyling),
+            new WText(" (QB)", UnderlineStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
 
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Neutral Citation Number: ");
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2020] EWHC 100 (QB)");
-    }
-
-    [Fact]
-    public void Enrich_CitationSplitAcrossThreeRunsOnlyMatchingUnlabelledPattern_MarksUpTheConcatenatedCitation()
-    {
-        var line = TextLine("Ref [2023", "] EWFC 19", "4 (B)");
-
-        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
-
-        var contents = result[0].Contents.ToArray();
-        contents.Length.ShouldBe(2);
-
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Ref ");
-        contents[1].ShouldBeOfType<WNeutralCitation>().Text.ShouldBe("[2023] EWFC 194 (B)");
+        contents[0].ShouldMatch<WText>("Neutral Citation Number: ", BoldStyling);
+        contents[1].ShouldMatch<WNeutralCitation>("[2020] EWHC 100 (QB)", BoldStyling);
     }
 
     [Fact]
@@ -321,5 +405,41 @@ public class TestNeutralCitation : ParserTestBase
         var result = Enricher.Enrich(input).Cast<WLine>().ToArray();
 
         result.ShouldBe(input);
+    }
+
+    [Fact]
+    public void Enrich_SingleRunWithLabelAndTrailingText_PreservesRunProperties()
+    {
+        var line = StyledLine("Neutral Citation Number: [2022] EWCA Civ 733 (unreported)", BoldStyling);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        var contents = result[0].Contents.ToArray();
+        contents.Length.ShouldBe(3);
+
+        contents[0].ShouldMatch<WText>("Neutral Citation Number: ", BoldStyling);
+        contents[1].ShouldMatch<WNeutralCitation>("[2022] EWCA Civ 733", BoldStyling);
+        contents[2].ShouldMatch<WText>(" (unreported)", BoldStyling);
+    }
+
+    [Fact]
+    public void Enrich_ClosingParenthesisInItsOwnRunThenMoreText_CitationPropertiesComeOnlyFromTheFirstRun()
+    {
+        // known limitation: the trailing run's formatting is dropped from the citation (though
+        // it is correctly preserved on the separate trailing WText that follows the citation)
+        IInline[] lineContents =
+        [
+            new WText("Neutral Citation Number: [2011] EWHC 3553 (Ch", BoldStyling),
+            new WText(") and some other information", ItalicStyling)
+        ];
+        var line = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
+
+        var contents = result[0].Contents.ToArray();
+        contents.Length.ShouldBe(3);
+
+        contents[1].ShouldMatch<WNeutralCitation>("[2011] EWHC 3553 (Ch)", BoldStyling);
+        contents[2].ShouldMatch<WText>(" and some other information", ItalicStyling);
     }
 }
