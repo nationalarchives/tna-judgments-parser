@@ -9,6 +9,7 @@
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <TestingPlatformCommandLineArguments>$(TestingPlatformCommandLineArguments) --coverlet-file-prefix $(AssemblyName)</TestingPlatformCommandLineArguments>
     </PropertyGroup>
 
     <ItemGroup>
