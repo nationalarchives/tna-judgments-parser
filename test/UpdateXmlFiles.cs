@@ -36,7 +36,7 @@ public class UpdateXmlFiles
     {
         var successfulParse = bool.TryParse(Environment.GetEnvironmentVariable("UPDATE_XML"), out var shouldUpdateXml);
         Assert.SkipUnless(successfulParse && shouldUpdateXml,
-            $"This is not a test. If you want to update the judgment test xml files then run: `dotnet test tna-judgments-parser.sln --filter {nameof(test)}.{nameof(UpdateXmlFiles)}.{nameof(UpdateJudgmentXmls)} -e UPDATE_XML=\"true\"`");
+            $"This is not a test. If you want to update the judgment test xml files then run: `dotnet test --solution tna-judgments-parser.sln --filter {nameof(test)}.{nameof(UpdateXmlFiles)}.{nameof(UpdateJudgmentXmls)} -e UPDATE_XML=\"true\"`");
 
         var workingDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
         var judgmentsDirectory = workingDirectory
