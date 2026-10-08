@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <NoWarn>NU1902,NU1903</NoWarn> <!-- Disable package vulnerability warnings for SixLabors.ImageSharp because we can't upgrade to v4 just yet, it's low risk and the warnings are preventing local builds -->
+
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <!-- https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/source-link -->
