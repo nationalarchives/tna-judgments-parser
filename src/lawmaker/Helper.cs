@@ -54,7 +54,7 @@ public class Helper
         }
         XmlDocument doc = Builder.Build(bill, languageService);
         Simplifier.Simplify(doc, bill.Styles);
-        var xml = NationalArchives.Judgments.Api.Parser.SerializeXml(doc);
+        var xml = AkN.Serializer.SerializeToString(doc);
         IEnumerable<IImage> images = WImage.Get(wordDoc).ToArray();
         return new Response
         {

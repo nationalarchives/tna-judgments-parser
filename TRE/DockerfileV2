@@ -9,6 +9,8 @@ COPY ["NationalArchives.FindCaseLaw.Utils/NationalArchives.FindCaseLaw.Utils.csp
 RUN dotnet restore NationalArchives.FindCaseLaw.Utils/NationalArchives.FindCaseLaw.Utils.csproj
 COPY ["judgments.csproj", "judgments.csproj"]
 RUN dotnet restore judgments.csproj
+COPY ["NationalArchives.FindCaseLaw.Parser/NationalArchives.FindCaseLaw.Parser.csproj", "NationalArchives.FindCaseLaw.Parser/NationalArchives.FindCaseLaw.Parser.csproj"]
+RUN dotnet restore NationalArchives.FindCaseLaw.Parser/NationalArchives.FindCaseLaw.Parser.csproj
 COPY ["TRE/TRE.csproj", "TRE/TRE.csproj"]
 RUN dotnet restore TRE/TRE.csproj
 # Copy the rest of the repo over
