@@ -37,7 +37,7 @@ class XmlDocument_ : IXmlDocument {
 
     public System.Xml.XmlDocument Document { get; internal init; }
 
-    public string Serialize() => UK.Gov.NationalArchives.Judgments.Api.Parser.SerializeXml(Document);
+    public string Serialize() => UK.Gov.Legislation.Judgments.AkomaNtoso.Serializer.SerializeToString(Document);
 
     public IEnumerable<IImage> Images { get; internal init; }
 
