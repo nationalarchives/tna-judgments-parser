@@ -9,6 +9,9 @@ namespace test.parsers;
 public abstract class ParserTestBase
 {
     private protected static readonly WLine LineTemplate = new(null, new Paragraph());
+    protected static readonly RunProperties BoldStyling = new(new Bold());
+    protected static readonly RunProperties ItalicStyling = new(new Italic());
+    protected static readonly RunProperties UnderlineStyling = new(new Underline());
 
     private protected static WLine TextLine(params string[] text)
     {
@@ -53,5 +56,10 @@ public abstract class ParserTestBase
     private protected static WText Text(string s)
     {
         return new WText(s, new RunProperties());
+    }
+
+    private protected static WLine StyledLine(string text, RunProperties properties)
+    {
+        return new WLine(LineTemplate, [new WText(text, properties)]);
     }
 }
