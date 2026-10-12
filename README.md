@@ -140,13 +140,13 @@ There are a mixture of unit, integration and end to end tests which overall give
 To run all the tests use your IDE or run: 
 
 ```shell
-dotnet test tna-judgments-parser.sln
+dotnet test --solution tna-judgments-parser.sln
 ```
 
 When significant changes are made to the parser some tests may fail due to differences in the expected xml output. The test xmls can be updated en masse by running:
 
 ```shell
-dotnet test tna-judgments-parser.sln --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
+dotnet test --project test/test.csproj --filter test.UpdateXmlFiles.UpdateJudgmentXmls -e UPDATE_XML="true"
 ```
 
 ## Other Documentation

@@ -139,10 +139,10 @@ Run the regenerator for the relevant document type, e.g.:
 
 ```shell
 # .akn expected files (per type: TestCoP / TestEM / TestEN / TestIA / TestOD / TestTN)
-dotnet test test/test.csproj --filter "FullyQualifiedName~TestIA.RegenerateAllTestFiles" -e UPDATE_XML="true"
+dotnet test --project test/test.csproj --filter "FullyQualifiedName~TestIA.RegenerateAllTestFiles" -e UPDATE_XML="true"
 
 # .html snapshots (requires Oxygen/Saxon via OXYGEN_HOME; per type: TestCoPHtml / TestEMHtml / TestENHtml / TestIAHtml / TestTNHtml)
-dotnet test test/test.csproj --filter "FullyQualifiedName~TestIAHtml.RegenerateAllHtml" -e UPDATE_XML="true"
+dotnet test --project test/test.csproj --filter "FullyQualifiedName~TestIAHtml.RegenerateAllHtml" -e UPDATE_XML="true"
 ```
 
 No `Skip` attribute needs to be edited; review the regenerated fixtures before committing.

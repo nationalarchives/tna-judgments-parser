@@ -24,7 +24,7 @@ public static class TestFileUpdateHelpers
     {
         var enabled = bool.TryParse(Environment.GetEnvironmentVariable("UPDATE_XML"), out var update) && update;
         Assert.SkipUnless(enabled,
-            $"Not a test. To run it: dotnet test test/test.csproj --filter \"FullyQualifiedName~{caller}\" -e UPDATE_XML=\"true\"");
+            $"Not a test. To run it: dotnet test --project test/test.csproj --filter \"FullyQualifiedName~{caller}\" -e UPDATE_XML=\"true\"");
     }
 
     // Strips the non-deterministic metadata a leg .akn embeds (FRBRdate dates, ukm:Parser version,
