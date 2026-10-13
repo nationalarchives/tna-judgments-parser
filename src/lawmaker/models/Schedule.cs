@@ -24,6 +24,8 @@ internal interface Schedule
     {
         if (child is SchedulePart)
             return true;
+        if (child is ScheduleGroupingSection)
+            return true;
         if (child is ScheduleCrossHeading)
             return true;
         if (child is SchProv1)
