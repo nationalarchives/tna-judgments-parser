@@ -26,18 +26,10 @@ internal class EnrichFromBeginning
     {
         var rawArray = raw.ToArray(); // enumerate to array to prevent multiple enumeration
 
-        List<int> inlinePositions = [0];
-        var beginning = "";
-
-        foreach (var inlineElement in rawArray)
-        {
-            beginning += IInline.GetText(inlineElement);
-            inlinePositions.Add(beginning.Length);
-        }
-
         // Match against the fully assembled text rather than growing it run-by-run: a pattern
         // with an optional trailing component (e.g. "...\)?") could otherwise appear to succeed
         // before a later run (e.g. a closing ")" in its own run) has even been considered.
+        var beginning = string.Concat(rawArray.Select(IInline.GetText));
         var match = Regex.Match(beginning, pattern);
         if (!match.Success)
         {
@@ -45,8 +37,23 @@ internal class EnrichFromBeginning
         }
 
         var group = match.Groups[1];
-        var groupStart = group.Index;
-        var groupEnd = group.Index + group.Length;
+        return Enrich(rawArray, group.Index, group.Index + group.Length, constructor);
+    }
+
+    /// <summary>
+    /// Wraps the characters from <paramref name="groupStart"/> to <paramref name="groupEnd"/> of the text of the
+    /// inlines, splitting the runs at either end where the range starts or ends part-way through one
+    /// </summary>
+    internal static IInline[] Enrich(IInline[] rawArray, int groupStart, int groupEnd, Constructor constructor)
+    {
+        List<int> inlinePositions = [0];
+        var length = 0;
+
+        foreach (var inlineElement in rawArray)
+        {
+            length += IInline.GetText(inlineElement).Length;
+            inlinePositions.Add(length);
+        }
 
         // Collect Inlines before group
         var before = rawArray.TakeWhile((_, index) =>

@@ -227,6 +227,111 @@ public class TestEnrichFromBeginning : ParserTestBase
     }
 
     [Fact]
+    public void Enrich_OptionalTrailingPatternComponentInLaterRun_IncludesItInWrappedText()
+    {
+        IInline[] input =
+        [
+            new WText("(ABC", BoldStyling),
+            new WText(") more", ItalicStyling)
+        ];
+
+        var result = EnrichFromBeginning.Enrich(input, @"^(\(ABC\)?)", DoEnrich).ToArray();
+
+        result[0].ShouldMatch<EnrichedByTest>("(ABC)", BoldStyling);
+        result[1].ShouldMatch<WText>(" more", ItalicStyling);
+    }
+
+    [Fact]
+    public void Enrich_ZeroWidthInlineAtEndOfMatchSpanningRuns_IsLeftAfterTheWrappedText()
+    {
+        IInline[] input =
+        [
+            new WText("ID123", BoldStyling),
+            new WText("45", ItalicStyling),
+            new WLineBreak()
+        ];
+
+        var result = EnrichFromBeginning.Enrich(input, @"^(ID\d{5})", DoEnrich).ToArray();
+
+        result[0].ShouldMatch<EnrichedByTest>("ID12345", BoldStyling);
+        result[1].ShouldBeSameAs(input[2]);
+    }
+
+    [Fact]
+    public void Enrich_IndexRangeInsideSingleRun_SplitsRunAtBothEndsPreservingProperties()
+    {
+        IInline[] input = [new WText("Ref: ID12345 more", BoldStyling)];
+
+        var result = EnrichFromBeginning.Enrich(input, 5, 12, DoEnrich);
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldMatch<WText>("Ref: ", BoldStyling);
+        result[1].ShouldMatch<EnrichedByTest>("ID12345", BoldStyling);
+        result[2].ShouldMatch<WText>(" more", BoldStyling);
+    }
+
+    [Fact]
+    public void Enrich_IndexRangeOnRunBoundaries_PassesSurroundingRunsThroughUnchanged()
+    {
+        IInline[] input =
+        [
+            new WText("Ref: ", BoldStyling),
+            new WText("ID12345", ItalicStyling),
+            new WText(" more", UnderlineStyling)
+        ];
+
+        var result = EnrichFromBeginning.Enrich(input, 5, 12, DoEnrich);
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldBeSameAs(input[0]);
+        result[1].ShouldMatch<EnrichedByTest>("ID12345", ItalicStyling);
+        result[2].ShouldBeSameAs(input[2]);
+    }
+
+    [Fact]
+    public void Enrich_IndexRangeStraddlingRunBoundaries_SplitsBothRunsPreservingEachOwnersProperties()
+    {
+        IInline[] input =
+        [
+            new WText("Ref: ID12", BoldStyling),
+            new WText("345 more", ItalicStyling)
+        ];
+
+        var result = EnrichFromBeginning.Enrich(input, 5, 12, DoEnrich);
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldMatch<WText>("Ref: ", BoldStyling);
+        result[1].ShouldMatch<EnrichedByTest>("ID12345", BoldStyling);
+        result[2].ShouldMatch<WText>(" more", ItalicStyling);
+    }
+
+    [Fact]
+    public void Enrich_IndexRangeFollowingLineBreakAndTab_CountsTabAsOneCharacterAndLineBreakAsNone()
+    {
+        IInline[] input = [new WLineBreak(), Tab(), new WText("Ref: ID12345", BoldStyling)];
+
+        var result = EnrichFromBeginning.Enrich(input, 6, 13, DoEnrich);
+
+        result.Length.ShouldBe(4);
+        result[0].ShouldBeSameAs(input[0]);
+        result[1].ShouldBeSameAs(input[1]);
+        result[2].ShouldMatch<WText>("Ref: ", BoldStyling);
+        result[3].ShouldMatch<EnrichedByTest>("ID12345", BoldStyling);
+    }
+
+    [Fact]
+    public void Enrich_IndexRangeWhenConstructorReturnsNull_RemovesTheRangeFromTheResult()
+    {
+        IInline[] input = [new WText("Ref: ID12345 more", BoldStyling)];
+
+        var result = EnrichFromBeginning.Enrich(input, 5, 12, _ => null);
+
+        result.Length.ShouldBe(2);
+        result[0].ShouldMatch<WText>("Ref: ", BoldStyling);
+        result[1].ShouldMatch<WText>(" more", BoldStyling);
+    }
+
+    [Fact]
     public void Enrich_WLineOverload_NoMatch_ReturnsSameLineInstance()
     {
         var line = TextLine("ordinary text");
