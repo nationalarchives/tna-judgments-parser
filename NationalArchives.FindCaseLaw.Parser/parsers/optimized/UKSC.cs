@@ -1,34 +1,40 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using DocumentFormat.OpenXml.Packaging;
 
-using UK.Gov.Legislation.Judgments;
-using UK.Gov.Legislation.Judgments.Parse;
-
 using Microsoft.Extensions.Logging;
 
+using UK.Gov.Legislation.Judgments;
+using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.Legislation.Judgments.Parse.UKSC;
+using UK.Gov.NationalArchives.CaseLaw.UKSC;
+
 using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+using PartyEnricher = UK.Gov.Legislation.Judgments.Parse.UKSC.PartyEnricher;
 
-namespace UK.Gov.NationalArchives.CaseLaw.Parse {
+namespace UK.Gov.NationalArchives.CaseLaw.Parse;
 
-class OptimizedUKSCParser : OptimizedParser {
+internal class OptimizedUKSCParser : OptimizedParser
+{
+    private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedUKSCParser>();
 
-    private static ILogger logger = Logging.Factory.CreateLogger<OptimizedUKSCParser>();
-
-    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) {
+    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
+        IEnumerable<AttachmentPair> attachments = null)
+    {
         return new OptimizedUKSCParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Judgment);
     }
 
     private OptimizedUKSCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
 
     /* second page break or first page break if first break is followed by a 'speech' */
-    protected override List<IBlock> Header() {
-        List<IBlock> header = new List<IBlock>();
-        bool firstPageBreakFound = false;
-        while (i < PreParsed.Body.Count) {
+    protected override List<IBlock> Header()
+    {
+        var header = new List<IBlock>();
+        var firstPageBreakFound = false;
+        while (i < PreParsed.Body.Count)
+        {
             logger.LogTrace("parsing element " + i);
             BlockWithBreak b = PreParsed.Body.ElementAt(i);
             if (firstPageBreakFound && b.LineBreakBefore)
@@ -43,41 +49,46 @@ class OptimizedUKSCParser : OptimizedParser {
         return null;
     }
 
-    private List<Enricher> headerEnrichers = new List<Enricher>() {
+    private readonly List<Enricher> headerEnrichers = new()
+    {
         new RestrictionsEnricher(),
         new CrestSplitter(),
-        new Legislation.Judgments.Parse.UKSC.CiteEnricher(),
-        new UKSC.OnAppealFromRefEnricher(),
-        new Legislation.Judgments.Parse.UKSC.DateEnricher(),
-        new Legislation.Judgments.Parse.UKSC.PartyEnricher(),
-        new Legislation.Judgments.Parse.UKSC.LocationEnricher(),
-        new Legislation.Judgments.Parse.UKSC.JudgeEnricher()
+        new CiteEnricher(),
+        new OnAppealFromRefEnricher(),
+        new DateEnricher(),
+        new PartyEnricher(),
+        new LocationEnricher(),
+        new JudgeEnricher()
     };
 
-    protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header) {
+    protected override IEnumerable<IBlock> EnrichHeader(IEnumerable<IBlock> header)
+    {
         return Enricher.Enrich(header, headerEnrichers);
     }
 
     /* body */
 
-    protected override List<IDecision> Body() {
+    protected override List<IDecision> Body()
+    {
         List<IDecision> opinions = Decisions();
         if (opinions is null)
             opinions = new List<IDecision>(1);
         List<IDivision> remainder = ParagraphsUntilEndOfBody();
-        if (remainder.Count > 0) {
+        if (remainder.Count > 0)
+        {
             IDecision dummy = new Decision() { Contents = remainder };
             opinions.Add(dummy);
         }
         return opinions;
     }
 
-    protected override bool IsTitledJudgeName(IBlock b) {
+    protected override bool IsTitledJudgeName(IBlock b)
+    {
         if (b is not WLine line)
             return false;
         if (line.Style == "NewSpeech")
             return true;
-        string text = line.NormalizedContent;
+        var text = line.NormalizedContent;
         if (text.Split().Length > 3)
             return false;
         if (text.StartsWith("LORD ", StringComparison.InvariantCultureIgnoreCase))
@@ -87,7 +98,8 @@ class OptimizedUKSCParser : OptimizedParser {
         return false;
     }
 
-    protected override bool IsFirstLineOfCrossHeading(IBlock b) {
+    protected override bool IsFirstLineOfCrossHeading(IBlock b)
+    {
         if (b is not WLine line)
             return false;
         // if (line.Style is null)
@@ -97,7 +109,8 @@ class OptimizedUKSCParser : OptimizedParser {
         return false;
     }
 
-    override protected bool IsWrapUp(WLine line) {
+    protected override bool IsWrapUp(WLine line)
+    {
         if (line.Style != "ParaNoNumber")
             return false;
         if (i == PreParsed.Body.Count - 1)
@@ -111,7 +124,5 @@ class OptimizedUKSCParser : OptimizedParser {
             return false;
         return true;
     }
-
-}
 
 }
