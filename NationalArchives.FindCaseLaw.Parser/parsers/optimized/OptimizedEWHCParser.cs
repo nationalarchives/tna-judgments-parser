@@ -274,7 +274,7 @@ internal class OptimizedEWHCParser : OptimizedParser
         new CourtType(),
         new DocDate(),
         new PartyEnricher(),
-        new Judge(),
+        new JudgeEnricher(),
         new LawyerEnricher()
     ];
 
