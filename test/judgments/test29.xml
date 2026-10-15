@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/59/data.xml" />
-          <FRBRdate date="2026-09-11T16:14:13" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:42" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,13 +38,14 @@
         <TLCPerson eId="secretary-of-state-for-work-and-pensions" href="" showAs="Secretary of State for Work and Pensions" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-deputy-upper-tribunal-judge-rowland" href="/judge-deputy-upper-tribunal-judge-rowland" showAs="Deputy Upper Tribunal Judge Rowland" />
       </references>
       <proprietary source="#">
         <uk:court>UKUT-AAC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>59</uk:number>
         <uk:cite>[2022] UKUT 59 (AAC)</uk:cite>
-        <uk:parser>1.14.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>678a9a582612abb5b3e6331dcac0971b9466e50e69073b66ba7e0502c80aa756</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -81,7 +82,7 @@
       <p style="text-align:center"><span style="font-family:Arial">and</span></p>
       <p style="text-align:center"><party refersTo="#secretary-of-state-for-work-and-pensions" as="#respondent" style="font-weight:bold;font-family:Arial">Secretary of State for Work and Pensions</party></p>
       <p style="text-align:right"><role refersTo="#respondent" style="font-family:Arial">Respondent</role></p>
-      <p><span style="font-weight:bold;font-family:Arial">Before: Deputy Upper Tribunal Judge Rowland</span></p>
+      <p><span style="font-weight:bold;font-family:Arial">Before: </span><judge refersTo="#judge-deputy-upper-tribunal-judge-rowland" style="font-weight:bold;font-family:Arial">Deputy Upper Tribunal Judge Rowland</judge></p>
       <p><span style="font-family:Arial">Decision date:</span><marker name="tab" /><span style="font-family:Arial">1 March 2022</span></p>
       <p><span style="font-family:Arial">Decided on consideration of the papers</span></p>
       <p><span style="font-weight:bold;font-family:Arial">Representation:</span></p>

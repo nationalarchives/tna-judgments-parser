@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2023/579/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:21" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:59" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -41,6 +41,7 @@
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
         <TLCRole eId="third-party" href="" showAs="Third Party" />
+        <TLCPerson eId="judge-mr-healy-pratt" href="/judge-mr-healy-pratt" showAs="MR HEALY-PRATT" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-KBD</uk:court>
@@ -48,7 +49,7 @@
         <uk:number>579</uk:number>
         <uk:cite>[2023] EWHC 579 (KB)</uk:cite>
         <uk:caseNumber>QB-2020-000919</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>d09c9253dbac8cf651e8580d0487faf25312104aef3451027aa7471a06916641</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -99,7 +100,7 @@
       <p class="CoverText">Strand, London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2023-03-20" refersTo="#judgment">20 March 2023</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-      <p class="CoverMain" style="text-align:center">MR HEALY-PRATT</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-healy-pratt">MR HEALY-PRATT</judge></p>
       <p class="CoverMain" style="text-align:center"><span style="font-weight:normal">(sitting as a Deputy High Court Judge)</span></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between:</span></p>

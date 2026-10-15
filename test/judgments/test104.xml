@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425/data.xml" />
-          <FRBRdate date="2026-10-19T13:53:37" name="transform" />
+          <FRBRdate date="2026-10-27T17:18:43" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,13 +39,14 @@
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
         <TLCPerson eId="judge-tribunal-judge-edwards" href="/judge-tribunal-judge-edwards" showAs="Tribunal Judge Edwards" />
+        <TLCPerson eId="judge-specialist-member-tynan" href="/judge-specialist-member-tynan" showAs="Specialist Member Tynan" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-HESC</uk:court>
         <uk:year>2026</uk:year>
         <uk:number>1425</uk:number>
         <uk:cite>[2026] UKFTT 1425 (HESC)</uk:cite>
-        <uk:parser>1.19.0</uk:parser>
+        <uk:parser>1.19.1</uk:parser>
         <uk:hash>94a8467c7e31ecdad0053b6181ee1196de7364cd12cc4e2dcd160cc89d09101e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -75,7 +76,7 @@
       <p><span style="font-weight:bold;font-family:Arial;font-size:12pt">on 15/10/2026</span></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Before</span></p>
       <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-edwards" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Tribunal Judge Edwards</judge></p>
-      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Specialist Member Tynan</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-specialist-member-tynan" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Specialist Member Tynan</judge></p>
       <p class="Heading1A" style="text-align:left"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial"> Between:</span></p>
       <p class="Heading1A" style="text-align:center"><party refersTo="#hennye-kornbluh" as="#appellant" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Mrs Hennye Kornbluh</party></p>
       <p class="Heading1A"><role refersTo="#appellant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial;font-size:12pt;color:initial">Appellant</role></p>

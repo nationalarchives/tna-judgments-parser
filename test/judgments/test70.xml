@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/grc/2023/916/data.xml" />
-          <FRBRdate date="2026-09-14T11:31:30" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:39" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -33,6 +33,9 @@
         <TLCOrganization eId="ukftt-grc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber" showAs="United Kingdom First-tier Tribunal (General Regulatory Chamber)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="judge-brian-kennedy-kc" href="/judge-brian-kennedy-kc" showAs="Brian Kennedy KC" />
+        <TLCPerson eId="judge-paul-taylor" href="/judge-paul-taylor" showAs="Paul Taylor" />
+        <TLCPerson eId="judge-susan-wolff" href="/judge-susan-wolff" showAs="Susan Wolff" />
         <TLCConcept eId="jurisdiction-informationrights" href="/jurisdiction/informationrights" showAs="Information Rights" shortForm="InformationRights" />
       </references>
       <proprietary source="#">
@@ -41,7 +44,7 @@
         <uk:number>916</uk:number>
         <uk:cite>[2023] UKFTT 916 (GRC)</uk:cite>
         <uk:jurisdiction>InformationRights</uk:jurisdiction>
-        <uk:parser>1.14.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>134025e65cf965cd195d28246b1713ee78d93731fe751d724fc236b90626f9bc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -86,7 +89,7 @@
       <p class="Default" style="text-align:center"><span style="font-weight:bold;font-family:Arial">and</span></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">THE INFORMATION COMMISSIONER</span></p>
       <p style="text-align:right"><span style="font-weight:bold;font-family:'Book Antiqua';color:#000000">Respondent:</span></p>
-      <p class="Default"><span style="font-weight:bold;font-family:Arial">Before: </span><span style="font-family:Arial">Brian Kennedy KC, Paul Taylor, and Susan Wolff.</span></p>
+      <p class="Default"><span style="font-weight:bold;font-family:Arial">Before: </span><judge refersTo="#judge-brian-kennedy-kc" style="font-family:Arial">Brian Kennedy KC</judge><span style="font-family:Arial">, </span><judge refersTo="#judge-paul-taylor" style="font-family:Arial">Paul Taylor</judge><span style="font-family:Arial">, and </span><judge refersTo="#judge-susan-wolff" style="font-family:Arial">Susan Wolff</judge><span style="font-family:Arial">.</span></p>
       <p style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">Hearing: </span><span style="font-family:'Book Antiqua'">On</span><span style="font-weight:bold;font-family:'Book Antiqua'"> </span><span style="font-family:'Book Antiqua'">30 October 2023 on the papers.</span></p>
       <p style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">For the Appellant: </span><span style="font-family:'Book Antiqua'"> as a Litigant in person in writing of the Grounds of Appeal dated 23 March 2023.</span></p>
       <p style="text-align:justify"><span style="font-weight:bold;font-family:'Book Antiqua'">For the First Respondent: </span><span style="font-family:'Book Antiqua';color:#000000">Richard Bailey of the ICO by way of written Response to the Grounds of Appeal, dated 23 May 2023.</span></p>
