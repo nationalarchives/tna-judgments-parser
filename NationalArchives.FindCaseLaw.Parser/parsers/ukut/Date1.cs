@@ -80,13 +80,6 @@ internal class Date1 : Enricher
         return line;
     }
 
-    protected IEnumerable<IInline> EnrichOutsideTable(IEnumerable<IInline> line)
-    {
-        throw new NotImplementedException();
-    }
-
-    /* */
-
     private WTable EnrichTable(WTable table)
     {
         if (table.TypedRows.Count < 2)
@@ -164,34 +157,6 @@ internal class Date1 : Enricher
         return false;
     }
 
-    private bool IsRowBeforeDecisionDate(WRow row)
-    {
-        if (!row.TypedCells.Any())
-        {
-            return false;
-        }
-
-        var cell = row.TypedCells.Last();
-        if (!cell.Contents.Any())
-        {
-            return false;
-        }
-
-        var block = cell.Contents.First();
-        if (block is not WLine line)
-        {
-            return false;
-        }
-
-        var normalized = line.NormalizedContent;
-        if (normalized == "Decision & Reasons Promulgated")
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     private WRow EnrichRowWithHearingDate(WRow row)
     {
         if (!row.Cells.Any())
@@ -219,24 +184,6 @@ internal class Date1 : Enricher
 
         var cell = row.TypedCells.First();
         var enriched = EnrichSecondLineOfCellWithDate(cell, "hearing", 0);
-        if (ReferenceEquals(enriched, cell))
-        {
-            return row;
-        }
-
-        return new WRow(row.Table, row.TablePropertyExceptions, row.Properties,
-            row.TypedCells.Skip(1).Prepend(enriched));
-    }
-
-    private WRow EnrichRowWithDecisionDate(WRow row)
-    {
-        if (!row.Cells.Any())
-        {
-            return row;
-        }
-
-        var cell = row.TypedCells.First();
-        var enriched = EnrichCellWithDate(cell, "decision", 1);
         if (ReferenceEquals(enriched, cell))
         {
             return row;

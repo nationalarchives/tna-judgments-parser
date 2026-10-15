@@ -25,16 +25,6 @@ internal class Date2 : Enricher
         return new Decision { Author = decision.Author, Contents = enriched };
     }
 
-    private IDecision Substitute(IDecision decision, IEnumerable<ILeaf> children)
-    {
-        if (decision is Decision)
-        {
-            return new Decision { Author = decision.Author, Contents = children };
-        }
-
-        throw new NotImplementedException();
-    }
-
     internal override IDivision Enrich(IDivision division)
     {
         if (division is IBranch branch)
