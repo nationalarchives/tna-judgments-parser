@@ -211,7 +211,7 @@ internal class OptimizedUKUTParser : OptimizedParser
         new UKUT.CourtType(),
         new UKUT.NeutralCitationEnricher(),
         new UKUT.CourtType2(),
-        new UKUT.Date1(),
+        new UKUT.HeaderDateEnricher(),
         new PartyEnricher(),
         new UKUT.ProceedingsIdentifierEnricher(),
         new UKUT.JudgeNames()
@@ -241,13 +241,13 @@ internal class OptimizedUKUTParser : OptimizedParser
     protected override IEnumerable<IDecision> EnrichBody(IEnumerable<IDecision> body)
     {
         var enriched = base.EnrichBody(body);
-        return Enricher.Enrich(enriched, new List<Enricher>(1) { new UKUT.Date2() });
+        return Enricher.Enrich(enriched, [new UKUT.SignOffDateEnricher()]);
     }
 
     protected override IEnumerable<IBlock> EnrichConclusions(IEnumerable<IBlock> conclusions)
     {
         var enriched = base.EnrichConclusions(conclusions);
-        return Enricher.Enrich(enriched, new List<Enricher>(1) { new UKUT.Date2() });
+        return Enricher.Enrich(enriched, [new UKUT.SignOffDateEnricher()]);
     }
 
     protected override bool IsFirstLineOfConclusions(IBlock block)

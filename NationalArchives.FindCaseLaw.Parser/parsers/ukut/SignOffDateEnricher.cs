@@ -7,7 +7,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
-internal class Date2 : Enricher
+internal class SignOffDateEnricher : Enricher
 {
     internal override IEnumerable<IDecision> Enrich(IEnumerable<IDecision> body)
     {
@@ -164,7 +164,7 @@ internal class Date2 : Enricher
 
     protected override WLine Enrich(WLine line)
     {
-        return Date0.Enrich(line, "decision", 1);
+        return LineDateEnricher.Enrich(line, "decision", 1);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
