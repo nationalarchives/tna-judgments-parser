@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/2578/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:24" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:51" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,6 +40,7 @@
         <TLCPerson eId="rami-farah" href="" showAs="RAMI FARAH" />
         <TLCRole eId="applicant" href="" showAs="Applicant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-mr-simon-gleeson" href="/judge-mr-simon-gleeson" showAs="MR SIMON GLEESON" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Chancery-InsolvencyAndCompanies</uk:court>
@@ -47,7 +48,7 @@
         <uk:number>2578</uk:number>
         <uk:cite>[2022] EWHC 2578 (Ch)</uk:cite>
         <uk:caseNumber>CR-2021-000940</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>79d2f5213b7678ab85ed006ba34f880f77e241ede67a9b9868b24bca6aa292a5</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -93,7 +94,7 @@
       <p class="CoverText">EC4A 1NL</p>
       <p class="CoverText">Date: <docDate date="2022-10-12" refersTo="#judgment">12 October 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center">MR SIMON GLEESON  </p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-simon-gleeson">MR SIMON GLEESON</judge><span>  </span></p>
       <p class="CoverMain" style="text-align:center">SITTING AS A DEPUTY HIGH COURT JUDGE</p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>

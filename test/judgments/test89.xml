@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2024/1725/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2024/1725/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:30" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -37,6 +37,7 @@
         <TLCPerson eId="caramel-sales-limited" href="" showAs="CARAMEL SALES LIMITED" />
         <TLCPerson eId="david-popeck" href="" showAs="DAVID POPECK" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
+        <TLCPerson eId="judge-mr-nicholas-thompsell" href="/judge-mr-nicholas-thompsell" showAs="MR NICHOLAS THOMPSELL" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Chancery</uk:court>
@@ -44,7 +45,7 @@
         <uk:number>1725</uk:number>
         <uk:cite>[2024] EWHC 1725 (Ch)</uk:cite>
         <uk:caseNumber>BL-2021-000092</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>7f24c993612c6dd4b6850e162d70624d7b3d725c9d15267361043b73703b7cfe</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -139,7 +140,7 @@
       <p class="CoverText"><span style="text-decoration-line:none">London, EC4A 1NL</span></p>
       <p class="CoverText"><docDate date="2024-07-04" refersTo="#judgment">4 July 2024</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center"><span style="text-decoration-line:none">MR NICHOLAS THOMPSELL</span><br /><span style="text-decoration-line:none">sitting as a Deputy Judge of the High Court</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-mr-nicholas-thompsell" style="text-decoration-line:none">MR NICHOLAS THOMPSELL</judge><br /><span style="text-decoration-line:none">sitting as a Deputy Judge of the High Court</span></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
       <table uk:widths="1.48in 3.35in 1.51in">

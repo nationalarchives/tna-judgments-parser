@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/2920/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/kb/2024/2920/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:24" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:42" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -43,13 +43,14 @@
         <TLCPerson eId="jaguar-land-rover-holdings-limited" href="" showAs="JAGUAR LAND ROVER HOLDINGS LIMITED" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-senior-master-cook" href="/judge-senior-master-cook" showAs="SENIOR MASTER COOK" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-KBD</uk:court>
         <uk:year>2024</uk:year>
         <uk:number>2920</uk:number>
         <uk:cite>[2024] EWHC 2920 (KB)</uk:cite>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>0ddde05236bb8dcdb4ce7e8ef24e0905b74843c75b0887438627e047da34a9c6</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -157,7 +158,7 @@
       <p class="CoverText">Strand, London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2024-11-18" refersTo="#judgment">18/11/2024</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
-      <p class="CoverMain" style="text-align:center">SENIOR MASTER COOK</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-senior-master-cook">SENIOR MASTER COOK</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
       <table uk:widths="1.23in 3.87in 1.24in">
         <tr>

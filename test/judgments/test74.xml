@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukiptrib/2022/2/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukiptrib/2022/2/data.xml" />
-          <FRBRdate date="2024-08-12T19:22:33" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:51" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -39,6 +39,9 @@
         <TLCPerson eId="the-chief-constable-of-british-transport-police" href="" showAs="THE CHIEF CONSTABLE OF BRITISH TRANSPORT POLICE" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-lord-boyd-of-duncansby-vice-president" href="/judge-lord-boyd-of-duncansby-vice-president" showAs="LORD BOYD OF DUNCANSBY (VICE PRESIDENT)" />
+        <TLCPerson eId="judge-sir-richard-mclaughlin" href="/judge-sir-richard-mclaughlin" showAs="SIR RICHARD MCLAUGHLIN" />
+        <TLCPerson eId="judge-professor-graham-zellick-qc" href="/judge-professor-graham-zellick-qc" showAs="PROFESSOR GRAHAM ZELLICK Q.C." />
       </references>
       <proprietary source="#">
         <uk:court>UKIPT</uk:court>
@@ -46,7 +49,7 @@
         <uk:number>2</uk:number>
         <uk:cite>[2022] UKIPTrib 2</uk:cite>
         <uk:caseNumber>IPT/19/181/CH</uk:caseNumber>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>a07d29a09b8ebab46b32ecbc92b7e12d2c9fd5afc2b9aa5c7f41cc4917a2587e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -76,9 +79,9 @@
       <p class="CoverMain"><courtType refersTo="#ukipt">IN THE INVESTIGATORY POWERS TRIBUNAL</courtType></p>
       <p class="CoverText">Date: <docDate date="2022-05-11" refersTo="#judgment">11 May 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before:</span></p>
-      <p class="CoverMain" style="text-align:center">LORD BOYD OF DUNCANSBY (VICE PRESIDENT)</p>
-      <p class="CoverMain" style="text-align:center">SIR RICHARD MCLAUGHLIN</p>
-      <p class="CoverMain" style="text-align:center">PROFESSOR GRAHAM ZELLICK Q.C.</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-boyd-of-duncansby-vice-president">LORD BOYD OF DUNCANSBY (VICE PRESIDENT)</judge></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-sir-richard-mclaughlin">SIR RICHARD MCLAUGHLIN</judge></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-professor-graham-zellick-qc">PROFESSOR GRAHAM ZELLICK Q.C.</judge></p>
       <p><span style="text-decoration-line:underline;text-decoration-style:solid">B E T W E E N</span> :</p>
       <blockContainer>
         <num style="font-weight:bold;font-family:'Book Antiqua';margin-left:0.5in;text-indent:-0.25in">(1)</num>

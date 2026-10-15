@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/950/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ch/2022/950/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:36" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -38,6 +38,7 @@
         <TLCPerson eId="elias-simon-fattal" href="" showAs="ELIAS SIMON FATTAL" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-deputy-master-hansen" href="/judge-deputy-master-hansen" showAs="DEPUTY MASTER HANSEN" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Chancery-PropertyTrustsProbate</uk:court>
@@ -45,7 +46,7 @@
         <uk:number>950</uk:number>
         <uk:cite>[2022] EWHC 950 (Ch)</uk:cite>
         <uk:caseNumber>BL-2020-000136</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>63d3ac86bdd1fcd511792166a8f78a582e0defe7c1ef1370cb501eb2758f6812</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -80,7 +81,7 @@
       <p class="CoverText"><span style="text-decoration-line:none;font-size:11pt">London, EC4A 1NL</span></p>
       <p class="CoverText"><span style="text-decoration-line:none;font-size:11pt">Date: </span><docDate date="2022-04-22" refersTo="#judgment" style="text-decoration-line:none;font-size:11pt">22 April 2022</docDate><span style="text-decoration-line:none;font-size:11pt"> </span></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman'">Before</span><span style="font-family:'Times New Roman'">:</span></p>
-      <p class="CoverMain" style="text-align:center"><span style="text-decoration-line:none;font-size:11pt">DEPUTY MASTER HANSEN</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-deputy-master-hansen" style="text-decoration-line:none;font-size:11pt">DEPUTY MASTER HANSEN</judge></p>
       <p style="text-align:center"><span style="font-family:'Times New Roman'">- - - - - - - - - - - - - - - - - - - - -</span></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Times New Roman'">Between:</span></p>
       <table uk:widths="1.23in 3.87in 1.24in">

@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/2231/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:38" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:39" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -33,6 +33,7 @@
         <TLCOrganization eId="ewhc-seniorcourtscosts" href="https://www.gov.uk/courts-tribunals/senior-courts-costs-office" showAs="The England and Wales High Court (Senior Courts Costs Office)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="judge-costs-judge-leonard" href="/judge-costs-judge-leonard" showAs="COSTS JUDGE LEONARD" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-SeniorCourtsCosts</uk:court>
@@ -40,7 +41,7 @@
         <uk:number>2231</uk:number>
         <uk:cite>[2022] EWHC 2231 (SCCO)</uk:cite>
         <uk:caseNumber>T20217026</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>36304c21d62fafa39524c8a67e8b61758e76ebe771ba97e9069e8608ae3519fc</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -66,7 +67,7 @@
       <p class="CoverText">London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2022-08-11" refersTo="#judgment">11 August 2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-      <p class="CoverMain" style="text-align:center">COSTS JUDGE LEONARD</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-costs-judge-leonard">COSTS JUDGE LEONARD</judge></p>
       <p class="CoverDesc"><span style="font-size:12pt">REGINA </span></p>
       <p class="CoverDesc"><span style="font-size:12pt">v </span></p>
       <p class="CoverDesc"><span style="font-size:12pt">JARIR</span></p>
