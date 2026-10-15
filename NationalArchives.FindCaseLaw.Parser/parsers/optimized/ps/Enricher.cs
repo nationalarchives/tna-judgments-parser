@@ -86,7 +86,7 @@ internal partial class Enricher
 
     internal static WLine EnrichDate(WLine line)
     {
-        return Date0.Enrich(line, "release", 1);
+        return LineDateEnricher.Enrich(line, "release", 1);
     }
 
     internal static WLine EnrichDocType(WLine line)

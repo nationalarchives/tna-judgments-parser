@@ -7,7 +7,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
-internal class Date1 : Enricher
+internal class HeaderDateEnricher : Enricher
 {
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
@@ -59,22 +59,22 @@ internal class Date1 : Enricher
         var text = line.NormalizedContent;
         if (text.StartsWith("Date of Decision ") || text.StartsWith("Date of Decision: "))
         {
-            return Date0.Enrich(line, "decision", 1);
+            return LineDateEnricher.Enrich(line, "decision", 1);
         }
 
         if (text.StartsWith("Decision given on ") || text.StartsWith("Decision given on: "))
         {
-            return Date0.Enrich(line, "decision", 1);
+            return LineDateEnricher.Enrich(line, "decision", 1);
         }
 
         if (text.StartsWith("Hearing date ") || text.StartsWith("Hearing date: "))
         {
-            return Date0.Enrich(line, "hearing", 0);
+            return LineDateEnricher.Enrich(line, "hearing", 0);
         }
 
         if (text.StartsWith("Heard on ") || text.StartsWith("Heard on: "))
         {
-            return Date0.Enrich(line, "hearing", 0);
+            return LineDateEnricher.Enrich(line, "hearing", 0);
         }
 
         return line;
@@ -241,7 +241,7 @@ internal class Date1 : Enricher
 
     private WLine EnrichLineInTableCell(WLine line, string name, int priority)
     {
-        return Date0.Enrich(line, name, priority);
+        return LineDateEnricher.Enrich(line, name, priority);
     }
 
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
