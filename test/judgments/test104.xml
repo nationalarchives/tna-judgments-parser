@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<akomaNtoso xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="decision">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/hesc/2026/1425" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/hesc/2026/1425" />
+          <FRBRdate date="2026-10-19" name="decision" />
+          <FRBRauthor href="#ukftt-hesc" />
+          <FRBRcountry value="GB-UKM" />
+          <FRBRnumber value="1425" />
+          <FRBRname value="Hennye Kornbluh v Ofsted" />
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425" />
+          <FRBRdate date="2026-10-19" name="decision" />
+          <FRBRauthor href="#ukftt-hesc" />
+          <FRBRlanguage language="eng" />
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425/data.xml" />
+          <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/hesc/2026/1425/data.xml" />
+          <FRBRdate date="2026-10-19T13:53:37" name="transform" />
+          <FRBRauthor href="#tna" />
+          <FRBRformat value="application/xml" />
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#">
+        <eventRef date="2026-10-19" refersTo="#decision" source="#" />
+      </lifecycle>
+      <references source="#tna">
+        <TLCOrganization eId="ukftt-hesc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-care-standards" showAs="Care Standards" />
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="hennye-kornbluh" href="" showAs="Hennye Kornbluh" />
+        <TLCPerson eId="ofsted" href="" showAs="Ofsted" />
+        <TLCRole eId="appellant" href="" showAs="Appellant" />
+        <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-tribunal-judge-edwards" href="/judge-tribunal-judge-edwards" showAs="Tribunal Judge Edwards" />
+      </references>
+      <proprietary source="#">
+        <uk:court>UKFTT-HESC</uk:court>
+        <uk:year>2026</uk:year>
+        <uk:number>1425</uk:number>
+        <uk:cite>[2026] UKFTT 1425 (HESC)</uk:cite>
+        <uk:parser>1.19.0</uk:parser>
+        <uk:hash>94a8467c7e31ecdad0053b6181ee1196de7364cd12cc4e2dcd160cc89d09101e</uk:hash>
+      </proprietary>
+      <presentation source="#">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-size: 11pt; font-family: Arial; color: #000000; }
+#judgment .Normal { font-family: Arial; color: #000000; }
+#judgment .Heading1A { text-align: right; font-family: 'Arial Bold'; color: #000000; }
+#judgment .Heading3A { text-align: center; font-family: 'Arial Bold'; font-size: 12pt; color: #000000; }
+#judgment .ListParagraph { margin-left: 0.5in; font-size: 12pt; color: initial; }
+#judgment .Default { font-family: 'Times New Roman'; font-size: 12pt; color: #000000; }
+#judgment .BalloonText { font-family: 'Segoe UI'; font-size: 9pt; color: #000000; }
+#judgment .Header { font-family: Arial; color: #000000; }
+#judgment .Footer { font-family: Arial; color: #000000; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; color: #000000; }
+#judgment .HeaderChar { font-family: Arial; color: #000000; }
+#judgment .FooterChar { font-family: Arial; color: #000000; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p style="text-align:center"><img src="image1.png" style="width:111.25pt;height:101.1pt" /></p>
+      <p style="text-align:center"><courtType refersTo="#ukftt-hesc" style="font-weight:bold;font-family:Arial;font-size:14pt;color:initial">First-tier Tribunal Care Standards</courtType></p>
+      <p style="text-align:center"><courtType refersTo="#ukftt-hesc" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">The Tribunal Procedure (First-tier Tribunal) (Health, Education and Social Care) Rules 2008</courtType></p>
+      <p style="text-align:right"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial"> </span><docketNumber style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">2026-02067.EY-SUS</docketNumber></p>
+      <p style="text-align:right"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Neutral Citation Number: </span><neutralCitation style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">[2026] UKFTT 01425 (HESC)</neutralCitation></p>
+      <p><span style="font-weight:bold;font-family:Arial;font-size:12pt">Hearing held remotely</span></p>
+      <p><span style="font-weight:bold;font-family:Arial;font-size:12pt">on 15/10/2026</span></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Before</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-edwards" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Tribunal Judge Edwards</judge></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Specialist Member Tynan</span></p>
+      <p class="Heading1A" style="text-align:left"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial"> Between:</span></p>
+      <p class="Heading1A" style="text-align:center"><party refersTo="#hennye-kornbluh" as="#appellant" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Mrs Hennye Kornbluh</party></p>
+      <p class="Heading1A"><role refersTo="#appellant" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial;font-size:12pt;color:initial">Appellant</role></p>
+      <p style="text-align:center"><span style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">-v-</span></p>
+      <p style="text-align:center"><party refersTo="#ofsted" as="#respondent" style="font-weight:bold;font-family:Arial;font-size:12pt;color:initial">Ofsted</party></p>
+      <p class="Heading1A"><role refersTo="#respondent" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial;font-size:12pt;color:initial">Respondent</role></p>
+      <p class="Heading3A"><span style="font-weight:bold;font-family:Arial;color:initial">DECISION</span></p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level eId="lvl_1">
+          <level eId="lvl_1_1">
+            <content>
+              <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial;font-size:12pt">The Application</span></p>
+            </content>
+          </level>
+          <paragraph eId="para_1">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">1.</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial">This is the Appellant’s appeal against the Respondent’s decision to suspend her registration as a child minder.</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial;color:initial">Attendance</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">2.</num>
+            <content>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">The Appellant, Mrs Kornbluh, attended the hearing representing herself. She was accompanied by her husband, Mr David Pollack.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">3.</num>
+            <content>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">Mr Jack Taylor, solicitor for Ofsted, represented the Respondent.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">4.</num>
+            <intro>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">Mrs Michelle McDougall, Early Years Regulatory Inspector (EYRI) at Ofsted attended the hearing as a witness.</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial">Late Evidence </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">5.</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.5in"><span style="font-family:Arial">The Respondent sought permission to submit a statement from Michelle McDougall dated 14/10/2026 as late evidence.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">6.</num>
+            <content>
+              <p class="ListParagraph" style="margin-left:0.5in"><span style="font-family:Arial">The Appellant sought permission to submit an undated statement in response to Mrs McDougall’s statement.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">7.</num>
+            <intro>
+              <p class="ListParagraph" style="margin-left:0.5in"><span style="font-family:Arial">We granted permission for both statements to be admitted on the basis that they were relevant to our determination and each party had had the opportunity to read them ahead of the hearing.</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial;color:initial">Background </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">8.</num>
+            <content>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">The Appellant is a registered childminder who appeals against the Respondent’s decision of 17/09/2026 to suspend her registration for six weeks. The decision followed an unannounced inspection prompted by concerns raised by the local authority during a visit to the premises on 02/09/2026. The concerns related to ongoing building works and the safety of the premises from which childcare was being provided.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">9.</num>
+            <content>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">During the inspection, the Respondent’s inspectors were unable to gain access to the premises and formed the view that children were present despite the Appellant stating that she was not providing childcare at that time. The Appellant was not present during the visit, but the Respondent states that at least one childminding assistant was there and refused the inspectors entry to the property. The inspectors then saw another adult leaving the property via a rear entrance into an alleyway along with 5 children. The Respondent considered that the circumstances of the visit, together with concerns regarding the condition and security of the premises, gave rise to a risk of harm to children and justified suspension while further enquiries were undertaken.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">10.</num>
+            <content>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">The Appellant disputes the Respondent’s account. She maintains that the setting had closed early for Jewish High Holidays, that she had left the premises before inspectors arrived, and that any children present were awaiting collection or being collected pursuant to arrangements made with parental agreement. She denies obstructing the inspection and contends that appropriate risk assessments and safeguards were in place despite the ongoing building works.</span></p>
+            </content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">11.</num>
+            <intro>
+              <p class="Default" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial;color:initial">The Respondent maintains that the suspension was necessary and proportionate pending completion of its enquiries. The Tribunal must determine whether the decision to suspend the Appellant’s registration was justified in the circumstances.</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p style="margin-left:0.5in"><span style="font-weight:bold;font-family:Arial;font-size:12pt">Legal Framework</span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num style="font-size:12pt;color:initial;margin-left:0.5in;text-indent:-0.25in">12.</num>
+            <intro>
+              <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-family:Arial">The following provisions and authority are relevant to the determination of an appeal against the suspension of the registration of a childminder:</span></p>
+            </intro>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">The Childcare Act 2006 </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Section 69 - Regulations may provide for the registration of a person registered under Chapter 2, 3 or 4 in the early years register or the general childcare register to be suspended for a prescribed period in prescribed circumstances.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;text-decoration-line:underline;text-decoration-style:solid;font-family:Arial">The Childcare (Early Years and General Childcare Registers) (Common Provisions) Regulations 2008</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Regulation 9 - The circumstances prescribed for the purposes of section 69(1) of the Act are that the Chief Inspector reasonably believes that the continued provision of childcare by the registered person to any child may expose such a child to a risk of harm.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial">Regulation 10 – </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:italic;font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">(1)</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in;text-indent:0.12in"><span style="font-style:italic;font-family:Arial">Subject to paragraph (2), the period for which the registration of a registered person may be suspended generally or only in relation to particular premises, is six weeks beginning with the date specified in the notice of suspension given in accordance with paragraph (4).</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:italic;font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">(2)</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in;text-indent:0.12in"><span style="font-style:italic;font-family:Arial">(2) Subject to paragraph (3), in a case in which a further period of suspension is based on the same circumstances as the period of suspension immediately preceding that further period of suspension, the Chief Inspector's power to suspend registration generally or only in relation to particular premises,</span><span style="font-style:italic;font-weight:bold;font-family:Arial"> </span><span style="font-style:italic;font-family:Arial">may only be exercised so as to give rise to a continuous period of suspension of 12 weeks.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-style:italic;font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">(3)</num>
+              <intro>
+                <p class="ListParagraph" style="margin-left:0.75in;text-indent:0.12in"><span style="font-style:italic;font-family:Arial">(3) Where, however, it is not reasonably practicable (for reasons beyond the control of the Chief Inspector)—</span></p>
+              </intro>
+              <subparagraph>
+                <content>
+                  <p class="ListParagraph" style="margin-left:0.75in"><span style="font-style:italic;font-family:Arial">(a)to complete any investigation into the grounds for the Chief Inspector's belief referred to in regulation 9, or</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="ListParagraph" style="margin-left:0.75in"><span style="font-style:italic;font-family:Arial">(b)for any necessary steps to be taken to eliminate or reduce the risk of harm referred to in regulation 9,</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <content>
+                  <p class="ListParagraph" style="margin-left:0.75in"><span style="font-style:italic;font-family:Arial">within a period of 12 weeks, the period of suspension may continue until the end of the investigation referred to in sub-paragraph (a), or until the steps referred to in sub-paragraph (b) have been taken.</span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial;color:#000000">Regulation 13 – In this Part of these Regulations, “harm” has the same meaning as in section 31(9) of the Children Act 1989 </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial;color:#000000">(i.e. “ill-treatment or the impairment of health or development including, for example, impairment suffered from seeing or hearing </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial;color:#000000">the ill treatment of another”)</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <intro>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-style:italic;font-family:Arial;color:#000000">Ofsted v GM &amp; WM UKUT 89 (AAC) [2009]</span></p>
+              </intro>
+              <subparagraph>
+                <num style="font-style:italic;font-family:Symbol;font-size:12pt;color:initial;margin-left:1in;text-indent:-0.25in">•</num>
+                <content>
+                  <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-style:italic;font-family:Arial">The First-tier Tribunal stands in the shoes of the Chief Inspector and so, in relation to regulation 9, the question for the First-tier Tribunal is whether, at the date of its decision, it reasonably believes that the continued provision of childcare by the registered person to any child may expose such a child to a risk of harm.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:italic;font-family:Symbol;font-size:12pt;color:initial;margin-left:1in;text-indent:-0.25in">•</num>
+                <content>
+                  <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-style:italic;font-family:Arial">Although the word “significant” does not appear in regulation 9, both the general legislative context and the principle of proportionality suggest that the contemplated risk must be one of significant harm.</span></p>
+                </content>
+              </subparagraph>
+              <subparagraph>
+                <num style="font-style:italic;font-family:Symbol;font-size:12pt;color:initial;margin-left:1in;text-indent:-0.25in">•</num>
+                <content>
+                  <p class="ListParagraph" style="text-align:justify;margin-left:1in"><span style="font-style:italic;font-family:Arial">Regulation 9 sets a threshold but the mere fact that the threshold is passed does not necessarily mean that the power of suspension in regulation 8 must be exercised.</span></p>
+                </content>
+              </subparagraph>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p class="ListParagraph" style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial">Evidence</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">1.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We considered written evidence from the parties which was contained in a bundle of 141 pages, as well as the late evidence contained in a supplementary bundle of 42 pages. We also considered a skeleton argument submitted on behalf of the Respondent.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">2.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We heard oral evidence from Mrs McDougall and from the Appellant. The Respondent submitted a statement from Sarah Stephens, Early Years Senior Officer at Ofsted. Ms Stephens was unable to attend the hearing due to personal reasons. As Ms Stephens was unavailable for cross examination by the Appellant, we decided to attach limited weight to her written evidence. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">3.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">Mrs McDougall provided written and oral evidence about a recent inspection visit to the Appellant’s premises on 12/10/2026. She stated that the visit was undertaken to review concerns previously identified by the local authority regarding children’s sleeping arrangements, the suitability and safety of the premises, ongoing building works and matters arising from the suspension decision. Ms McDougall’s evidence was that, although some remedial action had been taken, a number of concerns remained. She said that children sleeping in the designated sleep room were not continuously within sight and hearing of staff, that there was no stairgate restricting access to the stairs, and that the arrangements described by the Appellant did not meet the requirement for sleeping children to remain within sight and hearing of staff at all times. She also identified damaged fencing, a bottle of insecticide in the garden within reach of children, defective decking, a broken drain and ongoing building works on the upper floors. Ms McDougall considered that these matters demonstrated continuing shortcomings in the identification and management of risks within the childcare environment.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">4.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">Ms McDougall further stated that the Appellant had not identified a number of hazards until they were pointed out during the visit. She said that the Appellant was unaware of damaged fencing, initially described a bottle of insecticide as empty when it was in fact full, and had not realised that an upstairs smoke detector had been removed during the building works. Ms McDougall also expressed concern that the Appellant had not considered alternative evacuation arrangements in the event that the primary escape route became unavailable. She considered that the Appellant’s risk assessments did not adequately identify or address hazards associated with the building works and that concerns previously highlighted by the LA remained unresolved. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">5.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">In relation to the events of 17/09/2026, Mrs McDougall recorded further discussions with the Appellant regarding the adults present at the premises and the information previously provided to Ofsted. She noted that the Appellant stated for the first time that her husband had been acting as an assistant on that date. Mrs McDougall also referred to the Appellant’s inability to explain why she had previously described an adult present at the premises as a friend rather than as parent who was collecting a minded child. Mrs McDougall maintained that they witnessed five children leaving the property via the back alley.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">6.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">Mrs McDougall maintained that the conditions she observed demonstrated a reactive rather than proactive approach to risk assessment. In her view, hazards tended to be addressed only after they had been identified by others. She noted that the LA had visited the premises on 02/09/2026 and made recommendations for improvements, yet a number of hazards remained present on 17/09/2026. Although some improvements had been made by 12/10/2026, she considered that significant concerns remained. Consequently, her assessment that children attending the setting may be exposed to a risk of harm had not changed.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">7.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">In relation to sleeping arrangements, Mrs McDougall said that the Appellant’s account had altered over time. She stated that the Appellant initially explained that children slept in the lounge on waterproof mattresses and would either be supervised by an adult or checked every ten minutes. According to Mrs McDougall, it was only when she raised the issue of the ongoing building works that the Appellant stated that children had been sleeping in the playroom. Mrs McDougall remained concerned that the arrangements did not adequately manage the risk of children waking and moving unsupervised around the premises.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">8.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant disputed a number of the concerns raised by Ofsted. She denied that the toilet was unclean and explained that the toilet seat was detachable and had been removed by her own child.  She contended that a feature described as a broken drain was in fact a rainwater gutter pipe which drained in between the decking panels. She explained that temporary decking tiles had been ordered to cover the damaged area of decking pending permanent repairs by builders and provided documentation in support of that explanation. The Appellant also stated that the insecticide spray had been stored on top of a gate, above children’s reach, and was removed immediately when concerns were raised.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">9.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant further disputed aspects of the Respondent’s account of the sleeping arrangements. She stated that her intention had been for an assistant to remain with sleeping children but that, following discussions with the LA regarding staffing ratios in the playroom, it had been agreed that the children would be monitored by regular checks and by means of a video monitor. She said that, because of the building works, children had in fact slept in the playroom (alongside children who were awake), which she considered to be the safest available area. The Appellant emphasised that children’s safety and welfare were her primary concern and noted that there had been no incidents or injuries at the setting.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">10.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant explained that the setting had closed early on 17/09/2026 because of preparations for Jewish religious holidays. She disputed the allegation that the front door had been left open, maintaining that it was normally kept closed and locked, and questioned the absence of photographic evidence to support that allegation. She also maintained that only four children, rather than five, left the premises through the rear gate and submitted that there was no evidence to support Ofsted’s contrary account. The Appellant additionally referred to the emotional and financial impact of the suspension upon herself, her assistants, the children attending the setting and their families. She stated that parents regarded the setting as safe and trusted the care provided, and she asked the Tribunal to reconsider the suspension in light of the explanations and supporting material she had provided.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <content>
+                <p style="text-align:justify;margin-left:0.5in"><span style="font-weight:bold;font-family:Arial;font-size:12pt">The Tribunal’s conclusions with reasons </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">11.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">In reaching our conclusion we remind ourselves that we are not required to make findings of fact or indeed to assess the evidence in its entirety. Rather, standing in the shoes of the Respondent, we have to determine as of today whether the Respondent has a reasonable belief that the continued provision of childcare by the Appellant may expose a child to a risk of harm. Having considered the evidence, we have concluded that the Respondent’s belief is reasonable, and that it the decision to suspend the Appellant’s registration as a child minder remains necessary, reasonable and proportionate.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">12.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We are concerned by the Appellant's decision to continue childminding whilst substantial building works were taking place within the premises. While we accept that the mere existence of building works does not automatically establish a risk of harm sufficient to justify suspension, the evidence supports the Respondent's concern that the risks generated by those works were not adequately identified, assessed or mitigated. The Local Authority (LA) inspection of 02/09/2026 identified a significant number of safeguarding and safety concerns. This included an incident in which material associated with the building works had fallen into an area accessible to children. Such an occurrence demonstrates that the risks created by the works were not merely theoretical. By the time of the events of 17/09/2026, and again at the inspection on 12/10/2026, a number of identified concerns remained unresolved. Indeed, the Appellant accepts that some of the identified issues remain, such as the staircase not being secured and a whole remaining in the decking in the back garden.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">13.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">There is also, at best, a lack of clarity regarding the sleeping arrangements for minded children, including where they would sleep, how they would be supervised and what protections were in place should a child wake and move around the premises. The Respondent's concern that sleeping children were not continuously within sight and hearing of staff is, in our judgment, a legitimate one. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">14.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant has given seemingly differing accounts to professionals regarding the arrangements. The record of the LA visit on 02/09/2026 suggests that the Appellant said that children slept in the front room with a member of staff checking on them every 10 minutes. The Appellant explained to us that her previous plan was for an assistant to stay in the sleeping room, but the LA discouraged this approach because it could impact on the staff-children ratio in the playroom. The Appellant says that she told the LA that due to the building work the children would sleep in the playroom for the time being. During Mrs Mc Doungall’s visit on 12/10/2026, the Appellant initially said that the children would sleep in the front room but corrected herself to state that they would sleep in the playroom during the building works following Mrs McDougall raising safety concerns about the children sleeping in the front room unsupervised. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">15.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant today stated that the playroom sleeping arrangements had been in place throughout the building work. But this is not reflected in the records and there is a question about whether the Appellant only came up with this proposal “after the event” during the discussions with Mrs McDougall on 12/10/206. The Appellant accepted that the safeguard was not recorded in the written risk assessments and appeared to have developed through discussion rather than through formal planning. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">16.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Respondent questions the Appellant’s openness and honesty during their recent interactions. In our judgment, the Respondent’s concerns in this regard are reasonable. It is legitimate for the Respondent to consider as part of its ongoing investigations whether it can trust the Appellant to provide accurate information. Aside from the issue of sleeping arrangements, there are questions surrounding the accuracy of information provided by the Appellant during the Respondent’s visit on 17/09/2006. There appear to be inconsistencies concerning the number of children present at the setting on that day, the identity and role of adults at the premises, collection arrangements and the Appellant's own whereabouts. For example, the Appellant is adamant that only four children remained at the setting, whereas the two inspectors on the scene state that they counted 5 children leaving the property. The Appellant accepts that she told Sarah Stephens on the telephone that her friend was at the property with her child but failed to mention an assistant being there. The Appellant did not tell Ms Stephens that the setting had closed early.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">17.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The issue of the sleeping arrangements is important because it goes directly to the safety of the children minded at the setting. EYFS Paragraph 3.6 provides that sleeping children under 2 should be in sight and hearing of staff at all times. Children sleeping in the front room with no baby monitor could leave that room and access the hallway where debris has recently fallen from the building works above. The stairway currently has no stairgate and so is open to children to head upstairs towards the building work. Despite the LA suggesting that the Appellant obtain a baby monitor, she has not yet done so. The potential consequences of such an event could be serious and include injury to minded children.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">18.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We also consider it significant that concerns regarding the security of the premises were raised on more than one occasion. The evidence before the Respondent included reports from both the LA and Mrs McDougall that the front door had been observed open. The Appellant denies that the door would have been left open with no adult present in the hallway. While we make no findings of fact on this issue, we conclude that the information available to the Respondent was capable of giving rise to a reasonable belief of risk. Given the location of the sleeping arrangements and the concerns surrounding supervision, the possibility of a child leaving the premises unnoticed or of an unauthorised person gaining access to children is a matter which the Respondent is reasonably entitled to regard as presenting a safeguarding risk. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">19.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">That concern is compounded by the Appellant's acceptance that she remained unsure whether childminding might continue while builders were on site and by the continuing uncertainty regarding when the building works will conclude. The Appellant told us that she would seek advice from the LA and the Respondent as to whether it would be appropriate to resume child minding if we allow her appeal. She told us that she did not know when the builders would return but thought that the work would take around 2 weeks to complete if they worked every day. But Appellant’s experience thus far has been very different. She told us that the builders have not attended the property since 17/09/2026 and previously only worked a few hours per day, sometimes leaving to complete other jobs. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">20.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The Appellant told us that, if necessary, she would allow the builders only to work after 4pm during the week, and on Sundays, when minded children were not present. However, it appears unrealistic that the builders would meet these expectations, given the Appellant’s previous difficulties in having the work completed. Equally, it is concerning that the Appellant does not have a clear plan for safely caring for minded children going forward and has effectively placed the onus on the LA and the Respondent to tell her what to do. We are left with considerable uncertainty about what the arrangements would be if the suspension were lifted today.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">21.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We also have regard to the number and nature of hazards identified within the premises and garden. These included concerns regarding the bottle of insecticide being in reach of children in the garden, damaged fencing, defective decking, drainage arrangements, fire safety measures and access controls within the property. Any one of those matters in isolation might not justify suspension. However, the Respondent's assessment was not based upon a single issue. The Respondent is entitled to view these matters as indicative of wider shortcomings in hazard identification and risk management. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">22.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We are concerned that risks were being identified by others rather than by the Appellant herself. The evidence demonstrated concerns regarding the absent smoke detector, sleeping arrangements, the insecticide, damaged fencing, damaged decking and other hazards which were brought to the Appellant's attention by external agencies. In our judgment, the Respondent is entitled to view that pattern as suggesting a reactive rather than proactive approach to safeguarding. It is notable that a number of concerns identified by the LA on 02/09/2026 remained unremedied approximately six weeks later. Whilst the Appellant provided explanations for those delays and had taken steps towards compliance, by the Appellant’s own admission many issues remain unaddressed. We concluded that they would present a risk of significant harm to minded children.</span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">23.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">In conclusion, we are satisfied that the Respondent's belief is reasonably held. The ongoing building works, the unresolved concerns identified by the LA, the uncertainty surrounding sleeping arrangements, concerns regarding access and security, the multiple hazards identified within the premises and garden, the Appellant's seeming ability to identify certain risks until they are pointed out by others, the limited progress in rectifying a number of those risks, and the continuing uncertainty arising from the events of 17/09/2026 collectively demonstrate that children may be exposed to a risk of harm at the setting. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">24.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">The risk of harm pertains to children suffering injury from exposure to building works, unaddressed hazards, inadequate supervision while sleeping and contact with unauthorised persons. The risks are compounded by the legitimate concern that the Appellant may not always provide accurate information to the regulator or the local authority. This may limit the ability of professionals to take protective action when required. It is also concerning that the Appellant refused to allow the inspectors entry onto the premises on 17/09/2026. The Appellant told us that she believed they could rightly refuse entry on the basis that the setting was closed. This demonstrates either a lack of understanding of the Respondent’s powers of entry under Section 77 of the Care Act 2006 or an effort by the Appellant to obstruct the Respondent in the course of its duty. Either way, the Respondent was prevented from undertaking a lawful check and ensuring the safety of those minded children on the premises. </span></p>
+              </content>
+            </subparagraph>
+            <subparagraph>
+              <num style="font-size:12pt;color:initial;margin-left:0.75in;text-indent:-0.25in">25.</num>
+              <content>
+                <p class="ListParagraph" style="margin-left:0.75in"><span style="font-family:Arial">We therefore conclude that the statutory threshold for suspension is met and that the suspension remains a necessary and proportionate protective measure while the suitability and safety of the setting continue to be assessed by the Respondent. </span></p>
+              </content>
+            </subparagraph>
+          </paragraph>
+        </level>
+        <level eId="lvl_2">
+          <heading style="text-align:justify"><span style="font-family:Arial;font-size:12pt">           </span><span style="font-weight:bold;font-family:Arial;font-size:12pt">Decision</span><span style="font-family:Arial;font-size:12pt">:</span></heading>
+          <level eId="lvl_2_1">
+            <content>
+              <p style="text-align:justify;text-indent:0.5in"><span style="font-family:Arial;font-size:12pt">The Appeal is dismissed.</span></p>
+            </content>
+          </level>
+          <level eId="lvl_2_2">
+            <content>
+              <p style="text-align:right"><span style="font-weight:bold;font-family:Arial;font-size:12pt">Judge R Edwards</span></p>
+            </content>
+          </level>
+          <level eId="lvl_2_3">
+            <content>
+              <p style="text-align:right"><span style="font-weight:bold;font-family:Arial;font-size:12pt">First-tier Tribunal (Health, Education and Social Care) </span></p>
+            </content>
+          </level>
+          <level eId="lvl_2_4">
+            <content>
+              <p style="text-align:right"><span style="font-weight:bold;font-family:Arial;font-size:12pt">Date Issued: </span><docDate date="2026-10-19" refersTo="#decision" style="font-weight:bold;font-family:Arial;font-size:12pt">19 October 2026</docDate></p>
+            </content>
+          </level>
+          <level eId="lvl_2_5">
+            <content>
+              <p style="text-align:right"><img src="image2.png" style="width:105pt;height:88.5pt" /></p>
+            </content>
+          </level>
+        </level>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
