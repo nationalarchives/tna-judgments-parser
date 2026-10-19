@@ -200,7 +200,7 @@ public partial class Courts()
 
     public static readonly Court InvestigatoryPowersTribunal = GetByCode("UKIPT");
 
-    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
+    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC|HESC";
     public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
     public const string EwhcCodesPattern = "Admin|Admlty|BP|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC";
 
