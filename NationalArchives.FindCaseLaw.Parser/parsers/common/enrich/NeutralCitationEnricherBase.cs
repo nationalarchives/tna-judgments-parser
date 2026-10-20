@@ -9,14 +9,14 @@ namespace UK.Gov.Legislation.Judgments.Parse;
 
 internal abstract class NeutralCitationEnricherBase : Enricher2
 {
-    /// <param name="leadingPrefix">Anything that can go before "NCN number"</param>
+    /// <param name="linePatternBeforeNcn">Anything that can go before "NCN number:"</param>
     /// <param name="citationShapePatterns">NCN Patterns for courts that this parser route handles</param>
-    protected NeutralCitationEnricherBase(string leadingPrefix, string[] citationShapePatterns)
+    protected NeutralCitationEnricherBase(string linePatternBeforeNcn, string[] citationShapePatterns)
     {
         var unifiedCitationShapesPattern = string.Join('|', citationShapePatterns.Select(c => $"(?:{c})"));
 
         NeutralCitationPattern =
-            $"(?i)(?:{leadingPrefix})(?:{PrefixNeutralCitationNumber}|{PrefixNcnNumber}|{PrefixNcn})?({unifiedCitationShapesPattern})";
+            $"(?i)(?:{linePatternBeforeNcn})(?:{PrefixNeutralCitationNumber}|{PrefixNcnNumber}|{PrefixNcn})?({unifiedCitationShapesPattern})";
     }
 
     /// <summary>
@@ -24,24 +24,40 @@ internal abstract class NeutralCitationEnricherBase : Enricher2
     /// </summary>
     private const int BlockLimit = 10;
 
+    /// <summary>
+    /// A document has exactly one neutral citation, so enrichment stops once one has been marked up.
+    /// Other changes to a block (e.g. a reference to another case) do not stop the search.
+    /// </summary>
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
         List<IBlock> result = [];
-        var matched = false;
+        var foundNeutralCitation = false;
         foreach (var block in blocks)
         {
-            if (matched || result.Count >= BlockLimit)
+            if (foundNeutralCitation || result.Count >= BlockLimit)
             {
                 result.Add(block);
                 continue;
             }
 
             var enriched = Enrich(block);
-            matched = !ReferenceEquals(enriched, block);
+            foundNeutralCitation = ContainsNeutralCitation(enriched);
             result.Add(enriched);
         }
 
         return result;
+    }
+
+    private static bool ContainsNeutralCitation(IBlock block)
+    {
+        IEnumerable<WLine> lines = block switch
+        {
+            WLine line => [line],
+            WTable table => table.Lines,
+            _ => []
+        };
+
+        return lines.SelectMany(line => line.Contents).Any(inline => inline is INeutralCitation or INeutralCitation2);
     }
 
     private const string Number = "(?:Number|Nunber|Numer|Num|No|figure)";
