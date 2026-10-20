@@ -203,15 +203,13 @@ internal class OptimizedUKUTParser : OptimizedParser
 
     private readonly List<Enricher> coverPageEnrichers = new()
     {
-        // new RemoveTrailingWhitespace(),
-        // new Merger(),
-        new UKUT.Citation()
+        new UKUT.NeutralCitationEnricher()
     };
 
     private readonly List<Enricher> headerEnrichers =
     [
         new UKUT.CourtType(),
-        new UKUT.Citation(),
+        new UKUT.NeutralCitationEnricher(),
         new UKUT.CourtType2(),
         new UKUT.Date1(),
         new PartyEnricher(),
