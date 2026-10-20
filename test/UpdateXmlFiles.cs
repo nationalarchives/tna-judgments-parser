@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 
+using test.ApiTests;
 using test.Mocks;
 
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
@@ -17,9 +18,8 @@ namespace test;
 
 public class UpdateXmlFiles
 {
-    private const int Total = 102;
     public static readonly TheoryData<int> IndicesTheoryData = new(
-        Enumerable.Range(1, Total)
+        Enumerable.Range(1, TestParser_Judgments.Total)
                   .Except([11]) //Skip 11 because it is a little more complicated
     );
 
