@@ -94,10 +94,24 @@ internal abstract class NeutralCitationEnricherBase : Enricher2
     private bool TryEnrichWithNeutralCitation(IInline[] lineArray, out IInline[] enrichedLines)
     {
         var enriched = EnrichFromBeginning.Enrich(lineArray, NeutralCitationPattern, MakeNeutralCitation);
+
         if (ReferenceEquals(enriched, lineArray))
         {
-            enrichedLines = [];
-            return false;
+            switch (lineArray)
+            {
+                // this could be a line with a tab in the middle to separate the left and right side
+                case [.. var left, WTab tab, WText right]
+                    when TryEnrichWithNeutralCitation([right], out var enrichedRight):
+                    enrichedLines = [.. left, tab, .. enrichedRight];
+                    return true;
+                case [WText left, WTab tab, .. var right]
+                    when TryEnrichWithNeutralCitation([left], out var enrichedLeft):
+                    enrichedLines = [.. enrichedLeft, tab, .. right];
+                    return true;
+                default:
+                    enrichedLines = [];
+                    return false;
+            }
         }
 
         enrichedLines = enriched.ToArray();
