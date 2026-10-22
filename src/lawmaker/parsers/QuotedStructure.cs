@@ -504,9 +504,18 @@ public partial class LegislationParser
         if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
         {
             WLine enriched = EnrichFromBeginning.Enrich(heading, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
-            var bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
-            heading.Contents = enriched.Contents.Where(i => i is not WBookmark);
-            return bookmark?.Name;
+            if (enriched.Contents.Where(i => i is WBookmark).Count() > 0)
+            {
+                var bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
+                heading.Contents = enriched.Contents.Where(i => i is not WBookmark);
+                return bookmark?.Name;
+            }
+            else
+            {
+                Console.Error.WriteLine("Quoted Structure start quote not found, there might be a missing end quote in a previous section");
+                Console.Error.WriteLine("Heading Text: " + heading.TextContent);
+                return "";
+            }
         }
         else if (hContainer.Number is not null)
         {
