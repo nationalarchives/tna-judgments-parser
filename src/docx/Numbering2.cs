@@ -273,7 +273,12 @@ class Numbering2 {
         var lvl = Numbering.GetLevel(main, numberingId, levelIndex);
         var n = Numbering3.CalculateN(main, paragraph, levelIndex);
 
-        return FormatN(n, lvl.NumberingFormat.Val.Value);
+        var format = lvl?.NumberingFormat?.Val?.Value;
+        if (format is null) {
+            logger.LogWarning("numbering level {Level} of {NumId} has no resolvable format; defaulting to decimal", levelIndex, numberingId);
+            return n.ToString();
+        }
+        return FormatN(n, format.Value);
     }
     
     internal static int GetAbstractStart(MainDocumentPart main, int absNumId, int ilvl) {
@@ -303,7 +308,8 @@ class Numbering2 {
             return n.ToString("D2");
         if (format == NumberFormatValues.None)  // EWHC/Ch/2015/3490
             return "";
-        throw new Exception("unsupported numbering format: " + format.ToString());
+        logger.LogWarning("unsupported numbering format {Format}; defaulting to decimal", format);
+        return n.ToString();
     }
 
     public static string FormatNumberAbstract(int absNumId, int ilvl, int n, MainDocumentPart main) {
