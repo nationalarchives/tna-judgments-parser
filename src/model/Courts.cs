@@ -190,6 +190,7 @@ public partial class Courts()
 
     public static readonly Court EmploymentAppealTribunal = GetByCode("EAT");
 
+    public static readonly Court FirstTierTribunal_CareStandards = GetByCode("UKFTT-HESC");
     public static readonly Court FirstTierTribunal_Tax = GetByCode("UKFTT-TC");
     public static readonly Court FirstTierTribunal_ImmigrationAndAsylum = GetByCode("UKFTT-IAC");
 
@@ -199,7 +200,7 @@ public partial class Courts()
 
     public static readonly Court InvestigatoryPowersTribunal = GetByCode("UKIPT");
 
-    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC";
+    public const string FirstTierTribunalChamberCodesPattern = "TC|GRC|PC|HESC";
     public const string UpperTribunalChamberCodesPattern = "AAC|IAC|LC|TCC";
     public const string EwhcCodesPattern = "Admin|Admlty|BP|Ch|Comm|Costs|Fam|IPEC|KB|Pat|QB|SCCO|TCC";
 
