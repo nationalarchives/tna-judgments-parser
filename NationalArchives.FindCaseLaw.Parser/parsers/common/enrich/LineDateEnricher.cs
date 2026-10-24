@@ -10,7 +10,7 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers;
 
-internal class Date0
+internal class LineDateEnricher
 {
     private static readonly CultureInfo culture = new("en-GB");
 
