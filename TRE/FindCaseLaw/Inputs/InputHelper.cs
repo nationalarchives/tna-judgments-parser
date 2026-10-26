@@ -9,9 +9,15 @@ using Api = UK.Gov.NationalArchives.Judgments.Api;
 
 namespace TRE.FindCaseLaw.Inputs;
 
-public partial class InputHelper
+public interface IInputHelper
 {
-    public static Api.Hint? GetHint(ParserInputs inputs, ILogger logger)
+    Api.Hint? GetHint(ParserInputs inputs, ILogger logger);
+    Api.Meta GetMetadata(ParserInputs inputs, ILogger logger);
+}
+
+public partial class InputHelper : IInputHelper
+{
+    public Api.Hint? GetHint(ParserInputs inputs, ILogger logger)
     {
         if (inputs is null)
         {
@@ -75,7 +81,7 @@ public partial class InputHelper
         return Api.Hint.Judgment;
     }
 
-    public static Api.Meta GetMetadata(ParserInputs inputs, ILogger logger)
+    public Api.Meta GetMetadata(ParserInputs inputs, ILogger logger)
     {
         void ValidateFclUri(string uri)
         {

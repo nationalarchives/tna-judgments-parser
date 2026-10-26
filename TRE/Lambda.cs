@@ -32,6 +32,7 @@ public class Lambda
 
     private readonly string logFilename = "parser.log";
     private readonly Api.Parser parser;
+    private readonly IInputHelper inputHelper = new InputHelper();
 
     public Lambda()
     {
@@ -101,7 +102,7 @@ public class Lambda
         Api.Hint? hint;
         try
         {
-            hint = InputHelper.GetHint(inputs, logger);
+            hint = inputHelper.GetHint(inputs, logger);
         }
         catch (Exception e)
         {
@@ -113,7 +114,7 @@ public class Lambda
         Api.Meta meta;
         try
         {
-            meta = InputHelper.GetMetadata(inputs, logger);
+            meta = inputHelper.GetMetadata(inputs, logger);
         }
         catch (Exception e)
         {
