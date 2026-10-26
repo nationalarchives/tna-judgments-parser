@@ -1,6 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using TRE.FindCaseLaw.Inputs;
+
 using Xunit;
 
 namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test;

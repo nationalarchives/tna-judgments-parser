@@ -2,9 +2,10 @@ using Microsoft.Extensions.Logging;
 
 using test.Mocks;
 
+using TRE.FindCaseLaw.Inputs;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
-using UK.Gov.NationalArchives.CaseLaw.TRE;
 
 using Xunit;
 
