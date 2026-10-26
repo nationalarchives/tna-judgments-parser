@@ -5,35 +5,31 @@ using Microsoft.Extensions.Logging;
 using TRE.FindCaseLaw.Inputs;
 
 using UK.Gov.Legislation.Judgments;
+using UK.Gov.NationalArchives.Judgments.Api;
 
 using Xunit;
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE.Test;
+namespace test.TRE.FindCaseLaw.Inputs;
 
-public class TestInputValidation
+public class TestInputHelper
 {
+    private readonly ILogger logger = Logging.Factory.CreateLogger<TestInputHelper>();
+    private readonly InputHelper inputHelper = new();
 
-    private readonly ILogger Logger = Logging.Factory.CreateLogger<TestInputValidation>();
 
     [Fact]
     public void TesMBadDocType()
     {
-        ParserInputs inputs = new()
-        {
-            DocumentType = "unrecognized"
-        };
-        Assert.Throws<Exception>(() => { InputHelper.GetHint(inputs, Logger); });
+        ParserInputs inputs = new() { DocumentType = "unrecognized" };
+        Assert.Throws<Exception>(() => { inputHelper.GetHint(inputs, logger); });
     }
 
     [Fact]
     public void TestMissingDocType()
     {
         var uri = "uksc/1900/1";
-        ParserInputs inputs = new()
-        {
-            Metadata = new InputMetadata() { URI = uri }
-        };
-        Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
+        ParserInputs inputs = new() { Metadata = new InputMetadata { URI = uri } };
+        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -42,9 +38,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { URI = "not/supported" }
+            Metadata = new InputMetadata { URI = "not/supported" }
         };
-        Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
+        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -54,9 +50,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { URI = "d-00000000-0000-0000-ffff-000000000000" }
+            Metadata = new InputMetadata { URI = "d-00000000-0000-0000-ffff-000000000000" }
         };
-        InputHelper.GetMetadata(inputs, Logger);
+        inputHelper.GetMetadata(inputs, logger);
     }
 
     [Fact]
@@ -65,9 +61,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { Cite = "[1900] BAD 1" }
+            Metadata = new InputMetadata { Cite = "[1900] BAD 1" }
         };
-        Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
+        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -77,9 +73,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { Court = court }
+            Metadata = new InputMetadata { Court = court }
         };
-        Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
+        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -89,10 +85,10 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { Court = court }
+            Metadata = new InputMetadata { Court = court }
         };
-        Judgments.Api.Hint? hint = InputHelper.GetHint(inputs, Logger);
-        Assert.Equal(Judgments.Api.Hint.UKSC, hint);
+        var hint = inputHelper.GetHint(inputs, logger);
+        Assert.Equal(Hint.UKSC, hint);
     }
 
     [Fact]
@@ -102,9 +98,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { Date = date }
+            Metadata = new InputMetadata { Date = date }
         };
-        Assert.Throws<Exception>(() => { InputHelper.GetMetadata(inputs, Logger); });
+        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -115,10 +111,9 @@ public class TestInputValidation
         ParserInputs inputs = new()
         {
             DocumentType = ParserInputs.JudgmentDocumentType,
-            Metadata = new InputMetadata() { URI = uri, Cite = cite }
+            Metadata = new InputMetadata { URI = uri, Cite = cite }
         };
-        var exception = Record.Exception(() => { InputHelper.GetMetadata(inputs, Logger); });
+        var exception = Record.Exception(() => { inputHelper.GetMetadata(inputs, logger); });
         Assert.Null(exception);
     }
-
 }

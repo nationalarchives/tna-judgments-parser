@@ -16,6 +16,7 @@ namespace test.TRE;
 public class TestInputInjection
 {
     private readonly byte[] Docx1 = DocumentHelpers.ReadDocx(1);
+    private static readonly InputHelper InputHelper = new();
 
     [Fact]
     public void TestUri()
