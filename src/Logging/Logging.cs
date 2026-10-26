@@ -21,31 +21,4 @@ public class Logging
                 .SetMinimumLevel(level);
         });
     }
-
-    public static void SetConsole(LogLevel level)
-    {
-        Factory = LoggerFactory.Create(builder =>
-        {
-            builder
-                .AddConsole()
-                .SetMinimumLevel(level);
-        });
-    }
-
-    public static void SetFile(FileInfo file, LogLevel level = LogLevel.Information)
-    {
-        if (file is null)
-        {
-            Factory = LoggerFactory.Create(builder => { builder.SetMinimumLevel(LogLevel.None); });
-        }
-        else
-        {
-            Factory = LoggerFactory.Create(builder =>
-            {
-                builder
-                    .AddFile(file.FullName)
-                    .SetMinimumLevel(level);
-            });
-        }
-    }
 }
