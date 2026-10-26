@@ -1,13 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace UK.Gov.NationalArchives.CaseLaw.TRE;
-
-public class Response
-{
-    [JsonPropertyName("parser-outputs")]
-    public ParserOutputs Outputs { get; set; }
-}
+namespace TRE.FindCaseLaw.Outputs;
 
 public class ParserOutputs
 {

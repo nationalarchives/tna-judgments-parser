@@ -4,7 +4,7 @@ using Shouldly;
 
 using test.ApiTests;
 
-using UK.Gov.NationalArchives.CaseLaw.TRE;
+using TRE.FindCaseLaw.Inputs;
 
 using Xunit;
 

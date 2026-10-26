@@ -12,6 +12,9 @@ using Amazon.S3.Model;
 
 using Microsoft.Extensions.Logging;
 
+using TRE.FindCaseLaw.Inputs;
+using TRE.FindCaseLaw.Outputs;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
