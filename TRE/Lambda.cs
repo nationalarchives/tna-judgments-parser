@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 
@@ -12,6 +11,7 @@ using Amazon.S3.Model;
 
 using Microsoft.Extensions.Logging;
 
+using TRE.FindCaseLaw;
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
 
@@ -33,6 +33,7 @@ public class Lambda
     private readonly string logFilename = "parser.log";
     private readonly Api.Parser parser;
     private readonly IInputHelper inputHelper = new InputHelper();
+    private readonly IExternalResourceRetriever externalResourceRetriever;
 
     public Lambda()
     {
@@ -40,6 +41,8 @@ public class Lambda
         Logging.Factory.AddProvider(loggerProvider);
         logger = Logging.Factory.CreateLogger<Lambda>();
         parser = new Api.Parser(Logging.Factory.CreateLogger<Api.Parser>(), new Validator());
+        externalResourceRetriever = new ExternalResourceRetriever(new AmazonS3Client(),
+            Logging.Factory.CreateLogger<ExternalResourceRetriever>());
     }
 
     public Stream FunctionHandler(Stream input)
@@ -71,7 +74,7 @@ public class Lambda
         byte[] docx;
         try
         {
-            docx = ReadDocx(inputs);
+            docx = externalResourceRetriever.GetDocx(inputs);
         }
         catch (Exception e)
         {
@@ -83,20 +86,8 @@ public class Lambda
         var attachments = new List<Api.Attachment>();
         if (inputs.AttachmentURLs is not null)
         {
-            using var http = new HttpClient();
-            foreach (var url in inputs.AttachmentURLs)
-            {
-                try
-                {
-                    var content = http.GetByteArrayAsync(url).Result;
-                    attachments.Add(new Api.Attachment { Content = content });
-                }
-                catch (Exception e)
-                {
-                    logger.LogError(e, "error reading attachment: {}", e.Message);
-                    errors.Add("error reading attachment");
-                }
-            }
+            (attachments, var newErrors) = externalResourceRetriever.GetAttachments(inputs.AttachmentURLs);
+            errors.AddRange(newErrors);
         }
 
         Api.Hint? hint;
@@ -237,25 +228,5 @@ public class Lambda
         var messages = loggerProvider.Reset();
         var log = CustomLoggerProvider.ToJson(messages);
         Save(bucket, prefix, logFilename, Encoding.UTF8.GetBytes(log), "application/json");
-    }
-
-    private byte[] ReadDocx(ParserInputs inputs)
-    {
-        if (!string.IsNullOrEmpty(inputs.DocumentUrl))
-        {
-            using var http = new HttpClient();
-            var task = http.GetByteArrayAsync(inputs.DocumentUrl);
-            return task.Result;
-        }
-        else
-        {
-            var s3 = new AmazonS3Client();
-            var request = new GetObjectRequest { BucketName = inputs.S3InputBucket, Key = inputs.S3InputKey };
-            var task = s3.GetObjectAsync(request);
-            var response = task.Result;
-            using var ms = new MemoryStream();
-            response.ResponseStream.CopyTo(ms);
-            return ms.ToArray();
-        }
     }
 }
