@@ -66,7 +66,12 @@ public struct LogMessage
     public string Message { get; internal init; }
 }
 
-public sealed class CustomLoggerProvider : ILoggerProvider
+public interface ICustomLoggerProvider : ILoggerProvider
+{
+    IList<LogMessage> Reset();
+}
+
+public sealed class CustomLoggerProvider : ICustomLoggerProvider
 {
     private readonly List<LogMessage> Messages = new();
 
