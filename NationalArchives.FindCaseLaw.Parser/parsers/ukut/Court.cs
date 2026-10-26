@@ -72,6 +72,15 @@ internal class CourtType : AbstractCourtType
             Re1 = new Regex("^PROPERTY CHAMBER, LAND REGISTRATION$", RegexOptions.IgnoreCase),
             Re2 = new Regex("^FIRST-TIER TRIBUNAL$", RegexOptions.IgnoreCase),
             Court = Courts.FirstTierTribunal_PropertyChamber
+        },
+
+        new()
+        {
+            Re1 = new Regex(@"^\s*First-tier\s*Tribunal\s*Care\s*Standards\s*$", RegexOptions.IgnoreCase),
+            Re2 = new Regex(
+                @"^\s*The\s*Tribunal\s*Procedure\s*\(First-tier\s*Tribunal\)\s*\(Health,\s*Education\s*and\s*Social\s*Care\)\s*Rules\s*2008\s*$",
+                RegexOptions.IgnoreCase),
+            Court = Courts.FirstTierTribunal_CareStandards
         }
     ];
 
@@ -102,5 +111,4 @@ internal class CourtType : AbstractCourtType
             Court = Courts.FirstTierTribunal_Tax
         }
     ];
-
 }
