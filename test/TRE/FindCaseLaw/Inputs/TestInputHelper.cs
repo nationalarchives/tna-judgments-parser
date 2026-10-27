@@ -21,7 +21,7 @@ public class TestInputHelper
     public void TesMBadDocType()
     {
         ParserInputs inputs = new() { DocumentType = "unrecognized" };
-        Assert.Throws<Exception>(() => { inputHelper.GetHint(inputs, logger); });
+        Assert.Throws<ArgumentException>(() => { inputHelper.GetHint(inputs, logger); });
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public class TestInputHelper
     {
         var uri = "uksc/1900/1";
         ParserInputs inputs = new() { Metadata = new InputMetadata { URI = uri } };
-        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
+        Assert.Throws<ArgumentException>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class TestInputHelper
             DocumentType = ParserInputs.JudgmentDocumentType,
             Metadata = new InputMetadata { URI = "not/supported" }
         };
-        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
+        Assert.Throws<ArgumentException>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -63,7 +63,7 @@ public class TestInputHelper
             DocumentType = ParserInputs.JudgmentDocumentType,
             Metadata = new InputMetadata { Cite = "[1900] BAD 1" }
         };
-        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
+        Assert.Throws<FormatException>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public class TestInputHelper
             DocumentType = ParserInputs.JudgmentDocumentType,
             Metadata = new InputMetadata { Court = court }
         };
-        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
+        Assert.Throws<ArgumentException>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
@@ -100,7 +100,7 @@ public class TestInputHelper
             DocumentType = ParserInputs.JudgmentDocumentType,
             Metadata = new InputMetadata { Date = date }
         };
-        Assert.Throws<Exception>(() => { inputHelper.GetMetadata(inputs, logger); });
+        Assert.Throws<FormatException>(() => { inputHelper.GetMetadata(inputs, logger); });
     }
 
     [Fact]
