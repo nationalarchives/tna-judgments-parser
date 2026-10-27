@@ -16,6 +16,7 @@ using Shouldly;
 
 using TRE.FindCaseLaw;
 using TRE.FindCaseLaw.Inputs;
+using TRE.FindCaseLaw.Outputs;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
@@ -78,17 +79,21 @@ public class EndToEndTestWorker
 
         using var result = worker.Process(new MemoryStream(request));
 
-        var parserOutputsJson = JsonDocument.Parse(result).RootElement.ToString();
+        var outputs = JsonSerializer.Deserialize<Response>(result).Outputs;
 
-        parserOutputsJson.ShouldBe(
-            """{"parser-outputs":{"xml":null,"metadata":null,"images":null,"log":"parser.log","error-messages":["error parsing document"]}}""");
+        outputs.XMLFilename.ShouldBeNull();
+        outputs.MetadataFilename.ShouldBeNull();
+        outputs.LogFilename.ShouldBe("parser.log");
 
         uploads.Keys.ShouldBe(["consignment/" + "parser.log"]);
 
         var errorEntries = SavedLog().Where(e => e.GetProperty("level").GetString() == "error").ToArray();
         errorEntries.Length.ShouldBe(1);
         errorEntries[0].GetProperty("class").GetString().ShouldBe(typeof(Worker).FullName);
-        errorEntries[0].GetProperty("message").GetString().ShouldStartWith("parse error: ");
+        errorEntries[0].GetProperty("message").GetString()
+                       .ShouldBe("error processing document: File contains corrupted data.");
+
+        outputs.ErrorMessages.ShouldBe([errorEntries[0].GetProperty("message").GetString()]);
     }
 
     [Fact]
@@ -112,15 +117,17 @@ public class EndToEndTestWorker
 
         using var result = worker.Process(new MemoryStream(request));
 
-        var parserOutputsJson = JsonDocument.Parse(result).RootElement.ToString();
+        var outputs = JsonSerializer.Deserialize<Response>(result).Outputs;
 
-        parserOutputsJson.ShouldBe(
-            """{"parser-outputs":{"xml":null,"metadata":null,"images":null,"log":"parser.log","error-messages":["error reading .docx file"]}}""");
+        outputs.XMLFilename.ShouldBeNull();
+        outputs.MetadataFilename.ShouldBeNull();
+        outputs.LogFilename.ShouldBe("parser.log");
+        outputs.ErrorMessages.ShouldBe(["error processing document: no such object"]);
 
         var errorEntries = SavedLog().Where(e => e.GetProperty("level").GetString() == "error").ToArray();
         errorEntries.Length.ShouldBe(1);
         errorEntries[0].GetProperty("message").GetString()
-                       .ShouldBe("error reading .docx file: no such object");
+                       .ShouldBe("error processing document: no such object");
     }
 
     [Fact]
@@ -145,9 +152,13 @@ public class EndToEndTestWorker
 
         using var result = worker.Process(new MemoryStream(request));
 
-        var parserOutputsJson = JsonDocument.Parse(result).RootElement.ToString();
+        var outputs = JsonSerializer.Deserialize<Response>(result).Outputs;
 
-        parserOutputsJson.ShouldBe(
-            """{"parser-outputs":{"xml":null,"metadata":null,"images":null,"log":null,"error-messages":["error parsing document","error saving log"]}}""");
+        outputs.LogFilename.ShouldBeNull();
+
+        var errorMessages = outputs.ErrorMessages.ToArray();
+        errorMessages.Length.ShouldBe(2);
+        errorMessages[0].ShouldBe("error processing document: File contains corrupted data.");
+        errorMessages[1].ShouldBe("error saving parser.log to S3: access denied");
     }
 }

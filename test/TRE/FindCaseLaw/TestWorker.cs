@@ -1,13 +1,16 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
 
 using Amazon.S3;
 using Amazon.S3.Model;
+
+using Microsoft.Extensions.Logging;
 
 using Moq;
 
@@ -36,12 +39,15 @@ public class TestWorker
     private readonly Dictionary<string, Upload> uploads = new();
     private readonly HashSet<string> keysWhichFailToUpload = [];
 
+    private readonly MockLogger<Worker> mockLogger = new();
     private readonly Mock<Api.IParser> mockParser = new();
-    private readonly Mock<ICustomLoggerProvider> mockLoggerProvider = new();
+    private readonly Mock<ICustomLoggerProvider> mockCustomLoggerProvider = new();
     private readonly Mock<IAmazonS3> mockS3 = new();
     private readonly Mock<IInputHelper> mockInputHelper = new();
     private readonly Mock<IExternalResourceRetriever> mockExternalResourceRetriever = new();
     private readonly Worker worker;
+
+    private readonly List<LogMessage> logMessages = [];
 
     private readonly ParserInputs inputs = new()
     {
@@ -56,43 +62,75 @@ public class TestWorker
     public TestWorker()
     {
         mockS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
-          .ReturnsAsync((PutObjectRequest request, CancellationToken _) =>
-          {
-              if (keysWhichFailToUpload.Contains(request.Key))
+              .ReturnsAsync((PutObjectRequest request, CancellationToken _) =>
               {
-                  throw new AmazonS3Exception("access denied");
-              }
+                  if (string.IsNullOrEmpty(request.BucketName))
+                  {
+                      throw new ArgumentException("BucketName is a required property");
+                  }
 
-              using var content = new MemoryStream();
-              request.InputStream.CopyTo(content);
-              uploads[request.Key] = new Upload(request.ContentType, content.ToArray());
-              return new PutObjectResponse();
-          });
+                  if (keysWhichFailToUpload.Contains(request.Key))
+                  {
+                      throw new AmazonS3Exception("access denied");
+                  }
 
-        mockLoggerProvider.Setup(x => x.Reset()).Returns(new List<LogMessage>());
+                  using var content = new MemoryStream();
+                  request.InputStream.CopyTo(content);
+                  uploads[request.Key] = new Upload(request.ContentType, content.ToArray());
+                  return new PutObjectResponse();
+              });
 
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-              .Returns(new Api.Response { Xml = "<akomaNtoso/>", Meta = new Api.Meta(), Images = [] });
+                  .Returns(new Api.Response
+                  {
+                      Xml = "<akomaNtoso/>",
+                      Meta = new Api.Meta(),
+                      Images = []
+                  });
 
-        worker = new Worker(new MockLogger<Worker>().Object, mockParser.Object, mockLoggerProvider.Object, mockS3.Object,
+        mockLogger.Setup(x => x.Log(
+                      It.IsAny<LogLevel>(),
+                      It.IsAny<EventId>(),
+                      It.IsAny<It.IsAnyType>(),
+                      It.IsAny<Exception>(),
+                      It.IsAny<Func<It.IsAnyType, Exception?, string>>()))
+                  .Callback(
+                      new InvocationAction(invocation => logMessages.Add(new LogMessage
+                      {
+                          Level = (LogLevel)invocation.Arguments[0]!,
+                          Message = (string)((Delegate)invocation.Arguments[4]!).DynamicInvoke(
+                              invocation.Arguments[2], invocation.Arguments[3])!
+                      }))
+                  );
+
+        mockCustomLoggerProvider.Setup(x => x.Reset())
+                                .Returns(logMessages)
+                                .Callback(logMessages.Clear);
+
+        worker = new Worker(mockLogger.Object, mockParser.Object, mockCustomLoggerProvider.Object, mockS3.Object,
             mockInputHelper.Object, mockExternalResourceRetriever.Object);
     }
 
-    private ParserOutputs Run(ParserInputs parserInputs)
+    private ParserOutputs Run(ParserInputs? parserInputs)
     {
         var request = JsonSerializer.SerializeToUtf8Bytes(new Request { Inputs = parserInputs });
         using var result = worker.Process(new MemoryStream(request));
-        return JsonSerializer.Deserialize<Response>(result).Outputs;
+        return JsonSerializer.Deserialize<Response>(result)!.Outputs;
     }
 
     private void SetupParserToReturnImages(params Api.Image[] images)
     {
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-              .Returns(new Api.Response { Xml = "<akomaNtoso/>", Meta = new Api.Meta(), Images = images });
+                  .Returns(new Api.Response
+                  {
+                      Xml = "<akomaNtoso/>",
+                      Meta = new Api.Meta(),
+                      Images = images
+                  });
     }
 
     [Fact]
-    public void SuccessfulRunSavesXmlMetadataAndLogUnderOutputPrefix()
+    public void Process_ValidInputs_SavesXmlMetadataAndLogUnderOutputPrefix()
     {
         Run(inputs);
 
@@ -101,7 +139,7 @@ public class TestWorker
     }
 
     [Fact]
-    public void SuccessfulRunReportsTheSavedFilenamesAndNoErrors()
+    public void Process_ValidInputs_ReportsSavedFilenamesAndNoErrors()
     {
         var outputs = Run(inputs);
 
@@ -112,7 +150,7 @@ public class TestWorker
     }
 
     [Fact]
-    public void SavesTheParsedXmlAsXml()
+    public void Process_ValidInputs_SavesParsedXmlAsXml()
     {
         Run(inputs);
 
@@ -121,15 +159,19 @@ public class TestWorker
     }
 
     [Fact]
-    public void SavesTheParsedMetadataAsJson()
+    public void Process_ValidInputs_SavesParsedMetadataAsJson()
     {
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-              .Returns(new Api.Response
-              {
-                  Xml = "<akomaNtoso/>",
-                  Meta = new Api.Meta { Court = "UKUT-IAC", Cite = "[2024] UKUT 1 (IAC)" },
-                  Images = []
-              });
+                  .Returns(new Api.Response
+                  {
+                      Xml = "<akomaNtoso/>",
+                      Meta = new Api.Meta
+                      {
+                          Court = "UKUT-IAC",
+                          Cite = "[2024] UKUT 1 (IAC)"
+                      },
+                      Images = []
+                  });
 
         Run(inputs);
 
@@ -140,10 +182,20 @@ public class TestWorker
     }
 
     [Fact]
-    public void SavesEachImageWithItsOwnContentType()
+    public void Process_ParserReturnsImages_SavesEachImageWithItsOwnContentType()
     {
-        var png = new Api.Image { Name = "image1.png", Type = "image/png", Content = [4, 5] };
-        var jpeg = new Api.Image { Name = "image2.jpeg", Type = "image/jpeg", Content = [6] };
+        var png = new Api.Image
+        {
+            Name = "image1.png",
+            Type = "image/png",
+            Content = [4, 5]
+        };
+        var jpeg = new Api.Image
+        {
+            Name = "image2.jpeg",
+            Type = "image/jpeg",
+            Content = [6]
+        };
         SetupParserToReturnImages(png, jpeg);
 
         var outputs = Run(inputs);
@@ -156,27 +208,37 @@ public class TestWorker
     }
 
     [Fact]
-    public void ParserIsGivenTheDocxHintMetadataAndAttachments()
+    public void Process_ValidInputs_GivesParserDocxHintMetadataAndAttachments()
     {
         var hint = Api.Hint.Judgment;
         var meta = new Api.Meta { Court = "EWCA" };
-        List<Api.Attachment> attachments = [new() { Content = [7], Type = Api.AttachmentType.Order }];
-        mockInputHelper.Setup(x => x.GetHint(It.Is<ParserInputs>(i => i.ConsignmentReference == inputs.ConsignmentReference),
-                       It.IsAny<Microsoft.Extensions.Logging.ILogger>())).Returns(hint);
-        mockInputHelper.Setup(x => x.GetMetadata(It.Is<ParserInputs>(i => i.ConsignmentReference == inputs.ConsignmentReference),
-                       It.IsAny<Microsoft.Extensions.Logging.ILogger>())).Returns(meta);
+        List<Api.Attachment> attachments =
+        [
+            new()
+            {
+                Content = [7],
+                Type = Api.AttachmentType.Order
+            }
+        ];
+        mockInputHelper.Setup(x => x.GetHint(
+            It.Is<ParserInputs>(i => i.ConsignmentReference == inputs.ConsignmentReference),
+            It.IsAny<ILogger>())).Returns(hint);
+        mockInputHelper.Setup(x => x.GetMetadata(
+            It.Is<ParserInputs>(i => i.ConsignmentReference == inputs.ConsignmentReference),
+            It.IsAny<ILogger>())).Returns(meta);
         inputs.AttachmentURLs = ["https://example.com/attachment"];
         mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
-        mockExternalResourceRetriever.Setup(x => x.GetAttachments(inputs.AttachmentURLs)).Returns((attachments, []));
+        mockExternalResourceRetriever.Setup(x => x.GetAttachments(inputs.AttachmentURLs)).Returns(attachments);
 
         Run(inputs);
 
-        mockParser.Verify(x => x.Parse(It.Is<Api.Request>(r =>
-            r.Content == Docx && r.Hint == hint && r.Meta == meta && r.Attachments == attachments)), Times.Once);
+        mockParser.Verify(
+            x => x.Parse(It.Is<Api.Request>(r => r.Content == Docx && r.Hint == hint && r.Meta == meta
+                && r.Attachments == attachments)), Times.Once);
     }
 
     [Fact]
-    public void AttachmentsAreNotRetrievedWhenThereAreNoAttachmentUrls()
+    public void Process_NoAttachmentUrls_DoesNotRetrieveAttachments()
     {
         inputs.AttachmentURLs = null;
 
@@ -186,145 +248,163 @@ public class TestWorker
     }
 
     [Fact]
-    public void AttachmentErrorsAreReportedButParsingStillHappens()
+    public void Process_NoAttachmentsRetrieved_StillParses()
     {
         inputs.AttachmentURLs = ["https://example.com/missing"];
-        mockExternalResourceRetriever.Setup(x => x.GetAttachments(inputs.AttachmentURLs))
-                                 .Returns(([], ["error reading attachment https://example.com/missing"]));
+        mockExternalResourceRetriever.Setup(x => x.GetAttachments(inputs.AttachmentURLs)).Returns([]);
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error reading attachment https://example.com/missing"]);
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Once);
     }
 
     [Fact]
-    public void MissingParserInputsIsReportedWithoutThrowing()
+    public void Process_MissingParserInputs_LogsErrorWithoutThrowing()
     {
-        var outputs = Run(null);
+        Run(null);
 
-        outputs.ErrorMessages.ShouldBe(["parser-inputs is null"]);
+        mockLogger.VerifyLog("error processing document: parser-inputs is null", LogLevel.Error);
+        mockLogger.VerifyLog("error saving parser.log to S3: BucketName is a required property", LogLevel.Error);
         uploads.ShouldBeEmpty();
     }
 
     [Fact]
-    public void UnreadableDocxIsReportedAndLogIsSavedAndParserIsNotCalled()
+    public void Process_UnreadableDocx_LogsErrorAndSavesLogAndDoesNotParse()
     {
-        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Throws(new IOException("no such object"));
+        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>()))
+                                     .Throws(new IOException("no such object"));
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error reading .docx file"]);
+        mockLogger.VerifyLog("error processing document: no such object", LogLevel.Error);
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void UnreadableDocumentTypeIsReportedAndLogIsSavedAndParserIsNotCalled()
+    public void Process_UnreadableDocumentType_LogsErrorAndSavesLogAndDoesNotParse()
     {
-        mockInputHelper.Setup(x => x.GetHint(It.IsAny<ParserInputs>(), It.IsAny<Microsoft.Extensions.Logging.ILogger>()))
-                   .Throws(new Exception("unknown document type"));
+        mockInputHelper.Setup(x => x.GetHint(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("unknown document type"));
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error reading document type"]);
+        mockLogger.VerifyLog("error processing document: unknown document type", LogLevel.Error);
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void UnreadableInputMetadataIsReportedAndLogIsSavedAndParserIsNotCalled()
+    public void Process_UnreadableInputMetadata_LogsErrorAndSavesLogAndDoesNotParse()
     {
-        mockInputHelper.Setup(x => x.GetMetadata(It.IsAny<ParserInputs>(), It.IsAny<Microsoft.Extensions.Logging.ILogger>()))
-                   .Throws(new Exception("input URI is not supported"));
+        mockInputHelper.Setup(x => x.GetMetadata(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("input URI is not supported"));
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error reading metadata"]);
+        mockLogger.VerifyLog("error processing document: input URI is not supported", LogLevel.Error);
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void ParseFailureIsReportedAndLogIsSaved()
+    public void Process_ParseFails_LogsErrorAndSavesLog()
     {
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>())).Throws(new Exception("not a docx"));
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error parsing document"]);
+        mockLogger.VerifyLog("error processing document: not a docx", LogLevel.Error);
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
     }
 
     [Fact]
-    public void FailureToSaveXmlIsReportedButMetadataAndLogAreStillSaved()
+    public void Process_XmlSaveFails_LogsErrorAndStillSavesMetadataAndLog()
     {
         keysWhichFailToUpload.Add("consignment/TDR-2024-ABC.xml");
 
         var outputs = Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error saving xml"]);
+        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: access denied", LogLevel.Error);
         outputs.XMLFilename.ShouldBeNull();
         uploads.Keys.ShouldBe(["consignment/metadata.json", "consignment/parser.log"], ignoreOrder: true);
     }
 
     [Fact]
-    public void FailureToSaveMetadataIsReportedButXmlAndLogAreStillSaved()
+    public void Process_MetadataSaveFails_LogsErrorAndStillSavesXmlAndLog()
     {
         keysWhichFailToUpload.Add("consignment/metadata.json");
 
         var outputs = Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error saving metadata"]);
+        mockLogger.VerifyLog("error saving metadata.json to S3: access denied", LogLevel.Error);
         outputs.MetadataFilename.ShouldBeNull();
         uploads.Keys.ShouldBe(["consignment/TDR-2024-ABC.xml", "consignment/parser.log"], ignoreOrder: true);
     }
 
     [Fact]
-    public void FailureToSaveAnImageIsReportedAndOtherImagesAreStillSaved()
+    public void Process_ImageSaveFails_LogsErrorAndStillSavesOtherImages()
     {
-        var first = new Api.Image { Name = "image1.png", Type = "image/png", Content = [4] };
-        var second = new Api.Image { Name = "image2.png", Type = "image/png", Content = [5] };
+        var first = new Api.Image
+        {
+            Name = "image1.png",
+            Type = "image/png",
+            Content = [4]
+        };
+        var second = new Api.Image
+        {
+            Name = "image2.png",
+            Type = "image/png",
+            Content = [5]
+        };
         SetupParserToReturnImages(first, second);
         keysWhichFailToUpload.Add("consignment/image1.png");
 
         var outputs = Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error saving image image1.png"]);
+        mockLogger.VerifyLog("error saving image1.png to S3: access denied", LogLevel.Error);
         outputs.ImageFilenames.ShouldBe(["image2.png"]);
     }
 
     [Fact]
-    public void FailureToSaveLogIsReportedAndLogFilenameIsOmitted()
+    public void Process_LogSaveFails_LogsErrorAndOmitsLogFilename()
     {
         keysWhichFailToUpload.Add("consignment/parser.log");
 
         var outputs = Run(inputs);
 
-        outputs.ErrorMessages.ShouldBe(["error saving log file"]);
+        mockLogger.VerifyLog("error saving parser.log to S3: access denied", LogLevel.Error);
         outputs.LogFilename.ShouldBeNull();
     }
 
     [Fact]
-    public void ParserReturningNoImagesIsNotAnError()
+    public void Process_S3ClientThrowsNonAmazonException_LogsErrorsAndOmitsFilenames()
+    {
+        mockS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
+              .ThrowsAsync(new ArgumentException("BucketName is a required property"));
+
+        var outputs = Run(inputs);
+
+        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: BucketName is a required property",
+            LogLevel.Error);
+        outputs.XMLFilename.ShouldBeNull();
+        outputs.MetadataFilename.ShouldBeNull();
+        outputs.LogFilename.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Process_ParserReturnsNoImages_ReportsNoErrors()
     {
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-              .Returns(new Api.Response { Xml = "<akomaNtoso/>", Meta = new Api.Meta(), Images = null });
+                  .Returns(new Api.Response
+                  {
+                      Xml = "<akomaNtoso/>",
+                      Meta = new Api.Meta(),
+                      Images = null
+                  });
 
         var outputs = Run(inputs);
 
         outputs.ErrorMessages.ShouldBeEmpty();
-    }
-
-    [Fact]
-    public void LogSavedIsTheLogOfThisRunOnly()
-    {
-        var messages = new List<LogMessage>();
-        mockLoggerProvider.Setup(x => x.Reset()).Returns(messages);
-
-        Run(inputs);
-
-        mockLoggerProvider.Verify(x => x.Reset(), Times.Once);
-        JsonDocument.Parse(uploads["consignment/parser.log"].Content).RootElement.GetArrayLength().ShouldBe(0);
     }
 }
