@@ -203,7 +203,7 @@ public class TestParserProcessMetadataSerialization
                     }
                 ]
             },
-            """{"documentType":"press_summary","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"document","timestamp":"2026-02-10T15:55:06Z","value":{"name":"With snake cased enums.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}""")
+            """{"documentType":"pressSummary","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"document","timestamp":"2026-02-10T15:55:06Z","value":{"name":"With snake cased enums.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}""")
     ];
 
     [Theory]
