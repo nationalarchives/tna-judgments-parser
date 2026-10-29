@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 using Amazon.Lambda.Core;
@@ -56,6 +57,7 @@ public class Lambda
         builder.Services.AddScoped<IExternalResourceRetriever, ExternalResourceRetriever>();
 
         builder.Services.AddSingleton<IAmazonS3, AmazonS3Client>();
+        builder.Services.AddSingleton(TimeProvider.System);
 
         // The CustomLoggerProvider is a singleton that needs to be registered under multiple interfaces so instantiate
         // it here and register the object directly under the required interfaces
