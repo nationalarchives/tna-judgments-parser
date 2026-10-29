@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -11,6 +12,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Time.Testing;
 
 using Moq;
 
@@ -21,6 +23,8 @@ using test.Mocks;
 using TRE.FindCaseLaw;
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
+using TRE.Metadata;
+using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -45,6 +49,7 @@ public class TestWorker
     private readonly Mock<IAmazonS3> mockS3 = new();
     private readonly Mock<IInputHelper> mockInputHelper = new();
     private readonly Mock<IExternalResourceRetriever> mockExternalResourceRetriever = new();
+    private readonly FakeTimeProvider fakeTimeProvider = new(new DateTimeOffset(2024, 6, 1, 10, 30, 0, TimeSpan.Zero));
     private readonly Worker worker;
 
     private readonly List<LogMessage> logMessages = [];
@@ -84,7 +89,7 @@ public class TestWorker
                   .Returns(new Api.Response
                   {
                       Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta(),
+                      Meta = new Api.Meta { DocumentType = "judgment" },
                       Images = []
                   });
 
@@ -111,13 +116,17 @@ public class TestWorker
                                     return messages;
                                 });
 
+        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Tdr);
+        mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>())).Returns("input.docx");
+
         worker = new Worker(mockLogger.Object, mockParser.Object, mockCustomLoggerProvider.Object, mockS3.Object,
-            mockInputHelper.Object, mockExternalResourceRetriever.Object);
+            mockInputHelper.Object, mockExternalResourceRetriever.Object, fakeTimeProvider);
     }
 
     private ParserOutputs Run(ParserInputs? parserInputs)
     {
-        var request = JsonSerializer.SerializeToUtf8Bytes(new Request { Inputs = parserInputs });
+        var request = JsonSerializer.SerializeToUtf8Bytes(new Request { Inputs = parserInputs },
+            ParserProcessMetadata.JsonSerializerOptions);
         using var result = worker.Process(new MemoryStream(request));
         return JsonSerializer.Deserialize<Response>(result)!.Outputs;
     }
@@ -128,7 +137,7 @@ public class TestWorker
                   .Returns(new Api.Response
                   {
                       Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta(),
+                      Meta = new Api.Meta { DocumentType = "judgment" },
                       Images = images
                   });
     }
@@ -171,6 +180,7 @@ public class TestWorker
                       Xml = "<akomaNtoso/>",
                       Meta = new Api.Meta
                       {
+                          DocumentType = "judgment",
                           Court = "UKUT-IAC",
                           Cite = "[2024] UKUT 1 (IAC)"
                       },
@@ -183,6 +193,113 @@ public class TestWorker
         var metadata = JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
         metadata.GetProperty("court").GetString().ShouldBe("UKUT-IAC");
         metadata.GetProperty("cite").GetString().ShouldBe("[2024] UKUT 1 (IAC)");
+    }
+
+    private JsonElement SavedMetadata() => JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
+
+    [Fact]
+    public void Process_MetadataFieldsInInputs_SavesThemAsMetadataFields()
+    {
+        inputs.Metadata = new InputMetadata
+        {
+            MetadataFields =
+            [
+                new MetadataField<string>
+                {
+                    Name = MetadataFieldName.Court,
+                    Source = MetadataSource.External,
+                    Timestamp = new DateTime(2024, 5, 1, 0, 0, 0, DateTimeKind.Utc),
+                    Value = "EWCA"
+                }
+            ]
+        };
+
+        Run(inputs);
+
+        var metadata = SavedMetadata();
+        var fields = metadata.GetProperty("metadata_fields").EnumerateArray().ToArray();
+        fields.Length.ShouldBe(1);
+        fields[0].GetProperty("name").GetString().ShouldBe("court");
+        fields[0].GetProperty("source").GetString().ShouldBe("external");
+        fields[0].GetProperty("value").GetString().ShouldBe("EWCA");
+    }
+
+    [Fact]
+    public void Process_NoMetadataFieldsInInputs_SavesEmptyMetadataFields()
+    {
+        Run(inputs);
+
+        SavedMetadata().GetProperty("metadata_fields").GetArrayLength().ShouldBe(0);
+    }
+
+    [Theory]
+    [InlineData(Route.Eui, "eui")]
+    [InlineData(Route.Tdr, "tdr")]
+    public void Process_RouteFromInputHelper_IsSavedAsPrimarySourceRoute(Route route, string expectedRoute)
+    {
+        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(route);
+
+        Run(inputs);
+
+        SavedMetadata().GetProperty("primary_source").GetProperty("route").GetString().ShouldBe(expectedRoute);
+    }
+
+    [Fact]
+    public void Process_ValidInputs_SavesNewParserRunIdAndMarksXmlAsContainingDocumentText()
+    {
+        Run(inputs);
+
+        var metadata = SavedMetadata();
+        Guid.TryParse(metadata.GetProperty("parser_run_id").GetString(), out var parserRunId).ShouldBeTrue();
+        parserRunId.ShouldNotBe(Guid.Empty);
+        metadata.GetProperty("xml_contains_document_text").GetBoolean().ShouldBeTrue();
+    }
+
+    [Fact]
+    public void Process_ValidInputs_SavesPrimarySourceFileDetailsFromTheFetchedDocx()
+    {
+        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
+
+        Run(inputs);
+
+        var primarySource = SavedMetadata().GetProperty("primary_source");
+        primarySource.GetProperty("filename").GetString().ShouldBe("input.docx");
+        primarySource.GetProperty("mimetype").GetString()
+                     .ShouldBe("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        primarySource.GetProperty("sha256").GetString()
+                     .ShouldBe("039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81");
+        primarySource.GetProperty("route_datetime").GetString().ShouldBe("2024-06-01T10:30:00Z");
+    }
+
+    [Fact]
+    public void Process_SourceFilenameFromInputHelper_IsSavedInPrimarySource()
+    {
+        mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>())).Returns("My Judgment.docx");
+
+        Run(inputs);
+
+        SavedMetadata().GetProperty("primary_source").GetProperty("filename").GetString().ShouldBe("My Judgment.docx");
+    }
+
+    [Fact]
+    public void Process_ValidInputs_LogsTheParserRunIdSavedInMetadata()
+    {
+        Run(inputs);
+
+        var parserRunId = SavedMetadata().GetProperty("parser_run_id").GetString();
+        mockLogger.VerifyLog($"parser run id: {parserRunId}", LogLevel.Information);
+    }
+
+    [Fact]
+    public void Process_ProcessedTwice_UsesADifferentParserRunIdEachTime()
+    {
+        Run(inputs);
+        var first = SavedMetadata().GetProperty("parser_run_id").GetString();
+
+        Run(inputs);
+        var second = SavedMetadata().GetProperty("parser_run_id").GetString();
+
+        second.ShouldNotBe(first);
     }
 
     [Fact]
@@ -403,7 +520,7 @@ public class TestWorker
                   .Returns(new Api.Response
                   {
                       Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta(),
+                      Meta = new Api.Meta { DocumentType = "judgment" },
                       Images = null
                   });
 

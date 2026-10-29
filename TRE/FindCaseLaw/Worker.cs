@@ -1,8 +1,10 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 
@@ -13,6 +15,8 @@ using Microsoft.Extensions.Logging;
 
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
+using TRE.Metadata;
+using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -26,22 +30,27 @@ public class Worker(
     ICustomLoggerProvider loggerProvider,
     IAmazonS3 s3,
     IInputHelper inputHelper,
-    IExternalResourceRetriever externalResourceRetriever)
+    IExternalResourceRetriever externalResourceRetriever,
+    TimeProvider timeProvider)
 {
-    private static readonly JsonSerializerOptions MetadataJsonOptions = new()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    };
-
     private const string LogFilename = "parser.log";
     private const string MetadataFilename = "metadata.json";
+    private const string DocxMimetype = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
     private string s3Bucket = string.Empty;
     private string s3OutputPrefix = string.Empty;
     private string consignmentReference = string.Empty;
+    private List<IMetadataField> structuredMetadata = [];
+    private Guid parserRunId;
+    private string sourceFilename = string.Empty;
+    private string docxSha256 = string.Empty;
+    private Route route;
 
     public Stream Process(Stream input)
     {
+        parserRunId = Guid.NewGuid();
+        logger.LogInformation("parser run id: {ParserRunId}", parserRunId);
+
         var outputs = ProcessDocumentAndSaveToS3(input);
 
         outputs = FinaliseLogs(outputs);
@@ -92,7 +101,9 @@ public class Worker(
                 outputs.XMLFilename = xmlFilename;
             }
 
-            var metadata = JsonSerializer.SerializeToUtf8Bytes(parserResponse.Meta, MetadataJsonOptions);
+            var metadata = JsonSerializer.SerializeToUtf8Bytes(BuildParserProcessMetadata(parserResponse),
+                ParserProcessMetadata.JsonSerializerOptions);
+
             if (TrySaveToS3(MetadataFilename, metadata, "application/json"))
             {
                 outputs.MetadataFilename = MetadataFilename;
@@ -112,11 +123,41 @@ var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Ima
         return outputs;
     }
 
+    private ParserProcessMetadata BuildParserProcessMetadata(Api.Response parserResponse)
+    {
+        return new ParserProcessMetadata
+        {
+            DocumentType = Enum.Parse<DocumentType>(parserResponse.Meta.DocumentType, true),
+            ParserRunId = parserRunId,
+            MetadataFields = structuredMetadata,
+            PrimarySource = new PrimarySourceFile
+            {
+                Filename = sourceFilename,
+                Mimetype = DocxMimetype,
+                Route = route,
+                Sha256 = docxSha256,
+                RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
+            },
+            XmlContainsDocumentText = true,
+            Uri = parserResponse.Meta.Uri,
+            Court = parserResponse.Meta.Court,
+            Cite = parserResponse.Meta.Cite,
+            Date = parserResponse.Meta.Date,
+            Name = parserResponse.Meta.Name,
+            Extensions = parserResponse.Meta.Extensions,
+            Attachments = parserResponse.Meta.Attachments ?? []
+        };
+    }
+
     private Api.Request BuildParserRequest(Stream input)
     {
         var inputs = GetInputsFromStream(input);
 
         var docx = externalResourceRetriever.GetDocx(inputs);
+
+        docxSha256 = Convert.ToHexStringLower(SHA256.HashData(docx));
+        sourceFilename = inputHelper.GetSourceFilename(inputs);
+        route = inputHelper.GetRoute(inputs);
 
         var attachments = inputs.AttachmentURLs is not null
             ? externalResourceRetriever.GetAttachments(inputs.AttachmentURLs)
@@ -136,7 +177,7 @@ var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Ima
 
     private ParserInputs GetInputsFromStream(Stream input)
     {
-        var request = JsonSerializer.Deserialize<Request>(input);
+        var request = JsonSerializer.Deserialize<Request>(input, ParserProcessMetadata.JsonSerializerOptions);
 
         var inputs = request?.Inputs;
 
@@ -147,6 +188,7 @@ var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Ima
 
         s3Bucket = inputs.S3Bucket;
         s3OutputPrefix = inputs.S3OutputPrefix;
+        structuredMetadata = inputs.Metadata?.MetadataFields ?? [];
         consignmentReference = inputs.ConsignmentReference
             ?? throw new InvalidTreRequestException("parser-inputs.consignment-reference is null");
 
