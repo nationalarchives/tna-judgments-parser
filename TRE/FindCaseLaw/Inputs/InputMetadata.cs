@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
 using TRE.Metadata;
 
 namespace TRE.FindCaseLaw.Inputs;

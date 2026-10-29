@@ -1,11 +1,8 @@
-#nullable enable
-
-using System;
 using System.Text.Json.Serialization;
 
-using TRE.Metadata.Enums;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 
-namespace TRE.Metadata;
+namespace NationalArchives.FindCaseLaw.Utils.Metadata;
 
 /// <summary>
 ///     Information about the primary source file which was parsed. This should usually be

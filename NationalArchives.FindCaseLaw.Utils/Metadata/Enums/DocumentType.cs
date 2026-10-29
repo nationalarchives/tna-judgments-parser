@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TRE.Metadata.Enums;
+namespace NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 
 public enum DocumentType
 {

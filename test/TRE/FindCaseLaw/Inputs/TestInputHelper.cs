@@ -2,6 +2,9 @@ using System;
 
 using Microsoft.Extensions.Logging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using TRE.FindCaseLaw.Inputs;
 using TRE.Metadata;
 using TRE.Metadata.Enums;

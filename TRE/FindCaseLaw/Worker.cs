@@ -13,6 +13,9 @@ using Amazon.S3.Model;
 
 using Microsoft.Extensions.Logging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
 using TRE.Metadata;

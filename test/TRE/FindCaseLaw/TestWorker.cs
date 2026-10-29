@@ -17,6 +17,9 @@ using Microsoft.Extensions.Time.Testing;
 
 using Moq;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using Shouldly;
 
 using test.Mocks;

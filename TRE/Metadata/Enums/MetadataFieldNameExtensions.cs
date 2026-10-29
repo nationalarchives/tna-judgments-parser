@@ -3,28 +3,14 @@
 using System;
 using System.Collections.Generic;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
+
 using TRE.Metadata.MetadataFieldTypes;
 
 using UK.Gov.NationalArchives.CaseLaw.Model;
 
 namespace TRE.Metadata.Enums;
-
-public enum MetadataFieldName
-{
-    CaseNumber,
-    Category,
-    Court,
-    CsvMetadataFileProperties,
-    Date,
-    HeadnoteSummary,
-    Jurisdiction,
-    Name,
-    Ncn,
-    Party,
-    SourceFormat,
-    Uri,
-    WebArchivingLink
-}
 
 public static class MetadataFieldNameExtensions
 {

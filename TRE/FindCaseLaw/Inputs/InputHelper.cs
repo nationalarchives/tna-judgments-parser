@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 
 using Microsoft.Extensions.Logging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
