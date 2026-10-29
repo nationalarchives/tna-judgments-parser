@@ -98,10 +98,9 @@ public class Worker(
                 outputs.MetadataFilename = MetadataFilename;
             }
 
-            var successfullySavedImages = parserResponse.Images
-                                                        .Where(image => TrySaveToS3(image.Name, image.Content,
-                                                            image.Type))
-                                                        .ToArray();
+var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Image>())
+                .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
+                .ToArray();
 
             outputs.ImageFilenames = successfullySavedImages.Select(image => image.Name);
         }
