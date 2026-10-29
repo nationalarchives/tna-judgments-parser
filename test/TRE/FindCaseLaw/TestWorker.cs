@@ -104,8 +104,12 @@ public class TestWorker
                   );
 
         mockCustomLoggerProvider.Setup(x => x.Reset())
-                                .Returns(logMessages)
-                                .Callback(logMessages.Clear);
+                                .Returns(() =>
+                                {
+                                    var messages = new List<LogMessage>(logMessages);
+                                    logMessages.Clear();
+                                    return messages;
+                                });
 
         worker = new Worker(mockLogger.Object, mockParser.Object, mockCustomLoggerProvider.Object, mockS3.Object,
             mockInputHelper.Object, mockExternalResourceRetriever.Object);
