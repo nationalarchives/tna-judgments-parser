@@ -17,7 +17,7 @@ namespace TRE.FindCaseLaw;
 public interface IExternalResourceRetriever
 {
     byte[] GetDocx(ParserInputs inputs);
-    (List<Attachment> attachments, List<string> errors) GetAttachments(IEnumerable<string> attachmentUrls);
+    List<Attachment> GetAttachments(IEnumerable<string> attachmentUrls);
 }
 
 public class ExternalResourceRetriever(IAmazonS3 s3, ILogger<ExternalResourceRetriever> logger)
@@ -42,10 +42,9 @@ public class ExternalResourceRetriever(IAmazonS3 s3, ILogger<ExternalResourceRet
         }
     }
 
-    public (List<Attachment> attachments, List<string> errors) GetAttachments(IEnumerable<string> attachmentUrls)
+    public List<Attachment> GetAttachments(IEnumerable<string> attachmentUrls)
     {
         List<Attachment> attachments = new();
-        List<string> errors = new();
 
         using var http = new HttpClient();
         foreach (var url in attachmentUrls)
@@ -58,10 +57,9 @@ public class ExternalResourceRetriever(IAmazonS3 s3, ILogger<ExternalResourceRet
             catch (Exception e)
             {
                 logger.LogError(e, "error reading attachment: {}", e.Message);
-                errors.Add("error reading attachment");
             }
         }
 
-        return (attachments, errors);
+        return attachments;
     }
 }

@@ -48,7 +48,10 @@ jobs:
             --data-binary @test-event.json > response.json
       - name: Assert response output
         run: |
-          expected='{"parser-outputs":{"xml":null,"metadata":null,"images":[],"log":null,"error-messages":["error saving xml","error saving metadata","error saving log file"]}}'
+          expected=$(cat <<'EOF'
+          {"parser-outputs":{"xml":null,"metadata":null,"images":[],"log":null,"error-messages":["error saving TDR-2024-SMOKE.xml to S3: BucketName is a required property and must be set before making this call. (Parameter 'PutObjectRequest.BucketName')","error saving metadata.json to S3: BucketName is a required property and must be set before making this call. (Parameter 'PutObjectRequest.BucketName')","error saving parser.log to S3: BucketName is a required property and must be set before making this call. (Parameter 'PutObjectRequest.BucketName')"]}}
+          EOF
+          )
           actual=$(cat response.json | jq -c .)
           if [ "$actual" = "$expected" ]; then
             echo "Response matches expected output."
