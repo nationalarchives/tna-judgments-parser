@@ -371,6 +371,21 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                                ("eId", "decision"),
                                ("href", "#"),
                                ("showAs", "decision")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-brian-kennedy-kc"),
+                               ("href", "/judge-brian-kennedy-kc"),
+                               ("showAs", "Brian Kennedy KC")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-paul-taylor"),
+                               ("href", "/judge-paul-taylor"),
+                               ("showAs", "Paul Taylor")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-susan-wolff"),
+                               ("href", "/judge-susan-wolff"),
+                               ("showAs", "Susan Wolff")),
                node => node.Should().HaveName("TLCConcept")
                            .And().Attributes.ThatMatch(
                                ("eId", "jurisdiction-informationrights"),
@@ -463,6 +478,21 @@ public class MetadataTests(ITestOutputHelper testOutputHelper) : BaseEndToEndTes
                                ("eId", "decision"),
                                ("href", "#"),
                                ("showAs", "decision")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-brian-kennedy-kc"),
+                               ("href", "/judge-brian-kennedy-kc"),
+                               ("showAs", "Brian Kennedy KC")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-paul-taylor"),
+                               ("href", "/judge-paul-taylor"),
+                               ("showAs", "Paul Taylor")),
+               node => node.Should().HaveName("TLCPerson")
+                           .And().Attributes.ThatMatch(
+                               ("eId", "judge-susan-wolff"),
+                               ("href", "/judge-susan-wolff"),
+                               ("showAs", "Susan Wolff")),
                node => node.Should().HaveName("TLCConcept")
                            .And().Attributes.ThatMatch(
                                ("eId", "jurisdiction-informationrights"),

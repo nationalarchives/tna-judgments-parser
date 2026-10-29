@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/657/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2023/657/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:33" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:50" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,6 +40,7 @@
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
         <TLCPerson eId="judge-lord-justice-underhill-vice-president-court-of-appeal-civil-division" href="/judge-lord-justice-underhill-vice-president-court-of-appeal-civil-division" showAs="LORD JUSTICE UNDERHILL (Vice-President, Court of Appeal, Civil Division)" />
+        <TLCPerson eId="judge-lord-justice-bean" href="/judge-lord-justice-bean" showAs="LORD JUSTICE BEAN" />
         <TLCPerson eId="judge-lady-justice-nicola-davies" href="/judge-lady-justice-nicola-davies" showAs="LADY JUSTICE NICOLA DAVIES" />
       </references>
       <proprietary source="#">
@@ -48,7 +49,7 @@
         <uk:number>657</uk:number>
         <uk:cite>[2023] EWCA Civ 657</uk:cite>
         <uk:caseNumber>CA-2022-001955</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>40e7d138e12f0b335d3609d6b77e1cd819183479743934148bbf1a9fc5fa912f</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -107,7 +108,7 @@
       <p class="CoverText">Date: <docDate date="2023-06-09" refersTo="#judgment">09 June 2023</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before :</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-underhill-vice-president-court-of-appeal-civil-division">LORD JUSTICE UNDERHILL (Vice-President, Court of Appeal, Civil Division)</judge></p>
-      <p class="CoverMain" style="text-align:center">LORD JUSTICE BEAN<br /><span style="font-weight:normal;text-decoration-line:none">and</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-bean">LORD JUSTICE BEAN</judge><br /><span style="font-weight:normal;text-decoration-line:none">and</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lady-justice-nicola-davies">LADY JUSTICE NICOLA DAVIES</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>

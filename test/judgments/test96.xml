@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059/data.xml" />
-          <FRBRdate date="2026-09-16T14:13:48" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:47" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -35,13 +35,14 @@
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
         <TLCPerson eId="judge-tribunal-judge-anne-scott" href="/judge-tribunal-judge-anne-scott" showAs="TRIBUNAL JUDGE ANNE SCOTT" />
+        <TLCPerson eId="judge-member-christopher-jenkins" href="/judge-member-christopher-jenkins" showAs="MEMBER CHRISTOPHER JENKINS" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-TC</uk:court>
         <uk:year>2024</uk:year>
         <uk:number>1059</uk:number>
         <uk:cite>[2024] UKFTT 1059 (TC)</uk:cite>
-        <uk:parser>1.15.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>8731591c87c85773482b02b15d8f70c6f8f23a5734bf9b72ce7841c73666bb89</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -106,7 +107,7 @@
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>25 November 2024</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
       <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-anne-scott" style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</judge></p>
-      <p style="text-align:center"><span style="font-weight:bold">MEMBER CHRISTOPHER JENKINS</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-member-christopher-jenkins" style="font-weight:bold">MEMBER CHRISTOPHER JENKINS</judge></p>
       <p style="text-align:center"><span style="font-weight:bold">Between</span></p>
       <p style="text-align:center"><party refersTo="#stage-one-creative-services-ltd" as="#appellant" style="font-weight:bold">STAGE ONE CREATIVE SERVICES LTD </party></p>
       <p style="text-align:right"><role refersTo="#appellant" style="font-weight:bold">Appellant</role></p>

@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/96/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukut/aac/2022/96/data.xml" />
-          <FRBRdate date="2026-09-11T16:14:14" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:43" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -33,13 +33,16 @@
         <TLCOrganization eId="ukut-aac" href="https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber" showAs="United Kingdom Upper Tribunal (Administrative Appeals Chamber)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="decision" href="#" showAs="decision" />
+        <TLCPerson eId="judge-m-hemingway" href="/judge-m-hemingway" showAs="M Hemingway" />
+        <TLCPerson eId="judge-a-guest" href="/judge-a-guest" showAs="A Guest" />
+        <TLCPerson eId="judge-d-rawsthorn" href="/judge-d-rawsthorn" showAs="D Rawsthorn" />
       </references>
       <proprietary source="#">
         <uk:court>UKUT-AAC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>96</uk:number>
         <uk:cite>[2022] UKUT 96 (AAC)</uk:cite>
-        <uk:parser>1.14.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>064c1aa29b73a2d8c57864d34423f8fde1c89f2b362b2b1cfc691e592c6093dd</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -65,9 +68,9 @@
       <p><courtType refersTo="#ukut-aac" style="font-weight:bold;font-family:Arial">ADMINISTRATIVE APPEALS CHAMBER</courtType></p>
       <p><courtType refersTo="#ukut-aac" style="font-weight:bold;font-family:Arial">(TRAFFIC COMMISSIONER APPEALS)</courtType></p>
       <p><span style="font-weight:bold;font-family:Arial">ON APPEAL from the DECISION of the TRAFFIC COMMISSIONER </span></p>
-      <p><span style="font-family:Arial">Before: </span><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">M Hemingway: Judge of the Upper Tribunal</span></p>
-      <p><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">A Guest: Member of the Upper Tribunal</span></p>
-      <p><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">D Rawsthorn: Member of the Upper Tribunal</span></p>
+      <p><span style="font-family:Arial">Before: </span><marker name="tab" /><marker name="tab" /><marker name="tab" /><judge refersTo="#judge-m-hemingway" style="font-family:Arial">M Hemingway</judge><span style="font-family:Arial">: Judge of the Upper Tribunal</span></p>
+      <p><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><judge refersTo="#judge-a-guest" style="font-family:Arial">A Guest</judge><span style="font-family:Arial">: Member of the Upper Tribunal</span></p>
+      <p><marker name="tab" /><marker name="tab" /><marker name="tab" /><marker name="tab" /><judge refersTo="#judge-d-rawsthorn" style="font-family:Arial">D Rawsthorn</judge><span style="font-family:Arial">: Member of the Upper Tribunal</span></p>
       <p style="margin-left:1.58in;text-indent:-1.58in"><span style="font-weight:bold;font-family:Arial">Appellant: </span><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">Nico 2014 Limited</span></p>
       <p style="margin-left:1.58in;text-indent:-1.58in"><span style="font-weight:bold;font-family:Arial">Licence Number:</span><span style="font-family:Arial">              OF2043707</span></p>
       <p style="margin-left:1.58in;text-indent:-1.58in"><span style="font-weight:bold;font-family:Arial">Heard at: </span><marker name="tab" /><marker name="tab" /><span style="font-family:Arial">Birmingham</span></p>

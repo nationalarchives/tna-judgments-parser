@@ -214,7 +214,7 @@ internal class OptimizedUKUTParser : OptimizedParser
         new UKUT.HeaderDateEnricher(),
         new PartyEnricher(),
         new UKUT.ProceedingsIdentifierEnricher(),
-        new UKUT.JudgeNames()
+        new JudgeEnricher()
     ];
 
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage)

@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/24/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/24/data.xml" />
-          <FRBRdate date="2024-08-12T19:22:46" name="transform" />
+          <FRBRdate date="2026-10-19T14:04:06" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -46,6 +46,7 @@
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
         <TLCPerson eId="judge-lord-justice-bean" href="/judge-lord-justice-bean" showAs="LORD JUSTICE BEAN" />
+        <TLCPerson eId="judge-lord-justice-lewis" href="/judge-lord-justice-lewis" showAs="LORD JUSTICE LEWIS" />
         <TLCPerson eId="judge-lady-justice-elisabeth-laing" href="/judge-lady-justice-elisabeth-laing" showAs="LADY JUSTICE ELISABETH LAING" />
       </references>
       <proprietary source="#">
@@ -54,7 +55,7 @@
         <uk:number>24</uk:number>
         <uk:cite>[2022] EWCA Civ 24</uk:cite>
         <uk:caseNumber>A2/2021/1372</uk:caseNumber>
-        <uk:parser>0.26.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>807758ad32b24ca1368be87184e5153c1ccdfbcf71dbfe08fc8665fe6f864496</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -111,7 +112,7 @@
       <p class="CoverText">Date: <docDate date="2022-01-14" refersTo="#judgment">14/01/2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before :</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-bean">LORD JUSTICE BEAN</judge></p>
-      <p class="CoverMain" style="text-align:center">LORD JUSTICE LEWIS<br /><span style="font-weight:normal;text-decoration-line:none">and</span></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-lewis">LORD JUSTICE LEWIS</judge><br /><span style="font-weight:normal;text-decoration-line:none">and</span></p>
       <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lady-justice-elisabeth-laing">LADY JUSTICE ELISABETH LAING</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
@@ -984,7 +985,7 @@
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/24/order/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/24/data.xml" />
-                <FRBRdate date="2024-08-12T19:22:46" name="transform" />
+                <FRBRdate date="2026-10-19T14:04:06" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>

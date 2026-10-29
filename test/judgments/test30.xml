@@ -21,7 +21,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/scco/2022/1148/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:24" name="transform" />
+          <FRBRdate date="2026-10-20T10:33:44" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -33,6 +33,7 @@
         <TLCOrganization eId="ewhc-seniorcourtscosts" href="https://www.gov.uk/courts-tribunals/senior-courts-costs-office" showAs="The England and Wales High Court (Senior Courts Costs Office)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="judgment" href="#" showAs="judgment" />
+        <TLCPerson eId="judge-costs-judge-rowley" href="/judge-costs-judge-rowley" showAs="COSTS JUDGE ROWLEY" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-SeniorCourtsCosts</uk:court>
@@ -40,7 +41,7 @@
         <uk:number>1148</uk:number>
         <uk:cite>[2022] EWHC 1148 (SCCO)</uk:cite>
         <uk:caseNumber>T20200493</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>42852cd524ee910c775b29a415114e971f7b2d238ef16439765f848807bcf06e</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -84,7 +85,7 @@
       <p class="CoverText">London, WC2A 2LL</p>
       <p class="CoverText">Date: <docDate date="2022-05-04" refersTo="#judgment">04/05/2022</docDate></p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span>:</p>
-      <p class="CoverMain" style="text-align:center">COSTS JUDGE ROWLEY</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-costs-judge-rowley">COSTS JUDGE ROWLEY</judge></p>
       <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
       <table uk:widths="1.23in 3.87in 1.24in">
         <tr>

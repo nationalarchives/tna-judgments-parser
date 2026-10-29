@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewca/civ/2022/840/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:16" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:53" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -44,6 +44,7 @@
         <TLCRole eId="respondent" href="" showAs="Respondent" />
         <TLCPerson eId="judge-lord-justice-singh" href="/judge-lord-justice-singh" showAs="LORD JUSTICE SINGH" />
         <TLCPerson eId="judge-lady-justice-simler" href="/judge-lady-justice-simler" showAs="LADY JUSTICE SIMLER" />
+        <TLCPerson eId="judge-lord-justice-stuart-smith" href="/judge-lord-justice-stuart-smith" showAs="LORD JUSTICE STUART-SMITH" />
       </references>
       <proprietary source="#">
         <uk:court>EWCA-Civil</uk:court>
@@ -51,7 +52,7 @@
         <uk:number>840</uk:number>
         <uk:cite>[2022] EWCA Civ 840</uk:cite>
         <uk:caseNumber>CA-2022-001147</uk:caseNumber>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>0bc8db175ea1908ea1e36bca130bdb75094a0332cfea49214c8f54fb10a4ac9c</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -116,7 +117,7 @@
       <p style="text-align:center;margin-left:0.39in"><judge refersTo="#judge-lord-justice-singh" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LORD JUSTICE SINGH</judge></p>
       <p style="text-align:center;margin-left:0.39in"><judge refersTo="#judge-lady-justice-simler" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LADY JUSTICE SIMLER</judge></p>
       <p style="text-align:center;margin-left:0.39in">and</p>
-      <p style="text-align:center;margin-left:0.39in"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LORD JUSTICE STUART-SMITH</span></p>
+      <p style="text-align:center;margin-left:0.39in"><judge refersTo="#judge-lord-justice-stuart-smith" style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid">LORD JUSTICE STUART-SMITH</judge></p>
       <p style="text-align:center;margin-left:0.39in"><span style="font-weight:bold">Between:</span></p>
       <table uk:widths="0.91in 4.31in 1in">
         <tr>
