@@ -1,7 +1,10 @@
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 using Microsoft.Extensions.Logging;
+
+using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -13,10 +16,29 @@ public interface IInputHelper
 {
     Api.Hint? GetHint(ParserInputs inputs, ILogger logger);
     Api.Meta GetMetadata(ParserInputs inputs, ILogger logger);
+    Route GetRoute(ParserInputs inputs);
+    string GetSourceFilename(ParserInputs inputs);
 }
 
 public partial class InputHelper : IInputHelper
 {
+    public Route GetRoute(ParserInputs inputs)
+    {
+        var hasStructuredMetadata = inputs.Metadata?.MetadataFields?.Count > 0
+                                    || !string.IsNullOrWhiteSpace(inputs.Metadata?.Court);
+
+        return hasStructuredMetadata ? Route.Eui : Route.Tdr;
+    }
+
+    public string GetSourceFilename(ParserInputs inputs)
+    {
+        var path = !string.IsNullOrEmpty(inputs.DocumentUrl)
+            ? new Uri(inputs.DocumentUrl).AbsolutePath
+            : inputs.S3InputKey;
+
+        return Uri.UnescapeDataString(Path.GetFileName(path ?? string.Empty));
+    }
+
     public Api.Hint? GetHint(ParserInputs inputs, ILogger logger)
     {
         if (inputs is null)
