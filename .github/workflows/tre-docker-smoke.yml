@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Docker container
         run: |
-          docker run -d --name tre-lambda-test -p 9000:8080 tre-lambda-test
+          docker run -d --name tre-lambda-test -p 9000:8080 -e AWS_REGION=eu-west-2 tre-lambda-test
 
       - name: Wait for container to start
         run: |
