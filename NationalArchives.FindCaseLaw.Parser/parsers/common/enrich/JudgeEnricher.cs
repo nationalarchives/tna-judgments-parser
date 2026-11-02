@@ -66,7 +66,7 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string CounselMatchGroup = "counsel";
 
     [GeneratedRegex(
-        $@"^\s*(?i:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!\s+(?i:the)(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$")]
+        $@"^\s*(?i:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+(?i:the)(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$")]
     private static partial Regex IntroductionLine();
 
     [GeneratedRegex($@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$")]

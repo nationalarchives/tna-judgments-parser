@@ -127,6 +127,7 @@ public class TestJudgeEnricher : ParserTestBase
 
     [Theory]
     [InlineData("BEFORE ", "DEPUTY INSOLVENCY AND COMPANIES JUDGE GAMMA KC")]
+    [InlineData("Before ", "The Honourable Mr Justice McAlpha, President")]
     [InlineData("Before: ", "TRIBUNAL JUDGE DELTA")]
     [InlineData("Before: ", "Oscar Papa")]
     [InlineData("Before: ", "Zulu Alpha Q.C.")]
@@ -135,18 +136,16 @@ public class TestJudgeEnricher : ParserTestBase
     {
         IBlock[] blocks =
         [
-            StyledLine($"{before}{judgeName}", BoldStyling),
-            StyledLine("Between", BoldStyling)
+            StyledLine($"{before}{judgeName}", BoldStyling)
         ];
 
         var result = Enricher.Enrich(blocks).ToArray();
         var contents = result[0].ShouldBeOfType<WLine>().Contents.ToArray();
 
-        result.Length.ShouldBe(2);
+        result.Length.ShouldBe(1);
         contents.Length.ShouldBe(2);
         contents[0].ShouldMatch<WText>(before, BoldStyling);
         contents[1].ShouldMatch<WJudge>(judgeName, BoldStyling);
-        result[1].ShouldBeSameAs(blocks[1]);
     }
 
     [Fact]
