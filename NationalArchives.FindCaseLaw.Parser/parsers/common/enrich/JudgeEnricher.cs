@@ -62,7 +62,7 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string PartyRole =
         @"(?<!\p{L})(?:appellants?|applicants?|claimants?|defendants?|respondents?|petitioners?|interested\s+part(?:y|ies))(?!\p{L})";
 
-    private const string Rule = @"^\P{L}*$";
+    private const string Rule = @"^(?!\s*&\s*$)\P{L}*$";
 
     private const string JudgeMatchGroup = "judge";
     private const string TitleMatchGroup = "title";

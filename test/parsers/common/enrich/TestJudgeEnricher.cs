@@ -667,6 +667,34 @@ public class TestJudgeEnricher : ParserTestBase
     }
 
     [Theory]
+    [InlineData("&")]
+    [InlineData(" & ")]
+    [InlineData("and")]
+    [InlineData("AND")]
+    public void Enrich_ConnectorOnItsOwnLineBetweenJudges_MarksUpBothJudges(string connector)
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("Before :", BoldStyling),
+            StyledLine("LORD JUSTICE ALPHA", BoldStyling),
+            StyledLine(connector, ItalicStyling),
+            StyledLine("LADY JUSTICE BRAVO", BoldStyling),
+            StyledLine("Between", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+
+        result.Length.ShouldBe(5);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE ALPHA", BoldStyling);
+        result[2].ShouldBeSameAs(blocks[2]);
+        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LADY JUSTICE BRAVO", BoldStyling);
+        result[4].ShouldBeSameAs(blocks[4]);
+    }
+
+    [Theory]
     [InlineData(" and ")]
     [InlineData(" And ")]
     [InlineData(" & ")]
