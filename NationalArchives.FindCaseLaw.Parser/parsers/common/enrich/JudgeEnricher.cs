@@ -15,7 +15,7 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string HonourJudgeTitle = @"(?:his|her)\s+honour\s+judge|hhj";
 
     private const string OfficeTitle =
-        @"(?:(?:mrs?|ms|miss)\s+)?(?:(?:chief|costs|deputy|insolvency|and|companies|court|resident|senior|specialist|tribunal|upper)\s+)*(?:judge|master|member|recorder)";
+        @"(?:(?:mrs?|ms|miss)\s+)?(?:(?:chief|costs|deputy|district|employment|insolvency|and|companies|court|regional|resident|senior|specialist|tribunal|upper)\s+)*(?:judge|master|member|recorder)";
 
     private const string JudicialTitle = $"(?i:{JusticeTitle}|{HonourJudgeTitle}|{OfficeTitle})";
 

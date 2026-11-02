@@ -363,6 +363,10 @@ public class TestJudgeEnricher : ParserTestBase
     [InlineData("Charlie d’Delta, President")]
     [InlineData("J. R. Romeo (Sitting as a Deputy High Court Judge)")]
     [InlineData("JUDGE OF THE FIRST-TIER TRIBUNAL BRAVO")]
+    [InlineData("District Judge Alpha")]
+    [InlineData("Deputy District Judge Bravo")]
+    [InlineData("Employment Judge Charlie")]
+    [InlineData("Regional Employment Judge Delta")]
     public void Enrich_NoBeforeAndJudgeTitleRoleOrCounsel_MarksUpJudge(string judge)
     {
         IBlock[] blocks =
