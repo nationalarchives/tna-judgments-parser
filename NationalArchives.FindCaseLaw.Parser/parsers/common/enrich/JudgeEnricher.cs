@@ -36,9 +36,12 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string Role = $"(?:{PresidentRole}|{ParenthesisedRole}|{TribunalRole}|{CourtRole})";
     private const string SittingAs = @"\s+(?i:sitting\s+as)(?!\p{L}).*|\s*\((?i:sitting\s+as)(?!\p{L})[^)]*\)";
 
-    private const string CounselJudge = $@"{Name}{HonourPostnominals},?\s+(?<{CounselMatchGroup}>{CounselPostnominal}){HonourPostnominals}(?<{RoleMatchGroup}>{Role})*";
+    private const string CounselJudge =
+        $@"{Name}{HonourPostnominals},?\s+(?<{CounselMatchGroup}>{CounselPostnominal}){HonourPostnominals}(?<{RoleMatchGroup}>{Role})*";
 
-    private const string OtherJudge = $"{Name}{HonourPostnominals}(?<{RoleMatchGroup}>{Role})*(?<{RoleMatchGroup}>{SittingAs})?";
+    private const string OtherJudge =
+        $"{Name}{HonourPostnominals}(?<{RoleMatchGroup}>{Role})*(?<{RoleMatchGroup}>{SittingAs})?";
+
     private const string Judge = $"(?<{JudgeMatchGroup}>{CounselJudge}|{OtherJudge})";
 
     private const string Connector = @"\s*,\s*(?:(?i:and|&)\s+)?|\s+-?\s*(?i:and|&)\s*-?\s+";
@@ -72,8 +75,12 @@ internal sealed partial class JudgeEnricher : Enricher
     [GeneratedRegex($@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$")]
     private static partial Regex JudgesLine();
 
-    [GeneratedRegex(@"^\s*\(?\s*(?i:sitting\s+as|(?:vice[-\s])?president\s+of|(?:judge|member)\s+of)(?!\p{L})")]
+    [GeneratedRegex(@"^\s*\(?\s*(?i:sitting\s+(?:as|at)|(?:vice[-\s])?president\s+of)(?!\p{L})")]
     private static partial Regex RoleLine();
+
+    [GeneratedRegex(
+        @"^\s*\(?\s*(?i:(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division))\s*\)?\s*$")]
+    private static partial Regex OfficeLine();
 
     [GeneratedRegex($"{Heading}|{CrownParty}|{PartyRole}|{Rule}")]
     private static partial Regex EndOfJudges();
@@ -103,6 +110,10 @@ internal sealed partial class JudgeEnricher : Enricher
             {
                 enriched.Add(EnrichLine(line, ref stage));
             }
+            else if (stage != Stage.Finished && block is WTable)
+            {
+                enriched.Add(block);
+            }
             else
             {
                 stage = Stage.Finished;
@@ -115,10 +126,15 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private static bool HasIntroduction(IEnumerable<IBlock> blocks)
     {
-        return blocks.TakeWhile(block => block is WLine)
-                     .Cast<WLine>()
+        return blocks.TakeWhile(block => block is WLine or WTable)
+                     .OfType<WLine>()
                      .SelectMany(SegmentTexts)
                      .Any(IntroductionLine().IsMatch);
+    }
+
+    private static bool IsRoleLine(string text)
+    {
+        return RoleLine().IsMatch(text) || OfficeLine().IsMatch(text);
     }
 
     private static string[] SegmentTexts(WLine line)
@@ -228,7 +244,7 @@ internal sealed partial class JudgeEnricher : Enricher
             return false;
         }
 
-        if (RoleLine().IsMatch(text))
+        if (IsRoleLine(text))
         {
             return false;
         }
@@ -239,20 +255,20 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private static bool TryFindUnmistakableJudge(string text, out Match judges)
     {
-        var match = JudgesLine().Match(text);
-
-        if (match.Success
-            && match.Groups[JudgeMatchGroup].Captures.Count == 1
-            && (match.Groups[TitleMatchGroup].Success || match.Groups[RoleMatchGroup].Success || match.Groups[CounselMatchGroup].Success))
-        {
-            judges = match;
-        }
-        else
-        {
-            judges = Match.Empty;
-        }
-
+        var match = IsRoleLine(text) ? Match.Empty : JudgesLine().Match(text);
+        judges = match.Success && EveryJudgeHasTitleRoleOrCounsel(match) ? match : Match.Empty;
         return judges.Success;
+    }
+
+    private static bool EveryJudgeHasTitleRoleOrCounsel(Match match)
+    {
+        var markers = match.Groups[TitleMatchGroup].Captures
+                           .Concat(match.Groups[RoleMatchGroup].Captures)
+                           .Concat(match.Groups[CounselMatchGroup].Captures)
+                           .ToArray();
+
+        return match.Groups[JudgeMatchGroup].Captures.All(judge => markers.Any(marker => marker.Index >= judge.Index
+            && marker.Index + marker.Length <= judge.Index + judge.Length));
     }
 
     private static IEnumerable<IInline> MarkUpJudges(List<IInline> segment, Match match)

@@ -86,6 +86,8 @@ public class TestJudgeEnricher : ParserTestBase
     [InlineData("李明")]
     [InlineData("Deputy Upper Tribunal Judge Oscarland")]
     [InlineData("Papa Quebecand")]
+    [InlineData("JUDGE OF THE FIRST-TIER TRIBUNAL BRAVO")]
+    [InlineData("Member of the Upper Tribunal Charlie Delta")]
     public void Enrich_JudgeOnItsOwnLineAfterIntroduction_IsMarkedUpAsOneJudge(string judge)
     {
         IBlock[] blocks =
@@ -121,7 +123,8 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("TRIBUNAL JUDGE DELTA", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("TRIBUNAL JUDGE DELTA", BoldStyling);
         result[2].ShouldBeSameAs(blocks[2]);
     }
 
@@ -187,11 +190,15 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(7);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
-        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
+        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
         result[3].ShouldBeSameAs(blocks[3]);
-        result[4].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Charlie Delta", BoldStyling);
-        result[5].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("TRIBUNAL JUDGE MIKE NOVEMBER", BoldStyling);
+        result[4].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Charlie Delta", BoldStyling);
+        result[5].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("TRIBUNAL JUDGE MIKE NOVEMBER", BoldStyling);
         result[6].ShouldBeSameAs(blocks[6]);
     }
 
@@ -211,7 +218,8 @@ public class TestJudgeEnricher : ParserTestBase
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(blocks[0]);
         result[1].ShouldBeSameAs(blocks[1]);
-        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
+        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
         result[3].ShouldBeSameAs(blocks[3]);
     }
 
@@ -230,20 +238,76 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
         result[2].ShouldBeSameAs(blocks[2]);
         result[3].ShouldBeSameAs(blocks[3]);
     }
 
     [Fact]
-    public void Enrich_BeforeInsideTheJudgmentRatherThanAtTheStart_IsLeftUnchanged()
+    public void Enrich_EmptyTableBeforeIntroduction_IsSkipped()
     {
         IBlock[] blocks =
         [
-            TableOf(["JUDGMENT"]),
+            StyledLine("Heard at Field House on 19 April 2023", BoldStyling),
+            TableOf([""]),
+            StyledLine("Before", BoldStyling),
+            StyledLine("RESIDENT JUDGE ALPHA", BoldStyling),
+            StyledLine("JUDGE OF THE FIRST-TIER TRIBUNAL BRAVO", BoldStyling),
+            StyledLine("Between", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+
+        result.Length.ShouldBe(6);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeSameAs(blocks[1]);
+        result[2].ShouldBeSameAs(blocks[2]);
+        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("RESIDENT JUDGE ALPHA", BoldStyling);
+        result[4].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("JUDGE OF THE FIRST-TIER TRIBUNAL BRAVO", BoldStyling);
+        result[5].ShouldBeSameAs(blocks[5]);
+    }
+
+    [Fact]
+    public void Enrich_LayoutTableBeforeIntroduction_IsSkipped()
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("THE IMMIGRATION ACTS", BoldStyling),
+            TableOf(["Heard at Field House", "Decision & Reasons Promulgated"],
+                ["On 3 March 2023", "On 10 April 2023"]),
+            StyledLine("Before", BoldStyling),
+            StyledLine("UPPER TRIBUNAL JUDGE ALPHA", BoldStyling),
+            StyledLine("UPPER TRIBUNAL JUDGE BRAVO", BoldStyling),
+            StyledLine("Between", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+
+        result.Length.ShouldBe(6);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeSameAs(blocks[1]);
+        result[2].ShouldBeSameAs(blocks[2]);
+        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("UPPER TRIBUNAL JUDGE ALPHA", BoldStyling);
+        result[4].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("UPPER TRIBUNAL JUDGE BRAVO", BoldStyling);
+        result[5].ShouldBeSameAs(blocks[5]);
+    }
+
+    [Theory]
+    [InlineData("JUDGMENT")]
+    [InlineData("Approved Judgment")]
+    public void Enrich_JudgmentHeadingTableBeforeIntroduction_IsSkipped(string heading)
+    {
+        IBlock[] blocks =
+        [
+            TableOf([heading]),
             StyledLine("Before :", BoldStyling),
             StyledLine("LORD JUSTICE OSCAR PAPA", BoldStyling),
-            StyledLine("- - -", BoldStyling)
+            StyledLine("Between", BoldStyling)
         ];
 
         var result = Enricher.Enrich(blocks).ToArray();
@@ -251,7 +315,8 @@ public class TestJudgeEnricher : ParserTestBase
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(blocks[0]);
         result[1].ShouldBeSameAs(blocks[1]);
-        result[2].ShouldBeSameAs(blocks[2]);
+        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE OSCAR PAPA", BoldStyling);
         result[3].ShouldBeSameAs(blocks[3]);
     }
 
@@ -269,7 +334,8 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(3);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("MR JUSTICE OSCAR", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("MR JUSTICE OSCAR", BoldStyling);
         result[2].ShouldBeSameAs(blocks[2]);
     }
 
@@ -296,6 +362,7 @@ public class TestJudgeEnricher : ParserTestBase
     [InlineData("Juliett de Kilo KC")]
     [InlineData("Charlie d’Delta, President")]
     [InlineData("J. R. Romeo (Sitting as a Deputy High Court Judge)")]
+    [InlineData("JUDGE OF THE FIRST-TIER TRIBUNAL BRAVO")]
     public void Enrich_NoBeforeAndJudgeTitleRoleOrCounsel_MarksUpJudge(string judge)
     {
         IBlock[] blocks =
@@ -342,6 +409,75 @@ public class TestJudgeEnricher : ParserTestBase
     }
 
     [Theory]
+    [InlineData("Member of the Upper Tribunal")]
+    [InlineData("SITTING AS A JUDGE OF THE HIGH COURT")]
+    [InlineData("(Sitting as a Deputy High Court Judge)")]
+    [InlineData("Sitting at Alfred Place, London")]
+    [InlineData("(Sitting at Field House)")]
+    [InlineData("JUDGE OF THE FIRST-TIER TRIBUNAL")]
+    public void Enrich_RoleLineWithoutIntroduction_IsNotMarkedUp(string roleLine)
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("Date: 15th April 2003", BoldStyling),
+            StyledLine(roleLine, BoldStyling),
+            StyledLine("Between", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeSameAs(blocks[1]);
+        result[2].ShouldBeSameAs(blocks[2]);
+    }
+
+    [Theory]
+    [InlineData("MR JUSTICE ALPHA", " and ", "MR JUSTICE BRAVO")]
+    [InlineData("UPPER TRIBUNAL JUDGE CHARLIE", ", ", "UPPER TRIBUNAL JUDGE DELTA")]
+    [InlineData("Echo Foxtrot KC", " and ", "HIS HONOUR JUDGE GOLF")]
+    public void Enrich_NoBeforeAndEveryJudgeOnLineTitled_MarksUpEachJudge(string first, string connector, string second)
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("Date: 15th April 2003", BoldStyling),
+            StyledLine(first + connector + second, BoldStyling),
+            StyledLine("- - -", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+        var contents = result[1].ShouldBeOfType<WLine>().Contents.ToArray();
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldBeSameAs(blocks[0]);
+        contents.Length.ShouldBe(3);
+        contents[0].ShouldMatch<WJudge>(first, BoldStyling);
+        contents[1].ShouldMatch<WText>(connector, BoldStyling);
+        contents[2].ShouldMatch<WJudge>(second, BoldStyling);
+        result[2].ShouldBeSameAs(blocks[2]);
+    }
+
+    [Theory]
+    [InlineData("ALPHA BRAVO and HIS HONOUR JUDGE CHARLIE")]
+    [InlineData("HHJ CHARLIE and ECHO FOXTROT")]
+    public void Enrich_NoBeforeAndSomeJudgesOnLineUntitled_LeavesLineUnchanged(string line)
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("Date: 15th April 2003", BoldStyling),
+            StyledLine(line, BoldStyling),
+            StyledLine("- - -", BoldStyling)
+        ];
+
+        var result = Enricher.Enrich(blocks).ToArray();
+
+        result.Length.ShouldBe(3);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeSameAs(blocks[1]);
+        result[2].ShouldBeSameAs(blocks[2]);
+    }
+
+    [Theory]
     [InlineData("Mr Justice Charlie")]
     [InlineData("HIS HONOUR JUDGE DELTA")]
     [InlineData("ECHO FOXTROT QC")]
@@ -364,7 +500,8 @@ public class TestJudgeEnricher : ParserTestBase
         result[0].ShouldBeSameAs(blocks[0]);
         result[1].ShouldBeSameAs(blocks[1]);
         result[2].ShouldBeSameAs(blocks[2]);
-        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("LORD JUSTICE INDIA", BoldStyling);
+        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("LORD JUSTICE INDIA", BoldStyling);
         result[4].ShouldBeSameAs(blocks[4]);
     }
 
@@ -434,7 +571,8 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(4);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
         result[2].ShouldBeSameAs(blocks[2]);
         result[3].ShouldBeSameAs(blocks[3]);
     }
@@ -494,6 +632,10 @@ public class TestJudgeEnricher : ParserTestBase
     [InlineData("SITTING AS A JUDGE OF THE HIGH COURT")]
     [InlineData("Sitting As A Deputy Judge Of The High Court")]
     [InlineData("PRESIDENT OF THE KING’S BENCH DIVISION")]
+    [InlineData("JUDGE OF THE FIRST-TIER TRIBUNAL")]
+    [InlineData("(Judge of the Upper Tribunal)")]
+    [InlineData("Sitting at Alfred Place, London")]
+    [InlineData("(Sitting at Field House)")]
     public void Enrich_RoleLineAmongJudges_IsNotMarkedUp(string roleLine)
     {
         IBlock[] blocks =
@@ -511,8 +653,10 @@ public class TestJudgeEnricher : ParserTestBase
         result.Length.ShouldBe(6);
         result[0].ShouldBeSameAs(blocks[0]);
         result[1].ShouldBeSameAs(blocks[1]);
-        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
-        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Charlie Delta", BoldStyling);
+        result[2].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
+        result[3].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Charlie Delta", BoldStyling);
         result[4].ShouldBeSameAs(blocks[4]);
         result[5].ShouldBeSameAs(blocks[5]);
     }
@@ -679,7 +823,8 @@ public class TestJudgeEnricher : ParserTestBase
 
         result.Length.ShouldBe(5);
         result[0].ShouldBeSameAs(blocks[0]);
-        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem().ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
+        result[1].ShouldBeOfType<WLine>().Contents.ShouldHaveSingleItem()
+                 .ShouldMatch<WJudge>("Alpha Bravo", BoldStyling);
         result[2].ShouldBeSameAs(blocks[2]);
         result[3].ShouldBeSameAs(blocks[3]);
         result[4].ShouldBeSameAs(blocks[4]);

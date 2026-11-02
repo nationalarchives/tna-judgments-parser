@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2026-09-14T14:30:27" name="transform" />
+          <FRBRdate date="2026-11-02T12:30:53" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,10 +40,12 @@
         <TLCPerson eId="secretary-of-state-for-the-home-department" href="" showAs="SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-resident-judge-alpha" href="/judge-resident-judge-alpha" showAs="RESIDENT JUDGE ALPHA" />
+        <TLCPerson eId="judge-judge-of-the-first-tier-tribunal-beta" href="/judge-judge-of-the-first-tier-tribunal-beta" showAs="JUDGE OF THE FIRST-TIER TRIBUNAL BETA" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-IAC</uk:court>
-        <uk:parser>1.14.0</uk:parser>
+        <uk:parser>1.19.1</uk:parser>
         <uk:hash>ad3dc5d93320fa90eb36d384532574a5a7278c71187ba053d43b950617c55fb9</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -88,8 +90,8 @@
         </tr>
       </table>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">RESIDENT JUDGE ALPHA</span></p>
-      <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">JUDGE OF THE FIRST-TIER TRIBUNAL BETA</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-resident-judge-alpha" style="font-weight:bold;font-family:'Book Antiqua'">RESIDENT JUDGE ALPHA</judge></p>
+      <p style="text-align:center"><judge refersTo="#judge-judge-of-the-first-tier-tribunal-beta" style="font-weight:bold;font-family:'Book Antiqua'">JUDGE OF THE FIRST-TIER TRIBUNAL BETA</judge></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua'">Between</span></p>
       <p style="text-align:center"><party refersTo="#iama-person" as="#appellant" style="font-weight:bold;font-family:'Book Antiqua'">IAMA PERSON</party></p>
       <p style="text-align:center;margin-left:-0.2in"><party refersTo="#iamanother-person" as="#appellant" style="font-weight:bold;font-family:'Book Antiqua'">IAMANOTHER PERSON</party></p>
