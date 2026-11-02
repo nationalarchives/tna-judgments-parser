@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2026-09-11T16:14:12" name="transform" />
+          <FRBRdate date="2026-11-02T12:30:50" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -40,10 +40,11 @@
         <TLCPerson eId="the-secretary-of-state-for-the-home-department" href="" showAs="THE SECRETARY OF STATE FOR THE HOME DEPARTMENT" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
         <TLCRole eId="respondent" href="" showAs="Respondent" />
+        <TLCPerson eId="judge-judge-of-the-first-tier-tribunal-alpha" href="/judge-judge-of-the-first-tier-tribunal-alpha" showAs="JUDGE of the first-tier tribunal Alpha" />
       </references>
       <proprietary source="#">
         <uk:court>UKFTT-IAC</uk:court>
-        <uk:parser>1.14.0</uk:parser>
+        <uk:parser>1.19.1</uk:parser>
         <uk:hash>6d2ed0c3e4b6796a865f055cf340aee482429e08cf5106c3df751546b992ac1c</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -107,7 +108,7 @@
         </tr>
       </table>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua';font-size:12pt">Before</span></p>
-      <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase;font-family:'Book Antiqua';font-size:12pt">JUDGE of the first-tier tribunal Alpha</span></p>
+      <p style="text-align:center"><judge refersTo="#judge-judge-of-the-first-tier-tribunal-alpha" style="font-weight:bold;text-transform:uppercase;font-family:'Book Antiqua';font-size:12pt">JUDGE of the first-tier tribunal Alpha</judge></p>
       <p style="text-align:center"><span style="font-weight:bold;font-family:'Book Antiqua';font-size:12pt">Between</span></p>
       <p style="text-align:center"><party refersTo="#iam-anapellant" as="#appellant" style="font-weight:bold;text-transform:uppercase;font-family:'Book Antiqua';font-size:12pt">IAM ANAPELLANt</party></p>
       <p style="text-align:center"><span style="font-weight:bold;text-transform:uppercase;font-family:'Book Antiqua';font-size:12pt">(anonymity direction NOT MADE)</span></p>

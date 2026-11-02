@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk//data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk//data.xml" />
-          <FRBRdate date="2026-09-17T09:43:21" name="transform" />
+          <FRBRdate date="2026-10-27T17:01:38" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -30,6 +30,9 @@
       <references source="#tna">
         <TLCOrganization eId="ukist" href="https://webarchive.nationalarchives.gov.uk/ukgwa/https://immigrationservices.decisions.tribunals.gov.uk/Aspx/default.aspx" showAs="The Immigration Services Tribunal" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCPerson eId="judge-mr-david-bean-qc-chairman" href="/judge-mr-david-bean-qc-chairman" showAs="Mr David Bean QC (Chairman)" />
+        <TLCPerson eId="judge-mr-paul-barnett" href="/judge-mr-paul-barnett" showAs="Mr Paul Barnett" />
+        <TLCPerson eId="judge-dr-susan-rowlands" href="/judge-dr-susan-rowlands" showAs="Dr Susan Rowlands" />
       </references>
       <proprietary source="#">
         <uk:court>UKIST</uk:court>
@@ -39,7 +42,7 @@
         <uk:category>Appeals</uk:category>
         <uk:category parent="Appeals">Refusal to register</uk:category>
         <uk:sourceFormat>application/vnd.openxmlformats-officedocument.wordprocessingml.document</uk:sourceFormat>
-        <uk:parser>1.15.0</uk:parser>
+        <uk:parser>1.19.0</uk:parser>
         <uk:hash>09a55f964be69440f14332f9b1c800eabeb6af9a43f77604299e56d7571de88d</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -51,7 +54,7 @@
     </meta>
     <header>
       <p><span style="font-size:12pt">IN THE IMMIGRATION SERVICES TRIBUNAL                                            </span><docketNumber style="font-size:12pt">IMS/2002/010/RTR</docketNumber></p>
-      <p><span style="font-size:12pt">Before  Mr David Bean QC (Chairman), Mr Paul Barnett and Dr Susan Rowlands</span></p>
+      <p><span style="font-size:12pt">Before  </span><judge refersTo="#judge-mr-david-bean-qc-chairman" style="font-size:12pt">Mr David Bean QC (Chairman)</judge><span style="font-size:12pt">, </span><judge refersTo="#judge-mr-paul-barnett" style="font-size:12pt">Mr Paul Barnett</judge><span style="font-size:12pt"> and </span><judge refersTo="#judge-dr-susan-rowlands" style="font-size:12pt">Dr Susan Rowlands</judge></p>
       <p><span style="font-size:12pt">Between                             EBRAHIM &amp; CO                                      Appellant</span></p>
       <p><span style="font-size:12pt">                                                    and</span></p>
       <p><span style="font-size:12pt">                  IMMIGRATION SERVICES COMMISSIONER             Respondent</span></p>

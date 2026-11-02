@@ -22,7 +22,7 @@
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/689/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/ipec/2022/689/data.xml" />
-          <FRBRdate date="2026-01-22T09:58:38" name="transform" />
+          <FRBRdate date="2026-10-19T13:56:41" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
@@ -42,13 +42,14 @@
         <TLCPerson eId="mr-mark-nigel-thomas-birkbeck" href="" showAs="MR MARK NIGEL THOMAS BIRKBECK" />
         <TLCRole eId="claimant" href="" showAs="Claimant" />
         <TLCRole eId="defendant" href="" showAs="Defendant" />
+        <TLCPerson eId="judge-miss-recorder-amanda-michaels" href="/judge-miss-recorder-amanda-michaels" showAs="MISS RECORDER AMANDA MICHAELS" />
       </references>
       <proprietary source="#">
         <uk:court>EWHC-Chancery-IPEC</uk:court>
         <uk:year>2022</uk:year>
         <uk:number>689</uk:number>
         <uk:cite>[2022] EWHC 689 (IPEC)</uk:cite>
-        <uk:parser>1.4.0</uk:parser>
+        <uk:parser>1.18.0</uk:parser>
         <uk:hash>5a3910ff9918ffc74c074b69ee249ac23440191f49bd67c892947ca3cf30535b</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -97,7 +98,7 @@
       <p class="CoverText">Rolls Building, London, EC4 1NL</p>
       <p class="CoverText">Date: <docDate date="2022-03-25" refersTo="#judgment">25/03/2022</docDate></p>
       <p class="CoverText" style="text-align:center"><span style="font-weight:bold">Before:</span></p>
-      <p class="CoverText" style="text-align:center"><span style="font-weight:bold">MISS RECORDER AMANDA MICHAELS</span></p>
+      <p class="CoverText" style="text-align:center"><judge refersTo="#judge-miss-recorder-amanda-michaels" style="font-weight:bold">MISS RECORDER AMANDA MICHAELS</judge></p>
       <p style="text-align:center"><span style="font-weight:bold;text-decoration-line:underline;text-decoration-style:solid;font-family:'Times New Roman'">Between</span><span style="font-weight:bold;font-family:'Times New Roman'">:</span></p>
       <blockContainer>
         <num style="font-weight:bold">(1)</num>
