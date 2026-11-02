@@ -1,6 +1,7 @@
 #nullable enable
 
 using System.Linq;
+using System.Threading.Tasks;
 
 using Shouldly;
 
@@ -987,5 +988,26 @@ public class TestJudgeEnricher : ParserTestBase
         contents[0].ShouldMatch<WText>(" ", BoldStyling);
         contents[1].ShouldMatch<WJudge>("Richard Roe Q.C.", BoldStyling);
         contents[2].ShouldMatch<WText>(" ", BoldStyling);
+    }
+
+    [Theory(Timeout = 1000)]
+    [InlineData("(Bravo) ")]
+    [InlineData("of the High Court ")]
+    [InlineData(", Judge of the Upper Tribunal ")]
+    [InlineData(", Member of the Upper Tribunal")]
+    [InlineData(", President")]
+    public async Task Enrich_ManyRepeatedTokensThatDoNotMatch_CompletesQuickly(string token)
+    {
+        IBlock[] blocks =
+        [
+            StyledLine("Alpha " + string.Concat(Enumerable.Repeat(token, 22)) + " invalid:", BoldStyling),
+            StyledLine("Between", BoldStyling)
+        ];
+
+        var result = await Task.Run(() => Enricher.Enrich(blocks).ToArray(), TestContext.Current.CancellationToken);
+
+        result.Length.ShouldBe(2);
+        result[0].ShouldBeSameAs(blocks[0]);
+        result[1].ShouldBeSameAs(blocks[1]);
     }
 }

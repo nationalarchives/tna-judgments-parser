@@ -25,14 +25,14 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private const string Bracketed = @"\([^)]*\)";
     private const string NotStartingWithSpaceOrConnector = @"(?!\s|and(?!\p{L})|&)";
-    private const string NotAConnectorLabelOrDigit = $@"(?!{Connector})[^:\d]";
+    private const string NotAConnectorLabelOrDigit = $@"(?!{Connector})[^:\d(]";
     private const string NameText = $"{NotStartingWithSpaceOrConnector}(?:{Bracketed}|{NotAConnectorLabelOrDigit})+?";
     private const string Name = $@"(?:(?<{TitleMatchGroup}>{JudicialTitle})\s+)?{NameText}";
 
     private const string PresidentRole = @",\s*(?:vice[-\s]president|deputy\s+president|president)";
     private const string ParenthesisedRole = @"\s*\((?:vice[-\s]president|specialist\s+member)[^)]*\)";
-    private const string TribunalRole = @",\s*(?:judge|member)\s+of\s+the\s+[\p{L}\s-]+?";
-    private const string CourtRole = @"\s+of\s+the\s+[\p{L}\s]+?Courts?(?!\p{L})";
+    private const string TribunalRole = @",\s*(?:judge|member)\s+of\s+the\s+[\p{L}\s-]*?\p{L}(?!\p{L})";
+    private const string CourtRole = @"\s+of\s+the\s+(?:(?!Courts?(?!\p{L}))[\p{L}\s])+?Courts?(?!\p{L})";
     private const string Role = $"(?:{PresidentRole}|{ParenthesisedRole}|{TribunalRole}|{CourtRole})";
     private const string SittingAs = @"\s+sitting\s+as(?!\p{L}).*|\s*\(sitting\s+as(?!\p{L})[^)]*\)";
 
@@ -48,7 +48,8 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string TrailingConnector = @"(?:\s*,\s*|\s+)(?:and|&)";
     private const string RoleLabel = @"\s*:\s*(?:judge|member)\s+of\s+the\s+.+";
     private const string Trail = $@"(?:{TrailingConnector}|{RoleLabel}|{SittingAs})?\s*[.;]?";
-    private const string Judges = $"{Judge}(?:(?:{Connector}){Judge})*{Trail}";
+    private const string NotARole = @"(?!(?:vice[-\s]president|deputy\s+president|president|(?:judge|member)\s+of\s+the)(?!\p{L}))";
+    private const string Judges = $"{Judge}(?:(?:{Connector}){NotARole}{Judge})*{Trail}";
     private const string Reference = @"\[[^\]]*\]";
     private const string MemberLabel = @"(?:specialist\s+|tribunal\s+)?member\s*:\s*";
 
