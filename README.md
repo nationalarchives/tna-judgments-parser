@@ -118,10 +118,18 @@ dotnet test --project test/test.csproj --filter test.UpdateXmlFiles.UpdateJudgme
 
 ## Six Labors Licence Key
 
-If running locally, put the licence at sixlabors.lic in the root directory of this repo, or ensure that the $SIX_LABORS_LIC docker variable is populated
-(potentially via [/vars in the terraform environment](https://github.com/nationalarchives/da-tre-terraform-environments/tree/main/vars))
+The parser uses [SixLabors.ImageSharp](https://github.com/SixLabors/ImageSharp) for image conversion. From ImageSharp v4,
+any project that depends on it directly needs a valid Six Labors licence key to build in release mode (see [Six Labors' licence enforcement changes](https://sixlabors.com/posts/licence-enforcement-changes/)).
 
-Additionally it is stored in the github actions secrets as SIXLABORSLICENSEKEY.
+The key is a free, assembly-scoped Community licence, which is committed to this repo as [sixlabors.lic](sixlabors.lic) in
+the root directory. The build finds it automatically, so no setup is needed locally or in CI.
+
+**The licence key is not a secret.** Six Labors state that an assembly-scoped community licence can be committed to a
+public repository.
+
+The licence expires on 2027-09-22. It can be renewed in the final 90 days before that date via
+[licensing.sixlabors.com](https://licensing.sixlabors.com/); replace the contents of `sixlabors.lic` with the renewed
+file exactly as supplied.
 
 ## Other Documentation
 
