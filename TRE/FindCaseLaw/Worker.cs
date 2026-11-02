@@ -71,7 +71,7 @@ public class Worker(
             allLogMessages = [.. allLogMessages, .. loggerProvider.Reset()];
         }
 
-        outputs.ErrorMessages = allLogMessages.Where(message => message.Level == LogLevel.Error)
+        outputs.ErrorMessages = allLogMessages.Where(message => message.Level is LogLevel.Error or LogLevel.Critical)
                                               .Select(message => message.Message)
                                               .ToList();
 
