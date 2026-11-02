@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 
-namespace UK.Gov.Legislation.Judgments {
+namespace UK.Gov.Legislation.Judgments;
 
-enum JudgmentType { Judgment, Decision }
+internal enum JudgmentType { Judgment, Decision }
 
-interface IJudgment {
-
+internal interface IJudgment
+{
     JudgmentType Type { get; }
 
     IMetadata Metadata { get; }
@@ -24,29 +23,26 @@ interface IJudgment {
     IEnumerable<IInternalAttachment> InternalAttachments { get; }
 
     IEnumerable<IImage> Images { get; set; }
-
 }
 
-interface IDecision {
-
+internal interface IDecision
+{
     ILine Author { get; }
 
     IEnumerable<IDivision> Contents { get; }
-
 }
 
-interface IAnnex {
-
+internal interface IAnnex
+{
     ILine Number { get; }
 
     IEnumerable<IBlock> Contents { get; }
-
 }
 
-enum AttachmentType { Annex, Order, Appendix }
+internal enum AttachmentType { Annex, Order, Appendix }
 
-interface IInternalAttachment {
-
+internal interface IInternalAttachment
+{
     AttachmentType Type { get; }
 
     int Number { get; }
@@ -56,7 +52,4 @@ interface IInternalAttachment {
     Dictionary<string, Dictionary<string, string>> CSSStyles();
 
     IEnumerable<IImage> Images { get; }
-
-}
-
 }
