@@ -17,24 +17,24 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string OfficeTitle =
         @"(?:(?:mrs?|ms|miss)\s+)?(?:(?:chief|costs|deputy|district|employment|insolvency|and|companies|court|regional|resident|senior|specialist|tribunal|upper)\s+)*(?:judge|master|member|recorder)";
 
-    private const string JudicialTitle = $"(?i:{JusticeTitle}|{HonourJudgeTitle}|{OfficeTitle})";
+    private const string JudicialTitle = $"(?:{JusticeTitle}|{HonourJudgeTitle}|{OfficeTitle})";
 
     private const string CounselPostnominal = @"(?:KC|QC|K\.C\.?|Q\.C\.?)(?!\p{L})";
     private const string HonourPostnominal = @"[CDKMO]BE(?!\p{L})";
     private const string HonourPostnominals = $@"(?:,?\s+{HonourPostnominal})*";
 
     private const string Bracketed = @"\([^)]*\)";
-    private const string NotStartingWithSpaceOrConnector = @"(?!\s|(?i:and)(?!\p{L})|&)";
+    private const string NotStartingWithSpaceOrConnector = @"(?!\s|and(?!\p{L})|&)";
     private const string NotAConnectorLabelOrDigit = $@"(?!{Connector})[^:\d]";
     private const string NameText = $"{NotStartingWithSpaceOrConnector}(?:{Bracketed}|{NotAConnectorLabelOrDigit})+?";
     private const string Name = $@"(?:(?<{TitleMatchGroup}>{JudicialTitle})\s+)?{NameText}";
 
-    private const string PresidentRole = @",\s*(?i:vice[-\s]president|deputy\s+president|president)";
-    private const string ParenthesisedRole = @"\s*\((?i:vice[-\s]president|specialist\s+member)[^)]*\)";
-    private const string TribunalRole = @",\s*(?i:judge|member)\s+of\s+the\s+[\p{L}\s-]+?";
+    private const string PresidentRole = @",\s*(?:vice[-\s]president|deputy\s+president|president)";
+    private const string ParenthesisedRole = @"\s*\((?:vice[-\s]president|specialist\s+member)[^)]*\)";
+    private const string TribunalRole = @",\s*(?:judge|member)\s+of\s+the\s+[\p{L}\s-]+?";
     private const string CourtRole = @"\s+of\s+the\s+[\p{L}\s]+?Courts?(?!\p{L})";
     private const string Role = $"(?:{PresidentRole}|{ParenthesisedRole}|{TribunalRole}|{CourtRole})";
-    private const string SittingAs = @"\s+(?i:sitting\s+as)(?!\p{L}).*|\s*\((?i:sitting\s+as)(?!\p{L})[^)]*\)";
+    private const string SittingAs = @"\s+sitting\s+as(?!\p{L}).*|\s*\(sitting\s+as(?!\p{L})[^)]*\)";
 
     private const string CounselJudge =
         $@"{Name}{HonourPostnominals},?\s+(?<{CounselMatchGroup}>{CounselPostnominal}){HonourPostnominals}(?<{RoleMatchGroup}>{Role})*";
@@ -44,22 +44,22 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private const string Judge = $"(?<{JudgeMatchGroup}>{CounselJudge}|{OtherJudge})";
 
-    private const string Connector = @"\s*,\s*(?:(?i:and|&)\s+)?|\s+-?\s*(?i:and|&)\s*-?\s+";
-    private const string TrailingConnector = @"(?:\s*,\s*|\s+)(?i:and|&)";
-    private const string RoleLabel = @"\s*:\s*(?i:judge|member)\s+of\s+the\s+.+";
+    private const string Connector = @"\s*,\s*(?:(?:and|&)\s+)?|\s+-?\s*(?:and|&)\s*-?\s+";
+    private const string TrailingConnector = @"(?:\s*,\s*|\s+)(?:and|&)";
+    private const string RoleLabel = @"\s*:\s*(?:judge|member)\s+of\s+the\s+.+";
     private const string Trail = $@"(?:{TrailingConnector}|{RoleLabel}|{SittingAs})?\s*[.;]?";
     private const string Judges = $"{Judge}(?:(?:{Connector}){Judge})*{Trail}";
     private const string Reference = @"\[[^\]]*\]";
-    private const string MemberLabel = @"(?i:(?:specialist\s+|tribunal\s+)?member)\s*:\s*";
+    private const string MemberLabel = @"(?:specialist\s+|tribunal\s+)?member\s*:\s*";
 
     private const string Heading =
-        @"^\s*(?i:b\s*e\s*t\s*w\s*e\s*e\s*n|decided|heard|hearing|judgment|representation|in\s+the\s+matter\s+of|on\s*:)(?!\p{L})";
+        @"^\s*(?:b\s*e\s*t\s*w\s*e\s*e\s*n|decided|heard|hearing|judgment|representation|in\s+the\s+matter\s+of|on\s*:)(?!\p{L})";
 
     private const string CrownParty =
-        @"^\s*(?i:regina|v\.?)\s*$|^\s*(?i:r\s*\(\s*|the\s+(?:queen|king)\s+)(?i:on\s+the\s+application\s+of)";
+        @"^\s*(?:regina|v\.?)\s*$|^\s*(?:r\s*\(\s*|the\s+(?:queen|king)\s+)(?:on\s+the\s+application\s+of)";
 
     private const string PartyRole =
-        @"(?<!\p{L})(?i:appellants?|applicants?|claimants?|defendants?|respondents?|petitioners?|interested\s+part(?:y|ies))(?!\p{L})";
+        @"(?<!\p{L})(?:appellants?|applicants?|claimants?|defendants?|respondents?|petitioners?|interested\s+part(?:y|ies))(?!\p{L})";
 
     private const string Rule = @"^\P{L}*$";
 
@@ -69,23 +69,23 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string CounselMatchGroup = "counsel";
 
     [GeneratedRegex(
-        $@"^\s*(?i:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+(?i:the)(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$")]
+        $@"^\s*(?:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+the(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$", RegexOptions.IgnoreCase)]
     private static partial Regex IntroductionLine();
 
-    [GeneratedRegex($@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$")]
+    [GeneratedRegex($@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$", RegexOptions.IgnoreCase)]
     private static partial Regex JudgesLine();
 
-    [GeneratedRegex(@"^\s*\(?\s*(?i:sitting\s+(?:as|at)|(?:vice[-\s])?president\s+of)(?!\p{L})")]
+    [GeneratedRegex(@"^\s*\(?\s*(?:sitting\s+(?:as|at)|(?:vice[-\s])?president\s+of)(?!\p{L})", RegexOptions.IgnoreCase)]
     private static partial Regex RoleLine();
 
     [GeneratedRegex(
-        @"^\s*\(?\s*(?i:(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division))\s*\)?\s*$")]
+        @"^\s*\(?\s*(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division)\s*\)?\s*$", RegexOptions.IgnoreCase)]
     private static partial Regex OfficeLine();
 
-    [GeneratedRegex($"{Heading}|{CrownParty}|{PartyRole}|{Rule}")]
+    [GeneratedRegex($"{Heading}|{CrownParty}|{PartyRole}|{Rule}", RegexOptions.IgnoreCase)]
     private static partial Regex EndOfJudges();
 
-    [GeneratedRegex(@"^\s*(?i:on\s+appeal\s+from)(?!\p{L})")]
+    [GeneratedRegex(@"^\s*on\s+appeal\s+from(?!\p{L})", RegexOptions.IgnoreCase)]
     private static partial Regex CourtAppealedFrom();
 
     private enum Stage
