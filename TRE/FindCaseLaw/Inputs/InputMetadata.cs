@@ -1,4 +1,9 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
+using TRE.Metadata;
 
 namespace TRE.FindCaseLaw.Inputs;
 
@@ -18,4 +23,7 @@ public class InputMetadata
 
     [JsonPropertyName("name")]
     public string Name { get; set; }
+
+    [JsonPropertyName("structured_metadata_fields")]
+    public List<IMetadataField> StructuredMetadataFields { get; set; }
 }

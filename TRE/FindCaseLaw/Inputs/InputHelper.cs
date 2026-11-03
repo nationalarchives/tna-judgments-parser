@@ -1,7 +1,12 @@
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 using Microsoft.Extensions.Logging;
+
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
+using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -13,10 +18,29 @@ public interface IInputHelper
 {
     Api.Hint? GetHint(ParserInputs inputs, ILogger logger);
     Api.Meta GetMetadata(ParserInputs inputs, ILogger logger);
+    Route GetRoute(ParserInputs inputs);
+    string GetSourceFilename(ParserInputs inputs);
 }
 
 public partial class InputHelper : IInputHelper
 {
+    public Route GetRoute(ParserInputs inputs)
+    {
+        var isReparse = inputs.Metadata?.StructuredMetadataFields?.Count > 0
+                                    || !string.IsNullOrWhiteSpace(inputs.Metadata?.Court);
+
+        return isReparse ? Route.Eui : Route.Tdr;
+    }
+
+    public string GetSourceFilename(ParserInputs inputs)
+    {
+        var path = !string.IsNullOrEmpty(inputs.DocumentUrl)
+            ? new Uri(inputs.DocumentUrl).AbsolutePath
+            : inputs.S3InputKey;
+
+        return Uri.UnescapeDataString(Path.GetFileName(path ?? string.Empty));
+    }
+
     public Api.Hint? GetHint(ParserInputs inputs, ILogger logger)
     {
         if (inputs is null)
@@ -38,8 +62,7 @@ public partial class InputHelper : IInputHelper
 
         if (inputs.DocumentType != ParserInputs.JudgmentDocumentType)
         {
-            logger.LogCritical("unrecognized document type: {}", inputs.DocumentType);
-            throw new Exception("unrecognized document type: " + inputs.DocumentType);
+            throw new ArgumentException("unrecognized document type: " + inputs.DocumentType);
         }
 
         var court = inputs.Metadata?.Court;
@@ -94,8 +117,7 @@ public partial class InputHelper : IInputHelper
                 var uriPressSummary = uri.Contains("press-summary");
                 if (docPressSummary != uriPressSummary)
                 {
-                    logger.LogCritical("document type and URI do not match");
-                    throw new Exception("document type and URI do not match");
+                    throw new ArgumentException("document type and URI do not match");
                 }
 
                 return;
@@ -106,8 +128,7 @@ public partial class InputHelper : IInputHelper
                 return;
             }
 
-            logger.LogCritical("input URI is not supported: {}", inputs.Metadata.URI);
-            throw new Exception("input URI is not supported: " + inputs.Metadata.URI);
+            throw new ArgumentException("input URI is not supported: " + inputs.Metadata.URI);
         }
 
         if (inputs is null)
@@ -123,8 +144,7 @@ public partial class InputHelper : IInputHelper
 
         if (string.IsNullOrWhiteSpace(inputs.DocumentType))
         {
-            logger.LogCritical("metadata is present but document type is null");
-            throw new Exception("metadata is present but document type is null");
+            throw new ArgumentException("metadata is present but document type is null");
         }
 
         var uri = inputs.Metadata.URI;
@@ -166,8 +186,7 @@ public partial class InputHelper : IInputHelper
         cite = cite is null ? null : Citations.Normalize(cite);
         if (cite is null && inputs.Metadata.Cite is not null)
         {
-            logger.LogCritical("input cite is not supported: {}", inputs.Metadata.Cite);
-            throw new Exception("input cite is not supported: " + inputs.Metadata.Cite);
+            throw new FormatException("input cite is not supported: " + inputs.Metadata.Cite);
         }
 
         if (cite is not null)
@@ -183,8 +202,7 @@ public partial class InputHelper : IInputHelper
 
         if (court is not null && !Courts.Exists(court))
         {
-            logger.LogCritical("input court is not recognized: {}", court);
-            throw new Exception("input court is not recognized: " + court);
+            throw new ArgumentException("input court is not recognized: " + court);
         }
 
         if (court is not null)
@@ -194,8 +212,7 @@ public partial class InputHelper : IInputHelper
 
         if (date is not null && !DateRegex().IsMatch(date))
         {
-            logger.LogCritical("input date is not valid: {}", date);
-            throw new Exception("input date is not valid: {}" + date);
+            throw new FormatException("input date is not valid: " + date);
         }
 
         if (date is not null)

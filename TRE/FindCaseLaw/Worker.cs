@@ -1,6 +1,10 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 
@@ -9,8 +13,13 @@ using Amazon.S3.Model;
 
 using Microsoft.Extensions.Logging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
+using TRE.Metadata;
+using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -24,191 +33,190 @@ public class Worker(
     ICustomLoggerProvider loggerProvider,
     IAmazonS3 s3,
     IInputHelper inputHelper,
-    IExternalResourceRetriever externalResourceRetriever)
+    IExternalResourceRetriever externalResourceRetriever,
+    TimeProvider timeProvider)
 {
-    private readonly string logFilename = "parser.log";
+    private const string LogFilename = "parser.log";
+    private const string MetadataFilename = "metadata.json";
+    private const string DocxMimetype = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+    private string s3Bucket = string.Empty;
+    private string s3OutputPrefix = string.Empty;
+    private string consignmentReference = string.Empty;
+    private List<IMetadataField> structuredMetadataFields = [];
+    private Guid parserRunId;
+    private string sourceFilename = string.Empty;
+    private string docxSha256 = string.Empty;
+    private Route route;
 
     public Stream Process(Stream input)
     {
-        using var ms = new MemoryStream();
-        input.CopyTo(ms);
-        var request = JsonSerializer.Deserialize<Request>(ms.ToArray());
-        var response = Helper1(request);
+        parserRunId = Guid.NewGuid();
+        logger.LogInformation("parser run id: {ParserRunId}", parserRunId);
+
+        var outputs = ProcessDocumentAndSaveToS3(input);
+
+        outputs = FinaliseLogs(outputs);
+
+        var response = new Response { Outputs = outputs };
+
         var json = JsonSerializer.SerializeToUtf8Bytes(response);
+
         return new MemoryStream(json);
     }
 
-    private Response Helper1(Request request)
+    private ParserOutputs FinaliseLogs(ParserOutputs outputs)
     {
-        var outputs = Helper2(request.Inputs);
-        return new Response { Outputs = outputs };
+        var allLogMessages = loggerProvider.Reset();
+
+        var log = CustomLoggerProvider.ToJson(allLogMessages);
+
+        if (TrySaveToS3(LogFilename, Encoding.UTF8.GetBytes(log), "application/json"))
+        {
+            outputs.LogFilename = LogFilename;
+        }
+        else
+        {
+            outputs.LogFilename = null;
+
+            // Reset the log provider again to get the error log message about failing to save the logs to S3
+            allLogMessages = [.. allLogMessages, .. loggerProvider.Reset()];
+        }
+
+        outputs.ErrorMessages = allLogMessages.Where(message => message.Level is LogLevel.Error or LogLevel.Critical)
+                                              .Select(message => message.Message)
+                                              .ToList();
+
+        return outputs;
     }
 
-    private ParserOutputs Helper2(ParserInputs inputs)
+    private ParserOutputs ProcessDocumentAndSaveToS3(Stream input)
     {
-        var errors = new List<string>();
-        if (inputs is null)
-        {
-            logger.LogError("parser-inputs is null");
-            errors.Add("parser-inputs is null");
-            return ClearAndSaveLogAndReturnErrors(inputs, errors);
-        }
-
-        byte[] docx;
+        var outputs = new ParserOutputs();
         try
         {
-            docx = externalResourceRetriever.GetDocx(inputs);
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "error reading .docx file: {}", e.Message);
-            errors.Add("error reading .docx file");
-            return ClearAndSaveLogAndReturnErrors(inputs, errors);
-        }
+            var parserRequest = BuildParserRequest(input);
+            var parserResponse = parser.Parse(parserRequest);
 
-        var attachments = new List<Api.Attachment>();
-        if (inputs.AttachmentURLs is not null)
-        {
-            (attachments, var newErrors) = externalResourceRetriever.GetAttachments(inputs.AttachmentURLs);
-            errors.AddRange(newErrors);
-        }
-
-        Api.Hint? hint;
-        try
-        {
-            hint = inputHelper.GetHint(inputs, logger);
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "error reading document type: {}", e.Message);
-            errors.Add("error reading document type");
-            return ClearAndSaveLogAndReturnErrors(inputs, errors);
-        }
-
-        Api.Meta meta;
-        try
-        {
-            meta = inputHelper.GetMetadata(inputs, logger);
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "error reading metadata: {}", e.Message);
-            errors.Add("error reading metadata");
-            return ClearAndSaveLogAndReturnErrors(inputs, errors);
-        }
-
-        Api.Response response;
-        try
-        {
-            response = parser.Parse(new Api.Request
+            var xmlFilename = $"{consignmentReference}.xml";
+            if (TrySaveToS3(xmlFilename, Encoding.UTF8.GetBytes(parserResponse.Xml), "application/xml"))
             {
-                Content = docx,
-                Attachments = attachments,
-                Hint = hint,
-                Meta = meta
-            });
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "parse error: {}", e.Message);
-            errors.Add("error parsing document");
-            return ClearAndSaveLogAndReturnErrors(inputs, errors);
-        }
-
-        var xmlFilename = inputs.ConsignmentReference + ".xml";
-        try
-        {
-            Save(inputs.S3Bucket, inputs.S3OutputPrefix, xmlFilename, Encoding.UTF8.GetBytes(response.Xml),
-                "application/xml");
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "error saving xml: {}", e.Message);
-            errors.Add("error saving xml");
-            xmlFilename = null;
-        }
-
-        var metadataFilename = "metadata.json";
-        try
-        {
-            var metadata = JsonSerializer.SerializeToUtf8Bytes(response.Meta,
-                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            Save(inputs.S3Bucket, inputs.S3OutputPrefix, metadataFilename, metadata, "application/json");
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "error saving metadata: {}", e.Message);
-            errors.Add("error saving metadata");
-            metadataFilename = null;
-        }
-
-        var imageFilenames = new List<string>();
-        foreach (var image in response.Images)
-        {
-            try
-            {
-                Save(inputs.S3Bucket, inputs.S3OutputPrefix, image.Name, image.Content, image.Type);
-                imageFilenames.Add(image.Name);
+                outputs.XMLFilename = xmlFilename;
             }
-            catch (Exception e)
+
+            var metadata = JsonSerializer.SerializeToUtf8Bytes(BuildParserProcessMetadata(parserResponse),
+                ParserProcessMetadata.JsonSerializerOptions);
+
+            if (TrySaveToS3(MetadataFilename, metadata, "application/json"))
             {
-                logger.LogError(e, "error saving image {}: {}", image.Name, e.Message);
-                errors.Add("error saving image " + image.Name);
+                outputs.MetadataFilename = MetadataFilename;
             }
+
+            var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Image>())
+                            .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
+                            .ToArray();
+
+            outputs.ImageFilenames = successfullySavedImages.Select(image => image.Name);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "error processing document: {Exception}", e.Message);
         }
 
-        bool saveLogWasSuccessful;
-        try
-        {
-            ClearAndSaveLog(inputs.S3Bucket, inputs.S3OutputPrefix);
-            saveLogWasSuccessful = true;
-        }
-        catch (Exception)
-        {
-            errors.Add("error saving log file");
-            saveLogWasSuccessful = false;
-        }
+        return outputs;
+    }
 
-        return new ParserOutputs
+    private ParserProcessMetadata BuildParserProcessMetadata(Api.Response parserResponse)
+    {
+        return new ParserProcessMetadata
         {
-            XMLFilename = xmlFilename,
-            MetadataFilename = metadataFilename,
-            ImageFilenames = imageFilenames,
-            LogFilename = saveLogWasSuccessful ? logFilename : null,
-            ErrorMessages = errors
+            DocumentType = Enum.Parse<DocumentType>(parserResponse.Meta.DocumentType, true),
+            ParserRunId = parserRunId,
+            MetadataFields = structuredMetadataFields,
+            PrimarySource = new PrimarySourceFile
+            {
+                Filename = sourceFilename,
+                Mimetype = DocxMimetype,
+                Route = route,
+                Sha256 = docxSha256,
+                RouteDateTime = timeProvider.GetUtcNow().UtcDateTime
+            },
+            XmlContainsDocumentText = true,
+            Uri = parserResponse.Meta.Uri,
+            Court = parserResponse.Meta.Court,
+            Cite = parserResponse.Meta.Cite,
+            Date = parserResponse.Meta.Date,
+            Name = parserResponse.Meta.Name,
+            Extensions = parserResponse.Meta.Extensions,
+            Attachments = parserResponse.Meta.Attachments ?? []
         };
     }
 
-    private PutObjectResponse Save(string bucket, string prefix, string filename, byte[] content, string type)
+    private Api.Request BuildParserRequest(Stream input)
+    {
+        var inputs = GetInputsFromStream(input);
+
+        var docx = externalResourceRetriever.GetDocx(inputs);
+
+        docxSha256 = Convert.ToHexStringLower(SHA256.HashData(docx));
+        sourceFilename = inputHelper.GetSourceFilename(inputs);
+        route = inputHelper.GetRoute(inputs);
+
+        var attachments = inputs.AttachmentURLs is not null
+            ? externalResourceRetriever.GetAttachments(inputs.AttachmentURLs)
+            : [];
+
+        var hint = inputHelper.GetHint(inputs, logger);
+        var meta = inputHelper.GetMetadata(inputs, logger);
+
+        return new Api.Request
+        {
+            Content = docx,
+            Attachments = attachments,
+            Hint = hint,
+            Meta = meta
+        };
+    }
+
+    private ParserInputs GetInputsFromStream(Stream input)
+    {
+        var request = JsonSerializer.Deserialize<Request>(input, ParserProcessMetadata.JsonSerializerOptions);
+
+        var inputs = request?.Inputs;
+
+        if (inputs is null)
+        {
+            throw new InvalidTreRequestException("parser-inputs is null");
+        }
+
+        s3Bucket = inputs.S3Bucket;
+        s3OutputPrefix = inputs.S3OutputPrefix;
+        structuredMetadataFields = inputs.Metadata?.StructuredMetadataFields ?? [];
+        consignmentReference = inputs.ConsignmentReference
+            ?? throw new InvalidTreRequestException("parser-inputs.consignment-reference is null");
+
+        return inputs;
+    }
+
+    private bool TrySaveToS3(string filename, byte[] content, string type)
     {
         var request = new PutObjectRequest
         {
-            BucketName = bucket,
-            Key = prefix + filename,
+            BucketName = s3Bucket,
+            Key = s3OutputPrefix + filename,
             ContentType = type,
             InputStream = new MemoryStream(content)
         };
-        return s3.PutObjectAsync(request).Result;
-    }
 
-    private ParserOutputs ClearAndSaveLogAndReturnErrors(ParserInputs inputs, List<string> errors)
-    {
         try
         {
-            ClearAndSaveLog(inputs.S3Bucket, inputs.S3OutputPrefix);
-            return new ParserOutputs { LogFilename = logFilename, ErrorMessages = errors };
+            s3.PutObjectAsync(request).GetAwaiter().GetResult();
+            return true;
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            errors.Add("error saving log");
-            return new ParserOutputs { ErrorMessages = errors };
+            logger.LogError(e, "error saving {Filename} to S3: {Message}", filename, e.Message);
+            return false;
         }
-    }
-
-    private void ClearAndSaveLog(string bucket, string prefix)
-    {
-        var messages = loggerProvider.Reset();
-        var log = CustomLoggerProvider.ToJson(messages);
-        Save(bucket, prefix, logFilename, Encoding.UTF8.GetBytes(log), "application/json");
     }
 }

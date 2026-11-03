@@ -5,6 +5,9 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+
 using TRE.Metadata.Enums;
 
 namespace TRE.Metadata;
