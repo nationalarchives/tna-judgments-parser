@@ -70,7 +70,8 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
         {
             Xml = xml,
             Meta = meta2,
-            Images = images
+            Images = images,
+            StructuredMetadataFields = bundle.StructuredMetadataFields
         };
     }
 

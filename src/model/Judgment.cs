@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
 namespace UK.Gov.Legislation.Judgments;
 
 internal enum JudgmentType { Judgment, Decision }
@@ -24,6 +26,8 @@ internal interface IJudgment : IDisposable
     IEnumerable<IInternalAttachment> InternalAttachments { get; }
 
     IEnumerable<IImage> Images { get; set; }
+
+    IMetadataField[] StructuredMetadataFields { get; }
 }
 
 internal interface IDecision

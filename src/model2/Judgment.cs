@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
 namespace UK.Gov.Legislation.Judgments.Parse;
 
 internal class Judgment : IJudgment
@@ -55,6 +57,8 @@ internal class Judgment : IJudgment
         }
         set;
     }
+
+    public IMetadataField[] StructuredMetadataFields { get; internal init; } = [];
 
     public void Dispose()
     {

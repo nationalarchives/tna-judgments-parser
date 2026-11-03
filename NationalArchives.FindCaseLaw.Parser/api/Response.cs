@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
 namespace UK.Gov.NationalArchives.Judgments.Api;
 
 public class Response
@@ -9,6 +11,8 @@ public class Response
     public Meta Meta { get; init; }
 
     public IEnumerable<Image> Images { get; init; }
+
+    public IMetadataField[] StructuredMetadataFields { get; init; } = [];
 }
 
 public class Image
