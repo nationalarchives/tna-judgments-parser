@@ -68,6 +68,13 @@ public class TestWorker
         DocumentType = ParserInputs.JudgmentDocumentType
     };
 
+    private Api.Response parserResponse = new()
+    {
+        Xml = "<akomaNtoso/>",
+        Meta = new Api.Meta { DocumentType = "judgment" },
+        Images = []
+    };
+
     public TestWorker()
     {
         mockS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
@@ -89,13 +96,7 @@ public class TestWorker
                   return new PutObjectResponse();
               });
 
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta { DocumentType = "judgment" },
-                      Images = []
-                  });
+        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>())).Returns(() => parserResponse);
 
         mockLogger.Setup(x => x.Log(
                       It.IsAny<LogLevel>(),
@@ -120,12 +121,16 @@ public class TestWorker
                                     return messages;
                                 });
 
-        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Tdr);
-        mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>())).Returns("input.docx");
+        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
+
+        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>()))
+                       .Returns((ParserInputs pi) => pi.Metadata is null ? Route.Tdr : Route.Eui);
+        mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>()))
+                       .Returns((ParserInputs pi) => pi.S3InputKey);
 
         mockStructuredMetadataConsolidator
             .Setup(x => x.BuildMetadataFields(It.IsAny<IMetadataField[]>(), It.IsAny<IMetadataField[]>()))
-            .Returns([]);
+            .Returns((IMetadataField[] input, IMetadataField[] document) => [.. input, .. document]);
 
         worker = new Worker(mockLogger.Object, mockParser.Object, mockCustomLoggerProvider.Object, mockS3.Object,
             mockInputHelper.Object, mockExternalResourceRetriever.Object, fakeTimeProvider,
@@ -140,15 +145,17 @@ public class TestWorker
         return JsonSerializer.Deserialize<Response>(result)!.Outputs;
     }
 
-    private void SetupParserToReturnImages(params Api.Image[] images)
+    private JsonElement SavedMetadata()
     {
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta { DocumentType = "judgment" },
-                      Images = images
-                  });
+        return JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
+    }
+
+    private string GetUploadedJsonString()
+    {
+        var uploadedJson = Encoding.UTF8.GetString(uploads["consignment/metadata.json"].Content);
+        uploadedJson = Regex.Replace(uploadedJson, "\"parser_run_id\":\"[-0-9a-z]+\"",
+            "\"parser_run_id\":\"00000000-0000-0000-0000-000000000000\"");
+        return uploadedJson;
     }
 
     private static MetadataField<string> MakeField(MetadataFieldName name, string value)
@@ -173,13 +180,20 @@ public class TestWorker
     }
 
     [Fact]
-    public void Process_ValidInputs_ReportsSavedFilenamesAndNoErrors()
+    public void Process_ValidInputs_ReportsSavedFilenames()
     {
         var outputs = Run(inputs);
 
         outputs.XMLFilename.ShouldBe("TDR-2024-ABC.xml");
         outputs.MetadataFilename.ShouldBe("metadata.json");
         outputs.LogFilename.ShouldBe("parser.log");
+    }
+
+    [Fact]
+    public void Process_ValidInputs_ReportsNoErrors()
+    {
+        var outputs = Run(inputs);
+
         outputs.ErrorMessages.ShouldBeEmpty();
     }
 
@@ -193,30 +207,32 @@ public class TestWorker
     }
 
     [Fact]
-    public void Process_ValidInputs_SavesParsedMetadataAsJson()
+    public void Process_ValidInputs_SavesMetadataAsJson()
     {
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta
-                      {
-                          DocumentType = "judgment",
-                          Court = "UKUT-IAC",
-                          Cite = "[2024] UKUT 1 (IAC)"
-                      },
-                      Images = []
-                  });
-
         Run(inputs);
 
         uploads["consignment/metadata.json"].ContentType.ShouldBe("application/json");
-        var metadata = JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
+    }
+
+    [Fact]
+    public void Process_ParserReturnsMeta_SavesItInMetadata()
+    {
+        parserResponse = parserResponse with
+        {
+            Meta = new Api.Meta
+            {
+                DocumentType = "judgment",
+                Court = "UKUT-IAC",
+                Cite = "[2024] UKUT 1 (IAC)"
+            }
+        };
+
+        Run(inputs);
+
+        var metadata = SavedMetadata();
         metadata.GetProperty("court").GetString().ShouldBe("UKUT-IAC");
         metadata.GetProperty("cite").GetString().ShouldBe("[2024] UKUT 1 (IAC)");
     }
-
-    private JsonElement SavedMetadata() => JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
 
     [Fact]
     public void Process_InputAndParserMetadataFields_PassesThemToConsolidator()
@@ -224,14 +240,7 @@ public class TestWorker
         var inputField = MakeField(MetadataFieldName.Court, "EWCA");
         inputs.Metadata = new InputMetadata { StructuredMetadataFields = [inputField] };
         var parserField = MakeField(MetadataFieldName.Name, "Alpha v Bravo");
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta { DocumentType = "judgment" },
-                      Images = [],
-                      StructuredMetadataFields = [parserField]
-                  });
+        parserResponse = parserResponse with { StructuredMetadataFields = [parserField] };
 
         Run(inputs);
 
@@ -267,53 +276,58 @@ public class TestWorker
                        .ShouldBe([court.Id.ToString(), name.Id.ToString()]);
     }
 
-    [Theory]
-    [InlineData(Route.Eui, "eui")]
-    [InlineData(Route.Tdr, "tdr")]
-    public void Process_RouteFromInputHelper_IsSavedAsPrimarySourceRoute(Route route, string expectedRoute)
-    {
-        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(route);
-
-        Run(inputs);
-
-        SavedMetadata().GetProperty("primary_source").GetProperty("route").GetString().ShouldBe(expectedRoute);
-    }
-
     [Fact]
-    public void Process_ValidInputs_SavesNewParserRunIdAndMarksXmlAsContainingDocumentText()
+    public void Process_ValidInputs_SavesNewParserRunId()
     {
         Run(inputs);
 
-        var metadata = SavedMetadata();
-        Guid.TryParse(metadata.GetProperty("parser_run_id").GetString(), out var parserRunId).ShouldBeTrue();
+        Guid.TryParse(SavedMetadata().GetProperty("parser_run_id").GetString(), out var parserRunId).ShouldBeTrue();
         parserRunId.ShouldNotBe(Guid.Empty);
-        metadata.GetProperty("xml_contains_document_text").GetBoolean().ShouldBeTrue();
     }
 
     [Fact]
-    public void Process_ValidInputs_SavesPrimarySourceFileDetailsFromTheFetchedDocx()
+    public void Process_ValidInputs_MarksXmlAsContainingDocumentText()
     {
-        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
-
         Run(inputs);
 
-        var primarySource = SavedMetadata().GetProperty("primary_source");
-        primarySource.GetProperty("filename").GetString().ShouldBe("input.docx");
-        primarySource.GetProperty("mimetype").GetString()
-                     .ShouldBe("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-        primarySource.GetProperty("sha256").GetString()
-                     .ShouldBe("039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81");
-        primarySource.GetProperty("route_datetime").GetString().ShouldBe("2024-06-01T10:30:00Z");
+        SavedMetadata().GetProperty("xml_contains_document_text").GetBoolean().ShouldBeTrue();
     }
 
     [Fact]
-    public void Process_SourceFilenameFromInputHelper_IsSavedInPrimarySource()
+    public void Process_ValidInputs_SavesLegacyMetadataInJson()
     {
-        mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>())).Returns("My Judgment.docx");
+        parserResponse = parserResponse with
+        {
+            Meta = new Api.Meta
+            {
+                DocumentType = "judgment",
+                Uri = "ewca/civ/2024/1",
+                Court = "EWCA-Civil",
+                Cite = "[2024] EWCA Civ 1",
+                Date = "2024-05-01",
+                Name = "Alpha v Bravo"
+            }
+        };
 
         Run(inputs);
 
-        SavedMetadata().GetProperty("primary_source").GetProperty("filename").GetString().ShouldBe("My Judgment.docx");
+        var uploadedJson = GetUploadedJsonString();
+
+        uploadedJson.ShouldBe(
+            """{"documentType":"judgment","parser_run_id":"00000000-0000-0000-0000-000000000000","error-messages":[],"metadata_fields":[],"primary_source":{"filename":"input.docx","mimetype":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","route":"tdr","sha256":"039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81","route_datetime":"2024-06-01T10:30:00Z"},"xml_contains_document_text":true,"uri":"ewca/civ/2024/1","court":"EWCA-Civil","cite":"[2024] EWCA Civ 1","date":"2024-05-01","name":"Alpha v Bravo","extensions":null,"attachments":[]}""");
+    }
+
+    [Fact]
+    public void Process_ValidInputs_SavesPrimarySource()
+    {
+        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Eui);
+
+        inputs.S3InputKey = "My Judgment.docx";
+
+        Run(inputs);
+
+        SavedMetadata().GetProperty("primary_source").GetRawText().ShouldBe(
+            """{"filename":"My Judgment.docx","mimetype":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","route":"eui","sha256":"039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81","route_datetime":"2024-06-01T10:30:00Z"}""");
     }
 
     [Fact]
@@ -338,36 +352,99 @@ public class TestWorker
     }
 
     [Fact]
-    public void Process_RequestJsonWithStructuredMetadata_SavesExpectedMetadataJson()
+    public void Process_RequestJsonWithInvalidMetadataFieldValue_LogsError()
     {
-        const string requestJson = """{"parser-inputs": {"consignment-reference": "TDR-2024-ABC","s3-bucket": "output-bucket","s3-output-prefix": "consignment/","s3-input-bucket": "input-bucket","s3-input-key": "input.docx","document-type": "judgment","metadata": {"structured_metadata_fields": [{"id": "6f1c1c4e-2f0b-4c56-9d1e-3b8f7a2c9e10","name": "court","source": "external","timestamp": "2024-05-01T00:00:00Z","value": "EWCA"}]}}}""";
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta
-                      {
-                          DocumentType = "judgment",
-                          Uri = "ewca/civ/2024/1",
-                          Court = "EWCA-Civil",
-                          Cite = "[2024] EWCA Civ 1",
-                          Date = "2024-05-01",
-                          Name = "Alpha v Bravo"
-                      },
-                      Images = []
-                  });
-        mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Eui);
-        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
-        mockStructuredMetadataConsolidator
-            .Setup(x => x.BuildMetadataFields(It.IsAny<IMetadataField[]>(), It.IsAny<IMetadataField[]>()))
-            .Returns((IMetadataField[] inputFields, IMetadataField[] _) => inputFields);
+        const string courtField =
+            """{"id":"6f1c1c4e-2f0b-4c56-9d1e-3b8f7a2c9e10","name":"court","source":"external","timestamp":"2024-07-01T00:00:00Z","value":{"randomfield1":"Hello","randomfield2":"there"}}""";
+        const string requestJson = $$"""
+                                     {
+                                       "parser-inputs": {
+                                         "consignment-reference": "TDR-2024-ABC",
+                                         "s3-bucket": "output-bucket",
+                                         "s3-output-prefix": "consignment/",
+                                         "s3-input-bucket": "input-bucket",
+                                         "s3-input-key": "input.docx",
+                                         "document-type": "judgment",
+                                         "metadata": {
+                                           "structured_metadata_fields": [
+                                             {{courtField}},
+                                           ]
+                                         }
+                                       }
+                                     }
+                                     """;
+        using var result = worker.Process(new MemoryStream(Encoding.UTF8.GetBytes(requestJson)));
+
+        mockLogger.VerifyLog(
+            """error processing document: Could not deserialize structured metadata field '{"id":"6f1c1c4e-2f0b-4c56-9d1e-3b8f7a2c9e10","name":"court","source":"external","timestamp":"2024-07-01T00:00:00Z","value":{"randomfield1":"Hello","randomfield2":"there"}}'""",
+            LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_RequestJsonWithUnknownMetadataFieldName_LogsError()
+    {
+        const string requestJson = """
+                                   {
+                                     "parser-inputs": {
+                                       "consignment-reference": "TDR-2024-ABC",
+                                       "s3-bucket": "output-bucket",
+                                       "s3-output-prefix": "consignment/",
+                                       "s3-input-bucket": "input-bucket",
+                                       "s3-input-key": "input.docx",
+                                       "document-type": "judgment",
+                                       "metadata": {
+                                         "structured_metadata_fields": [
+                                           {
+                                             "id":"02d0209d-7482-43f3-8329-8ff7618a2112",
+                                             "name":"random",
+                                             "source":"external",
+                                             "timestamp":"2024-07-01T00:00:00Z",
+                                             "value":"Hello"
+                                           }
+                                         ]
+                                       }
+                                     }
+                                   }
+                                   """;
 
         using var result = worker.Process(new MemoryStream(Encoding.UTF8.GetBytes(requestJson)));
 
-        var uploadedJson = Encoding.UTF8.GetString(uploads["consignment/metadata.json"].Content);
-        uploadedJson = Regex.Replace(uploadedJson, "\"parser_run_id\":\"[-0-9a-z]+\"", "\"parser_run_id\":\"00000000-0000-0000-0000-000000000000\"");
+        mockLogger.VerifyLog("error processing document: Unrecognised structured metadata field name 'random'",
+            LogLevel.Error);
+    }
 
-        uploadedJson.ShouldBe("""{"documentType":"judgment","parser_run_id":"00000000-0000-0000-0000-000000000000","error-messages":[],"metadata_fields":[{"id":"6f1c1c4e-2f0b-4c56-9d1e-3b8f7a2c9e10","name":"court","source":"external","timestamp":"2024-05-01T00:00:00Z","value":"EWCA"}],"primary_source":{"filename":"input.docx","mimetype":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","route":"eui","sha256":"039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81","route_datetime":"2024-06-01T10:30:00Z"},"xml_contains_document_text":true,"uri":"ewca/civ/2024/1","court":"EWCA-Civil","cite":"[2024] EWCA Civ 1","date":"2024-05-01","name":"Alpha v Bravo","extensions":null,"attachments":[]}""");
+    [Fact]
+    public void Process_RequestJsonWithStructuredMetadata_SavesExpectedMetadataJson()
+    {
+        const string courtField =
+            """{"id":"6f1c1c4e-2f0b-4c56-9d1e-3b8f7a2c9e10","name":"court","source":"external","timestamp":"2024-05-01T00:00:00Z","value":"EWCA"}""";
+        const string partyField =
+            """{"id":"a41d7b52-8c3e-4f0a-b6d2-5e9c1f3a7d84","name":"party","source":"external","timestamp":"2024-06-01T00:00:00Z","value":{"name":"Alpha","role":"appellant"}}""";
+        const string requestJson = $$"""
+                                     {
+                                       "parser-inputs": {
+                                         "consignment-reference": "TDR-2024-ABC",
+                                         "s3-bucket": "output-bucket",
+                                         "s3-output-prefix": "consignment/",
+                                         "s3-input-bucket": "input-bucket",
+                                         "s3-input-key": "input.docx",
+                                         "document-type": "judgment",
+                                         "metadata": {
+                                           "structured_metadata_fields": [
+                                             {{courtField}},
+                                             {{partyField}}
+                                           ]
+                                         }
+                                       }
+                                     }
+                                     """;
+
+        using var result = worker.Process(new MemoryStream(Encoding.UTF8.GetBytes(requestJson)));
+
+        var uploadedJson = GetUploadedJsonString();
+
+        uploadedJson.ShouldBe(
+            $$"""{"documentType":"judgment","parser_run_id":"00000000-0000-0000-0000-000000000000","error-messages":[],"metadata_fields":[{{courtField}},{{partyField}}],"primary_source":{"filename":"input.docx","mimetype":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","route":"eui","sha256":"039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81","route_datetime":"2024-06-01T10:30:00Z"},"xml_contains_document_text":true,"uri":null,"court":null,"cite":null,"date":null,"name":null,"extensions":null,"attachments":[]}""");
     }
 
     [Fact]
@@ -385,14 +462,40 @@ public class TestWorker
             Type = "image/jpeg",
             Content = [6]
         };
-        SetupParserToReturnImages(png, jpeg);
+        parserResponse = parserResponse with { Images = [png, jpeg] };
 
-        var outputs = Run(inputs);
+        Run(inputs);
 
         uploads["consignment/image1.png"].ContentType.ShouldBe("image/png");
         uploads["consignment/image1.png"].Content.ShouldBe(png.Content);
         uploads["consignment/image2.jpeg"].ContentType.ShouldBe("image/jpeg");
         uploads["consignment/image2.jpeg"].Content.ShouldBe(jpeg.Content);
+    }
+
+    [Fact]
+    public void Process_ParserReturnsImages_ReportsImageFilenames()
+    {
+        parserResponse = parserResponse with
+        {
+            Images =
+            [
+                new Api.Image
+                {
+                    Name = "image1.png",
+                    Type = "image/png",
+                    Content = [4]
+                },
+                new Api.Image
+                {
+                    Name = "image2.jpeg",
+                    Type = "image/jpeg",
+                    Content = [5]
+                }
+            ]
+        };
+
+        var outputs = Run(inputs);
+
         outputs.ImageFilenames.ShouldBe(["image1.png", "image2.jpeg"]);
     }
 
@@ -415,8 +518,9 @@ public class TestWorker
         mockInputHelper.Setup(x => x.GetMetadata(
             It.Is<ParserInputs>(i => i.ConsignmentReference == inputs.ConsignmentReference),
             It.IsAny<ILogger>())).Returns(meta);
+
         inputs.AttachmentURLs = ["https://example.com/attachment"];
-        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
+
         mockExternalResourceRetriever.Setup(x => x.GetAttachments(inputs.AttachmentURLs)).Returns(attachments);
 
         Run(inputs);
@@ -448,17 +552,31 @@ public class TestWorker
     }
 
     [Fact]
-    public void Process_MissingParserInputs_LogsErrorWithoutThrowing()
+    public void Process_MissingParserInputs_LogsProcessingError()
     {
         Run(null);
 
         mockLogger.VerifyLog("error processing document: parser-inputs is null", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_MissingParserInputs_LogsThatTheLogCannotBeSaved()
+    {
+        Run(null);
+
         mockLogger.VerifyLog("error saving parser.log to S3: BucketName is a required property", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_MissingParserInputs_SavesNothing()
+    {
+        Run(null);
+
         uploads.ShouldBeEmpty();
     }
 
     [Fact]
-    public void Process_UnreadableDocx_LogsErrorAndSavesLogAndDoesNotParse()
+    public void Process_UnreadableDocx_LogsError()
     {
         mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>()))
                                      .Throws(new IOException("no such object"));
@@ -466,12 +584,32 @@ public class TestWorker
         Run(inputs);
 
         mockLogger.VerifyLog("error processing document: no such object", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_UnreadableDocx_SavesOnlyTheLog()
+    {
+        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>()))
+                                     .Throws(new IOException("no such object"));
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
+    }
+
+    [Fact]
+    public void Process_UnreadableDocx_DoesNotParse()
+    {
+        mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>()))
+                                     .Throws(new IOException("no such object"));
+
+        Run(inputs);
+
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void Process_UnreadableDocumentType_LogsErrorAndSavesLogAndDoesNotParse()
+    public void Process_UnreadableDocumentType_LogsError()
     {
         mockInputHelper.Setup(x => x.GetHint(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
                        .Throws(new Exception("unknown document type"));
@@ -479,12 +617,32 @@ public class TestWorker
         Run(inputs);
 
         mockLogger.VerifyLog("error processing document: unknown document type", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_UnreadableDocumentType_SavesOnlyTheLog()
+    {
+        mockInputHelper.Setup(x => x.GetHint(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("unknown document type"));
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
+    }
+
+    [Fact]
+    public void Process_UnreadableDocumentType_DoesNotParse()
+    {
+        mockInputHelper.Setup(x => x.GetHint(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("unknown document type"));
+
+        Run(inputs);
+
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void Process_UnreadableInputMetadata_LogsErrorAndSavesLogAndDoesNotParse()
+    public void Process_UnreadableInputMetadata_LogsError()
     {
         mockInputHelper.Setup(x => x.GetMetadata(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
                        .Throws(new Exception("input URI is not supported"));
@@ -492,90 +650,200 @@ public class TestWorker
         Run(inputs);
 
         mockLogger.VerifyLog("error processing document: input URI is not supported", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_UnreadableInputMetadata_SavesOnlyTheLog()
+    {
+        mockInputHelper.Setup(x => x.GetMetadata(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("input URI is not supported"));
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
+    }
+
+    [Fact]
+    public void Process_UnreadableInputMetadata_DoesNotParse()
+    {
+        mockInputHelper.Setup(x => x.GetMetadata(It.IsAny<ParserInputs>(), It.IsAny<ILogger>()))
+                       .Throws(new Exception("input URI is not supported"));
+
+        Run(inputs);
+
         mockParser.Verify(x => x.Parse(It.IsAny<Api.Request>()), Times.Never);
     }
 
     [Fact]
-    public void Process_ParseFails_LogsErrorAndSavesLog()
+    public void Process_ParseFails_LogsError()
     {
         mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>())).Throws(new Exception("not a docx"));
 
         Run(inputs);
 
         mockLogger.VerifyLog("error processing document: not a docx", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_ParseFails_SavesOnlyTheLog()
+    {
+        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>())).Throws(new Exception("not a docx"));
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/parser.log"]);
     }
 
     [Fact]
-    public void Process_XmlSaveFails_LogsErrorAndStillSavesMetadataAndLog()
+    public void Process_XmlSaveFails_LogsError()
+    {
+        keysWhichFailToUpload.Add("consignment/TDR-2024-ABC.xml");
+
+        Run(inputs);
+
+        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: access denied", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_XmlSaveFails_OmitsXmlFilename()
     {
         keysWhichFailToUpload.Add("consignment/TDR-2024-ABC.xml");
 
         var outputs = Run(inputs);
 
-        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: access denied", LogLevel.Error);
         outputs.XMLFilename.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Process_XmlSaveFails_StillSavesMetadataAndLog()
+    {
+        keysWhichFailToUpload.Add("consignment/TDR-2024-ABC.xml");
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/metadata.json", "consignment/parser.log"], ignoreOrder: true);
     }
 
     [Fact]
-    public void Process_MetadataSaveFails_LogsErrorAndStillSavesXmlAndLog()
+    public void Process_MetadataSaveFails_LogsError()
+    {
+        keysWhichFailToUpload.Add("consignment/metadata.json");
+
+        Run(inputs);
+
+        mockLogger.VerifyLog("error saving metadata.json to S3: access denied", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_MetadataSaveFails_OmitsMetadataFilename()
     {
         keysWhichFailToUpload.Add("consignment/metadata.json");
 
         var outputs = Run(inputs);
 
-        mockLogger.VerifyLog("error saving metadata.json to S3: access denied", LogLevel.Error);
         outputs.MetadataFilename.ShouldBeNull();
+    }
+
+    [Fact]
+    public void Process_MetadataSaveFails_StillSavesXmlAndLog()
+    {
+        keysWhichFailToUpload.Add("consignment/metadata.json");
+
+        Run(inputs);
+
         uploads.Keys.ShouldBe(["consignment/TDR-2024-ABC.xml", "consignment/parser.log"], ignoreOrder: true);
     }
 
     [Fact]
-    public void Process_ImageSaveFails_LogsErrorAndStillSavesOtherImages()
+    public void Process_ImageSaveFails_LogsError()
     {
-        var first = new Api.Image
+        parserResponse = parserResponse with
         {
-            Name = "image1.png",
-            Type = "image/png",
-            Content = [4]
+            Images = new[]
+            {
+                new Api.Image
+                {
+                    Name = "image1.png",
+                    Type = "image/png",
+                    Content = [4]
+                }
+            }
         };
-        var second = new Api.Image
+        keysWhichFailToUpload.Add("consignment/image1.png");
+
+        Run(inputs);
+
+        mockLogger.VerifyLog("error saving image1.png to S3: access denied", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_ImageSaveFails_ReportsOnlyTheSavedImages()
+    {
+        parserResponse = parserResponse with
         {
-            Name = "image2.png",
-            Type = "image/png",
-            Content = [5]
+            Images =
+            [
+                new Api.Image
+                {
+                    Name = "image1.png",
+                    Type = "image/png",
+                    Content = [4]
+                },
+                new Api.Image
+                {
+                    Name = "image2.png",
+                    Type = "image/png",
+                    Content = [5]
+                }
+            ]
         };
-        SetupParserToReturnImages(first, second);
         keysWhichFailToUpload.Add("consignment/image1.png");
 
         var outputs = Run(inputs);
 
-        mockLogger.VerifyLog("error saving image1.png to S3: access denied", LogLevel.Error);
         outputs.ImageFilenames.ShouldBe(["image2.png"]);
     }
 
     [Fact]
-    public void Process_LogSaveFails_LogsErrorAndOmitsLogFilename()
+    public void Process_LogSaveFails_LogsError()
+    {
+        keysWhichFailToUpload.Add("consignment/parser.log");
+
+        Run(inputs);
+
+        mockLogger.VerifyLog("error saving parser.log to S3: access denied", LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_LogSaveFails_OmitsLogFilename()
     {
         keysWhichFailToUpload.Add("consignment/parser.log");
 
         var outputs = Run(inputs);
 
-        mockLogger.VerifyLog("error saving parser.log to S3: access denied", LogLevel.Error);
         outputs.LogFilename.ShouldBeNull();
     }
 
     [Fact]
-    public void Process_S3ClientThrowsNonAmazonException_LogsErrorsAndOmitsFilenames()
+    public void Process_S3ClientThrowsNonAmazonException_LogsError()
+    {
+        mockS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
+              .ThrowsAsync(new ArgumentException("BucketName is a required property"));
+
+        Run(inputs);
+
+        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: BucketName is a required property",
+            LogLevel.Error);
+    }
+
+    [Fact]
+    public void Process_S3ClientThrowsNonAmazonException_OmitsFilenames()
     {
         mockS3.Setup(x => x.PutObjectAsync(It.IsAny<PutObjectRequest>(), It.IsAny<CancellationToken>()))
               .ThrowsAsync(new ArgumentException("BucketName is a required property"));
 
         var outputs = Run(inputs);
 
-        mockLogger.VerifyLog("error saving TDR-2024-ABC.xml to S3: BucketName is a required property",
-            LogLevel.Error);
         outputs.XMLFilename.ShouldBeNull();
         outputs.MetadataFilename.ShouldBeNull();
         outputs.LogFilename.ShouldBeNull();
@@ -584,13 +852,7 @@ public class TestWorker
     [Fact]
     public void Process_ParserReturnsNoImages_ReportsNoErrors()
     {
-        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
-                  .Returns(new Api.Response
-                  {
-                      Xml = "<akomaNtoso/>",
-                      Meta = new Api.Meta { DocumentType = "judgment" },
-                      Images = null
-                  });
+        parserResponse = parserResponse with { Images = null };
 
         var outputs = Run(inputs);
 
