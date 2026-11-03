@@ -32,7 +32,8 @@ public class Worker(
     IAmazonS3 s3,
     IInputHelper inputHelper,
     IExternalResourceRetriever externalResourceRetriever,
-    TimeProvider timeProvider)
+    TimeProvider timeProvider,
+    IStructuredMetadataConsolidator structuredMetadataConsolidator)
 {
     private const string LogFilename = "parser.log";
     private const string MetadataFilename = "metadata.json";
@@ -41,7 +42,7 @@ public class Worker(
     private string s3Bucket = string.Empty;
     private string s3OutputPrefix = string.Empty;
     private string consignmentReference = string.Empty;
-    private IMetadataField[] structuredMetadataFields = [];
+    private IMetadataField[] inputStructuredMetadataFields = [];
     private Guid parserRunId;
     private string sourceFilename = string.Empty;
     private string docxSha256 = string.Empty;
@@ -126,11 +127,14 @@ public class Worker(
 
     private ParserProcessMetadata BuildParserProcessMetadata(Api.Response parserResponse)
     {
+        var consolidatedMetadata = structuredMetadataConsolidator
+            .BuildMetadataFields(inputStructuredMetadataFields, parserResponse.StructuredMetadataFields);
+
         return new ParserProcessMetadata
         {
             DocumentType = Enum.Parse<DocumentType>(parserResponse.Meta.DocumentType, true),
             ParserRunId = parserRunId,
-            MetadataFields = [.. structuredMetadataFields],
+            MetadataFields = [.. consolidatedMetadata],
             PrimarySource = new PrimarySourceFile
             {
                 Filename = sourceFilename,
@@ -189,7 +193,7 @@ public class Worker(
 
         s3Bucket = inputs.S3Bucket;
         s3OutputPrefix = inputs.S3OutputPrefix;
-        structuredMetadataFields = inputs.Metadata?.StructuredMetadataFields ?? [];
+        inputStructuredMetadataFields = inputs.Metadata?.StructuredMetadataFields ?? [];
         consignmentReference = inputs.ConsignmentReference
             ?? throw new InvalidTreRequestException("parser-inputs.consignment-reference is null");
 
