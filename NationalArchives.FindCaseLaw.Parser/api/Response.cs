@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text.Json;
 
 namespace UK.Gov.NationalArchives.Judgments.Api;
 
@@ -10,13 +9,6 @@ public class Response
     public Meta Meta { get; init; }
 
     public IEnumerable<Image> Images { get; init; }
-
-    private static readonly JsonSerializerOptions options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-    public string ToJson()
-    {
-        return JsonSerializer.Serialize(this, options);
-    }
 }
 
 public class Image
