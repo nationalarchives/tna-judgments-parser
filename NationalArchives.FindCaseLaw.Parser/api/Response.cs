@@ -4,7 +4,7 @@ using NationalArchives.FindCaseLaw.Utils.Metadata;
 
 namespace UK.Gov.NationalArchives.Judgments.Api;
 
-public class Response
+public record Response
 {
     public string Xml { get; init; }
 
