@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -18,14 +19,16 @@ internal class OptimizedEWHCParser : OptimizedParser
 {
     private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedEWHCParser>();
 
-    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null)
+    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
     {
-        return new OptimizedEWHCParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Judgment);
+        return new OptimizedEWHCParser(doc, preParsed, meta, attachments, timeProvider)
+            .ProtectedParse(JudgmentType.Judgment);
     }
 
-    private OptimizedEWHCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
+    private OptimizedEWHCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
+        : base(doc, preParsed, meta, attachments, timeProvider) { }
 
     private readonly ISet<string> titles = new HashSet<string>
     {

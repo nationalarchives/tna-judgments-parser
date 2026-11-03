@@ -25,7 +25,7 @@ public class TestParser_Judgments
 
     public static readonly TheoryData<int> IndicesTheoryData = new(Indices);
 
-    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
+    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator(), TimeProvider.System);
 
     [Theory]
     [MemberData(nameof(IndicesTheoryData))]

@@ -23,7 +23,7 @@ public class UpdateXmlFiles
                   .Except([11]) //Skip 11 because it is a little more complicated
     );
 
-    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
+    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator(), TimeProvider.System);
 
     /// <summary>
     ///     This is not a test - it is a utility for test data

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,7 +50,7 @@ public class EndToEndTestWorker
 
         var loggerProvider = new CustomLoggerProvider();
         using var loggerFactory = LoggerFactory.Create(builder => builder.AddProvider(loggerProvider));
-        var parser = new Api.Parser(loggerFactory.CreateLogger<Api.Parser>(), new Validator());
+        var parser = new Api.Parser(loggerFactory.CreateLogger<Api.Parser>(), new Validator(), TimeProvider.System);
 
         worker = new Worker(loggerFactory.CreateLogger<Worker>(), parser, loggerProvider, mockS3.Object,
             new InputHelper(), mockExternalResourceRetriever.Object, new FakeTimeProvider());

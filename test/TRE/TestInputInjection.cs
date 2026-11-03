@@ -1,3 +1,5 @@
+using System;
+
 using Microsoft.Extensions.Logging;
 
 using test.Mocks;
@@ -124,7 +126,7 @@ public class TestInputInjection
             Hint = hint,
             Meta = meta
         };
-        var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator());
+        var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator(), TimeProvider.System);
         return parser.Parse(apiRequest);
     }
 

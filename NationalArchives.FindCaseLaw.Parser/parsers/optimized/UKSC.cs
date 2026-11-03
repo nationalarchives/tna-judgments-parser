@@ -21,14 +21,16 @@ internal class OptimizedUKSCParser : OptimizedParser
 {
     private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedUKSCParser>();
 
-    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null)
+    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
     {
-        return new OptimizedUKSCParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Judgment);
+        return new OptimizedUKSCParser(doc, preParsed, meta, attachments, timeProvider)
+            .ProtectedParse(JudgmentType.Judgment);
     }
 
-    private OptimizedUKSCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
+    private OptimizedUKSCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
+        : base(doc, preParsed, meta, attachments, timeProvider) { }
 
     /* second page break or first page break if first break is followed by a 'speech' */
     protected override List<IBlock> Header()

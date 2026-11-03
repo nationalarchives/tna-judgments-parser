@@ -26,7 +26,8 @@ internal class Parser : OptimizedParser
         return new Parser(preParsed, meta).Parse();
     }
 
-    private Parser(WordDocument preParsed, IOutsideMetadata meta) : base(preParsed.Docx, preParsed, meta, null) { }
+    private Parser(WordDocument preParsed, IOutsideMetadata meta) : base(preParsed.Docx, preParsed, meta, null,
+        TimeProvider.System) { }
 
     private PressSummary Parse()
     {
