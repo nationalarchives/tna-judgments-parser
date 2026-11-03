@@ -641,6 +641,9 @@ public class TestJudgeEnricher : ParserTestBase
     [InlineData("(Judge of the Upper Tribunal)")]
     [InlineData("Sitting at Alfred Place, London")]
     [InlineData("(Sitting at Field House)")]
+    [InlineData("The Recorder of Alphaville")]
+    [InlineData("THE RECORDER OF NEW BRAVOTON")]
+    [InlineData("(Recorder of Charlie-on-Delta)")]
     public void Enrich_RoleLineAmongJudges_IsNotMarkedUp(string roleLine)
     {
         IBlock[] blocks =
