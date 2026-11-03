@@ -113,8 +113,8 @@ public class Worker(
             }
 
             var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Image>())
-                            .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
-                            .ToArray();
+                                          .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
+                                          .ToArray();
 
             outputs.ImageFilenames = successfullySavedImages.Select(image => image.Name);
         }

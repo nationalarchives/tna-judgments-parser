@@ -12,7 +12,7 @@ internal class Judgment : IJudgment
     {
         this.doc = doc;
         InternalMetadata = new WMetadata(doc.MainDocumentPart, this);
-        // ExternalMetadata = meta;
+
         if (meta is null)
         {
             Metadata = new WMetadata(doc.MainDocumentPart, this);
@@ -33,8 +33,6 @@ internal class Judgment : IJudgment
 
     internal IMetadata InternalMetadata { get; private init; }
 
-    // public IOutsideMetadata ExternalMetadata { get; init; }
-
     public IEnumerable<IBlock> CoverPage { get; internal set; }
 
     public IEnumerable<IBlock> Header { get; internal set; }
@@ -47,20 +45,15 @@ internal class Judgment : IJudgment
 
     public IEnumerable<IInternalAttachment> InternalAttachments { get; internal init; }
 
-    private IEnumerable<IImage> _images;
-
     public IEnumerable<IImage> Images
     {
         get
         {
-            if (_images is null)
-            {
-                _images = WImage.Get(doc);
-            }
+            field ??= WImage.Get(doc);
 
-            return _images;
+            return field;
         }
-        set => _images = value;
+        set;
     }
 
     public void Dispose()
