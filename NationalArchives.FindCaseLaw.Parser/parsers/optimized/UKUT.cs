@@ -20,14 +20,16 @@ internal class OptimizedUKUTParser : OptimizedParser
 {
     private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedUKSCParser>();
 
-    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null)
+    public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
     {
-        return new OptimizedUKUTParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Decision);
+        return new OptimizedUKUTParser(doc, preParsed, meta, attachments, timeProvider)
+            .ProtectedParse(JudgmentType.Decision);
     }
 
-    private OptimizedUKUTParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
-        IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
+    private OptimizedUKUTParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
+        : base(doc, preParsed, meta, attachments, timeProvider) { }
 
 
     private readonly string[] titles =

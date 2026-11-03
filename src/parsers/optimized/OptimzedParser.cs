@@ -19,7 +19,8 @@ internal abstract class OptimizedParser(
     WordprocessingDocument doc,
     WordDocument preParsed,
     IOutsideMetadata meta,
-    IEnumerable<AttachmentPair> attachments)
+    IEnumerable<AttachmentPair> attachments,
+    TimeProvider timeProvider)
 {
     private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedParser>();
 
@@ -28,6 +29,9 @@ internal abstract class OptimizedParser(
     private readonly IEnumerable<AttachmentPair> attachments = attachments ?? Enumerable.Empty<AttachmentPair>();
     protected readonly WordDocument PreParsed = preParsed;
     protected int i;
+
+    protected OptimizedParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
+        IEnumerable<AttachmentPair> attachments) : this(doc, preParsed, meta, attachments, TimeProvider.System) { }
 
     protected Judgment ProtectedParse(JudgmentType type)
     {

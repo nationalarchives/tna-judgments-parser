@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +27,7 @@ public class TestsPS
     {
         var docx = DocumentHelpers.ReadDocx($"test.ps.test{i}.docx");
         var expected = DocumentHelpers.ReadXml($"test.ps.test{i}.xml");
-        var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator());
+        var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator(), TimeProvider.System);
 
         var actual = parser.Parse(new Api.Request { Content = docx }).Xml;
 
