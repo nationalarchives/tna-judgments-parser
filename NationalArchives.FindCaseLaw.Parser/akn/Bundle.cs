@@ -4,6 +4,8 @@ using System.Xml;
 
 using DocumentFormat.OpenXml.Packaging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+
 using UK.Gov.NationalArchives.CaseLaw;
 using UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
@@ -14,6 +16,8 @@ public interface ILazyBundle : IDisposable
     XmlDocument Judgment { get; }
 
     IEnumerable<IImage> Images { get; }
+
+    IMetadataField[] StructuredMetadataFields { get; }
 }
 
 internal class Bundle : ILazyBundle
@@ -26,6 +30,7 @@ internal class Bundle : ILazyBundle
         this.doc = doc;
         this.judgment = judgment;
         ImageConverter.ConvertImages(judgment);
+        StructuredMetadataFields = judgment.StructuredMetadataFields;
     }
 
     public XmlDocument Judgment
@@ -39,6 +44,8 @@ internal class Bundle : ILazyBundle
     }
 
     public IEnumerable<IImage> Images => judgment.Images;
+
+    public IMetadataField[] StructuredMetadataFields { get; }
 
     public void Dispose()
     {
@@ -69,6 +76,8 @@ internal class PSBundle : ILazyBundle
     }
 
     public IEnumerable<IImage> Images => PS.Images;
+
+    public IMetadataField[] StructuredMetadataFields { get; } = [];
 
     public void Dispose()
     {

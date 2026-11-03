@@ -7,6 +7,10 @@ using DocumentFormat.OpenXml.Packaging;
 
 using Microsoft.Extensions.Logging;
 
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
+
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
@@ -72,7 +76,7 @@ internal abstract class OptimizedParser(
         var coverPage = EnrichCoverPage(PreParsed.Header);
         if (header is not null)
         {
-            header = EnrichHeader(header);
+            header = EnrichHeader(header).ToArray();
         }
 
         body = EnrichBody(body).ToList();
@@ -96,8 +100,24 @@ internal abstract class OptimizedParser(
             Body = body,
             Conclusions = conclusions,
             Annexes = annexes,
-            InternalAttachments = attachments
+            InternalAttachments = attachments,
+            StructuredMetadataFields = CreateStructuredMetadataFields(header)
         };
+    }
+
+    private IMetadataField[] CreateStructuredMetadataFields(IEnumerable<IBlock> header)
+    {
+        var now = timeProvider.GetUtcNow().UtcDateTime;
+        return Util.Descendants<IJudge>(header)
+                   .Select(IMetadataField (judge) => new MetadataField<Judge>
+                   {
+                       Id = Guid.NewGuid(),
+                       Name = MetadataFieldName.Judge,
+                       Source = MetadataSource.Document,
+                       Timestamp = now,
+                       Value = new Judge(judge.Name, judge.Id)
+                   })
+                   .ToArray();
     }
 
     protected abstract List<IBlock> Header();
