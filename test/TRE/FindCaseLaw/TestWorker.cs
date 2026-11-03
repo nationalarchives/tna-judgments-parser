@@ -28,7 +28,6 @@ using TRE.FindCaseLaw;
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
 using TRE.Metadata;
-using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 

@@ -9,7 +9,6 @@ using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
 
 using TRE.Metadata;
-using TRE.Metadata.Enums;
 using TRE.Metadata.MetadataFieldTypes;
 
 using UK.Gov.Legislation.Judgments;

@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 
 using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 
-using TRE.Metadata.Enums;
-
 using UK.Gov.Legislation.Judgments;
 
 using Api = UK.Gov.NationalArchives.Judgments.Api;
@@ -26,8 +24,8 @@ public partial class InputHelper : IInputHelper
 {
     public Route GetRoute(ParserInputs inputs)
     {
-        var isReparse = inputs.Metadata?.StructuredMetadataFields?.Count > 0
-                                    || !string.IsNullOrWhiteSpace(inputs.Metadata?.Court);
+        var isReparse = inputs.Metadata?.StructuredMetadataFields?.Length > 0
+            || !string.IsNullOrWhiteSpace(inputs.Metadata?.Court);
 
         return isReparse ? Route.Eui : Route.Tdr;
     }
