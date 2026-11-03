@@ -52,6 +52,7 @@ public class TestWorker
     private readonly Mock<IAmazonS3> mockS3 = new();
     private readonly Mock<IInputHelper> mockInputHelper = new();
     private readonly Mock<IExternalResourceRetriever> mockExternalResourceRetriever = new();
+    private readonly Mock<IStructuredMetadataConsolidator> mockStructuredMetadataConsolidator = new();
     private readonly FakeTimeProvider fakeTimeProvider = new(new DateTimeOffset(2024, 6, 1, 10, 30, 0, TimeSpan.Zero));
     private readonly Worker worker;
 
@@ -122,8 +123,13 @@ public class TestWorker
         mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Tdr);
         mockInputHelper.Setup(x => x.GetSourceFilename(It.IsAny<ParserInputs>())).Returns("input.docx");
 
+        mockStructuredMetadataConsolidator
+            .Setup(x => x.BuildMetadataFields(It.IsAny<IMetadataField[]>(), It.IsAny<IMetadataField[]>()))
+            .Returns([]);
+
         worker = new Worker(mockLogger.Object, mockParser.Object, mockCustomLoggerProvider.Object, mockS3.Object,
-            mockInputHelper.Object, mockExternalResourceRetriever.Object, fakeTimeProvider);
+            mockInputHelper.Object, mockExternalResourceRetriever.Object, fakeTimeProvider,
+            mockStructuredMetadataConsolidator.Object);
     }
 
     private ParserOutputs Run(ParserInputs? parserInputs)
@@ -143,6 +149,18 @@ public class TestWorker
                       Meta = new Api.Meta { DocumentType = "judgment" },
                       Images = images
                   });
+    }
+
+    private static MetadataField<string> MakeField(MetadataFieldName name, string value)
+    {
+        return new MetadataField<string>
+        {
+            Id = Guid.NewGuid(),
+            Name = name,
+            Source = MetadataSource.Editor,
+            Timestamp = new DateTime(2024, 5, 1, 0, 0, 0, DateTimeKind.Utc),
+            Value = value
+        };
     }
 
     [Fact]
@@ -201,38 +219,52 @@ public class TestWorker
     private JsonElement SavedMetadata() => JsonDocument.Parse(uploads["consignment/metadata.json"].Content).RootElement;
 
     [Fact]
-    public void Process_MetadataFieldsInInputs_SavesThemAsMetadataFields()
+    public void Process_InputAndParserMetadataFields_PassesThemToConsolidator()
     {
-        inputs.Metadata = new InputMetadata
-        {
-            StructuredMetadataFields =
-            [
-                new MetadataField<string>
-                {
-                    Name = MetadataFieldName.Court,
-                    Source = MetadataSource.External,
-                    Timestamp = new DateTime(2024, 5, 1, 0, 0, 0, DateTimeKind.Utc),
-                    Value = "EWCA"
-                }
-            ]
-        };
+        var inputField = MakeField(MetadataFieldName.Court, "EWCA");
+        inputs.Metadata = new InputMetadata { StructuredMetadataFields = [inputField] };
+        var parserField = MakeField(MetadataFieldName.Name, "Alpha v Bravo");
+        mockParser.Setup(x => x.Parse(It.IsAny<Api.Request>()))
+                  .Returns(new Api.Response
+                  {
+                      Xml = "<akomaNtoso/>",
+                      Meta = new Api.Meta { DocumentType = "judgment" },
+                      Images = [],
+                      StructuredMetadataFields = [parserField]
+                  });
 
         Run(inputs);
 
-        var metadata = SavedMetadata();
-        var fields = metadata.GetProperty("metadata_fields").EnumerateArray().ToArray();
-        fields.Length.ShouldBe(1);
-        fields[0].GetProperty("name").GetString().ShouldBe("court");
-        fields[0].GetProperty("source").GetString().ShouldBe("external");
-        fields[0].GetProperty("value").GetString().ShouldBe("EWCA");
+        mockStructuredMetadataConsolidator.Verify(x => x.BuildMetadataFields(
+            It.Is<IMetadataField[]>(fields => fields.SequenceEqual(new IMetadataField[] { inputField })),
+            It.Is<IMetadataField[]>(fields => fields.SequenceEqual(new IMetadataField[] { parserField }))));
     }
 
     [Fact]
-    public void Process_NoMetadataFieldsInInputs_SavesEmptyMetadataFields()
+    public void Process_NoInputMetadata_PassesEmptyInputFieldsToConsolidator()
     {
+        inputs.Metadata = null;
+
         Run(inputs);
 
-        SavedMetadata().GetProperty("metadata_fields").GetArrayLength().ShouldBe(0);
+        mockStructuredMetadataConsolidator.Verify(x => x.BuildMetadataFields(
+            It.Is<IMetadataField[]>(fields => fields.Length == 0), It.IsAny<IMetadataField[]>()));
+    }
+
+    [Fact]
+    public void Process_ConsolidatorReturnsFields_SavesThemAsMetadataFields()
+    {
+        var court = MakeField(MetadataFieldName.Court, "EWCA");
+        var name = MakeField(MetadataFieldName.Name, "Alpha v Bravo");
+        mockStructuredMetadataConsolidator
+            .Setup(x => x.BuildMetadataFields(It.IsAny<IMetadataField[]>(), It.IsAny<IMetadataField[]>()))
+            .Returns([court, name]);
+
+        Run(inputs);
+
+        SavedMetadata().GetProperty("metadata_fields").EnumerateArray()
+                       .Select(field => field.GetProperty("id").GetString())
+                       .ShouldBe([court.Id.ToString(), name.Id.ToString()]);
     }
 
     [Theory]
@@ -326,6 +358,9 @@ public class TestWorker
                   });
         mockInputHelper.Setup(x => x.GetRoute(It.IsAny<ParserInputs>())).Returns(Route.Eui);
         mockExternalResourceRetriever.Setup(x => x.GetDocx(It.IsAny<ParserInputs>())).Returns(Docx);
+        mockStructuredMetadataConsolidator
+            .Setup(x => x.BuildMetadataFields(It.IsAny<IMetadataField[]>(), It.IsAny<IMetadataField[]>()))
+            .Returns((IMetadataField[] inputFields, IMetadataField[] _) => inputFields);
 
         using var result = worker.Process(new MemoryStream(Encoding.UTF8.GetBytes(requestJson)));
 

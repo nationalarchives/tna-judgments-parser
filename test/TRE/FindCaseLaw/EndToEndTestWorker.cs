@@ -53,7 +53,8 @@ public class EndToEndTestWorker
         var parser = new Api.Parser(loggerFactory.CreateLogger<Api.Parser>(), new Validator(), TimeProvider.System);
 
         worker = new Worker(loggerFactory.CreateLogger<Worker>(), parser, loggerProvider, mockS3.Object,
-            new InputHelper(), mockExternalResourceRetriever.Object, new FakeTimeProvider());
+            new InputHelper(), mockExternalResourceRetriever.Object, new FakeTimeProvider(),
+            new StructuredMetadataConsolidator());
     }
 
     private JsonElement[] SavedLog()
@@ -103,6 +104,17 @@ public class EndToEndTestWorker
         metadata.GetProperty("documentType").GetString().ShouldBe("judgment");
         metadata.GetProperty("primary_source").GetProperty("route").GetString().ShouldBe("tdr");
         metadata.GetProperty("xml_contains_document_text").GetBoolean().ShouldBeTrue();
+
+        metadata.GetProperty("metadata_fields")
+                .EnumerateArray()
+                .Where(field => field.GetProperty("name").GetString() == "judge")
+                .Select(field => field.GetProperty("value"))
+                .Select(judge => (judge.GetProperty("name").GetString(), judge.GetProperty("eId").GetString()))
+                .ToArray().ShouldBe([
+                    ("LORD JUSTICE SIMON BROWN", "judge-lord-justice-simon-brown"),
+                    ("LORD JUSTICE DYSON", "judge-lord-justice-dyson"),
+                    ("LORD JUSTICE SCOTT BAKER", "judge-lord-justice-scott-baker"),
+                ]);
     }
 
     [Fact]
@@ -128,6 +140,7 @@ public class EndToEndTestWorker
         metadata.GetProperty("documentType").GetString().ShouldBe("pressSummary");
         metadata.GetProperty("primary_source").GetProperty("route").GetString().ShouldBe("tdr");
         metadata.GetProperty("xml_contains_document_text").GetBoolean().ShouldBeTrue();
+        metadata.GetProperty("metadata_fields").EnumerateArray().ShouldBeEmpty();
     }
 
     [Fact]
