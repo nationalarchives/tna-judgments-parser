@@ -68,6 +68,8 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string TitleMatchGroup = "title";
     private const string RoleMatchGroup = "role";
     private const string CounselMatchGroup = "counsel";
+    private const string RecorderOfAPlace = @"(?:the\s+)?recorder\s+of\s+\p{L}[\p{L}\s’'-]*?";
+    private const string JudgeMemberOfTheCourt = @"(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division)";
 
     [GeneratedRegex(
         $@"^\s*(?:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+the(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$", RegexOptions.IgnoreCase)]
@@ -79,8 +81,7 @@ internal sealed partial class JudgeEnricher : Enricher
     [GeneratedRegex(@"^\s*\(?\s*(?:sitting\s+(?:as|at)|(?:vice[-\s])?president\s+of)(?!\p{L})", RegexOptions.IgnoreCase)]
     private static partial Regex RoleLine();
 
-    [GeneratedRegex(
-        @"^\s*\(?\s*(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division)\s*\)?\s*$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex($@"^\s*\(?\s*(?:{JudgeMemberOfTheCourt}|{RecorderOfAPlace})\s*\)?\s*$", RegexOptions.IgnoreCase)]
     private static partial Regex OfficeLine();
 
     [GeneratedRegex($"{Heading}|{CrownParty}|{PartyRole}|{Rule}", RegexOptions.IgnoreCase)]
