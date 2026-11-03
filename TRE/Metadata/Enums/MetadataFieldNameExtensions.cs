@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 
 using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
@@ -29,6 +28,7 @@ public static class MetadataFieldNameExtensions
             MetadataFieldName.Category => typeof(Category),
             MetadataFieldName.CsvMetadataFileProperties => typeof(CsvProperties),
             MetadataFieldName.Date => typeof(DateTime),
+            MetadataFieldName.Judge => typeof(Judge),
             MetadataFieldName.Party => typeof(Party),
             MetadataFieldName.Uri => typeof(Uri),
             _ => throw new ArgumentOutOfRangeException(nameof(metadataFieldName), metadataFieldName, null)

@@ -8,6 +8,7 @@ public enum MetadataFieldName
     CsvMetadataFileProperties,
     Date,
     HeadnoteSummary,
+    Judge,
     Jurisdiction,
     Name,
     Ncn,
