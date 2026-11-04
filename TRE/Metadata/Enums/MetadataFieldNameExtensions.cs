@@ -24,13 +24,13 @@ public static class MetadataFieldNameExtensions
                 or MetadataFieldName.Name
                 or MetadataFieldName.Ncn
                 or MetadataFieldName.SourceFormat
+                or MetadataFieldName.Uri
                 or MetadataFieldName.WebArchivingLink => typeof(string),
             MetadataFieldName.Category => typeof(Category),
             MetadataFieldName.CsvMetadataFileProperties => typeof(CsvProperties),
             MetadataFieldName.Date => typeof(DateTime),
             MetadataFieldName.Judge => typeof(Judge),
             MetadataFieldName.Party => typeof(Party),
-            MetadataFieldName.Uri => typeof(Uri),
             _ => throw new ArgumentOutOfRangeException(nameof(metadataFieldName), metadataFieldName, null)
         };
     }
