@@ -43,7 +43,11 @@ jobs:
       - name: Run tests
         env:
           XUNIT_PRINT_MAX_STRING_LENGTH: 100
-        run: dotnet test --solution tna-judgments-parser.sln --no-build --configuration release --coverlet --coverlet-output-format cobertura --results-directory ./coverage
+        run: dotnet test --solution tna-judgments-parser.sln --no-build --configuration release --coverlet --coverlet-output-format cobertura --report-xunit-markdown --results-directory ./coverage
+
+      - name: Publish test results to job summary
+        if: ${{ !cancelled() }}
+        run: cat coverage/*.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload coverage reports to Codecov
         if: ${{ !cancelled() }}
