@@ -11,7 +11,8 @@ using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.Legislation.Judgments.Parse.UKSC;
 using UK.Gov.NationalArchives.CaseLaw.UKSC;
 
-using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+using AttachmentPair =
+    System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 using PartyEnricher = UK.Gov.Legislation.Judgments.Parse.UKSC.PartyEnricher;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parse;
@@ -26,7 +27,8 @@ internal class OptimizedUKSCParser : OptimizedParser
         return new OptimizedUKSCParser(doc, preParsed, meta, attachments).ProtectedParse(JudgmentType.Judgment);
     }
 
-    private OptimizedUKSCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null, IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
+    private OptimizedUKSCParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta = null,
+        IEnumerable<AttachmentPair> attachments = null) : base(doc, preParsed, meta, attachments) { }
 
     /* second page break or first page break if first break is followed by a 'speech' */
     protected override List<IBlock> Header()
@@ -36,16 +38,25 @@ internal class OptimizedUKSCParser : OptimizedParser
         while (i < PreParsed.Body.Count)
         {
             logger.LogTrace("parsing element " + i);
-            BlockWithBreak b = PreParsed.Body.ElementAt(i);
+            var b = PreParsed.Body.ElementAt(i);
             if (firstPageBreakFound && b.LineBreakBefore)
+            {
                 return header;
+            }
+
             if (b.LineBreakBefore && IsTitledJudgeName(b.Block))
+            {
                 return header;
+            }
+
             header.Add(b.Block);
             i += 1;
             if (b.LineBreakBefore)
+            {
                 firstPageBreakFound = true;
+            }
         }
+
         return null;
     }
 
@@ -70,59 +81,98 @@ internal class OptimizedUKSCParser : OptimizedParser
 
     protected override List<IDecision> Body()
     {
-        List<IDecision> opinions = Decisions();
+        var opinions = Decisions();
         if (opinions is null)
+        {
             opinions = new List<IDecision>(1);
-        List<IDivision> remainder = ParagraphsUntilEndOfBody();
+        }
+
+        var remainder = ParagraphsUntilEndOfBody();
         if (remainder.Count > 0)
         {
-            IDecision dummy = new Decision() { Contents = remainder };
+            IDecision dummy = new Decision { Contents = remainder };
             opinions.Add(dummy);
         }
+
         return opinions;
     }
 
     protected override bool IsTitledJudgeName(IBlock b)
     {
         if (b is not WLine line)
+        {
             return false;
+        }
+
         if (line.Style == "NewSpeech")
+        {
             return true;
+        }
+
         var text = line.NormalizedContent;
         if (text.Split().Length > 3)
+        {
             return false;
+        }
+
         if (text.StartsWith("LORD ", StringComparison.InvariantCultureIgnoreCase))
+        {
             return true;
+        }
+
         if (text.StartsWith("LADY ", StringComparison.InvariantCultureIgnoreCase))
+        {
             return true;
+        }
+
         return false;
     }
 
     protected override bool IsFirstLineOfCrossHeading(IBlock b)
     {
         if (b is not WLine line)
+        {
             return false;
+        }
+
         // if (line.Style is null)
         //     return false;
         if (line.Style == "Paraheading 2")
+        {
             return true;
+        }
+
         return false;
     }
 
     protected override bool IsWrapUp(WLine line)
     {
         if (line.Style != "ParaNoNumber")
+        {
             return false;
+        }
+
         if (i == PreParsed.Body.Count - 1)
+        {
             return true;
-        IBlock nextBlock = PreParsed.Body.ElementAt(i + 1).Block;
+        }
+
+        var nextBlock = PreParsed.Body.ElementAt(i + 1).Block;
         if (nextBlock is not WLine nextLine)
+        {
             return false;
+        }
+
         if (nextLine.Style == "Quote")
+        {
             return false;
+        }
+
         if (nextLine is not WOldNumberedParagraph)
+        {
             return false;
+        }
+
         return true;
     }
-
 }

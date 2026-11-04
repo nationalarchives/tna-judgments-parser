@@ -12,10 +12,13 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
-    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
+    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.
+    Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
         UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.Parse.Judgment>;
-using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
-    UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+using ParseFunction =
+    System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<
+            System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
+        UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
 using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.NationalArchives.Judgments.Api;
@@ -124,7 +127,11 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
     {
         var attach2 = AkN.Parser.ConvertAttachments(attachments);
         OptimizedParseFunction first = OptimizedEWHCParser.Parse;
-        var others = new List<OptimizedParseFunction>(2) { OptimizedUKSCParser.Parse, OptimizedUKUTParser.Parse };
+        var others = new List<OptimizedParseFunction>(2)
+        {
+            OptimizedUKSCParser.Parse,
+            OptimizedUKUTParser.Parse
+        };
         var judgment1 = first(preParsed.Docx, preParsed, meta, attach2);
         var score1 = Score(judgment1);
         if (score1 == PerfectScore)
@@ -228,8 +235,11 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
             Cite = meta.UKCite,
             Date = meta.WorkDate,
             Name = meta.WorkName,
-            Attachments =
-                meta.ExternalAttachments.Select(a => new ExternalAttachment { Name = a.ShowAs, Link = a.Href })
+            Attachments = meta.ExternalAttachments.Select(a => new ExternalAttachment
+            {
+                Name = a.ShowAs,
+                Link = a.Href
+            })
         };
     }
 

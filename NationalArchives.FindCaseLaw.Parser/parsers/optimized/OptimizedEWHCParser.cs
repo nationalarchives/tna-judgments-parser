@@ -9,7 +9,8 @@ using Microsoft.Extensions.Logging;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 
-using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+using AttachmentPair =
+    System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parse;
 
@@ -81,7 +82,7 @@ internal class OptimizedEWHCParser : OptimizedParser
 
     private readonly Regex[] titleRegexes = new[]
     {
-        new Regex(@"^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
+        new Regex("^Judgement of [A-Z][a-z]+ [A-Z][a-z]+ KC$"), // [2022] EWFC 172
         new Regex(@"^© CROWN COPYRIGHT \d{4}$")
     };
 
