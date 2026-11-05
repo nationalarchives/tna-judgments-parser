@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace UK.Gov.Legislation.Judgments;
 
 internal enum JudgmentType { Judgment, Decision }
 
-internal interface IJudgment
+internal interface IJudgment : IDisposable
 {
     JudgmentType Type { get; }
 

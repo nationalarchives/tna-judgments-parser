@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -19,7 +18,6 @@ using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 using TRE.FindCaseLaw.Inputs;
 using TRE.FindCaseLaw.Outputs;
 using TRE.Metadata;
-using TRE.Metadata.Enums;
 
 using UK.Gov.Legislation.Judgments;
 
@@ -43,7 +41,7 @@ public class Worker(
     private string s3Bucket = string.Empty;
     private string s3OutputPrefix = string.Empty;
     private string consignmentReference = string.Empty;
-    private List<IMetadataField> structuredMetadataFields = [];
+    private IMetadataField[] structuredMetadataFields = [];
     private Guid parserRunId;
     private string sourceFilename = string.Empty;
     private string docxSha256 = string.Empty;
@@ -113,8 +111,8 @@ public class Worker(
             }
 
             var successfullySavedImages = (parserResponse.Images ?? Enumerable.Empty<Api.Image>())
-                            .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
-                            .ToArray();
+                                          .Where(image => TrySaveToS3(image.Name, image.Content, image.Type))
+                                          .ToArray();
 
             outputs.ImageFilenames = successfullySavedImages.Select(image => image.Name);
         }
@@ -132,7 +130,7 @@ public class Worker(
         {
             DocumentType = Enum.Parse<DocumentType>(parserResponse.Meta.DocumentType, true),
             ParserRunId = parserRunId,
-            MetadataFields = structuredMetadataFields,
+            MetadataFields = [.. structuredMetadataFields],
             PrimarySource = new PrimarySourceFile
             {
                 Filename = sourceFilename,
