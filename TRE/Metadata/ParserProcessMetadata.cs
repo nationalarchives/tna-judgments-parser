@@ -8,8 +8,6 @@ using System.Text.Json.Serialization;
 using NationalArchives.FindCaseLaw.Utils.Metadata;
 using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 
-using TRE.Metadata.Enums;
-
 namespace TRE.Metadata;
 
 /// <summary>
@@ -22,6 +20,8 @@ public partial record ParserProcessMetadata
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        PropertyNameCaseInsensitive = true,
+        UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower, false),

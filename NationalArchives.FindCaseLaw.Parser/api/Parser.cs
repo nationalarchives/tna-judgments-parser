@@ -14,7 +14,8 @@ using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.Attachm
 using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
     UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.
     Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
-        UK.Gov.Legislation.Judgments.AttachmentType>>, UK.Gov.Legislation.Judgments.Parse.Judgment>;
+        UK.Gov.Legislation.Judgments.AttachmentType>>, System.TimeProvider,
+    UK.Gov.Legislation.Judgments.Parse.Judgment>;
 using ParseFunction =
     System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<
             System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
@@ -32,7 +33,7 @@ public interface IParser
     Response Parse(Request request);
 }
 
-public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
+public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvider timeProvider) : IParser
 {
     /// <exception cref="InvalidAkNException"></exception>
     public Response Parse(Request request)
@@ -69,7 +70,8 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
         {
             Xml = xml,
             Meta = meta2,
-            Images = images
+            Images = images,
+            StructuredMetadataFields = bundle.StructuredMetadataFields
         };
     }
 
@@ -87,14 +89,14 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
         };
     }
 
-    private static ParseFunction Wrap(OptimizedParseFunction f)
+    private ParseFunction Wrap(OptimizedParseFunction f)
     {
         return (docx, meta, attachments) =>
         {
             var doc = AkN.Parser.Read(docx);
             var preParsed = new PreParser().Parse(doc);
             var attach2 = AkN.Parser.ConvertAttachments(attachments);
-            IJudgment judgment = f(doc, preParsed, meta, attach2);
+            IJudgment judgment = f(doc, preParsed, meta, attach2, timeProvider);
 
             //** HACK - suppress misidentified parties by calling `CaseName.Extract` **
             // For KBD and QBD cases, the king/queen and "on the application of" pieces of text are misidentified as
@@ -114,7 +116,7 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
     }
 
     private AkN.ILazyBundle ParseAnyJudgment(byte[] docx, IOutsideMetadata meta,
-        IEnumerable<Tuple<byte[], Legislation.Judgments.AttachmentType>> attachments)
+        IEnumerable<AttachmentPair> attachments)
     {
         var doc = AkN.Parser.Read(docx);
         var preParsed = new PreParser().Parse(doc);
@@ -123,25 +125,19 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
     }
 
     private Judgment BestJudgment(WordDocument preParsed, IOutsideMetadata meta,
-        IEnumerable<Tuple<byte[], Legislation.Judgments.AttachmentType>> attachments)
+        IEnumerable<AttachmentPair> attachments)
     {
-        var attach2 = AkN.Parser.ConvertAttachments(attachments);
-        OptimizedParseFunction first = OptimizedEWHCParser.Parse;
-        var others = new List<OptimizedParseFunction>(2)
-        {
-            OptimizedUKSCParser.Parse,
-            OptimizedUKUTParser.Parse
-        };
-        var judgment1 = first(preParsed.Docx, preParsed, meta, attach2);
+        var attach2 = AkN.Parser.ConvertAttachments(attachments).ToArray();
+        var judgment1 = OptimizedEWHCParser.Parse(preParsed.Docx, preParsed, meta, attach2, timeProvider);
         var score1 = Score(judgment1);
         if (score1 == PerfectScore)
         {
             return judgment1;
         }
 
-        foreach (var other in others)
+        foreach (var other in new[] { OptimizedUKSCParser.Parse, OptimizedUKUTParser.Parse })
         {
-            var judgment2 = other(preParsed.Docx, preParsed, meta, attach2);
+            var judgment2 = other(preParsed.Docx, preParsed, meta, attach2, timeProvider);
             var score2 = Score(judgment2);
             if (score2 == PerfectScore)
             {
@@ -159,7 +155,7 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator) : IParser
     }
 
     private AkN.ILazyBundle JudgmentOrPressSummary(byte[] docx, IOutsideMetadata meta,
-        IEnumerable<Tuple<byte[], Legislation.Judgments.AttachmentType>> attachments)
+        IEnumerable<AttachmentPair> attachments)
     {
         var doc = AkN.Parser.Read(docx);
         var preParsed = new PreParser().Parse(doc);

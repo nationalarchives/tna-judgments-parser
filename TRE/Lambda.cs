@@ -55,6 +55,7 @@ public class Lambda
         builder.Services.AddScoped<Worker>();
         builder.Services.AddScoped<IInputHelper, InputHelper>();
         builder.Services.AddScoped<IExternalResourceRetriever, ExternalResourceRetriever>();
+        builder.Services.AddScoped<IStructuredMetadataConsolidator, StructuredMetadataConsolidator>();
 
         builder.Services.AddSingleton<IAmazonS3, AmazonS3Client>();
         builder.Services.AddSingleton(TimeProvider.System);

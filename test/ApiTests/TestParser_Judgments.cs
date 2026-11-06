@@ -4,6 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
+using Microsoft.Extensions.Time.Testing;
+
+using NationalArchives.FindCaseLaw.Utils.Metadata;
+using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
+using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
+
 using test.Mocks;
 
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
@@ -25,7 +31,9 @@ public class TestParser_Judgments
 
     public static readonly TheoryData<int> IndicesTheoryData = new(Indices);
 
-    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator());
+    private static readonly DateTimeOffset Now = new(2024, 6, 1, 10, 30, 0, TimeSpan.Zero);
+
+    private readonly Parser parser = new(new MockLogger<Parser>().Object, new Validator(), new FakeTimeProvider(Now));
 
     [Theory]
     [MemberData(nameof(IndicesTheoryData))]
@@ -89,6 +97,31 @@ public class TestParser_Judgments
             var expected = ms.ToArray();
             Assert.Equal(expected, actual.Content);
         }
+    }
+
+    [Fact]
+    public void Parse_JudgmentWithJudges_ReturnsADocumentJudgeFieldForEachJudge()
+    {
+        var docx = DocumentHelpers.ReadDocx(1);
+
+        var fields = parser.Parse(new Api.Request { Content = docx })
+                           .StructuredMetadataFields.Cast<MetadataField<Judge>>().ToArray();
+
+        Assert.Equal(
+            [
+                new Judge("LORD JUSTICE SIMON BROWN", "judge-lord-justice-simon-brown"),
+                new Judge("LORD JUSTICE DYSON", "judge-lord-justice-dyson"),
+                new Judge("LORD JUSTICE SCOTT BAKER", "judge-lord-justice-scott-baker")
+            ],
+            fields.Select(field => field.Value));
+        Assert.All(fields, field =>
+        {
+            Assert.Equal(MetadataFieldName.Judge, field.Name);
+            Assert.Equal(MetadataSource.Document, field.Source);
+            Assert.Equal(Now.UtcDateTime, field.Timestamp);
+            Assert.NotEqual(Guid.Empty, field.Id);
+        });
+        Assert.Equal(3, fields.Select(field => field.Id).Distinct().Count());
     }
 
     [Theory]

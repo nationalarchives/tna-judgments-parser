@@ -8,6 +8,8 @@ using NationalArchives.FindCaseLaw.Utils.Metadata;
 using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 using NationalArchives.FindCaseLaw.Utils.Metadata.MetadataFieldTypes;
 
+using Shouldly;
+
 using TRE.Metadata;
 using TRE.Metadata.MetadataFieldTypes;
 
@@ -120,6 +122,14 @@ public class TestParserProcessMetadataSerialization
                         Timestamp = new DateTime(2026, 02, 10, 15, 55, 06, 100, DateTimeKind.Utc),
                         Value = "Summary of the judgment"
                     },
+                    new MetadataField<Judge>
+                    {
+                        Id = Guid.Parse("0b0e4d7c-5d52-4a7e-9a52-3b0a4c0d2f11"),
+                        Name = MetadataFieldName.Judge,
+                        Source = MetadataSource.Document,
+                        Timestamp = new DateTime(2026, 02, 10, 15, 55, 06, DateTimeKind.Utc),
+                        Value = new Judge("LORD JUSTICE DYSON", "judge-lord-justice-dyson")
+                    },
                     new MetadataField<string>
                     {
                         Id = Guid.Parse("8f9de628-7ee1-4fcd-a650-f8de41bbc3c1"),
@@ -186,7 +196,7 @@ public class TestParserProcessMetadataSerialization
                     }
                 ]
             },
-            """{"documentType":"judgment","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"f57a16c6-820b-4db3-a26d-dea8678adef2","name":"case_number","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"2025/IMTU/42"},{"id":"3d2cc21b-ee13-4a9b-bdd2-d9d3b13ea362","name":"category","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Parent Category","parent":null}},{"id":"5cb9e06b-82c9-4535-bc0c-3a1aee8ae92e","name":"category","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Child Category","parent":"Parent Category"}},{"id":"8f81be24-3d52-4f8a-9b18-80e5fa05ddfe","name":"court","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"IMTU"},{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"external","timestamp":"2026-02-10T15:55:06.007Z","value":{"name":"With metadata fields.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}},{"id":"5da9745d-79e6-42a6-a939-758898f23595","name":"date","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"2025-12-01T00:00:00Z"},{"id":"2b1d6385-2305-4f40-8480-16986259e831","name":"headnote_summary","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"Summary of the judgment"},{"id":"8f9de628-7ee1-4fcd-a650-f8de41bbc3c1","name":"jurisdiction","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"Some jurisdiction"},{"id":"a83f467e-b71f-4a24-bd4c-7a3108ffdd35","name":"name","source":"document","timestamp":"2026-02-10T15:55:06.456Z","value":"Aaron Aaronson v Some government department"},{"id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","name":"ncn","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"[2025] IMTU 42"},{"id":"484d3253-414a-453a-8c21-bae3d7fc1666","name":"party","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Aaron Aaronson","role":"appellant"}},{"id":"1aebdbda-344e-4d77-806c-7ff1c24bfc94","name":"party","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Some government department","role":"respondent"}},{"id":"687d0024-5d51-409d-8c10-22c608f65682","name":"source_format","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"},{"id":"e2280d85-3e28-4467-9351-402264663189","name":"uri","source":"editor","timestamp":"2026-02-10T15:55:06.1Z","value":"https://caselaw.nationalarchives.gov.uk/id/imtu/2025/42"},{"id":"9d6d8a6f-f73b-49f1-97df-4ffa5e047cf8","name":"web_archiving_link","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"https://webarchive/a-link"}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}"""),
+            """{"documentType":"judgment","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"f57a16c6-820b-4db3-a26d-dea8678adef2","name":"case_number","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"2025/IMTU/42"},{"id":"3d2cc21b-ee13-4a9b-bdd2-d9d3b13ea362","name":"category","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Parent Category","parent":null}},{"id":"5cb9e06b-82c9-4535-bc0c-3a1aee8ae92e","name":"category","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Child Category","parent":"Parent Category"}},{"id":"8f81be24-3d52-4f8a-9b18-80e5fa05ddfe","name":"court","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"IMTU"},{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"external","timestamp":"2026-02-10T15:55:06.007Z","value":{"name":"With metadata fields.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}},{"id":"5da9745d-79e6-42a6-a939-758898f23595","name":"date","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"2025-12-01T00:00:00Z"},{"id":"2b1d6385-2305-4f40-8480-16986259e831","name":"headnote_summary","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"Summary of the judgment"},{"id":"0b0e4d7c-5d52-4a7e-9a52-3b0a4c0d2f11","name":"judge","source":"document","timestamp":"2026-02-10T15:55:06Z","value":{"name":"LORD JUSTICE DYSON","eId":"judge-lord-justice-dyson"}},{"id":"8f9de628-7ee1-4fcd-a650-f8de41bbc3c1","name":"jurisdiction","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"Some jurisdiction"},{"id":"a83f467e-b71f-4a24-bd4c-7a3108ffdd35","name":"name","source":"document","timestamp":"2026-02-10T15:55:06.456Z","value":"Aaron Aaronson v Some government department"},{"id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","name":"ncn","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"[2025] IMTU 42"},{"id":"484d3253-414a-453a-8c21-bae3d7fc1666","name":"party","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Aaron Aaronson","role":"appellant"}},{"id":"1aebdbda-344e-4d77-806c-7ff1c24bfc94","name":"party","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":{"name":"Some government department","role":"respondent"}},{"id":"687d0024-5d51-409d-8c10-22c608f65682","name":"source_format","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"},{"id":"e2280d85-3e28-4467-9351-402264663189","name":"uri","source":"editor","timestamp":"2026-02-10T15:55:06.1Z","value":"https://caselaw.nationalarchives.gov.uk/id/imtu/2025/42"},{"id":"9d6d8a6f-f73b-49f1-97df-4ffa5e047cf8","name":"web_archiving_link","source":"external","timestamp":"2026-02-10T15:55:06.1Z","value":"https://webarchive/a-link"}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}"""),
         ("With snake cased enums", BasicParserProcessMetadata with
             {
                 DocumentType = DocumentType.PressSummary,
@@ -206,7 +216,7 @@ public class TestParserProcessMetadataSerialization
                     }
                 ]
             },
-            """{"documentType":"pressSummary","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"document","timestamp":"2026-02-10T15:55:06Z","value":{"name":"With snake cased enums.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}""")
+            """{"documentType":"pressSummary","parser_run_id":"7bc3c348-9884-4523-a3c9-d9f31bfc89b2","error-messages":[],"metadata_fields":[{"id":"8be4df61-93ca-11d2-aa0d-00e098032b8c","name":"csv_metadata_file_properties","source":"document","timestamp":"2026-02-10T15:55:06Z","value":{"name":"With snake cased enums.csv","hash":"the-csv-contents-hash","fullLineContents":{"csv field name":"csv field value","second":"secondValue"}}}],"primary_source":{"filename":"file.docx","mimetype":"some mimetype","route":"bulk","sha256":"definitely a SHA256","route_datetime":"0001-01-01T00:00:00"},"xml_contains_document_text":false,"uri":"a","court":"b","cite":"c","date":"d","name":"e","extensions":{"sourceFormat":null,"caseNumbers":null,"parties":null,"categories":null,"webArchivingLink":null},"attachments":[]}"""),
     ];
 
     [Theory]
@@ -214,7 +224,7 @@ public class TestParserProcessMetadataSerialization
     public void CanSerialize(string _, ParserProcessMetadata deserializedObject, string json)
     {
         var result = JsonSerializer.Serialize(deserializedObject, ParserProcessMetadata.JsonSerializerOptions);
-        Assert.Equal(json, result);
+        result.ShouldBe(json);
     }
 
     [Theory]
