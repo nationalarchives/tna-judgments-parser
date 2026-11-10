@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/347" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/347" />
-          <FRBRdate date="2022-06-27" name="hearing" />
+          <FRBRdate date="2022-09-26" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="347" />
@@ -15,25 +15,27 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347" />
-          <FRBRdate date="2022-06-27" name="hearing" />
+          <FRBRdate date="2022-09-26" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/347/data.xml" />
-          <FRBRdate date="2026-09-16T14:13:35" name="transform" />
+          <FRBRdate date="2026-11-10T18:55:04" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-06-27" refersTo="#hearing" source="#" />
+        <eventRef date="2022-09-26" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="r-d-utilities-limited" href="" showAs="R D UTILITIES LIMITED" />
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -45,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>347</uk:number>
         <uk:cite>[2022] UKFTT 347 (TC)</uk:cite>
-        <uk:parser>1.15.0</uk:parser>
+        <uk:parser>1.20.0</uk:parser>
         <uk:hash>51d8c1a13161a2a0c1d62acd4ecb25d662874fc0a8ef56a6eb6caa6ed01884d3</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -671,7 +673,7 @@
           </level>
           <level eId="lvl_7_3">
             <content>
-              <p style="text-align:center"><span style="font-weight:bold">Release date: 26</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">TH</span><span style="font-weight:bold"> SEPTEMBER 2022</span></p>
+              <p style="text-align:center"><span style="font-weight:bold">Release date: </span><docDate date="2022-09-26" refersTo="#decision"><span style="font-weight:bold">26</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">TH</span><span style="font-weight:bold"> SEPTEMBER 2022</span></docDate></p>
             </content>
           </level>
         </level>
