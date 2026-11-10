@@ -5,6 +5,7 @@ using System.Linq;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
 namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
@@ -23,6 +24,7 @@ internal class Header
     private Header(List<IBlock> blocks)
     {
         All = blocks;
+        lineDateEnricher = new LineDateEnricher();
     }
 
     private enum State
@@ -41,6 +43,7 @@ internal class Header
     private State state = State.Start;
 
     private int Idx;
+    private readonly ILineDateEnricher lineDateEnricher;
 
     private void Split()
     {
@@ -103,7 +106,7 @@ internal class Header
             return;
         }
 
-        WLine enriched1 = Enricher.EnrichDate(line);
+        var enriched1 = lineDateEnricher.Enrich(line, "release", 1);
         if (!ReferenceEquals(enriched1, line))
         {
             Enriched.Add(enriched1);
@@ -164,7 +167,7 @@ internal class Header
             return;
         }
 
-        WLine enriched1 = Enricher.EnrichDate(line);
+        var enriched1 = lineDateEnricher.Enrich(line, "release", 1);
         if (!ReferenceEquals(enriched1, line))
         {
             Enriched.Add(enriched1);

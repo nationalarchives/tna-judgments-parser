@@ -8,7 +8,6 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
 using UK.Gov.NationalArchives.CaseLaw.Parse;
-using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
 namespace UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
@@ -83,11 +82,6 @@ internal partial class Enricher
 
     [GeneratedRegex("^[1-9A-F][0-9A-F]0{4}$", RegexOptions.IgnoreCase)]
     private static partial Regex RedRegex();
-
-    internal static WLine EnrichDate(WLine line)
-    {
-        return LineDateEnricher.Enrich(line, "release", 1);
-    }
 
     internal static WLine EnrichDocType(WLine line)
     {
