@@ -15,27 +15,19 @@ namespace test.parsers.common.enrich;
 public class TestLineDateEnricher : ParserTestBase
 {
     private readonly LineDateEnricher lineDateEnricher = new();
+
     public static TheoryData<string, IBlock> LinesWithoutRecognisableDate()
     {
         return new TheoryData<string, IBlock>
         {
             { "empty line", TextLine() },
+            { "just punctuation", TextLine(":") },
+            { "date followed by full stop", TextLine("Signed 5 May 2020.") },
             { "no date", TextLine("Judgment handed down") },
             { "date not at end of line", TextLine("5 May 2020 and more") },
             { "day zero", TextLine("Date: 0 May 2020") },
-            { "last inline is not text", new WLine(LineTemplate, [Text("5 May 2020"), Tab()]) },
-            { "second to last inline is not text", new WLine(LineTemplate, [Tab(), Text("5 May 2020 and more")]) },
-            {
-                "first of last three inlines is not text",
-                new WLine(LineTemplate, [Tab(), Text("th"), Text(" May 2020")])
-            },
-            {
-                "middle of last three inlines is not text",
-                new WLine(LineTemplate, [Text("5"), Tab(), Text(" May 2020")])
-            },
-            { "last of last three inlines is not text", new WLine(LineTemplate, [Text("5"), Text("th"), Tab()]) },
             { "ordinal split without day number", TextLine("Date: x", "th", " May 2020") },
-            { "ordinal split without month and year", TextLine("5", "th", " 2020") }
+            { "ordinal split without month", TextLine("5", "th", " 2020") }
         };
     }
 
@@ -152,12 +144,22 @@ public class TestLineDateEnricher : ParserTestBase
     }
 
     [Theory]
-    [InlineData("5 Feb 2020", "2020-02-05")]
-    [InlineData("31 December 1999", "1999-12-31")]
-    [InlineData("12 MARCH 2021", "2021-03-12")]
-    public void Enrich_MonthNameVariants_ParsesDate(string text, string expected)
+    [InlineData("Date: ", "5 Jan 2020", "2020-01-05")]
+    [InlineData("Date:", "5 january 2020", "2020-01-05")]
+    [InlineData("Date: ", "5 Feb 2020", "2020-02-05")]
+    [InlineData("Date: ", "31 December 1999", "1999-12-31")]
+    [InlineData("Date: ", "12 MARCH 2021", "2021-03-12")]
+    [InlineData("Date:     ", "28th June 2025", "2025-06-28")]
+    [InlineData("Date: ", "3rd June       2025", "2025-06-03")]
+    [InlineData("Date: ", "Tue 10 Nov 2026", "2026-11-10")]
+    [InlineData("Date: ", "Tue 10 November 2026", "2026-11-10")]
+    [InlineData("Date:", "Tuesday 10th Nov 2026", "2026-11-10")]
+    [InlineData("Date:", "Tuesday 10th November 2026", "2026-11-10")]
+    [InlineData("Date: ", "01/11/2026", "2026-11-01")]
+    [InlineData("Date: ", "1/11/2026", "2026-11-01")]
+    public void Enrich_ParsesDate(string prefix, string text, string expected)
     {
-        var line = TextLine($"Date: {text}");
+        var line = TextLine($"{prefix}{text}");
 
         var result = lineDateEnricher.Enrich(line, "decision", 1);
 
@@ -207,5 +209,50 @@ public class TestLineDateEnricher : ParserTestBase
         dateContents[0].ShouldBeOfType<WText>().Text.ShouldBe("5");
         dateContents[1].ShouldBeSameAs(original[1]);
         dateContents[2].ShouldBeSameAs(original[2]);
+    }
+
+    [Fact]
+    public void Enrich_TabsBeforeDate_WrapsDateAndKeepsTabs()
+    {
+        var tab1 = Tab();
+        var tab2 = Tab();
+        var line = new WLine(LineTemplate, [Text("Date of Decision: "), tab1, tab2, Text("29 March 2022")]);
+
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
+
+        IInline[] lineContents = [.. result.Contents];
+        lineContents.Length.ShouldBe(4);
+        lineContents[1].ShouldBeSameAs(tab1);
+        lineContents[2].ShouldBeSameAs(tab2);
+
+        var docDate = lineContents[3].ShouldBeOfType<WDocDate>();
+        docDate.Date.ShouldBe("2022-03-29");
+        docDate.Contents.ShouldHaveSingleItem().Text.ShouldBe("29 March 2022");
+    }
+
+    [Fact]
+    public void Enrich_TabInsideDate_ReturnsOriginalLine()
+    {
+        var line = new WLine(LineTemplate, [Text("5"), Tab(), Text(" May 2020")]);
+
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
+
+        result.ShouldBeSameAs(line);
+    }
+
+    [Fact]
+    public void Enrich_WithMultipleDates_MarksUpLastDate()
+    {
+        var line = TextLine("On 10 February and 24 March 2021");
+
+        var result = lineDateEnricher.Enrich(line, "hearing", 1);
+
+        var lineContents = result.Contents.ToArray();
+        lineContents.Length.ShouldBe(2);
+        lineContents[0].ShouldBeOfType<WText>().Text.ShouldBe("On 10 February and ");
+
+        var docDate = lineContents[1].ShouldBeOfType<WDocDate>();
+        docDate.Date.ShouldBe("2021-03-24");
+        docDate.Contents.ShouldHaveSingleItem().Text.ShouldBe("24 March 2021");
     }
 }
