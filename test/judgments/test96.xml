@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2024/1059" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2024/1059" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2023-11-22" name="hearing" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="1059" />
@@ -15,21 +15,25 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2023-11-22" name="hearing" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2024/1059/data.xml" />
-          <FRBRdate date="2026-10-20T10:33:47" name="transform" />
+          <FRBRdate date="2026-11-10T18:54:52" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2023-11-22" refersTo="#hearing" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="hearing" href="#" showAs="hearing" />
         <TLCPerson eId="stage-one-creative-services-ltd" href="" showAs="STAGE ONE CREATIVE SERVICES LTD" />
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -42,7 +46,7 @@
         <uk:year>2024</uk:year>
         <uk:number>1059</uk:number>
         <uk:cite>[2024] UKFTT 1059 (TC)</uk:cite>
-        <uk:parser>1.18.0</uk:parser>
+        <uk:parser>1.20.0</uk:parser>
         <uk:hash>8731591c87c85773482b02b15d8f70c6f8f23a5734bf9b72ce7841c73666bb89</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -103,7 +107,7 @@
       <p style="text-align:right">By remote video hearing</p>
       <p style="text-align:right">Appeal reference: <docketNumber>TC/2022/00748</docketNumber></p>
       <p><span style="font-style:italic">CORPORATION TAX – relief for expenditure on research and development – Part 13 Corporation Tax Act 2009 – whether “subsidised” expenditure – no – whether “carrying on activities which are contracted out” – no – discovery assessments – whether there was a discovery for each of the relevant years – no – was there a practice generally prevailing – yes – appeal allowed</span></p>
-      <p style="text-align:right"><span style="font-weight:bold">Heard on: </span>20-22 November 2023</p>
+      <p style="text-align:right"><span style="font-weight:bold">Heard on: </span>20-<docDate date="2023-11-22" refersTo="#hearing">22 November 2023</docDate></p>
       <p style="text-align:right"><span style="font-weight:bold">Judgment date: </span>25 November 2024</p>
       <p style="text-align:center"><span style="font-weight:bold">Before</span></p>
       <p style="text-align:center"><judge refersTo="#judge-tribunal-judge-anne-scott" style="font-weight:bold">TRIBUNAL JUDGE ANNE SCOTT</judge></p>
