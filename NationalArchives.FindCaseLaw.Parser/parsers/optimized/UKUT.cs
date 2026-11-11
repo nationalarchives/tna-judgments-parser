@@ -9,9 +9,9 @@ using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
+using UK.Gov.NationalArchives.CaseLaw.Parsers;
 
-using AttachmentPair =
-    System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
+using AttachmentPair = System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument, UK.Gov.Legislation.Judgments.AttachmentType>;
 using UKUT = UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parse;
@@ -19,6 +19,10 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parse;
 internal class OptimizedUKUTParser : OptimizedParser
 {
     private static readonly ILogger logger = Logging.Factory.CreateLogger<OptimizedUKSCParser>();
+    private readonly Enricher[] coverPageEnrichers;
+    private readonly Enricher[] headerEnrichers;
+    private readonly Enricher[] bodyEnrichers;
+    private readonly Enricher[] conclusionEnrichers;
 
     public static Judgment Parse(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
         IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
@@ -29,7 +33,24 @@ internal class OptimizedUKUTParser : OptimizedParser
 
     private OptimizedUKUTParser(WordprocessingDocument doc, WordDocument preParsed, IOutsideMetadata meta,
         IEnumerable<AttachmentPair> attachments, TimeProvider timeProvider)
-        : base(doc, preParsed, meta, attachments, timeProvider) { }
+        : base(doc, preParsed, meta, attachments, timeProvider)
+    {
+        var lineDateEnricher = new LineDateEnricher();
+
+        coverPageEnrichers = [new UKUT.NeutralCitationEnricher()];
+        headerEnrichers =
+        [
+            new UKUT.CourtType(),
+            new UKUT.NeutralCitationEnricher(),
+            new UKUT.CourtType2(),
+            new UKUT.HeaderDateEnricher(lineDateEnricher),
+            new PartyEnricher(),
+            new UKUT.ProceedingsIdentifierEnricher(),
+            new JudgeEnricher()
+        ];
+        bodyEnrichers = [new UKUT.SignOffDateEnricher(lineDateEnricher)];
+        conclusionEnrichers = [new UKUT.SignOffDateEnricher(lineDateEnricher)];
+    }
 
 
     private readonly string[] titles =
@@ -284,19 +305,6 @@ internal class OptimizedUKUTParser : OptimizedParser
         return null;
     }
 
-    private readonly List<Enricher> coverPageEnrichers = new() { new UKUT.NeutralCitationEnricher() };
-
-    private readonly List<Enricher> headerEnrichers =
-    [
-        new UKUT.CourtType(),
-        new UKUT.NeutralCitationEnricher(),
-        new UKUT.CourtType2(),
-        new UKUT.HeaderDateEnricher(),
-        new PartyEnricher(),
-        new UKUT.ProceedingsIdentifierEnricher(),
-        new JudgeEnricher()
-    ];
-
     protected override IEnumerable<IBlock> EnrichCoverPage(IEnumerable<IBlock> coverPage)
     {
         return Enricher.Enrich(coverPage, coverPageEnrichers);
@@ -328,13 +336,13 @@ internal class OptimizedUKUTParser : OptimizedParser
     protected override IEnumerable<IDecision> EnrichBody(IEnumerable<IDecision> body)
     {
         var enriched = base.EnrichBody(body);
-        return Enricher.Enrich(enriched, [new UKUT.SignOffDateEnricher()]);
+        return Enricher.Enrich(enriched, bodyEnrichers);
     }
 
     protected override IEnumerable<IBlock> EnrichConclusions(IEnumerable<IBlock> conclusions)
     {
         var enriched = base.EnrichConclusions(conclusions);
-        return Enricher.Enrich(enriched, [new UKUT.SignOffDateEnricher()]);
+        return Enricher.Enrich(enriched, conclusionEnrichers);
     }
 
     protected override bool IsFirstLineOfConclusions(IBlock block)

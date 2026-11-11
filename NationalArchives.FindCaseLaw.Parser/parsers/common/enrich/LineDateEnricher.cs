@@ -10,11 +10,16 @@ using UK.Gov.Legislation.Judgments.Parse;
 
 namespace UK.Gov.NationalArchives.CaseLaw.Parsers;
 
-internal class LineDateEnricher
+internal interface ILineDateEnricher
+{
+    WLine Enrich(WLine line, string name, int priority);
+}
+
+internal class LineDateEnricher : ILineDateEnricher
 {
     private static readonly CultureInfo culture = new("en-GB");
 
-    internal static WLine Enrich(WLine line, string name, int priority)
+    public WLine Enrich(WLine line, string name, int priority)
     {
         var enriched = EnrichLast1(line, name, priority);
         if (!ReferenceEquals(enriched, line))
@@ -40,7 +45,7 @@ internal class LineDateEnricher
         // return line;
     }
 
-    internal static WLine EnrichLast1(WLine line, string name, int priority)
+    private WLine EnrichLast1(WLine line, string name, int priority)
     {
         if (!line.Contents.Any())
         {
@@ -78,7 +83,7 @@ internal class LineDateEnricher
         return WLine.Make(line, line.Contents.SkipLast(1).Concat(enriched));
     }
 
-    internal static WLine EnrichLast2(WLine line, string name, int priority)
+    private WLine EnrichLast2(WLine line, string name, int priority)
     {
         if (line.Contents.Count() < 2)
         {
@@ -109,7 +114,7 @@ internal class LineDateEnricher
         return WLine.Make(line, line.Contents.SkipLast(2).Append(docDate));
     }
 
-    internal static WLine EnrichLast3(WLine line, string name, int priority)
+    private WLine EnrichLast3(WLine line, string name, int priority)
     {
         if (line.Contents.Count() < 3)
         {
@@ -183,7 +188,7 @@ internal class LineDateEnricher
         return WLine.Make(line, line.Contents.SkipLast(3).Concat(replacement));
     }
 
-    internal static WLine EnrichWholeLine(WLine line, string name, int priority)
+    private WLine EnrichWholeLine(WLine line, string name, int priority)
     {
         if (!line.Contents.All(inline => inline is WText))
         {

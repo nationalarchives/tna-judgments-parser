@@ -14,6 +14,7 @@ namespace test.parsers.common.enrich;
 
 public class TestLineDateEnricher : ParserTestBase
 {
+    private readonly LineDateEnricher lineDateEnricher = new();
     public static TheoryData<string, IBlock> LinesWithoutRecognisableDate()
     {
         return new TheoryData<string, IBlock>
@@ -54,7 +55,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = block.ShouldBeOfType<WLine>();
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         result.ShouldBeSameAs(line, scenario);
     }
@@ -64,7 +65,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = StyledLine("5 May 2020", BoldStyling);
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var docDate = result.Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocDate>();
         docDate.Date.ShouldBe("2020-05-05");
@@ -79,7 +80,7 @@ public class TestLineDateEnricher : ParserTestBase
         var line = TextLine(runs);
         var original = line.Contents.ToArray();
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var docDate = result.Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocDate>();
         docDate.Date.ShouldBe("2020-05-05");
@@ -97,7 +98,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = TextLine("5 May 2020");
 
-        var result = LineDateEnricher.Enrich(line, "hearing", 0);
+        var result = lineDateEnricher.Enrich(line, "hearing", 0);
 
         var docDate = result.Contents.ShouldHaveSingleItem().ShouldBeOfType<WDocDate>();
         docDate.Name.ShouldBe("hearing");
@@ -109,7 +110,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = StyledLine("Date of decision: 5 May 2020", BoldStyling);
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var lineContents = result.Contents.ToArray();
         lineContents.Length.ShouldBe(2);
@@ -127,7 +128,7 @@ public class TestLineDateEnricher : ParserTestBase
         var line = TextLine("Date: ", "5 May 2020");
         var label = line.Contents.First();
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var lineContents = result.Contents.ToArray();
         lineContents.Length.ShouldBe(2);
@@ -142,7 +143,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = TextLine("Date: 5 May 2020  ");
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var docDate = result.Contents.OfType<WDocDate>().ShouldHaveSingleItem();
         docDate.Date.ShouldBe("2020-05-05");
@@ -158,7 +159,7 @@ public class TestLineDateEnricher : ParserTestBase
     {
         var line = TextLine($"Date: {text}");
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var docDate = result.Contents.OfType<WDocDate>().ShouldHaveSingleItem();
         docDate.Date.ShouldBe(expected);
@@ -172,7 +173,7 @@ public class TestLineDateEnricher : ParserTestBase
         var line = TextLine("Date: ", "5 May", " 2020");
         var original = line.Contents.ToArray();
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var lineContents = result.Contents.ToArray();
         lineContents.Length.ShouldBe(2);
@@ -192,7 +193,7 @@ public class TestLineDateEnricher : ParserTestBase
         var line = TextLine("Date: 5", "th", " May 2020");
         var original = line.Contents.ToArray();
 
-        var result = LineDateEnricher.Enrich(line, "decision", 1);
+        var result = lineDateEnricher.Enrich(line, "decision", 1);
 
         var lineContents = result.Contents.ToArray();
         lineContents.Length.ShouldBe(2);
