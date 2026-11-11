@@ -28,7 +28,9 @@ internal partial class LineDateEnricher : ILineDateEnricher
         "ddd d MMM yyyy",
         "ddd d MMMM yyyy",
         "dddd d MMM yyyy",
-        "dddd d MMMM yyyy"
+        "dddd d MMMM yyyy",
+        "d \"day of\" MMM yyyy",
+        "d \"day of\" MMMM yyyy"
     ];
 
     public WLine Enrich(WLine line, string name, int priority)

@@ -157,6 +157,9 @@ public class TestLineDateEnricher : ParserTestBase
     [InlineData("Date:", "Tuesday 10th November 2026", "2026-11-10")]
     [InlineData("Date: ", "01/11/2026", "2026-11-01")]
     [InlineData("Date: ", "1/11/2026", "2026-11-01")]
+    [InlineData("Dated this ", "27th day of October 2026", "2026-10-27")]
+    [InlineData("Dated this ", "2nd day of March 2025", "2025-03-02")]
+    [InlineData("Dated this ", "2nd day of Feb 2024", "2024-02-02")]
     public void Enrich_ParsesDate(string prefix, string text, string expected)
     {
         var line = TextLine($"{prefix}{text}");
