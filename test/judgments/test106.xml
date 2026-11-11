@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/pc/2026/1519" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/pc/2026/1519" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2026-10-27" name="decision" />
           <FRBRauthor href="#ftt-pc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="1519" />
@@ -15,21 +15,25 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/pc/2026/1519" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/pc/2026/1519" />
-          <FRBRdate date="1000-01-01" name="dummy" />
+          <FRBRdate date="2026-10-27" name="decision" />
           <FRBRauthor href="#ftt-pc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/pc/2026/1519/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/pc/2026/1519/data.xml" />
-          <FRBRdate date="2026-11-11T17:38:53" name="transform" />
+          <FRBRdate date="2026-11-11T18:02:53" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
+      <lifecycle source="#">
+        <eventRef date="2026-10-27" refersTo="#decision" source="#" />
+      </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ftt-pc" href="https://www.judiciary.uk/courts-and-tribunals/tribunals/first-tier-tribunal/property-chamber/land-registration-division/" showAs="First-tier Tribunal (Property Chamber)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="stephen-william-bett" href="" showAs="STEPHEN WILLIAM BETT" />
         <TLCPerson eId="james-kenrick-morgan" href="" showAs="JAMES KENRICK MORGAN" />
         <TLCPerson eId="as-trustees-of-the-thornham-common-cl41-statutory-trust" href="" showAs="(As Trustees of the Thornham Common CL41 Statutory Trust)" />
@@ -526,7 +530,7 @@
           </paragraph>
           <level eId="lvl_11_1">
             <content>
-              <p style="text-align:center">Dated this 27<span style="vertical-align:super;font-size:smaller">th</span> day of October 2026</p>
+              <p style="text-align:center">Dated this <docDate date="2026-10-27" refersTo="#decision">27<span style="vertical-align:super;font-size:smaller">th</span> day of October 2026</docDate></p>
             </content>
           </level>
           <level eId="lvl_11_2">
