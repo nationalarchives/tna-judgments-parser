@@ -77,6 +77,22 @@ namespace Backlog.Migrations
                     b.ToTable("MarkLogicDocumentStatuses");
                 });
 
+            modelBuilder.Entity("Backlog.Tracking.ParserControl", b =>
+                {
+                    b.Property<Guid>("SourceUuid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TrackerStatus")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SourceUuid");
+
+                    b.ToTable((string)null);
+
+                    b.ToView("ParserControlView", (string)null);
+                });
+
             modelBuilder.Entity("Backlog.Tracking.TrackerLine", b =>
                 {
                     b.Property<Guid>("SourceUuid")
