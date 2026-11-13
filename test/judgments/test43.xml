@@ -6,7 +6,7 @@
         <FRBRWork>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/343" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/343" />
-          <FRBRdate date="2022-02-02" name="hearing" />
+          <FRBRdate date="2022-09-14" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRcountry value="GB-UKM" />
           <FRBRnumber value="343" />
@@ -15,25 +15,27 @@
         <FRBRExpression>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343" />
-          <FRBRdate date="2022-02-02" name="hearing" />
+          <FRBRdate date="2022-09-14" name="decision" />
           <FRBRauthor href="#ukftt-tc" />
           <FRBRlanguage language="eng" />
         </FRBRExpression>
         <FRBRManifestation>
           <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
           <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-          <FRBRdate date="2026-09-16T14:13:35" name="transform" />
+          <FRBRdate date="2026-11-10T18:54:45" name="transform" />
           <FRBRauthor href="#tna" />
           <FRBRformat value="application/xml" />
         </FRBRManifestation>
       </identification>
       <lifecycle source="#">
         <eventRef date="2022-02-02" refersTo="#hearing" source="#" />
+        <eventRef date="2022-09-14" refersTo="#decision" source="#" />
       </lifecycle>
       <references source="#tna">
         <TLCOrganization eId="ukftt-tc" href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax" showAs="United Kingdom First-tier Tribunal (Tax)" />
         <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives" />
         <TLCEvent eId="hearing" href="#" showAs="hearing" />
+        <TLCEvent eId="decision" href="#" showAs="decision" />
         <TLCPerson eId="dr-marcin-daniel-cajdler" href="" showAs="DR MARCIN DANIEL CAJDLER" />
         <TLCPerson eId="the-commissioners-for-his-majestys-revenue-and-customs" href="" showAs="THE COMMISSIONERS FOR HIS MAJESTY’S REVENUE AND CUSTOMS" />
         <TLCRole eId="appellant" href="" showAs="Appellant" />
@@ -45,7 +47,7 @@
         <uk:year>2022</uk:year>
         <uk:number>343</uk:number>
         <uk:cite>[2022] UKFTT 343 (TC)</uk:cite>
-        <uk:parser>1.15.0</uk:parser>
+        <uk:parser>1.20.0</uk:parser>
         <uk:hash>dd30d8828f0e0b2cdc637c46577fe248a2c4a6f92ba93353052ffcf00c75a782</uk:hash>
       </proprietary>
       <presentation source="#">
@@ -1383,7 +1385,7 @@
           </level>
           <level eId="lvl_11_3">
             <content>
-              <p style="text-align:center"><span style="font-weight:bold">Release date:        14</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">TH</span><span style="font-weight:bold"> SEPTEMBER 2022</span></p>
+              <p style="text-align:center"><span style="font-weight:bold">Release date:        </span><docDate date="2022-09-14" refersTo="#decision"><span style="font-weight:bold">14</span><span style="font-weight:bold;vertical-align:super;font-size:smaller">TH</span><span style="font-weight:bold"> SEPTEMBER 2022</span></docDate></p>
             </content>
           </level>
         </level>
@@ -1397,21 +1399,21 @@
               <FRBRWork>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/343/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ukftt/tc/2022/343" />
-                <FRBRdate date="2022-02-02" name="hearing" />
+                <FRBRdate date="2022-09-14" name="decision" />
                 <FRBRauthor href="#ukftt-tc" />
                 <FRBRcountry value="GB-UKM" />
               </FRBRWork>
               <FRBRExpression>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/annex/1" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343" />
-                <FRBRdate date="2022-02-02" name="hearing" />
+                <FRBRdate date="2022-09-14" name="decision" />
                 <FRBRauthor href="#ukftt-tc" />
                 <FRBRlanguage language="eng" />
               </FRBRExpression>
               <FRBRManifestation>
                 <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/annex/1/data.xml" />
                 <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ukftt/tc/2022/343/data.xml" />
-                <FRBRdate date="2026-09-16T14:13:35" name="transform" />
+                <FRBRdate date="2026-11-10T18:54:45" name="transform" />
                 <FRBRauthor href="#tna" />
                 <FRBRformat value="application/xml" />
               </FRBRManifestation>
