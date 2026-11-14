@@ -1,30 +1,20 @@
 #nullable enable
 
 using System;
-using System.Linq;
 
 using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 
 namespace Backlog.Csv;
 
-internal class DelimitedArrayConverter : DefaultTypeConverter
+internal class DelimitedArrayConverter : ICsvConverter<string[]>
 {
-    private readonly char[]? delimiters = [',', ';'];
+    private static readonly char[] Delimiters = [',', ';'];
 
-    public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    public string[] Read(CsvReader reader, int index)
     {
-        if (string.IsNullOrWhiteSpace(text))
-        {
-            return Array.Empty<string>();
-        }
-
-        var items = text.Split(delimiters);
-
-        var cleanWhitespace = items.Select(item => item.Trim());
-        var blanksRemoved = cleanWhitespace.Where(item => !string.IsNullOrWhiteSpace(item));
-
-        return blanksRemoved.ToArray();
+        return reader.GetString(index)
+                     .Split(Delimiters, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
     }
+
+    public void Write(CsvWriter writer, string[] value) => throw new NotSupportedException();
 }

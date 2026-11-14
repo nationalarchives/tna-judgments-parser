@@ -1,13 +1,12 @@
+using System;
+
 using Backlog.Csv;
 
 using CsvHelper;
-using CsvHelper.Configuration;
-
-using Moq;
 
 using Xunit;
 
-namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.Csv;
 
 public class TestDelimitedArrayConverter
 {
@@ -66,12 +65,19 @@ public class TestDelimitedArrayConverter
     [InlineData("item1,item2;item3 ;", new[] { "item1", "item2", "item3" })]
     [InlineData(" ; ", new string[] { })]
     [InlineData("item1 ; item2 ; item3", new[] { "item1", "item2", "item3" })]
-    [InlineData(null, new string[] { })]
-    public void ConvertFromString_ReturnsExpectedArray(string? input, string[] expected)
+    public void Read_ReturnsExpectedArray(string input, string[] expected)
     {
-        var result = _converter.ConvertFromString(input, Mock.Of<IReaderRow>(), new MemberMapData(null));
+        using var csv = CsvReader.FromText($"\"{input}\"", new CsvReaderOptions { HasHeader = false });
+        csv.Read();
 
-        var array = Assert.IsType<string[]>(result);
-        Assert.Equal(expected, array);
+        var result = _converter.Read(csv, 0);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void Write_Always_ThrowsNotSupportedException()
+    {
+        Assert.Throws<NotSupportedException>(() => _converter.Write(null!, ["item1"]));
     }
 }

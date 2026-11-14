@@ -606,8 +606,9 @@ public sealed class TestRead : IDisposable
         mockTracker.Verify(t => t.TrackCsvParseError(It.IsAny<string>()), Times.Exactly(5));
 
         mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Must have either claimants or appellants"))), Times.Once);
-        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Field at index '6' does not exist"))), Times.Once);
-        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("Field at index '13' does not exist"))), Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("field 6 does not exist"))),
+            Times.Once);
+        mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("field 13 does not exist"))), Times.Once);
         mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("main_subcategory 'Bad main subcategory' cannot exist without main_category"))), Times.Once);
         mockTracker.Verify(t => t.TrackCsvParseError(It.Is<string>(msg => msg.Contains("sec_subcategory 'Bad secondary subcategory' cannot exist without sec_category"))), Times.Once);
     }
@@ -702,7 +703,7 @@ public sealed class TestRead : IDisposable
 
     [Theory]
     [InlineData("9315-01-2025",
-        "Could not convert field `DecisionDateTime` with value \"9315-01-2025\" to type `DateTime`")]
+        "\"9315-01-2025\" failed validation with message: Unsupported decision date. Ensure dates are in yyyy-MM-dd format")]
     [InlineData("15-01-2025",
         "\"15-01-2025\" failed validation with message: Unsupported decision date. Ensure dates are in yyyy-MM-dd format")]
     [InlineData("01/15/2025",
@@ -729,6 +730,50 @@ public sealed class TestRead : IDisposable
 
         Assert.Empty(result);
         mockTracker.Verify(t => t.TrackCsvParseError(expectedErrorMessage), Times.Once);
+    }
+
+    [Fact]
+    public void Read_WithMalformedQuoting_ReportsParseErrorAndKeepsReadingOtherLines()
+    {
+        using var csvStream = new StringReader(
+            """
+            id,UUID,FilePath,Extension,decision_datetime,court,claimants,respondent,skip
+            123,00000000-0000-0000-0000-000000000123,/test/data/a.pdf,.pdf,2025-01-15,UKUT-IAC,"Smith"x,HMRC,
+            124,00000000-0000-0000-0000-000000000124,/test/data/b.pdf,.pdf,2025-01-16,UKUT-IAC,Jones,HMRC,
+            """
+        );
+
+        var result = csvMetadataReader.Read(csvStream);
+
+        var line = Assert.Single(result);
+        Assert.Equal("124", line.id);
+
+        mockTracker.Verify(
+            t => t.TrackCsvParseError(
+                "Malformed CSV in record 2 (line 2): text after the closing quote of a quoted field (byte offset 167)."),
+            Times.Once);
+        mockTracker.VerifySet(t => t.NumAllLinesInCsv = 2);
+    }
+
+    [Fact]
+    public void Read_WithDuplicateHeaders_ReportsParseErrorInsteadOfThrowing()
+    {
+        var line =
+            "123,00000000-0000-0000-0000-000000000123,/test/data/a.pdf,.pdf,2025-01-15,UKUT-IAC,Smith,HMRC,,first,second";
+
+        using var csvStream = new StringReader(
+            """
+            id,UUID,FilePath,Extension,decision_datetime,court,claimants,respondent,skip,notes,notes
+            123,00000000-0000-0000-0000-000000000123,/test/data/a.pdf,.pdf,2025-01-15,UKUT-IAC,Smith,HMRC,,first,second
+            """
+        );
+
+        var result = csvMetadataReader.Read(csvStream);
+
+        Assert.Empty(result);
+        mockTracker.Verify(
+            t => t.TrackCsvParseError($"Line 2: An item with the same key has already been added. Key: notes [{line}]"),
+            Times.Once);
     }
 
     [Fact]
