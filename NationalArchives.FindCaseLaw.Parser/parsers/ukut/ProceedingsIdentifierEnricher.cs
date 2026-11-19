@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
@@ -11,18 +12,99 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 internal partial class ProceedingsIdentifierEnricher : Enricher
 {
+    private readonly record struct InlineWithProceedingsIdentifiers(IInline Inline, Match[] ProceedingsIdentifiers);
+
+    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
+    {
+        List<IBlock> enriched = [];
+        var changed = false;
+        string? previousType = null;
+
+        foreach (var block in blocks)
+        {
+            if (block is not WLine line)
+            {
+                enriched.Add(block);
+                continue;
+            }
+
+            var inlines = FindProceedingsIdentifiers(line.Contents);
+
+            if (!ContainsProceedingsIdentifier(inlines))
+            {
+                enriched.Add(line);
+                continue;
+            }
+
+            // A proceedings identifier with no label of its own takes the type of the one on a previous line
+            previousType = GetLineType(inlines) ?? previousType;
+
+            changed = true;
+            enriched.Add(WLine.Make(line, EnrichLine(inlines, previousType)));
+        }
+
+        return changed ? enriched : blocks;
+    }
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
     {
-        var enriched = new List<IInline>();
-        var enrichedSuccessfully = false;
+        var inlines = FindProceedingsIdentifiers(line);
 
-        foreach (var inline in line.ToArray())
+        if (!ContainsProceedingsIdentifier(inlines))
         {
-            if (inline is WText wTextToEnrich
-                && TryEnrichTextContainingProceedingsIdentifier(wTextToEnrich, out var enrichedText))
+            return line;
+        }
+
+        return EnrichLine(inlines, GetLineType(inlines));
+    }
+
+    private static InlineWithProceedingsIdentifiers[] FindProceedingsIdentifiers(IEnumerable<IInline> line)
+    {
+        return line.Select(inline =>
+                       new InlineWithProceedingsIdentifiers(inline,
+                           inline is WText wText ? GetProceedingsIdentifierMatches(wText.Text) : []))
+                   .ToArray();
+    }
+
+    private static bool ContainsProceedingsIdentifier(InlineWithProceedingsIdentifiers[] inlines)
+    {
+        return inlines.Any(inline => inline.ProceedingsIdentifiers.Length > 0);
+    }
+
+    private static string? GetLineType(InlineWithProceedingsIdentifiers[] inlines)
+    {
+        var precedingText = new StringBuilder();
+
+        foreach (var (inline, proceedingsIdentifiers) in inlines)
+        {
+            switch (inline)
             {
-                enrichedSuccessfully = true;
-                enriched.AddRange(enrichedText);
+                case ITab:
+                    // A tab separates the label from any earlier text
+                    precedingText.Clear();
+                    break;
+
+                case WText wText when proceedingsIdentifiers.Length == 0:
+                    precedingText.Append(wText.Text);
+                    break;
+
+                case WText wText:
+                    return GetProceedingsIdentifierType(precedingText + wText.Text[..proceedingsIdentifiers[0].Index]);
+            }
+        }
+
+        return null;
+    }
+
+    private static List<IInline> EnrichLine(InlineWithProceedingsIdentifiers[] inlines, string? type)
+    {
+        List<IInline> enriched = [];
+
+        foreach (var (inline, proceedingsIdentifiers) in inlines)
+        {
+            if (inline is WText wText && proceedingsIdentifiers.Length > 0)
+            {
+                enriched.AddRange(EnrichTextWithProceedingsIdentifiers(wText, type, proceedingsIdentifiers));
             }
             else
             {
@@ -30,25 +112,10 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             }
         }
 
-        return enrichedSuccessfully ? enriched : line;
+        return enriched;
     }
 
-    private static bool TryEnrichTextContainingProceedingsIdentifier(WText originalWText, out List<IInline> enriched)
-    {
-        var proceedingsIdentifierMatches = GetProceedingsIdentifierMatches(originalWText.Text);
-
-        if (proceedingsIdentifierMatches.Length == 0)
-        {
-            enriched = [];
-            return false;
-        }
-
-        enriched = EnrichTextWithProceedingsIdentifiers(originalWText, proceedingsIdentifierMatches);
-
-        return true;
-    }
-
-    private static List<IInline> EnrichTextWithProceedingsIdentifiers(WText originalWText,
+    private static List<IInline> EnrichTextWithProceedingsIdentifiers(WText originalWText, string? type,
         Match[] proceedingsIdentifierMatches)
     {
         var textToSplit = originalWText.Text;
@@ -64,8 +131,8 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
                     originalWText.properties));
             }
 
-            // add the matched proceedings identifier            
-            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value, originalWText.properties));
+            // Add the matched proceedings identifier
+            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value, type, originalWText.properties));
 
             currentTextIndex = proceedingsIdentifierMatch.Index + proceedingsIdentifierMatch.Length;
         }
@@ -77,6 +144,13 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
         }
 
         return enriched;
+    }
+
+    private static string? GetProceedingsIdentifierType(string textBeforeIdentifier)
+    {
+        var type = TypeLabelRegex().Match(textBeforeIdentifier).Groups["type"].Value;
+
+        return type.Length == 0 ? null : type;
     }
 
     private static Match[] GetProceedingsIdentifierMatches(string text)
@@ -94,7 +168,6 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
                                            .Where(m => m.Value.Any(char.IsDigit))
                                            .OrderBy(m => m.Index).ToArray();
     }
-
 
     /// <summary>
     /// A letter-prefixed appeal/case/reference number made up of two or more "/" separated
@@ -127,4 +200,29 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     /// </summary>
     [GeneratedRegex(@"\bTC\s*\d{4,6}\b", RegexOptions.IgnoreCase)]
     private static partial Regex UkfttTaxChamberCaseNumberRegex();
+
+    /// <summary>
+    /// What separates the label from earlier text: a gap of whitespace, e.g. after
+    /// "Neutral citation number: [2022] UKUT 121 (LC)    ", or a closing bracket, e.g. after "(Immigration and Asylum Chamber) "
+    /// </summary>
+    private const string LabelSeparator = @"\s{2,}|\)\s*";
+
+    /// <summary>
+    /// Any earlier text, up to and including the last separator before the label
+    /// </summary>
+    private const string TextBeforeLabel = $@"(?:.*(?:{LabelSeparator})(?=\S))?";
+
+    /// <summary>
+    /// The plural "s" on "Nos", "Numbers" or "references"
+    /// </summary>
+    private const string PluralSuffix = @"(?:(?<=\b(?:No|number|reference))s)?";
+
+    private const string TrailingPunctuation = @"[\s.:]*";
+
+    /// <summary>
+    /// The label naming the type of proceedings identifier that follows it, captured as "type", e.g. "UTLC No" in
+    /// "Neutral citation number: [2022] UKUT 121 (LC)    UTLC No: "
+    /// </summary>
+    [GeneratedRegex($"^{TextBeforeLabel}(?<type>.*?){PluralSuffix}{TrailingPunctuation}$", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
+    private static partial Regex TypeLabelRegex();
 }

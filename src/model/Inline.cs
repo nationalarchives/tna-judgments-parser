@@ -240,6 +240,7 @@ internal interface ICourtType2 : ICourtType
 
 internal interface IProceedingsIdentifier : IFormattedText
 {
+    string Type { get; }
 }
 
 internal interface ICaseNo : IFormattedText

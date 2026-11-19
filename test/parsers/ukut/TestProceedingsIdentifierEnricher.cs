@@ -23,25 +23,47 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
 
         var result = Enricher.Enrich([inputLine]).Cast<WLine>().ToArray();
 
+        var inputLineContents = inputLine.Contents.ToArray();
         var contents = result[0].Contents.ToArray();
         contents.Length.ShouldBe(2);
 
-        contents[0].ShouldBeSameAs(inputLine.Contents.ToArray()[0]);
+        contents[0].ShouldBeSameAs(inputLineContents[0]);
         contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("CIS/111/2021");
     }
 
-    [Fact]
-    public void Enrich_TextEndingWithProceedingsIdentifier_MarksItUpAsProceedingsIdentifier()
+    [Theory]
+    [InlineData("Appeal No. ", "CIS/111/2021", "Appeal No")]
+    [InlineData("Appeal Nos: ", "2026-01234.EA", "Appeal No")]
+    [InlineData("Appeal reference: ", "CIS/222/2021", "Appeal reference")]
+    [InlineData("Appeal references: ", "TC/2026/01234", "Appeal reference")]
+    [InlineData("UTLC Case Numbers: ", "LC-2026-123", "UTLC Case Number")]
+    [InlineData("Case Number:", "UT-2026-000012", "Case Number")]
+    [InlineData("Neutral citation number: [2026] UKUT 00123 (LC)                               UTLC No: ", "LC-2026-234", "UTLC No")]
+    [InlineData("(Immigration and Asylum Chamber) Appeal Number: ", "EU/01234/2026", "Appeal Number")]
+    public void Enrich_LabelledProceedingsIdentifier_SetsTypeFromLabel(string textBeforeIdentifier, string identifier,
+        string expectedType)
     {
-        var inputLine = TextLine("Appeal reference: CIS/222/2021");
+        var inputLine = TextLine(textBeforeIdentifier, identifier);
 
         var result = Enricher.Enrich([inputLine]).Cast<WLine>().ToArray();
 
-        var contents = result[0].Contents.ToArray();
-        contents.Length.ShouldBe(2);
+        var proceedingsIdentifier = result[0].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier.Text.ShouldBe(identifier);
+        proceedingsIdentifier.Type.ShouldBe(expectedType);
+    }
 
-        contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Appeal reference: ");
-        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("CIS/222/2021");
+    [Fact]
+    public void Enrich_TabBetweenEarlierTextAndLabel_ExcludesEarlierTextFromType()
+    {
+        IInline[] lineContents =
+            [Text("IN THE UPPER TRIBUNAL"), Tab(), Text("Appeal No."), Text("  "), Text("UA-2026-000123-T")];
+        var inputLine = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([inputLine]).Cast<WLine>().ToArray();
+
+        var proceedingsIdentifier = result[0].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier.Text.ShouldBe("UA-2026-000123-T");
+        proceedingsIdentifier.Type.ShouldBe("Appeal No");
     }
 
     [Fact]
@@ -55,7 +77,9 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
         contents.Length.ShouldBe(3);
 
         contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Case Reference: ");
-        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("FT/D/2026/0123");
+        var proceedingsIdentifier = contents[1].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier.Text.ShouldBe("FT/D/2026/0123");
+        proceedingsIdentifier.Type.ShouldBe("Case Reference");
         contents[2].ShouldBeOfType<WText>().Text.ShouldBe(" (some other information)");
     }
 
@@ -70,11 +94,17 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
         contents.Length.ShouldBe(7);
 
         contents[0].ShouldBeOfType<WText>().Text.ShouldBe("Appeal Nos: ");
-        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("2026-01234.EA");
+        var proceedingsIdentifier1 = contents[1].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier1.Text.ShouldBe("2026-01234.EA");
+        proceedingsIdentifier1.Type.ShouldBe("Appeal No");
         contents[2].ShouldBeOfType<WText>().Text.ShouldBe(", ");
-        contents[3].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("2026-02345.EA");
+        var proceedingsIdentifier2 = contents[3].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier2.Text.ShouldBe("2026-02345.EA");
+        proceedingsIdentifier2.Type.ShouldBe("Appeal No");
         contents[4].ShouldBeOfType<WText>().Text.ShouldBe(", ");
-        contents[5].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("2026-03456.EA");
+        var proceedingsIdentifier3 = contents[5].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier3.Text.ShouldBe("2026-03456.EA");
+        proceedingsIdentifier3.Type.ShouldBe("Appeal No");
         contents[6].ShouldBeOfType<WText>().Text.ShouldBe(" ");
     }
 
@@ -93,11 +123,17 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
         contents.Length.ShouldBe(7);
 
         contents[0].ShouldBeSameAs(inputLineContents[0]);
-        contents[1].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("[2009] 1234 PT");
+        var proceedingsIdentifier1 = contents[1].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier1.Text.ShouldBe("[2009] 1234 PT");
+        proceedingsIdentifier1.Type.ShouldBe("Appeal number");
         contents[2].ShouldBeSameAs(inputLineContents[2]);
-        contents[3].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("[2009] 2345 PT");
+        var proceedingsIdentifier2 = contents[3].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier2.Text.ShouldBe("[2009] 2345 PT");
+        proceedingsIdentifier2.Type.ShouldBe("Appeal number");
         contents[4].ShouldBeSameAs(inputLineContents[4]);
-        contents[5].ShouldBeOfType<WProceedingsIdentifier>().Text.ShouldBe("[2009] 3456 PT");
+        var proceedingsIdentifier3 = contents[5].ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier3.Text.ShouldBe("[2009] 3456 PT");
+        proceedingsIdentifier3.Type.ShouldBe("Appeal number");
         contents[6].ShouldBeSameAs(inputLineContents[6]);
     }
 
@@ -119,6 +155,7 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     [InlineData("LON/00BK/LSC/2023/0354")] // UT Lands Chamber
     [InlineData("2026-01951.EA")] // FTT Care Standards
     [InlineData("2025-01627.ISO-W")] // FTT Care Standards
+    [InlineData("2026-00123.EY-SUS")] // FTT Care Standards
     [InlineData("2025-01701.PHL")] // FTT Primary Health Lists
     [InlineData("[2010]1808.SW")] // FTT Care Standards (older format)
     [InlineData("[2009] 1658 PT")] // FTT Care Standards (older format)
@@ -134,9 +171,9 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
 
         var result = Enricher.Enrich([line]).Cast<WLine>().ToArray();
 
-        result[0].Contents.ShouldHaveSingleItem()
-                 .ShouldBeOfType<WProceedingsIdentifier>()
-                 .Text.ShouldBe(proceedingsIdentifier);
+        var enrichedIdentifier = result[0].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        enrichedIdentifier.Text.ShouldBe(proceedingsIdentifier);
+        enrichedIdentifier.Type.ShouldBeNull();
     }
 
     [Theory]
@@ -164,6 +201,8 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     [InlineData("CIS")] // no separator/digits at all
     [InlineData("Something else")]
     [InlineData("[2025] UKFTT 01448 (PC)")] // ncn
+    [InlineData("Neutral Citation: [2026] UKUT 00123 (TCC)")] // ncn
+    [InlineData("Neutral Citation Number: [2026] UKFTT 00123 (HESC)")] // ncn
     [InlineData("[2017] 1 WLR 1234")] // case citation
     [InlineData("[2014] 2 P&CR 5")] // case citation
     [InlineData("[1996] AC 155 (HL)")] // case citation
@@ -194,6 +233,59 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     }
 
     [Fact]
+    public void Enrich_UnlabelledIdentifierAfterLabelledLine_SetsTypeFromPreviousLabel()
+    {
+        IBlock[] input =
+        [
+            TextLine("Appeal references: ", "TC/2026/01234"),
+            TextLine("TC/2026/02345")
+        ];
+
+        var result = Enricher.Enrich(input).Cast<WLine>().ToArray();
+
+        var proceedingsIdentifier1 = result[0].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier1.Text.ShouldBe("TC/2026/01234");
+        proceedingsIdentifier1.Type.ShouldBe("Appeal reference");
+
+        var proceedingsIdentifier2 = result[1].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier2.Text.ShouldBe("TC/2026/02345");
+        proceedingsIdentifier2.Type.ShouldBe("Appeal reference");
+    }
+
+    [Fact]
+    public void Enrich_UnlabelledIdentifiersAfterDifferentLabels_SetsTypeFromLatestLabel()
+    {
+        IBlock[] input =
+        [
+            TextLine("Case Number: ", "TC01234"),
+            TextLine("FIRST-TIER TRIBUNAL"),
+            TextLine("TAX CHAMBER"),
+            TextLine("Held in public by remote video hearing"),
+            TextLine("Appeal references: ", "TC/2026/01234"),
+            TextLine("TC/2026/02345"),
+            TextLine("TC/2026/03456")
+        ];
+
+        var result = Enricher.Enrich(input).Cast<WLine>().ToArray();
+
+        var caseNumber = result[0].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        caseNumber.Text.ShouldBe("TC01234");
+        caseNumber.Type.ShouldBe("Case Number");
+
+        var appealReference1 = result[4].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        appealReference1.Text.ShouldBe("TC/2026/01234");
+        appealReference1.Type.ShouldBe("Appeal reference");
+
+        var appealReference2 = result[5].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        appealReference2.Text.ShouldBe("TC/2026/02345");
+        appealReference2.Type.ShouldBe("Appeal reference");
+
+        var appealReference3 = result[6].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        appealReference3.Text.ShouldBe("TC/2026/03456");
+        appealReference3.Type.ShouldBe("Appeal reference");
+    }
+
+    [Fact]
     public void Enrich_MultipleMatchingLines_EveryOneIsEnriched()
     {
         IBlock[] input =
@@ -205,10 +297,14 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
 
         var result = Enricher.Enrich(input).Cast<WLine>().ToArray();
 
-        result[0].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>().Text
-                 .ShouldBe("CIS/666/2021");
+        var proceedingsIdentifier1 = result[0].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier1.Text.ShouldBe("CIS/666/2021");
+        proceedingsIdentifier1.Type.ShouldBeNull();
+
         result[1].ShouldBeSameAs(input[1]);
-        result[2].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>().Text
-                 .ShouldBe("UT/2020/0043");
+
+        var proceedingsIdentifier2 = result[2].Contents.ShouldHaveSingleItem().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier2.Text.ShouldBe("UT/2020/0043");
+        proceedingsIdentifier2.Type.ShouldBeNull();
     }
 }
