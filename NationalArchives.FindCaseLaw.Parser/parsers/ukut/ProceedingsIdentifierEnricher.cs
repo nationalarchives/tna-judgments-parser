@@ -88,7 +88,8 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             DigitDottedRegex(),
             OldCareStandardsRegex(),
             UkfttTaxChamberCaseNumberRegex(),
-            UkutTaxAndChanceryChamberWithSpaceRegex()
+            UkutTaxAndChanceryChamberWithSpaceRegex(),
+            LandRegistrationReferenceRegex()
         ];
 
         return proceedingsIdentifierRegexes.SelectMany(r => r.Matches(text))
@@ -134,4 +135,10 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     /// </summary>
     [GeneratedRegex(@"\bUT\s\d{4}-\d{6}\b", RegexOptions.IgnoreCase)]
     private static partial Regex UkutTaxAndChanceryChamberWithSpaceRegex();
+
+    /// <summary>
+    /// An FTT Property Chamber Land Registration reference with a space after the prefix, e.g. "REF 2017/0591".
+    /// </summary>
+    [GeneratedRegex(@"\bREF\s+\d{4}/\d{2,6}\b", RegexOptions.IgnoreCase)]
+    private static partial Regex LandRegistrationReferenceRegex();
 }
