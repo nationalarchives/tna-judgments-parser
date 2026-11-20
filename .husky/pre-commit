@@ -17,13 +17,17 @@
 #husky run --args "$1" "$2"
 
 
-# Check for linting errors
-if ! dotnet husky run --name "dotnet-format--verify-no-changes"; then
-    echo "⚠️ Linting errors detected! Auto-fixing affected files..."
-    
-    dotnet husky run --name "dotnet-format" --quiet
+# Auto-fix linting errors in staged files, then fail if that changed any of them.
+# Compare the unstaged changes to staged files before and after, so pre-existing unstaged edits aren't mistaken for fixes.
+staged_files=$(git diff --name-only --cached)
+unstaged_before=$(git diff -- $staged_files | git hash-object --stdin)
 
-    echo "👍 Auto-fixing complete. Please review and stage the changes before committing."
+dotnet husky run --name "dotnet-format" --quiet
+
+unstaged_after=$(git diff -- $staged_files | git hash-object --stdin)
+
+if [ "$unstaged_before" != "$unstaged_after" ]; then
+    echo "⚠️ Linting errors detected and auto-fixed. Please review and stage the changes before committing."
 
     exit 1
 fi

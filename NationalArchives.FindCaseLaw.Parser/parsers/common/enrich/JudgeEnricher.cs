@@ -71,12 +71,16 @@ internal sealed partial class JudgeEnricher : Enricher
     private const string RecorderOfAPlace = @"(?:the\s+)?recorder\s+of\s+\p{L}[\p{L}\s’'-]*?";
     private const string JudgeMemberOfTheCourt = @"(?:judge|member)\s+of\s+the\s+[\p{L}\s’'-]+?(?:tribunal|courts?|chamber|division)";
 
-    [GeneratedRegex(
-        $@"^\s*(?:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+the(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$", RegexOptions.IgnoreCase)]
-    private static partial Regex IntroductionLine();
+    // These regexes are compiled instead of the best practice [GeneratedRegex] because it was tying up dotnet format in
+    // the precommit hooks for the IDE0059 code style analysis for minutes regardless of whether or not this file had
+    // changed. We couldn't find any other way to decrease the linting time.
+    private static readonly Regex IntroductionLine = new(
+        $@"^\s*(?:b\s*e\s*f\s*o\s*r\s*e|decided\s+by)(?!\p{{L}})(?!(?!\s+{JudicialTitle}\s+)\s+the(?!\p{{L}}))\s*:?\s*(?:{Judges})?\s*$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-    [GeneratedRegex($@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$", RegexOptions.IgnoreCase)]
-    private static partial Regex JudgesLine();
+    private static readonly Regex JudgesLine = new(
+        $@"^\s*(?:{MemberLabel})?(?:\(\s*{Judges}\s*\)|{Judges})(?:\s*{Reference})?\s*$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     [GeneratedRegex(@"^\s*\(?\s*(?:sitting\s+(?:as|at)|(?:vice[-\s])?president\s+of)(?!\p{L})", RegexOptions.IgnoreCase)]
     private static partial Regex RoleLine();
@@ -131,7 +135,7 @@ internal sealed partial class JudgeEnricher : Enricher
         return blocks.TakeWhile(block => block is WLine or WTable)
                      .OfType<WLine>()
                      .SelectMany(SegmentTexts)
-                     .Any(IntroductionLine().IsMatch);
+                     .Any(IntroductionLine.IsMatch);
     }
 
     private static bool IsRoleLine(string text)
@@ -210,7 +214,7 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private static bool TryLookForJudgesAheadOfIntroduction(string text, ref Stage stage, out Match judges)
     {
-        if (IntroductionLine().IsMatch(text))
+        if (IntroductionLine.IsMatch(text))
         {
             return TryLookForIntroduction(text, ref stage, out judges);
         }
@@ -227,7 +231,7 @@ internal sealed partial class JudgeEnricher : Enricher
 
     private static bool TryLookForIntroduction(string text, ref Stage stage, out Match judges)
     {
-        var introduction = IntroductionLine().Match(text);
+        var introduction = IntroductionLine.Match(text);
         if (introduction.Success)
         {
             stage = Stage.ReadingJudges;
@@ -251,13 +255,13 @@ internal sealed partial class JudgeEnricher : Enricher
             return false;
         }
 
-        judges = JudgesLine().Match(text);
+        judges = JudgesLine.Match(text);
         return judges.Success;
     }
 
     private static bool TryFindUnmistakableJudge(string text, out Match judges)
     {
-        var match = IsRoleLine(text) ? Match.Empty : JudgesLine().Match(text);
+        var match = IsRoleLine(text) ? Match.Empty : JudgesLine.Match(text);
         judges = match.Success && EveryJudgeHasTitleRoleOrCounsel(match) ? match : Match.Empty;
         return judges.Success;
     }

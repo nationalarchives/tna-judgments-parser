@@ -13,18 +13,6 @@
    ],
    "tasks": [
       {
-         "name": "dotnet-format--verify-no-changes",
-         "command": "dotnet",
-         "args": [
-            "format",
-            "tna-judgments-parser.sln",
-            "--no-restore",
-            "--include",
-            "${get-staged-files-do-not-restage-changes}",
-            "--verify-no-changes"
-         ]
-      },
-      {
          "name": "dotnet-format",
          "command": "dotnet",
          "args": [
