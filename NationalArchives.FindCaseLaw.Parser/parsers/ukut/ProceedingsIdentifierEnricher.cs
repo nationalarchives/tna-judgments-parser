@@ -161,7 +161,8 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             DashGroupRegex(),
             DigitDottedRegex(),
             OldCareStandardsRegex(),
-            UkfttTaxChamberCaseNumberRegex()
+            UkfttTaxChamberCaseNumberRegex(),
+            LandRegistrationReferenceRegex()
         ];
 
         return proceedingsIdentifierRegexes.SelectMany(r => r.Matches(text))
@@ -200,6 +201,12 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     /// </summary>
     [GeneratedRegex(@"\bTC\s*\d{4,6}\b", RegexOptions.IgnoreCase)]
     private static partial Regex UkfttTaxChamberCaseNumberRegex();
+
+    /// <summary>
+    /// An FTT Property Chamber Land Registration reference with a space after the prefix, e.g. "REF 2017/0591".
+    /// </summary>
+    [GeneratedRegex(@"\bREF\s+\d{4}/\d{2,6}\b", RegexOptions.IgnoreCase)]
+    private static partial Regex LandRegistrationReferenceRegex();
 
     /// <summary>
     /// What separates the label from earlier text: a gap of whitespace, e.g. after
