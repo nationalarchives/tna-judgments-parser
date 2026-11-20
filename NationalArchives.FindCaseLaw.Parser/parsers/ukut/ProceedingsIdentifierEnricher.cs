@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 using UK.Gov.Legislation.Judgments;
@@ -12,7 +11,10 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 internal partial class ProceedingsIdentifierEnricher : Enricher
 {
-    private readonly record struct InlineWithProceedingsIdentifiers(IInline Inline, Match[] ProceedingsIdentifiers);
+    private readonly record struct InlineWithProceedingsIdentifiers(IInline Inline, Match[] ProceedingsIdentifiers)
+    {
+        public bool HasProceedingsIdentifiers => ProceedingsIdentifiers.Length > 0;
+    }
 
     internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
     {
@@ -30,7 +32,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
 
             var inlines = FindProceedingsIdentifiers(line.Contents);
 
-            if (!ContainsProceedingsIdentifier(inlines))
+            if (DoesNotContainProceedingsIdentifier(inlines))
             {
                 enriched.Add(line);
                 continue;
@@ -50,12 +52,17 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     {
         var inlines = FindProceedingsIdentifiers(line);
 
-        if (!ContainsProceedingsIdentifier(inlines))
+        if (DoesNotContainProceedingsIdentifier(inlines))
         {
             return line;
         }
 
         return EnrichLine(inlines, GetLineType(inlines));
+    }
+
+    private static bool DoesNotContainProceedingsIdentifier(InlineWithProceedingsIdentifiers[] inlines)
+    {
+        return !inlines.Any(inline => inline.HasProceedingsIdentifiers);
     }
 
     private static InlineWithProceedingsIdentifiers[] FindProceedingsIdentifiers(IEnumerable<IInline> line)
@@ -66,48 +73,29 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
                    .ToArray();
     }
 
-    private static bool ContainsProceedingsIdentifier(InlineWithProceedingsIdentifiers[] inlines)
-    {
-        return inlines.Any(inline => inline.ProceedingsIdentifiers.Length > 0);
-    }
-
     private static string? GetLineType(InlineWithProceedingsIdentifiers[] inlines)
     {
-        var precedingText = new StringBuilder();
+        var precedingText = IInline.ToString(inlines.TakeWhile(i => !i.HasProceedingsIdentifiers)
+                                                    .Select(i => i.Inline));
+        var (inline, proceedingsIdentifiers) = inlines.First(i => i.HasProceedingsIdentifiers);
+        var text = IInline.GetText(inline);
 
-        foreach (var (inline, proceedingsIdentifiers) in inlines)
-        {
-            switch (inline)
-            {
-                case ITab:
-                    precedingText.Append('\t');
-                    break;
-
-                case WText wText when proceedingsIdentifiers.Length == 0:
-                    precedingText.Append(wText.Text);
-                    break;
-
-                case WText wText:
-                    return GetProceedingsIdentifierType(precedingText + wText.Text[..proceedingsIdentifiers[0].Index]);
-            }
-        }
-
-        return null;
+        return GetProceedingsIdentifierType(precedingText + text[..proceedingsIdentifiers[0].Index]);
     }
 
     private static List<IInline> EnrichLine(InlineWithProceedingsIdentifiers[] inlines, string? type)
     {
         List<IInline> enriched = [];
 
-        foreach (var (inline, proceedingsIdentifiers) in inlines)
+        foreach (var inline in inlines)
         {
-            if (inline is WText wText && proceedingsIdentifiers.Length > 0)
+            if (inline is { Inline: WText wText, HasProceedingsIdentifiers: true })
             {
-                enriched.AddRange(EnrichTextWithProceedingsIdentifiers(wText, type, proceedingsIdentifiers));
+                enriched.AddRange(EnrichTextWithProceedingsIdentifiers(wText, type, inline.ProceedingsIdentifiers));
             }
             else
             {
-                enriched.Add(inline);
+                enriched.Add(inline.Inline);
             }
         }
 
