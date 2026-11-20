@@ -80,8 +80,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             switch (inline)
             {
                 case ITab:
-                    // A tab separates the label from any earlier text
-                    precedingText.Clear();
+                    precedingText.Append('\t');
                     break;
 
                 case WText wText when proceedingsIdentifiers.Length == 0:
@@ -209,10 +208,10 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     private static partial Regex LandRegistrationReferenceRegex();
 
     /// <summary>
-    /// What separates the label from earlier text: a gap of whitespace, e.g. after
+    /// What separates the label from earlier text: a tab, a gap of whitespace, e.g. after
     /// "Neutral citation number: [2022] UKUT 121 (LC)    ", or a closing bracket, e.g. after "(Immigration and Asylum Chamber) "
     /// </summary>
-    private const string LabelSeparator = @"\s{2,}|\)\s*";
+    private const string LabelSeparator = @"\t|\s{2,}|\)\s*";
 
     /// <summary>
     /// Any earlier text, up to and including the last separator before the label

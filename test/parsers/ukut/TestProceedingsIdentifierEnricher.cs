@@ -67,6 +67,19 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     }
 
     [Fact]
+    public void Enrich_TabBetweenLabelAndIdentifier_SetsTypeFromLabel()
+    {
+        IInline[] lineContents = [Text("Appeal No:"), Tab(), Text("UA-2026-000123-T")];
+        var inputLine = new WLine(LineTemplate, lineContents);
+
+        var result = Enricher.Enrich([inputLine]).Cast<WLine>().ToArray();
+
+        var proceedingsIdentifier = result[0].Contents.Last().ShouldBeOfType<WProceedingsIdentifier>();
+        proceedingsIdentifier.Text.ShouldBe("UA-2026-000123-T");
+        proceedingsIdentifier.Type.ShouldBe("Appeal No");
+    }
+
+    [Fact]
     public void Enrich_TextContainingProceedingsIdentifier_MarksItUpAsProceedingsIdentifier()
     {
         var inputLine = TextLine("Case Reference: FT/D/2026/0123 (some other information)");
