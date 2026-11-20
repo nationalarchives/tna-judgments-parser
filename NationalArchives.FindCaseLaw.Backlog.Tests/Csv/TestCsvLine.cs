@@ -4,7 +4,7 @@ using UK.Gov.Legislation.Judgments;
 
 using Xunit;
 
-namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.Csv;
 
 public class TestCsvLine
 {

@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -191,8 +190,12 @@ internal class SplitTdrFilesByExtensionWorker(ILogger<SplitTdrFilesByExtensionWo
             return [];
         }
 
-        using var reader = new StreamReader(fileMetadataCsv);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        var options = new CsvReaderOptions
+        {
+            MissingField = CsvMissingFieldHandling.Throw,
+            MalformedData = CsvMalformedDataHandling.Throw
+        };
+        using var csv = CsvReader.FromFile(fileMetadataCsv, options);
         return csv.GetRecords<TdrFileMetadataLine>().ToArray();
     }
 }
@@ -201,7 +204,8 @@ internal class SplitTdrFilesByExtensionWorker(ILogger<SplitTdrFilesByExtensionWo
 ///     Used by CsvHelper
 ///     Properties are named to match tdr_metadata/file-metadata.csv header
 /// </summary>
-public record TdrFileMetadataLine(string UUID, string file_name, string file_type);
+[CsvRecord]
+public partial record TdrFileMetadataLine(string UUID, string file_name, string file_type);
 
 internal class ExtensionFolderManager(string extension)
 {

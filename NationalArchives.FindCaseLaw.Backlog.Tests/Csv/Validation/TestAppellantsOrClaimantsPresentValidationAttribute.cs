@@ -5,7 +5,7 @@ using Backlog.Csv;
 
 using Xunit;
 
-namespace NationalArchives.FindCaseLaw.Backlog.Tests.MetadataTests;
+namespace NationalArchives.FindCaseLaw.Backlog.Tests.Csv.Validation;
 
 public class TestAppellantsOrClaimantsPresentValidationAttribute
 {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-using CsvHelper.Configuration.Attributes;
+using CsvHelper;
 
 using TRE.Metadata.MetadataFieldTypes;
 
@@ -16,11 +16,15 @@ using Party = UK.Gov.NationalArchives.CaseLaw.Model.Party;
 
 namespace Backlog.Csv;
 
+[CsvRecord]
 [AppellantsOrClaimantsPresentValidation]
 [CategoryValidation]
-internal record CsvLine
+internal partial record CsvLine
 {
+    [CsvIgnore]
     public (string Name, string Hash) CsvProperties { get; set; }
+
+    [CsvIgnore]
     public Dictionary<string, string> FullCsvLineContents { get; set; } = [];
 
     [Required(AllowEmptyStrings = false)]
@@ -35,73 +39,72 @@ internal record CsvLine
     [Required(AllowEmptyStrings = false)]
     public required string Extension { get; set; }
 
+    [CsvConverter(typeof(DecisionDateConverter))]
     public required DateTime DecisionDateTime { get; set; }
 
-    [Optional]
-    [TypeConverter(typeof(DelimitedArrayConverter))]
+    [CsvColumn(Optional = true)]
+    [CsvConverter(typeof(DelimitedArrayConverter))]
     public string[] CaseNo { get; set; } = [];
 
-    [Optional]
-    [TypeConverter(typeof(DelimitedArrayConverter))]
+    [CsvColumn(Optional = true)]
+    [CsvConverter(typeof(DelimitedArrayConverter))]
     public string[] Jurisdictions { get; set; } = [];
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? Claimants { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? Appellants { get; set; }
 
     [Required(AllowEmptyStrings = false)]
     public required string Respondent { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? MainCategory { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? MainSubcategory { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? SecCategory { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? SecSubcategory { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? Ncn { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? HeadnoteSummary { get; set; }
 
-    [Optional]
+    [CsvColumn(Optional = true)]
     public string? WebArchiving { get; set; }
 
     [Required]
     public required Guid Uuid { get; set; }
 
-    [Default(false)]
-    [TypeConverter(typeof(BooleanSkipConverter))]
+    [CsvConverter(typeof(BooleanSkipConverter))]
     public bool Skip { get; set; }
 
     /// <summary>
     /// NCN with zeros removed
     /// </summary>
-    [Ignore]
+    [CsvIgnore]
     internal string? CleanedNcn
     {
         get
         {
             if (Ncn is null)
                 return null;
-                
-            return cleanedNcn ??= Regex.Replace(Ncn, " 0+", " ");
+
+            return field ??= Regex.Replace(Ncn, " 0+", " ");
         }
     }
-
-    private string? cleanedNcn;
 
     /// <summary>
     ///     Gets the name of the first party (either claimants or appellants)
     /// </summary>
+    [CsvIgnore]
     internal string FirstPartyName
     {
         get
@@ -123,6 +126,7 @@ internal record CsvLine
     /// <summary>
     ///     Gets the role of the first party (either Claimant or Appellant)
     /// </summary>
+    [CsvIgnore]
     internal PartyRole FirstPartyRole
     {
         get
@@ -141,6 +145,7 @@ internal record CsvLine
         }
     }
 
+    [CsvIgnore]
     public Party[] Parties =>
     [
         (appellants: Appellants, claimants: Claimants) switch
@@ -152,6 +157,7 @@ internal record CsvLine
         new() { Name = Respondent, Role = PartyRole.Respondent }
     ];
 
+    [CsvIgnore]
     public ICategory[] Categories
     {
         get
@@ -186,6 +192,7 @@ internal record CsvLine
     ///     The original file name extracted from FilePath
     ///     Use this instead of Path.GetFileName for csv lines because it handles both '/' and '\' path separators
     /// </summary>
+    [CsvIgnore]
     public string FileName
     {
         get
