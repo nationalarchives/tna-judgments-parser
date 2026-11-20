@@ -195,12 +195,27 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     [GeneratedRegex(@"\bREF\s+\d{4}/\d{2,6}\b", RegexOptions.IgnoreCase)]
     private static partial Regex LandRegistrationReferenceRegex();
 
+    private const string Tab = @"\t";
+
     /// <summary>
-    /// What separates the label from earlier text: a tab, a gap of whitespace, e.g. after
-    /// "Neutral citation number: [2022] UKUT 121 (LC)    ", a closing bracket, e.g. after "(Immigration and Asylum Chamber) ",
-    /// or the end of the tribunal's name, e.g. after "IN THE UPPER TRIBUNAL "
+    /// A gap of whitespace, e.g. after "Neutral citation number: [2022] UKUT 121 (LC)    "
     /// </summary>
-    private const string LabelSeparator = @"\t|\s{2,}|\)\s*|\bTribunal\s+";
+    private const string WhitespaceGap = @"\s{2,}";
+
+    /// <summary>
+    /// A closing bracket, e.g. after "(Immigration and Asylum Chamber) "
+    /// </summary>
+    private const string ClosingBracket = @"\)\s*";
+
+    /// <summary>
+    /// The end of the tribunal's name, e.g. after "IN THE UPPER TRIBUNAL ", but not "Tribunal" starting the label
+    /// </summary>
+    private const string EndOfTribunalName = @"\sTribunal\s+";
+
+    /// <summary>
+    /// What separates the label from earlier text
+    /// </summary>
+    private const string LabelSeparator = $"{Tab}|{WhitespaceGap}|{ClosingBracket}|{EndOfTribunalName}";
 
     /// <summary>
     /// Any earlier text, up to and including the last separator before the label
