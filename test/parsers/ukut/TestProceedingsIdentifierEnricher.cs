@@ -40,6 +40,7 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     [InlineData("Case Number:", "UT-2026-000012", "Case Number")]
     [InlineData("Neutral citation number: [2026] UKUT 00123 (LC)                               UTLC No: ", "LC-2026-234", "UTLC No")]
     [InlineData("(Immigration and Asylum Chamber) Appeal Number: ", "EU/01234/2026", "Appeal Number")]
+    [InlineData("IN THE UPPER TRIBUNAL Appeal No’s. ", "UA-2026-000123/45-HB", "Appeal No")]
     public void Enrich_LabelledProceedingsIdentifier_SetsTypeFromLabel(string textBeforeIdentifier, string identifier,
         string expectedType)
     {
