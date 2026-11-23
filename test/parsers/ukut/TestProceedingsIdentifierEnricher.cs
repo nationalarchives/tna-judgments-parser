@@ -128,6 +128,7 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     [InlineData("TC09969")] // FTT Tax Chamber - case number
     [InlineData("REF/2024/0045 & 0046")]
     [InlineData("LC-2025-123")]
+    [InlineData("UT 2026-000034")]
     public void Enrich_RealTribunalProceedingsIdentifierFormats_AreMarkedUp(string proceedingsIdentifier)
     {
         var line = TextLine(proceedingsIdentifier);

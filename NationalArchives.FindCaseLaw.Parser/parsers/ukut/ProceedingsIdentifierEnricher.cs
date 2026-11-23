@@ -87,7 +87,8 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             DashGroupRegex(),
             DigitDottedRegex(),
             OldCareStandardsRegex(),
-            UkfttTaxChamberCaseNumberRegex()
+            UkfttTaxChamberCaseNumberRegex(),
+            UkutTaxAndChanceryChamberWithSpaceRegex()
         ];
 
         return proceedingsIdentifierRegexes.SelectMany(r => r.Matches(text))
@@ -127,4 +128,10 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
     /// </summary>
     [GeneratedRegex(@"\bTC\s*\d{4,6}\b", RegexOptions.IgnoreCase)]
     private static partial Regex UkfttTaxChamberCaseNumberRegex();
+
+    /// <summary>
+    /// A UT Tax and Chancery Chamber reference number with a space after the prefix, e.g. "UT 2026-000034".
+    /// </summary>
+    [GeneratedRegex(@"\bUT\s\d{4}-\d{6}\b", RegexOptions.IgnoreCase)]
+    private static partial Regex UkutTaxAndChanceryChamberWithSpaceRegex();
 }
