@@ -11,10 +11,25 @@ namespace UK.Gov.NationalArchives.CaseLaw.Parsers.UKUT;
 
 internal partial class ProceedingsIdentifierEnricher : Enricher
 {
+    private readonly IProceedingsIdentifierTypeTracker proceedingsIdentifierTypeTracker;
+
+    internal ProceedingsIdentifierEnricher(IProceedingsIdentifierTypeTracker proceedingsIdentifierTypeTracker)
+    {
+        this.proceedingsIdentifierTypeTracker = proceedingsIdentifierTypeTracker;
+    }
+
+    internal override IEnumerable<IBlock> Enrich(IEnumerable<IBlock> blocks)
+    {
+        proceedingsIdentifierTypeTracker.Reset();
+
+        return base.Enrich(blocks);
+    }
+
     protected override IEnumerable<IInline> Enrich(IEnumerable<IInline> line)
     {
         var enriched = new List<IInline>();
         var enrichedSuccessfully = false;
+        proceedingsIdentifierTypeTracker.StartLine();
 
         foreach (var inline in line.ToArray())
         {
@@ -26,6 +41,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             }
             else
             {
+                proceedingsIdentifierTypeTracker.Record(inline);
                 enriched.Add(inline);
             }
         }
@@ -33,7 +49,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
         return enrichedSuccessfully ? enriched : line;
     }
 
-    private static bool TryEnrichTextContainingProceedingsIdentifier(WText originalWText, out List<IInline> enriched)
+    private bool TryEnrichTextContainingProceedingsIdentifier(WText originalWText, out List<IInline> enriched)
     {
         var proceedingsIdentifierMatches = GetProceedingsIdentifierMatches(originalWText.Text);
 
@@ -48,7 +64,7 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
         return true;
     }
 
-    private static List<IInline> EnrichTextWithProceedingsIdentifiers(WText originalWText,
+    private List<IInline> EnrichTextWithProceedingsIdentifiers(WText originalWText,
         Match[] proceedingsIdentifierMatches)
     {
         var textToSplit = originalWText.Text;
@@ -60,12 +76,15 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
             // Is there any non-proceedings identifier text before the current match?
             if (proceedingsIdentifierMatch.Index > currentTextIndex)
             {
-                enriched.Add(new WText(textToSplit[currentTextIndex..proceedingsIdentifierMatch.Index],
-                    originalWText.properties));
+                var precedingText = new WText(textToSplit[currentTextIndex..proceedingsIdentifierMatch.Index],
+                    originalWText.properties);
+                proceedingsIdentifierTypeTracker.Record(precedingText);
+                enriched.Add(precedingText);
             }
 
-            // add the matched proceedings identifier            
-            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value, originalWText.properties));
+            // add the matched proceedings identifier
+            enriched.Add(new WProceedingsIdentifier(proceedingsIdentifierMatch.Value,
+                proceedingsIdentifierTypeTracker.GetCurrentType(), originalWText.properties));
 
             currentTextIndex = proceedingsIdentifierMatch.Index + proceedingsIdentifierMatch.Length;
         }
@@ -73,7 +92,9 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
         // Is there any trailing text after the last match?
         if (currentTextIndex < textToSplit.Length)
         {
-            enriched.Add(new WText(textToSplit[currentTextIndex..], originalWText.properties));
+            var trailingText = new WText(textToSplit[currentTextIndex..], originalWText.properties);
+            proceedingsIdentifierTypeTracker.Record(trailingText);
+            enriched.Add(trailingText);
         }
 
         return enriched;

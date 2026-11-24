@@ -240,6 +240,9 @@ internal interface ICourtType2 : ICourtType
 
 internal interface IProceedingsIdentifier : IFormattedText
 {
+#nullable enable
+    string? Type { get; }
+#nullable disable
 }
 
 internal interface ICaseNo : IFormattedText
