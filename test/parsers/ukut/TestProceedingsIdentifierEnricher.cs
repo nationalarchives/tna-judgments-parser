@@ -104,6 +104,7 @@ public class TestProceedingsIdentifierEnricher : ParserTestBase
     [Theory]
     [InlineData("UT/2020/0043")]
     [InlineData("UA-2021-000019-T")]
+    [InlineData("UA-2026-000123/45-HB")]
     [InlineData("DC/12345/2026")]
     [InlineData("EA/2023/0132")]
     [InlineData("cis/444/2021")]

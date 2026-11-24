@@ -107,9 +107,9 @@ internal partial class ProceedingsIdentifierEnricher : Enricher
 
     /// <summary>
     /// A letter-prefixed appeal/case/reference number made up of two or more "-" separated
-    /// groups, e.g. "EA-2022-001495-NK", "UA-2026-000079-PIP" or "LC-2025-372"
+    /// groups, e.g. "EA-2022-001495-NK", "UA-2026-000079-PIP", "LC-2025-372" or "UA-2026-000123/45-HB"
     /// </summary>
-    [GeneratedRegex(@"\b[A-Z]{2,4}(?:-[A-Z0-9]{1,6}){1,4}\b", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"\b[A-Z]{2,4}(?:-[A-Z0-9]{1,6}(?:/\d{1,6})?){1,4}\b", RegexOptions.IgnoreCase)]
     private static partial Regex DashGroupRegex();
 
     /// <summary>
