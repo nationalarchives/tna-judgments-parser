@@ -145,8 +145,9 @@ public class Program
                 Response localResponse = Helper.LocalParse(input.FullName, classifier, languageService);
                 if (localResponse.Error is not null)
                 {
-                    logger?.LogCritical("parsing failed at block {}: {}\nblock text: {}", localResponse.Error.BlockNumber, localResponse.Error.Message, localResponse.Error.BlockText);
-                    Console.Error.WriteLine($"parsing failed at block {localResponse.Error.BlockNumber}: {localResponse.Error.Message}\nblock text: {localResponse.Error.BlockText}");
+                    var description = localResponse.Error.Describe();
+                    logger?.LogCritical("{}", description);
+                    Console.Error.WriteLine(description);
                     return Failure;
                 }
                 if (output is not null)

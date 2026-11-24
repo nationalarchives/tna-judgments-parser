@@ -109,10 +109,19 @@ partial class Builder : AkN.Builder
 
         IEnumerable<IEnumerable<IRow>> rowsGroupedByHeaders = GroupRowsByHeaders(model.Rows);
 
-        foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
+        try
         {
-            AddRows(parent, table, rows.TakeWhile(row => row.IsImplicitHeader));
-            AddRows(parent, table, rows.SkipWhile(row => row.IsImplicitHeader));
+            foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
+            {
+                AddRows(parent, table, rows.TakeWhile(row => row.IsImplicitHeader));
+                AddRows(parent, table, rows.SkipWhile(row => row.IsImplicitHeader));
+            }
+        }
+        catch (Exception ex) when (ex is not ParseStageException)
+        {
+            // Report the first text in the table so it can be found in the document
+            var firstText = (model as ILineable)?.Lines.Select(line => line.TextContent).FirstOrDefault(text => !string.IsNullOrWhiteSpace(text));
+            throw new ParseStageException(ParseStageException.BuildingTable, null, firstText, ex);
         }
         return table;
     }

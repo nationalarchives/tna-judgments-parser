@@ -1,8 +1,11 @@
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+
+using Microsoft.Extensions.Logging;
 
 using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.Parse;
@@ -15,6 +18,8 @@ namespace UK.Gov.Legislation.Lawmaker;
 
 public class Helper
 {
+
+    private static readonly ILogger Logger = Logging.Factory.CreateLogger<Helper>();
 
     // Invoked via CLI when running locally
     public static Response LocalParse(string path, LegislationClassifier classifier, LanguageService languageService)
@@ -34,32 +39,43 @@ public class Helper
     // Need to ensure that Images is populated, rather than an empty list.
     public static Response Parse(byte[] docx, LegislationClassifier classifier, LanguageService languageService)
     {
-        WordprocessingDocument wordDoc = AkN.Parser.Read(docx);
-        Document bill;
         try
         {
-            bill = LegislationParser.Parse(wordDoc, classifier, languageService);
+            WordprocessingDocument wordDoc = ParseStageException.Wrap(ParseStageException.ReadingDocument, () => AkN.Parser.Read(docx));
+            Document bill = LegislationParser.Parse(wordDoc, classifier, languageService);
+            XmlDocument doc = ParseStageException.Wrap(ParseStageException.BuildingXml, () => Builder.Build(bill, languageService));
+            ParseStageException.Wrap(ParseStageException.SimplifyingXml, () => Simplifier.Simplify(doc, bill.Styles));
+            var xml = ParseStageException.Wrap(ParseStageException.SerializingXml, () => AkN.Serializer.SerializeToString(doc));
+            IEnumerable<IImage> images = ParseStageException.Wrap(ParseStageException.ExtractingImages, () => WImage.Get(wordDoc).ToArray());
+            return new Response
+            {
+                Xml = xml,
+                Images = images.Select(ConvertImage).ToList()
+            };
         }
         catch (BlockParsingException ex)
         {
-            return new Response
-            {
-                Error = new ParseError
-                {
-                    BlockNumber = ex.BlockNumber,
-                    BlockText = ex.BlockText,
-                    Message = ex.InnerException?.Message ?? ex.Message
-                }
-            };
+            Logger.LogError(ex.InnerException ?? ex, "parsing failed at block {}", ex.BlockNumber);
+            return ErrorResponse(ParseStageException.ParsingStructure, ex.BlockNumber, ex.BlockText, ex.InnerException ?? ex);
         }
-        XmlDocument doc = Builder.Build(bill, languageService);
-        Simplifier.Simplify(doc, bill.Styles);
-        var xml = AkN.Serializer.SerializeToString(doc);
-        IEnumerable<IImage> images = WImage.Get(wordDoc).ToArray();
+        catch (ParseStageException ex)
+        {
+            Logger.LogError(ex.InnerException ?? ex, "parsing failed while {}", ex.Stage);
+            return ErrorResponse(ex.Stage, ex.BlockNumber, ex.BlockText, ex.InnerException ?? ex);
+        }
+    }
+
+    private static Response ErrorResponse(string stage, int? blockNumber, string blockText, Exception cause)
+    {
         return new Response
         {
-            Xml = xml,
-            Images = images.Select(ConvertImage).ToList()
+            Error = new ParseError
+            {
+                Stage = stage,
+                BlockNumber = blockNumber,
+                BlockText = blockText,
+                Message = $"{cause.GetType().Name}: {cause.Message}"
+            }
         };
     }
 

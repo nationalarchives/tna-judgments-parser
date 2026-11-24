@@ -99,13 +99,14 @@ public class Lambda
         catch (Exception e)
         {
             logger.LogError(e, "parse error: {}", e.Message);
-            errors.Add("error parsing document");
+            errors.Add($"error parsing document: {e.GetType().Name}: {e.Message}");
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
         if (response.Error is not null)
         {
-            logger.LogError("parsing failed at block {}: {}\nblock text: {}", response.Error.BlockNumber, response.Error.Message, response.Error.BlockText);
-            errors.Add($"parsing failed at block {response.Error.BlockNumber}: {response.Error.Message}\nblock text: {response.Error.BlockText}");
+            var description = response.Error.Describe();
+            logger.LogError("{}", description);
+            errors.Add(description);
             return ClearAndSaveLogAndReturnErrors(inputs, errors);
         }
         var xmlFilename = inputs.ConsignmentReference + ".xml";

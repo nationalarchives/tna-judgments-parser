@@ -26,11 +26,25 @@ public class Response
 public class ParseError
 {
 
-    public int BlockNumber { get; init; }
+    public string Stage { get; init; }
+
+    public int? BlockNumber { get; init; }
 
     public string BlockText { get; init; }
 
     public string Message { get; init; }
+
+    // Lawmaker reads the block number and text out of this message by matching
+    // "at block N" and "block text:", so the block text must stay last.
+    public string Describe()
+    {
+        var location = BlockNumber is int blockNumber ? $" at block {blockNumber}" : "";
+        var stage = Stage is null ? "" : $" while {Stage}";
+        var description = $"parsing failed{location}{stage}: {Message}";
+        if (!string.IsNullOrEmpty(BlockText))
+            description += $"\nblock text: {BlockText}";
+        return description;
+    }
 
 }
 

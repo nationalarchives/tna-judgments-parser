@@ -454,10 +454,42 @@ public partial class LegislationParser
 #nullable enable
     // extract start and end quote marks and appended text
 
-    internal static void ExtractAllQuotesAndAppendTexts(IList<IDivision> body)
+    internal static void ExtractAllQuotesAndAppendTexts(IList<IDivision> body, Func<WLine, int?>? locate = null)
     {
-        Util.WithEachBlock.Do(body, ExtractQuotesAndAppendTexts);
+        Util.WithEachBlock.Do(body, block =>
+        {
+            try
+            {
+                ExtractQuotesAndAppendTexts(block);
+            }
+            catch (Exception ex) when (ex is not ParseStageException)
+            {
+                // Report the quoted structure that failed, as this runs after block parsing has finished
+                WLine? line = block is BlockQuotedStructure qs ? FirstLine(qs) : null;
+                var blockNumber = line is null ? null : locate?.Invoke(line);
+                throw new ParseStageException(ParseStageException.ExtractingQuotes, blockNumber, line?.TextContent, ex);
+            }
+        });
     }
+
+    internal static WLine? FirstLine(IDivision? division) => division switch
+    {
+        BlockQuotedStructure qs => qs.Contents.Select(FirstLine).FirstOrDefault(line => line is not null),
+        HContainer { HeadingPrecedesNumber: true, Heading: WLine heading } => heading,
+        Leaf leaf => FirstLine(leaf.Contents),
+        Branch branch => FirstLine(branch.Intro) ?? branch.Children.Select(FirstLine).FirstOrDefault(line => line is not null),
+        WDummyDivision dummy => FirstLine(dummy.Contents),
+        _ => null
+    };
+
+    internal static WLine? FirstLine(IEnumerable<IBlock>? blocks) => blocks?
+        .Select(block => block switch
+        {
+            WLine line => line,
+            ILineable lineable => lineable.Lines.FirstOrDefault(),
+            _ => null
+        })
+        .FirstOrDefault(line => line is not null);
 
     private static void ExtractQuotesAndAppendTexts(IBlock block)
     {
