@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Xml.Schema;
 
 using Microsoft.Extensions.Logging;
@@ -12,14 +13,11 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
-    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.
-    Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
+    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
         UK.Gov.Legislation.Judgments.AttachmentType>>, System.TimeProvider,
     UK.Gov.Legislation.Judgments.Parse.Judgment>;
-using ParseFunction =
-    System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<
-            System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
-        UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
+    UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
 using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.NationalArchives.Judgments.Api;
@@ -50,22 +48,30 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
             ? Enumerable.Empty<AttachmentPair>()
             : request.Attachments.Select(a => new AttachmentPair(a.Content, MapAttachmentType(a.Type)));
 
+        logger.LogInformation("[STAGE] Parsing document ({Hint})", request.Hint?.ToString() ?? "no hint");
         var bundle = parse(request.Content, meta1, attachments);
 
+        logger.LogInformation("[STAGE] Validating akoma ntoso");
         var errors = validator.Validate(bundle.Judgment);
         if (errors.Any())
         {
             throw new InvalidAkNException(errors.First());
         }
 
+        logger.LogInformation("[STAGE] Serializing xml");
         var xml = AkN.Serializer.SerializeToString(bundle.Judgment);
+
+        logger.LogInformation("[STAGE] Extracting metadata");
         var aknMetadata = AkN.MetadataExtractor.Extract(bundle.Judgment);
         var meta2 = ConvertInternalMetadata(aknMetadata);
-        Log(meta2);
+        logger.LogInformation("Extracted metadata is: {ExtractedMetadata}", JsonSerializer.Serialize(meta2));
+
+        logger.LogInformation("[STAGE] Converting images");
         var images = bundle.Images.Select(ConvertImage).ToList();
 
         bundle.Dispose();
 
+        logger.LogInformation("[STAGE] Returning response");
         return new Response
         {
             Xml = xml,
@@ -81,21 +87,26 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
         {
             null => JudgmentOrPressSummary,
             Hint.Judgment => ParseAnyJudgment,
-            Hint.EWHC or Hint.EWCA => Wrap(OptimizedEWHCParser.Parse),
-            Hint.UKSC => Wrap(OptimizedUKSCParser.Parse),
-            Hint.UKUT => Wrap(OptimizedUKUTParser.Parse),
+            Hint.EWHC or Hint.EWCA => Wrap("EWHC", OptimizedEWHCParser.Parse),
+            Hint.UKSC => Wrap("UKSC", OptimizedUKSCParser.Parse),
+            Hint.UKUT => Wrap("UKUT", OptimizedUKUTParser.Parse),
             Hint.PressSummary => ParsePressSummary,
             _ => throw new ArgumentOutOfRangeException(nameof(hint), hint, "unsupported hint")
         };
     }
 
-    private ParseFunction Wrap(OptimizedParseFunction f)
+    private ParseFunction Wrap(string parserName, OptimizedParseFunction f)
     {
         return (docx, meta, attachments) =>
         {
+            logger.LogInformation("[STAGE] Reading docx");
             var doc = AkN.Parser.Read(docx);
+
+            logger.LogInformation("[STAGE] Pre-parsing");
             var preParsed = new PreParser().Parse(doc);
             var attach2 = AkN.Parser.ConvertAttachments(attachments);
+
+            logger.LogInformation("using {Parser} parser (hint)", parserName);
             IJudgment judgment = f(doc, preParsed, meta, attach2, timeProvider);
 
             //** HACK - suppress misidentified parties by calling `CaseName.Extract` **
@@ -118,8 +129,13 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
     private AkN.ILazyBundle ParseAnyJudgment(byte[] docx, IOutsideMetadata meta,
         IEnumerable<AttachmentPair> attachments)
     {
+        logger.LogInformation("[STAGE] Reading docx");
         var doc = AkN.Parser.Read(docx);
+
+        logger.LogInformation("[STAGE] Pre-parsing");
         var preParsed = new PreParser().Parse(doc);
+
+        logger.LogInformation("[STAGE] Choosing best judgment parse");
         IJudgment judgment = BestJudgment(preParsed, meta, attachments);
         return new AkN.Bundle(doc, judgment);
     }
@@ -128,19 +144,29 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
         IEnumerable<AttachmentPair> attachments)
     {
         var attach2 = AkN.Parser.ConvertAttachments(attachments).ToArray();
+        logger.LogInformation("trying EWHC parser");
         var judgment1 = OptimizedEWHCParser.Parse(preParsed.Docx, preParsed, meta, attach2, timeProvider);
         var score1 = Score(judgment1);
+        var name1 = "EWHC";
+        logger.LogInformation("EWHC parser scored {Score} of {PerfectScore}", score1, PerfectScore);
         if (score1 == PerfectScore)
         {
+            logger.LogInformation("using EWHC parser (perfect score)");
             return judgment1;
         }
 
-        foreach (var other in new[] { OptimizedUKSCParser.Parse, OptimizedUKUTParser.Parse })
+        foreach (var (name2, other) in new (string, OptimizedParseFunction)[]
+                 {
+                     ("UKSC", OptimizedUKSCParser.Parse), ("UKUT", OptimizedUKUTParser.Parse)
+                 })
         {
+            logger.LogInformation("trying {Parser} parser", name2);
             var judgment2 = other(preParsed.Docx, preParsed, meta, attach2, timeProvider);
             var score2 = Score(judgment2);
+            logger.LogInformation("{Parser} parser scored {Score} of {PerfectScore}", name2, score2, PerfectScore);
             if (score2 == PerfectScore)
             {
+                logger.LogInformation("using {Parser} parser (perfect score)", name2);
                 return judgment2;
             }
 
@@ -148,9 +174,12 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
             {
                 judgment1 = judgment2;
                 score1 = score2;
+                name1 = name2;
             }
         }
 
+        logger.LogInformation("using {Parser} parser (best score {Score} of {PerfectScore})", name1, score1,
+            PerfectScore);
         return judgment1;
     }
 
@@ -166,12 +195,15 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
             return new AkN.Bundle(doc, judgment);
         }
 
+        logger.LogInformation("no perfect judgment parse, trying press summary parser");
         var ps = PS.Parser.Parse(preParsed, meta);
         if (ps.InternalMetadata.DocType is not null)
         {
+            logger.LogInformation("using press summary parser (doc type {DocType})", ps.InternalMetadata.DocType);
             return new AkN.PSBundle(doc, ps);
         }
 
+        logger.LogInformation("press summary parser found no doc type, keeping best judgment parse");
         return new AkN.Bundle(doc, judgment);
     }
 
@@ -216,6 +248,7 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
     private AkN.ILazyBundle ParsePressSummary(byte[] docx, IOutsideMetadata meta,
         IEnumerable<Tuple<byte[], Legislation.Judgments.AttachmentType>> attachments)
     {
+        logger.LogInformation("using press summary parser (hint)");
         var doc = AkN.Parser.Read(docx);
         var ps = PS.Parser.Parse(doc, meta);
         return new AkN.PSBundle(doc, ps);
@@ -257,62 +290,5 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
             AttachmentType.Appendix => Legislation.Judgments.AttachmentType.Appendix,
             _ => throw new ArgumentOutOfRangeException(nameof(attachmentType), attachmentType, null)
         };
-    }
-
-    internal void Log(Meta meta)
-    {
-        if (string.IsNullOrEmpty(meta.DocumentType))
-        {
-            logger.LogWarning("The document type is null");
-        }
-        else
-        {
-            logger.LogInformation("The document type is {DocumentType}", meta.DocumentType);
-        }
-
-        if (string.IsNullOrEmpty(URI.ExtractShortURIComponent(meta.Uri)))
-        {
-            logger.LogWarning("The {DocumentType} uri is null", meta.DocumentType);
-        }
-        else
-        {
-            logger.LogInformation("The {DocumentType} uri is {Uri}", meta.DocumentType, meta.Uri);
-        }
-
-        if (meta.Court is null)
-        {
-            logger.LogWarning("The court is null");
-        }
-        else
-        {
-            logger.LogInformation("The court is {Court}", meta.Court);
-        }
-
-        if (meta.Cite is null)
-        {
-            logger.LogWarning("The case citation is null");
-        }
-        else
-        {
-            logger.LogInformation("The case citation is {Cite}", meta.Cite);
-        }
-
-        if (meta.Date is null)
-        {
-            logger.LogWarning("The {DocumentType} date is null", meta.DocumentType);
-        }
-        else
-        {
-            logger.LogInformation("The {DocumentType} date is {Date}", meta.DocumentType, meta.Date);
-        }
-
-        if (meta.Name is null)
-        {
-            logger.LogWarning("The {DocumentType} name is null", meta.DocumentType);
-        }
-        else
-        {
-            logger.LogInformation("The {DocumentType} name is {Name}", meta.DocumentType, meta.Name);
-        }
     }
 }
