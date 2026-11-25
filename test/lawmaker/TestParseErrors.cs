@@ -83,7 +83,7 @@ public class TestParseErrors
             Message = "InvalidOperationException: Sequence contains no matching element"
         };
 
-        error.Describe().ShouldBe("Parsing failed at block 1424 while extracting quotes (InvalidOperationException: Sequence contains no matching element).\nBlock text: Provided that");
+        error.Describe().ShouldBe("Parsing failed at block 1424 while extracting quotes (InvalidOperationException: Sequence contains no matching element). \nBlock text: Provided that");
     }
 
     [Fact]
@@ -95,7 +95,8 @@ public class TestParseErrors
     }
 
     // The same patterns as react-ldapp's DocxImportErrorUtils.ts, which fills in the
-    // Parser position and Content snippet in the error details modal
+    // Parser position and Content snippet in the error details modal. Lawmaker currently
+    // removes the line break entirely, which is the empty string case.
     [Theory]
     [InlineData("\n")]
     [InlineData("")]
@@ -115,7 +116,8 @@ public class TestParseErrors
 
         block.Groups[1].Value.ShouldBe("1424");
         snippet.Groups[1].Value.Trim().ShouldBe("Provided that");
-        message.ShouldContain("element).");
+        message.ShouldContain("element). ");
+        message.ShouldNotContain("element).Block");
     }
 
     private static byte[] CreateDocx(System.Action<Body> build)
