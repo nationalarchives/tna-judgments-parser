@@ -113,8 +113,17 @@ partial class Builder : AkN.Builder
         {
             foreach (IEnumerable<IRow> rows in rowsGroupedByHeaders)
             {
-                AddRows(parent, table, rows.TakeWhile(row => row.IsImplicitHeader));
-                AddRows(parent, table, rows.SkipWhile(row => row.IsImplicitHeader));
+                // A cell merged down from the header into the first body row needs both rows built
+                // in the same pass, so body rows that continue a header merge join the header
+                var headerRows = rows.TakeWhile(row => row.IsImplicitHeader).ToList();
+                var bodyRows = rows.SkipWhile(row => row.IsImplicitHeader).ToList();
+                while (headerRows.Count > 0 && bodyRows.Count > 0 && bodyRows[0].Cells.Any(cell => cell.VMerge == VerticalMerge.Continuation))
+                {
+                    headerRows.Add(bodyRows[0]);
+                    bodyRows.RemoveAt(0);
+                }
+                AddRows(parent, table, headerRows, isHeader: true);
+                AddRows(parent, table, bodyRows, isHeader: false);
             }
         }
         catch (Exception ex) when (ex is not ParseStageException)
@@ -125,7 +134,7 @@ partial class Builder : AkN.Builder
         }
         return table;
     }
-    protected void AddRows(XmlElement parent, XmlElement table, IEnumerable<IRow> rows)
+    protected void AddRows(XmlElement parent, XmlElement table, IEnumerable<IRow> rows, bool? isHeader = null)
     {
         if (!rows.Any(_ => true))
         {
@@ -137,7 +146,7 @@ partial class Builder : AkN.Builder
         List<List<XmlElement>> allCellsWithRepeats = [];
         var iRow = 0;
 
-        var isCollectionOfHeaderRows = rows.All(row => row.IsImplicitHeader);
+        var isCollectionOfHeaderRows = isHeader ?? rows.All(row => row.IsImplicitHeader);
         XmlElement tbody = isCollectionOfHeaderRows ? CreateAndAppend("thead", table) : CreateAndAppend("tbody", table);
         if (isCollectionOfHeaderRows)
             tbody.SetAttribute("class", HtmlNamespace, IsCommencementHistory(parent) ? "italic left" : "bold centre");
