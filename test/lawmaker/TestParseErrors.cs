@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -36,7 +37,7 @@ public class TestParseErrors
         response.Error.ShouldNotBeNull();
         response.Error.Stage.ShouldBe(ParseStageException.ReadingDocument);
         response.Error.BlockNumber.ShouldBeNull();
-        response.Error.Describe().ShouldStartWith("parsing failed while reading the document: ");
+        response.Error.Describe().ShouldStartWith("Parsing failed while reading the document (");
     }
 
     [Fact]
@@ -82,7 +83,7 @@ public class TestParseErrors
             Message = "InvalidOperationException: Sequence contains no matching element"
         };
 
-        error.Describe().ShouldBe("parsing failed at block 1424 while extracting quotes: InvalidOperationException: Sequence contains no matching element\nblock text: Provided that");
+        error.Describe().ShouldBe("Parsing failed at block 1424 while extracting quotes (InvalidOperationException: Sequence contains no matching element).\nBlock text: Provided that");
     }
 
     [Fact]
@@ -90,7 +91,31 @@ public class TestParseErrors
     {
         var error = new ParseError { Stage = ParseStageException.SerializingXml, Message = "XmlException: bad" };
 
-        error.Describe().ShouldBe("parsing failed while serializing the XML: XmlException: bad");
+        error.Describe().ShouldBe("Parsing failed while serializing the XML (XmlException: bad).");
+    }
+
+    // The same patterns as react-ldapp's DocxImportErrorUtils.ts, which fills in the
+    // Parser position and Content snippet in the error details modal
+    [Theory]
+    [InlineData("\n")]
+    [InlineData("")]
+    public void Describe_StillMatchesLawmakerPatterns_WithOrWithoutTheLineBreak(string lineBreak)
+    {
+        var error = new ParseError
+        {
+            Stage = ParseStageException.ExtractingQuotes,
+            BlockNumber = 1424,
+            BlockText = "Provided that",
+            Message = "InvalidOperationException: Sequence contains no matching element"
+        };
+        var message = "Failed to import: Word Import tool failed: " + error.Describe().Replace("\n", lineBreak);
+
+        var block = Regex.Match(message, @"at block\s+(\d+)", RegexOptions.IgnoreCase);
+        var snippet = Regex.Match(message, @"block text\s*:\s*([\s\S]*)$", RegexOptions.IgnoreCase);
+
+        block.Groups[1].Value.ShouldBe("1424");
+        snippet.Groups[1].Value.Trim().ShouldBe("Provided that");
+        message.ShouldContain("element).");
     }
 
     private static byte[] CreateDocx(System.Action<Body> build)

@@ -35,14 +35,15 @@ public class ParseError
     public string Message { get; init; }
 
     // Lawmaker reads the block number and text out of this message by matching
-    // "at block N" and "block text:", so the block text must stay last.
+    // "at block N" and "block text:", so the block text must stay last. Each part is
+    // its own sentence so the message still reads properly if the line break is lost.
     public string Describe()
     {
         var location = BlockNumber is int blockNumber ? $" at block {blockNumber}" : "";
         var stage = Stage is null ? "" : $" while {Stage}";
-        var description = $"parsing failed{location}{stage}: {Message}";
+        var description = $"Parsing failed{location}{stage} ({Message}).";
         if (!string.IsNullOrEmpty(BlockText))
-            description += $"\nblock text: {BlockText}";
+            description += $"\nBlock text: {BlockText}";
         return description;
     }
 
