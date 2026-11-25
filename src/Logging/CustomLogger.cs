@@ -49,7 +49,8 @@ internal sealed class CustomLogger : ILogger
             Timestamp = DateTime.UtcNow,
             Category = Category,
             Level = logLevel,
-            Message = text
+            Message = text,
+            Exception = exception?.ToString()
         };
         Messages.Add(message);
     }
