@@ -536,7 +536,7 @@ public partial class LegislationParser
         if (hContainer.HeadingPrecedesNumber && hContainer.Heading is WLine heading)
         {
             WLine enriched = EnrichFromBeginning.Enrich(heading, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
-            var bookmark = enriched.Contents.FirstOrDefault(i => i is WBookmark) as WBookmark;
+            var bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
             heading.Contents = enriched.Contents.Where(i => i is not WBookmark);
             return bookmark?.Name;
         }
@@ -579,7 +579,7 @@ public partial class LegislationParser
     {
         if (line is null) return null;
         WLine enriched = EnrichFromBeginning.Enrich(line, QuotedStructureStartPattern(), ExtractStartQuoteConstructor);
-        var bookmark = enriched.Contents.FirstOrDefault(i => i is WBookmark) as WBookmark;
+        var bookmark = enriched.Contents.First(i => i is WBookmark) as WBookmark;
         line.Contents = enriched.Contents.Where(i => i is not WBookmark);
         return bookmark?.Name;
     }
