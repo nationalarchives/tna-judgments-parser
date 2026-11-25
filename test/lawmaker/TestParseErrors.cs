@@ -58,10 +58,12 @@ public class TestParseErrors
     }
 
     [Fact]
-    public void ExtractQuotes_QuotedStructureWithoutStartQuote_ReportsItsFirstLineAndBlock()
+    public void ExtractQuotes_FailingQuotedStructure_ReportsItsFirstLineAndBlock()
     {
-        WLine line = CreateLine("Provided that the undertaker is not required to maintain the bank.");
-        var quotedStructure = new BlockQuotedStructure { Contents = [new UnnumberedLeaf { Contents = [line] }] };
+        // A branch with no children fails when the end quote is extracted, because
+        // LastLine.Replace reads its null Children, so it stands in for any failure in this stage
+        WLine line = CreateLine("“The undertaker must maintain the bank.");
+        var quotedStructure = new BlockQuotedStructure { Contents = [new UnnumberedBranch { Intro = [line] }] };
         List<IDivision> body = [new UnnumberedLeaf { Contents = [quotedStructure] }];
 
         var ex = Should.Throw<ParseStageException>(() =>
@@ -69,8 +71,57 @@ public class TestParseErrors
 
         ex.Stage.ShouldBe(ParseStageException.ExtractingQuotes);
         ex.BlockNumber.ShouldBe(42);
-        ex.BlockText.ShouldBe("Provided that the undertaker is not required to maintain the bank.");
+        ex.BlockText.ShouldBe("The undertaker must maintain the bank.");
     }
+
+    // Six of the LCO-5192 sample documents failed here, because a paragraph had been parsed
+    // as a quoted structure even though it does not start with a quote mark
+    [Fact]
+    public void ExtractQuotes_QuotedStructureWithoutStartQuote_DoesNotFail()
+    {
+        WLine line = CreateLine("Provided that the undertaker is not required to maintain the bank.");
+        var quotedStructure = new BlockQuotedStructure { Contents = [new UnnumberedLeaf { Contents = [line] }] };
+        List<IDivision> body = [new UnnumberedLeaf { Contents = [quotedStructure] }];
+
+        LegislationParser.ExtractAllQuotesAndAppendTexts(body);
+
+        quotedStructure.StartQuote.ShouldBeNull();
+        FirstText(quotedStructure).ShouldBe("Provided that the undertaker is not required to maintain the bank.");
+    }
+
+    [Fact]
+    public void ExtractQuotes_HeadingFirstQuotedStructureWithoutStartQuote_DoesNotFail()
+    {
+        WLine heading = CreateLine("On Street Apparatus");
+        WLine line = CreateLine("The undertaker must not remove apparatus.");
+        var quotedStructure = new BlockQuotedStructure
+        {
+            Contents = [new UnnumberedLeaf { HeadingPrecedesNumber = true, Heading = heading, Contents = [line] }]
+        };
+        List<IDivision> body = [new UnnumberedLeaf { Contents = [quotedStructure] }];
+
+        LegislationParser.ExtractAllQuotesAndAppendTexts(body);
+
+        quotedStructure.StartQuote.ShouldBeNull();
+        heading.TextContent.ShouldBe("On Street Apparatus");
+    }
+
+    [Fact]
+    public void ExtractQuotes_QuotedStructureWithStartQuote_StillExtractsIt()
+    {
+        WLine line = CreateLine("“The undertaker must maintain the bank.”");
+        var quotedStructure = new BlockQuotedStructure { Contents = [new UnnumberedLeaf { Contents = [line] }] };
+        List<IDivision> body = [new UnnumberedLeaf { Contents = [quotedStructure] }];
+
+        LegislationParser.ExtractAllQuotesAndAppendTexts(body);
+
+        quotedStructure.StartQuote.ShouldBe("“");
+        quotedStructure.EndQuote.ShouldBe("”");
+        FirstText(quotedStructure).ShouldBe("The undertaker must maintain the bank.");
+    }
+
+    private static string? FirstText(BlockQuotedStructure quotedStructure) =>
+        LegislationParser.FirstLine(quotedStructure)?.TextContent;
 
     [Fact]
     public void Describe_WithBlock_KeepsTheFormatLawmakerReads()
