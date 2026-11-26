@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using DocumentFormat.OpenXml.Packaging;
 
@@ -44,9 +45,10 @@ public partial class LegislationParser
 
     public static Document Parse(WordprocessingDocument doc, LegislationClassifier classifier, LanguageService languageService)
     {
-        CaseLaw.WordDocument simple = new CaseLaw.PreParser().Parse(doc);
-        WImage.Get(doc);
-        return new LegislationParser(simple, classifier, languageService) { LanguageService = languageService }.Parse();
+        CaseLaw.WordDocument simple = ParseStageException.Wrap(ParseStageException.ReadingDocument, () => new CaseLaw.PreParser().Parse(doc));
+        ParseStageException.Wrap(ParseStageException.ExtractingImages, () => WImage.Get(doc));
+        LegislationParser parser = ParseStageException.Wrap(ParseStageException.ReadingDocument, () => new LegislationParser(simple, classifier, languageService) { LanguageService = languageService });
+        return parser.Parse();
     }
 
     private LegislationParser(CaseLaw.WordDocument doc, LegislationClassifier classifier, LanguageService languageService) : this(
@@ -104,9 +106,9 @@ public partial class LegislationParser
 
         // Handle start and end quotes after parsing is complete, because it alters the
         // contents of parsed results which does not work well with memoization
-        ExtractAllQuotesAndAppendTexts(body);
+        ParseStageException.Wrap(ParseStageException.ExtractingQuotes, () => ExtractAllQuotesAndAppendTexts(body, LocateBlock));
         QuotationEnricher quotationEnricher = new(LanguageService, $"(?:{{.*?}})?{StartQuotePattern()}", EndQuotePattern());
-        quotationEnricher.EnrichDivisions(body);
+        ParseStageException.Wrap(ParseStageException.EnrichingQuotations, () => quotationEnricher.EnrichDivisions(body));
 
         FootnoteEnricher footnoteEnricher = new();
         FootnoteHeaderVisitor footnoteHeaderVisitor = new()
@@ -114,8 +116,11 @@ public partial class LegislationParser
             FootnoteEnricher = footnoteEnricher,
         };
 
-        header = header?.Visit(footnoteHeaderVisitor, new HeaderVisitorContext(docName));
-        footnoteEnricher.EnrichDivisions(body);
+        ParseStageException.Wrap(ParseStageException.EnrichingFootnotes, () =>
+        {
+            header = header?.Visit(footnoteHeaderVisitor, new HeaderVisitorContext(docName));
+            footnoteEnricher.EnrichDivisions(body);
+        });
 
 
         return new Lawmaker.Document
@@ -129,5 +134,26 @@ public partial class LegislationParser
             Conclusions = conclusions
         };
     }
+
+    // Finds the position in the document of a line from the parsed structure, for error reporting.
+    // Lines are usually the same objects as in Body, but some are rebuilt during parsing with their
+    // quote marks removed, so fall back to comparing the text without quotes or whitespace.
+    private int? LocateBlock(WLine line)
+    {
+        var index = Body.FindIndex(block => ReferenceEquals(block, line)
+            || (block is ILineable lineable && ReferenceEquals(lineable.Lines.FirstOrDefault(), line)));
+        if (index < 0)
+        {
+            var text = WithoutQuotesOrWhitespace(line.NormalizedContent);
+            if (!string.IsNullOrEmpty(text))
+                index = Body.FindIndex(block => block is WLine candidate && WithoutQuotesOrWhitespace(candidate.NormalizedContent) == text);
+            if (index < 0 && !string.IsNullOrEmpty(text))
+                index = Body.FindIndex(block => block is WLine candidate && WithoutQuotesOrWhitespace(candidate.NormalizedContent).Contains(text));
+        }
+        return index < 0 ? null : index;
+    }
+
+    private static string WithoutQuotesOrWhitespace(string? text) =>
+        text is null ? "" : Regex.Replace(text, "[\\s\"'‘’“”]", "");
 
 }
