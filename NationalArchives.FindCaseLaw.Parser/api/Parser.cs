@@ -13,11 +13,14 @@ using UK.Gov.NationalArchives.CaseLaw.Parse;
 using AkN = UK.Gov.Legislation.Judgments.AkomaNtoso;
 using AttachmentPair = System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>;
 using OptimizedParseFunction = System.Func<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
-    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
+    UK.Gov.NationalArchives.CaseLaw.Parse.WordDocument, UK.Gov.Legislation.Judgments.IOutsideMetadata, System.
+    Collections.Generic.IEnumerable<System.Tuple<DocumentFormat.OpenXml.Packaging.WordprocessingDocument,
         UK.Gov.Legislation.Judgments.AttachmentType>>, System.TimeProvider,
     UK.Gov.Legislation.Judgments.Parse.Judgment>;
-using ParseFunction = System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
-    UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
+using ParseFunction =
+    System.Func<byte[], UK.Gov.Legislation.Judgments.IOutsideMetadata, System.Collections.Generic.IEnumerable<
+            System.Tuple<byte[], UK.Gov.Legislation.Judgments.AttachmentType>>,
+        UK.Gov.Legislation.Judgments.AkomaNtoso.ILazyBundle>;
 using PS = UK.Gov.NationalArchives.CaseLaw.PressSummaries;
 
 namespace UK.Gov.NationalArchives.Judgments.Api;
@@ -144,43 +147,47 @@ public class Parser(ILogger<Parser> logger, AkN.IValidator validator, TimeProvid
         IEnumerable<AttachmentPair> attachments)
     {
         var attach2 = AkN.Parser.ConvertAttachments(attachments).ToArray();
+
         logger.LogInformation("trying EWHC parser");
-        var judgment1 = OptimizedEWHCParser.Parse(preParsed.Docx, preParsed, meta, attach2, timeProvider);
-        var score1 = Score(judgment1);
-        var name1 = "EWHC";
-        logger.LogInformation("EWHC parser scored {Score} of {PerfectScore}", score1, PerfectScore);
-        if (score1 == PerfectScore)
+        var bestJudgment = OptimizedEWHCParser.Parse(preParsed.Docx, preParsed, meta, attach2, timeProvider);
+        var bestParserScore = Score(bestJudgment);
+        var bestParserName = "EWHC";
+
+        logger.LogInformation("EWHC parser scored {Score} of {PerfectScore}", bestParserScore, PerfectScore);
+        if (bestParserScore == PerfectScore)
         {
             logger.LogInformation("using EWHC parser (perfect score)");
-            return judgment1;
+            return bestJudgment;
         }
 
-        foreach (var (name2, other) in new (string, OptimizedParseFunction)[]
+        foreach (var (parserName, parserFunction) in new (string, OptimizedParseFunction)[]
                  {
-                     ("UKSC", OptimizedUKSCParser.Parse), ("UKUT", OptimizedUKUTParser.Parse)
+                     ("UKSC", OptimizedUKSCParser.Parse),
+                     ("UKUT", OptimizedUKUTParser.Parse)
                  })
         {
-            logger.LogInformation("trying {Parser} parser", name2);
-            var judgment2 = other(preParsed.Docx, preParsed, meta, attach2, timeProvider);
-            var score2 = Score(judgment2);
-            logger.LogInformation("{Parser} parser scored {Score} of {PerfectScore}", name2, score2, PerfectScore);
-            if (score2 == PerfectScore)
+            logger.LogInformation("trying {ParserName} parser", parserName);
+            var judgment = parserFunction(preParsed.Docx, preParsed, meta, attach2, timeProvider);
+            var score = Score(judgment);
+
+            logger.LogInformation("{ParserName} parser scored {Score} of {PerfectScore}", parserName, score, PerfectScore);
+            if (score == PerfectScore)
             {
-                logger.LogInformation("using {Parser} parser (perfect score)", name2);
-                return judgment2;
+                logger.LogInformation("using {ParserName} parser (perfect score)", parserName);
+                return judgment;
             }
 
-            if (score2 > score1)
+            if (score > bestParserScore)
             {
-                judgment1 = judgment2;
-                score1 = score2;
-                name1 = name2;
+                bestJudgment = judgment;
+                bestParserScore = score;
+                bestParserName = parserName;
             }
         }
 
-        logger.LogInformation("using {Parser} parser (best score {Score} of {PerfectScore})", name1, score1,
-            PerfectScore);
-        return judgment1;
+        logger.LogInformation("using {ParserName} parser (best score {Score} of {PerfectScore})", bestParserName,
+            bestParserScore, PerfectScore);
+        return bestJudgment;
     }
 
     private AkN.ILazyBundle JudgmentOrPressSummary(byte[] docx, IOutsideMetadata meta,
