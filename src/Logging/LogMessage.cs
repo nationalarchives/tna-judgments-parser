@@ -15,4 +15,7 @@ public struct LogMessage
     public LogLevel Level { get; internal init; }
 
     public string Message { get; internal init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string Exception { get; internal init; }
 }

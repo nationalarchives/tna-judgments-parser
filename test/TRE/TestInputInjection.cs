@@ -1,12 +1,9 @@
 using System;
 
-using Microsoft.Extensions.Logging;
-
 using test.Mocks;
 
 using TRE.FindCaseLaw.Inputs;
 
-using UK.Gov.Legislation.Judgments;
 using UK.Gov.Legislation.Judgments.AkomaNtoso;
 
 using Xunit;
@@ -114,19 +111,18 @@ public class TestInputInjection
         Assert.Equal(expected, response.Meta.Uri);
     }
 
-    private static readonly ILogger Logger = Logging.Factory.CreateLogger<TestInputInjection>();
-
     internal static Api.Response LambdaTest(byte[] docx, ParserInputs inputs)
     {
-        var hint = InputHelper.GetHint(inputs, Logger);
-        var meta = InputHelper.GetMetadata(inputs, Logger);
+        var logger = new MockLogger<Api.Parser>().Object;
+        var hint = InputHelper.GetHint(inputs, logger);
+        var meta = InputHelper.GetMetadata(inputs, logger);
         Api.Request apiRequest = new()
         {
             Content = docx,
             Hint = hint,
             Meta = meta
         };
-        var parser = new Api.Parser(new MockLogger<Api.Parser>().Object, new Validator(), TimeProvider.System);
+        var parser = new Api.Parser(logger, new Validator(), TimeProvider.System);
         return parser.Parse(apiRequest);
     }
 

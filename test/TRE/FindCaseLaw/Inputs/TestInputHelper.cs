@@ -5,11 +5,10 @@ using Microsoft.Extensions.Logging;
 using NationalArchives.FindCaseLaw.Utils.Metadata;
 using NationalArchives.FindCaseLaw.Utils.Metadata.Enums;
 
-using TRE.FindCaseLaw.Inputs;
-using TRE.Metadata;
-using TRE.Metadata.Enums;
+using test.Mocks;
 
-using UK.Gov.Legislation.Judgments;
+using TRE.FindCaseLaw.Inputs;
+
 using UK.Gov.NationalArchives.Judgments.Api;
 
 using Xunit;
@@ -18,7 +17,7 @@ namespace test.TRE.FindCaseLaw.Inputs;
 
 public class TestInputHelper
 {
-    private readonly ILogger logger = Logging.Factory.CreateLogger<TestInputHelper>();
+    private readonly ILogger logger = new MockLogger<InputHelper>().Object;
     private readonly InputHelper inputHelper = new();
 
 
