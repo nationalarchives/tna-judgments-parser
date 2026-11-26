@@ -402,7 +402,13 @@ internal class WCourtType2 : ICourtType2
     public IEnumerable<IInline> Contents { get; init; }
 }
 
-internal class WProceedingsIdentifier(string text, RunProperties props) : WText(text, props), IProceedingsIdentifier;
+#nullable enable
+internal class WProceedingsIdentifier(string text, string? type, RunProperties props)
+    : WText(text, props), IProceedingsIdentifier
+{
+    public string? Type { get; } = type;
+}
+#nullable disable
 
 internal class WCaseNo(string text, RunProperties props) : WText(text, props), ICaseNo;
 

@@ -45,7 +45,7 @@ internal class OptimizedUKUTParser : OptimizedParser
             new UKUT.CourtType2(),
             new UKUT.HeaderDateEnricher(lineDateEnricher),
             new PartyEnricher(),
-            new UKUT.ProceedingsIdentifierEnricher(),
+            new UKUT.ProceedingsIdentifierEnricher(new UKUT.ProceedingsIdentifierTypeTracker()),
             new JudgeEnricher()
         ];
         bodyEnrichers = [new UKUT.SignOffDateEnricher(lineDateEnricher)];
