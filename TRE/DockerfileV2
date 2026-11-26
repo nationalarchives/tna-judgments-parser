@@ -24,7 +24,7 @@ RUN --mount=type=secret,id=SIXLABORS_LICENSE_KEY,env=SIXLABORS_LICENSE_KEY dotne
 FROM base AS final
 
 # Use one RUN so package metadata does not clog image layer
-RUN dnf upgrade -y && \
+RUN dnf upgrade -y --releasever=latest && \
     dnf clean all --enablerepo=\* && \
     rm -rf /var/cache/dnf
 

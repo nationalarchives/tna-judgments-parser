@@ -255,6 +255,12 @@ public class Citations
             return [match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value];
         }
 
+        match = Regex.Match(normalized, @"^\[(\d{4})\] (UKPC) (\d+)$");
+        if (match.Success)
+        {
+            return [match.Groups[2].Value, match.Groups[1].Value, match.Groups[3].Value];
+        }
+
         return null;
     }
 
